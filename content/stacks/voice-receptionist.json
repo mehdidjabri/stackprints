@@ -1,0 +1,32 @@
+{
+  "slug": "voice-receptionist",
+  "name": "Voice Receptionist",
+  "kind": "Voice agent",
+  "tagline": "Answers the phone, books the appointment, texts the confirmation.",
+  "description": "A realtime voice agent for small businesses: telephony in, speech-to-speech model, calendar and CRM tools, SMS follow-ups, transcripts and evals for every call.",
+  "layers": {
+    "channels": [
+      "phone-calls",
+      "sms-rcs"
+    ],
+    "voice": [
+      "openai-realtime",
+      "deepgram",
+      "elevenlabs",
+      "livekit-agents"
+    ],
+    "model": "gpt-6-luna",
+    "router": "direct-provider",
+    "harness": "openai-agents-sdk",
+    "tools": "calendar-email",
+    "connectors": "composio",
+    "memory": "supermemory",
+    "storage": "postgres",
+    "guardrails": [
+      "permission-modes",
+      "audit-trail"
+    ],
+    "observability": "braintrust",
+    "hosting": "fly-io"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "claude-cowork",
+  "name": "Claude Cowork",
+  "kind": "Desktop agent",
+  "tagline": "Claude works on your local files and apps, on a schedule.",
+  "description": "Cowork brings the Claude Code loop to knowledge work on the desktop: it reads and edits local files, drives Chrome, runs scheduled tasks locally or in the cloud, and shares memory with chat, with view and edit controls. Stack inferred from public reporting.",
+  "source": "claude.com",
+  "layers": {
+    "channels": "desktop-app",
+    "ui": [
+      "artifacts",
+      "mcp-apps"
+    ],
+    "model": [
+      "claude-opus-5-5",
+      "claude-sonnet-5-5"
+    ],
+    "harness": "claude-agent-sdk",
+    "multiagent": "subagents",
+    "tools": "read-write-edit-bash",
+    "mcp": "mcp",
+    "connectors": "plugins-marketplace",
+    "skills": [
+      "agent-skills-skill-md",
+      "plugins"
+    ],
+    "sandbox": [
+      "host-machine",
+      "per-user-cloud-computer"
+    ],
+    "browser": "chrome-extension",
+    "memory": "agent-notes",
+    "proactivity": "cron",
+    "guardrails": "permission-modes",
+    "hosting": "your-laptop"
+  }
+}

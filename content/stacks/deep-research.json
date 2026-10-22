@@ -1,0 +1,35 @@
+{
+  "slug": "deep-research",
+  "name": "Deep Research",
+  "kind": "Research agent",
+  "tagline": "Fans out subagents across the web and writes a cited report.",
+  "description": "A research agent: a planner splits the question, parallel subagents search and read with Exa, Parallel and Firecrawl, a reranker filters sources, and a writer produces a cited report as a durable, resumable workflow.",
+  "layers": {
+    "channels": "web-chat",
+    "ui": "artifacts",
+    "model": [
+      "claude-opus-5-5",
+      "gemini-4-argon"
+    ],
+    "router": "openrouter",
+    "harness": "langgraph",
+    "multiagent": [
+      "subagents",
+      "supervisor-swarm"
+    ],
+    "tools": [
+      "exa",
+      "parallel",
+      "firecrawl"
+    ],
+    "browser": "browserbase",
+    "retrieval": [
+      "lancedb",
+      "cohere-rerank-4"
+    ],
+    "storage": "s3-r2",
+    "durable": "temporal",
+    "observability": "langsmith",
+    "hosting": "aws"
+  }
+}

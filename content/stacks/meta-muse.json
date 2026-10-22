@@ -1,0 +1,36 @@
+{
+  "slug": "meta-muse",
+  "name": "Meta Muse",
+  "kind": "Consumer agent",
+  "tagline": "A personal agent with its own secure VM, goals and ideas.",
+  "description": "Muse is Meta's personal agent app, built on the Muse Spark model from Meta Superintelligence Labs. Each user gets a dedicated cloud computer and browser that keeps working after the app closes, a Goals tab for long plans, an Ideas tab for proactive suggestions, connectors it can write itself, and a permission authority kept apart from the agent and its credentials. Stack inferred from public reporting.",
+  "source": "meta.ai",
+  "layers": {
+    "channels": [
+      "whatsapp",
+      "web-chat"
+    ],
+    "ui": "goals-activity-feed",
+    "devices": [
+      "phone",
+      "smart-glasses"
+    ],
+    "model": "muse-spark",
+    "router": "direct-provider",
+    "connectors": "self-written-connectors",
+    "sandbox": "per-user-cloud-computer",
+    "browser": "cloud-browser",
+    "memory": "agent-notes",
+    "proactivity": [
+      "background-research",
+      "self-scheduled-wake"
+    ],
+    "guardrails": [
+      "separate-permission-authority",
+      "audit-trail"
+    ],
+    "identity": "credential-vault",
+    "payments": "single-use-cards",
+    "hosting": "vendor-cloud"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "instinct",
+  "name": "Instinct",
+  "kind": "Consumer agent",
+  "tagline": "No app. Just text or call your agent, and it texts you first.",
+  "description": "Instinct is an invite-only personal agent reachable only over SMS, iMessage and phone calls. It works on its own computer with your connected accounts, has its own email address, reaches out first about dropped threads, pays with single-use cards, keeps logins in a vault, signs its tool calls, falls back to a human concierge, and can coordinate with other people's Instinct agents. Stack inferred from public reporting.",
+  "source": "instinct.com",
+  "layers": {
+    "channels": [
+      "imessage",
+      "sms-rcs",
+      "phone-calls",
+      "email"
+    ],
+    "ui": "plain-text",
+    "voice": "elevenlabs",
+    "devices": "phone",
+    "sandbox": "per-user-cloud-computer",
+    "browser": "cloud-browser",
+    "multiagent": "agent-network",
+    "tools": "calendar-email",
+    "memory": "agent-notes",
+    "proactivity": [
+      "background-research",
+      "self-scheduled-wake"
+    ],
+    "guardrails": "audit-trail",
+    "identity": [
+      "credential-vault",
+      "signed-tool-calls",
+      "agent-phone-email"
+    ],
+    "payments": [
+      "single-use-cards",
+      "shop-pay"
+    ],
+    "hosting": "vendor-cloud"
+  }
+}

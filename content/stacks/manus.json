@@ -1,0 +1,28 @@
+{
+  "slug": "manus",
+  "name": "Manus",
+  "kind": "General agent",
+  "tagline": "A general agent with its own cloud VM for code, files and research.",
+  "description": "Manus runs each task in a cloud virtual machine where it browses, writes code and produces files, orchestrating several models. It is now part of Meta. Stack inferred from public reporting.",
+  "source": "manus.im",
+  "layers": {
+    "channels": "web-chat",
+    "ui": [
+      "live-computer-view",
+      "artifacts"
+    ],
+    "model": [
+      "claude-sonnet-5-5",
+      "qwen-3-8"
+    ],
+    "multiagent": "subagents",
+    "tools": [
+      "read-write-edit-bash",
+      "web-search"
+    ],
+    "sandbox": "per-user-cloud-computer",
+    "browser": "browser-use",
+    "storage": "s3-r2",
+    "hosting": "vendor-cloud"
+  }
+}

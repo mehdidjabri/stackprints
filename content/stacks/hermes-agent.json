@@ -1,0 +1,66 @@
+{
+  "slug": "hermes-agent",
+  "name": "Hermes Agent",
+  "kind": "Personal agent",
+  "tagline": "Nous Research's self-improving agent that writes its own skills.",
+  "description": "Hermes Agent from Nous Research is a Python agent with a learning loop: after complex tasks it writes and refines its own skills, nudges its memory, and searches past sessions. One gateway serves 20+ platforms, seven terminal backends run code from local to Modal or Daytona, Honcho models the user, and Atropos turns trajectories into RL training data.",
+  "source": "github.com/NousResearch/hermes-agent",
+  "layers": {
+    "channels": [
+      "cli-tui",
+      "telegram",
+      "discord",
+      "slack",
+      "whatsapp",
+      "signal",
+      "email",
+      "sms-rcs"
+    ],
+    "voice": "whisper",
+    "devices": "home-assistant",
+    "model": [
+      "hermes-4",
+      "kimi-k3",
+      "claude-sonnet-5-5"
+    ],
+    "router": [
+      "nous-portal",
+      "openrouter"
+    ],
+    "harness": "hermes-agent",
+    "persona": "soul-md",
+    "multiagent": "subagents",
+    "tools": [
+      "read-write-edit-bash",
+      "code-mode",
+      "web-search",
+      "image-generation"
+    ],
+    "mcp": [
+      "mcp",
+      "acp-agent-client"
+    ],
+    "skills": [
+      "agent-skills-skill-md",
+      "hermes-skills-hub"
+    ],
+    "sandbox": [
+      "docker",
+      "ssh-host",
+      "modal",
+      "daytona",
+      "vercel-sandbox",
+      "singularity"
+    ],
+    "browser": "cloud-browser",
+    "memory": [
+      "agent-notes",
+      "honcho"
+    ],
+    "retrieval": "sqlite-fts5-sqlite-vec",
+    "storage": "sqlite",
+    "proactivity": "cron",
+    "observability": "atropos",
+    "hosting": "home-server-vps"
+  }
+}

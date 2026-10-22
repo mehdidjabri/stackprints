@@ -1,0 +1,39 @@
+{
+  "slug": "local-private",
+  "name": "Local & Private",
+  "kind": "Personal agent",
+  "tagline": "Nothing leaves your machine. Open weights end to end.",
+  "description": "A fully local agent: an open-weight model on your own GPU through Ollama, a small open harness, local speech in and out, SQLite memory and search, Docker for code. Slower and less capable than frontier APIs, but private and free to run.",
+  "layers": {
+    "channels": [
+      "cli-tui",
+      "desktop-app"
+    ],
+    "voice": [
+      "whisper",
+      "kokoro"
+    ],
+    "model": [
+      "qwen-3-8",
+      "gemma-4",
+      "gpt-oss"
+    ],
+    "router": "ollama",
+    "inference": "local-gpu",
+    "harness": "pi-agent-core",
+    "persona": "agents-md",
+    "tools": "read-write-edit-bash",
+    "mcp": "mcp",
+    "skills": "agent-skills-skill-md",
+    "sandbox": "docker",
+    "memory": "memory-md",
+    "retrieval": [
+      "sqlite-fts5-sqlite-vec",
+      "qwen3-embedding"
+    ],
+    "storage": "sqlite",
+    "guardrails": "permission-modes",
+    "observability": "langfuse",
+    "hosting": "your-laptop"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "perplexity-comet",
+  "name": "Perplexity Comet",
+  "kind": "Browser agent",
+  "tagline": "An AI browser that reads the page and runs errands in the background.",
+  "description": "Comet is Perplexity's AI browser: a sidecar assistant that understands the current page, an agent that clicks and fills forms, and background assistants that work through task lists in parallel. Stack inferred from public reporting.",
+  "source": "perplexity.ai/comet",
+  "layers": {
+    "channels": "desktop-app",
+    "ui": "plain-text",
+    "tools": "web-search",
+    "browser": [
+      "chrome-extension",
+      "cloud-browser"
+    ],
+    "multiagent": "subagents",
+    "memory": "agent-notes",
+    "proactivity": "background-research",
+    "guardrails": "permission-modes",
+    "hosting": "vendor-cloud"
+  }
+}

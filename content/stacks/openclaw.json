@@ -1,0 +1,74 @@
+{
+  "slug": "openclaw",
+  "name": "OpenClaw",
+  "kind": "Personal agent",
+  "tagline": "Self-hosted assistant that lives in every chat app you use.",
+  "description": "OpenClaw is a batteries-included, open-source personal assistant. A long-running gateway daemon connects WhatsApp, Telegram, Slack, Discord, iMessage, Signal and more to one agent, with markdown workspace files (AGENTS.md, SOUL.md, MEMORY.md), a heartbeat and cron scheduler, SQLite hybrid memory with nightly 'dreaming', ClawHub skills and companion nodes on every OS.",
+  "source": "github.com/openclaw/openclaw",
+  "layers": {
+    "channels": [
+      "whatsapp",
+      "telegram",
+      "slack",
+      "discord",
+      "imessage",
+      "signal"
+    ],
+    "ui": [
+      "canvas",
+      "plain-text"
+    ],
+    "voice": "whisper",
+    "devices": [
+      "openclaw-nodes",
+      "phone",
+      "laptop-node"
+    ],
+    "model": [
+      "claude-opus-5-5",
+      "gpt-6-astra",
+      "kimi-k3"
+    ],
+    "router": "openrouter",
+    "harness": "openclaw-runtime",
+    "persona": [
+      "agents-md",
+      "soul-md",
+      "identity-md-user-md"
+    ],
+    "multiagent": "subagents",
+    "tools": [
+      "read-write-edit-bash",
+      "apply-patch",
+      "web-search"
+    ],
+    "mcp": "mcp",
+    "skills": [
+      "agent-skills-skill-md",
+      "clawhub"
+    ],
+    "sandbox": [
+      "host-machine",
+      "docker"
+    ],
+    "browser": "playwright-mcp",
+    "memory": [
+      "memory-md",
+      "dreaming"
+    ],
+    "retrieval": "sqlite-fts5-sqlite-vec",
+    "storage": "sqlite",
+    "proactivity": [
+      "heartbeat",
+      "cron",
+      "webhooks",
+      "gmail-pub-sub"
+    ],
+    "guardrails": "dm-pairing",
+    "identity": "env-vars",
+    "hosting": [
+      "home-server-vps",
+      "your-laptop"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "poke",
+  "name": "Poke",
+  "kind": "Consumer agent",
+  "tagline": "An assistant that lives in your messages and texts you first.",
+  "description": "Poke by The Interaction Company lives in iMessage, SMS and Telegram, sends briefings and alerts proactively, connects to email, calendar and 20+ services with layered memory, and was the first AI agent approved for Apple Messages for Business. Stack inferred from public reporting.",
+  "source": "poke.com",
+  "layers": {
+    "channels": [
+      "imessage",
+      "sms-rcs",
+      "telegram"
+    ],
+    "ui": "plain-text",
+    "tools": "calendar-email",
+    "connectors": "composio",
+    "memory": "agent-notes",
+    "proactivity": [
+      "cron",
+      "webhooks",
+      "background-research"
+    ],
+    "guardrails": "permission-modes",
+    "hosting": "vendor-cloud"
+  }
+}

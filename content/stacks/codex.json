@@ -1,0 +1,41 @@
+{
+  "slug": "codex",
+  "name": "Codex",
+  "kind": "Coding agent",
+  "tagline": "OpenAI's open-source coding agent, local and in the cloud.",
+  "description": "Codex is OpenAI's coding agent: a Rust CLI and IDE extension that edits with apply_patch inside an OS-level sandbox, plus cloud tasks that run in parallel containers and return pull requests. AGENTS.md carries repo instructions.",
+  "source": "github.com/openai/codex",
+  "layers": {
+    "channels": [
+      "cli-tui",
+      "ide",
+      "web-chat"
+    ],
+    "model": [
+      "gpt-6-astra",
+      "gpt-6-1-sol"
+    ],
+    "router": "direct-provider",
+    "harness": "codex",
+    "persona": "agents-md",
+    "multiagent": "subagents",
+    "tools": [
+      "read-write-edit-bash",
+      "apply-patch",
+      "web-search"
+    ],
+    "mcp": "mcp",
+    "skills": "agent-skills-skill-md",
+    "sandbox": [
+      "host-machine",
+      "per-user-cloud-computer"
+    ],
+    "retrieval": "grep-glob",
+    "storage": "git",
+    "guardrails": "permission-modes",
+    "hosting": [
+      "your-laptop",
+      "vendor-cloud"
+    ]
+  }
+}

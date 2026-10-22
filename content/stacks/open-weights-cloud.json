@@ -1,0 +1,41 @@
+{
+  "slug": "open-weights-cloud",
+  "name": "Open-weights Cloud",
+  "kind": "Infrastructure",
+  "tagline": "Frontier-class open models on the fastest hosts, routed for price.",
+  "description": "An all open-weight stack served by speed specialists: Kimi, GLM and DeepSeek behind OpenRouter with fallbacks and provider sorting, a TypeScript harness, open sandboxes, open memory and open tracing. Rauch says ~80% of AI Gateway tokens already go to open models.",
+  "layers": {
+    "channels": [
+      "web-chat",
+      "slack"
+    ],
+    "ui": "ai-sdk-ui",
+    "model": [
+      "kimi-k3",
+      "glm-5-3",
+      "deepseek-v4-1-flash"
+    ],
+    "router": "openrouter",
+    "inference": [
+      "groq",
+      "cerebras",
+      "fireworks"
+    ],
+    "harness": "mastra",
+    "tools": [
+      "web-search",
+      "firecrawl"
+    ],
+    "mcp": "mcp",
+    "sandbox": "e2b",
+    "memory": "mem0",
+    "retrieval": [
+      "pgvector",
+      "qwen3-embedding"
+    ],
+    "storage": "postgres",
+    "durable": "inngest",
+    "observability": "langfuse",
+    "hosting": "railway"
+  }
+}

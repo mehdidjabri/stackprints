@@ -1,0 +1,38 @@
+{
+  "slug": "agent-commerce",
+  "name": "Agent Commerce",
+  "kind": "Commerce agent",
+  "tagline": "An agent that can shop, pay and get paid, within limits.",
+  "description": "A shopping agent: browses merchants, compares, and checks out through agent commerce protocols with single-use cards and per-purchase approval, while merchants expose their catalogs as MCP servers and llms.txt.",
+  "layers": {
+    "channels": [
+      "imessage",
+      "web-chat"
+    ],
+    "model": "gpt-6-1-sol",
+    "router": "openrouter",
+    "harness": "openai-agents-sdk",
+    "mcp": [
+      "mcp",
+      "acp-agentic-commerce"
+    ],
+    "browser": "stagehand",
+    "identity": "credential-vault",
+    "payments": [
+      "agentic-commerce-protocol",
+      "single-use-cards",
+      "stripe-agent-toolkit",
+      "x402"
+    ],
+    "guardrails": [
+      "per-action-autonomy",
+      "audit-trail"
+    ],
+    "readiness": [
+      "mcp-server",
+      "agentready",
+      "ora"
+    ],
+    "hosting": "vercel"
+  }
+}

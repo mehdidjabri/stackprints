@@ -1,0 +1,39 @@
+{
+  "slug": "support-agent",
+  "name": "Support Agent",
+  "kind": "Business agent",
+  "tagline": "Answers tickets from your docs and hands off to humans.",
+  "description": "A customer-support agent: chat widget and email, retrieval over help-center docs with reranking, connectors to the ticketing system, injection defense on untrusted input, and evals on resolved tickets.",
+  "layers": {
+    "channels": [
+      "web-chat",
+      "email",
+      "slack"
+    ],
+    "ui": "assistant-ui",
+    "model": [
+      "claude-sonnet-5-5",
+      "claude-haiku-5-5"
+    ],
+    "router": "vercel-ai-gateway",
+    "harness": "ai-sdk-agent",
+    "multiagent": "handoffs",
+    "tools": "web-search",
+    "connectors": "arcade",
+    "retrieval": [
+      "turbopuffer",
+      "voyage-4",
+      "cohere-rerank-4"
+    ],
+    "storage": "postgres",
+    "durable": "workflow-sdk",
+    "guardrails": [
+      "lakera",
+      "audit-trail"
+    ],
+    "identity": "auth0-for-ai-agents",
+    "observability": "braintrust",
+    "hosting": "vercel",
+    "readiness": "llms-txt"
+  }
+}

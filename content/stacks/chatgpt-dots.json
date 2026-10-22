@@ -1,0 +1,50 @@
+{
+  "slug": "chatgpt-dots",
+  "name": "ChatGPT dots",
+  "kind": "Consumer agent",
+  "tagline": "Always-on personal agents with their own computer, handle and face.",
+  "description": "Announced at OpenAI DevDay 2026, dots are persistent agents that each own a cloud computer and browser you can watch and take over. They wake themselves on schedules, events or their own judgement, keep their own notes, ask before risky actions under per-action autonomy rules with a mandatory auto-review, and have a name, @handle and avatar. Stack inferred from public reporting.",
+  "source": "openai.com",
+  "layers": {
+    "channels": [
+      "web-chat",
+      "desktop-app",
+      "slack",
+      "microsoft-teams"
+    ],
+    "ui": [
+      "goals-activity-feed",
+      "live-computer-view",
+      "apps-sdk"
+    ],
+    "voice": "openai-realtime",
+    "model": "gpt-6-astra",
+    "router": "direct-provider",
+    "harness": "openai-agents-sdk",
+    "persona": "avatar-handle",
+    "multiagent": "subagents",
+    "tools": [
+      "web-search",
+      "calendar-email"
+    ],
+    "connectors": "plugins-marketplace",
+    "sandbox": "per-user-cloud-computer",
+    "browser": "cloud-browser",
+    "memory": "agent-notes",
+    "proactivity": [
+      "self-scheduled-wake",
+      "cron",
+      "webhooks",
+      "background-research"
+    ],
+    "durable": "in-process",
+    "guardrails": [
+      "per-action-autonomy",
+      "auto-review",
+      "audit-trail"
+    ],
+    "identity": "private-sign-in-form",
+    "payments": "single-use-cards",
+    "hosting": "vendor-cloud"
+  }
+}

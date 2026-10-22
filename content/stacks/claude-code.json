@@ -1,0 +1,62 @@
+{
+  "slug": "claude-code",
+  "name": "Claude Code",
+  "kind": "Coding agent",
+  "tagline": "Agentic coding in the terminal, desktop and cloud.",
+  "description": "Claude Code runs Anthropic's agent loop against your repo: agentic search instead of embeddings, CLAUDE.md project memory, subagents with isolated context, skills, plugins, hooks and MCP, with permission modes from ask-every-time to auto. The same loop ships as the Claude Agent SDK.",
+  "source": "claude.com/claude-code",
+  "layers": {
+    "channels": [
+      "cli-tui",
+      "ide",
+      "desktop-app",
+      "slack"
+    ],
+    "ui": [
+      "plain-text",
+      "artifacts"
+    ],
+    "model": [
+      "claude-opus-5-5",
+      "claude-sonnet-5-5",
+      "claude-haiku-5-5"
+    ],
+    "router": "direct-provider",
+    "harness": "claude-agent-sdk",
+    "persona": [
+      "claude-md",
+      "agents-md"
+    ],
+    "multiagent": [
+      "subagents",
+      "worktrees-tmux"
+    ],
+    "tools": [
+      "read-write-edit-bash",
+      "web-search"
+    ],
+    "mcp": "mcp",
+    "skills": [
+      "agent-skills-skill-md",
+      "plugins",
+      "slash-commands"
+    ],
+    "sandbox": [
+      "host-machine",
+      "docker"
+    ],
+    "browser": "chrome-extension",
+    "memory": "memory-md",
+    "retrieval": "grep-glob",
+    "storage": [
+      "jsonl-transcripts",
+      "git"
+    ],
+    "proactivity": "cron",
+    "guardrails": [
+      "permission-modes",
+      "auto-review"
+    ],
+    "hosting": "your-laptop"
+  }
+}
