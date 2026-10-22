@@ -117,11 +117,14 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
           <header className="silk">
             <span className="ref">{layer.ref}</span>
             <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
+            {/* The add control sits on the label line, so it never takes a row of chips. */}
+            {addSlot?.(layer.id)}
           </header>
         )}
         <div className="chips">
+          {/* Notes are clamped on the board; the tooltip keeps all of it readable. */}
           {picks.map((p) => (
-            <div key={p.id} className={sup(p) ? "chip supported" : "chip"}>
+            <div key={p.id} className={sup(p) ? "chip supported" : "chip"} title={!mini && p.note ? `${p.name}: ${p.note}` : undefined}>
               <Logo option={p} />
               {mini ? (
                 <Link href={optionHref(layer.id, p.id)} className="chip-link" aria-label={p.name} />
@@ -146,7 +149,6 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
               )}
             </div>
           ))}
-          {!mini && addSlot?.(layer.id)}
         </div>
       </section>
     );
@@ -160,6 +162,12 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
         const zone = ZONE[band];
         return (
           <div key={band} className={`zone ${zone}`} role="group" aria-label={BAND_NAME[band]}>
+            {/* Each region names its band in text, so the band never rests on colour alone. */}
+            {!mini && (
+              <div className="zone-label silk" aria-hidden="true">
+                {BAND_NAME[band]}
+              </div>
+            )}
             {band === "brain"
               ? CPU_COLUMNS.map((col) => {
                   const ls = col.map((id) => layers.find((l) => l.id === id)).filter((l): l is Slot => Boolean(l));

@@ -3,12 +3,14 @@
   --fg: #0c0c0c;
   --muted: #6b6b6b;
   --line: #d8d8d4;
+  /* The only edge of a text field or picker: 3:1 against the page. */
+  --line-input: #8f8f8a;
   --line-strong: #0c0c0c;
   --hover: #f0f0ec;
   --accent: #0c0c0c;
   /* Chart palette: light values here, dark below. */
   --chart-1: #ba4c43; /* coral */
-  --chart-2: #9e6806; /* amber */
+  --chart-2: #c27a00; /* amber */
   --chart-3: #098b47; /* mint */
   --chart-4: #08848e; /* aqua */
   --chart-5: #546dc9; /* periwinkle */
@@ -18,6 +20,9 @@
   --mix-line: 50%;
   --mix-core: 80%;
   --mix-mini: 65%;
+  /* Light amber washes out to tan at 50%: hands outlines take more of it. */
+  --mix-line-hands: 70%;
+  --mix-hatch: 24%;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --sans: var(--font-dm-sans), ui-sans-serif, -apple-system, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
@@ -28,6 +33,7 @@
     --fg: #ededea;
     --muted: #8d8d88;
     --line: #2a2a28;
+    --line-input: #5f5f5b;
     --line-strong: #ededea;
     --hover: #161615;
     --accent: #ededea;
@@ -41,6 +47,8 @@
     --mix-line: 34%;
     --mix-core: 55%;
     --mix-mini: 45%;
+    --mix-line-hands: var(--mix-line);
+    --mix-hatch: 16%;
   }
 }
 
@@ -79,6 +87,12 @@ a:hover {
 .skip:focus {
   left: 16px;
   top: 8px;
+  z-index: 100;
+  padding: 6px 10px;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--line-strong);
+  outline-offset: -1px; /* the focus ring lies on the border: one line, not two */
 }
 
 .wrap {
@@ -143,7 +157,7 @@ a:hover {
   margin: 0;
 }
 .title .slash {
-  color: var(--line);
+  color: var(--muted);
   font-weight: 300;
 }
 .title .crumb {
@@ -233,7 +247,7 @@ a:hover {
   font: inherit;
   color: var(--fg);
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-input);
   padding: 7px 8px;
   border-radius: 0;
 }
@@ -259,7 +273,7 @@ a:hover {
   font: inherit;
   color: var(--fg);
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-input);
   border-radius: 0;
   padding: 6px 8px;
   margin: 0 4px 6px;
@@ -349,7 +363,7 @@ button:hover,
   font: 12px var(--sans);
   color: var(--fg);
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-input);
   border-radius: 0;
   padding: 5px 8px;
 }
@@ -397,6 +411,13 @@ html[data-hash-stack] .editor {
   gap: 10px;
   min-width: 0;
 }
+/* Full boards: both processor columns end level; the last module of the shorter one takes the slack. */
+.board:not(.mini) .zone.cpu {
+  align-items: stretch;
+}
+.board:not(.mini) .cpu-col > .module:last-child {
+  flex-grow: 1;
+}
 .zone.pcie {
   grid-area: pcie;
   display: flex;
@@ -421,31 +442,37 @@ html[data-hash-stack] .editor {
   gap: 8px;
   min-width: 0;
 }
-.io .module {
-  flex: 1 1 auto;
+/* In the I/O strip, fitted ports take the spare room. Empty ones stay narrow next to them,
+   and a row of only empty ports still spans the strip. */
+.io .module:not(.empty) {
+  flex: 999 1 auto;
 }
-/* Empty slots: the part isn't fitted. Same label position as a filled slot, less weight. */
+.io .module.empty {
+  flex: 1 1 150px;
+}
+/* Empty slots: the part isn't fitted. Same label position as a filled slot. The outline and the
+   state label say it's empty, so the label keeps full contrast; only the designator is muted. */
 .module.empty {
   border-style: dashed;
 }
-.module.empty .silk {
-  opacity: 0.7;
-}
-/* In the I/O strip, empty ports stay narrow so fitted ones get the room. */
-.io .module.empty {
-  flex: 0 1 150px;
+.module.empty .silk .ref {
+  color: var(--muted);
 }
 .module.core.empty {
   box-shadow: none;
 }
-/* Processor sockets: one stronger outline (never a double border). */
+/* Processor sockets: one stronger outline (never a double border). Same padding as every other
+   module, so labels and chips line up down a column. */
 .module.core {
   border-color: var(--line-strong);
-  padding: 12px;
 }
-/* Memory sticks stretch to fill the side column. */
+/* Memory sticks stretch to fill the side column. On a full board an empty stick stays a label bar
+   while another is fitted, so the room goes to the fitted ones. */
 .ram .module {
   flex: 1 1 auto;
+}
+.board:not(.mini) .ram:has(.module:not(.empty)) .module.empty {
+  flex: 0 0 auto;
 }
 /* Expansion slots: one long rectangle, label on the left. */
 .pcie .module {
@@ -456,6 +483,12 @@ html[data-hash-stack] .editor {
 .pcie .silk {
   flex: none;
   width: 230px;
+}
+/* In the editor the "+" shares the label column: widen it for every slot, so the chips still line up. */
+@media (min-width: 1025px) {
+  .pcie:has(.silk select.add) .silk {
+    width: 256px;
+  }
 }
 /* An empty expansion slot is just its label, at the same position as a filled one. */
 .pcie .module.empty {
@@ -468,7 +501,7 @@ html[data-hash-stack] .editor {
 .silk {
   display: flex;
   gap: 8px;
-  align-items: baseline;
+  align-items: center;
   font: 10px var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -482,6 +515,33 @@ html[data-hash-stack] .editor {
 }
 .silk a {
   min-width: 0;
+}
+/* Each region's band in words across its top, so a band never rests on colour alone. */
+.zone-label {
+  display: block;
+  grid-column: 1 / -1;
+  margin-bottom: -4px;
+}
+.io > .zone-label {
+  flex-basis: 100%;
+}
+/* The editor's "+" sits at the end of a module's label line, never on a row of its own. */
+.silk select.add {
+  flex: none;
+  margin-left: auto;
+  width: 28px;
+  height: 24px;
+  min-height: 0;
+  align-self: center;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.pcie .silk select.add {
+  margin-right: 4px;
+}
+/* On a board with "+" controls every label line is their height, so labels line up across a row. */
+.board:has(.silk select.add) .module > .silk {
+  min-height: 24px;
 }
 .chips {
   display: grid;
@@ -512,7 +572,7 @@ html[data-hash-stack] .editor {
   align-items: flex-start;
   gap: 14px;
   padding: 12px;
-  border-color: var(--line-strong);
+  border-color: color-mix(in srgb, var(--c, var(--line)) var(--mix-line), transparent);
 }
 .chip-text {
   display: flex;
@@ -535,6 +595,18 @@ html[data-hash-stack] .editor {
   font-size: 11px;
   color: var(--muted);
 }
+/* Full boards wrap a note to two lines before cutting it; the chip's tooltip has the rest.
+   The I/O strip stays one line high. */
+.board:not(.mini) .chip-note {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.board:not(.mini) .io .chip-note {
+  display: block;
+  white-space: nowrap;
+}
 .logo {
   width: 16px;
   height: 16px;
@@ -545,10 +617,12 @@ html[data-hash-stack] .editor {
   width: 24px;
   height: 24px;
 }
+/* Monograms sit below the chip's text: a mid-grey tile, not a fourth full-contrast box. */
 .glyph {
   display: inline-grid;
   place-items: center;
-  border: 1px solid var(--line-strong);
+  border: 1px solid color-mix(in srgb, var(--fg) 35%, transparent);
+  color: var(--muted);
   font: 600 7px/1 var(--sans);
   letter-spacing: -0.02em;
   overflow: hidden;
@@ -584,7 +658,7 @@ select.add {
   font: 14px var(--sans);
   color: var(--muted);
   background: transparent;
-  border: 1px dashed var(--line);
+  border: 1px dashed var(--line-input);
   width: 44px;
   min-height: 48px;
   align-self: stretch;
@@ -617,6 +691,17 @@ select.add:focus-visible {
   text-align: right;
 }
 
+/* Mid widths: a 230px label column starves the chips, so expansion slots put the label on top. */
+@media (max-width: 1024px) {
+  .board:not(.mini) .pcie .module {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .board:not(.mini) .pcie .silk {
+    width: auto;
+  }
+}
+
 /* Small screens: the regions stack, in the same order. */
 @media (max-width: 760px) {
   .board:not(.mini) {
@@ -629,13 +714,6 @@ select.add:focus-visible {
   }
   .board:not(.mini) .cpu {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .board:not(.mini) .pcie .module {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .board:not(.mini) .pcie .silk {
-    width: auto;
   }
   .board:not(.mini) .io .chips {
     display: grid;
@@ -755,6 +833,7 @@ select.add:focus-visible {
   justify-content: space-between;
   gap: 8px;
   align-items: baseline;
+  min-height: 22px; /* the same with or without a logo */
 }
 .card h3 {
   font: 500 15px var(--sans);
@@ -767,11 +846,12 @@ select.add:focus-visible {
   color: var(--muted);
   white-space: nowrap;
 }
+/* Two lines kept for every tagline, so the boards in a row start level. */
 .card-tag {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
-  min-height: 2.6em;
+  min-height: 3em;
 }
 .more {
   font: 10.5px var(--sans);
@@ -877,12 +957,12 @@ select.add:focus-visible {
   margin: 40px 0 12px;
 }
 .prose code {
-  font: 12.5px var(--sans);
+  font: 12px var(--mono);
   border: 1px solid var(--line);
   padding: 0 4px;
 }
 .prose pre {
-  font: 12.5px/1.6 var(--sans);
+  font: 12px/1.6 var(--mono);
   border: 1px solid var(--line);
   padding: 12px;
   overflow-x: auto;
@@ -951,7 +1031,7 @@ select.add:focus-visible {
   font: 13px var(--sans);
   color: var(--fg);
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-input);
   border-radius: 0;
   padding: 9px 10px;
   width: 100%;
@@ -987,7 +1067,7 @@ select.add:focus-visible {
   min-width: 0;
 }
 .preview pre {
-  font: 12px/1.6 var(--sans);
+  font: 12px/1.6 var(--mono);
   border: 1px solid var(--line);
   padding: 12px;
   margin: 0;
@@ -1002,9 +1082,6 @@ select.add:focus-visible {
 }
 .publish p {
   margin: 0;
-}
-code {
-  font-family: var(--sans);
 }
 
 /* Monospace stays only where it reads as silkscreen or code. */
@@ -1021,7 +1098,7 @@ pre,
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 14px;
-  align-items: start;
+  align-items: stretch;
 }
 @media (max-width: 760px) {
   .sheet {
@@ -1169,7 +1246,8 @@ pre,
   align-items: baseline;
 }
 .news time {
-  font: 12px var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
   color: var(--muted);
 }
 .news .muted {
@@ -1281,7 +1359,7 @@ pre,
   font: 13px var(--sans);
   color: var(--fg);
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-input);
   border-radius: 0;
   padding: 6px 28px 6px 10px;
   -webkit-appearance: none;
@@ -1409,7 +1487,8 @@ pre,
   overflow: hidden;
 }
 .trend-news time {
-  font: 11px var(--mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
   color: var(--muted);
   margin-right: 6px;
 }
@@ -1514,6 +1593,7 @@ pre,
 .b-hands,
 .zone.pcie {
   --c: var(--chart-2);
+  --mix-line: var(--mix-line-hands);
 }
 .b-files,
 .zone.ram {
@@ -1539,14 +1619,16 @@ pre,
 .silk .ref {
   color: var(--fg);
 }
-:is(.zone, .b-surface, .b-brain, .b-hands, .b-files, .b-ops) .silk .ref::before {
+/* One swatch size on the board and in the legend: 8px, the least a dashed outline needs to read. */
+:is(.zone, .b-surface, .b-brain, .b-hands, .b-files, .b-ops) .silk .ref::before,
+.zone-label::before {
   content: "";
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   margin-right: 5px;
   background: var(--c);
-  vertical-align: 1px;
+  vertical-align: 0;
 }
 .chip:has(.chip-link):hover,
 .alts .chip:hover {
@@ -1630,14 +1712,22 @@ button.link {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-/* Picker that fills an empty slot */
+/* Picker that fills an empty slot. It reads as the slot's label: the slot's own outline is its only frame. */
 select.add.fill {
   width: 100%;
-  min-height: 30px;
+  min-height: 28px;
   font-size: 12px;
   text-align: left;
   text-align-last: left;
-  padding: 0 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+select.add.fill:hover,
+select.add.fill:focus-visible {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Official link on a stack card, above the card's own stretched link */
@@ -1645,6 +1735,7 @@ select.add.fill {
   position: relative;
   z-index: 1;
   align-self: flex-start;
+  margin-top: auto; /* level with the other cards in the row */
   font-size: 12px;
   color: var(--muted);
 }
@@ -1652,11 +1743,13 @@ select.add.fill {
   color: var(--fg);
 }
 
-/* Not disclosed: a covered, hatched slot, as if under a shield. Distinct from a dashed empty slot. */
+/* Not disclosed: a covered, hatched slot, as if under a shield. The solid outline and the hatch
+   set it apart from a dashed "not used" slot. */
 .module.unknown {
+  border-style: solid;
   background: repeating-linear-gradient(
     135deg,
-    color-mix(in srgb, var(--c, var(--line)) 14%, transparent) 0 1px,
+    color-mix(in srgb, var(--c, var(--line)) var(--mix-hatch), transparent) 0 1px,
     transparent 1px 8px
   );
 }
@@ -1702,7 +1795,8 @@ select.add.fill {
 }
 .legend .lg-unknown i {
   background: repeating-linear-gradient(135deg, var(--muted) 0 1px, transparent 1px 3px);
-  outline: 1px dashed var(--muted);
+  outline: 1px solid var(--muted);
+  outline-offset: -1px;
 }
 .legend .lg-empty i {
   background: none;
@@ -1718,7 +1812,8 @@ select.add.fill {
   vertical-align: 0;
 }
 .cite {
-  font: 11px var(--mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
   margin-left: 4px;
   vertical-align: 1px;
 }

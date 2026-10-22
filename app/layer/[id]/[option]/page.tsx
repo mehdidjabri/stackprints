@@ -132,8 +132,9 @@ export default async function OptionPage({ params }: Props) {
       <section className="sheet">
         <div className="sheet-part module core">
           <header className="silk">
-            <span className="ref">{(o.profile ?? "option").toUpperCase()}</span>
-            {layer.name.toLowerCase() !== o.profile && <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>}
+            {/* The slot's designator, as on the board; the profile is already in the meta line. */}
+            <span className="ref">{layer.ref}</span>
+            <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
           </header>
           <div className="sheet-chip">
             <Logo option={o} />
