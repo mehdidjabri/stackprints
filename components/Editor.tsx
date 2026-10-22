@@ -135,12 +135,6 @@ export function Editor({
   return (
     <div className="editor">
       <nav className="title" aria-label="Breadcrumb">
-        <Link href="/" className="crumb">
-          Agentic Stack
-        </Link>
-        <span className="slash" aria-hidden="true">
-          /
-        </span>
         <details className="dd crumb">
           <summary>{kind}</summary>
           <ul className="dd-menu">

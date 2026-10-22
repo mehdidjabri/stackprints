@@ -4,24 +4,23 @@ export type CrumbItem = { label: string; href: string; current?: boolean; hint?:
 export type Crumb = { label: string; href?: string; items?: CrumbItem[] };
 
 /**
- * "Agentic Stack / Category / Name". Crumbs with items are dropdowns built on <details>,
+ * "Category / Name". Crumbs with items are dropdowns built on <details>,
  * so they work without JavaScript and their links stay crawlable.
  */
 export function Title({ detail, crumbs }: { detail?: string; crumbs?: Crumb[] }) {
   const list = crumbs ?? (detail ? [{ label: detail }] : []);
   return (
     <nav className="title" aria-label="Breadcrumb">
-      <Link href="/" className="crumb">
-        Agentic Stack
-      </Link>
       {list.map((c, n) => {
         // Only the last crumb is the page heading; menus stay outside it.
         const label = n === list.length - 1 ? <h1>{c.label}</h1> : c.label;
         return (
         <span key={c.label} style={{ display: "contents" }}>
-          <span className="slash" aria-hidden="true">
-            /
-          </span>
+          {n > 0 && (
+            <span className="slash" aria-hidden="true">
+              /
+            </span>
+          )}
           {c.items ? (
             <details className="dd crumb">
               <summary>{label}</summary>

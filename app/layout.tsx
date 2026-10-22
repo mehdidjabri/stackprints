@@ -39,12 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <header className="top">
           <div className="wrap">
-            <Link href="/" className="brand" aria-label="Agentic Stack home">
-              <span className="mark" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </span>
+            <Link href="/" className="brand">
               agentic stack
             </Link>
             <SearchBox />
