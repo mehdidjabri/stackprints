@@ -2133,7 +2133,7 @@ select.add.fill:focus-visible {
 }
 /* The text on a tint, not in a box: the rows above and below already draw the lines. */
 .prompt pre {
-  margin: 0 0 10px;
+  margin: 0 0 14px;
   padding: 12px 14px;
   max-height: 520px;
   overflow: auto;

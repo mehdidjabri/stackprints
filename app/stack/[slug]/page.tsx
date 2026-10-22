@@ -8,6 +8,7 @@ import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, kindCoun
 import { JsonLd } from "@/lib/jsonld";
 import { bareUrl, citeNumbers, kindHref, optionHref, primaryLink, prettyUrl, promptFile, stackSources, withMarkdown } from "@/lib/links";
 import { CopyText } from "@/components/CopyText";
+import { PromptText } from "@/components/PromptText";
 import { Ext } from "@/components/Ext";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -302,17 +303,20 @@ export default async function StackPage({ params }: Props) {
               {prompts
                 .filter((p) => p.layer === id)
                 .map((p) => (
-                  <details key={p.id} className="prompt" id={`prompt-${p.id}`}>
-                    <summary>
-                      <span className="prompt-title">{p.title}</span>
-                      <span className="muted">
-                        {PROMPT_KIND[p.kind]} · {p.text.split("\n").length.toLocaleString("en")} lines
-                      </span>
-                    </summary>
+                  <PromptText
+                    key={p.id}
+                    id={p.id}
+                    file={promptFile(s.slug, p.id)}
+                    summary={
+                      <>
+                        <span className="prompt-title">{p.title}</span>
+                        <span className="muted">
+                          {PROMPT_KIND[p.kind]} · {p.text.split("\n").length.toLocaleString("en")} lines
+                        </span>
+                      </>
+                    }
+                  >
                     {p.note && <p className="muted small">{p.note}</p>}
-                    <pre id={`prompt-text-${p.id}`}>
-                      <code>{p.text}</code>
-                    </pre>
                     <div className="prompt-foot small">
                       <a href={p.source} rel="noopener">
                         Source
@@ -324,7 +328,7 @@ export default async function StackPage({ params }: Props) {
                         {p.license} · copied {p.retrieved}
                       </span>
                     </div>
-                  </details>
+                  </PromptText>
                 ))}
             </div>
           ))}
