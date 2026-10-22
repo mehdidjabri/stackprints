@@ -8,7 +8,8 @@
     "dev": "node scripts/sprite.mjs && next dev",
     "build": "node scripts/check.mjs && node scripts/sprite.mjs && next build",
     "check": "node scripts/check.mjs",
-    "start": "npx serve out"
+    "start": "npx serve out",
+    "news:stale": "node scripts/news-stale.mjs"
   },
   "dependencies": {
     "next": "16.4.2",

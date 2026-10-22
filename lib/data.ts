@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { Layer, Option, Stack } from "./types";
+import type { Layer, News, Option, Stack } from "./types";
 
 const root = path.join(process.cwd(), "content");
 
@@ -65,4 +65,33 @@ export function resolve(stack: Pick<Stack, "layers">) {
 /** Stacks that use a given option. */
 export function usedBy(layerId: string, optionId: string) {
   return getStacks().filter((s) => asArray(s.layers[layerId]).includes(optionId));
+}
+
+export function getOption(layerId: string, optionId: string) {
+  const layer = getLayer(layerId);
+  const option = layer?.options.find((o) => o.id === optionId);
+  return layer && option ? { layer, option } : undefined;
+}
+
+export function getNews(layerId: string, optionId: string): News | undefined {
+  const p = path.join(root, "news", layerId, `${optionId}.json`);
+  return fs.existsSync(p) ? (JSON.parse(fs.readFileSync(p, "utf8")) as News) : undefined;
+}
+
+/**
+ * Trending = most in the news lately. Each item in the last `days` scores by recency (1 → 0),
+ * so three stories this week beat one story a month ago. Honest by construction: no hidden inputs.
+ */
+export function getTrending(days = 30, now = new Date()) {
+  const out = [];
+  for (const layer of getLayers())
+    for (const option of layer.options) {
+      const news = getNews(layer.id, option.id);
+      if (!news) continue;
+      const recent = news.items.filter((i) => (now.getTime() - new Date(i.date).getTime()) / 864e5 <= days);
+      if (!recent.length) continue;
+      const score = recent.reduce((s, i) => s + 1 - (now.getTime() - new Date(i.date).getTime()) / 864e5 / days, 0);
+      out.push({ layer, option, score, latest: recent[0], count: recent.length });
+    }
+  return out.sort((a, b) => b.score - a.score);
 }

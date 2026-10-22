@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Editor } from "@/components/Editor";
 import { StackCard } from "@/components/StackCard";
+import { Trending } from "@/components/Trending";
 import { SITE, asArray, getLayers, getStacks } from "@/lib/data";
 import { BANDS } from "@/lib/bands";
 import { JsonLd } from "@/lib/jsonld";
@@ -34,6 +35,11 @@ export default function Home() {
           name: SITE.name,
           url: SITE.url,
           description: SITE.description,
+          potentialAction: {
+            "@type": "SearchAction",
+            target: `${SITE.url}/search/?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+          },
         }}
       />
       <Editor layers={lite} presets={presets} initial={DEFAULT} repo={SITE.repo} />
@@ -43,6 +49,14 @@ export default function Home() {
         loop that calls tools, the sandbox its code runs in, what it remembers, what wakes it up, and who it is
         allowed to pay. Pick any stack below, change any layer, save it, rename it, share it.
       </p>
+
+      <div className="section-head" id="trending">
+        <h2>Trending</h2>
+        <Link href="/trending/" className="muted">
+          most in the news, last 30 days →
+        </Link>
+      </div>
+      <Trending limit={6} />
 
       <div className="section-head" id="stacks">
         <h2>Stacks</h2>

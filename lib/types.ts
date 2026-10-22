@@ -12,7 +12,33 @@ export type Option = {
   logo?: string;
   /** Open source / open weights. */
   open?: boolean;
+
+  // Research, see docs/RESEARCH.md. Everything below is optional and verified.
+  /** Decides the layout of the option's page. */
+  profile?: "model" | "product" | "protocol" | "pattern";
+  summary?: string;
+  /** Datasheet rows: [label, value]. */
+  facts?: [string, string][];
+  links?: Partial<Record<"site" | "docs" | "repo" | "pricing" | "changelog" | "blog" | "x", string>>;
+  goodFor?: string[];
+  watchOut?: string[];
+  /** Pattern steps. */
+  how?: string[];
+  model?: {
+    lab?: string;
+    released?: string;
+    context?: string;
+    priceIn?: string;
+    priceOut?: string;
+    modalities?: string[];
+    weights?: "open" | "closed";
+    openrouter?: string;
+  };
+  researched?: string;
 };
+
+export type NewsItem = { date: string; title: string; url: string; source: string };
+export type News = { updated: string; items: NewsItem[] };
 
 export type Layer = {
   id: string;

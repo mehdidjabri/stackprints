@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Layer, Option } from "@/lib/types";
+import { optionHref } from "@/lib/links";
 import { Logo } from "./Logo";
 
 export type Module = { layer: Pick<Layer, "id" | "name" | "band">; picks: Pick<Option, "id" | "name" | "note" | "logo">[] };
@@ -84,9 +85,13 @@ export function Board({ modules, mini = false, label, onRemove, addSlot, childre
                     {m.picks.map((p) => (
                       <div key={p.id} className="chip">
                         <Logo option={p} />
-                        {!mini && (
+                        {mini ? (
+                          <Link href={optionHref(m.layer.id, p.id)} className="chip-link" aria-label={p.name} />
+                        ) : (
                           <span className="chip-text">
-                            <span className="chip-name">{p.name}</span>
+                            <Link href={optionHref(m.layer.id, p.id)} className="chip-link chip-name">
+                              {p.name}
+                            </Link>
                             {p.note && <span className="chip-note">{p.note}</span>}
                           </span>
                         )}

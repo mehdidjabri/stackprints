@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import { MenuCloser } from "@/components/MenuCloser";
+import { SearchBox } from "@/components/SearchBox";
 import { SITE } from "@/lib/data";
 import "./globals.css";
 
@@ -46,7 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </span>
               agentic stack
             </Link>
+            <SearchBox />
             <nav aria-label="Primary">
+              <Link href="/trending/">Trending</Link>
               <Link href="/#stacks">Stacks</Link>
               <Link href="/layers/">Layers</Link>
               <Link href="/mine/">Mine</Link>

@@ -8,9 +8,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: u("/"), priority: 1, changeFrequency: "weekly" },
     { url: u("/layers/"), priority: 0.8, changeFrequency: "weekly" },
+    { url: u("/trending/"), priority: 0.8, changeFrequency: "daily" },
     { url: u("/submit/"), priority: 0.5 },
     { url: u("/contribute/"), priority: 0.3 },
     ...getStacks().map((s) => ({ url: u(`/stack/${s.slug}/`), priority: 0.9, changeFrequency: "weekly" as const })),
     ...getLayers().map((l) => ({ url: u(`/layer/${l.id}/`), priority: 0.7, changeFrequency: "weekly" as const })),
+    ...getLayers().flatMap((l) =>
+      l.options.map((o) => ({
+        url: u(`/layer/${l.id}/${o.id}/`),
+        priority: 0.6,
+        changeFrequency: "weekly" as const,
+        ...(o.researched ? { lastModified: o.researched } : {}),
+      })),
+    ),
   ];
 }

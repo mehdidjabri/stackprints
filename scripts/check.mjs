@@ -37,6 +37,12 @@ for (const l of layers) {
     if (o.note && o.note.length > 60) errors.push(`${at}: keep note under 60 characters`);
     if (o.url && /^https?:/.test(o.url)) errors.push(`${at}: url without protocol please`);
     if (o.logo && !fs.existsSync(`content/logos/${o.logo}.svg`)) errors.push(`${at}: missing content/logos/${o.logo}.svg`);
+    if (o.profile && !["model", "product", "protocol", "pattern"].includes(o.profile)) errors.push(`${at}: unknown profile`);
+    if (o.facts && !(Array.isArray(o.facts) && o.facts.every((f) => Array.isArray(f) && f.length === 2 && f.every((x) => typeof x === "string"))))
+      errors.push(`${at}: facts must be [label, value] string pairs`);
+    for (const [k, v] of Object.entries(o.links ?? {})) if (!/^https:\/\//.test(v)) errors.push(`${at}: links.${k} must be an https URL`);
+    for (const k of ["goodFor", "watchOut", "how"]) if (o[k] && (!Array.isArray(o[k]) || o[k].length > 5)) errors.push(`${at}: ${k} must be a short list`);
+    if (o.researched && !/^\d{4}-\d{2}-\d{2}$/.test(o.researched)) errors.push(`${at}: researched must be YYYY-MM-DD`);
     index.get(l.id).add(o.id);
   }
 }
@@ -46,6 +52,27 @@ for (const f of fs.readdirSync("content/logos").filter((f) => f.endsWith(".svg")
   if (!/viewBox=/.test(svg)) errors.push(`content/logos/${f}: needs a viewBox`);
   if (/<script|on\w+=|href="(?!#)/i.test(svg)) errors.push(`content/logos/${f}: no scripts, handlers or external refs`);
   if (svg.length > 8000) errors.push(`content/logos/${f}: keep logos under 8 KB (run svgo)`);
+}
+
+let news = 0;
+for (const l of layers) {
+  for (const f of jsonFiles(`content/news/${l.id}`)) {
+    const at = `content/news/${l.id}/${f}`;
+    let n;
+    try {
+      n = json(at);
+    } catch (e) {
+      errors.push(`${at}: invalid JSON (${e.message})`);
+      continue;
+    }
+    news++;
+    if (!index.get(l.id).has(f.slice(0, -5))) errors.push(`${at}: no matching option`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(n.updated ?? "")) errors.push(`${at}: updated must be YYYY-MM-DD`);
+    if (!Array.isArray(n.items) || n.items.length > 5) errors.push(`${at}: items must be a list of at most 5`);
+    for (const i of n.items ?? [])
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(i.date ?? "") || !i.title || !/^https:\/\//.test(i.url ?? "") || !i.source)
+        errors.push(`${at}: each item needs date (YYYY-MM-DD), title, https url, source`);
+  }
 }
 
 const slugs = new Set();
@@ -67,4 +94,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log(`ok: ${layers.length} layers, ${options} options, ${slugs.size} stacks`);
+console.log(`ok: ${layers.length} layers, ${options} options, ${news} news files, ${slugs.size} stacks`);

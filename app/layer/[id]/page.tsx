@@ -5,6 +5,7 @@ import { Title } from "@/components/Title";
 import { BANDS } from "@/lib/bands";
 import { SITE, getLayer, getLayers, usedBy } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
+import { optionHref } from "@/lib/links";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -45,7 +46,7 @@ export default async function LayerPage({ params }: Props) {
             "@type": "ListItem",
             position: n + 1,
             name: o.name,
-            ...(o.url ? { url: `https://${o.url}` } : {}),
+            url: `${SITE.url}${optionHref(l.id, o.id)}`,
           })),
         }}
       />
@@ -78,13 +79,7 @@ export default async function LayerPage({ params }: Props) {
           return (
             <div key={o.id} className="opt" id={o.id}>
               <div className="opt-name">
-                {o.url ? (
-                  <a href={`https://${o.url}`} rel="noopener">
-                    {o.name}
-                  </a>
-                ) : (
-                  o.name
-                )}
+                <Link href={optionHref(l.id, o.id)}>{o.name}</Link>
                 {o.open && <span className="tag">open</span>}
               </div>
               <div className="opt-note">{o.note}</div>
