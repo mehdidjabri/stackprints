@@ -1,0 +1,278 @@
+{
+  "updated": "2026-10-22",
+  "from": "2026-10-15",
+  "stacks": [
+    {
+      "stack": "claude-duet",
+      "why": "Anthropic opened a waitlisted preview of Claude Duet, a proactive agent app; launch post passed 8.3M views.",
+      "since": "2026-10-21",
+      "sources": [
+        {
+          "title": "@claudeai: We're opening a research preview of Claude Duet, a new app where Claude works as a proactive agent",
+          "url": "https://x.com/claudeai/status/2112984664256241837",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "Introducing Claude Duet",
+          "url": "https://claude.com/blog/claude-duet",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "Claude Duet (HN, 534 points, 499 comments)",
+          "url": "https://news.ycombinator.com/item?id=50186037",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "Claude Duet app is Anthropic's bet on agents",
+          "url": "https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/",
+          "date": "2026-10-22"
+        }
+      ]
+    },
+    {
+      "stack": "codex",
+      "why": "Codex is coming to Google Cloud; its lead's posts on permanent cache and a usage-drain fix drew 1.8-2.9M views",
+      "since": "2026-10-21",
+      "sources": [
+        {
+          "title": "@thsottiaux: Day 16/ You can now cache for 12h in the API and for logged in users across Codex & Work we keep cache forever",
+          "url": "https://x.com/thsottiaux/status/2112712984644784534",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "OpenAI models are coming to Google Cloud",
+          "url": "https://openai.com/index/openai-models-google-cloud/",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "@thsottiaux: There were reports of usage draining faster than anticipated for some users over the weekend",
+          "url": "https://x.com/thsottiaux/status/2112592264686149749",
+          "date": "2026-10-20"
+        },
+        {
+          "title": "TLDR AI: OpenAI models are coming to Google Cloud",
+          "url": "https://tldr.tech/ai/2026-10-22",
+          "date": "2026-10-22"
+        }
+      ]
+    },
+    {
+      "stack": "opencode",
+      "why": "An Oct 17 OpenCode Console breach exposed stored AI provider API keys, and users reported surprise charges.",
+      "since": "2026-10-17",
+      "sources": [
+        {
+          "title": "@opencode: We had a security breach last night related to a large scale distillation attack that impacted 1.4% of OpenCode Console users",
+          "url": "https://x.com/opencode/status/2111519637049319818",
+          "date": "2026-10-17"
+        },
+        {
+          "title": "@mattjay: Confirmed. OpenCode hacked. Keys stolen.",
+          "url": "https://x.com/mattjay/status/2111480005435719885",
+          "date": "2026-10-17"
+        },
+        {
+          "title": "Hackers hit AI coding tool OpenCode, running up charges on users' AI accounts",
+          "url": "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/",
+          "date": "2026-10-19"
+        },
+        {
+          "title": "OpenCode Hacked: User credentials leaked (974 points, 185 comments)",
+          "url": "https://news.ycombinator.com/item?id=50133401",
+          "date": "2026-10-17"
+        }
+      ]
+    },
+    {
+      "stack": "grok-bot",
+      "why": "Grok Bot shipped an iPhone Action Button, reports and 1Password logins in 4 days; Musk told users to try it.",
+      "since": "2026-10-19",
+      "sources": [
+        {
+          "title": "@bot: Grok Bot is now one step closer. Set it as your iPhone's Action Button and press it to talk with Bot.",
+          "url": "https://x.com/bot/status/2112252507762368684",
+          "date": "2026-10-19"
+        },
+        {
+          "title": "@bot: Grok Bot can now build reports, memos, and dashboards",
+          "url": "https://x.com/bot/status/2112992872857252082",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "@elonmusk: Try Grok @bot",
+          "url": "https://x.com/elonmusk/status/2113329537509449744",
+          "date": "2026-10-22"
+        },
+        {
+          "title": "@bot: Grok Bot can now use your 1Password account",
+          "url": "https://x.com/bot/status/2113332983226831339",
+          "date": "2026-10-22"
+        }
+      ]
+    }
+  ],
+  "options": [
+    {
+      "option": "model/deepseek-v4-1-flash",
+      "why": "DeepSeek's Oct 17 open-weight Flash update, tuned for coding agents, drew 7.9M views on X and 959 HN points.",
+      "since": "2026-10-17",
+      "sources": [
+        {
+          "title": "@deepseek_ai: DeepSeek-V4.1-Flash-1017 is here! (7.9M views, 37K likes, 4.1K reposts, 1.6K replies)",
+          "url": "https://x.com/deepseek_ai/status/2111375640717033777",
+          "date": "2026-10-17"
+        },
+        {
+          "title": "DeepSeek-V4.1-Flash-1017: Wish-Driven Programming Made Real (official announcement)",
+          "url": "https://api-docs.deepseek.com/news/news261017/",
+          "date": "2026-10-17"
+        },
+        {
+          "title": "@arena: DeepSeek-V4.1-Flash-20261017 (Max) is the #1 open model in Code Arena WebDev (278K views, 2,477 likes)",
+          "url": "https://x.com/arena/status/2111894091168682086",
+          "date": "2026-10-18"
+        },
+        {
+          "title": "HN: DeepSeek-v4.1-Flash-1017 (959 points, 722 comments)",
+          "url": "https://news.ycombinator.com/item?id=50129045",
+          "date": "2026-10-17"
+        }
+      ]
+    },
+    {
+      "option": "inference/deepinfer",
+      "why": "DeepSeek open-sourced DeepInfer, the engine that serves its V4.1-Flash model; the launch post drew 6.4M views.",
+      "since": "2026-10-20",
+      "sources": [
+        {
+          "title": "@deepseek_ai: Introducing DeepInfer, our in-house inference framework, now fully open source!",
+          "url": "https://x.com/deepseek_ai/status/2112476496283775135",
+          "date": "2026-10-20"
+        },
+        {
+          "title": "DeepInfer: High-performance inference framework for DeepSeek models",
+          "url": "https://news.ycombinator.com/item?id=50163277",
+          "date": "2026-10-20"
+        },
+        {
+          "title": "[AINews] DeepSeek DeepInfer: Open Source SOTA Inference running 155T toks/day/cluster",
+          "url": "https://www.latent.space/p/ainews-deepseek-deepinfer-open-source",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "DeepSeek makes DeepInfer open source to cut AI costs",
+          "url": "https://www.techtarget.com/ai/news/366652363/DeepSeek-makes-DeepInfer-open-source-to-cut-AI-costs",
+          "date": "2026-10-20"
+        }
+      ]
+    },
+    {
+      "option": "model/muse-spark-open",
+      "why": "Meta released open-weight Muse Spark Open (816B, 42B active) on Oct 15; Zuckerberg's post drew 4.6M views.",
+      "since": "2026-10-15",
+      "sources": [
+        {
+          "title": "@finkd: Muse Spark Open -- weights releasing today -- runs great on new Mac Studios (31.7K likes, 1.4K replies, 4.58M views)",
+          "url": "https://x.com/finkd/status/2110778025629347999",
+          "date": "2026-10-15"
+        },
+        {
+          "title": "@AIatMeta: Today we're releasing Muse Spark Open, the most capable US open-weight model to date (11.5K likes, 1.2K reposts, 1.24M views)",
+          "url": "https://x.com/AIatMeta/status/2110779754274292212",
+          "date": "2026-10-15"
+        },
+        {
+          "title": "Meta: Introducing Muse Spark Open, The Most Capable US Open-Weight Model to Date",
+          "url": "https://research.meta.ai/blog/muse-spark-open",
+          "date": "2026-10-15"
+        },
+        {
+          "title": "HN: Muse Spark Open (920 points, 478 comments)",
+          "url": "https://news.ycombinator.com/item?id=50107379",
+          "date": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "option": "hosting/railway",
+      "why": "Railway disclosed an Oct 21 breach of customer env vars, urging all users to rotate API keys; deploys paused.",
+      "since": "2026-10-21",
+      "sources": [
+        {
+          "title": "@Railway: An urgent notice from the Railway team (3.1M views, 5.4K likes, 847 reposts, 630 replies)",
+          "url": "https://x.com/Railway/status/2113025284148715845",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "Security Disclosure: Wednesday October 21st (Railway Blog)",
+          "url": "https://blog.railway.com/p/security-disclosure-wednesday-october-21st",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "@varunram: Railway is compromised, rotate all API keys as soon as possible (553.8K views, 4.7K likes, 496 reposts)",
+          "url": "https://x.com/varunram/status/2113013688731083228",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "HN: Security Disclosure (railway.com), 586 points, 330 comments",
+          "url": "https://news.ycombinator.com/item?id=50188228",
+          "date": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "option": "router/litellm",
+      "why": "LiteLLM v1.107.0 on PyPI and Docker shipped a credential stealer on Oct 21, its second compromise this year.",
+      "since": "2026-10-21",
+      "sources": [
+        {
+          "title": "X Trending: LiteLLM Python Library Hit by Supply Chain Attack",
+          "url": "https://x.com/i/trending/2112910609545371994",
+          "date": "2026-10-22"
+        },
+        {
+          "title": "@SocketSecurity: LiteLLM, a Python package with 92M+ monthly downloads, has been compromised",
+          "url": "https://x.com/SocketSecurity/status/2112907732877775016",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "Contained: Oct 21, 2026 LiteLLM release v1.107.0 Compromised",
+          "url": "https://docs.litellm.ai/blog/security-incident-oct-21-2026",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor",
+          "url": "https://news.ycombinator.com/item?id=50181114",
+          "date": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "option": "model/gemini-4-argon",
+      "why": "Launched Oct 13; this week Google cited ~25T tokens in 72 hours and four Argon agents beating Minecraft.",
+      "since": "2026-10-13",
+      "sources": [
+        {
+          "title": "@OfficialLoganK: In just the first 72 hours since Gemini 4 Argon launched, we processed ~25 trillion tokens",
+          "url": "https://x.com/OfficialLoganK/status/2112767157746688480",
+          "date": "2026-10-21"
+        },
+        {
+          "title": "@GoogleDeepMind: Four Gemini 4 Argon agents beat Minecraft from scratch in 27 hours",
+          "url": "https://x.com/GoogleDeepMind/status/2111127991401247033",
+          "date": "2026-10-16"
+        },
+        {
+          "title": "Fireship: Did Google just dethrone OpenAI and Anthropic?",
+          "url": "https://www.youtube.com/watch?v=b2tjnxX8IHU",
+          "date": "2026-10-20"
+        },
+        {
+          "title": "Show HN: Gemini 4 Argon plays StarCraft",
+          "url": "https://news.ycombinator.com/item?id=50118688",
+          "date": "2026-10-16"
+        }
+      ]
+    }
+  ]
+}

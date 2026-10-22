@@ -1,0 +1,282 @@
+{
+  "slug": "grok-bot",
+  "name": "Grok Bot",
+  "logo": "grok-bot",
+  "kind": "Consumer agent",
+  "tagline": "Always-on Bots that share one cloud computer and work in your apps.",
+  "description": "Grok Bot is SpaceXSI's always-on agent product, launched in beta on August 11, 2026 and run on Cursor: you sign in with a Cursor account, and access comes with The X Subscription, Cursor plans or a linked SuperGrok subscription. Each user gets one persistent cloud computer, a Linux Firecracker microVM hosted by Cursor in the United States, which all of that user's named Bots share, with its browser sessions, terminal and files; Bots keep working with the laptop closed, use connectors where they exist and computer use elsewhere, and hand passwords, two-factor codes and payment steps back to the user. You reach Bots in the desktop and mobile apps, by voice chat, by tagging @bot on X, in Slack for Team Bots, and at an optional address on mail.grokbot.com. Routines run on schedules or on events such as a Slack message or incoming email; Bots message each other, hand off work and launch subagents, and an independent review model (Auto Review) checks risky actions against the user's Ask first and Allow automatically rules. Cursor picks the model for each request from xAI's own models and third-party ones, with no model picker; its help page names Opus 5.5 as one of them. Recent additions include an iPhone Action Button shortcut for voice chat, Pages (reports, memos and dashboards the Bot builds, edits and shares) and a 1Password integration that fills approved logins without the Bot seeing them, the last two rolling out gradually. The agent harness, the other models, the routing, the voice stack and how memory is stored are not disclosed.",
+  "links": {
+    "announcement": "https://x.ai/news/introducing-grok-bot",
+    "docs": "https://docs.x.ai/grok-bot/overview"
+  },
+  "disclosure": "closed",
+  "sources": [
+    {
+      "title": "Introducing Grok Bot (SpaceXSI)",
+      "url": "https://x.ai/news/introducing-grok-bot"
+    },
+    {
+      "title": "Grok Bot docs: Overview",
+      "url": "https://docs.x.ai/grok-bot/overview"
+    },
+    {
+      "title": "Grok Bot docs: Get started",
+      "url": "https://docs.x.ai/grok-bot/get-started"
+    },
+    {
+      "title": "Grok Bot docs: Grok Bot for Mobile",
+      "url": "https://docs.x.ai/grok-bot/mobile"
+    },
+    {
+      "title": "Grok Bot docs: Work with Grok Bot",
+      "url": "https://docs.x.ai/grok-bot/bots"
+    },
+    {
+      "title": "Grok Bot docs: Team Bots",
+      "url": "https://docs.x.ai/grok-bot/team-bots"
+    },
+    {
+      "title": "Grok Bot docs: Message and collaborate",
+      "url": "https://docs.x.ai/grok-bot/chat-and-collaboration"
+    },
+    {
+      "title": "Grok Bot docs: Tag @bot on X",
+      "url": "https://docs.x.ai/grok-bot/tag-on-x"
+    },
+    {
+      "title": "Grok Bot docs: Use the computer and apps",
+      "url": "https://docs.x.ai/grok-bot/computer-and-apps"
+    },
+    {
+      "title": "Grok Bot docs: Skills and routines",
+      "url": "https://docs.x.ai/grok-bot/skills-routines-and-automations"
+    },
+    {
+      "title": "Grok Bot docs: Approvals, security, and privacy",
+      "url": "https://docs.x.ai/grok-bot/approvals-security-and-privacy"
+    },
+    {
+      "title": "Grok Bot docs: Teams and enterprises",
+      "url": "https://docs.x.ai/grok-bot/teams-and-enterprises"
+    },
+    {
+      "title": "Grok Bot docs: Deploy to your organization",
+      "url": "https://docs.x.ai/grok-bot/deployment"
+    },
+    {
+      "title": "Grok Bot docs: Grok Bot security",
+      "url": "https://docs.x.ai/grok-bot/security"
+    },
+    {
+      "title": "Grok Bot docs: Grok Bot security FAQ",
+      "url": "https://docs.x.ai/grok-bot/security-faq"
+    },
+    {
+      "title": "Which AI models power Grok Bot? (Cursor Help)",
+      "url": "https://cursor.com/help/grok-bot/models"
+    },
+    {
+      "title": "Connect apps (Cursor Help)",
+      "url": "https://cursor.com/help/grok-bot/connect-apps"
+    },
+    {
+      "title": "Give your Bot an email address (Cursor Help)",
+      "url": "https://cursor.com/help/grok-bot/agent-email"
+    },
+    {
+      "title": "Voice chat with a Bot (Cursor Help)",
+      "url": "https://cursor.com/help/grok-bot/voice-chat"
+    },
+    {
+      "title": "Pages (Cursor Help)",
+      "url": "https://cursor.com/help/grok-bot/pages"
+    },
+    {
+      "title": "Store secrets securely (Cursor Help)",
+      "url": "https://cursor.com/help/grok-bot/secrets"
+    },
+    {
+      "title": "Plans and billing (Cursor Help)",
+      "url": "https://cursor.com/help/grok-bot/plans"
+    },
+    {
+      "title": "Grok Bot inference hooks (Cursor Docs)",
+      "url": "https://cursor.com/docs/grok-bot/inference-hooks"
+    },
+    {
+      "title": "Grok Bot Now Works With the iPhone Action Button: How to Set It Up (iPhone in Canada)",
+      "url": "https://www.iphoneincanada.ca/2026/10/19/grok-bot-iphone-action-button/"
+    },
+    {
+      "title": "1Password will let Muse, Dots and Grok Bot sign in to sites for you without getting your credentials (Engadget)",
+      "url": "https://www.engadget.com/2293844/1password-opens-up-ai-agents-muse-dots-grok/"
+    },
+    {
+      "title": "1Password launches solution for safely using logins with AI agents (9to5Mac)",
+      "url": "https://9to5mac.com/2026/10/22/1password-launches-solution-for-safely-using-logins-with-ai-agents/"
+    }
+  ],
+  "layers": {
+    "channels": [
+      "desktop-app",
+      "mobile-app",
+      "slack",
+      "email"
+    ],
+    "proactivity": [
+      "cron",
+      "webhooks"
+    ],
+    "ui": [
+      "live-computer-view",
+      "artifacts"
+    ],
+    "devices": "laptop-node",
+    "model": "claude-opus-5-5",
+    "persona": "custom-instructions",
+    "multiagent": [
+      "subagents",
+      "handoffs"
+    ],
+    "sandbox": "per-user-cloud-computer",
+    "browser": "cloud-browser",
+    "mcp": "mcp",
+    "connectors": "calendar-email",
+    "skills": [
+      "plugins",
+      "slash-commands"
+    ],
+    "hosting": "vendor-cloud",
+    "guardrails": [
+      "per-action-autonomy",
+      "auto-review",
+      "audit-trail",
+      "hooks"
+    ],
+    "identity": [
+      "private-sign-in-form",
+      "credential-vault",
+      "1password",
+      "agent-phone-email"
+    ],
+    "observability": "opentelemetry"
+  },
+  "inUseUndisclosed": [
+    "voice",
+    "harness",
+    "router",
+    "memory"
+  ],
+  "supports": {
+    "channels": [
+      "slack",
+      "email"
+    ],
+    "guardrails": [
+      "audit-trail",
+      "hooks"
+    ],
+    "identity": [
+      "1password",
+      "agent-phone-email"
+    ],
+    "observability": [
+      "opentelemetry"
+    ]
+  },
+  "evidence": {
+    "channels": [
+      "https://docs.x.ai/grok-bot/overview",
+      "https://docs.x.ai/grok-bot/get-started",
+      "https://docs.x.ai/grok-bot/mobile",
+      "https://docs.x.ai/grok-bot/team-bots",
+      "https://cursor.com/help/grok-bot/agent-email"
+    ],
+    "proactivity": [
+      "https://docs.x.ai/grok-bot/skills-routines-and-automations",
+      "https://cursor.com/help/grok-bot/agent-email"
+    ],
+    "ui": [
+      "https://docs.x.ai/grok-bot/computer-and-apps",
+      "https://cursor.com/help/grok-bot/pages"
+    ],
+    "voice": [
+      "https://cursor.com/help/grok-bot/voice-chat",
+      "https://docs.x.ai/grok-bot/chat-and-collaboration",
+      "https://www.iphoneincanada.ca/2026/10/19/grok-bot-iphone-action-button/"
+    ],
+    "devices": [
+      "https://docs.x.ai/grok-bot/security",
+      "https://docs.x.ai/grok-bot/approvals-security-and-privacy"
+    ],
+    "harness": [
+      "https://docs.x.ai/grok-bot/teams-and-enterprises",
+      "https://docs.x.ai/grok-bot/security"
+    ],
+    "model": [
+      "https://cursor.com/help/grok-bot/models"
+    ],
+    "router": [
+      "https://cursor.com/help/grok-bot/models",
+      "https://docs.x.ai/grok-bot/security"
+    ],
+    "persona": [
+      "https://docs.x.ai/grok-bot/bots",
+      "https://docs.x.ai/grok-bot/teams-and-enterprises"
+    ],
+    "multiagent": [
+      "https://docs.x.ai/grok-bot/security",
+      "https://docs.x.ai/grok-bot/teams-and-enterprises",
+      "https://docs.x.ai/grok-bot/overview",
+      "https://docs.x.ai/grok-bot/chat-and-collaboration",
+      "https://x.ai/news/introducing-grok-bot"
+    ],
+    "sandbox": [
+      "https://docs.x.ai/grok-bot/overview",
+      "https://docs.x.ai/grok-bot/computer-and-apps",
+      "https://docs.x.ai/grok-bot/security-faq",
+      "https://docs.x.ai/grok-bot/deployment"
+    ],
+    "browser": [
+      "https://docs.x.ai/grok-bot/computer-and-apps"
+    ],
+    "mcp": [
+      "https://docs.x.ai/grok-bot/teams-and-enterprises"
+    ],
+    "connectors": [
+      "https://cursor.com/help/grok-bot/connect-apps"
+    ],
+    "skills": [
+      "https://docs.x.ai/grok-bot/skills-routines-and-automations",
+      "https://docs.x.ai/grok-bot/teams-and-enterprises"
+    ],
+    "memory": [
+      "https://docs.x.ai/grok-bot/bots",
+      "https://docs.x.ai/grok-bot/team-bots",
+      "https://docs.x.ai/grok-bot/overview"
+    ],
+    "hosting": [
+      "https://docs.x.ai/grok-bot/security"
+    ],
+    "guardrails": [
+      "https://docs.x.ai/grok-bot/approvals-security-and-privacy",
+      "https://docs.x.ai/grok-bot/security",
+      "https://docs.x.ai/grok-bot/teams-and-enterprises",
+      "https://cursor.com/docs/grok-bot/inference-hooks"
+    ],
+    "identity": [
+      "https://docs.x.ai/grok-bot/computer-and-apps",
+      "https://docs.x.ai/grok-bot/get-started",
+      "https://cursor.com/help/grok-bot/secrets",
+      "https://docs.x.ai/grok-bot/security-faq",
+      "https://cursor.com/help/grok-bot/connect-apps",
+      "https://www.engadget.com/2293844/1password-opens-up-ai-agents-muse-dots-grok/",
+      "https://cursor.com/help/grok-bot/agent-email"
+    ],
+    "observability": [
+      "https://docs.x.ai/grok-bot/security",
+      "https://docs.x.ai/grok-bot/teams-and-enterprises"
+    ]
+  },
+  "researched": "2026-10-22"
+}

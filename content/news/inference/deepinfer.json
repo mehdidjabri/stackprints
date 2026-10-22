@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-22",
+  "items": [
+    { "date": "2026-10-21", "title": "DeepSeek announces open-sourcing inference framework DeepInfer to reduce compute costs, energy consumption", "url": "https://www.globaltimes.cn/page/202610/1372699.shtml", "source": "globaltimes.cn" },
+    { "date": "2026-10-21", "title": "[AINews] DeepSeek DeepInfer: Open Source SOTA Inference running 155T toks/day/cluster making $22m/day at ~80% margin for a 81 day payback", "url": "https://www.latent.space/p/ainews-deepseek-deepinfer-open-source", "source": "latent.space" },
+    { "date": "2026-10-20", "title": "DeepSeek open-sources the inference engine behind its API. And Huawei gets equal billing with Nvidia.", "url": "https://thenewstack.io/deepseek-deepinfer-huawei-nvidia/", "source": "thenewstack.io" },
+    { "date": "2026-10-20", "title": "DeepSeek open-sources DeepInfer, the engine that runs its AI models", "url": "https://thenextweb.com/news/deepseek-deepinfer-open-source-inference-engine", "source": "thenextweb.com" },
+    { "date": "2026-10-20", "title": "DeepSeek makes DeepInfer open source to cut AI costs", "url": "https://www.techtarget.com/ai/news/366652363/DeepSeek-makes-DeepInfer-open-source-to-cut-AI-costs", "source": "techtarget.com" }
+  ]
+}

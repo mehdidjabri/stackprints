@@ -1,0 +1,41 @@
+{
+  "updated": "2026-10-22",
+  "items": [
+    {
+      "date": "2026-10-20",
+      "title": "OpenCode v2.1.0: Persistent Terminals on Windows",
+      "url": "https://opencode.ai/changelog#v2-1-0",
+      "source": "opencode.ai"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "Hackers hit AI coding tool OpenCode, running up charges on users’ AI accounts",
+      "url": "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/",
+      "source": "techcrunch.com"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "OpenCode Console Breach May Have Exposed OpenAI, Anthropic, and Google API Keys",
+      "url": "https://thehackernews.com/2026/10/opencode-console-breach-may-have.html",
+      "source": "thehackernews.com"
+    },
+    {
+      "date": "2026-10-17",
+      "title": "OpenCode confirms breach as users report AI charges they never authorised",
+      "url": "https://www.notebookcheck.net/OpenCode-hacked-users-urged-to-revoke-their-API-keys.1426957.0.html",
+      "source": "notebookcheck.net"
+    },
+    {
+      "date": "2026-10-12",
+      "title": "\"A major overhaul\": OpenCode 2.0 puts its terminal, desktop, and web apps on one shared service",
+      "url": "https://thenewstack.io/opencode-2-shared-service/",
+      "source": "thenewstack.io"
+    },
+    {
+      "date": "2026-10-12",
+      "title": "Run OpenCode 2.0 on Cloudflare with the Agents SDK",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-12-opencode-harness/",
+      "source": "developers.cloudflare.com"
+    }
+  ]
+}

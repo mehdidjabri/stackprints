@@ -1,0 +1,169 @@
+{
+  "slug": "claude-duet",
+  "name": "Claude Duet",
+  "logo": "claude-duet",
+  "kind": "Consumer agent",
+  "tagline": "A proactive agent that briefs you, works in the cloud and asks first.",
+  "description": "Claude Duet is Anthropic's proactive agent app, opened on October 21, 2026 as a waitlisted research preview for Pro and Max subscribers in the US. It runs on Claude Opus 5.5 and is reached through standalone iOS and Android apps and on claude.ai, in one ongoing thread you type or speak into. It works on its own computer in the cloud, using its own cloud browser for sites without a connector, so it keeps going when your devices are off. Each morning it sends a short brief, and it checks connected accounts every few hours and messages you when something needs attention. It carries over the memory, skills and connected apps of your Claude account and supports plugins. It reads, drafts and prepares work on its own but asks before it sends, pays, signs or deletes; Anthropic says actions are approved by the auto mode classifier used in Claude Code, and trading securities or moving money between accounts is off-limits even with approval. Purchases go through Link or Shop Pay, each with a one-time card for that purchase. Credential handling follows the Claude Managed Agents design, and passwords are typed into a separate form on the user's device. Anthropic hasn't published the agent harness, the cloud computer and browser vendors, the voice stack or how tasks are stored. Duet can't yet show its browser, and 1Password sign-in was announced as coming soon.",
+  "links": {
+    "site": "https://claude.com/product/claude-duet",
+    "announcement": "https://claude.com/resources/articles/claude-duet",
+    "docs": "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet"
+  },
+  "disclosure": "closed",
+  "sources": [
+    {
+      "title": "Introducing Claude Duet (Claude)",
+      "url": "https://claude.com/resources/articles/claude-duet"
+    },
+    {
+      "title": "Claude Duet product page (Claude)",
+      "url": "https://claude.com/product/claude-duet"
+    },
+    {
+      "title": "Get started with Claude Duet (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet"
+    },
+    {
+      "title": "How to use Link by Stripe with Claude Duet (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/17666484"
+    },
+    {
+      "title": "How to use Shop Pay with Claude Duet (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/17666489"
+    },
+    {
+      "title": "Scaling Managed Agents: decoupling the brain from the hands (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/managed-agents"
+    },
+    {
+      "title": "Mitigating the risk of prompt injections in browser use (Anthropic)",
+      "url": "https://www.anthropic.com/research/prompt-injection-defenses"
+    },
+    {
+      "title": "Anthropic takes on ChatGPT Dots and Meta Muse with Claude Duet (9to5Mac)",
+      "url": "https://9to5mac.com/2026/10/21/anthropic-takes-on-chatgpt-dots-and-meta-muse-with-claude-duet/"
+    },
+    {
+      "title": "Anthropic Launches Claude Duet, a Proactive AI Agent (MacRumors)",
+      "url": "https://www.macrumors.com/2026/10/21/anthropic-claude-duet/"
+    },
+    {
+      "title": "Claude Duet app is Anthropic's bet on agents (TechCrunch)",
+      "url": "https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/"
+    }
+  ],
+  "layers": {
+    "channels": [
+      "mobile-app",
+      "web-chat"
+    ],
+    "proactivity": [
+      "heartbeat",
+      "background-research"
+    ],
+    "ui": "goals-activity-feed",
+    "model": "claude-opus-5-5",
+    "persona": "system-prompt",
+    "sandbox": "per-user-cloud-computer",
+    "browser": "cloud-browser",
+    "connectors": "calendar-email",
+    "skills": "plugins",
+    "payments": [
+      "single-use-cards",
+      "shop-pay"
+    ],
+    "memory": "account-memory",
+    "hosting": "vendor-cloud",
+    "guardrails": [
+      "per-action-autonomy",
+      "auto-review",
+      "injection-classifier"
+    ],
+    "identity": [
+      "private-sign-in-form",
+      "credential-vault"
+    ]
+  },
+  "inUseUndisclosed": [
+    "voice",
+    "harness"
+  ],
+  "evidence": {
+    "channels": [
+      "https://claude.com/product/claude-duet",
+      "https://claude.com/resources/articles/claude-duet",
+      "https://9to5mac.com/2026/10/21/anthropic-takes-on-chatgpt-dots-and-meta-muse-with-claude-duet/"
+    ],
+    "proactivity": [
+      "https://claude.com/resources/articles/claude-duet",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://claude.com/product/claude-duet"
+    ],
+    "ui": [
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://9to5mac.com/2026/10/21/anthropic-takes-on-chatgpt-dots-and-meta-muse-with-claude-duet/"
+    ],
+    "voice": [
+      "https://claude.com/resources/articles/claude-duet",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet"
+    ],
+    "harness": [
+      "https://claude.com/resources/articles/claude-duet",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet"
+    ],
+    "model": [
+      "https://claude.com/resources/articles/claude-duet",
+      "https://claude.com/product/claude-duet",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet"
+    ],
+    "persona": [
+      "https://claude.com/resources/articles/claude-duet"
+    ],
+    "sandbox": [
+      "https://claude.com/resources/articles/claude-duet",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://9to5mac.com/2026/10/21/anthropic-takes-on-chatgpt-dots-and-meta-muse-with-claude-duet/"
+    ],
+    "browser": [
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://claude.com/resources/articles/claude-duet"
+    ],
+    "connectors": [
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://claude.com/product/claude-duet",
+      "https://claude.com/resources/articles/claude-duet"
+    ],
+    "skills": [
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://9to5mac.com/2026/10/21/anthropic-takes-on-chatgpt-dots-and-meta-muse-with-claude-duet/"
+    ],
+    "payments": [
+      "https://support.claude.com/en/articles/17666484",
+      "https://support.claude.com/en/articles/17666489",
+      "https://claude.com/resources/articles/claude-duet",
+      "https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/"
+    ],
+    "memory": [
+      "https://claude.com/resources/articles/claude-duet",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet"
+    ],
+    "hosting": [
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://claude.com/resources/articles/claude-duet"
+    ],
+    "guardrails": [
+      "https://claude.com/resources/articles/claude-duet",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://claude.com/product/claude-duet",
+      "https://www.anthropic.com/research/prompt-injection-defenses"
+    ],
+    "identity": [
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://claude.com/resources/articles/claude-duet",
+      "https://www.anthropic.com/engineering/managed-agents",
+      "https://www.macrumors.com/2026/10/21/anthropic-claude-duet/"
+    ]
+  },
+  "researched": "2026-10-22"
+}

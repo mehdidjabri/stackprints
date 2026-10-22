@@ -1,0 +1,83 @@
+{
+  "updated": "2026-10-22",
+  "items": [
+    {
+      "date": "2026-10-20",
+      "title": "Muse Spark Open on Fireworks: Meta's Open Weights Model, Available on US Serverless",
+      "url": "https://fireworks.ai/blog/meta-muse-spark-open",
+      "source": "fireworks.ai"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Introducing Muse Spark Open, The Most Capable US Open-Weight Model to Date",
+      "url": "https://research.meta.ai/blog/muse-spark-open",
+      "source": "research.meta.ai"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Build with Muse Spark Open",
+      "url": "https://dev.meta.ai/resources/blog/build-with-muse-spark-open",
+      "source": "dev.meta.ai"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Muse Spark Is Now an Open-Weights Model",
+      "url": "https://pytorch.org/blog/muse-spark-open/",
+      "source": "pytorch.org"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+      "url": "https://huggingface.co/blog/meta-muse-spark-open",
+      "source": "huggingface.co"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Meta launches an open-weight AI model that runs on Macs",
+      "url": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
+      "source": "techcrunch.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Meta ships Muse Spark Open, its answer to China's best open-weight models",
+      "url": "https://thenewstack.io/meta-muse-spark-open/",
+      "source": "thenewstack.io"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Meta releases 816B-parameter Muse Spark Open for coding and agent work",
+      "url": "https://siliconangle.com/2026/10/15/meta-releases-816b-parameter-muse-spark-open-for-coding-and-agent-work/",
+      "source": "siliconangle.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Scale Agentic Coding Workflows with Meta's Muse Spark Open on NVIDIA GB300 NVL72",
+      "url": "https://developer.nvidia.com/blog/scale-agentic-coding-workflows-with-metas-muse-spark-open-on-nvidia-gb300-nvl72/",
+      "source": "developer.nvidia.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Meta's Muse Spark Open now available in Amazon SageMaker JumpStart",
+      "url": "https://aws.amazon.com/blogs/machine-learning/metas-muse-spark-open-now-available-in-amazon-sagemaker-jumpstart/",
+      "source": "aws.amazon.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Meta Muse Spark Open is live on Together AI",
+      "url": "https://www.together.ai/blog/meta-muse-spark-open",
+      "source": "together.ai"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Meta's Muse Spark open-weight release Is Now in Limited Preview on GroqCloud",
+      "url": "https://groq.com/blog/meta-s-muse-spark-open-release-is-now-in-limited-preview-on-groqcloud",
+      "source": "groq.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Muse Spark Open, an open-weight model for coding agents",
+      "url": "https://www.baseten.co/blog/muse-spark-open-launch/",
+      "source": "baseten.co"
+    }
+  ]
+}

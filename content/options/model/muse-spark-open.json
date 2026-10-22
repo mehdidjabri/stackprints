@@ -1,0 +1,166 @@
+{
+  "id": "muse-spark-open",
+  "name": "Muse Spark Open",
+  "url": "meta.ai",
+  "note": "816B open-weight MoE for coding agents",
+  "open": true,
+  "logo": "meta",
+  "profile": "model",
+  "summary": "Muse Spark Open is the open-weight release of Meta's Muse Spark: an 816B-parameter mixture-of-experts model with 42B active parameters, a 1M-token context and text, image, video and audio input. It shares its base model with the closed Muse Spark 1.3, adds safety post-training for use without Meta's system guardrails, and targets coding and agentic work. Weights are on Hugging Face under the custom Muse Model License, and several inference providers host it.",
+  "facts": [
+    [
+      "Lab",
+      "Meta Superintelligence Labs"
+    ],
+    [
+      "Parameters",
+      "816B total, 42B active (256 experts, 8 routed)"
+    ],
+    [
+      "License",
+      "Muse Model License (custom)"
+    ],
+    [
+      "License terms",
+      "\"Built with Muse Spark Open\" label; API resellers over $20M revenue need a separate deal"
+    ],
+    [
+      "Hosted APIs",
+      "Baseten, Fireworks AI, Groq, Modal, Nebius, OpenRouter, Together AI"
+    ],
+    [
+      "Self-hosting",
+      "NVFP4 (about 537 GB) on one 4-GPU Blackwell node, or two 512 GB M5 Ultra Mac Studios"
+    ],
+    [
+      "Reasoning effort",
+      "low, medium, high, xhigh (default xhigh)"
+    ],
+    [
+      "Terminal-Bench 2.1",
+      "76.4% (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://dev.meta.ai/models/muse-spark-open",
+    "docs": "https://dev.meta.ai/docs/muse-spark-open",
+    "repo": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+  },
+  "goodFor": [
+    "Self-hostable agentic coding model",
+    "Long context with audio and video input",
+    "Wide choice of hosted providers"
+  ],
+  "watchOut": [
+    "Custom license with attribution and reseller terms",
+    "Over 500 GB of weights even at NVFP4",
+    "Trails Kimi K3 and GLM 5.3 on Terminal-Bench 2.1 in Meta's own table"
+  ],
+  "model": {
+    "lab": "Meta",
+    "released": "2026-10-15",
+    "context": "1M tokens",
+    "priceIn": "$1.25 / 1M tokens",
+    "priceOut": "$4.25 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video",
+      "audio"
+    ],
+    "weights": "open",
+    "openrouter": "meta/muse-spark-open"
+  },
+  "sources": [
+    {
+      "title": "Introducing Muse Spark Open, The Most Capable US Open-Weight Model to Date (Meta AI Research)",
+      "url": "https://research.meta.ai/blog/muse-spark-open"
+    },
+    {
+      "title": "meta-models/Muse-Spark-Open-816B-A42B model card (Hugging Face)",
+      "url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    },
+    {
+      "title": "Muse Spark Open (Meta Model API docs)",
+      "url": "https://dev.meta.ai/docs/muse-spark-open"
+    },
+    {
+      "title": "Build with Muse Spark Open (Meta developer blog)",
+      "url": "https://dev.meta.ai/resources/blog/build-with-muse-spark-open"
+    },
+    {
+      "title": "Muse Spark Is Now an Open-Weights Model (PyTorch)",
+      "url": "https://pytorch.org/blog/muse-spark-open/"
+    },
+    {
+      "title": "Meta Muse Spark Open is live on Together AI",
+      "url": "https://www.together.ai/blog/meta-muse-spark-open"
+    },
+    {
+      "title": "OpenRouter models API",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  ],
+  "evidence": {
+    "Lab": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://dev.meta.ai/resources/blog/build-with-muse-spark-open"
+    ],
+    "Parameters": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "License": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://dev.meta.ai/docs/muse-spark-open"
+    ],
+    "License terms": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "Hosted APIs": [
+      "https://research.meta.ai/blog/muse-spark-open",
+      "https://dev.meta.ai/resources/blog/build-with-muse-spark-open"
+    ],
+    "Self-hosting": [
+      "https://dev.meta.ai/docs/muse-spark-open",
+      "https://research.meta.ai/blog/muse-spark-open"
+    ],
+    "Reasoning effort": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "Terminal-Bench 2.1": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "model.released": [
+      "https://research.meta.ai/blog/muse-spark-open",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "model.context": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://dev.meta.ai/docs/muse-spark-open"
+    ],
+    "model.priceIn": [
+      "https://openrouter.ai/api/v1/models",
+      "https://www.together.ai/blog/meta-muse-spark-open"
+    ],
+    "model.priceOut": [
+      "https://openrouter.ai/api/v1/models",
+      "https://www.together.ai/blog/meta-muse-spark-open"
+    ],
+    "model.modalities": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "model.weights": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "watchOut.0": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ],
+    "watchOut.1": [
+      "https://dev.meta.ai/docs/muse-spark-open"
+    ],
+    "watchOut.2": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+    ]
+  },
+  "researched": "2026-10-22"
+}

@@ -1,0 +1,298 @@
+{
+  "slug": "opencode",
+  "name": "OpenCode",
+  "logo": "opencode",
+  "kind": "Coding agent",
+  "tagline": "Open-source coding agent: one local server behind terminal, desktop and web.",
+  "description": "OpenCode is an open-source (MIT) AI coding agent from Anomaly. Since version 2, one background server per user owns sessions, configuration, permissions and tool execution; the terminal UI, the desktop app and a password-protected web UI connect to it, ACP clients such as Zed start a private server, and @opencode/sdk embeds the server in other apps, including Cloudflare Durable Objects. Models come from any provider in the Models.dev catalog or a local Ollama, LM Studio or vLLM server, connected by API key, OAuth or environment variable, and saved credentials are kept in the server's SQLite database. Built-in tools cover read, glob, grep, edit, write, patch, shell, web fetch and search, questions, skills and subagents; MCP tools and the desktop app's browser are reached through Code Mode, where the model writes JavaScript that calls tools. Every agent starts from a policy that allows all actions and asks only before .env reads, and ordered allow, ask and deny rules narrow it; shell commands run with the host user's rights. AGENTS.md files carry instructions, and skills, slash commands and TypeScript plugins with hooks extend it. The optional hosted Console stores provider keys for a workspace and serves them through its gateway. On October 17, 2026 OpenCode said an intruder had reached a legacy Console system the night before and that provider keys saved by 1.4% of Console users may have been exposed; keys added in the CLI or desktop app are stored locally.",
+  "links": {
+    "site": "https://opencode.ai",
+    "repo": "https://github.com/anomalyco/opencode",
+    "docs": "https://opencode.ai/v2/docs/"
+  },
+  "disclosure": "open-source",
+  "layers": {
+    "channels": [
+      "cli-tui",
+      "desktop-app",
+      "web-chat",
+      "ide"
+    ],
+    "ui": "plain-text",
+    "harness": "opencode",
+    "model": "any-model",
+    "router": [
+      "direct-provider",
+      "any-provider",
+      "openrouter"
+    ],
+    "inference": [
+      "any-host",
+      "bedrock-vertex-azure",
+      "ollama",
+      "vllm"
+    ],
+    "persona": "agents-md",
+    "multiagent": "subagents",
+    "tools": [
+      "read-write-edit-bash",
+      "apply-patch"
+    ],
+    "search": [
+      "web-search",
+      "exa",
+      "firecrawl",
+      "parallel",
+      "tavily"
+    ],
+    "sandbox": "host-machine",
+    "browser": "in-app-browser",
+    "mcp": [
+      "mcp",
+      "code-mode"
+    ],
+    "skills": [
+      "agent-skills-skill-md",
+      "plugins",
+      "slash-commands"
+    ],
+    "retrieval": "grep-glob",
+    "storage": [
+      "sqlite",
+      "git"
+    ],
+    "hosting": [
+      "your-laptop",
+      "home-server-vps",
+      "cloudflare-workers"
+    ],
+    "guardrails": [
+      "permission-modes",
+      "hooks"
+    ],
+    "identity": [
+      "mcp-oauth-2-1",
+      "env-vars",
+      "credential-vault"
+    ],
+    "observability": "logs"
+  },
+  "supports": {
+    "router": [
+      "direct-provider",
+      "any-provider",
+      "openrouter"
+    ],
+    "inference": [
+      "any-host",
+      "bedrock-vertex-azure",
+      "ollama",
+      "vllm"
+    ],
+    "search": [
+      "exa",
+      "firecrawl",
+      "parallel",
+      "tavily"
+    ],
+    "hosting": [
+      "home-server-vps",
+      "cloudflare-workers"
+    ],
+    "identity": [
+      "env-vars",
+      "credential-vault"
+    ]
+  },
+  "evidence": {
+    "channels": [
+      "https://opencode.ai/v2/docs/",
+      "https://opencode.ai/v2/docs/cli/web/",
+      "https://opencode.ai/v2/docs/cli/acp/"
+    ],
+    "ui": [
+      "https://opencode.ai/v2/docs/cli/tui/"
+    ],
+    "harness": [
+      "https://github.com/anomalyco/opencode",
+      "https://opencode.ai/v2/docs/cli/"
+    ],
+    "model": [
+      "https://opencode.ai/v2/docs/models/"
+    ],
+    "router": [
+      "https://opencode.ai/v2/docs/cli/providers/",
+      "https://opencode.ai/v2/docs/providers/"
+    ],
+    "inference": [
+      "https://opencode.ai/v2/docs/models/",
+      "https://opencode.ai/v2/docs/cli/providers/"
+    ],
+    "persona": [
+      "https://opencode.ai/v2/docs/instructions/"
+    ],
+    "multiagent": [
+      "https://opencode.ai/v2/docs/agents/",
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "tools": [
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "search": [
+      "https://opencode.ai/v2/docs/websearch/",
+      "https://opencode.ai/v2/docs/console/websearch/"
+    ],
+    "sandbox": [
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "browser": [
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "mcp": [
+      "https://opencode.ai/v2/docs/mcp-servers/",
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "skills": [
+      "https://opencode.ai/v2/docs/skills/",
+      "https://opencode.ai/v2/docs/plugins/",
+      "https://opencode.ai/v2/docs/commands/"
+    ],
+    "retrieval": [
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "storage": [
+      "https://opencode.ai/v2/docs/troubleshooting/",
+      "https://opencode.ai/v2/docs/cli/providers/",
+      "https://opencode.ai/v2/docs/snapshots/"
+    ],
+    "hosting": [
+      "https://opencode.ai/v2/docs/cli/",
+      "https://opencode.ai/v2/docs/cli/web/",
+      "https://developers.cloudflare.com/changelog/post/2026-10-12-opencode-harness/"
+    ],
+    "guardrails": [
+      "https://opencode.ai/v2/docs/permissions/",
+      "https://opencode.ai/v2/docs/build/plugins/"
+    ],
+    "identity": [
+      "https://opencode.ai/v2/docs/cli/providers/",
+      "https://opencode.ai/v2/docs/mcp-servers/",
+      "https://opencode.ai/v2/docs/console/providers/"
+    ],
+    "observability": [
+      "https://opencode.ai/v2/docs/troubleshooting/"
+    ]
+  },
+  "sources": [
+    {
+      "title": "anomalyco/opencode repository (README)",
+      "url": "https://github.com/anomalyco/opencode"
+    },
+    {
+      "title": "OpenCode home page",
+      "url": "https://opencode.ai"
+    },
+    {
+      "title": "OpenCode changelog",
+      "url": "https://opencode.ai/changelog"
+    },
+    {
+      "title": "Intro (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/"
+    },
+    {
+      "title": "CLI intro",
+      "url": "https://opencode.ai/v2/docs/cli/"
+    },
+    {
+      "title": "TUI",
+      "url": "https://opencode.ai/v2/docs/cli/tui/"
+    },
+    {
+      "title": "Web",
+      "url": "https://opencode.ai/v2/docs/cli/web/"
+    },
+    {
+      "title": "ACP",
+      "url": "https://opencode.ai/v2/docs/cli/acp/"
+    },
+    {
+      "title": "Providers (CLI)",
+      "url": "https://opencode.ai/v2/docs/cli/providers/"
+    },
+    {
+      "title": "Providers",
+      "url": "https://opencode.ai/v2/docs/providers/"
+    },
+    {
+      "title": "Models",
+      "url": "https://opencode.ai/v2/docs/models/"
+    },
+    {
+      "title": "Instructions",
+      "url": "https://opencode.ai/v2/docs/instructions/"
+    },
+    {
+      "title": "Agents",
+      "url": "https://opencode.ai/v2/docs/agents/"
+    },
+    {
+      "title": "Tools",
+      "url": "https://opencode.ai/v2/docs/tools/"
+    },
+    {
+      "title": "Websearch",
+      "url": "https://opencode.ai/v2/docs/websearch/"
+    },
+    {
+      "title": "MCP servers",
+      "url": "https://opencode.ai/v2/docs/mcp-servers/"
+    },
+    {
+      "title": "Skills",
+      "url": "https://opencode.ai/v2/docs/skills/"
+    },
+    {
+      "title": "Plugins",
+      "url": "https://opencode.ai/v2/docs/plugins/"
+    },
+    {
+      "title": "Commands",
+      "url": "https://opencode.ai/v2/docs/commands/"
+    },
+    {
+      "title": "Snapshots",
+      "url": "https://opencode.ai/v2/docs/snapshots/"
+    },
+    {
+      "title": "Permissions",
+      "url": "https://opencode.ai/v2/docs/permissions/"
+    },
+    {
+      "title": "Build plugins",
+      "url": "https://opencode.ai/v2/docs/build/plugins/"
+    },
+    {
+      "title": "Troubleshooting",
+      "url": "https://opencode.ai/v2/docs/troubleshooting/"
+    },
+    {
+      "title": "Console providers",
+      "url": "https://opencode.ai/v2/docs/console/providers/"
+    },
+    {
+      "title": "Console web search",
+      "url": "https://opencode.ai/v2/docs/console/websearch/"
+    },
+    {
+      "title": "Run OpenCode 2.0 on Cloudflare with the Agents SDK (Cloudflare changelog)",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-12-opencode-harness/"
+    },
+    {
+      "title": "OpenCode Console Breach May Have Exposed OpenAI, Anthropic, and Google API Keys (The Hacker News)",
+      "url": "https://thehackernews.com/2026/10/opencode-console-breach-may-have.html"
+    }
+  ],
+  "researched": "2026-10-22",
+  "version": "v2.1.3"
+}

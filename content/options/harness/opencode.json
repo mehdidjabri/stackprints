@@ -1,0 +1,156 @@
+{
+  "id": "opencode",
+  "name": "OpenCode",
+  "url": "opencode.ai",
+  "note": "Open-source coding agent for terminal, desktop, web",
+  "open": true,
+  "logo": "opencode",
+  "profile": "product",
+  "summary": "OpenCode is an open-source AI coding agent from Anomaly, written in TypeScript. Since version 2, one background server per user owns sessions, permissions and tool execution, and the terminal UI, desktop app and web UI connect to it; ACP clients such as Zed can also run it, and an SDK embeds the same server in other apps. It works with models from many providers, including local ones, and an optional hosted Console adds shared provider keys, paid models and budgets for teams.",
+  "facts": [
+    [
+      "Company",
+      "Anomaly"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "GitHub stars",
+      "220k+ (Oct 2026)"
+    ],
+    [
+      "Version",
+      "2.1.3 released 2026-10-22"
+    ],
+    [
+      "Architecture",
+      "Client-server: TUI, desktop and web share one background server"
+    ],
+    [
+      "Models",
+      "75+ providers via Models.dev; Ollama, LM Studio and vLLM locally"
+    ],
+    [
+      "MCP",
+      "Local and remote servers with OAuth; called through Code Mode by default"
+    ],
+    [
+      "Sandboxing",
+      "None built in; shell runs with the host user's rights"
+    ]
+  ],
+  "links": {
+    "site": "https://opencode.ai",
+    "docs": "https://opencode.ai/v2/docs/",
+    "repo": "https://github.com/anomalyco/opencode",
+    "changelog": "https://opencode.ai/changelog",
+    "x": "https://x.com/opencode"
+  },
+  "goodFor": [
+    "Mixing many model providers, including local models",
+    "One agent server shared by terminal, desktop and web",
+    "Embedding a coding agent via the SDK or ACP"
+  ],
+  "watchOut": [
+    "Oct 16 breach of a legacy Console system may have exposed provider keys stored in Console",
+    "Default policy allows every tool without asking, except .env reads",
+    "V2 runs no language servers, and V1 plugins need migrating"
+  ],
+  "sources": [
+    {
+      "title": "OpenCode home page",
+      "url": "https://opencode.ai"
+    },
+    {
+      "title": "anomalyco/opencode repository",
+      "url": "https://github.com/anomalyco/opencode"
+    },
+    {
+      "title": "OpenCode changelog",
+      "url": "https://opencode.ai/changelog"
+    },
+    {
+      "title": "CLI intro (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/cli/"
+    },
+    {
+      "title": "Troubleshooting (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/troubleshooting/"
+    },
+    {
+      "title": "Models (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/models/"
+    },
+    {
+      "title": "MCP servers (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/mcp-servers/"
+    },
+    {
+      "title": "Tools (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/tools/"
+    },
+    {
+      "title": "Permissions (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/permissions/"
+    },
+    {
+      "title": "Migrate from V1 (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/migrate-v1/"
+    },
+    {
+      "title": "Build plugins (OpenCode V2 docs)",
+      "url": "https://opencode.ai/v2/docs/build/plugins/"
+    },
+    {
+      "title": "OpenCode Console Breach May Have Exposed OpenAI, Anthropic, and Google API Keys (The Hacker News)",
+      "url": "https://thehackernews.com/2026/10/opencode-console-breach-may-have.html"
+    },
+    {
+      "title": "Hackers hit AI coding tool OpenCode, running up charges on users' AI accounts (TechCrunch)",
+      "url": "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/"
+    }
+  ],
+  "evidence": {
+    "Company": [
+      "https://opencode.ai"
+    ],
+    "License": [
+      "https://github.com/anomalyco/opencode"
+    ],
+    "GitHub stars": [
+      "https://github.com/anomalyco/opencode"
+    ],
+    "Version": [
+      "https://opencode.ai/changelog"
+    ],
+    "Architecture": [
+      "https://opencode.ai/v2/docs/cli/",
+      "https://opencode.ai/v2/docs/troubleshooting/"
+    ],
+    "Models": [
+      "https://opencode.ai",
+      "https://opencode.ai/v2/docs/models/"
+    ],
+    "MCP": [
+      "https://opencode.ai/v2/docs/mcp-servers/",
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "Sandboxing": [
+      "https://opencode.ai/v2/docs/tools/"
+    ],
+    "watchOut.0": [
+      "https://thehackernews.com/2026/10/opencode-console-breach-may-have.html",
+      "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/"
+    ],
+    "watchOut.1": [
+      "https://opencode.ai/v2/docs/permissions/"
+    ],
+    "watchOut.2": [
+      "https://opencode.ai/v2/docs/migrate-v1/",
+      "https://opencode.ai/v2/docs/build/plugins/"
+    ]
+  },
+  "researched": "2026-10-22"
+}

@@ -1,0 +1,115 @@
+{
+  "id": "deepinfer",
+  "name": "DeepInfer",
+  "url": "github.com/deepseek-ai/DeepInfer",
+  "note": "DeepSeek's open-source engine for V4.1 Flash",
+  "open": true,
+  "logo": "deepseek",
+  "profile": "product",
+  "summary": "DeepInfer is the inference framework DeepSeek uses to serve DeepSeek V4.1 Flash in production, released as open source in October 2026. It builds on DeepSeek's kernel libraries (FlashMLA, DeepGEMM, DeepEP) and adds attention data parallelism, MoE expert parallelism, speculative decoding, batch-invariant inference and structured outputs. The public release covers offline inference only; the KV cache system, prefill/decode disaggregation and load balancing are not included.",
+  "facts": [
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Released",
+      "Oct 20, 2026"
+    ],
+    [
+      "Models",
+      "DeepSeek-V4.1-Flash only"
+    ],
+    [
+      "Hardware",
+      "NVIDIA SM100 GPUs, Huawei Ascend 950 NPUs"
+    ],
+    [
+      "Scope",
+      "Offline inference; no KV cache system, P/D disaggregation or replica load balancing"
+    ],
+    [
+      "Lineage",
+      "Originally built on vLLM; ideas from SGLang and TensorRT-LLM"
+    ],
+    [
+      "GitHub stars",
+      "~19.8k (Oct 2026)"
+    ],
+    [
+      "Production scale",
+      "155T tokens/day on one cluster (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "repo": "https://github.com/deepseek-ai/DeepInfer",
+    "docs": "https://github.com/deepseek-ai/DeepInfer/blob/9bd9cf243fc53ef9afbf8f04d391d989117d6ab9/doc/inference_deployment_qa.md"
+  },
+  "goodFor": [
+    "Self-hosting DeepSeek V4.1 Flash with DeepSeek's own optimizations",
+    "Large deployments on NVIDIA SM100 or Huawei Ascend 950",
+    "Studying a production MoE serving design"
+  ],
+  "watchOut": [
+    "Runs one model on two accelerator families for now",
+    "Offline only; you supply KV cache, P/D disaggregation and load balancing",
+    "Efficient deployments start at about 64 prefill plus 64 decode GPUs"
+  ],
+  "sources": [
+    {
+      "title": "deepseek-ai/DeepInfer (GitHub)",
+      "url": "https://github.com/deepseek-ai/DeepInfer"
+    },
+    {
+      "title": "DeepSeek V4.1 Flash Inference Deployment Q&A (DeepInfer docs)",
+      "url": "https://github.com/deepseek-ai/DeepInfer/blob/9bd9cf243fc53ef9afbf8f04d391d989117d6ab9/doc/inference_deployment_qa.md"
+    },
+    {
+      "title": "DeepSeek open-sources DeepInfer, the engine that runs its AI models (The Next Web)",
+      "url": "https://thenextweb.com/news/deepseek-deepinfer-open-source-inference-engine"
+    },
+    {
+      "title": "DeepSeek makes DeepInfer open source to cut AI costs (TechTarget)",
+      "url": "https://www.techtarget.com/ai/news/366652363/DeepSeek-makes-DeepInfer-open-source-to-cut-AI-costs"
+    }
+  ],
+  "evidence": {
+    "License": [
+      "https://github.com/deepseek-ai/DeepInfer",
+      "https://thenextweb.com/news/deepseek-deepinfer-open-source-inference-engine"
+    ],
+    "Released": [
+      "https://thenextweb.com/news/deepseek-deepinfer-open-source-inference-engine",
+      "https://www.techtarget.com/ai/news/366652363/DeepSeek-makes-DeepInfer-open-source-to-cut-AI-costs"
+    ],
+    "Models": [
+      "https://github.com/deepseek-ai/DeepInfer"
+    ],
+    "Hardware": [
+      "https://github.com/deepseek-ai/DeepInfer",
+      "https://www.techtarget.com/ai/news/366652363/DeepSeek-makes-DeepInfer-open-source-to-cut-AI-costs"
+    ],
+    "Scope": [
+      "https://github.com/deepseek-ai/DeepInfer"
+    ],
+    "Lineage": [
+      "https://github.com/deepseek-ai/DeepInfer"
+    ],
+    "GitHub stars": [
+      "https://github.com/deepseek-ai/DeepInfer"
+    ],
+    "Production scale": [
+      "https://github.com/deepseek-ai/DeepInfer/blob/9bd9cf243fc53ef9afbf8f04d391d989117d6ab9/doc/inference_deployment_qa.md"
+    ],
+    "watchOut.0": [
+      "https://github.com/deepseek-ai/DeepInfer"
+    ],
+    "watchOut.1": [
+      "https://github.com/deepseek-ai/DeepInfer"
+    ],
+    "watchOut.2": [
+      "https://github.com/deepseek-ai/DeepInfer/blob/9bd9cf243fc53ef9afbf8f04d391d989117d6ab9/doc/inference_deployment_qa.md"
+    ]
+  },
+  "researched": "2026-10-22"
+}
