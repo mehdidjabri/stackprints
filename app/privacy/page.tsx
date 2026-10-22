@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Privacy",
   description: "What Agentic Stack does and doesn't collect about visitors.",
   alternates: withMarkdown("/privacy/"),
-  openGraph: { type: "website", url: "/privacy/", title: "Agentic Stack / Privacy" },
+  openGraph: { type: "website", url: "/privacy/", title: "Agentic Stack / Privacy", images: "/opengraph-image" },
 };
 
 export default function Page() {

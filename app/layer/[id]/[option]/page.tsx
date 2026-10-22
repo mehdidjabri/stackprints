@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { StackCard } from "@/components/StackCard";
 import { Title } from "@/components/Title";
-import { SITE, getLayers, getNews, getOption, usage, usageText } from "@/lib/data";
+import { SITE, getLayers, getNews, getOption, metaDesc, usage, usageText } from "@/lib/data";
+import { disclosureMark } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
-import { optionHref, withMarkdown } from "@/lib/links";
+import { citeNumbers, numberedSources, optionHref, withMarkdown } from "@/lib/links";
 import type { Option } from "@/lib/types";
 
 type Props = { params: Promise<{ id: string; option: string }> };
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!found) return {};
   const { layer, option: o } = found;
   const title = `${o.name}: ${layer.name.toLowerCase()} for AI agents`;
-  const description = (o.summary ?? `${o.name}${o.note ? `, ${o.note.toLowerCase()}` : ""}. ${layer.description}`).slice(0, 300);
+  const description = metaDesc(o.summary ?? `${o.name}${o.note ? `: ${o.note}` : ""}. ${layer.description}`);
   const url = optionHref(layer.id, o.id);
   return {
     title,
@@ -62,15 +63,26 @@ export default async function OptionPage({ params }: Props) {
   const links = Object.entries(o.links ?? {});
   if (!links.length && o.url) links.push(["site", `https://${o.url}`]);
   const m = o.model;
-  const stats: [string, string | undefined][] = m
+  // [label, value, evidence key]
+  const stats: [string, string | undefined, string][] = m
     ? [
-        ["Context", m.context],
-        ["Input", m.priceIn],
-        ["Output", m.priceOut],
-        ["Released", m.released],
-        ["Weights", m.weights],
+        ["Context", m.context, "model.context"],
+        ["Input", m.priceIn, "model.priceIn"],
+        ["Output", m.priceOut, "model.priceOut"],
+        ["Released", m.released, "model.released"],
+        ["Weights", m.weights, "model.weights"],
       ]
     : [];
+  // Datasheet entries cite their sources the way a stack's layers do (see Option.evidence).
+  const sources = numberedSources(o.sources, o.evidence);
+  const cites = (key: string) =>
+    citeNumbers(sources, o.evidence?.[key]).map((n) => (
+      <a key={n} className="cite" href={sources[n - 1].url} rel="noopener" title={sources[n - 1].title}>
+        [{n}]
+      </a>
+    ));
+  // Heavily used options list the first few stacks as cards and the rest as one compact line each.
+  const SHOWN = 6;
 
   return (
     <article className={`option b-${layer.band}`}>
@@ -150,7 +162,10 @@ export default async function OptionPage({ params }: Props) {
               {o.facts.map(([k, v]) => (
                 <div key={k}>
                   <dt>{k}</dt>
-                  <dd>{v}</dd>
+                  <dd>
+                    {v}
+                    {cites(k)}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -162,10 +177,13 @@ export default async function OptionPage({ params }: Props) {
         <section className="stats" aria-label="Model specs">
           {stats
             .filter(([, v]) => v)
-            .map(([k, v]) => (
+            .map(([k, v, key]) => (
               <div key={k} className="module stat">
                 <span className="silk">{k}</span>
-                <strong>{v}</strong>
+                <strong>
+                  {v}
+                  {cites(key)}
+                </strong>
               </div>
             ))}
         </section>
@@ -203,8 +221,13 @@ export default async function OptionPage({ params }: Props) {
             <div>
               <h2 className="block-head">Watch out for</h2>
               <ul className="ticks warn">
-                {o.watchOut.map((w) => (
-                  <li key={w}>{w}</li>
+                {o.watchOut.map((w, i) => (
+                  <li key={w}>
+                    <span>
+                      {w}
+                      {cites(`watchOut.${i}`)}
+                    </span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -235,14 +258,50 @@ export default async function OptionPage({ params }: Props) {
         </section>
       )}
 
+      {sources.length > 0 && (
+        <section className="block">
+          <h2 className="block-head" id="sources">
+            Sources
+          </h2>
+          <ol className="sources">
+            {sources.map((src, i) => (
+              <li key={src.url} id={`src-${i + 1}`}>
+                <a href={src.url} rel="noopener">
+                  {src.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
       {stacks.length > 0 && (
         <section className="block">
           <h2 className="block-head">Stacks using {o.name}</h2>
           <div className="grid">
-            {stacks.map((s) => (
+            {stacks.slice(0, SHOWN).map((s) => (
               <StackCard key={s.slug} stack={s} />
             ))}
           </div>
+          {stacks.length > SHOWN && (
+            <details className="more-stacks">
+              <summary>
+                {stacks.length - SHOWN} more {stacks.length - SHOWN === 1 ? "stack" : "stacks"}
+              </summary>
+              <ul>
+                {stacks.slice(SHOWN).map((s) => (
+                  <li key={s.slug}>
+                    <Link href={`/stack/${s.slug}/`}>{s.name}</Link>
+                    <span className="muted">
+                      {" "}
+                      · {s.kind}
+                      {disclosureMark(s) && ` · ${disclosureMark(s)}`}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </section>
       )}
 
@@ -258,7 +317,7 @@ export default async function OptionPage({ params }: Props) {
       )}
 
       <section className="block">
-        <h2 className="block-head">Other {layer.name.toLowerCase()} options</h2>
+        <h2 className="block-head">Other options in {layer.name}</h2>
         <div className="alts">
           {alternatives.map((x) => (
             <Link key={x.id} href={optionHref(layer.id, x.id)} className="chip">

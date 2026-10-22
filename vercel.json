@@ -101,6 +101,13 @@
       "continue": true
     },
     {
+      "src": "^/(.*/)?opengraph-image$",
+      "headers": {
+        "Content-Type": "image/png"
+      },
+      "continue": true
+    },
+    {
       "src": "^/.*",
       "headers": {
         "Link": "</sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json\", </api/>; rel=\"service-doc\"; type=\"text/html\", </.well-known/api-catalog>; rel=\"api-catalog\"",

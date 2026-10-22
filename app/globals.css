@@ -283,6 +283,18 @@ a:hover {
 .muted {
   color: var(--muted);
 }
+/* Read out, not shown. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 .lede {
   max-width: 68ch;
   color: var(--muted);
@@ -814,7 +826,7 @@ select.add:focus-visible {
   font: 10px var(--sans);
   border: 1px solid var(--line);
   padding: 0 4px;
-  margin-left: 6px;
+  margin-left: 2px; /* after a space, so copied text reads "Mem0 open" */
   color: var(--muted);
   vertical-align: 1px;
 }
@@ -1169,6 +1181,49 @@ pre,
     gap: 2px;
   }
 }
+/* Option page: stacks past the first few cards, one line each. */
+.more-stacks {
+  margin-top: 12px;
+}
+.more-stacks > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 12px var(--sans);
+  border: 1px solid var(--line);
+  padding: 6px 12px;
+}
+.more-stacks > summary::-webkit-details-marker {
+  display: none;
+}
+.more-stacks > summary::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  opacity: 0.5;
+}
+.more-stacks[open] > summary::after {
+  transform: translateY(1px) rotate(225deg);
+}
+.more-stacks > summary:hover {
+  border-color: var(--line-strong);
+}
+.more-stacks ul {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  columns: 3 240px;
+  column-gap: 32px;
+}
+.more-stacks li {
+  padding: 3px 0;
+  break-inside: avoid;
+}
 .alts {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -1287,6 +1342,23 @@ pre,
   font-size: 12px;
   color: var(--muted);
   padding: 6px 9px;
+}
+/* Search page: what matched, when the name and subtitle don't show it. */
+.chip-why {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.chip-why mark {
+  background: none;
+  color: var(--fg);
+  font-weight: 500;
+}
+.search-start {
+  margin-top: 28px;
+}
+.search-count a {
+  color: var(--fg);
 }
 .results {
   display: grid;
@@ -1655,6 +1727,78 @@ select.add.fill {
   font-size: 14px;
   display: grid;
   gap: 6px;
+  overflow-wrap: anywhere;
+}
+
+/* Stack page: layer by layer, the board as a table, each row with the sources behind it. */
+.ev-sec h2 {
+  font: 500 13px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 40px 0 12px;
+}
+.ev {
+  border-top: 1px solid var(--line-strong);
+}
+.ev-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 200px) minmax(0, 1fr) minmax(64px, 180px);
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.ev-uncited .ev-row {
+  grid-template-columns: minmax(120px, 200px) minmax(0, 1fr);
+}
+.ev-layer {
+  font-weight: 500;
+}
+.ev-picks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.ev-picks a {
+  color: var(--fg);
+}
+.ev-cites {
+  text-align: right;
+}
+.ev-cites .cite {
+  margin: 0 0 0 4px;
+}
+/* Column labels for a table's rows, above its top rule. */
+.ev-head,
+.opt-head {
+  font: 10px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  padding: 0 0 6px;
+  border-bottom: 0;
+}
+.opt-head > :last-child {
+  text-align: right;
+}
+@media (max-width: 640px) {
+  .ev-row,
+  .ev-uncited .ev-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+  .ev-head,
+  .opt-head {
+    display: none;
+  }
+  .ev-cites {
+    text-align: left;
+  }
+  .ev-cites .cite {
+    margin: 0 4px 0 0;
+  }
 }
 
 /* Product marks next to stack names */

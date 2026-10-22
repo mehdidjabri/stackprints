@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "About",
   description: "What Agentic Stack is, how it is researched and who maintains it.",
   alternates: withMarkdown("/about/"),
-  openGraph: { type: "website", url: "/about/", title: "Agentic Stack / About" },
+  openGraph: { type: "website", url: "/about/", title: "Agentic Stack / About", images: "/opengraph-image" },
 };
 
 /** The shared copy is plain paragraphs, with "- " lines for a list. */

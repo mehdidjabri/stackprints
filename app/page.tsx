@@ -32,6 +32,7 @@ export default function Home() {
     inUseUndisclosed: s.inUseUndisclosed,
     closedLayers: s.closedLayers,
     supports: s.supports,
+    researched: s.researched,
     layers: Object.fromEntries(Object.entries(s.layers).map(([k, v]) => [k, asArray(v)])),
   }));
 
@@ -75,7 +76,7 @@ export default function Home() {
             {
               "@type": "Dataset",
               name: `${SITE.name}: AI agent stacks, layers and options`,
-              description: `${stacks.length} agent stacks and ${layers.reduce((n, l) => n + l.options.length, 0)} options across ${layers.length} layers, with sources, disclosure levels and weekly news.`,
+              description: `${stacks.length} agent stacks and ${layers.reduce((n, l) => n + l.options.length, 0)} options across ${layers.length} layers: stacks with sources and disclosure levels, options with vendor links and weekly news.`,
               url: SITE.url,
               license: "https://opensource.org/licenses/MIT",
               isAccessibleForFree: true,

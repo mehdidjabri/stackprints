@@ -52,6 +52,19 @@ for (const l of layers) {
     for (const [k, v] of Object.entries(o.links ?? {})) if (!/^https:\/\//.test(v)) errors.push(`${at}: links.${k} must be an https URL`);
     for (const k of ["goodFor", "watchOut", "how"]) if (o[k] && (!Array.isArray(o[k]) || o[k].length > 5)) errors.push(`${at}: ${k} must be a short list`);
     if (o.researched && !/^\d{4}-\d{2}-\d{2}$/.test(o.researched)) errors.push(`${at}: researched must be YYYY-MM-DD`);
+    // Datasheet citations: each key names an entry on the page, each URL is one of the option's sources.
+    for (const src of o.sources ?? [])
+      if (!src.title || !/^https:\/\//.test(src.url ?? "")) errors.push(`${at}: each source needs a title and an https url`);
+    const cited = new Set([
+      ...(Array.isArray(o.facts) ? o.facts.map(([k]) => k) : []),
+      ...Object.keys(o.model ?? {}).map((k) => `model.${k}`),
+      ...(o.watchOut ?? []).map((_, i) => `watchOut.${i}`),
+    ]);
+    for (const [key, urls] of Object.entries(o.evidence ?? {})) {
+      if (!cited.has(key)) errors.push(`${at}: evidence "${key}" is not a fact label, model.<field> or watchOut.<n> on this option`);
+      if (!Array.isArray(urls) || !urls.every((u) => o.sources?.some((s) => s.url === u)))
+        errors.push(`${at}: evidence.${key} must list URLs from sources`);
+    }
     index.get(l.id).add(o.id);
     for (const [k, v] of Array.isArray(o.facts) ? o.facts : []) if (k === "Used by" && typeof v === "string") usedBy.push({ layer: l.id, id: o.id, value: v });
   }
@@ -140,6 +153,8 @@ for (const f of jsonFiles("content/stacks")) {
     for (const id of picks) if (exclusive.has(`${layer}/${id}`) && picks.length > 1) errors.push(`${f}: ${layer}/${id} is exclusive: it stands alone in its layer`);
   }
   if (s.researched && !/^\d{4}-\d{2}-\d{2}$/.test(s.researched)) errors.push(`${f}: researched must be YYYY-MM-DD`);
+  if (s.version !== undefined && (typeof s.version !== "string" || !s.version)) errors.push(`${f}: version is a release name like "2026.10.10" or left out`);
+  if (s.version && s.disclosure === "example") errors.push(`${f}: an example design has no release, so no version`);
   for (const [layer, v] of Object.entries(s.layers ?? {})) {
     const opts = index.get(layer);
     if (!opts) errors.push(`${f}: unknown layer "${layer}"`);

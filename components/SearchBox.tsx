@@ -5,13 +5,15 @@ import { useEffect, useRef, useState } from "react";
 import { type Row, loadIndex, search } from "@/lib/search";
 import { Logo } from "./Logo";
 
-export function Result({ r }: { r: Row }) {
+/** One result. `why` is a line saying what matched, when the name and subtitle don't show it. */
+export function Result({ r, why }: { r: Row; why?: React.ReactNode }) {
   return (
     <>
       <Logo option={{ name: r[1], logo: r[4] || undefined }} />
       <span className="chip-text">
         <span className="chip-name">{r[1]}</span>
         <span className="chip-note">{r[2]}</span>
+        {why && <span className="chip-why">{why}</span>}
       </span>
       <span className="kind">{r[0]}</span>
     </>

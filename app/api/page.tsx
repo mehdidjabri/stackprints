@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Free, read-only JSON API for AI agent stacks, layers and options. No key, no sign-up. OpenAPI 3.1 spec included.",
   alternates: { canonical: "/api/" },
-  openGraph: { type: "website", url: "/api/", title: "Agentic Stack / API" },
+  openGraph: { type: "website", url: "/api/", title: "Agentic Stack / API", images: "/opengraph-image" },
 };
 
 const ENDPOINTS: [string, string, string][] = [
@@ -24,8 +24,9 @@ export default function Api() {
     <div className="prose">
       <Title detail="API" />
       <p className="lede">
-        Everything on {SITE.name} is available as static JSON: {getStacks().length} stacks, {getLayers().length} layers and
-        every option, with sources. No authentication, no API key, no rate-limit tiers. It&apos;s free.
+        Everything on {SITE.name} is available as static JSON: {getStacks().length} stacks with their sources,{" "}
+        {getLayers().length} layers, and every option with its links and research date. No authentication, no API key, no
+        rate-limit tiers. It&apos;s free.
       </p>
 
       <h2>Endpoints</h2>

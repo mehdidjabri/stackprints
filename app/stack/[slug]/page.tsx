@@ -3,10 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StackView } from "@/components/StackView";
 import { Title } from "@/components/Title";
-import { SITE, affiliated, asArray, getLayers, getStack, getStacks, resolve } from "@/lib/data";
+import { SITE, affiliated, asArray, getLayers, getStack, getStacks, metaDesc, resolve, stackTitle } from "@/lib/data";
 import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, kindCount, slotsNote } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
-import { kindHref, primaryLink, prettyUrl, withMarkdown } from "@/lib/links";
+import { bareUrl, citeNumbers, kindHref, optionHref, primaryLink, prettyUrl, stackSources, withMarkdown } from "@/lib/links";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,14 +23,14 @@ export const generateStaticParams = () => getStacks().map((s) => ({ slug: s.slug
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = getStack((await params).slug);
   if (!s) return {};
-  const title = `${s.name} agent stack`;
-  const description = `${s.tagline} ${s.description}`.slice(0, 300);
+  const description = metaDesc(`${s.tagline} ${s.description}`);
   return {
-    title,
+    title: stackTitle(s),
     description,
     alternates: withMarkdown(`/stack/${s.slug}/`),
     openGraph: { type: "article", title: `Agentic Stack / ${s.name}`, description, url: `/stack/${s.slug}/` },
-    twitter: { title: `Agentic Stack / ${s.name}`, description },
+    // The stack's own board image (opengraph-image.tsx) is picked up; this makes it the large card.
+    twitter: { card: "summary_large_image", title: `Agentic Stack / ${s.name}`, description },
   };
 }
 
@@ -57,17 +57,16 @@ export default async function StackPage({ params }: Props) {
   const empty = emptyLayers(s, getLayers());
   const unknowable = empty.unknown.length + empty.present.length > 0;
   const own = affiliated(s);
-  // Sources are numbered; evidence URLs not in the list get appended so every citation resolves.
-  const sources = [...(s.sources ?? [])];
-  for (const u of Object.values(s.evidence ?? {}).flat())
-    if (!sources.some((x) => x.url === u)) sources.push({ title: prettyUrl(u), url: u });
-  const cite = (u: string) => sources.findIndex((x) => x.url === u) + 1;
+  // Sources are numbered the same on the page, in markdown and in the API (evidence URLs appended).
+  const sources = stackSources(s);
+  // Evidence is per layer, so citations are too, in source order.
   const cites = (layerId: string) =>
-    (s.evidence?.[layerId] ?? []).map((u) => (
-      <a key={u} className="cite" href={u} rel="noopener" title={sources.find((x) => x.url === u)?.title ?? u}>
-        [{cite(u)}]
+    citeNumbers(sources, s.evidence?.[layerId]).map((n) => (
+      <a key={n} className="cite" href={sources[n - 1].url} rel="noopener" title={sources[n - 1].title}>
+        [{n}]
       </a>
     ));
+  const cited = Object.keys(s.evidence ?? {}).length > 0;
   const kindHint = (k: string) => kindCount(all.filter((x) => x.kind === k));
 
   return (
@@ -78,7 +77,7 @@ export default async function StackPage({ params }: Props) {
           "@graph": [
             {
               "@type": "TechArticle",
-              headline: `${s.name} agent stack`,
+              headline: stackTitle(s),
               ...(s.author ? { author: { "@type": "Person", name: s.author.name, ...(s.author.url ? { url: s.author.url } : {}) } } : {}),
               description: s.description,
               url: `${SITE.url}/stack/${s.slug}/`,
@@ -160,7 +159,8 @@ export default async function StackPage({ params }: Props) {
       {badge && (
         <p className="muted small reading">
           {badge.about}
-          {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}. {slotsNote(empty)}{" "}
+          {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}
+          {s.version ? ` against ${s.version}` : ""}. {slotsNote(empty)}{" "}
           <Link href="/about/#disclosure">How to read a stack</Link>
         </p>
       )}
@@ -171,6 +171,9 @@ export default async function StackPage({ params }: Props) {
             {label} ↗
           </a>
         ))}
+        <a className="btn" href="#layers">
+          Layer by layer ↓
+        </a>
         <Link className="btn" href={`/#from=${s.slug}`}>
           Remix this stack
         </Link>
@@ -178,50 +181,59 @@ export default async function StackPage({ params }: Props) {
           Edit on GitHub
         </a>
       </div>
-      <StackView rows={rows} stack={s} label={`AS-${String(getStacks().indexOf(s) + 1).padStart(2, "0")} · ${s.name.toUpperCase()} · REV 1`} />
+      {/* The board's revision is the date the stack was last researched, not a made-up number. */}
+      <StackView rows={rows} stack={s} label={`${s.name.toUpperCase()}${s.researched ? ` · REV ${s.researched}` : ""}`} />
+
+      <section className={cited ? "ev-sec" : "ev-sec ev-uncited"}>
+        <h2 id="layers">Layer by layer</h2>
+        {/* One row per layer, in board order: what fills it, linked, and the sources that back it. */}
+        <div className="ev-row ev-head" aria-hidden="true">
+          <div>Layer</div>
+          <div>Picks</div>
+          {cited && <div>Sources</div>}
+        </div>
+        <div className="ev">
+          {getLayers()
+            .filter((l) => l.id in s.layers || empty.present.includes(l))
+            .map((layer) => {
+              const all = rows.find((r) => r.layer.id === layer.id)?.picks ?? [];
+              // What the stack runs, then what it only supports, said once.
+              const picks = all.filter((p) => !isSupported(s, layer.id, p.id));
+              const extra = all.filter((p) => isSupported(s, layer.id, p.id));
+              const pick = (p: (typeof all)[number]) => <Link href={optionHref(layer.id, p.id)}>{p.name}</Link>;
+              return (
+                <div key={layer.id} className="ev-row">
+                  <div className="ev-layer">
+                    <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
+                  </div>
+                  <ul className="ev-picks">
+                    {!all.length && <li className="muted">{EMPTY.present}</li>}
+                    {picks.map((p) => (
+                      <li key={p.id}>
+                        {pick(p)}
+                        {p.note && <span className="muted"> — {p.note}</span>}
+                      </li>
+                    ))}
+                    {extra.length > 0 && (
+                      <li className="muted">
+                        {picks.length ? "Also supports " : "Supports "}
+                        {extra.map((p, i) => (
+                          <span key={p.id}>
+                            {i > 0 && ", "}
+                            {pick(p)}
+                          </span>
+                        ))}
+                      </li>
+                    )}
+                  </ul>
+                  {cited && <div className="ev-cites">{cites(layer.id)}</div>}
+                </div>
+              );
+            })}
+        </div>
+      </section>
 
       <div className="prose">
-        <h2>Layer by layer</h2>
-        <dl>
-          {rows.map(({ layer, picks: all }) => {
-            // What the stack runs, then what it only supports, said once.
-            const picks = all.filter((p) => !isSupported(s, layer.id, p.id));
-            const extra = all.filter((p) => isSupported(s, layer.id, p.id));
-            return (
-              <div key={layer.id} style={{ marginBottom: 12 }}>
-                <dt>
-                  <Link href={`/layer/${layer.id}/`}>
-                    <strong>{layer.name}</strong>
-                  </Link>
-                </dt>
-                <dd style={{ margin: 0 }} className="muted">
-                  {picks.map((p, i) => (
-                    <span key={p.id}>
-                      {i > 0 && ", "}
-                      {p.name}
-                      {p.note && ` (${p.note.toLowerCase()})`}
-                    </span>
-                  ))}
-                  {extra.length > 0 && `${picks.length ? "; also supports " : "Supports "}${extra.map((p) => p.name).join(", ")}`}
-                  {cites(layer.id)}
-                </dd>
-              </div>
-            );
-          })}
-        </dl>
-        {empty.present.length > 0 && (
-          <p className="muted">
-            <strong>In use, not disclosed:</strong>{" "}
-            {empty.present.map((l, i) => (
-              <span key={l.id}>
-                {i > 0 && ", "}
-                {l.name}
-                {cites(l.id)}
-              </span>
-            ))}
-            .
-          </p>
-        )}
         {empty.unknown.length > 0 && (
           <p className="muted">
             <strong>{EMPTY.unknown}:</strong> {empty.unknown.map((l) => l.name).join(", ")}.
@@ -242,16 +254,25 @@ export default async function StackPage({ params }: Props) {
         {sources.length > 0 && (
           <>
             {/* An example cites no evidence: its list is reading on the parts it hinges on. */}
-            <h2>{d === "example" ? "Further reading" : "Sources"}</h2>
+            <h2 id="sources">{d === "example" ? "Further reading" : "Sources"}</h2>
             <ol className="sources">
-              {sources.map((src) => (
-                <li key={src.url}>
-                  <a href={src.url} rel="noopener">
-                    {src.title}
-                  </a>
-                  <span className="muted"> · {prettyUrl(src.url)}</span>
-                </li>
-              ))}
+              {sources.map((src, i) => {
+                // A named source shows where it points; one titled by its URL already does.
+                const where = bareUrl(src.url);
+                return (
+                  <li key={src.url} id={`src-${i + 1}`}>
+                    <a href={src.url} rel="noopener">
+                      {src.title}
+                    </a>
+                    {src.title !== where && (
+                      <span className="muted" title={where}>
+                        {" "}
+                        · {where.length > 48 ? `${where.slice(0, 47)}…` : where}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
             </ol>
           </>
         )}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "The layers of a modern AI agent: channels, interface, voice, model, router, harness, tools, MCP, skills, sandbox, browser use, memory, retrieval, proactivity, durable execution, guardrails, identity, payments, observability and more.",
   alternates: withMarkdown("/layers/"),
-  openGraph: { type: "website", url: "/layers/", title: "Agentic Stack / Layers" },
+  openGraph: { type: "website", url: "/layers/", title: "Agentic Stack / Layers", images: "/opengraph-image" },
 };
 
 export default function Layers() {

@@ -84,6 +84,20 @@ export function usageText({ stacks, examples }: ReturnType<typeof usage>) {
   return parts.length ? `in ${parts.join(" · ")}` : "";
 }
 
+/** "OpenClaw agent stack", but "Support agent stack" rather than "Support agent agent stack". */
+export const stackTitle = (s: Pick<Stack, "name">) => (/\bagents?\b/i.test(s.name) ? `${s.name} stack` : `${s.name} agent stack`);
+
+/** A meta description: whole sentences when they fit, else cut at a word with an ellipsis. */
+export function metaDesc(text: string, max = 160) {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max);
+  const sentence = cut.lastIndexOf(". ");
+  if (sentence > max * 0.6) return cut.slice(0, sentence + 1);
+  const word = cut.lastIndexOf(" ");
+  return cut.slice(0, word > 0 ? word : max).replace(/[,;:.\s]+$/, "") + "…";
+}
+
 /** Options a stack picks that are made by the people behind this site. */
 export const affiliated = (stack: Pick<Stack, "layers">) => resolve(stack).flatMap((r) => r.picks.filter((p) => p.affiliation));
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { loadIndex, search } from "@/lib/search";
+import { loadIndex, search, why, whyText } from "@/lib/search";
 
 // WebMCP (W3C draft): tools a browser agent can call on any page of the site, backed by the
 // same static JSON as the public API. document.modelContext first, navigator.modelContext as fallback.
@@ -33,8 +33,15 @@ const TOOLS: Tool[] = [
     inputSchema: schema({ query: str("What to look for, e.g. 'memory', 'browser use', 'OpenClaw'") }),
     annotations: { readOnlyHint: true },
     execute: async (input) => {
-      const rows = search(await loadIndex(), String(input.query), 15);
-      return { results: rows.map(([kind, title, subtitle, href]) => ({ kind, title, subtitle, url: new URL(href, location.origin).href })) };
+      const q = String(input.query);
+      const rows = search(await loadIndex(), q, 15);
+      return {
+        results: rows.map((r) => {
+          const w = why(r, q);
+          const [kind, title, subtitle, href] = r;
+          return { kind, title, subtitle, url: new URL(href, location.origin).href, ...(w ? { matched: whyText(w) } : {}) };
+        }),
+      };
     },
   },
   {

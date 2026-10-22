@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "The models, harnesses, memory layers, sandboxes and tools most in the news over the last 30 days, with the latest headline for each.",
   alternates: withMarkdown("/trending/"),
-  openGraph: { type: "website", url: "/trending/", title: "Agentic Stack / Trending" },
+  openGraph: { type: "website", url: "/trending/", title: "Agentic Stack / Trending", images: "/opengraph-image" },
 };
 
 export default function TrendingPage() {

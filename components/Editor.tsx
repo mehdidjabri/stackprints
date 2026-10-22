@@ -17,7 +17,7 @@ type Preset = {
   site?: string;
   logo?: string;
   layers: Record<string, string[]>;
-} & Pick<Stack, "disclosure" | "notUsed" | "inUseUndisclosed" | "closedLayers" | "supports">;
+} & Pick<Stack, "disclosure" | "notUsed" | "inUseUndisclosed" | "closedLayers" | "supports" | "researched">;
 
 const fromPreset = (p: Preset): Draft => ({ name: p.name, from: p.slug, layers: structuredClone(p.layers) });
 const UNTITLED = "Untitled stack";
@@ -479,7 +479,8 @@ export function Editor({
               .map((id) => layer.options.find((o) => o.id === id))
               .filter((o): o is NonNullable<typeof o> => Boolean(o)),
           }))}
-        label={`${name.toUpperCase()} · REV ${dirty ? "X" : "1"}`}
+        // As on the stack page: a stack's revision is its research date; an edited board is a draft.
+        label={`${name.toUpperCase()}${dirty ? " · DRAFT" : preset?.researched ? ` · REV ${preset.researched}` : ""}`}
         stack={knowable}
         source={preset && dirty ? preset.name : undefined}
         onRemove={(layerId, id) => update(layerId, draft.layers[layerId].filter((p) => p !== id))}

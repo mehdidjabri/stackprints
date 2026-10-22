@@ -41,6 +41,13 @@ export type Option = {
     weights?: "open" | "closed";
     openrouter?: string;
   };
+  /** Pages the research above came from. Same shape as a stack's sources. */
+  sources?: { title: string; url: string }[];
+  /**
+   * What backs which datasheet entry: a fact label ("Pricing"), "model.<field>" ("model.priceIn")
+   * or "watchOut.<n>" (0-based), mapped to URLs listed in sources. Only pages actually opened.
+   */
+  evidence?: Record<string, string[]>;
   researched?: string;
 };
 
@@ -87,6 +94,8 @@ export type Stack = {
   /** Per layer: picks that are supported (configurable) rather than what the stack runs by default. */
   supports?: Record<string, string[]>;
   researched?: string;
+  /** The product release the picks were mapped from ("2026.10.10-beta.3", "AI SDK 7"). Real products only. */
+  version?: string;
   /** Official links for stacks that are real products. Full https URLs. */
   links?: Partial<Record<"site" | "repo" | "docs" | "announcement", string>>;
   /** Who made or submitted the stack. Personal stacks are welcome. */

@@ -9,6 +9,12 @@ import { optionHref, withMarkdown } from "@/lib/links";
 
 type Props = { params: Promise<{ id: string }> };
 
+const PROFILE_ABOUT: Record<string, string> = {
+  pattern: "A technique or design choice, not a product",
+  protocol: "An open standard or spec",
+  model: "A model or model family",
+};
+
 export const dynamicParams = false;
 export const generateStaticParams = () => getLayers().map((l) => ({ id: l.id }));
 
@@ -73,6 +79,12 @@ export default async function LayerPage({ params }: Props) {
       </div>
       <p className="lede">{l.description}</p>
 
+      {/* Column labels, above the table's top rule; hidden where the rows stack on a phone. */}
+      <div className="opt opt-head" aria-hidden="true">
+        <div>Option</div>
+        <div>What it is</div>
+        <div>Used by</div>
+      </div>
       <div className="options">
         {l.options.map((o) => {
           const { stacks, examples } = usage(l.id, o.id);
@@ -87,7 +99,23 @@ export default async function LayerPage({ params }: Props) {
             <div key={o.id} className="opt" id={o.id}>
               <div className="opt-name">
                 <Link href={optionHref(l.id, o.id)}>{o.name}</Link>
-                {o.open && <span className="tag">open</span>}
+                {/* Products go untagged; a pattern or protocol says so, and a model does outside the Model layer. */}
+                {o.profile && o.profile !== "product" && o.profile !== l.id && (
+                  <>
+                    {" "}
+                    <span className="tag" title={PROFILE_ABOUT[o.profile]}>
+                      {o.profile}
+                    </span>
+                  </>
+                )}
+                {o.open && (
+                  <>
+                    {" "}
+                    <span className="tag" title="Open source or open weights">
+                      open<span className="sr-only"> source or open weights</span>
+                    </span>
+                  </>
+                )}
               </div>
               <div className="opt-note">
                 {o.note}
@@ -99,6 +127,12 @@ export default async function LayerPage({ params }: Props) {
               </div>
               {/* Real stacks first; example designs are the site's own, so they're named as such. */}
               <div className="opt-used">
+                {!stacks.length && !examples.length && (
+                  <>
+                    <span aria-hidden="true">—</span>
+                    <span className="sr-only">No stacks yet</span>
+                  </>
+                )}
                 {links(stacks)}
                 {examples.length > 0 && (
                   <>

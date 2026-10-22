@@ -44,9 +44,17 @@ Each option gets a `profile`, which decides the layout of its page.
   },
   "goodFor": ["Short phrase", "Short phrase"],       // at most 3
   "watchOut": ["Short honest caveat"],               // at most 3
+  "sources": [                      // optional: pages the datasheet came from
+    { "title": "E2B pricing", "url": "https://e2b.dev/pricing" }
+  ],
+  "evidence": {                     // optional: which source backs which entry
+    "Pricing": ["https://e2b.dev/pricing"]
+  },
   "researched": "2026-10-21"
 }
 ```
+
+**Citing the datasheet.** An `evidence` key is a fact label exactly as written in `facts`, `model.<field>` (`model.priceIn`) or `watchOut.<n>` (0-based), and every URL in it must be in `sources`. The page numbers the sources like a stack's and puts [n] next to each cited entry; the markdown twin and the API carry the same. Cite only a page you opened. A fact you can't re-verify gets no citation, or is removed; never copy the option's `links` onto facts by assumption. Start with prices, benchmarks, compliance and limits. `npm run check` rejects a key that names nothing on the option and a URL missing from `sources`.
 
 **Model**, all fields optional and verified:
 
@@ -141,9 +149,12 @@ There are three empty states, named the same everywhere (board, prose, markdown,
   },
   "notUsed": ["voice"],               // only layers a source confirms are absent
   "inUseUndisclosed": ["harness"],    // present per a source, component not named; needs evidence too
-  "researched": "2026-10-21"
+  "researched": "2026-10-21",
+  "version": "v1.4.0"                 // optional: the release or tag you mapped
 }
 ```
+
+Set `version` to the release or tag the picks were mapped from, when the product has one (not on examples), and update `researched` whenever you re-check the picks. The board's revision label and the page's "researched" line read from them.
 
 Two more fields, for the cases above:
 

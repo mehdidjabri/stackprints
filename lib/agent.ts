@@ -4,9 +4,9 @@
 // them into out/ after the build, so the site stays fully static.
 import crypto from "node:crypto";
 import { BANDS } from "./bands";
-import { SITE, affiliated, asArray, getLayers, getNews, getStacks, getTrending, resolve, usage, usageText, usedBy } from "./data";
+import { SITE, affiliated, asArray, getLayers, getNews, getStacks, getTrending, resolve, stackTitle, usage, usageText, usedBy } from "./data";
 import { EMPTY, disclosureOf, emptyLayers, isSupported } from "./disclosure";
-import { kindHref, mdPath, optionHref } from "./links";
+import { citeNumbers, kindHref, mdPath, numberedSources, optionHref, stackSources } from "./links";
 import type { Layer, Option, Stack } from "./types";
 
 export const BUILT = new Date().toISOString().slice(0, 10);
@@ -49,10 +49,8 @@ function homeMd() {
 function stackMd(s: Stack) {
   const rows = resolve(s);
   const badge = disclosureOf(s);
-  const sources = [...(s.sources ?? [])];
-  for (const u of Object.values(s.evidence ?? {}).flat()) if (!sources.some((x) => x.url === u)) sources.push({ title: u, url: u });
-  const cite = (u: string) => `[${sources.findIndex((x) => x.url === u) + 1}]`;
-  const cites = (layerId: string) => (s.evidence?.[layerId] ?? []).map(cite).join("");
+  const sources = stackSources(s);
+  const cites = (layerId: string) => citeNumbers(sources, s.evidence?.[layerId]).map((n) => `[${n}]`).join("");
   const link = (layerId: string, p: Option) => `[${p.name}](${abs(mdPath(optionHref(layerId, p.id)))})`;
   // Picks the stack runs, then the ones it only supports.
   const picksMd = (layerId: string, picks: Option[]) => {
@@ -63,8 +61,8 @@ function stackMd(s: Stack) {
   const empty = emptyLayers(s, getLayers());
   const own = affiliated(s);
   return (
-    frontmatter({ title: `${s.name} agent stack`, description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
-    `# ${s.name}\n\n${s.kind}${badge ? ` · ${badge.badge}: ${badge.about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}\n\n${s.description}\n\n` +
+    frontmatter({ title: stackTitle(s), description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
+    `# ${s.name}\n\n${s.kind}${badge ? ` · ${badge.badge}: ${badge.about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}${s.version ? ` against ${s.version}` : ""}\n\n${s.description}\n\n` +
     (own.length ? `> Disclosure: this ${s.disclosure === "example" ? "example" : "stack"} uses ${own.map((o) => o.name).join(", ")}. ${[...new Set(own.map((o) => o.affiliation))].join(" ")}\n\n` : "") +
     (s.links ? `${Object.entries(s.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n\n` : "") +
     `## Layers\n\n${rows.map(({ layer, picks }) => `- **${layer.name}** (${layer.ref}): ${picksMd(layer.id, picks)}${cites(layer.id)}`).join("\n")}\n` +
@@ -112,6 +110,9 @@ function optionMd(l: Layer, o: Option) {
   const { stacks, examples } = usage(l.id, o.id);
   const list = (xs: Stack[]) => xs.map((u) => `- [${u.name}](${abs(mdPath(`/stack/${u.slug}/`))})`).join("\n");
   const m = o.model;
+  // Datasheet entries cite their sources like a stack's layers do (see Option.evidence).
+  const sources = numberedSources(o.sources, o.evidence);
+  const cites = (key: string) => citeNumbers(sources, o.evidence?.[key]).map((n) => ` [${n}]`).join("");
   const parts = [
     frontmatter({
       title: `${o.name}: ${l.name.toLowerCase()} for AI agents`,
@@ -123,12 +124,13 @@ function optionMd(l: Layer, o: Option) {
     o.affiliation ? `\n> Disclosure: ${o.affiliation}\n` : "",
     o.note ? `\n> ${o.note}\n` : "",
     o.summary ? `\n${o.summary}\n` : "",
-    m ? `\n## Model\n\n${Object.entries(m).map(([k, v]) => `- ${k}: ${Array.isArray(v) ? v.join(", ") : v}`).join("\n")}\n` : "",
-    o.facts?.length ? `\n## Datasheet\n\n| | |\n|---|---|\n${o.facts.map(([k, v]) => `| ${k} | ${v.replace(/\|/g, "\\|")} |`).join("\n")}\n` : "",
+    m ? `\n## Model\n\n${Object.entries(m).map(([k, v]) => `- ${k}: ${Array.isArray(v) ? v.join(", ") : v}${cites(`model.${k}`)}`).join("\n")}\n` : "",
+    o.facts?.length ? `\n## Datasheet\n\n| | |\n|---|---|\n${o.facts.map(([k, v]) => `| ${k} | ${v.replace(/\|/g, "\\|")}${cites(k)} |`).join("\n")}\n` : "",
     o.how?.length ? `\n## How it works\n\n${o.how.map((h, i) => `${i + 1}. ${h}`).join("\n")}\n` : "",
     o.goodFor?.length ? `\n## Good for\n\n${o.goodFor.map((g) => `- ${g}`).join("\n")}\n` : "",
-    o.watchOut?.length ? `\n## Watch out for\n\n${o.watchOut.map((g) => `- ${g}`).join("\n")}\n` : "",
+    o.watchOut?.length ? `\n## Watch out for\n\n${o.watchOut.map((g, i) => `- ${g}${cites(`watchOut.${i}`)}`).join("\n")}\n` : "",
     o.links ? `\n## Links\n\n${Object.entries(o.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n` : "",
+    sources.length ? `\n## Sources\n\n${sources.map((x, i) => `${i + 1}. [${x.title}](${x.url})`).join("\n")}\n` : "",
     stacks.length ? `\n## Used in stacks\n\n${list(stacks)}\n` : "",
     // Example designs are written by this site: listed, never counted as adoption.
     examples.length ? `\n## In example designs\n\n${list(examples)}\n` : "",
@@ -151,7 +153,7 @@ function trendingMd() {
 // Trust pages share their copy between HTML and markdown.
 export const ABOUT = `Agentic Stack is an open, community-maintained map of how AI agents are built. It breaks an agent into ${"{layers}"} layers, from the channels people reach it through to the model, the harness that runs the loop, the sandbox its code runs in, its memory, what wakes it up, its guardrails and where it is hosted. Each layer lists the real options people use today, and each stack shows which option a known agent picks in every layer. Stacks marked Example are designs written for this site to show how the parts fit together; they are not products, and the site counts them apart from real use.
 
-Every claim about a real product is sourced. Open-source stacks are built from their public code; closed products are built only from what their makers and reputable press have published, and every layer they haven't disclosed is marked "Not disclosed" rather than guessed. Benchmark numbers that a vendor publishes about itself are labelled vendor-reported. Rankings and listings are never paid for.
+Every pick in a real product's stack links to the source that backs it. Option datasheets are researched from public pages, such as the vendor links shown on each option, and each says when it was last researched. Open-source stacks are built from their public code; closed products are built only from what their makers and reputable press have published, and every layer they haven't disclosed is marked "Not disclosed" rather than guessed. Benchmark numbers that a vendor publishes about itself are labelled vendor-reported. Rankings and listings are never paid for.
 
 The site is static and free: no accounts, no ads, no tracking. All data lives as JSON files in a public GitHub repository, anyone can propose a change by pull request, and a weekly job refreshes the news for every option.`;
 
@@ -254,6 +256,7 @@ const stackSummary = (s: Stack) => ({
   tagline: s.tagline,
   disclosure: s.disclosure ?? null,
   researched: s.researched ?? null,
+  version: s.version ?? null,
   links: s.links ?? {},
   url: abs(`/stack/${s.slug}/`),
   markdown: abs(mdPath(`/stack/${s.slug}/`)),
@@ -292,7 +295,8 @@ function stackJson(s: Stack) {
     notDisclosed: empty.unknown.map((l) => l.id),
     inUseUndisclosed: empty.present.map((l) => ({ id: l.id, name: l.name, evidence: s.evidence?.[l.id] ?? [] })),
     notUsed: empty.unused.map((l) => l.id),
-    sources: s.sources ?? [],
+    // Numbered as cited: sources[n - 1] is citation [n] on the page and in the markdown.
+    sources: stackSources(s),
   };
 }
 
@@ -385,7 +389,7 @@ function openapi() {
         get: {
           operationId: "searchIndex",
           summary: "Compact search index of every stack, layer and option",
-          responses: { "200": { description: "Rows of [kind, title, subtitle, href, logo, extra]", content: { "application/json": { schema: { type: "array", items: { type: "array", items: { type: "string" } } } } } } },
+          responses: { "200": { description: "Rows of [kind, title, subtitle, href, logo, extra, uses]; uses lists a stack's picks as \"Layer: Option\" joined by \"; \"", content: { "application/json": { schema: { type: "array", items: { type: "array", items: { type: "string" } } } } } } },
         },
       },
     },
@@ -400,7 +404,8 @@ function openapi() {
             kind: { type: "string" },
             tagline: { type: "string" },
             disclosure: { type: ["string", "null"], enum: ["open-source", "documented", "closed", "example", null], description: "What an absent layer means: open-source/example = not used, documented/closed = not disclosed. An open-source stack with closed parts (open core) lists the layers only those parts could fill under notDisclosed. example = a design written for this site, not a product" },
-            researched: { type: ["string", "null"], format: "date" },
+            researched: { type: ["string", "null"], format: "date", description: "When the picks were last checked against the sources" },
+            version: { type: ["string", "null"], description: "The product release the picks were mapped from, when recorded" },
             links: { type: "object", additionalProperties: { type: "string", format: "uri" } },
             url: { type: "string", format: "uri" },
             markdown: { type: "string", format: "uri" },
@@ -444,7 +449,11 @@ function openapi() {
                   items: { type: "object", properties: { id: { type: "string" }, name: { type: "string" }, evidence: { type: "array", items: { type: "string", format: "uri" } } } },
                 },
                 notUsed: { type: "array", items: { type: "string" }, description: "Layer ids known not to be used" },
-                sources: { type: "array", items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" } } } },
+                sources: {
+                  type: "array",
+                  description: "Numbered as cited: sources[n - 1] is citation [n]. The curated list first, then any evidence URL it lacks, titled by the URL",
+                  items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" } } },
+                },
               },
             },
           ],
@@ -487,6 +496,12 @@ function openapi() {
             affiliation: { type: "string", description: "Present only when the people behind this site also make the option" },
             summary: { type: "string" },
             facts: { type: "array", items: { type: "array", items: { type: "string" }, minItems: 2, maxItems: 2 } },
+            sources: { type: "array", description: "Pages the datasheet was researched from, when recorded", items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" } } } },
+            evidence: {
+              type: "object",
+              description: "Which sources back which entry: keys are a fact label, model.<field> or watchOut.<n> (0-based); values are URLs listed in sources. Entries without a key cite nothing yet",
+              additionalProperties: { type: "array", items: { type: "string", format: "uri" } },
+            },
             news: { type: ["object", "null"] },
             usage: {
               type: "object",
@@ -514,7 +529,7 @@ Read-only data about AI agent stacks at ${SITE.url}. No key needed.
 
 ## Steps
 
-1. Find things: GET ${abs("/search.json")} (rows of [kind, title, subtitle, href, logo, extra]) or list them: GET ${abs("/api/stacks.json")}, ${abs("/api/layers.json")}.
+1. Find things: GET ${abs("/search.json")} (rows of [kind, title, subtitle, href, logo, extra, uses], where uses is a stack's picks as "Layer: Option") or list them: GET ${abs("/api/stacks.json")}, ${abs("/api/layers.json")}.
 2. Read a stack: GET ${abs("/api/stacks/{slug}.json")}. Each layer has picks and evidence URLs; cite those when you repeat a claim.
 3. Compare a layer: GET ${abs("/api/layers/{layer}.json")}, then ${abs("/api/options/{layer}/{option}.json")} for datasheets, caveats ("watchOut") and recent news.
 4. Respect disclosure: a layer listed in notDisclosed is unknown, not absent. Say "not disclosed" rather than guessing. A layer in inUseUndisclosed is present, but its component isn't named; cite its evidence. A pick marked "supported": true is configurable, not the default.
@@ -543,7 +558,7 @@ function catalog() {
     specVersion: "1.0",
     host: { displayName: SITE.name, identifier: `did:web:${host}`, documentationUrl: abs("/api/") },
     entries: [
-      entry("api:agentic-stack", `${SITE.name} API`, "application/vnd.oai.openapi+json", abs("/openapi.json"), "Read-only JSON API: stacks, layers and options with sources and news. No key.", {
+      entry("api:agentic-stack", `${SITE.name} API`, "application/vnd.oai.openapi+json", abs("/openapi.json"), "Read-only JSON API: stacks with sources, layers, and options with vendor links and news. No key.", {
         tags: ["ai-agents", "agent-stack", "directory", "comparison"],
         capabilities: ["listStacks", "getStack", "listLayers", "getLayer", "getOption"],
         representativeQueries: ["how is OpenClaw built", "which sandboxes exist for AI agents", "compare memory APIs for agents", "what model does ChatGPT dots use"],
