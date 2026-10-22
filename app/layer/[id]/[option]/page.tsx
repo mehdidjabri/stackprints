@@ -213,7 +213,7 @@ export default async function OptionPage({ params }: Props) {
           {news.items.length ? (
             <ul className="news">
               {news.items.map((n) => (
-                <li key={n.url}>
+                <li key={`${n.date}-${n.title}`}>
                   <time dateTime={n.date}>{n.date}</time>
                   <a href={n.url} rel="noopener">
                     {n.title}
