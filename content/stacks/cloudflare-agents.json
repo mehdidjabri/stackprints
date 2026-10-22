@@ -46,6 +46,7 @@
     "voice": "cloudflare-voice",
     "readiness": "mcp-server",
     "harness": "cloudflare-think",
+    "model": "any-model",
     "router": "cloudflare-ai-gateway",
     "inference": "workers-ai",
     "multiagent": "subagents",
@@ -94,6 +95,11 @@
     "harness": [
       "https://developers.cloudflare.com/agents/harnesses/think/",
       "https://blog.cloudflare.com/project-think/"
+    ],
+    "model": [
+      "https://developers.cloudflare.com/agents/models/",
+      "https://developers.cloudflare.com/workers-ai/",
+      "https://agents.cloudflare.com"
     ],
     "router": [
       "https://developers.cloudflare.com/agents/models/"

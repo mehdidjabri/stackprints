@@ -58,6 +58,7 @@
       "ai-sdk-agent",
       "eve"
     ],
+    "model": "any-model",
     "router": "vercel-ai-gateway",
     "multiagent": "subagents",
     "search": "web-search",
@@ -104,6 +105,10 @@
       "https://vercel.com/blog/agent-stack",
       "https://ai-sdk.dev/docs/agents/overview",
       "https://eve.dev/docs"
+    ],
+    "model": [
+      "https://vercel.com/blog/agent-stack",
+      "https://vercel.com/docs/ai-gateway"
     ],
     "router": [
       "https://vercel.com/blog/agent-stack",

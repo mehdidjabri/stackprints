@@ -25,6 +25,10 @@
     {
       "title": "Temporal documentation",
       "url": "https://docs.temporal.io"
+    },
+    {
+      "title": "past.dev documentation",
+      "url": "https://past.dev/docs"
     }
   ],
   "layers": {
@@ -43,7 +47,7 @@
       "firecrawl"
     ],
     "browser": "browserbase",
-    "memory": "agent-notes",
+    "memory": "past-dev",
     "retrieval": [
       "lancedb",
       "voyage-4"

@@ -1,0 +1,31 @@
+{
+  "order": 5,
+  "id": "any-provider",
+  "name": "Any provider",
+  "note": "Bring your own keys and endpoint",
+  "logo": "any",
+  "profile": "pattern",
+  "summary": "The stack can reach models through whichever provider or gateway you configure: a lab's own API, an OpenAI-compatible endpoint, a router such as OpenRouter or LiteLLM, or a local server.",
+  "how": [
+    "Point the agent at a base URL and key, or pick a built-in provider",
+    "Optionally put a gateway in front for fallbacks, spend limits and logging"
+  ],
+  "facts": [
+    [
+      "Means",
+      "No required gateway or provider"
+    ],
+    [
+      "Shown on",
+      "Stacks whose docs list many providers or any OpenAI-compatible endpoint"
+    ]
+  ],
+  "goodFor": [
+    "Bringing existing keys and contracts",
+    "Mixing hosted and local models"
+  ],
+  "watchOut": [
+    "You own key management, rate limits and failover unless you add a gateway"
+  ],
+  "researched": "2026-10-21"
+}

@@ -126,7 +126,9 @@ export const ABOUT = `Agentic Stack is an open, community-maintained map of how 
 
 Every claim about a real product is sourced. Open-source stacks are built from their public code; closed products are built only from what their makers and reputable press have published, and every layer they haven't disclosed is marked "Not disclosed" rather than guessed. Benchmark numbers that a vendor publishes about itself are labelled vendor-reported. Rankings and listings are never paid for.
 
-The site is static and free: no accounts, no ads, no tracking. All data lives as JSON files in a public GitHub repository, anyone can propose a change by pull request, and a weekly job refreshes the news for every option.`;
+The site is static and free: no accounts, no ads, no tracking. All data lives as JSON files in a public GitHub repository, anyone can propose a change by pull request, and a weekly job refreshes the news for every option.
+
+Disclosure: Agentic Stack is built by the team behind past.dev, a memory API listed here. past.dev is the first suggestion in the Memory layer and the memory in example designs where a hosted memory API fits. Stacks of real products list past.dev only where a source shows they use it, and its benchmark numbers are marked vendor-reported like everyone else's.`;
 
 export const PRIVACY = `Agentic Stack is a static website. It sets no cookies, runs no analytics or advertising scripts, and has no accounts, so we don't collect personal data about visitors.
 

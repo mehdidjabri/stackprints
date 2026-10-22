@@ -15,21 +15,10 @@
     "channels": "cli-tui",
     "ui": "plain-text",
     "harness": "pi",
-    "model": [
-      "gpt-6-1-sol",
-      "kimi-k3",
-      "glm-5-3",
-      "deepseek-v4-pro",
-      "grok-4-7",
-      "gpt-oss",
-      "gpt-6-luna"
-    ],
+    "model": "any-model",
     "router": [
       "pi-ai",
-      "direct-provider",
-      "openrouter",
-      "vercel-ai-gateway",
-      "cloudflare-ai-gateway"
+      "any-provider"
     ],
     "inference": [
       "local-gpu",

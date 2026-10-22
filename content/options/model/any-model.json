@@ -1,0 +1,36 @@
+{
+  "order": 5,
+  "id": "any-model",
+  "name": "Any model",
+  "note": "Model-agnostic: bring your own provider",
+  "logo": "any",
+  "profile": "pattern",
+  "summary": "The stack doesn't depend on one model. You choose the provider and model in configuration, through a direct API, a model gateway or a local runtime, and can switch without changing the agent.",
+  "how": [
+    "The harness talks to models through a provider-neutral client or an OpenAI-compatible API",
+    "You set the provider, model and key in config or at runtime",
+    "Fallbacks and routing, if any, come from the model gateway layer"
+  ],
+  "facts": [
+    [
+      "Means",
+      "Works with models from many providers; none is required"
+    ],
+    [
+      "Shown on",
+      "Stacks whose docs say they support any provider"
+    ],
+    [
+      "Trade-off",
+      "Behaviour, tool-calling quality and cost vary by the model you choose"
+    ]
+  ],
+  "goodFor": [
+    "Switching models as prices and quality change",
+    "Running open-weight models locally or in the cloud"
+  ],
+  "watchOut": [
+    "Agents tuned on one model family can behave differently on another"
+  ],
+  "researched": "2026-10-21"
+}

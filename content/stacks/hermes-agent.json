@@ -46,17 +46,10 @@
       "hermes-agent",
       "codex"
     ],
-    "model": [
-      "kimi-k3",
-      "claude-opus-5-5",
-      "claude-sonnet-5-5",
-      "gpt-6-astra"
-    ],
+    "model": "any-model",
     "router": [
       "nous-portal",
-      "openrouter",
-      "litellm",
-      "direct-provider"
+      "any-provider"
     ],
     "inference": [
       "ollama",
