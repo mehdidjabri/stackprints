@@ -34,10 +34,7 @@
       "direct-provider",
       "any-provider"
     ],
-    "inference": [
-      "ollama",
-      "bedrock-vertex-azure"
-    ],
+    "inference": "any-host",
     "persona": "agents-md",
     "multiagent": "subagents",
     "tools": [

@@ -48,7 +48,10 @@
     "harness": "cloudflare-think",
     "model": "any-model",
     "router": "cloudflare-ai-gateway",
-    "inference": "workers-ai",
+    "inference": [
+      "workers-ai",
+      "any-host"
+    ],
     "multiagent": "subagents",
     "sandbox": "cloudflare-sandbox",
     "browser": "browser-run",

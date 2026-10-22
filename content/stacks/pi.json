@@ -20,17 +20,7 @@
       "pi-ai",
       "any-provider"
     ],
-    "inference": [
-      "local-gpu",
-      "ollama",
-      "vllm",
-      "groq",
-      "cerebras",
-      "fireworks",
-      "together",
-      "baseten",
-      "bedrock-vertex-azure"
-    ],
+    "inference": "any-host",
     "persona": [
       "agents-md",
       "claude-md",

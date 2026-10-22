@@ -1,0 +1,36 @@
+{
+  "order": 5,
+  "id": "any-host",
+  "name": "Any host",
+  "note": "Run the weights wherever you like",
+  "logo": "any",
+  "profile": "pattern",
+  "summary": "The stack doesn't care where the model runs: a lab's own API, a hosted inference provider for open-weight models, a hyperscaler, or a local runtime on your own hardware. You point it at an endpoint.",
+  "how": [
+    "Choose a host: a lab API, an open-model provider, a cloud platform or a local server",
+    "Point the agent at its OpenAI-compatible endpoint or a built-in provider",
+    "Swap hosts for price, speed or privacy without changing the agent"
+  ],
+  "facts": [
+    [
+      "Means",
+      "No required inference provider"
+    ],
+    [
+      "Shown on",
+      "Stacks whose docs support many hosts or any OpenAI-compatible endpoint"
+    ],
+    [
+      "Trade-off",
+      "Speed, price and quantization differ between hosts serving the same model"
+    ]
+  ],
+  "goodFor": [
+    "Moving to cheaper or faster hosts as they appear",
+    "Keeping data on your own hardware"
+  ],
+  "watchOut": [
+    "The same open model can behave differently across hosts (quantization, context limits)"
+  ],
+  "researched": "2026-10-21"
+}

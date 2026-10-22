@@ -51,16 +51,7 @@
       "nous-portal",
       "any-provider"
     ],
-    "inference": [
-      "ollama",
-      "vllm",
-      "together",
-      "groq",
-      "fireworks",
-      "cerebras",
-      "deepinfra",
-      "bedrock-vertex-azure"
-    ],
+    "inference": "any-host",
     "persona": [
       "soul-md",
       "agents-md",

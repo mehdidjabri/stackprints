@@ -60,17 +60,7 @@
     ],
     "model": "any-model",
     "router": "any-provider",
-    "inference": [
-      "ollama",
-      "vllm",
-      "groq",
-      "cerebras",
-      "together",
-      "fireworks",
-      "baseten",
-      "deepinfra",
-      "bedrock-vertex-azure"
-    ],
+    "inference": "any-host",
     "persona": [
       "agents-md",
       "soul-md",
