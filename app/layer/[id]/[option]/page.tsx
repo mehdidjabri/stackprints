@@ -114,7 +114,7 @@ export default async function OptionPage({ params }: Props) {
         <div className="sheet-part module core">
           <header className="silk">
             <span className="ref">{(o.profile ?? "option").toUpperCase()}</span>
-            <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
+            {layer.name.toLowerCase() !== o.profile && <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>}
           </header>
           <div className="sheet-chip">
             <Logo option={o} />

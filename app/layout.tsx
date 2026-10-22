@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import { MenuCloser } from "@/components/MenuCloser";
+import { Modal } from "@/components/Modal";
 import { SearchBox } from "@/components/SearchBox";
 import { SITE } from "@/lib/data";
 import "./globals.css";
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         <MenuCloser />
+        <Modal />
       </body>
     </html>
   );
