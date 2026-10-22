@@ -24,6 +24,10 @@ export function layerIdFrom(layers: Named[], input: string) {
 }
 
 /** A kind of stack ("Coding agent") lists its stacks at /stacks/coding-agent/. */
+/** A published prompt: its place on the stack's page, and the raw text as a file of its own. */
+export const promptHref = (slug: string, id: string) => `/stack/${slug}/#prompt-${id}`;
+export const promptFile = (slug: string, id: string) => `/stack/${slug}/prompts/${id}.md`;
+
 export const kindHref = (kind: string) => `/stacks/${slugify(kind)}/`;
 
 /** The link a stack is best known by: its site, else its announcement, repo or docs. */

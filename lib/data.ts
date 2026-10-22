@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { Layer, News, Option, Stack } from "./types";
+import type { Layer, News, Option, Prompt, Stack } from "./types";
 
 const root = path.join(process.cwd(), "content");
 
@@ -8,7 +8,7 @@ export const SITE = {
   name: "Stackprints",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://stackprints.com",
   description:
-    "Every possible agentic stack, mapped. Models, routers, harnesses, tools, memory, sandboxes, channels and more — browse, remix, save and share your own AI agent stack.",
+    "Find out how any AI agent is built: its model, router, harness, tools, memory, sandbox, channels and more, mapped layer by layer. Browse, remix, save and share your own AI agent stack.",
   repo: "https://github.com/stackprints/stackprints",
 };
 
@@ -43,6 +43,44 @@ export function getStacks(): Stack[] {
 export function getStack(slug: string) {
   return getStacks().find((s) => s.slug === slug);
 }
+
+export const PROMPT_KIND: Record<Prompt["kind"], string> = {
+  "system-prompt": "System prompt",
+  "instruction-file": "Instruction file",
+  "tool-prompt": "Tool prompt",
+  template: "Template",
+};
+const PROMPT_KINDS = Object.keys(PROMPT_KIND);
+
+const prompts = new Map<string, Prompt[]>();
+/** The prompts a stack's makers publish, in board order: by layer, then kind, then title. */
+export function getPrompts(slug: string): Prompt[] {
+  const dir = path.join(root, "prompts", slug);
+  if (!fs.existsSync(dir)) return [];
+  if (prompts.has(slug)) return prompts.get(slug)!;
+  const order = new Map(getLayers().map((l, i) => [l.id, i]));
+  const list = fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => {
+      // A front-matter header of "key: value" lines, then the prompt verbatim (see scripts/check.mjs).
+      const [, head, text] = fs.readFileSync(path.join(dir, f), "utf8").match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)!;
+      const fm = Object.fromEntries(head.split("\n").map((l) => l.match(/^([a-z]+):\s*(.*)$/)).filter(Boolean).map((m) => [m![1], m![2].trim()]));
+      return { id: f.slice(0, -3), ...fm, text: text.replace(/^\n+|\s+$/g, "") } as Prompt;
+    })
+    .sort(
+      (a, b) =>
+        (order.get(a.layer) ?? 99) - (order.get(b.layer) ?? 99) ||
+        PROMPT_KINDS.indexOf(a.kind) - PROMPT_KINDS.indexOf(b.kind) ||
+        a.title.localeCompare(b.title),
+    );
+  prompts.set(slug, list);
+  return list;
+}
+
+/** Every stack's published prompts for one layer, stack by stack. */
+export const layerPrompts = (layerId: string) =>
+  getStacks().flatMap((stack) => getPrompts(stack.slug).filter((p) => p.layer === layerId).map((prompt) => ({ stack, prompt })));
 
 export function getLayer(id: string) {
   return getLayers().find((l) => l.id === id);

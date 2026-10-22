@@ -55,13 +55,15 @@ type Props = {
   source?: string;
   /** False for a preview of a product that has no page yet: its chip names it without a link. */
   linkPicks?: boolean;
+  /** Layers whose prompt the stack's makers publish: their label links to it further down the page. */
+  prompts?: string[];
   /** Editor hooks: remove a pick, add to a filled module, fill an empty slot. */
   onRemove?: (layerId: string, optionId: string) => void;
   addSlot?: (layerId: string) => React.ReactNode;
   emptySlot?: (layer: Slot) => React.ReactNode;
 };
 
-export function Board({ modules, slots, mini = false, label, stack, source, linkPicks = true, onRemove, addSlot, emptySlot }: Props) {
+export function Board({ modules, slots, mini = false, label, stack, source, linkPicks = true, prompts, onRemove, addSlot, emptySlot }: Props) {
   const filled = new Map(modules.map((m) => [m.layer.id, m]));
   const all = slots ?? modules.map((m) => m.layer);
   // The kinds of empty slot this board draws, for the legend.
@@ -70,6 +72,13 @@ export function Board({ modules, slots, mini = false, label, stack, source, link
   const has: Record<string, boolean> = {};
   for (const l of all) has[ZONE[l.band]] = true;
   const { areas, cols } = floorplan(has);
+
+  const promptMark = (layer: Slot) =>
+    prompts?.includes(layer.id) && (
+      <a className="prompt-mark" href={`#prompts-${layer.id}`} title={`${layer.name}: the prompt its makers publish`}>
+        Prompt
+      </a>
+    );
 
   const renderSlot = (layer: Slot) => {
     const m = filled.get(layer.id);
@@ -91,6 +100,7 @@ export function Board({ modules, slots, mini = false, label, stack, source, link
             <header className="silk">
               <span className="ref">{layer.ref}</span>
               <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
+              {promptMark(layer)}
             </header>
           )}
           {/* Every empty state says what it is. In the editor a dashed slot's picker says it for "not used". */}
@@ -122,6 +132,7 @@ export function Board({ modules, slots, mini = false, label, stack, source, link
           <header className="silk">
             <span className="ref">{layer.ref}</span>
             <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
+            {promptMark(layer)}
             {/* The add control sits on the label line, so it never takes a row of chips. */}
             {addSlot?.(layer.id)}
           </header>

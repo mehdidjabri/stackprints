@@ -11,12 +11,14 @@ export function StackView({
   stack,
   compact = false,
   label,
+  prompts,
 }: {
   rows: Row[];
   stack?: Knowable & Pick<Stack, "supports">;
   compact?: boolean;
   label?: string;
+  prompts?: string[];
 }) {
   const slots = getLayers().map(({ id, name, band, ref }) => ({ id, name, band, ref }));
-  return <Board modules={rows} slots={slots} mini={compact} label={label} stack={stack} />;
+  return <Board modules={rows} slots={slots} mini={compact} label={label} stack={stack} prompts={prompts} />;
 }

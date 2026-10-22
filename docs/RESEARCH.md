@@ -186,3 +186,27 @@ An `example` stack is a design we wrote, not a claim about a product, so it need
 - Start the `description` with "An example design for…" and keep it neutral.
 - `sources` are further reading, not evidence: the docs for the harness and for the one or two parts the design hinges on. Don't link every pick; each option page cites its own sources.
 - When an example picks an option that has an `affiliation`, add one neutral sentence on what that part does in the design ("In this design, past.dev remembers returning callers and their bookings"), with no claim about real-world use. The page adds the disclosure line itself.
+
+## Prompts
+
+Where a real agent's maker publishes the prompts behind it, the stack shows them, filed under the layer they belong to: the system prompt and instruction-file templates under Instructions (`persona`), memory-flush or consolidation prompts under Memory, heartbeat prompts under Triggers (`proactivity`), compaction prompts under the Harness, tool descriptions under Built-in tools, and so on.
+
+One file per prompt at `content/prompts/<stack-slug>/<id>.md`:
+
+```markdown
+---
+layer: persona
+kind: system-prompt
+title: Default system prompt
+source: https://github.com/owner/repo/blob/<40-char commit sha>/path/to/prompt.md
+license: MIT
+retrieved: 2026-10-22
+note: Assembled at runtime; the static template is shown.
+---
+<the prompt text, verbatim>
+```
+
+- `kind`: `system-prompt`, `instruction-file` (a default AGENTS.md / SOUL.md / HEARTBEAT.md the agent ships), `tool-prompt` (a tool's description or a sub-task prompt such as compaction or memory flush) or `template` (text assembled in code; show the literal parts and say so in `note`).
+- **Official sources only.** The project's own repository (pinned to a commit SHA) or the vendor's own published docs or release notes. Never leaked, extracted or reverse-engineered prompts, however widely shared.
+- **Verbatim, and licensed.** Copy the text exactly. Only include full text when the licence allows redistribution (MIT, Apache-2.0, BSD…) or the vendor published it for reading; otherwise leave the prompt out. Keep files under 60 KB: if a prompt is longer, keep the relevant section and say so in `note`.
+- Closed products usually publish nothing; that's fine, they simply have no prompts.

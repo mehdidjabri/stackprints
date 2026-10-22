@@ -181,9 +181,41 @@ for (const s of stacks) {
       errors.push(`${layer}/${id}: 'Used by' names ${s.name} but that stack does not pick it`);
 }
 
+// Prompts: content/prompts/<stack>/<id>.md, verbatim prompt text from an official source, with a front-matter header.
+const PROMPT_KINDS = new Set(["system-prompt", "instruction-file", "tool-prompt", "template"]);
+let prompts = 0;
+if (fs.existsSync("content/prompts")) {
+  for (const slug of fs.readdirSync("content/prompts")) {
+    if (slug.startsWith(".")) continue;
+    if (!slugs.has(slug)) errors.push(`content/prompts/${slug}: no stack with that slug`);
+    for (const f of fs.readdirSync(`content/prompts/${slug}`).filter((f) => f.endsWith(".md"))) {
+      const at = `content/prompts/${slug}/${f}`;
+      const raw = fs.readFileSync(at, "utf8");
+      const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+      if (!m) {
+        errors.push(`${at}: needs a --- front-matter header`);
+        continue;
+      }
+      prompts++;
+      const fm = Object.fromEntries(m[1].split("\n").map((l) => l.match(/^([a-z]+):\s*(.*)$/)).filter(Boolean).map((x) => [x[1], x[2].trim()]));
+      if (!kebab.test(f.slice(0, -3))) errors.push(`${at}: file name must be kebab-case`);
+      if (!index.has(fm.layer)) errors.push(`${at}: layer "${fm.layer}" doesn't exist`);
+      if (!PROMPT_KINDS.has(fm.kind)) errors.push(`${at}: kind must be one of ${[...PROMPT_KINDS].join(", ")}`);
+      if (!fm.title) errors.push(`${at}: needs a title`);
+      if (!/^https:\/\//.test(fm.source ?? "")) errors.push(`${at}: source must be an https URL`);
+      if (/github\.com\/[^/]+\/[^/]+\/blob\//.test(fm.source ?? "") && !/\/blob\/[0-9a-f]{40}\//.test(fm.source))
+        errors.push(`${at}: GitHub sources must be pinned to a full commit SHA`);
+      if (!fm.license) errors.push(`${at}: needs a license (e.g. MIT, Apache-2.0, or "published by <vendor>")`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(fm.retrieved ?? "")) errors.push(`${at}: retrieved must be YYYY-MM-DD`);
+      if (!m[2].trim()) errors.push(`${at}: empty prompt text`);
+      if (raw.length > 60000) errors.push(`${at}: over 60 KB; keep the relevant part and link the rest`);
+    }
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 if (warnings.length) console.warn(warnings.join("\n"));
-console.log(`ok: ${layers.length} layers, ${options} options, ${news} news files, ${slugs.size} stacks`);
+console.log(`ok: ${layers.length} layers, ${options} options, ${news} news files, ${slugs.size} stacks, ${prompts} prompts`);

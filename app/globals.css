@@ -1946,6 +1946,108 @@ select.add.fill:focus-visible {
   background: var(--hover);
 }
 
+/* A layer whose prompt the makers publish: a mark at the end of its label line, linking to the text. */
+.silk .prompt-mark {
+  flex: none;
+  margin-left: auto;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted);
+  line-height: 1.2;
+}
+.silk .prompt-mark:hover {
+  border-bottom-color: var(--fg);
+}
+
+/* Stack page: the prompts its makers publish, folded under the layer they drive. */
+.prompts h2 {
+  font: 500 13px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 40px 0 8px;
+}
+.prompt-group {
+  scroll-margin-top: 24px;
+}
+.prompt-group h3 {
+  font: 500 14px var(--sans);
+  margin: 20px 0 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.prompt-group h3 a {
+  color: var(--fg);
+}
+.prompt {
+  border-bottom: 1px solid var(--line);
+}
+.prompt > summary {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.prompt > summary::-webkit-details-marker {
+  display: none;
+}
+.prompt > summary::before {
+  content: "+";
+  flex: none;
+  width: 12px;
+  font: 13px var(--mono);
+  color: var(--muted);
+}
+.prompt[open] > summary::before {
+  content: "−";
+}
+.prompt-title {
+  flex: 1;
+  min-width: 0;
+  font-weight: 500;
+}
+.prompt > p {
+  margin: 0 0 10px 24px;
+}
+/* The text on a tint, not in a box: the rows above and below already draw the lines. */
+.prompt pre {
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  max-height: 520px;
+  overflow: auto;
+  background: var(--hover);
+  font: 12px/1.6 var(--mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+.prompt-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  margin: 0 0 12px;
+}
+.prompt-foot button {
+  min-height: 28px;
+  padding: 2px 10px;
+}
+.prompt-foot .muted {
+  margin-left: auto;
+}
+
+.prompt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+.prompt-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
 /* Stack page: layer by layer, the board as a table, each row with the sources behind it. */
 .ev-sec h2 {
   font: 500 13px var(--sans);

@@ -5,14 +5,17 @@
 import crypto from "node:crypto";
 import { BANDS } from "./bands";
 import {
+  PROMPT_KIND,
   SITE,
   affiliated,
   asArray,
   getLayers,
   getNews,
+  getPrompts,
   getStacks,
   getTrending,
   layerDate,
+  layerPrompts,
   layersDate,
   newsDate,
   optionDate,
@@ -26,8 +29,8 @@ import {
   usedBy,
 } from "./data";
 import { EMPTY, disclosureOf, emptyLayers, isSupported } from "./disclosure";
-import { MD_RULE, citeNumbers, kindHref, mdPath, numberedSources, optionHref, renamedLayers, stackSources } from "./links";
-import type { Layer, Option, Stack } from "./types";
+import { MD_RULE, citeNumbers, kindHref, mdPath, numberedSources, optionHref, promptFile, promptHref, renamedLayers, stackSources } from "./links";
+import type { Layer, Option, Prompt, Stack } from "./types";
 
 export const BUILT = new Date().toISOString().slice(0, 10);
 const abs = (p: string) => `${SITE.url}${p}`;
@@ -84,6 +87,8 @@ function stackMd(s: Stack) {
   };
   const empty = emptyLayers(s, getLayers());
   const own = affiliated(s);
+  const prompts = getPrompts(s.slug);
+  const layerName = (id: string) => getLayers().find((l) => l.id === id)?.name ?? id;
   return (
     frontmatter({ title: stackTitle(s), description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
     `${h1(s.name, `/stack/${s.slug}/`)}${s.kind}${badge ? ` · ${badge.badge}: ${badge.about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}${s.version ? ` against ${s.version}` : ""}\n\n${s.description}\n\n` +
@@ -95,6 +100,11 @@ function stackMd(s: Stack) {
     // "Confirmed" only means something next to a list of layers that aren't known.
     (empty.unused.length
       ? `\n## ${empty.unknown.length || empty.present.length ? "Not used (confirmed)" : EMPTY.unused}\n\n${empty.unused.map((l) => l.name).join(", ")}\n`
+      : "") +
+    (prompts.length
+      ? `\n## Prompts\n\nPublished by the makers, copied word for word. Each file has the text and where it came from.\n\n${prompts
+          .map((p) => `- **${layerName(p.layer)}** · ${PROMPT_KIND[p.kind].toLowerCase()}: [${p.title}](${abs(promptFile(s.slug, p.id))})${p.note ? ` — ${p.note}` : ""} (${p.license}; copied ${p.retrieved} from ${p.source})`)
+          .join("\n")}\n`
       : "") +
     (sources.length ? `\n## ${s.disclosure === "example" ? "Further reading" : "Sources"}\n\n${sources.map((x, i) => `${i + 1}. [${x.title}](${x.url})`).join("\n")}\n` : "") +
     `\nAs JSON: ${abs(`/api/stacks/${s.slug}.json`)}\n`
@@ -125,6 +135,11 @@ function layerMd(l: Layer) {
         return `- [${o.name}](${abs(mdPath(optionHref(l.id, o.id)))})${o.note ? `: ${o.note}` : ""}${o.open ? " (open)" : ""}${o.profile ? ` [${o.profile}]` : ""}${stacks.length ? ` · used by ${names(stacks)}` : ""}${examples.length ? ` · example designs: ${names(examples)}` : ""}`;
       })
       .join("\n") +
+    (layerPrompts(l.id).length
+      ? `\n\n## Published prompts\n\nWhat stacks' makers publish for this layer, copied word for word:\n\n${layerPrompts(l.id)
+          .map(({ stack, prompt: p }) => `- [${stack.name}](${abs(mdPath(`/stack/${stack.slug}/`))}): [${p.title}](${abs(promptFile(stack.slug, p.id))}) (${PROMPT_KIND[p.kind].toLowerCase()}, ${p.license})`)
+          .join("\n")}`
+      : "") +
     `\n\nAs JSON: ${abs(`/api/layers/${l.id}.json`)}\n`
   );
 }
@@ -374,6 +389,19 @@ const stackSummary = (s: Stack) => ({
   api: abs(`/api/stacks/${s.slug}.json`),
 });
 
+const promptSummary = (s: Pick<Stack, "slug">, p: Prompt) => ({
+  id: p.id,
+  layer: p.layer,
+  kind: p.kind,
+  title: p.title,
+  note: p.note ?? null,
+  source: p.source,
+  license: p.license,
+  retrieved: p.retrieved,
+  url: abs(promptHref(s.slug, p.id)),
+  file: abs(promptFile(s.slug, p.id)),
+});
+
 function stackJson(s: Stack) {
   const layers = getLayers();
   const empty = emptyLayers(s, layers);
@@ -401,6 +429,7 @@ function stackJson(s: Stack) {
     notUsed: empty.unused.map((l) => l.id),
     // Numbered as cited: sources[n - 1] is citation [n] on the page and in the markdown.
     sources: stackSources(s),
+    prompts: getPrompts(s.slug).map((p) => promptSummary(s, p)),
   };
 }
 
@@ -428,6 +457,7 @@ const layerJson = (l: Layer, full: boolean) => ({
   url: abs(`/layer/${l.id}/`),
   api: abs(`/api/layers/${l.id}.json`),
   options: l.options.map((o) => (full ? { ...optionSummary(l, o), summary: o.summary ?? null, website: website(o) } : optionSummary(l, o))),
+  ...(full ? { prompts: layerPrompts(l.id).map(({ stack, prompt }) => ({ stack: stack.slug, ...promptSummary(stack, prompt) })) } : {}),
 });
 
 function optionJson(l: Layer, o: Option) {
@@ -573,6 +603,7 @@ function openapi() {
                   description: "Numbered as cited: sources[n - 1] is citation [n]. The curated list first, then any evidence URL it lacks, titled by the URL",
                   items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" } } },
                 },
+                prompts: { type: "array", items: { $ref: "#/components/schemas/Prompt" }, description: "Prompts the makers publish, by layer" },
               },
             },
           ],
@@ -604,6 +635,28 @@ function openapi() {
             description: { type: "string" },
             url: { type: "string", format: "uri" },
             options: { type: "array", items: { $ref: "#/components/schemas/OptionSummary" } },
+            prompts: {
+              type: "array",
+              description: "Only in getLayer: prompts stacks' makers publish for this layer",
+              items: { allOf: [{ $ref: "#/components/schemas/Prompt" }, { type: "object", properties: { stack: { type: "string", description: "The stack's slug" } } }] },
+            },
+          },
+        },
+        Prompt: {
+          type: "object",
+          description: "A prompt a stack's makers publish, copied word for word from the source. The text is at `file`.",
+          required: ["id", "layer", "kind", "title", "source", "license", "retrieved", "file"],
+          properties: {
+            id: { type: "string" },
+            layer: { type: "string", enum: layerIdList },
+            kind: { type: "string", enum: Object.keys(PROMPT_KIND) },
+            title: { type: "string" },
+            note: { type: ["string", "null"] },
+            source: { type: "string", format: "uri", description: "Where the text was copied from: a repository file pinned to a commit, or the vendor's docs" },
+            license: { type: "string" },
+            retrieved: { type: "string", format: "date" },
+            url: { type: "string", format: "uri", description: "The prompt on the stack's page" },
+            file: { type: "string", format: "uri", description: "Markdown: a front-matter header, then the prompt verbatim" },
           },
         },
         LayerList: { type: "object", required: ["layers"], properties: { layers: { type: "array", items: { $ref: "#/components/schemas/Layer" } } } },
@@ -740,6 +793,20 @@ export function agentFiles(): Record<string, AgentFile> {
   );
   files["/404.md"] = md(frontmatter({ title: "Not found" }) + `# Not found\n\nThat page doesn't exist on ${SITE.name}. Start from ${abs("/llms.txt")}, the sitemap at ${abs("/sitemap.xml")}, or search at ${abs("/search.json")}.\n`);
   for (const s of stacks) files[mdPath(`/stack/${s.slug}/`)] = md(stackMd(s));
+  for (const s of stacks)
+    for (const p of getPrompts(s.slug))
+      files[promptFile(s.slug, p.id)] = md(
+        frontmatter({
+          title: `${s.name}: ${p.title}`,
+          stack: s.slug,
+          layer: p.layer,
+          kind: p.kind,
+          source: p.source,
+          license: p.license,
+          retrieved: p.retrieved,
+          canonical: abs(promptHref(s.slug, p.id)),
+        }) + `${p.text}\n`,
+      );
   for (const k of new Set(stacks.map((s) => s.kind))) files[mdPath(kindHref(k))] = md(kindMd(k));
   for (const l of layers) {
     files[mdPath(`/layer/${l.id}/`)] = md(layerMd(l));

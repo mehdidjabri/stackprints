@@ -96,7 +96,7 @@ export default function Home() {
         }}
       />
       <header className="hero">
-        <h1>Every AI agent stack, mapped</h1>
+        <h1>Find out how any AI agent is built</h1>
         <p className="lede">
           An agent is more than a model: it&apos;s where people reach it, the loop that calls tools, the sandbox its code
           runs in, what it remembers and what wakes it up. Pick a stack, change any part, save it, share it.

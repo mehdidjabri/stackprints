@@ -104,6 +104,24 @@ export type Stack = {
   layers: Record<string, string | string[]>;
 };
 
+/**
+ * A prompt the makers of a stack publish themselves (content/prompts/<stack>/<id>.md), filed under
+ * the layer it drives. Verbatim, from the official source; never a leaked or extracted one.
+ */
+export type Prompt = {
+  /** The file name, without .md. */
+  id: string;
+  layer: string;
+  kind: "system-prompt" | "instruction-file" | "tool-prompt" | "template";
+  title: string;
+  /** Where the text was copied from: a repo file pinned to a commit, or the vendor's docs. */
+  source: string;
+  license: string;
+  retrieved: string;
+  note?: string;
+  text: string;
+};
+
 /** A user-made stack, stored locally and in share links. */
 export type Draft = {
   name: string;

@@ -1,6 +1,6 @@
 # Stackprints
 
-Every possible AI agent stack, mapped, and drawn as an abstract motherboard: each layer is a component on the board (models and harnesses are the processor sockets), each choice a chip with its logo, name and subtitle. Browse preset stacks (OpenClaw, Hermes Agent, Pi, Claude Code, ChatGPT dots, Meta Muse, Instinct…), change any layer, rename, save, share, or publish your own as a page.
+Find out how any AI agent is built. Every stack is drawn as an abstract motherboard: each layer is a component on the board (models and harnesses are the processor sockets), each choice a chip with its logo, name and subtitle. Browse preset stacks (OpenClaw, Hermes Agent, Pi, Claude Code, ChatGPT dots, Meta Muse, Instinct…), change any layer, rename, save, share, or publish your own as a page.
 
 - **Static.** Next.js `output: "export"`, no server, no database. Deploy `out/` anywhere; content negotiation, content types and `Link` headers come from `vercel.json`, so other hosts need their own equivalent.
 - **Fast.** System fonts, inlined CSS, one small client component (the editor). Everything else is server-rendered HTML.

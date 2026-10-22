@@ -20,7 +20,7 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: "Stackprints — every AI agent stack, mapped", template: "%s · Stackprints" },
+  title: { default: "Stackprints — find out how any AI agent is built", template: "%s · Stackprints" },
   description: SITE.description,
   applicationName: SITE.name,
   keywords: ["agentic stack", "AI agent stack", "agent architecture", "LLM", "MCP", "agent harness", "agent memory", "sandbox", "OpenRouter", "AI SDK"],

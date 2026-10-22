@@ -3,9 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Title } from "@/components/Title";
 import { BANDS } from "@/lib/bands";
-import { SITE, getLayer, getLayers, usage } from "@/lib/data";
+import { PROMPT_KIND, SITE, getLayer, getLayers, layerPrompts, usage } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
-import { optionHref, withMarkdown } from "@/lib/links";
+import { optionHref, promptHref, withMarkdown } from "@/lib/links";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -38,6 +38,7 @@ export default async function LayerPage({ params }: Props) {
   const i = all.indexOf(l);
   const prev = all[i - 1];
   const next = all[i + 1];
+  const prompts = layerPrompts(l.id);
   const band = BANDS.find(([b]) => b === l.band)![1];
 
   return (
@@ -159,6 +160,26 @@ export default async function LayerPage({ params }: Props) {
           );
         })}
       </div>
+
+      {/* The prompts stacks' makers publish for this layer: the text lives on each stack's page. */}
+      {prompts.length > 0 && (
+        <section className="prompts">
+          <h2 id="prompts">Published prompts</h2>
+          <ul className="prompt-list">
+            {prompts.map(({ stack, prompt: p }) => (
+              <li key={`${stack.slug}/${p.id}`}>
+                <Link href={`/stack/${stack.slug}/`}>{stack.name}</Link>
+                <span className="muted"> · </span>
+                <Link href={promptHref(stack.slug, p.id)}>{p.title}</Link>
+                <span className="muted">
+                  {" "}
+                  · {PROMPT_KIND[p.kind].toLowerCase()}, {p.license}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className="toolbar" style={{ marginTop: 24 }}>
         {prev && (

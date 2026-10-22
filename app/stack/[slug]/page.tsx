@@ -3,10 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StackView } from "@/components/StackView";
 import { Title } from "@/components/Title";
-import { SITE, affiliated, asArray, getLayers, getStack, getStacks, metaDesc, resolve, stackTitle } from "@/lib/data";
+import { PROMPT_KIND, SITE, affiliated, asArray, getLayer, getLayers, getPrompts, getStack, getStacks, metaDesc, resolve, stackTitle } from "@/lib/data";
 import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, kindCount, slotsNote } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
-import { bareUrl, citeNumbers, kindHref, optionHref, primaryLink, prettyUrl, stackSources, withMarkdown } from "@/lib/links";
+import { bareUrl, citeNumbers, kindHref, optionHref, primaryLink, prettyUrl, promptFile, stackSources, withMarkdown } from "@/lib/links";
+import { CopyText } from "@/components/CopyText";
 import { Ext } from "@/components/Ext";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -58,6 +59,9 @@ export default async function StackPage({ params }: Props) {
   const empty = emptyLayers(s, getLayers());
   const unknowable = empty.unknown.length + empty.present.length > 0;
   const own = affiliated(s);
+  // Prompts the makers publish, grouped by the layer they drive.
+  const prompts = getPrompts(s.slug);
+  const promptLayers = [...new Set(prompts.map((p) => p.layer))];
   // Sources are numbered the same on the page, in markdown and in the API (evidence URLs appended).
   const sources = stackSources(s);
   // Evidence is per layer, so citations are too, in source order. Each goes to its entry in the
@@ -188,6 +192,11 @@ export default async function StackPage({ params }: Props) {
         <a className="btn" href="#layers">
           Layer by layer ↓
         </a>
+        {prompts.length > 0 && (
+          <a className="btn" href="#prompts">
+            Prompts ↓
+          </a>
+        )}
         <Link className="btn" href={`/#from=${s.slug}`}>
           Remix this stack
         </Link>
@@ -196,7 +205,12 @@ export default async function StackPage({ params }: Props) {
         </a>
       </div>
       {/* The board's revision is the date the stack was last researched, not a made-up number. */}
-      <StackView rows={rows} stack={s} label={`${s.name.toUpperCase()}${s.researched ? ` · REV ${s.researched}` : ""}`} />
+      <StackView
+        rows={rows}
+        stack={s}
+        label={`${s.name.toUpperCase()}${s.researched ? ` · REV ${s.researched}` : ""}`}
+        prompts={promptLayers}
+      />
 
       <section className={cited ? "ev-sec" : "ev-sec ev-uncited"}>
         <h2 id="layers">Layer by layer</h2>
@@ -239,6 +253,13 @@ export default async function StackPage({ params }: Props) {
                         ))}
                       </li>
                     )}
+                    {promptLayers.includes(layer.id) && (
+                      <li className="muted">
+                        <a href={`#prompts-${layer.id}`}>
+                          {prompts.filter((p) => p.layer === layer.id).length > 1 ? "Published prompts" : "Published prompt"} ↓
+                        </a>
+                      </li>
+                    )}
                   </ul>
                   {cited && <div className="ev-cites">{cites(layer.id)}</div>}
                 </div>
@@ -264,7 +285,53 @@ export default async function StackPage({ params }: Props) {
             {[...new Set(own.map((o) => o.affiliation))].join(" ")} <Link href="/about/#affiliation">About</Link>
           </p>
         )}
+      </div>
 
+      {prompts.length > 0 && (
+        <section className="prompts">
+          <h2 id="prompts">Prompts</h2>
+          <p className="muted small reading">
+            Published by the makers and copied word for word from the source under each one. Prompts change between releases:
+            the date says when each was copied.
+          </p>
+          {promptLayers.map((id) => (
+            <div key={id} className="prompt-group" id={`prompts-${id}`}>
+              <h3>
+                <Link href={`/layer/${id}/`}>{getLayer(id)?.name ?? id}</Link>
+              </h3>
+              {prompts
+                .filter((p) => p.layer === id)
+                .map((p) => (
+                  <details key={p.id} className="prompt" id={`prompt-${p.id}`}>
+                    <summary>
+                      <span className="prompt-title">{p.title}</span>
+                      <span className="muted">
+                        {PROMPT_KIND[p.kind]} · {p.text.split("\n").length.toLocaleString("en")} lines
+                      </span>
+                    </summary>
+                    {p.note && <p className="muted small">{p.note}</p>}
+                    <pre id={`prompt-text-${p.id}`}>
+                      <code>{p.text}</code>
+                    </pre>
+                    <div className="prompt-foot small">
+                      <a href={p.source} rel="noopener">
+                        Source
+                        <Ext />
+                      </a>
+                      <a href={promptFile(s.slug, p.id)}>Plain text</a>
+                      <CopyText target={`prompt-text-${p.id}`} />
+                      <span className="muted">
+                        {p.license} · copied {p.retrieved}
+                      </span>
+                    </div>
+                  </details>
+                ))}
+            </div>
+          ))}
+        </section>
+      )}
+
+      <div className="prose">
         {sources.length > 0 && (
           <>
             {/* An example cites no evidence: its list is reading on the parts it hinges on. */}
