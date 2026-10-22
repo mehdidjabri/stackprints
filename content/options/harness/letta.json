@@ -4,6 +4,7 @@
   "name": "Letta",
   "url": "letta.com",
   "note": "Stateful agents, MemGPT lineage",
+  "logo": "letta",
   "open": true,
   "profile": "product",
   "summary": "Letta (formerly MemGPT) builds stateful agents whose memory, identity and conversations persist over time. Since March 2026 its main product is Letta Code, a model-agnostic agent harness with git-tracked memory files, skills, subagents and messaging channels; the older Letta V1 API server is archived. Agents run locally or with state kept in Letta Cloud.",

@@ -4,6 +4,7 @@
   "name": "Letta",
   "url": "letta.com",
   "note": "Git-backed, self-editing agent memory",
+  "logo": "letta",
   "open": true,
   "profile": "product",
   "summary": "Letta (formerly MemGPT) builds stateful agents whose memory persists across sessions and models. Since March 2026 its focus is Letta Code, a model-agnostic agent harness, with memory stored as a git-backed filesystem of Markdown files (MemFS) that agents edit with ordinary file tools.",

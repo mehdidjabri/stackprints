@@ -4,6 +4,7 @@
   "name": "Honcho",
   "url": "honcho.dev",
   "note": "Dialectic user modeling",
+  "logo": "honcho",
   "open": true,
   "profile": "product",
   "summary": "Honcho, from Plastic Labs, is open-source memory infrastructure that stores messages between peers (users or agents) and reasons over them in the background to build a representation of each peer. Apps query it for context or ask it questions about a user in natural language.",

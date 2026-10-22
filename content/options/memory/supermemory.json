@@ -4,6 +4,7 @@
   "name": "Supermemory",
   "url": "supermemory.ai",
   "note": "Universal memory API",
+  "logo": "supermemory",
   "profile": "product",
   "summary": "Supermemory is a memory API that extracts and consolidates context from files, chats and URLs into a vector-graph store and injects it into model context. It offers a hosted API, an MCP server and plugins for coding agents, plus a single-binary local mode.",
   "facts": [

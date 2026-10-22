@@ -4,6 +4,7 @@
   "name": "Zep / Graphiti",
   "url": "getzep.com",
   "note": "Temporal knowledge graph",
+  "logo": "zep",
   "open": true,
   "profile": "product",
   "summary": "Graphiti is an open-source framework for building temporal knowledge graphs, where facts carry validity windows and are invalidated rather than deleted when they change. Zep is the managed context platform built on it, adding users, threads, a proprietary graph engine and enterprise deployment options.",

@@ -4,6 +4,7 @@
   "name": "Mem0",
   "url": "mem0.ai",
   "note": "Extracted fact memory",
+  "logo": "mem0",
   "open": true,
   "profile": "product",
   "summary": "Mem0 is a memory layer that extracts facts from conversations and retrieves them for later prompts. It ships as an Apache-2.0 library and self-hostable server, and as a hosted platform that adds graph memory and Dream background consolidation on paid plans.",
