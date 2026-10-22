@@ -132,9 +132,9 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
               Open pull request
             </a>
           ) : (
-            <span className="btn muted" aria-disabled="true">
+            <button className="btn" disabled title="Enter a name first">
               Open pull request
-            </span>
+            </button>
           )}
           <button
             onClick={async () => {
@@ -146,6 +146,7 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
           >
             {copied ? "Copied" : "Copy JSON"}
           </button>
+          {!ready && <span className="status">Add a name to open the pull request.</span>}
         </div>
         <p className="muted small">
           Creates <code>{file}</code>. To add your logo, upload a one-colour SVG with a viewBox, under 8 KB, to{" "}

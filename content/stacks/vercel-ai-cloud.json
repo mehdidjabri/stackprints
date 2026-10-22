@@ -82,7 +82,7 @@
     "inference": "any-host",
     "persona": "instructions-md",
     "multiagent": "subagents",
-    "tools": "read-write-edit-bash",
+    "tools": "shell-files-web",
     "search": "web-search",
     "sandbox": "vercel-sandbox",
     "mcp": "mcp",

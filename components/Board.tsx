@@ -162,6 +162,8 @@ export function Board({ modules, slots, mini = false, label, stack, source, link
   };
 
   // A mini board is a picture of the stack, not a set of links: the card it sits in says the same in words.
+  // A single-band board (the submit preview) already names its band on the zone itself.
+  const legendBands = BANDS.filter((b) => all.some((l) => l.band === b));
   return (
     <div
       className={mini ? "board mini" : "board"}
@@ -195,9 +197,9 @@ export function Board({ modules, slots, mini = false, label, stack, source, link
           </div>
         );
       })}
-      {!mini && (
+      {!mini && (legendBands.length > 1 || empties.size > 0 || label) && (
         <div className="legend" aria-hidden="true">
-          {BANDS.filter((b) => all.some((l) => l.band === b)).map((band) => (
+          {(legendBands.length > 1 ? legendBands : []).map((band) => (
             <span key={band} className={`b-${band}`}>
               <i />
               {BAND_NAME[band]}

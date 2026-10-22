@@ -1,0 +1,27 @@
+{
+  "order": 15,
+  "id": "shell-files-web",
+  "name": "Shell, files and web",
+  "note": "bash, read/write files, web fetch and search",
+  "profile": "pattern",
+  "summary": "A default tool set where the agent runs shell commands in its sandbox, reads and writes files, and fetches and searches the web, with no separate string-edit tool: file changes go through write_file or bash.",
+  "how": [
+    "bash runs commands in the agent's sandbox",
+    "read_file and write_file handle files; there is no edit tool",
+    "web_fetch and web_search bring in outside information"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Vercel AI Cloud (eve defaults: bash, read_file, write_file, web_fetch, web_search, agent)"
+    ],
+    [
+      "Differs from",
+      "read / write / edit / bash: no string-replace edit tool, adds web access"
+    ]
+  ],
+  "links": {
+    "docs": "https://eve.dev/docs/concepts/built-in-tools"
+  },
+  "researched": "2026-10-22"
+}

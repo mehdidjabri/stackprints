@@ -107,9 +107,10 @@ export default function Home() {
 
 
       <div className="section-head" id="stacks">
-        <h2>Stacks</h2>
+        <h2>
+          Stacks <span className="muted">{stacks.length}</span>
+        </h2>
         <CardLegend stacks={stacks} />
-        <span className="muted">{stacks.length}</span>
       </div>
       <div className="grid">
         {stacks.map((s) => (

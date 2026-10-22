@@ -125,9 +125,9 @@ a:hover {
   flex-wrap: wrap; /* at 320px the links take a second row rather than run off the screen */
   gap: 4px 20px;
 }
-/* The section you're in: weight and an underline, not colour alone. */
+/* The section you're in: colour and an underline (not weight, which would shift the nav). */
 .top nav a[aria-current] {
-  font-weight: 600;
+  color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -890,6 +890,7 @@ select.add:focus-visible {
 }
 .card-head {
   display: flex;
+  flex-wrap: wrap; /* a long kind label drops below the name on narrow cards */
   justify-content: space-between;
   gap: 8px;
   align-items: baseline;
@@ -1980,13 +1981,13 @@ select.add.fill:focus-visible {
   color: var(--fg);
 }
 .ev-cites {
-  text-align: right;
+  text-align: left;
 }
 .ev-cites .cite {
   margin: 0;
 }
-.ev-cites .cite:last-child {
-  margin-right: -7px; /* the last number ends on the column's edge */
+.ev-cites .cite:first-child {
+  margin-left: -7px; /* the first number starts on the column's edge, under its label */
 }
 /* Column labels for a table's rows, above its top rule. */
 .ev-head,
@@ -2050,4 +2051,15 @@ select.add.fill:focus-visible {
 .card h3 .logo {
   width: 16px;
   height: 16px;
+}
+
+/* Disabled buttons read as unavailable, not as another working action. */
+button:disabled,
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+button:disabled:hover,
+.btn:disabled:hover {
+  border-color: var(--line);
 }
