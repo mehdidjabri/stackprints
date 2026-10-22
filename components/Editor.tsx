@@ -5,10 +5,19 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { newFileUrl, slugify } from "@/lib/github";
 import { prettyUrl } from "@/lib/links";
 import { decodeDraft, encodeDraft, loadSaved, storeSaved } from "@/lib/share";
-import type { Draft, Layer } from "@/lib/types";
+import { unknownLabel } from "@/lib/disclosure";
+import type { Draft, Layer, Stack } from "@/lib/types";
 import { Board } from "./Board";
 
-type Preset = { slug: string; name: string; kind: string; site?: string; layers: Record<string, string[]> };
+type Preset = {
+  slug: string;
+  name: string;
+  kind: string;
+  site?: string;
+  disclosure?: Stack["disclosure"];
+  notUsed?: string[];
+  layers: Record<string, string[]>;
+};
 
 const fromPreset = (p: Preset): Draft => ({ name: p.name, from: p.slug, layers: structuredClone(p.layers) });
 
@@ -307,6 +316,8 @@ export function Editor({
               .filter((o): o is NonNullable<typeof o> => Boolean(o)),
           }))}
         label={`${draft.name.toUpperCase()} · REV ${dirty ? "X" : "1"}`}
+        unknown={unknownLabel(preset?.disclosure)}
+        notUsed={preset?.notUsed}
         onRemove={(layerId, id) => update(layerId, draft.layers[layerId].filter((p) => p !== id))}
         addSlot={(layerId) => {
           const layer = layers.find((l) => l.id === layerId)!;

@@ -48,13 +48,17 @@ type Props = {
   slots?: Slot[];
   mini?: boolean;
   label?: string;
+  /** What an empty slot means on this stack ("Not disclosed"), or null when it just isn't used. */
+  unknown?: string | null;
+  /** Layers confirmed absent: always drawn as "not used", even on a closed stack. */
+  notUsed?: string[];
   /** Editor hooks: remove a pick, add to a filled module, fill an empty slot. */
   onRemove?: (layerId: string, optionId: string) => void;
   addSlot?: (layerId: string) => React.ReactNode;
   emptySlot?: (layer: Slot) => React.ReactNode;
 };
 
-export function Board({ modules, slots, mini = false, label, onRemove, addSlot, emptySlot }: Props) {
+export function Board({ modules, slots, mini = false, label, unknown, notUsed = [], onRemove, addSlot, emptySlot }: Props) {
   const filled = new Map(modules.map((m) => [m.layer.id, m]));
   const all = slots ?? modules.map((m) => m.layer);
 
@@ -65,18 +69,27 @@ export function Board({ modules, slots, mini = false, label, onRemove, addSlot, 
   const renderSlot = (layer: Slot) => {
     const m = filled.get(layer.id);
     const core = CORE.has(layer.id);
-    if (!m)
+    if (!m) {
+      // Unknown (hatched) on closed stacks unless confirmed absent; otherwise simply not used (dashed).
+      const unk = unknown && !notUsed.includes(layer.id) ? unknown : null;
       return (
-        <section key={layer.id} className={core ? "module core empty" : "module empty"} aria-label={`${layer.name}: empty`}>
+        <section
+          key={layer.id}
+          className={`module empty${core ? " core" : ""}${unk ? " unknown" : ""}`}
+          aria-label={`${layer.name}: ${unk ?? "not used"}`}
+          title={mini ? `${layer.name}: ${unk ?? "not used"}` : undefined}
+        >
           {!mini && (
             <header className="silk">
               <span className="ref">{layer.ref}</span>
               <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
             </header>
           )}
+          {!mini && unk && !emptySlot && <span className="unknown-label">{unk}</span>}
           {!mini && emptySlot?.(layer)}
         </section>
       );
+    }
     const picks = mini ? m.picks.filter((p) => p.logo).slice(0, MINI_MARKS[layer.id] ?? 1) : m.picks;
     return (
       <section
@@ -149,6 +162,18 @@ export function Board({ modules, slots, mini = false, label, onRemove, addSlot, 
               {BAND_NAME[band]}
             </span>
           ))}
+          {slots && all.some((l) => !filled.has(l.id) && unknown && !notUsed.includes(l.id)) && (
+            <span className="lg-unknown">
+              <i />
+              {unknown}
+            </span>
+          )}
+          {slots && all.some((l) => !filled.has(l.id) && (!unknown || notUsed.includes(l.id))) && (
+            <span className="lg-empty">
+              <i />
+              Not used
+            </span>
+          )}
           {label && <span className="board-label">{label}</span>}
         </div>
       )}

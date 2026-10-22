@@ -105,3 +105,45 @@ News lives apart from the option, in `content/news/<layer>/<id>.json`, so refres
 ## Refreshing news
 
 See [NEWS.md](NEWS.md).
+
+## Researching a stack
+
+A stack (`content/stacks/<slug>.json`) claims how a real product or project is built, so every pick needs a source. When a closed product doesn't say, the honest answer is "not disclosed", and the board shows that.
+
+### Disclosure
+
+Set `disclosure`. It decides what an **empty** slot means:
+
+| value | use for | an empty slot reads |
+| --- | --- | --- |
+| `open-source` | the code is public (OpenClaw, Pi, Hermes Agent…) | not used (you can check the code) |
+| `documented` | closed, but the vendor documents its architecture in depth (e.g. Claude Code) | not documented |
+| `closed` | closed product; only announcements and press | not disclosed |
+| `example` | an illustrative stack we designed, not a real product | not used |
+
+### Fields
+
+```jsonc
+{
+  "disclosure": "closed",
+  "sources": [
+    { "title": "Introducing dots (OpenAI)", "url": "https://openai.com/index/introducing-dots/" }
+  ],
+  "layers": { "channels": ["slack", "microsoft-teams"], "model": "gpt-6-astra" },
+  "evidence": {                       // for every picked layer: the source URL(s) that back it up
+    "channels": ["https://openai.com/index/introducing-dots/"],
+    "model": ["https://help.openai.com/en/articles/20001530-getting-started-with-your-dot"]
+  },
+  "notUsed": ["voice"],               // only layers a source confirms are absent
+  "researched": "2026-10-21"
+}
+```
+
+### Rules
+
+1. **Every pick needs evidence**: a URL you opened or saw in search results, preferably first-party (docs, repo, official blog), else reputable press. No evidence means no pick. Remove existing picks you can't back up.
+2. **Don't guess.** "It must use some model" is not a reason to pick one. Leave the layer out, and on a closed stack it shows as "not disclosed".
+3. For **open-source** stacks the repo is the source. Check the README, docs, config and dependencies. Use `notUsed` only when the docs or code clearly show something is absent (for example "no built-in memory").
+4. **Use existing options.** If a documented component has no option yet, add one in `content/options/<layer>/<id>.json` per the rules above. Check it doesn't already exist under another name first.
+5. Keep the `description` neutral and say what's public: "OpenAI hasn't published the model routing…" is fine.
+6. `npm run check` must pass.

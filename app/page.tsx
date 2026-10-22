@@ -26,6 +26,8 @@ export default function Home() {
     name: s.name,
     kind: s.kind,
     site: primaryLink(s.links),
+    disclosure: s.disclosure,
+    notUsed: s.notUsed,
     layers: Object.fromEntries(Object.entries(s.layers).map(([k, v]) => [k, asArray(v)])),
   }));
 

@@ -57,6 +57,18 @@ export type Stack = {
   tagline: string;
   description: string;
   kind: string;
+  /**
+   * How much of the stack is knowable, which decides what an empty slot means:
+   * open-source and example stacks: not used; documented: not documented; closed: not disclosed.
+   */
+  disclosure?: "open-source" | "documented" | "closed" | "example";
+  /** Public sources the stack is built from. */
+  sources?: { title: string; url: string }[];
+  /** Per layer: URLs (from sources) that back up the picks. */
+  evidence?: Record<string, string[]>;
+  /** Layers confirmed absent, even on a closed stack. */
+  notUsed?: string[];
+  researched?: string;
   /** Official links for stacks that are real products. Full https URLs. */
   links?: Partial<Record<"site" | "repo" | "docs" | "announcement", string>>;
   /** Who made or submitted the stack. Personal stacks are welcome. */

@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StackView } from "@/components/StackView";
 import { Title } from "@/components/Title";
-import { SITE, getStack, getStacks, resolve } from "@/lib/data";
+import { SITE, getLayers, getStack, getStacks, resolve } from "@/lib/data";
+import { DISCLOSURE, unknownLabel } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
 import { primaryLink, prettyUrl } from "@/lib/links";
 
@@ -41,6 +42,16 @@ export default async function StackPage({ params }: Props) {
   const kinds = [...new Set(all.map((x) => x.kind))].sort();
   const similar = all.filter((x) => x.kind === s.kind && x.slug !== s.slug);
   const site = primaryLink(s.links);
+  const d = s.disclosure;
+  const unk = unknownLabel(d);
+  const layers = getLayers();
+  const notUsed = layers.filter((l) => s.notUsed?.includes(l.id));
+  const missing = layers.filter((l) => !(l.id in s.layers) && !s.notUsed?.includes(l.id));
+  // Sources are numbered; evidence URLs not in the list get appended so every citation resolves.
+  const sources = [...(s.sources ?? [])];
+  for (const u of Object.values(s.evidence ?? {}).flat())
+    if (!sources.some((x) => x.url === u)) sources.push({ title: prettyUrl(u), url: u });
+  const cite = (u: string) => sources.findIndex((x) => x.url === u) + 1;
 
   return (
     <article>
@@ -54,6 +65,7 @@ export default async function StackPage({ params }: Props) {
               ...(s.author ? { author: { "@type": "Person", name: s.author.name, ...(s.author.url ? { url: s.author.url } : {}) } } : {}),
               description: s.description,
               url: `${SITE.url}/stack/${s.slug}/`,
+              ...(sources.length ? { citation: sources.map((x) => ({ "@type": "CreativeWork", name: x.title, url: x.url })) } : {}),
               ...(site
                 ? { mainEntity: { "@type": "SoftwareApplication", name: s.name, url: site, sameAs: Object.values(s.links ?? {}) } }
                 : {}),
@@ -89,7 +101,15 @@ export default async function StackPage({ params }: Props) {
         ]}
       />
       <div className="meta-line">
-        <span>{rows.length} layers</span>
+        {d && (
+          <span className="tag disclosure" title={DISCLOSURE[d].about}>
+            {DISCLOSURE[d].badge}
+          </span>
+        )}
+        <span>
+          {rows.length} {unk ? "known layers" : "layers"}
+          {unk && missing.length > 0 && ` · ${missing.length} ${unk.toLowerCase()}`}
+        </span>
         {s.author && (
           <>
             <span className="muted"> · by </span>
@@ -125,7 +145,7 @@ export default async function StackPage({ params }: Props) {
           Edit on GitHub
         </a>
       </div>
-      <StackView rows={rows} label={`AS-${String(getStacks().indexOf(s) + 1).padStart(2, "0")} · ${s.name.toUpperCase()} · REV 1`} />
+      <StackView rows={rows} stack={s} label={`AS-${String(getStacks().indexOf(s) + 1).padStart(2, "0")} · ${s.name.toUpperCase()} · REV 1`} />
 
       <div className="prose">
         <h2>Layer by layer</h2>
@@ -145,10 +165,47 @@ export default async function StackPage({ params }: Props) {
                     {p.note && ` (${p.note.toLowerCase()})`}
                   </span>
                 ))}
+                {(s.evidence?.[layer.id] ?? []).map((u) => (
+                  <a key={u} className="cite" href={u} rel="noopener" title={sources.find((x) => x.url === u)?.title ?? u}>
+                    [{cite(u)}]
+                  </a>
+                ))}
               </dd>
             </div>
           ))}
         </dl>
+        {unk && missing.length > 0 && (
+          <p className="muted">
+            <strong>{unk}:</strong> {missing.map((l) => l.name).join(", ")}.
+          </p>
+        )}
+        {notUsed.length > 0 && (
+          <p className="muted">
+            <strong>Not used:</strong> {notUsed.map((l) => l.name).join(", ")}.
+          </p>
+        )}
+        {d && (
+          <p className="muted small">
+            {DISCLOSURE[d].about}
+            {s.researched ? `, researched ${s.researched}` : ""}.
+          </p>
+        )}
+
+        {sources.length > 0 && (
+          <>
+            <h2>Sources</h2>
+            <ol className="sources">
+              {sources.map((src) => (
+                <li key={src.url}>
+                  <a href={src.url} rel="noopener">
+                    {src.title}
+                  </a>
+                  <span className="muted"> · {prettyUrl(src.url)}</span>
+                </li>
+              ))}
+            </ol>
+          </>
+        )}
       </div>
 
       {similar.length > 0 && (

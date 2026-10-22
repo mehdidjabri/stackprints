@@ -87,6 +87,19 @@ for (const f of jsonFiles("content/stacks")) {
   if (s.author && !s.author.name) errors.push(`${f}: author needs a name`);
   for (const [k, v] of Object.entries(s.links ?? {}))
     if (!["site", "repo", "docs", "announcement"].includes(k) || !/^https:\/\//.test(v)) errors.push(`${f}: links.${k} must be site/repo/docs/announcement with an https URL`);
+  if (s.disclosure && !["open-source", "documented", "closed", "example"].includes(s.disclosure))
+    errors.push(`${f}: disclosure must be open-source, documented, closed or example`);
+  for (const src of s.sources ?? [])
+    if (!src.title || !/^https:\/\//.test(src.url ?? "")) errors.push(`${f}: each source needs a title and an https url`);
+  for (const [layer, urls] of Object.entries(s.evidence ?? {})) {
+    if (!(layer in (s.layers ?? {}))) errors.push(`${f}: evidence for "${layer}" but the stack doesn't pick it`);
+    if (!Array.isArray(urls) || !urls.every((u) => /^https:\/\//.test(u))) errors.push(`${f}: evidence.${layer} must be a list of https URLs`);
+  }
+  for (const layer of s.notUsed ?? []) {
+    if (!index.has(layer)) errors.push(`${f}: notUsed has unknown layer "${layer}"`);
+    if (layer in (s.layers ?? {})) errors.push(`${f}: "${layer}" is both picked and notUsed`);
+  }
+  if (s.researched && !/^\d{4}-\d{2}-\d{2}$/.test(s.researched)) errors.push(`${f}: researched must be YYYY-MM-DD`);
   for (const [layer, v] of Object.entries(s.layers ?? {})) {
     const opts = index.get(layer);
     if (!opts) errors.push(`${f}: unknown layer "${layer}"`);

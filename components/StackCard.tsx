@@ -15,10 +15,13 @@ export function StackCard({ stack }: { stack: Stack }) {
             {stack.name}
           </Link>
         </h3>
-        <span className="kind">{stack.kind}</span>
+        <span className="kind">
+          {stack.kind}
+          {stack.disclosure === "closed" && " · closed"}
+        </span>
       </div>
       <p className="card-tag">{stack.tagline}</p>
-      <StackView rows={rows} compact />
+      <StackView rows={rows} stack={stack} compact />
       {site && (
         <a className="card-site" href={site} rel="noopener">
           {prettyUrl(site)} ↗
