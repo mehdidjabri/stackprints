@@ -1,0 +1,9 @@
+{
+  "order": 40,
+  "id": "ai-sdk-agent",
+  "name": "AI SDK Agent",
+  "url": "ai-sdk.dev",
+  "note": "TypeScript tool-loop agent",
+  "open": true,
+  "logo": "vercel"
+}

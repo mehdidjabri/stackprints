@@ -1,0 +1,6 @@
+{
+  "order": 10,
+  "id": "request-response",
+  "name": "Request / response",
+  "note": "Only acts when asked"
+}

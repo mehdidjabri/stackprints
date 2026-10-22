@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "langfuse",
+  "name": "Langfuse",
+  "url": "langfuse.com",
+  "note": "Open tracing and evals",
+  "open": true,
+  "logo": "langfuse"
+}

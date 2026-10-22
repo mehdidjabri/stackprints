@@ -1,0 +1,8 @@
+{
+  "order": 10,
+  "id": "playwright-mcp",
+  "name": "Playwright MCP",
+  "url": "playwright.dev",
+  "note": "Accessibility-tree browser control",
+  "open": true
+}

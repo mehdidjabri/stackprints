@@ -1,0 +1,9 @@
+{
+  "order": 30,
+  "id": "codex",
+  "name": "Codex",
+  "url": "github.com/openai/codex",
+  "note": "OpenAI coding agent",
+  "open": true,
+  "logo": "codex"
+}

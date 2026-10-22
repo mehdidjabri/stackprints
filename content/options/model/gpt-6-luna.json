@@ -1,0 +1,8 @@
+{
+  "order": 70,
+  "id": "gpt-6-luna",
+  "name": "GPT-6 Luna",
+  "url": "openai.com",
+  "note": "OpenAI fast and cheap",
+  "logo": "openai"
+}

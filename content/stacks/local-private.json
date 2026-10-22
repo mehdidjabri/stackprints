@@ -20,7 +20,7 @@
     ],
     "router": "ollama",
     "inference": "local-gpu",
-    "harness": "pi-agent-core",
+    "harness": "pi",
     "persona": "agents-md",
     "tools": "read-write-edit-bash",
     "mcp": "mcp",

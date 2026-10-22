@@ -1,0 +1,8 @@
+{
+  "order": 90,
+  "id": "cohere-rerank-4",
+  "name": "Cohere Rerank 4",
+  "url": "cohere.com",
+  "note": "Reranking",
+  "logo": "cohere"
+}

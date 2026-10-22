@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "dm-pairing",
+  "name": "DM pairing",
+  "url": "openclaw.ai",
+  "note": "Unknown senders must pair first",
+  "logo": "openclaw"
+}

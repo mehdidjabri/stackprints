@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "gemini-live",
+  "name": "Gemini Live",
+  "url": "ai.google.dev",
+  "note": "Realtime multimodal sessions",
+  "logo": "gemini"
+}

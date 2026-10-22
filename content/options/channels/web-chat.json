@@ -1,0 +1,6 @@
+{
+  "order": 10,
+  "id": "web-chat",
+  "name": "Web chat",
+  "note": "Classic chat UI in the browser"
+}

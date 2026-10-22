@@ -1,0 +1,6 @@
+{
+  "order": 90,
+  "id": "agent-network",
+  "name": "Agent network",
+  "note": "Your agent coordinates with theirs"
+}

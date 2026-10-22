@@ -1,0 +1,8 @@
+{
+  "order": 70,
+  "id": "cloudflare-sandbox",
+  "name": "Cloudflare Sandbox",
+  "url": "cloudflare.com",
+  "note": "Containers at the edge",
+  "logo": "cloudflare"
+}

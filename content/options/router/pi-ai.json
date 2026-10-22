@@ -1,0 +1,9 @@
+{
+  "order": 100,
+  "id": "pi-ai",
+  "name": "pi-ai",
+  "url": "pi.dev",
+  "note": "TypeScript multi-provider client",
+  "open": true,
+  "logo": "pi"
+}

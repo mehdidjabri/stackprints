@@ -1,0 +1,9 @@
+{
+  "order": 200,
+  "id": "hermes-4",
+  "name": "Hermes 4",
+  "url": "nousresearch.com",
+  "note": "Steerable open models",
+  "open": true,
+  "logo": "nousresearch"
+}

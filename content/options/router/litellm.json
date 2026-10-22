@@ -1,0 +1,8 @@
+{
+  "order": 40,
+  "id": "litellm",
+  "name": "LiteLLM",
+  "url": "litellm.ai",
+  "note": "Self-hosted OpenAI-compatible proxy",
+  "open": true
+}

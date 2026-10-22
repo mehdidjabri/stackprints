@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "durable-objects",
+  "name": "Durable Objects",
+  "url": "cloudflare.com",
+  "note": "Per-agent stateful actors",
+  "logo": "cloudflare"
+}

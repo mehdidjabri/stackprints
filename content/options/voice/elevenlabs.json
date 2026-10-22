@@ -1,0 +1,8 @@
+{
+  "order": 30,
+  "id": "elevenlabs",
+  "name": "ElevenLabs",
+  "url": "elevenlabs.io",
+  "note": "Eleven v4 TTS, Scribe STT, agents",
+  "logo": "elevenlabs"
+}

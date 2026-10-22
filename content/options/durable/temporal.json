@@ -1,0 +1,9 @@
+{
+  "order": 30,
+  "id": "temporal",
+  "name": "Temporal",
+  "url": "temporal.io",
+  "note": "Workflow-as-code",
+  "open": true,
+  "logo": "temporal"
+}

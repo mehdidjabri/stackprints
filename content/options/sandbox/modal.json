@@ -1,0 +1,8 @@
+{
+  "order": 60,
+  "id": "modal",
+  "name": "Modal",
+  "url": "modal.com",
+  "note": "Serverless containers and GPUs",
+  "logo": "modal"
+}

@@ -1,0 +1,7 @@
+{
+  "order": 130,
+  "id": "ide",
+  "name": "IDE",
+  "url": "agentclientprotocol.com",
+  "note": "Editors via ACP or extensions"
+}

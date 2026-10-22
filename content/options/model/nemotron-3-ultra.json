@@ -1,0 +1,9 @@
+{
+  "order": 210,
+  "id": "nemotron-3-ultra",
+  "name": "Nemotron 3 Ultra",
+  "url": "nvidia.com",
+  "note": "NVIDIA open reasoning",
+  "open": true,
+  "logo": "nvidia"
+}

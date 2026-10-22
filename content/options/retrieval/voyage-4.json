@@ -1,0 +1,8 @@
+{
+  "order": 80,
+  "id": "voyage-4",
+  "name": "Voyage 4",
+  "url": "voyageai.com",
+  "note": "Embeddings and rerank",
+  "logo": "voyage"
+}

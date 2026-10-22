@@ -1,0 +1,9 @@
+{
+  "order": 80,
+  "id": "a2a",
+  "name": "A2A",
+  "url": "a2a-protocol.org",
+  "note": "Agent-to-agent protocol",
+  "open": true,
+  "logo": "google"
+}

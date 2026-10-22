@@ -1,0 +1,8 @@
+{
+  "order": 90,
+  "id": "gemini-3-8-flash",
+  "name": "Gemini 3.8 Flash",
+  "url": "ai.google.dev",
+  "note": "Google fast",
+  "logo": "gemini"
+}

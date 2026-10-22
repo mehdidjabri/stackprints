@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "acp-agent-client",
+  "name": "ACP (Agent Client)",
+  "url": "agentclientprotocol.com",
+  "note": "Editor-to-agent protocol",
+  "open": true,
+  "logo": "zedindustries"
+}

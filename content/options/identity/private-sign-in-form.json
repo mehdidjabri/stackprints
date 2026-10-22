@@ -1,0 +1,6 @@
+{
+  "order": 30,
+  "id": "private-sign-in-form",
+  "name": "Private sign-in form",
+  "note": "User logs in, model never sees it"
+}

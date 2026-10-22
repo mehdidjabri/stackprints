@@ -1,0 +1,6 @@
+{
+  "order": 10,
+  "id": "single-agent",
+  "name": "Single agent",
+  "note": "One loop, no delegation"
+}

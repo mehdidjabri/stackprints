@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "openai-agents-sdk",
+  "name": "OpenAI Agents SDK",
+  "url": "openai.github.io/openai-agents-python",
+  "note": "Handoffs, guardrails, sessions",
+  "open": true,
+  "logo": "openai"
+}

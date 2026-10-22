@@ -1,0 +1,8 @@
+{
+  "order": 90,
+  "id": "signal",
+  "name": "Signal",
+  "url": "signal.org",
+  "note": "Private messaging via signal-cli",
+  "logo": "signal"
+}

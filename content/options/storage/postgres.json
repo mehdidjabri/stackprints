@@ -1,0 +1,9 @@
+{
+  "order": 30,
+  "id": "postgres",
+  "name": "Postgres",
+  "url": "postgresql.org",
+  "note": "Supabase, Neon, RDS",
+  "open": true,
+  "logo": "postgresql"
+}

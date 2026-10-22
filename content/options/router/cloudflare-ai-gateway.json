@@ -1,0 +1,8 @@
+{
+  "order": 60,
+  "id": "cloudflare-ai-gateway",
+  "name": "Cloudflare AI Gateway",
+  "url": "cloudflare.com",
+  "note": "Edge caching and rate limits",
+  "logo": "cloudflare"
+}

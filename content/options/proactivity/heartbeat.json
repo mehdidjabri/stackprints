@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "heartbeat",
+  "name": "Heartbeat",
+  "url": "openclaw.ai",
+  "note": "Periodic wake, check for work",
+  "logo": "openclaw"
+}

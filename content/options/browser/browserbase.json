@@ -1,0 +1,7 @@
+{
+  "order": 30,
+  "id": "browserbase",
+  "name": "Browserbase",
+  "url": "browserbase.com",
+  "note": "Hosted headless browsers"
+}

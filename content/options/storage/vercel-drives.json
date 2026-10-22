@@ -1,0 +1,8 @@
+{
+  "order": 40,
+  "id": "vercel-drives",
+  "name": "Vercel Drives",
+  "url": "vercel.com",
+  "note": "Persistent files for stateful agents",
+  "logo": "vercel"
+}

@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "auth0-for-ai-agents",
+  "name": "Auth0 for AI Agents",
+  "url": "auth0.com",
+  "note": "Agent identity and token vault",
+  "logo": "auth0"
+}

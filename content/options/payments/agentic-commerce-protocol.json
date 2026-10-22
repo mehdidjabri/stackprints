@@ -1,0 +1,9 @@
+{
+  "order": 40,
+  "id": "agentic-commerce-protocol",
+  "name": "Agentic Commerce Protocol",
+  "url": "agenticcommerce.dev",
+  "note": "OpenAI + Stripe checkout",
+  "open": true,
+  "logo": "openai"
+}

@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "telegram",
+  "name": "Telegram",
+  "url": "grammy.dev",
+  "note": "Bot API, easiest to start",
+  "logo": "telegram"
+}

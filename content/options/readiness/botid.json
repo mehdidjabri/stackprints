@@ -1,0 +1,8 @@
+{
+  "order": 60,
+  "id": "botid",
+  "name": "BotID",
+  "url": "vercel.com",
+  "note": "Tell good bots from bad",
+  "logo": "vercel"
+}

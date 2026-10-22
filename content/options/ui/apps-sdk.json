@@ -1,0 +1,8 @@
+{
+  "order": 70,
+  "id": "apps-sdk",
+  "name": "Apps SDK",
+  "url": "openai.com",
+  "note": "Apps inside ChatGPT",
+  "logo": "openai"
+}

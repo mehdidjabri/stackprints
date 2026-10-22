@@ -1,0 +1,9 @@
+{
+  "order": 120,
+  "id": "smolagents",
+  "name": "smolagents",
+  "url": "huggingface.co",
+  "note": "Code-acting minimal agents",
+  "open": true,
+  "logo": "huggingface"
+}

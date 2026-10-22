@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "exa",
+  "name": "Exa",
+  "url": "exa.ai",
+  "note": "Neural web search API",
+  "logo": "exa"
+}

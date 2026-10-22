@@ -1,0 +1,8 @@
+{
+  "order": 10,
+  "id": "groq",
+  "name": "Groq",
+  "url": "groq.com",
+  "note": "LPU, very fast tokens",
+  "logo": "groq"
+}

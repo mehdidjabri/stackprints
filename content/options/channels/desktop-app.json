@@ -1,0 +1,6 @@
+{
+  "order": 150,
+  "id": "desktop-app",
+  "name": "Desktop app",
+  "note": "Native app with local access"
+}

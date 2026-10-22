@@ -1,0 +1,8 @@
+{
+  "order": 90,
+  "id": "a2ui",
+  "name": "A2UI",
+  "note": "Declarative agent-to-UI protocol",
+  "open": true,
+  "logo": "google"
+}

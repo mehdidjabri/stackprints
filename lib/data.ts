@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { Layer, Stack } from "./types";
+import type { Layer, Option, Stack } from "./types";
 
 const root = path.join(process.cwd(), "content");
 
@@ -15,17 +15,28 @@ export const SITE = {
 let layers: Layer[] | undefined;
 let stacks: Stack[] | undefined;
 
+const readDir = <T>(dir: string): T[] =>
+  fs.existsSync(dir)
+    ? fs
+        .readdirSync(dir)
+        .filter((f) => f.endsWith(".json"))
+        .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as T)
+    : [];
+
+/** Layers from layers.json, each with its options from content/options/<layer>/<option>.json. */
 export function getLayers(): Layer[] {
-  layers ??= JSON.parse(fs.readFileSync(path.join(root, "layers.json"), "utf8")) as Layer[];
+  layers ??= (JSON.parse(fs.readFileSync(path.join(root, "layers.json"), "utf8")) as Omit<Layer, "options">[]).map((l) => ({
+    ...l,
+    // Curated options carry an order; submissions without one follow, alphabetically.
+    options: readDir<Option>(path.join(root, "options", l.id)).sort(
+      (a, b) => (a.order ?? 1e6) - (b.order ?? 1e6) || a.name.localeCompare(b.name),
+    ),
+  }));
   return layers;
 }
 
 export function getStacks(): Stack[] {
-  stacks ??= fs
-    .readdirSync(path.join(root, "stacks"))
-    .filter((f) => f.endsWith(".json"))
-    .map((f) => JSON.parse(fs.readFileSync(path.join(root, "stacks", f), "utf8")) as Stack)
-    .sort((a, b) => a.name.localeCompare(b.name));
+  stacks ??= readDir<Stack>(path.join(root, "stacks")).sort((a, b) => a.name.localeCompare(b.name));
   return stacks;
 }
 

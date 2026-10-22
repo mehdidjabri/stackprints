@@ -1,0 +1,7 @@
+{
+  "order": 80,
+  "id": "bedrock-vertex-azure",
+  "name": "Bedrock / Vertex / Azure",
+  "note": "Hyperscaler-hosted",
+  "logo": "aws"
+}

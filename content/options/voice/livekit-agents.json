@@ -1,0 +1,9 @@
+{
+  "order": 80,
+  "id": "livekit-agents",
+  "name": "LiveKit Agents",
+  "url": "livekit.io",
+  "note": "Realtime voice pipelines",
+  "open": true,
+  "logo": "livekit"
+}

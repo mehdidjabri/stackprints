@@ -1,0 +1,9 @@
+{
+  "order": 110,
+  "id": "pydantic-ai",
+  "name": "Pydantic AI",
+  "url": "ai.pydantic.dev",
+  "note": "Typed Python agents",
+  "open": true,
+  "logo": "pydanticai"
+}

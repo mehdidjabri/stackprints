@@ -1,0 +1,8 @@
+{
+  "order": 60,
+  "id": "tavily",
+  "name": "Tavily",
+  "url": "tavily.com",
+  "note": "Search built for agents",
+  "logo": "tavily"
+}

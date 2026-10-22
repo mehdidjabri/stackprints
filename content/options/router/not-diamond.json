@@ -1,0 +1,7 @@
+{
+  "order": 80,
+  "id": "not-diamond",
+  "name": "Not Diamond",
+  "url": "notdiamond.ai",
+  "note": "Learned prompt-to-model routing"
+}

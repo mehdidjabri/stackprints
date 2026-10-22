@@ -1,0 +1,9 @@
+{
+  "order": 40,
+  "id": "mcp-oauth-2-1",
+  "name": "MCP OAuth 2.1",
+  "url": "modelcontextprotocol.io",
+  "note": "Standard tool auth",
+  "open": true,
+  "logo": "mcp"
+}

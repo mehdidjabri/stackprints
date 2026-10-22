@@ -1,0 +1,7 @@
+{
+  "order": 80,
+  "id": "chrome-extension",
+  "name": "Chrome extension",
+  "note": "Acts in your real browser",
+  "logo": "googlechrome"
+}

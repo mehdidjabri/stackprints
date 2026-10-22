@@ -1,0 +1,8 @@
+{
+  "order": 10,
+  "id": "claude-agent-sdk",
+  "name": "Claude Agent SDK",
+  "url": "claude.com",
+  "note": "Claude Code's loop as a library",
+  "logo": "claudecode"
+}

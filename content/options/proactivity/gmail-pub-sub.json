@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "gmail-pub-sub",
+  "name": "Gmail Pub/Sub",
+  "url": "cloud.google.com",
+  "note": "React to new email",
+  "logo": "gmail"
+}

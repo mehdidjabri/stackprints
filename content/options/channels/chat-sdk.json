@@ -1,0 +1,9 @@
+{
+  "order": 140,
+  "id": "chat-sdk",
+  "name": "Chat SDK",
+  "url": "vercel.com",
+  "note": "One agent, many chat platforms",
+  "open": true,
+  "logo": "vercel"
+}

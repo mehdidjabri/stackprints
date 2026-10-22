@@ -1,0 +1,6 @@
+{
+  "order": 100,
+  "id": "audit-trail",
+  "name": "Audit trail",
+  "note": "Every action logged and reviewable"
+}

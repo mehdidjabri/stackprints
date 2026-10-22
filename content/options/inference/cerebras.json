@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "cerebras",
+  "name": "Cerebras",
+  "url": "cerebras.ai",
+  "note": "Wafer-scale speed",
+  "logo": "cerebras"
+}

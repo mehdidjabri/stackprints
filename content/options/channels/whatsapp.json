@@ -1,0 +1,8 @@
+{
+  "order": 40,
+  "id": "whatsapp",
+  "name": "WhatsApp",
+  "url": "whatsapp.com",
+  "note": "Cloud API or Baileys bridge",
+  "logo": "whatsapp"
+}

@@ -1,0 +1,9 @@
+{
+  "order": 30,
+  "id": "stripe-agent-toolkit",
+  "name": "Stripe Agent Toolkit",
+  "url": "stripe.com",
+  "note": "Payments as tools",
+  "open": true,
+  "logo": "stripe"
+}

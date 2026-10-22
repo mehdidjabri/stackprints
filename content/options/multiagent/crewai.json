@@ -1,0 +1,9 @@
+{
+  "order": 50,
+  "id": "crewai",
+  "name": "CrewAI",
+  "url": "crewai.com",
+  "note": "Role-based crews",
+  "open": true,
+  "logo": "crewai"
+}

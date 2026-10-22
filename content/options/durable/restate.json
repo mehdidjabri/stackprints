@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "restate",
+  "name": "Restate",
+  "url": "restate.dev",
+  "note": "Durable handlers",
+  "open": true
+}

@@ -1,0 +1,9 @@
+{
+  "order": 50,
+  "id": "mcp-server",
+  "name": "MCP server",
+  "url": "modelcontextprotocol.io",
+  "note": "Expose your product as tools",
+  "open": true,
+  "logo": "mcp"
+}

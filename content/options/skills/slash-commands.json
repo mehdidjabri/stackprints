@@ -1,0 +1,6 @@
+{
+  "order": 70,
+  "id": "slash-commands",
+  "name": "Slash commands",
+  "note": "Prompt templates on /name"
+}

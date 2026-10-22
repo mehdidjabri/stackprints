@@ -1,0 +1,8 @@
+{
+  "order": 30,
+  "id": "claude-sonnet-5-5",
+  "name": "Claude Sonnet 5.5",
+  "url": "anthropic.com",
+  "note": "Anthropic workhorse",
+  "logo": "claude"
+}

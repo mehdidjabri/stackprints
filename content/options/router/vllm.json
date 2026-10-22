@@ -1,0 +1,9 @@
+{
+  "order": 120,
+  "id": "vllm",
+  "name": "vLLM",
+  "url": "vllm.ai",
+  "note": "Self-hosted high-throughput serving",
+  "open": true,
+  "logo": "vllm"
+}

@@ -1,0 +1,8 @@
+{
+  "order": 70,
+  "id": "cloudflare-workflows",
+  "name": "Cloudflare Workflows",
+  "url": "cloudflare.com",
+  "note": "Durable steps on Workers",
+  "logo": "cloudflare"
+}

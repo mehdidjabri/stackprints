@@ -1,0 +1,6 @@
+{
+  "order": 40,
+  "id": "auto-review",
+  "name": "Auto-review",
+  "note": "Second model checks each action"
+}

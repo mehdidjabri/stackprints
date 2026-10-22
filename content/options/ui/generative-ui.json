@@ -1,0 +1,6 @@
+{
+  "order": 40,
+  "id": "generative-ui",
+  "name": "Generative UI",
+  "note": "Model streams components, not text"
+}

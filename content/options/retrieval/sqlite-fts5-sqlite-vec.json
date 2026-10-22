@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "sqlite-fts5-sqlite-vec",
+  "name": "SQLite FTS5 + sqlite-vec",
+  "url": "sqlite.org",
+  "note": "Local hybrid search",
+  "open": true,
+  "logo": "sqlite"
+}

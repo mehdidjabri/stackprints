@@ -1,0 +1,6 @@
+{
+  "order": 10,
+  "id": "direct-provider",
+  "name": "Direct provider",
+  "note": "Call one lab's API directly"
+}

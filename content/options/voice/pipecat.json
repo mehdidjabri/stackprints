@@ -1,0 +1,9 @@
+{
+  "order": 90,
+  "id": "pipecat",
+  "name": "Pipecat",
+  "url": "pipecat.ai",
+  "note": "Voice agent framework",
+  "open": true,
+  "logo": "pipecat"
+}

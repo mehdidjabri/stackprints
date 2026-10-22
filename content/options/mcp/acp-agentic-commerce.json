@@ -1,0 +1,9 @@
+{
+  "order": 50,
+  "id": "acp-agentic-commerce",
+  "name": "ACP (Agentic Commerce)",
+  "url": "agenticcommerce.dev",
+  "note": "Agent checkout protocol",
+  "open": true,
+  "logo": "openai"
+}

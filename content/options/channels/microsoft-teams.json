@@ -1,0 +1,8 @@
+{
+  "order": 80,
+  "id": "microsoft-teams",
+  "name": "Microsoft Teams",
+  "url": "microsoft.com",
+  "note": "Enterprise chat",
+  "logo": "microsoft"
+}

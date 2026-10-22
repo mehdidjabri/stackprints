@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "aws",
+  "name": "AWS",
+  "url": "aws.amazon.com",
+  "note": "Bedrock AgentCore and friends",
+  "logo": "aws"
+}

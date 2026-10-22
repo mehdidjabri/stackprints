@@ -1,0 +1,6 @@
+{
+  "order": 10,
+  "id": "system-prompt",
+  "name": "System prompt",
+  "note": "One string, hard-coded"
+}

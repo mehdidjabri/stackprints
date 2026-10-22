@@ -1,0 +1,6 @@
+{
+  "order": 120,
+  "id": "cli-tui",
+  "name": "CLI / TUI",
+  "note": "Terminal-native"
+}

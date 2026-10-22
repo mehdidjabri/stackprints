@@ -1,0 +1,9 @@
+{
+  "order": 50,
+  "id": "eve",
+  "name": "eve",
+  "url": "vercel.com",
+  "note": "Markdown instructions, TS tools, one folder",
+  "open": true,
+  "logo": "vercel"
+}

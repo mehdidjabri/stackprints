@@ -1,0 +1,9 @@
+{
+  "order": 80,
+  "id": "atropos",
+  "name": "Atropos",
+  "url": "github.com/NousResearch/atropos",
+  "note": "RL environments and trajectories",
+  "open": true,
+  "logo": "nousresearch"
+}

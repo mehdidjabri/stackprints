@@ -1,0 +1,6 @@
+{
+  "order": 10,
+  "id": "host-machine",
+  "name": "Host machine",
+  "note": "Runs on your computer, trusted"
+}

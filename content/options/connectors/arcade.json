@@ -1,0 +1,7 @@
+{
+  "order": 20,
+  "id": "arcade",
+  "name": "Arcade",
+  "url": "arcade.dev",
+  "note": "Delegated user OAuth for tools"
+}

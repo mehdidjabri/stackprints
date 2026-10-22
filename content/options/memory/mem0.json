@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "mem0",
+  "name": "Mem0",
+  "url": "mem0.ai",
+  "note": "Extracted fact memory",
+  "open": true
+}

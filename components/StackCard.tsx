@@ -12,8 +12,7 @@ export function StackCard({ stack }: { stack: Stack }) {
         <span className="kind">{stack.kind}</span>
       </div>
       <p className="card-tag">{stack.tagline}</p>
-      <StackView rows={rows.slice(0, 9)} compact />
-      {rows.length > 9 && <div className="more">+{rows.length - 9} layers</div>}
+      <StackView rows={rows} compact />
     </Link>
   );
 }

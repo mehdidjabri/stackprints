@@ -1,0 +1,9 @@
+{
+  "order": 10,
+  "id": "agent-skills-skill-md",
+  "name": "Agent Skills (SKILL.md)",
+  "url": "agentskills.io",
+  "note": "Open standard, progressive disclosure",
+  "open": true,
+  "logo": "agentskills"
+}

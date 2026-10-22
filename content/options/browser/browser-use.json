@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "browser-use",
+  "name": "browser-use",
+  "url": "browser-use.com",
+  "note": "LLM-driven Playwright",
+  "open": true
+}

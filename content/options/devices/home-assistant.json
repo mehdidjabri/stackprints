@@ -1,0 +1,9 @@
+{
+  "order": 50,
+  "id": "home-assistant",
+  "name": "Home Assistant",
+  "url": "home-assistant.io",
+  "note": "Smart-home actions",
+  "open": true,
+  "logo": "homeassistant"
+}

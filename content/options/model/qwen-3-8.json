@@ -1,0 +1,9 @@
+{
+  "order": 160,
+  "id": "qwen-3-8",
+  "name": "Qwen 3.8",
+  "url": "qwen.ai",
+  "note": "Alibaba open family",
+  "open": true,
+  "logo": "qwen"
+}

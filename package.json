@@ -5,10 +5,10 @@
   "description": "An open, contributable map of every possible agentic stack.",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
-    "build": "node scripts/check.mjs && next build",
-    "start": "npx serve out",
-    "check": "node scripts/check.mjs"
+    "dev": "node scripts/sprite.mjs && next dev",
+    "build": "node scripts/check.mjs && node scripts/sprite.mjs && next build",
+    "check": "node scripts/check.mjs",
+    "start": "npx serve out"
   },
   "dependencies": {
     "next": "16.4.2",

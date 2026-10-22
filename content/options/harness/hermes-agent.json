@@ -1,0 +1,9 @@
+{
+  "order": 80,
+  "id": "hermes-agent",
+  "name": "Hermes Agent",
+  "url": "github.com/NousResearch/hermes-agent",
+  "note": "Self-improving Python agent",
+  "open": true,
+  "logo": "nousresearch"
+}

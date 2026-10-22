@@ -1,0 +1,8 @@
+{
+  "order": 30,
+  "id": "vercel-ai-gateway",
+  "name": "Vercel AI Gateway",
+  "url": "vercel.com/ai-gateway",
+  "note": "CDN of tokens, failover, BYOK",
+  "logo": "vercel"
+}

@@ -1,0 +1,9 @@
+{
+  "order": 60,
+  "id": "pi",
+  "name": "Pi",
+  "url": "pi.dev",
+  "note": "Pi Agent, minimal extensible loop",
+  "open": true,
+  "logo": "pi"
+}

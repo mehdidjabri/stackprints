@@ -1,0 +1,6 @@
+{
+  "order": 90,
+  "id": "cloud-browser",
+  "name": "Cloud browser",
+  "note": "Agent's own persistent browser"
+}

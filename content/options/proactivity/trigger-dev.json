@@ -1,0 +1,8 @@
+{
+  "order": 80,
+  "id": "trigger-dev",
+  "name": "Trigger.dev",
+  "url": "trigger.dev",
+  "note": "Background jobs and schedules",
+  "open": true
+}

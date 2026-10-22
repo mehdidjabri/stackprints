@@ -45,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/#stacks">Stacks</Link>
               <Link href="/layers/">Layers</Link>
               <Link href="/mine/">Mine</Link>
+              <Link href="/submit/">Submit</Link>
               <Link href="/contribute/">Contribute</Link>
             </nav>
           </div>
@@ -54,7 +55,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <footer className="foot">
           <div className="wrap">
-            <span>Open source. Anyone can add a stack, a layer or an option.</span>
+            <span>
+              Open source. <Link href="/submit/">List your product</Link> or <Link href="/#publish">publish your stack</Link>.
+            </span>
             <nav aria-label="Footer">
               <a href={SITE.repo}>GitHub</a>
               <a href="/llms.txt">llms.txt</a>

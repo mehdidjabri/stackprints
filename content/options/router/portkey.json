@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "portkey",
+  "name": "Portkey",
+  "url": "portkey.ai",
+  "note": "Gateway with guardrails and caching",
+  "open": true
+}

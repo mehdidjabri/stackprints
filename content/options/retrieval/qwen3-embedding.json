@@ -1,0 +1,9 @@
+{
+  "order": 100,
+  "id": "qwen3-embedding",
+  "name": "Qwen3 Embedding",
+  "url": "huggingface.co",
+  "note": "Open embeddings",
+  "open": true,
+  "logo": "qwen"
+}

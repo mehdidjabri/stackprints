@@ -1,0 +1,9 @@
+{
+  "order": 230,
+  "id": "gpt-oss",
+  "name": "gpt-oss",
+  "url": "openai.com",
+  "note": "OpenAI open weights",
+  "open": true,
+  "logo": "openai"
+}

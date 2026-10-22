@@ -1,0 +1,6 @@
+{
+  "order": 20,
+  "id": "subagents",
+  "name": "Subagents",
+  "note": "Isolated context, parallel, report back"
+}

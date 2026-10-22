@@ -1,0 +1,8 @@
+{
+  "order": 30,
+  "id": "assistant-ui",
+  "name": "assistant-ui",
+  "url": "assistant-ui.com",
+  "note": "Composable chat components",
+  "open": true
+}

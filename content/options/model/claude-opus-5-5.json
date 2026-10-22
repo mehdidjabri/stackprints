@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "claude-opus-5-5",
+  "name": "Claude Opus 5.5",
+  "url": "anthropic.com",
+  "note": "Anthropic flagship",
+  "logo": "claude"
+}

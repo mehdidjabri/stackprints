@@ -1,0 +1,7 @@
+{
+  "order": 60,
+  "id": "pinecone",
+  "name": "Pinecone",
+  "url": "pinecone.io",
+  "note": "Managed vector DB"
+}

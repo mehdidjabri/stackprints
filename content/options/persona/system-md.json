@@ -1,0 +1,8 @@
+{
+  "order": 60,
+  "id": "system-md",
+  "name": "SYSTEM.md",
+  "url": "pi.dev",
+  "note": "Per-project system prompt override",
+  "logo": "pi"
+}

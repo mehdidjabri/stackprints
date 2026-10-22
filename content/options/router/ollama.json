@@ -1,0 +1,9 @@
+{
+  "order": 110,
+  "id": "ollama",
+  "name": "Ollama",
+  "url": "ollama.com",
+  "note": "Local models, one command",
+  "open": true,
+  "logo": "ollama"
+}

@@ -1,0 +1,9 @@
+{
+  "order": 220,
+  "id": "gemma-4",
+  "name": "Gemma 4",
+  "url": "ai.google.dev",
+  "note": "Small open model, on-device",
+  "open": true,
+  "logo": "gemma"
+}

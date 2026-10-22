@@ -1,0 +1,9 @@
+{
+  "order": 150,
+  "id": "deepseek-v4-1-flash",
+  "name": "DeepSeek V4.1 Flash",
+  "url": "deepseek.com",
+  "note": "Open and fast",
+  "open": true,
+  "logo": "deepseek"
+}

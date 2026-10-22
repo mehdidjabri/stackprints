@@ -1,0 +1,8 @@
+{
+  "order": 70,
+  "id": "modal",
+  "name": "Modal",
+  "url": "modal.com",
+  "note": "Bring your own model on GPUs",
+  "logo": "modal"
+}

@@ -1,0 +1,6 @@
+{
+  "order": 90,
+  "id": "ssh-host",
+  "name": "SSH host",
+  "note": "Any remote box"
+}

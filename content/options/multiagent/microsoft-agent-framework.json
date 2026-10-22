@@ -1,0 +1,9 @@
+{
+  "order": 60,
+  "id": "microsoft-agent-framework",
+  "name": "Microsoft Agent Framework",
+  "url": "microsoft.com",
+  "note": "AutoGen successor",
+  "open": true,
+  "logo": "microsoft"
+}

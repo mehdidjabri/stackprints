@@ -1,0 +1,9 @@
+{
+  "order": 60,
+  "id": "openclaw-nodes",
+  "name": "OpenClaw nodes",
+  "url": "openclaw.ai",
+  "note": "Companion apps on every OS",
+  "open": true,
+  "logo": "openclaw"
+}

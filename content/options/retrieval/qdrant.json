@@ -1,0 +1,9 @@
+{
+  "order": 70,
+  "id": "qdrant",
+  "name": "Qdrant",
+  "url": "qdrant.tech",
+  "note": "Open vector DB",
+  "open": true,
+  "logo": "qdrant"
+}

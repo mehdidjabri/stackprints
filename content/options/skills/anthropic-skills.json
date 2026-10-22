@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "anthropic-skills",
+  "name": "Anthropic skills",
+  "url": "github.com/anthropics/skills",
+  "note": "Reference skill library",
+  "open": true,
+  "logo": "anthropic"
+}

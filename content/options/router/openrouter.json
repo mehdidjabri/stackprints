@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "openrouter",
+  "name": "OpenRouter",
+  "url": "openrouter.ai",
+  "note": "~470 models, auto-router, fallbacks",
+  "logo": "openrouter"
+}

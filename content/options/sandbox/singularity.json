@@ -1,0 +1,7 @@
+{
+  "order": 100,
+  "id": "singularity",
+  "name": "Singularity",
+  "note": "HPC containers",
+  "open": true
+}

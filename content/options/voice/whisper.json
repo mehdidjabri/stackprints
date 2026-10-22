@@ -1,0 +1,9 @@
+{
+  "order": 60,
+  "id": "whisper",
+  "name": "Whisper",
+  "url": "github.com/openai/whisper",
+  "note": "Local speech-to-text",
+  "open": true,
+  "logo": "openai"
+}

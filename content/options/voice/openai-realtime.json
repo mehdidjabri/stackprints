@@ -1,0 +1,8 @@
+{
+  "order": 10,
+  "id": "openai-realtime",
+  "name": "OpenAI Realtime",
+  "url": "openai.com",
+  "note": "Speech-to-speech, low latency",
+  "logo": "openai"
+}

@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "ai-sdk-ui",
+  "name": "AI SDK UI",
+  "url": "ai-sdk.dev",
+  "note": "Streaming React chat hooks",
+  "open": true,
+  "logo": "vercel"
+}

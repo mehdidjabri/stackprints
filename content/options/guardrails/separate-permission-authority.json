@@ -1,0 +1,6 @@
+{
+  "order": 60,
+  "id": "separate-permission-authority",
+  "name": "Separate permission authority",
+  "note": "Policy service apart from the agent"
+}

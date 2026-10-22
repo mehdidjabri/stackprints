@@ -1,0 +1,8 @@
+{
+  "order": 30,
+  "id": "handoffs",
+  "name": "Handoffs",
+  "url": "openai.github.io",
+  "note": "Transfer control between agents",
+  "logo": "openai"
+}

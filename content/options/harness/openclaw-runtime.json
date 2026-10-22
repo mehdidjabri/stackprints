@@ -1,0 +1,9 @@
+{
+  "order": 70,
+  "id": "openclaw-runtime",
+  "name": "OpenClaw runtime",
+  "url": "openclaw.ai",
+  "note": "Gateway daemon plus embedded loop",
+  "open": true,
+  "logo": "openclaw"
+}

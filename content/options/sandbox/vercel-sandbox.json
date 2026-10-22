@@ -1,0 +1,8 @@
+{
+  "order": 40,
+  "id": "vercel-sandbox",
+  "name": "Vercel Sandbox",
+  "url": "vercel.com/sandbox",
+  "note": "Ephemeral microVMs, injected creds",
+  "logo": "vercel"
+}

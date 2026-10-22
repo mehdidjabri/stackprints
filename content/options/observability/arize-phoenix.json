@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "arize-phoenix",
+  "name": "Arize Phoenix",
+  "url": "phoenix.arize.com",
+  "note": "OTel tracing",
+  "open": true
+}

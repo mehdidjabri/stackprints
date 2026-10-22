@@ -1,0 +1,8 @@
+{
+  "order": 70,
+  "id": "discord",
+  "name": "Discord",
+  "url": "discord.js.org",
+  "note": "Bots and voice channels",
+  "logo": "discord"
+}

@@ -14,7 +14,7 @@
       "qwen-3-8"
     ],
     "router": "pi-ai",
-    "harness": "pi-agent-core",
+    "harness": "pi",
     "persona": [
       "agents-md",
       "system-md"

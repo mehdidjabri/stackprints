@@ -1,0 +1,9 @@
+{
+  "order": 190,
+  "id": "minimax-m3",
+  "name": "MiniMax M3",
+  "url": "minimax.io",
+  "note": "Open multimodal, 1M context",
+  "open": true,
+  "logo": "minimax"
+}

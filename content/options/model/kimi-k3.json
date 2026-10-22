@@ -1,0 +1,9 @@
+{
+  "order": 170,
+  "id": "kimi-k3",
+  "name": "Kimi K3",
+  "url": "moonshot.ai",
+  "note": "2.8T open MoE, agentic",
+  "open": true,
+  "logo": "kimi"
+}

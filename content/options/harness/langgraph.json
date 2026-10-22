@@ -1,0 +1,9 @@
+{
+  "order": 90,
+  "id": "langgraph",
+  "name": "LangGraph",
+  "url": "langchain.com",
+  "note": "Stateful graph orchestration",
+  "open": true,
+  "logo": "langgraph"
+}

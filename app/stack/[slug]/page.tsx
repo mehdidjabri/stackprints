@@ -40,6 +40,7 @@ export default async function StackPage({ params }: Props) {
             {
               "@type": "TechArticle",
               headline: `${s.name} agent stack`,
+              ...(s.author ? { author: { "@type": "Person", name: s.author.name, ...(s.author.url ? { url: s.author.url } : {}) } } : {}),
               description: s.description,
               url: `${SITE.url}/stack/${s.slug}/`,
               about: rows.flatMap((r) => r.picks.map((p) => ({ "@type": "Thing", name: p.name, ...(p.url ? { url: `https://${p.url}` } : {}) }))),
@@ -58,6 +59,18 @@ export default async function StackPage({ params }: Props) {
       <div className="meta-line">
         <span>{s.kind}</span>
         <span className="muted"> · {rows.length} layers</span>
+        {s.author && (
+          <>
+            <span className="muted"> · by </span>
+            {s.author.url ? (
+              <a href={s.author.url} rel="noopener nofollow">
+                {s.author.name}
+              </a>
+            ) : (
+              s.author.name
+            )}
+          </>
+        )}
         {s.source && (
           <>
             <span className="muted"> · </span>
@@ -76,7 +89,7 @@ export default async function StackPage({ params }: Props) {
           Edit on GitHub
         </a>
       </div>
-      <StackView rows={rows} />
+      <StackView rows={rows} label={`AS-${String(getStacks().indexOf(s) + 1).padStart(2, "0")} · ${s.name.toUpperCase()} · REV 1`} />
 
       <div className="prose">
         <h2>Layer by layer</h2>

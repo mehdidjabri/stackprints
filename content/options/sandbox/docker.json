@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "docker",
+  "name": "Docker",
+  "url": "docker.com",
+  "note": "Local container isolation",
+  "open": true,
+  "logo": "docker"
+}

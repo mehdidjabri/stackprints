@@ -1,0 +1,9 @@
+{
+  "order": 50,
+  "id": "ap2",
+  "name": "AP2",
+  "url": "google.com",
+  "note": "Google agent payments protocol",
+  "open": true,
+  "logo": "google"
+}

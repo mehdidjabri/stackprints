@@ -1,0 +1,9 @@
+{
+  "order": 30,
+  "id": "pgvector",
+  "name": "pgvector",
+  "url": "github.com/pgvector/pgvector",
+  "note": "Vectors in Postgres",
+  "open": true,
+  "logo": "postgresql"
+}

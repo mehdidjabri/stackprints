@@ -1,0 +1,9 @@
+{
+  "order": 70,
+  "id": "kokoro",
+  "name": "Kokoro",
+  "url": "huggingface.co",
+  "note": "Tiny open TTS",
+  "open": true,
+  "logo": "huggingface"
+}

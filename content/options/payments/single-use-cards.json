@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "single-use-cards",
+  "name": "Single-use cards",
+  "url": "stripe.com",
+  "note": "Stripe Link cards you approve",
+  "logo": "stripe"
+}

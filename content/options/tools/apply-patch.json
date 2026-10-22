@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "apply-patch",
+  "name": "apply_patch",
+  "url": "openai.com",
+  "note": "Diff-based edits",
+  "logo": "openai"
+}

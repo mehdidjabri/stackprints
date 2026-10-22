@@ -1,0 +1,9 @@
+{
+  "order": 70,
+  "id": "firecrawl",
+  "name": "Firecrawl",
+  "url": "firecrawl.dev",
+  "note": "Crawl and scrape to markdown",
+  "open": true,
+  "logo": "firecrawl"
+}

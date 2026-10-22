@@ -1,0 +1,9 @@
+{
+  "order": 50,
+  "id": "pi-packages",
+  "name": "pi packages",
+  "url": "pi.dev",
+  "note": "Extensions, skills, prompts via npm",
+  "open": true,
+  "logo": "pi"
+}

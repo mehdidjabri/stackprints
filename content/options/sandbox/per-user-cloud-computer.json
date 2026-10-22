@@ -1,0 +1,6 @@
+{
+  "order": 80,
+  "id": "per-user-cloud-computer",
+  "name": "Per-user cloud computer",
+  "note": "Persistent VM that keeps working"
+}

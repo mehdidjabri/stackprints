@@ -16,7 +16,7 @@ export default function Home() {
     name,
     band,
     description: "",
-    options: options.map(({ id, name, note }) => ({ id, name, note })),
+    options: options.map(({ id, name, note, logo }) => ({ id, name, note, logo })),
   }));
   const presets = stacks.map((s) => ({
     slug: s.slug,
@@ -36,7 +36,7 @@ export default function Home() {
           description: SITE.description,
         }}
       />
-      <Editor layers={lite} presets={presets} initial={DEFAULT} />
+      <Editor layers={lite} presets={presets} initial={DEFAULT} repo={SITE.repo} />
 
       <p className="lede" style={{ marginTop: 24 }}>
         An agent is more than a model. It is a stack: where people reach it, the model and router behind it, the

@@ -1,0 +1,8 @@
+{
+  "order": 40,
+  "id": "inngest",
+  "name": "Inngest",
+  "url": "inngest.com",
+  "note": "Event-driven durable steps",
+  "open": true
+}

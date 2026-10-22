@@ -1,0 +1,9 @@
+{
+  "order": 20,
+  "id": "sqlite",
+  "name": "SQLite",
+  "url": "sqlite.org",
+  "note": "Per-agent local database",
+  "open": true,
+  "logo": "sqlite"
+}

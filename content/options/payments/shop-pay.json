@@ -1,0 +1,8 @@
+{
+  "order": 70,
+  "id": "shop-pay",
+  "name": "Shop Pay",
+  "url": "shopify.com",
+  "note": "Merchant checkout",
+  "logo": "shopify"
+}

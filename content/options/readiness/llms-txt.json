@@ -1,0 +1,8 @@
+{
+  "order": 20,
+  "id": "llms-txt",
+  "name": "llms.txt",
+  "url": "llmstxt.org",
+  "note": "Markdown map for models",
+  "open": true
+}

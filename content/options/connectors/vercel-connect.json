@@ -1,0 +1,8 @@
+{
+  "order": 30,
+  "id": "vercel-connect",
+  "name": "Vercel Connect",
+  "url": "vercel.com",
+  "note": "Short-lived scoped tokens, audit trail",
+  "logo": "vercel"
+}

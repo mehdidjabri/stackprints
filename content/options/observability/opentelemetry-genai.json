@@ -1,0 +1,9 @@
+{
+  "order": 70,
+  "id": "opentelemetry-genai",
+  "name": "OpenTelemetry GenAI",
+  "url": "opentelemetry.io",
+  "note": "Standard semantic conventions",
+  "open": true,
+  "logo": "opentelemetry"
+}

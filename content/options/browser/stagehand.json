@@ -1,0 +1,8 @@
+{
+  "order": 40,
+  "id": "stagehand",
+  "name": "Stagehand",
+  "url": "stagehand.dev",
+  "note": "act / extract / observe primitives",
+  "open": true
+}

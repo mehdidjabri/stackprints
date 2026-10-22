@@ -1,0 +1,8 @@
+{
+  "order": 80,
+  "id": "vercel-queues",
+  "name": "Vercel Queues",
+  "url": "vercel.com",
+  "note": "At-least-once delivery",
+  "logo": "vercel"
+}

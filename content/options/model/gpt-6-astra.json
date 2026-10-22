@@ -1,0 +1,8 @@
+{
+  "order": 50,
+  "id": "gpt-6-astra",
+  "name": "GPT-6 Astra",
+  "url": "openai.com",
+  "note": "OpenAI flagship",
+  "logo": "openai"
+}

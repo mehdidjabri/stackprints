@@ -1,0 +1,8 @@
+{
+  "order": 30,
+  "id": "clawhub",
+  "name": "ClawHub",
+  "url": "clawhub.ai",
+  "note": "OpenClaw skill and plugin registry",
+  "logo": "openclaw"
+}

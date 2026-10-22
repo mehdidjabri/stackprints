@@ -1,0 +1,9 @@
+{
+  "order": 80,
+  "id": "llama-guard",
+  "name": "Llama Guard",
+  "url": "meta.com",
+  "note": "Safety classifier",
+  "open": true,
+  "logo": "meta"
+}

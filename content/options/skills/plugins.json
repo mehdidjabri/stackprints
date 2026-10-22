@@ -1,0 +1,6 @@
+{
+  "order": 60,
+  "id": "plugins",
+  "name": "Plugins",
+  "note": "Bundles of skills, hooks, commands"
+}

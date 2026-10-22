@@ -1,0 +1,7 @@
+{
+  "order": 60,
+  "id": "s3-r2",
+  "name": "S3 / R2",
+  "note": "Object storage",
+  "logo": "aws"
+}

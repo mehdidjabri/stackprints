@@ -1,0 +1,6 @@
+{
+  "order": 20,
+  "id": "permission-modes",
+  "name": "Permission modes",
+  "note": "Allow / ask / deny per tool"
+}

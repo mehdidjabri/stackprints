@@ -1,0 +1,6 @@
+{
+  "order": 90,
+  "id": "local-gpu",
+  "name": "Local GPU",
+  "note": "Your own hardware"
+}

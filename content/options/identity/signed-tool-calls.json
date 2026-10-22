@@ -1,0 +1,6 @@
+{
+  "order": 80,
+  "id": "signed-tool-calls",
+  "name": "Signed tool calls",
+  "note": "Identity-signed execution"
+}

@@ -1,0 +1,9 @@
+{
+  "order": 60,
+  "id": "mcp-apps",
+  "name": "MCP Apps",
+  "url": "modelcontextprotocol.io",
+  "note": "Tool results render interactive UI",
+  "open": true,
+  "logo": "mcp"
+}

@@ -1,0 +1,8 @@
+{
+  "order": 60,
+  "id": "w-b-weave",
+  "name": "W&B Weave",
+  "url": "wandb.ai",
+  "note": "Traces and evals",
+  "logo": "wandb"
+}

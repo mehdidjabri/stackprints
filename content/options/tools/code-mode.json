@@ -1,0 +1,6 @@
+{
+  "order": 30,
+  "id": "code-mode",
+  "name": "Code mode",
+  "note": "Model writes code that calls tools"
+}

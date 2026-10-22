@@ -1,0 +1,9 @@
+{
+  "order": 10,
+  "id": "mcp",
+  "name": "MCP",
+  "url": "modelcontextprotocol.io",
+  "note": "Model Context Protocol, tools and resources",
+  "open": true,
+  "logo": "mcp"
+}

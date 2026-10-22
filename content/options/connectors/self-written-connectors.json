@@ -1,0 +1,6 @@
+{
+  "order": 70,
+  "id": "self-written-connectors",
+  "name": "Self-written connectors",
+  "note": "Agent writes its own API client"
+}

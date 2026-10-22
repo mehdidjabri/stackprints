@@ -1,0 +1,9 @@
+{
+  "order": 100,
+  "id": "mastra",
+  "name": "Mastra",
+  "url": "mastra.ai",
+  "note": "TypeScript agents and workflows",
+  "open": true,
+  "logo": "mastra"
+}

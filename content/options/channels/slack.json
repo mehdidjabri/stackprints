@@ -1,0 +1,7 @@
+{
+  "order": 60,
+  "id": "slack",
+  "name": "Slack",
+  "url": "slack.dev",
+  "note": "Bolt apps, agent threads"
+}

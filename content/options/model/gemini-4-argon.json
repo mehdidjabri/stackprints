@@ -1,0 +1,8 @@
+{
+  "order": 80,
+  "id": "gemini-4-argon",
+  "name": "Gemini 4 Argon",
+  "url": "ai.google.dev",
+  "note": "Google flagship, 1M context",
+  "logo": "gemini"
+}
