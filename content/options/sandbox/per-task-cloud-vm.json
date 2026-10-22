@@ -1,0 +1,41 @@
+{
+  "order": 85,
+  "id": "per-task-cloud-vm",
+  "name": "Per-task cloud VM",
+  "note": "Fresh isolated VM for each task",
+  "profile": "pattern",
+  "summary": "Each task or session gets its own short-lived virtual machine in the vendor's cloud, built from a saved environment such as repositories, setup steps and a network policy. Work continues while the user's laptop is closed, and tasks don't share state because each VM is paused or discarded afterwards.",
+  "how": [
+    "Define an environment: repositories, setup script, network access, secrets",
+    "Each new task starts in a fresh VM built from that environment",
+    "The agent edits and runs code inside it, behind an egress proxy",
+    "Results come back as files, a branch or a pull request; the VM is reclaimed"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code cloud sessions, Codex Cloud, Claude Cowork (sessions in the cloud)"
+    ],
+    [
+      "Credentials",
+      "Proxies keep secrets outside the VM (Claude Code network secrets, Codex network secrets)"
+    ],
+    [
+      "Trade-off",
+      "Isolated and runs unattended, but can't see local files, processes or VPN"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/cloud-environments",
+    "codex": "https://learn.chatgpt.com/docs/environments/cloud-environments"
+  },
+  "goodFor": [
+    "Parallel, unattended coding tasks",
+    "Working on repositories you don't trust locally"
+  ],
+  "watchOut": [
+    "Local files, browser sign-ins and VPN access aren't carried over",
+    "Idle VMs are reclaimed, so unfinished background work can be lost"
+  ],
+  "researched": "2026-10-21"
+}

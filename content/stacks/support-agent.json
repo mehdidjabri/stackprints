@@ -3,7 +3,30 @@
   "name": "Support Agent",
   "kind": "Business agent",
   "tagline": "Answers tickets from your docs and hands off to humans.",
-  "description": "A customer-support agent: chat widget and email, retrieval over help-center docs with reranking, connectors to the ticketing system, injection defense on untrusted input, and evals on resolved tickets.",
+  "description": "An example design for a customer-support agent: a chat widget, email and Slack in front of a TypeScript agent on Claude, retrieval over help-center docs with Voyage embeddings and reranking on turbopuffer, connectors to the ticketing system, injection screening on untrusted input, handoffs to humans and evals on resolved tickets.",
+  "disclosure": "example",
+  "sources": [
+    {
+      "title": "AI SDK agents",
+      "url": "https://ai-sdk.dev/docs/agents/overview"
+    },
+    {
+      "title": "Workflow SDK documentation",
+      "url": "https://workflow-sdk.dev/docs"
+    },
+    {
+      "title": "turbopuffer documentation",
+      "url": "https://turbopuffer.com/docs"
+    },
+    {
+      "title": "Voyage AI embeddings",
+      "url": "https://docs.voyageai.com/docs/embeddings"
+    },
+    {
+      "title": "Arcade documentation",
+      "url": "https://docs.arcade.dev"
+    }
+  ],
   "layers": {
     "channels": [
       "web-chat",
@@ -19,13 +42,11 @@
     ],
     "router": "vercel-ai-gateway",
     "multiagent": "handoffs",
-    "search": "web-search",
     "connectors": "arcade",
     "memory": "past-dev",
     "retrieval": [
       "turbopuffer",
-      "voyage-4",
-      "cohere-rerank-4"
+      "voyage-4"
     ],
     "storage": "postgres",
     "hosting": "vercel",
@@ -36,5 +57,6 @@
     ],
     "identity": "auth0-for-ai-agents",
     "observability": "braintrust"
-  }
+  },
+  "researched": "2026-10-21"
 }

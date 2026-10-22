@@ -1,0 +1,31 @@
+{
+  "order": 120,
+  "id": "side-panel",
+  "name": "Side panel",
+  "note": "Assistant docked beside the page",
+  "profile": "pattern",
+  "summary": "The assistant opens in a panel next to the page the user is viewing, so it can answer questions about the page or act on it while the page stays in view. Browsers with built-in assistants use it as their main interface.",
+  "how": [
+    "User opens the panel from a toolbar button or keyboard shortcut",
+    "The current tab, and tabs the user mentions, are sent as context",
+    "Answers and task progress appear in the panel while the user keeps browsing"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Perplexity Comet (Assistant sidecar), Gemini in Chrome"
+    ],
+    [
+      "Trade-off",
+      "Keeps the page in view, but the panel is narrow for long output"
+    ]
+  ],
+  "goodFor": [
+    "Questions about the page in front of you",
+    "Multitasking while a task runs in another tab"
+  ],
+  "watchOut": [
+    "Page content sent as context can include private data"
+  ],
+  "researched": "2026-10-21"
+}

@@ -2,8 +2,31 @@
   "slug": "open-weights-cloud",
   "name": "Open-weights Cloud",
   "kind": "Infrastructure",
-  "tagline": "Frontier-class open models on the fastest hosts, routed for price.",
-  "description": "An all open-weight stack served by speed specialists: Kimi, GLM and DeepSeek behind OpenRouter with fallbacks and provider sorting, a TypeScript harness, open sandboxes, open memory and open tracing.",
+  "tagline": "Frontier-class open models from several hosts, routed for price.",
+  "description": "An example design built only on open-weight models: Kimi K3, GLM-5.3 and DeepSeek V4.1 Flash behind OpenRouter, with fallbacks and provider sorting across hosts that serve all three (Fireworks, Together, DeepInfra). Around them sit a TypeScript harness, open-source sandboxes, memory and tracing, Postgres with pgvector, and Llama Guard as an open-weight safety classifier.",
+  "disclosure": "example",
+  "sources": [
+    {
+      "title": "OpenRouter documentation",
+      "url": "https://openrouter.ai/docs/faq"
+    },
+    {
+      "title": "Mastra documentation",
+      "url": "https://mastra.ai/docs"
+    },
+    {
+      "title": "E2B documentation",
+      "url": "https://docs.e2b.dev/"
+    },
+    {
+      "title": "Mem0 documentation",
+      "url": "https://docs.mem0.ai"
+    },
+    {
+      "title": "Langfuse documentation",
+      "url": "https://langfuse.com/docs"
+    }
+  ],
   "layers": {
     "channels": [
       "web-chat",
@@ -18,9 +41,9 @@
     ],
     "router": "openrouter",
     "inference": [
-      "groq",
-      "cerebras",
-      "fireworks"
+      "fireworks",
+      "together",
+      "deepinfra"
     ],
     "search": [
       "web-search",
@@ -34,8 +57,10 @@
       "qwen3-embedding"
     ],
     "storage": "postgres",
-    "hosting": "railway",
+    "hosting": "fly-io",
     "durable": "inngest",
+    "guardrails": "llama-guard",
     "observability": "langfuse"
-  }
+  },
+  "researched": "2026-10-21"
 }

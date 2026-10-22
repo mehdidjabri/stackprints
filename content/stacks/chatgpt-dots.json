@@ -3,52 +3,151 @@
   "name": "ChatGPT dots",
   "kind": "Consumer agent",
   "tagline": "Always-on personal agents with their own computer, handle and face.",
-  "description": "Announced at OpenAI DevDay 2026, dots are persistent agents that each own a cloud computer and browser you can watch and take over. They wake themselves on schedules, events or their own judgement, keep their own notes, ask before risky actions under per-action autonomy rules with a mandatory auto-review, and have a name, @handle and avatar. Stack inferred from public reporting.",
+  "description": "Announced at OpenAI DevDay 2026, dots are always-on agents in ChatGPT that OpenAI says are powered by GPT-6 Astra. Each dot has its own cloud computer and browser, keeps its own notes, runs on saved schedules, events and its own wake-ups, can split work across background agents, and acts, asks or hands off under per-action rules checked by an automatic review. You reach it in the ChatGPT apps, Slack, Teams or by voice call, and it has a name, @handle and avatar. OpenAI hasn't published the agent harness, the cloud computer and browser technology, the voice stack or how notes are stored. The docs don't cover payments, and they describe no email address or phone number for a dot.",
   "links": {
     "site": "https://chatgpt.com/features/dots/",
     "announcement": "https://openai.com/index/introducing-dots/",
     "docs": "https://learn.chatgpt.com/docs/dots"
   },
+  "disclosure": "closed",
+  "sources": [
+    {
+      "title": "Introducing dots (OpenAI)",
+      "url": "https://openai.com/index/introducing-dots/"
+    },
+    {
+      "title": "Meet dots (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/dots"
+    },
+    {
+      "title": "Dots: getting started (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/codex/dots/getting-started"
+    },
+    {
+      "title": "Dots: messaging (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/codex/dots/channels"
+    },
+    {
+      "title": "Dots: tasks and memory (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/codex/dots/tasks-and-memory"
+    },
+    {
+      "title": "Dots: computers and apps (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/codex/dots/computers-and-apps"
+    },
+    {
+      "title": "Dots: controls (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/codex/dots/controls"
+    },
+    {
+      "title": "Dots admin guide (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/codex/enterprise/dots-admin-guide"
+    },
+    {
+      "title": "DevDay 2026: what's new (ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/whats-new/devday-2026"
+    },
+    {
+      "title": "Getting started with your dot (OpenAI Help Center)",
+      "url": "https://help.openai.com/en/articles/20001530-getting-started-with-your-dot"
+    }
+  ],
   "layers": {
     "channels": [
       "web-chat",
       "desktop-app",
+      "mobile-app",
       "slack",
       "microsoft-teams"
     ],
     "proactivity": [
-      "self-scheduled-wake",
       "cron",
       "webhooks",
+      "self-scheduled-wake",
       "background-research"
     ],
     "ui": [
       "goals-activity-feed",
-      "live-computer-view",
-      "apps-sdk"
+      "live-computer-view"
     ],
-    "voice": "openai-realtime",
-    "harness": "openai-agents-sdk",
     "model": "gpt-6-astra",
-    "router": "direct-provider",
     "multiagent": "subagents",
-    "search": "web-search",
     "sandbox": "per-user-cloud-computer",
     "browser": "cloud-browser",
     "connectors": "calendar-email",
-    "payments": "single-use-cards",
     "skills": "plugins",
-    "memory": "agent-notes",
+    "memory": [
+      "agent-notes",
+      "account-memory"
+    ],
     "hosting": "vendor-cloud",
-    "durable": "in-process",
     "guardrails": [
       "per-action-autonomy",
-      "auto-review",
-      "audit-trail"
+      "auto-review"
     ],
     "identity": [
       "private-sign-in-form",
+      "credential-vault",
       "agent-phone-email"
     ]
-  }
+  },
+  "evidence": {
+    "channels": [
+      "https://learn.chatgpt.com/codex/dots/channels",
+      "https://learn.chatgpt.com/docs/dots",
+      "https://openai.com/index/introducing-dots/"
+    ],
+    "proactivity": [
+      "https://learn.chatgpt.com/codex/dots/tasks-and-memory",
+      "https://learn.chatgpt.com/docs/dots"
+    ],
+    "ui": [
+      "https://learn.chatgpt.com/docs/whats-new/devday-2026",
+      "https://learn.chatgpt.com/codex/dots/tasks-and-memory",
+      "https://learn.chatgpt.com/codex/dots/computers-and-apps"
+    ],
+    "model": [
+      "https://learn.chatgpt.com/docs/dots",
+      "https://openai.com/index/introducing-dots/"
+    ],
+    "multiagent": [
+      "https://learn.chatgpt.com/codex/dots/tasks-and-memory",
+      "https://learn.chatgpt.com/docs/dots"
+    ],
+    "sandbox": [
+      "https://learn.chatgpt.com/codex/dots/computers-and-apps",
+      "https://learn.chatgpt.com/codex/dots/getting-started",
+      "https://openai.com/index/introducing-dots/"
+    ],
+    "browser": [
+      "https://learn.chatgpt.com/codex/dots/computers-and-apps"
+    ],
+    "connectors": [
+      "https://learn.chatgpt.com/codex/dots/getting-started",
+      "https://learn.chatgpt.com/codex/dots/computers-and-apps"
+    ],
+    "skills": [
+      "https://learn.chatgpt.com/codex/dots/computers-and-apps",
+      "https://openai.com/index/introducing-dots/"
+    ],
+    "memory": [
+      "https://learn.chatgpt.com/codex/dots/tasks-and-memory",
+      "https://learn.chatgpt.com/docs/dots"
+    ],
+    "hosting": [
+      "https://learn.chatgpt.com/docs/dots",
+      "https://learn.chatgpt.com/codex/dots/getting-started"
+    ],
+    "guardrails": [
+      "https://learn.chatgpt.com/codex/dots/controls",
+      "https://learn.chatgpt.com/codex/enterprise/dots-admin-guide",
+      "https://openai.com/index/introducing-dots/"
+    ],
+    "identity": [
+      "https://learn.chatgpt.com/codex/dots/computers-and-apps",
+      "https://learn.chatgpt.com/docs/dots",
+      "https://learn.chatgpt.com/codex/enterprise/dots-admin-guide"
+    ]
+  },
+  "researched": "2026-10-21"
 }

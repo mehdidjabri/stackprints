@@ -3,29 +3,55 @@
   "name": "Pi",
   "kind": "Coding agent",
   "tagline": "Minimal, hackable coding agent: four tools and extensions for the rest.",
-  "description": "pi (pi-mono by Mario Zechner) is deliberately small: pi-ai talks to 15+ providers, pi-agent-core runs the loop, and the coding agent ships read, write, edit and bash. No permission system, no built-in memory or subagents; everything else is a TypeScript extension or a pi package. Sessions are a branching tree you can export or share.",
+  "description": "Pi is a minimal, extensible agent harness for the terminal, published by Earendil and authored by Mario Zechner. pi-ai gives one API across many model providers, pi-agent-core runs the loop, and the coding agent enables read, write, edit and bash by default, with grep, find, ls, an MCP client and a QuickJS-sandboxed codemode tool built in. It does not ask for approval before tool calls and ships without sub-agents or plan mode; extensions, skills, prompt templates and Pi packages add the rest. Sessions are JSONL trees you can branch, fork and clone.",
   "links": {
     "site": "https://pi.dev",
     "repo": "https://github.com/earendil-works/pi",
     "docs": "https://pi.dev/docs/latest"
   },
+  "disclosure": "open-source",
   "layers": {
     "channels": "cli-tui",
     "ui": "plain-text",
     "harness": "pi",
     "model": [
-      "claude-opus-5-5",
       "gpt-6-1-sol",
-      "qwen-3-8"
+      "kimi-k3",
+      "glm-5-3",
+      "deepseek-v4-pro",
+      "grok-4-7",
+      "gpt-oss",
+      "gpt-6-luna"
     ],
-    "router": "pi-ai",
+    "router": [
+      "pi-ai",
+      "direct-provider",
+      "openrouter",
+      "vercel-ai-gateway",
+      "cloudflare-ai-gateway"
+    ],
+    "inference": [
+      "local-gpu",
+      "ollama",
+      "vllm",
+      "groq",
+      "cerebras",
+      "fireworks",
+      "together",
+      "baseten",
+      "bedrock-vertex-azure"
+    ],
     "persona": [
       "agents-md",
+      "claude-md",
       "system-md"
     ],
-    "multiagent": "worktrees-tmux",
     "tools": "read-write-edit-bash",
-    "sandbox": "host-machine",
+    "sandbox": [
+      "host-machine",
+      "docker",
+      "local-vm"
+    ],
     "mcp": [
       "mcp",
       "code-mode"
@@ -35,13 +61,159 @@
       "pi-packages",
       "slash-commands"
     ],
-    "memory": "none",
     "retrieval": "grep-glob",
     "storage": [
       "jsonl-transcripts",
       "branching-sessions"
     ],
     "hosting": "your-laptop",
-    "guardrails": "yolo"
-  }
+    "guardrails": [
+      "yolo",
+      "hooks"
+    ],
+    "identity": "env-vars"
+  },
+  "evidence": {
+    "channels": [
+      "https://github.com/earendil-works/pi",
+      "https://pi.dev/docs/latest/usage"
+    ],
+    "ui": [
+      "https://pi.dev/docs/latest/how-pi-works"
+    ],
+    "harness": [
+      "https://github.com/earendil-works/pi",
+      "https://pi.dev/docs/latest/how-pi-works"
+    ],
+    "model": [
+      "https://github.com/earendil-works/pi/blob/main/packages/coding-agent/src/core/model-resolver.ts",
+      "https://pi.dev/docs/latest/models"
+    ],
+    "router": [
+      "https://github.com/earendil-works/pi",
+      "https://pi.dev/docs/latest/providers"
+    ],
+    "inference": [
+      "https://pi.dev/docs/latest/models",
+      "https://pi.dev/docs/latest/providers",
+      "https://pi.dev/docs/latest/llama-cpp"
+    ],
+    "persona": [
+      "https://pi.dev/docs/latest/configuration"
+    ],
+    "tools": [
+      "https://pi.dev/docs/latest/settings",
+      "https://pi.dev/docs/latest/how-pi-works"
+    ],
+    "sandbox": [
+      "https://pi.dev/docs/latest/security",
+      "https://pi.dev/docs/latest/containerization"
+    ],
+    "mcp": [
+      "https://pi.dev/docs/latest/mcp",
+      "https://pi.dev/docs/latest/codemode"
+    ],
+    "skills": [
+      "https://pi.dev/docs/latest/skills",
+      "https://pi.dev/docs/latest/packages",
+      "https://pi.dev/docs/latest/prompt-templates"
+    ],
+    "retrieval": [
+      "https://pi.dev/docs/latest/settings"
+    ],
+    "storage": [
+      "https://pi.dev/docs/latest/sessions",
+      "https://pi.dev/docs/latest/session-format",
+      "https://pi.dev/docs/latest/how-pi-works"
+    ],
+    "hosting": [
+      "https://github.com/earendil-works/pi",
+      "https://pi.dev/docs/latest/security"
+    ],
+    "guardrails": [
+      "https://pi.dev/docs/latest/security",
+      "https://pi.dev/docs/latest/extensions"
+    ],
+    "identity": [
+      "https://pi.dev/docs/latest/providers"
+    ]
+  },
+  "notUsed": [
+    "multiagent"
+  ],
+  "sources": [
+    {
+      "title": "Pi README (GitHub)",
+      "url": "https://github.com/earendil-works/pi"
+    },
+    {
+      "title": "pi-coding-agent package.json (GitHub)",
+      "url": "https://github.com/earendil-works/pi/blob/main/packages/coding-agent/package.json"
+    },
+    {
+      "title": "model-resolver.ts: default model per provider (GitHub)",
+      "url": "https://github.com/earendil-works/pi/blob/main/packages/coding-agent/src/core/model-resolver.ts"
+    },
+    {
+      "title": "Pi documentation",
+      "url": "https://pi.dev/docs/latest"
+    },
+    {
+      "title": "How Pi Works",
+      "url": "https://pi.dev/docs/latest/how-pi-works"
+    },
+    {
+      "title": "Settings",
+      "url": "https://pi.dev/docs/latest/settings"
+    },
+    {
+      "title": "Configuration",
+      "url": "https://pi.dev/docs/latest/configuration"
+    },
+    {
+      "title": "Models",
+      "url": "https://pi.dev/docs/latest/models"
+    },
+    {
+      "title": "Providers",
+      "url": "https://pi.dev/docs/latest/providers"
+    },
+    {
+      "title": "MCP Servers",
+      "url": "https://pi.dev/docs/latest/mcp"
+    },
+    {
+      "title": "Codemode",
+      "url": "https://pi.dev/docs/latest/codemode"
+    },
+    {
+      "title": "Run Pi safely",
+      "url": "https://pi.dev/docs/latest/security"
+    },
+    {
+      "title": "Run Pi in an isolated environment",
+      "url": "https://pi.dev/docs/latest/containerization"
+    },
+    {
+      "title": "Sessions and Context",
+      "url": "https://pi.dev/docs/latest/sessions"
+    },
+    {
+      "title": "Skills",
+      "url": "https://pi.dev/docs/latest/skills"
+    },
+    {
+      "title": "Pi packages",
+      "url": "https://pi.dev/docs/latest/packages"
+    },
+    {
+      "title": "Prompt Templates",
+      "url": "https://pi.dev/docs/latest/prompt-templates"
+    },
+    {
+      "title": "Extensions",
+      "url": "https://pi.dev/docs/latest/extensions"
+    }
+  ],
+  "researched": "2026-10-21"
 }

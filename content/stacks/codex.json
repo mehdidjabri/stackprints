@@ -3,44 +3,319 @@
   "name": "Codex",
   "kind": "Coding agent",
   "tagline": "OpenAI's open-source coding agent, local and in the cloud.",
-  "description": "Codex is OpenAI's coding agent: a Rust CLI and IDE extension that edits with apply_patch inside an OS-level sandbox, plus cloud tasks that run in parallel containers and return pull requests. AGENTS.md carries repo instructions.",
+  "description": "Codex is OpenAI's coding agent. The CLI, the app server that powers rich clients such as the VS Code extension, and the Codex SDK are open source (Rust, Apache-2.0) in openai/codex; the IDE extension and Codex Cloud are not. Locally, Codex runs shell commands and apply_patch edits inside an OS-level sandbox (Seatbelt on macOS, bubblewrap on Linux and WSL2, a native Windows sandbox), with approval prompts or an automatic reviewer for anything that crosses it. Cloud tasks run on OpenAI's infrastructure, each in its own VM built from a published environment, and can be started from the web, the ChatGPT desktop and mobile apps, Slack, Linear or GitHub. AGENTS.md carries instructions; skills, plugins, hooks and MCP extend it, optional local memories are generated in the background from past chats, and telemetry can be exported over OpenTelemetry.",
   "links": {
     "site": "https://chatgpt.com/codex",
     "repo": "https://github.com/openai/codex",
     "docs": "https://developers.openai.com/codex"
   },
+  "disclosure": "open-source",
   "layers": {
     "channels": [
       "cli-tui",
       "ide",
-      "web-chat"
+      "desktop-app",
+      "web-chat",
+      "mobile-app",
+      "slack"
     ],
+    "proactivity": [
+      "cron",
+      "webhooks"
+    ],
+    "ui": "plain-text",
     "harness": "codex",
     "model": [
       "gpt-6-astra",
-      "gpt-6-1-sol"
+      "gpt-6-1-sol",
+      "gpt-6-luna"
     ],
-    "router": "direct-provider",
+    "router": [
+      "direct-provider",
+      "litellm"
+    ],
+    "inference": [
+      "ollama",
+      "bedrock-vertex-azure"
+    ],
     "persona": "agents-md",
     "multiagent": "subagents",
     "tools": [
-      "read-write-edit-bash",
-      "apply-patch"
+      "apply-patch",
+      "image-generation"
     ],
     "search": "web-search",
     "sandbox": [
       "host-machine",
-      "per-user-cloud-computer"
+      "per-task-cloud-vm"
+    ],
+    "browser": [
+      "chrome-extension",
+      "computer-use-api"
     ],
     "mcp": "mcp",
-    "skills": "agent-skills-skill-md",
-    "memory": "agent-notes",
+    "skills": [
+      "agent-skills-skill-md",
+      "plugins"
+    ],
+    "memory": "dreaming",
     "retrieval": "grep-glob",
-    "storage": "git",
+    "storage": [
+      "jsonl-transcripts",
+      "sqlite",
+      "git"
+    ],
     "hosting": [
       "your-laptop",
       "vendor-cloud"
     ],
-    "guardrails": "permission-modes"
-  }
+    "guardrails": [
+      "permission-modes",
+      "auto-review",
+      "hooks"
+    ],
+    "identity": [
+      "credential-vault",
+      "mcp-oauth-2-1"
+    ],
+    "observability": "opentelemetry-genai"
+  },
+  "evidence": {
+    "channels": [
+      "https://learn.chatgpt.com/docs/codex/cli",
+      "https://learn.chatgpt.com/docs/codex/ide",
+      "https://learn.chatgpt.com/docs/environments/modes",
+      "https://learn.chatgpt.com/docs/cloud",
+      "https://learn.chatgpt.com/docs/mobile",
+      "https://learn.chatgpt.com/docs/third-party/slack"
+    ],
+    "proactivity": [
+      "https://learn.chatgpt.com/docs/automations",
+      "https://learn.chatgpt.com/docs/third-party/github"
+    ],
+    "ui": [
+      "https://learn.chatgpt.com/docs/codex/cli"
+    ],
+    "harness": [
+      "https://github.com/openai/codex",
+      "https://learn.chatgpt.com/docs/open-source"
+    ],
+    "model": [
+      "https://learn.chatgpt.com/docs/models"
+    ],
+    "router": [
+      "https://github.com/openai/codex",
+      "https://learn.chatgpt.com/docs/enterprise/bedrock-through-litellm"
+    ],
+    "inference": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "https://learn.chatgpt.com/docs/amazon-bedrock"
+    ],
+    "persona": [
+      "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+    ],
+    "multiagent": [
+      "https://learn.chatgpt.com/docs/agent-configuration/subagents"
+    ],
+    "tools": [
+      "https://learn.chatgpt.com/docs/hooks",
+      "https://github.com/openai/codex/blob/main/codex-rs/core/gpt_5_codex_prompt.md",
+      "https://learn.chatgpt.com/docs/image-generation"
+    ],
+    "search": [
+      "https://learn.chatgpt.com/docs/web-search"
+    ],
+    "sandbox": [
+      "https://learn.chatgpt.com/docs/sandboxing",
+      "https://learn.chatgpt.com/docs/environments/cloud-environments"
+    ],
+    "browser": [
+      "https://learn.chatgpt.com/docs/chrome-extension",
+      "https://learn.chatgpt.com/docs/computer-use"
+    ],
+    "mcp": [
+      "https://learn.chatgpt.com/docs/extend/mcp"
+    ],
+    "skills": [
+      "https://learn.chatgpt.com/docs/skills-and-plugins",
+      "https://learn.chatgpt.com/docs/customization/overview"
+    ],
+    "memory": [
+      "https://learn.chatgpt.com/docs/customization/memories",
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "retrieval": [
+      "https://github.com/openai/codex/blob/main/codex-rs/core/gpt_5_codex_prompt.md"
+    ],
+    "storage": [
+      "https://learn.chatgpt.com/docs/app-server",
+      "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "https://learn.chatgpt.com/docs/environments/git-worktrees"
+    ],
+    "hosting": [
+      "https://learn.chatgpt.com/docs/environments/modes",
+      "https://learn.chatgpt.com/docs/cloud"
+    ],
+    "guardrails": [
+      "https://learn.chatgpt.com/docs/permission-modes",
+      "https://learn.chatgpt.com/docs/sandboxing/auto-review",
+      "https://learn.chatgpt.com/docs/agent-approvals-security",
+      "https://learn.chatgpt.com/docs/hooks"
+    ],
+    "identity": [
+      "https://learn.chatgpt.com/docs/environments/cloud-environments",
+      "https://learn.chatgpt.com/docs/extend/mcp"
+    ],
+    "observability": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "https://github.com/openai/codex/blob/main/codex-rs/otel/src/events/session_telemetry.rs"
+    ]
+  },
+  "sources": [
+    {
+      "title": "openai/codex repository (README)",
+      "url": "https://github.com/openai/codex"
+    },
+    {
+      "title": "Codex system prompt (gpt_5_codex_prompt.md)",
+      "url": "https://github.com/openai/codex/blob/main/codex-rs/core/gpt_5_codex_prompt.md"
+    },
+    {
+      "title": "Open Source (Codex docs)",
+      "url": "https://learn.chatgpt.com/docs/open-source"
+    },
+    {
+      "title": "Codex CLI",
+      "url": "https://learn.chatgpt.com/docs/codex/cli"
+    },
+    {
+      "title": "Codex IDE extension",
+      "url": "https://learn.chatgpt.com/docs/codex/ide"
+    },
+    {
+      "title": "ChatGPT desktop app",
+      "url": "https://learn.chatgpt.com/docs/app"
+    },
+    {
+      "title": "Codex environments",
+      "url": "https://learn.chatgpt.com/docs/environments/modes"
+    },
+    {
+      "title": "Codex Cloud",
+      "url": "https://learn.chatgpt.com/docs/cloud"
+    },
+    {
+      "title": "Cloud environments",
+      "url": "https://learn.chatgpt.com/docs/environments/cloud-environments"
+    },
+    {
+      "title": "Codex on mobile",
+      "url": "https://learn.chatgpt.com/docs/mobile"
+    },
+    {
+      "title": "Use ChatGPT in Slack",
+      "url": "https://learn.chatgpt.com/docs/third-party/slack"
+    },
+    {
+      "title": "Use Codex in Linear",
+      "url": "https://learn.chatgpt.com/docs/third-party/linear"
+    },
+    {
+      "title": "Review GitHub pull requests with Codex",
+      "url": "https://learn.chatgpt.com/docs/third-party/github"
+    },
+    {
+      "title": "Scheduled tasks",
+      "url": "https://learn.chatgpt.com/docs/automations"
+    },
+    {
+      "title": "Models",
+      "url": "https://learn.chatgpt.com/docs/models"
+    },
+    {
+      "title": "Configuration Reference",
+      "url": "https://learn.chatgpt.com/docs/config-file/config-reference"
+    },
+    {
+      "title": "Use ChatGPT Work and Codex with Amazon Bedrock",
+      "url": "https://learn.chatgpt.com/docs/amazon-bedrock"
+    },
+    {
+      "title": "Bedrock through LiteLLM",
+      "url": "https://learn.chatgpt.com/docs/enterprise/bedrock-through-litellm"
+    },
+    {
+      "title": "Custom instructions with AGENTS.md",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+    },
+    {
+      "title": "Subagents",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/subagents"
+    },
+    {
+      "title": "Hooks",
+      "url": "https://learn.chatgpt.com/docs/hooks"
+    },
+    {
+      "title": "Image generation",
+      "url": "https://learn.chatgpt.com/docs/image-generation"
+    },
+    {
+      "title": "Web search",
+      "url": "https://learn.chatgpt.com/docs/web-search"
+    },
+    {
+      "title": "Sandbox",
+      "url": "https://learn.chatgpt.com/docs/sandboxing"
+    },
+    {
+      "title": "Agent approvals & security",
+      "url": "https://learn.chatgpt.com/docs/agent-approvals-security"
+    },
+    {
+      "title": "Auto-review",
+      "url": "https://learn.chatgpt.com/docs/sandboxing/auto-review"
+    },
+    {
+      "title": "Permissions",
+      "url": "https://learn.chatgpt.com/docs/permission-modes"
+    },
+    {
+      "title": "Browser extension",
+      "url": "https://learn.chatgpt.com/docs/chrome-extension"
+    },
+    {
+      "title": "Computer Use",
+      "url": "https://learn.chatgpt.com/docs/computer-use"
+    },
+    {
+      "title": "Model Context Protocol",
+      "url": "https://learn.chatgpt.com/docs/extend/mcp"
+    },
+    {
+      "title": "Skills & Plugins",
+      "url": "https://learn.chatgpt.com/docs/skills-and-plugins"
+    },
+    {
+      "title": "Customization",
+      "url": "https://learn.chatgpt.com/docs/customization/overview"
+    },
+    {
+      "title": "Memories",
+      "url": "https://learn.chatgpt.com/docs/customization/memories"
+    },
+    {
+      "title": "Codex App Server",
+      "url": "https://learn.chatgpt.com/docs/app-server"
+    },
+    {
+      "title": "Worktrees",
+      "url": "https://learn.chatgpt.com/docs/environments/git-worktrees"
+    },
+    {
+      "title": "Codex OpenTelemetry session telemetry (codex-rs/otel)",
+      "url": "https://github.com/openai/codex/blob/main/codex-rs/otel/src/events/session_telemetry.rs"
+    }
+  ],
+  "researched": "2026-10-21"
 }

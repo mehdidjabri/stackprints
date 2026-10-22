@@ -1,0 +1,44 @@
+{
+  "order": 110,
+  "id": "injection-classifier",
+  "name": "Injection classifier",
+  "note": "Screens untrusted content for injected instructions",
+  "profile": "pattern",
+  "summary": "A dedicated classifier checks web pages and tool outputs for instructions aimed at the agent, and blocks content or actions that look driven by them. It is one layer among several: confirmations and scoped permissions cover what it misses.",
+  "how": [
+    "Untrusted content (pages, tool outputs) is passed to the classifier",
+    "The classifier flags text that tries to instruct the agent",
+    "Flagged content is blocked, or the action it would drive is stopped",
+    "Other layers, such as user confirmations, catch what slips through"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Perplexity Comet (ML classifiers), Gemini in Chrome (runs alongside the planner)"
+    ],
+    [
+      "Open model",
+      "Perplexity BrowseSafe (MIT, fine-tuned from Qwen3-30B-A3B)"
+    ],
+    [
+      "BrowseSafe-Bench",
+      "90.4% F1 (vendor-reported)"
+    ],
+    [
+      "Trade-off",
+      "Catches known attack styles; indirect and multilingual attacks are harder"
+    ]
+  ],
+  "links": {
+    "example": "https://huggingface.co/perplexity-ai/browsesafe"
+  },
+  "goodFor": [
+    "Browser agents reading arbitrary web pages",
+    "Agents that process email or other outside content"
+  ],
+  "watchOut": [
+    "No classifier catches every attack",
+    "Adds latency and cost to every page or tool result"
+  ],
+  "researched": "2026-10-21"
+}

@@ -3,7 +3,30 @@
   "name": "Agent Commerce",
   "kind": "Commerce agent",
   "tagline": "An agent that can shop, pay and get paid, within limits.",
-  "description": "A shopping agent: browses merchants, compares, and checks out through agent commerce protocols with single-use cards and per-purchase approval, while merchants expose their catalogs as MCP servers and llms.txt.",
+  "description": "An example design for a shopping agent: it browses merchants, compares, and checks out through agent commerce protocols with single-use cards and per-purchase approval, while merchants expose their catalogs as MCP servers and llms.txt. Stripe's agent toolkit and x402 cover the receiving side.",
+  "disclosure": "example",
+  "sources": [
+    {
+      "title": "Agentic Commerce Protocol",
+      "url": "https://www.agenticcommerce.dev"
+    },
+    {
+      "title": "Pay online with the Link wallet (Stripe)",
+      "url": "https://docs.stripe.com/agentic-commerce/link-cli/use-link-wallet-pay-online"
+    },
+    {
+      "title": "x402",
+      "url": "https://www.x402.org"
+    },
+    {
+      "title": "Stagehand documentation",
+      "url": "https://docs.stagehand.dev"
+    },
+    {
+      "title": "OpenAI Agents SDK",
+      "url": "https://openai.github.io/openai-agents-python/"
+    }
+  ],
   "layers": {
     "channels": [
       "imessage",
@@ -11,12 +34,12 @@
     ],
     "readiness": [
       "mcp-server",
-      "agentready",
-      "ora"
+      "llms-txt",
+      "agentready"
     ],
     "harness": "openai-agents-sdk",
     "model": "gpt-6-1-sol",
-    "router": "openrouter",
+    "router": "direct-provider",
     "browser": "stagehand",
     "mcp": "mcp",
     "payments": [
@@ -31,6 +54,8 @@
       "per-action-autonomy",
       "audit-trail"
     ],
-    "identity": "credential-vault"
-  }
+    "identity": "credential-vault",
+    "observability": "langfuse"
+  },
+  "researched": "2026-10-21"
 }

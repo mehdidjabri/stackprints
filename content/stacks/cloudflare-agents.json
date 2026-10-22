@@ -3,37 +3,161 @@
   "name": "Cloudflare Agents",
   "kind": "Infrastructure",
   "tagline": "Stateful agents as Durable Objects on the edge.",
-  "description": "Cloudflare's Agents SDK gives each agent its own Durable Object with built-in SQLite state, WebSockets and scheduling, backed by Workers AI or any model through AI Gateway, Workflows for durability, Sandbox containers for code, and Browser Rendering for the web.",
+  "description": "Cloudflare's Agents SDK runs each agent as a Durable Object with its own SQLite storage, WebSockets and scheduling, with Think as its opinionated harness; chat agents also build on the AI SDK. Models come from Workers AI or from other providers through AI Gateway. Workflows and fibers add durability, Containers-based sandboxes run code, Browser Run drives websites, AI Search and Vectorize handle retrieval, and x402 handles payments. The docs use several models in examples but don't prescribe one.",
   "links": {
     "site": "https://agents.cloudflare.com",
     "repo": "https://github.com/cloudflare/agents",
     "docs": "https://developers.cloudflare.com/agents/"
   },
+  "disclosure": "documented",
+  "sources": [
+    {
+      "title": "Cloudflare Agents docs",
+      "url": "https://developers.cloudflare.com/agents/"
+    },
+    {
+      "title": "Build agents on Cloudflare",
+      "url": "https://agents.cloudflare.com"
+    },
+    {
+      "title": "cloudflare/agents (GitHub)",
+      "url": "https://github.com/cloudflare/agents"
+    },
+    {
+      "title": "Project Think: building the next generation of AI agents on Cloudflare (Cloudflare blog, 2026-04-15)",
+      "url": "https://blog.cloudflare.com/project-think/"
+    },
+    {
+      "title": "Agents docs: Models",
+      "url": "https://developers.cloudflare.com/agents/models/"
+    }
+  ],
   "layers": {
-    "channels": "web-chat",
+    "channels": [
+      "web-chat",
+      "email",
+      "slack"
+    ],
     "proactivity": [
       "cron",
       "webhooks"
     ],
-    "harness": "ai-sdk-agent",
-    "model": [
-      "glm-5-3",
-      "gemma-4",
-      "claude-sonnet-5-5"
-    ],
+    "voice": "cloudflare-voice",
+    "readiness": "mcp-server",
+    "harness": "cloudflare-think",
     "router": "cloudflare-ai-gateway",
+    "inference": "workers-ai",
+    "multiagent": "subagents",
     "sandbox": "cloudflare-sandbox",
-    "browser": "cloud-browser",
-    "mcp": "mcp",
+    "browser": "browser-run",
+    "mcp": [
+      "mcp",
+      "code-mode"
+    ],
     "payments": "x402",
-    "memory": "supermemory",
-    "retrieval": "grep-glob",
+    "skills": "agent-skills-skill-md",
+    "memory": "agent-notes",
+    "retrieval": [
+      "cloudflare-ai-search",
+      "vectorize"
+    ],
     "storage": [
       "durable-objects",
       "sqlite",
       "s3-r2"
     ],
     "hosting": "cloudflare-workers",
-    "durable": "cloudflare-workflows"
-  }
+    "durable": "cloudflare-workflows",
+    "guardrails": "per-action-autonomy",
+    "identity": "mcp-oauth-2-1",
+    "observability": "opentelemetry-genai"
+  },
+  "evidence": {
+    "channels": [
+      "https://developers.cloudflare.com/agents/communication-channels/chat/",
+      "https://developers.cloudflare.com/agents/communication-channels/email/",
+      "https://developers.cloudflare.com/agents/communication-channels/slack/"
+    ],
+    "proactivity": [
+      "https://developers.cloudflare.com/agents/runtime/execution/schedule-tasks/",
+      "https://developers.cloudflare.com/agents/communication-channels/webhooks/"
+    ],
+    "voice": [
+      "https://developers.cloudflare.com/agents/communication-channels/voice/",
+      "https://github.com/cloudflare/agents"
+    ],
+    "readiness": [
+      "https://developers.cloudflare.com/agents/model-context-protocol/",
+      "https://developers.cloudflare.com/agents/model-context-protocol/protocol/authorization/"
+    ],
+    "harness": [
+      "https://developers.cloudflare.com/agents/harnesses/think/",
+      "https://blog.cloudflare.com/project-think/"
+    ],
+    "router": [
+      "https://developers.cloudflare.com/agents/models/"
+    ],
+    "inference": [
+      "https://developers.cloudflare.com/agents/models/",
+      "https://developers.cloudflare.com/workers-ai/",
+      "https://agents.cloudflare.com"
+    ],
+    "multiagent": [
+      "https://developers.cloudflare.com/agents/runtime/execution/sub-agents/"
+    ],
+    "sandbox": [
+      "https://developers.cloudflare.com/agents/tools/sandbox/",
+      "https://developers.cloudflare.com/sandbox/",
+      "https://blog.cloudflare.com/project-think/"
+    ],
+    "browser": [
+      "https://developers.cloudflare.com/agents/tools/browser/",
+      "https://developers.cloudflare.com/browser-run/"
+    ],
+    "mcp": [
+      "https://developers.cloudflare.com/agents/tools/mcp/",
+      "https://developers.cloudflare.com/agents/tools/codemode/"
+    ],
+    "payments": [
+      "https://developers.cloudflare.com/agents/tools/payments/x402/",
+      "https://developers.cloudflare.com/agents/tools/payments/"
+    ],
+    "skills": [
+      "https://developers.cloudflare.com/agents/runtime/execution/agent-skills/"
+    ],
+    "memory": [
+      "https://developers.cloudflare.com/agents/concepts/conversation-state-and-memory/",
+      "https://blog.cloudflare.com/project-think/"
+    ],
+    "retrieval": [
+      "https://developers.cloudflare.com/agents/tools/ai-search/",
+      "https://agents.cloudflare.com",
+      "https://developers.cloudflare.com/agents/concepts/conversation-state-and-memory/"
+    ],
+    "storage": [
+      "https://developers.cloudflare.com/agents/runtime/agents-api/",
+      "https://developers.cloudflare.com/agents/concepts/conversation-state-and-memory/",
+      "https://developers.cloudflare.com/agents/runtime/execution/agent-skills/",
+      "https://blog.cloudflare.com/project-think/"
+    ],
+    "hosting": [
+      "https://developers.cloudflare.com/agents/",
+      "https://github.com/cloudflare/agents"
+    ],
+    "durable": [
+      "https://developers.cloudflare.com/agents/runtime/execution/run-workflows/",
+      "https://developers.cloudflare.com/agents/runtime/execution/durable-execution/"
+    ],
+    "guardrails": [
+      "https://developers.cloudflare.com/agents/concepts/agentic-patterns/human-in-the-loop/",
+      "https://developers.cloudflare.com/agents/communication-channels/chat/chat-agents/"
+    ],
+    "identity": [
+      "https://developers.cloudflare.com/agents/model-context-protocol/protocol/authorization/"
+    ],
+    "observability": [
+      "https://developers.cloudflare.com/agents/runtime/operations/observability/tracing/"
+    ]
+  },
+  "researched": "2026-10-21"
 }

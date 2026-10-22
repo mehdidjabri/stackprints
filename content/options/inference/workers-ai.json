@@ -1,0 +1,50 @@
+{
+  "order": 120,
+  "id": "workers-ai",
+  "name": "Workers AI",
+  "url": "developers.cloudflare.com/workers-ai",
+  "note": "Serverless GPU inference on Cloudflare",
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Workers AI runs models on serverless GPUs in Cloudflare's network, called from Workers through the AI binding or from the Cloudflare REST API. It is the default model provider in the Agents SDK starter, and the same binding also reaches other providers' models through AI Gateway.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Status",
+      "Generally available, Workers Free and Paid plans"
+    ],
+    [
+      "Catalog",
+      "50+ open-source models (vendor-reported)"
+    ],
+    [
+      "Free allocation",
+      "10,000 Neurons per day"
+    ],
+    [
+      "Pricing",
+      "$0.011 per 1,000 Neurons above the free allocation; per-model token rates listed"
+    ],
+    [
+      "Model IDs",
+      "@cf/ prefix, e.g. @cf/zai-org/glm-4.7-flash"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.cloudflare.com/workers-ai/",
+    "models": "https://developers.cloudflare.com/workers-ai/models/",
+    "pricing": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+  },
+  "goodFor": [
+    "Agents already running on Cloudflare Workers",
+    "Open-weight models without managing GPUs"
+  ],
+  "watchOut": [
+    "Anthropic and OpenAI models go through AI Gateway, not Workers AI",
+    "Some larger models need Workers Paid or prepaid credits"
+  ],
+  "researched": "2026-10-21"
+}

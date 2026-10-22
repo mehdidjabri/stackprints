@@ -2,40 +2,119 @@
   "slug": "instinct",
   "name": "Instinct",
   "kind": "Consumer agent",
-  "tagline": "No app. Just text or call your agent, and it texts you first.",
-  "description": "Instinct is an invite-only personal agent reachable only over SMS, iMessage and phone calls. It works on its own computer with your connected accounts, has its own email address, reaches out first about dropped threads, pays with single-use cards, keeps logins in a vault, signs its tool calls, falls back to a human concierge, and can coordinate with other people's Instinct agents. Stack inferred from public reporting.",
+  "tagline": "No app: text, call or email an agent with its own phone number and inbox.",
+  "description": "Instinct, from Spear Street Technology, is an invite-only personal agent reached by text (SMS, iMessage, WhatsApp), phone call or email. Press reports that it works on its own virtual phone and computer, has its own email address and phone number, connects to Google Workspace, pays through Stripe Link, and coordinates with friends' Instincts through a trusted network; its founder says users share logins through an Instinct vault, with a 1Password integration rolling out. Instinct publishes no technical documentation, so the models, the computer and browser setup, memory, approval rules and hosting provider are not disclosed, and most details here come from press coverage and the founder's posts.",
+  "disclosure": "closed",
   "links": {
     "site": "https://instinct.com"
   },
   "layers": {
     "channels": [
-      "imessage",
       "sms-rcs",
+      "imessage",
+      "whatsapp",
       "phone-calls",
       "email"
     ],
-    "proactivity": [
-      "background-research",
-      "self-scheduled-wake"
-    ],
     "ui": "plain-text",
-    "voice": "elevenlabs",
     "devices": "phone",
     "multiagent": "agent-network",
     "sandbox": "per-user-cloud-computer",
     "browser": "cloud-browser",
     "connectors": "calendar-email",
-    "payments": [
-      "single-use-cards",
-      "shop-pay"
-    ],
-    "memory": "agent-notes",
+    "payments": "single-use-cards",
     "hosting": "vendor-cloud",
-    "guardrails": "audit-trail",
     "identity": [
       "credential-vault",
-      "signed-tool-calls",
+      "1password",
       "agent-phone-email"
     ]
-  }
+  },
+  "evidence": {
+    "channels": [
+      "https://instinct.com",
+      "https://techcrunch.com/2026/09/28/viral-ai-agent-instinct-raises-1b-series-c-at-a-10b-valuation/",
+      "https://siliconangle.com/?p=848490",
+      "https://techcrunch.com/2026/08/24/instincts-powerful-ai-assistant-is-raising-privacy-and-security-concerns/",
+      "https://techcrunch.com/2026/09/09/viral-ai-assistant-instinct-now-has-its-own-email-address/"
+    ],
+    "ui": [
+      "https://instinct.com"
+    ],
+    "devices": [
+      "https://siliconangle.com/?p=848490",
+      "https://techcrunch.com/2026/09/09/viral-ai-assistant-instinct-now-has-its-own-email-address/"
+    ],
+    "multiagent": [
+      "https://techcrunch.com/2026/09/17/rival-ai-agents-instinct-and-metas-muse-both-add-the-ability-to-make-calls/",
+      "https://techcrunch.com/2026/09/28/viral-ai-agent-instinct-raises-1b-series-c-at-a-10b-valuation/",
+      "https://siliconangle.com/?p=848490"
+    ],
+    "sandbox": [
+      "https://siliconangle.com/?p=848490",
+      "https://techcrunch.com/2026/09/28/viral-ai-agent-instinct-raises-1b-series-c-at-a-10b-valuation/"
+    ],
+    "browser": [
+      "https://siliconangle.com/?p=848490"
+    ],
+    "connectors": [
+      "https://instinct.com/privacy-policy",
+      "https://techcrunch.com/2026/10/10/all-the-ai-agents-that-can-live-in-your-text-messages/"
+    ],
+    "payments": [
+      "https://www.paymentsdive.com/news/stripes-digital-wallet-paypal-embraces-ai-bots-agentic-commerce/830753/",
+      "https://techcrunch.com/2026/09/09/viral-ai-assistant-instinct-now-has-its-own-email-address/"
+    ],
+    "hosting": [
+      "https://instinct.com/privacy-policy"
+    ],
+    "identity": [
+      "https://x.com/noahrshinn/status/2095911123291881608",
+      "https://techcrunch.com/2026/09/09/viral-ai-assistant-instinct-now-has-its-own-email-address/",
+      "https://techcrunch.com/2026/09/28/viral-ai-agent-instinct-raises-1b-series-c-at-a-10b-valuation/"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Instinct",
+      "url": "https://instinct.com"
+    },
+    {
+      "title": "Instinct privacy policy",
+      "url": "https://instinct.com/privacy-policy"
+    },
+    {
+      "title": "Instinct's powerful AI assistant is raising privacy and security concerns (TechCrunch)",
+      "url": "https://techcrunch.com/2026/08/24/instincts-powerful-ai-assistant-is-raising-privacy-and-security-concerns/"
+    },
+    {
+      "title": "Viral AI assistant Instinct now has its own email address (TechCrunch)",
+      "url": "https://techcrunch.com/2026/09/09/viral-ai-assistant-instinct-now-has-its-own-email-address/"
+    },
+    {
+      "title": "Rival AI agents Instinct and Meta's Muse both add the ability to make calls (TechCrunch)",
+      "url": "https://techcrunch.com/2026/09/17/rival-ai-agents-instinct-and-metas-muse-both-add-the-ability-to-make-calls/"
+    },
+    {
+      "title": "Viral AI agent Instinct raises $1B Series C at a $10B valuation (TechCrunch)",
+      "url": "https://techcrunch.com/2026/09/28/viral-ai-agent-instinct-raises-1b-series-c-at-a-10b-valuation/"
+    },
+    {
+      "title": "All the AI agents that can live in your text messages (TechCrunch)",
+      "url": "https://techcrunch.com/2026/10/10/all-the-ai-agents-that-can-live-in-your-text-messages/"
+    },
+    {
+      "title": "Everyday personal AI assistant startup Instinct raises $1B at $10B valuation (SiliconANGLE)",
+      "url": "https://siliconangle.com/?p=848490"
+    },
+    {
+      "title": "Stripe's wallet embraces AI bots (Payments Dive)",
+      "url": "https://www.paymentsdive.com/news/stripes-digital-wallet-paypal-embraces-ai-bots-agentic-commerce/830753/"
+    },
+    {
+      "title": "Noah Shinn announces the Instinct and 1Password partnership (X)",
+      "url": "https://x.com/noahrshinn/status/2095911123291881608"
+    }
+  ],
+  "researched": "2026-10-21"
 }

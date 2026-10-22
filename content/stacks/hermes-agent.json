@@ -3,15 +3,19 @@
   "name": "Hermes Agent",
   "kind": "Personal agent",
   "tagline": "Nous Research's self-improving agent that writes its own skills.",
-  "description": "Hermes Agent from Nous Research is a Python agent with a learning loop: after complex tasks it writes and refines its own skills, nudges its memory, and searches past sessions. One gateway serves 20+ platforms, seven terminal backends run code from local to Modal or Daytona, Honcho models the user, and Atropos turns trajectories into RL training data.",
+  "description": "Hermes Agent from Nous Research is a Python agent with a learning loop: it writes and refines its own skills, keeps bounded MEMORY.md and USER.md notes through a memory tool, and searches past sessions stored in SQLite with FTS5. One gateway serves 20+ messaging platforms next to a TUI, a desktop app and a web dashboard. The terminal tool runs locally or in Docker, SSH, Singularity, Modal, Daytona or Vercel Sandbox, external memory providers such as Honcho, Mem0 and Supermemory plug in, and Nous Portal bundles models with a tool gateway for search, images, speech and cloud browsers.",
   "links": {
     "site": "https://hermes-agent.nousresearch.com",
     "repo": "https://github.com/NousResearch/hermes-agent",
     "docs": "https://hermes-agent.nousresearch.com/docs/"
   },
+  "disclosure": "open-source",
   "layers": {
     "channels": [
       "cli-tui",
+      "desktop-app",
+      "web-chat",
+      "ide",
       "telegram",
       "discord",
       "slack",
@@ -19,51 +23,300 @@
       "signal",
       "email",
       "sms-rcs",
-      "ide"
+      "imessage",
+      "microsoft-teams"
     ],
-    "proactivity": "cron",
-    "voice": "whisper",
+    "proactivity": [
+      "cron",
+      "heartbeat",
+      "webhooks",
+      "self-scheduled-wake"
+    ],
+    "ui": [
+      "plain-text",
+      "goals-activity-feed"
+    ],
+    "voice": [
+      "whisper",
+      "elevenlabs"
+    ],
     "devices": "home-assistant",
-    "harness": "hermes-agent",
+    "harness": [
+      "hermes-agent",
+      "codex"
+    ],
     "model": [
-      "hermes-4",
       "kimi-k3",
-      "claude-sonnet-5-5"
+      "claude-opus-5-5",
+      "claude-sonnet-5-5",
+      "gpt-6-astra"
     ],
     "router": [
       "nous-portal",
-      "openrouter"
+      "openrouter",
+      "litellm",
+      "direct-provider"
     ],
-    "persona": "soul-md",
-    "multiagent": "subagents",
+    "inference": [
+      "ollama",
+      "vllm",
+      "together",
+      "groq",
+      "fireworks",
+      "cerebras",
+      "deepinfra",
+      "bedrock-vertex-azure"
+    ],
+    "persona": [
+      "soul-md",
+      "agents-md",
+      "claude-md"
+    ],
+    "multiagent": [
+      "subagents",
+      "a2a"
+    ],
     "tools": [
       "read-write-edit-bash",
       "image-generation"
     ],
-    "search": "web-search",
+    "search": [
+      "web-search",
+      "firecrawl",
+      "exa",
+      "parallel",
+      "tavily",
+      "brave-search"
+    ],
     "sandbox": [
+      "host-machine",
       "docker",
       "ssh-host",
+      "singularity",
       "modal",
       "daytona",
-      "vercel-sandbox",
-      "singularity"
+      "vercel-sandbox"
     ],
-    "browser": "cloud-browser",
+    "browser": [
+      "browser-use",
+      "browserbase",
+      "cloud-browser",
+      "cua-driver"
+    ],
     "mcp": [
       "mcp",
       "code-mode"
     ],
     "skills": [
       "agent-skills-skill-md",
-      "hermes-skills-hub"
+      "hermes-skills-hub",
+      "plugins",
+      "slash-commands"
     ],
     "memory": [
       "agent-notes",
-      "honcho"
+      "honcho",
+      "mem0",
+      "supermemory"
     ],
-    "retrieval": "sqlite-fts5-sqlite-vec",
+    "retrieval": "grep-glob",
     "storage": "sqlite",
-    "hosting": "home-server-vps"
-  }
+    "hosting": [
+      "your-laptop",
+      "home-server-vps",
+      "vendor-cloud"
+    ],
+    "guardrails": [
+      "auto-review",
+      "permission-modes",
+      "dm-pairing",
+      "hooks"
+    ],
+    "identity": [
+      "env-vars",
+      "credential-vault",
+      "1password"
+    ]
+  },
+  "evidence": {
+    "channels": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/messaging",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/tui",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/desktop",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/web-dashboard",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/acp",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/email"
+    ],
+    "proactivity": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/cron",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/webhooks"
+    ],
+    "ui": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/messaging",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/goals"
+    ],
+    "voice": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/tts",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/voice-mode"
+    ],
+    "devices": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/homeassistant"
+    ],
+    "harness": [
+      "https://github.com/NousResearch/hermes-agent",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/codex-app-server-runtime"
+    ],
+    "model": [
+      "https://hermes-agent.nousresearch.com/docs/reference/model-catalog",
+      "https://hermes-agent.nousresearch.com/docs/api/model-catalog.json"
+    ],
+    "router": [
+      "https://hermes-agent.nousresearch.com/docs/integrations/providers",
+      "https://hermes-agent.nousresearch.com/docs/integrations/nous-portal"
+    ],
+    "inference": [
+      "https://hermes-agent.nousresearch.com/docs/integrations/providers"
+    ],
+    "persona": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/personality"
+    ],
+    "multiagent": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/a2a"
+    ],
+    "tools": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/tools",
+      "https://hermes-agent.nousresearch.com/docs/reference/tools-reference",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/image-generation"
+    ],
+    "search": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/web-search"
+    ],
+    "sandbox": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/tools"
+    ],
+    "browser": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/browser",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/computer-use"
+    ],
+    "mcp": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/code-execution"
+    ],
+    "skills": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/plugins",
+      "https://hermes-agent.nousresearch.com/docs/reference/slash-commands"
+    ],
+    "memory": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/memory",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/memory-providers"
+    ],
+    "retrieval": [
+      "https://hermes-agent.nousresearch.com/docs/reference/tools-reference"
+    ],
+    "storage": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/sessions"
+    ],
+    "hosting": [
+      "https://github.com/NousResearch/hermes-agent",
+      "https://hermes-agent.nousresearch.com/docs/getting-started/installation",
+      "https://hermes-agent.nousresearch.com/docs/guides/manage-hermes-cloud-with-mcp"
+    ],
+    "guardrails": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/security",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/hooks"
+    ],
+    "identity": [
+      "https://hermes-agent.nousresearch.com/docs/user-guide/secrets",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/features/credential-vault",
+      "https://hermes-agent.nousresearch.com/docs/user-guide/secrets/onepassword"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Hermes Agent README (GitHub)",
+      "url": "https://github.com/NousResearch/hermes-agent"
+    },
+    {
+      "title": "pyproject.toml (GitHub)",
+      "url": "https://github.com/NousResearch/hermes-agent/blob/main/pyproject.toml"
+    },
+    {
+      "title": "Messaging Gateway",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/messaging"
+    },
+    {
+      "title": "Tools & Toolsets",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/tools"
+    },
+    {
+      "title": "Built-in Tools Reference",
+      "url": "https://hermes-agent.nousresearch.com/docs/reference/tools-reference"
+    },
+    {
+      "title": "Web search",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/web-search"
+    },
+    {
+      "title": "Browser Automation",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/browser"
+    },
+    {
+      "title": "Computer Use",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/computer-use"
+    },
+    {
+      "title": "Persistent Memory",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/memory"
+    },
+    {
+      "title": "Memory Providers",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/memory-providers"
+    },
+    {
+      "title": "Sessions",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/sessions"
+    },
+    {
+      "title": "Scheduled Tasks (Cron)",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/cron"
+    },
+    {
+      "title": "Session Heartbeats",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat"
+    },
+    {
+      "title": "Subagent Delegation",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation"
+    },
+    {
+      "title": "Security",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/security"
+    },
+    {
+      "title": "AI Providers",
+      "url": "https://hermes-agent.nousresearch.com/docs/integrations/providers"
+    },
+    {
+      "title": "Nous Portal",
+      "url": "https://hermes-agent.nousresearch.com/docs/integrations/nous-portal"
+    },
+    {
+      "title": "Model Catalog",
+      "url": "https://hermes-agent.nousresearch.com/docs/reference/model-catalog"
+    },
+    {
+      "title": "Context Files",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files"
+    },
+    {
+      "title": "Manage Hermes Cloud with MCP",
+      "url": "https://hermes-agent.nousresearch.com/docs/guides/manage-hermes-cloud-with-mcp"
+    }
+  ],
+  "researched": "2026-10-21"
 }

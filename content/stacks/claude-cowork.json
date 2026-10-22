@@ -3,37 +3,193 @@
   "name": "Claude Cowork",
   "kind": "Desktop agent",
   "tagline": "Claude works on your local files and apps, on a schedule.",
-  "description": "Cowork brings the Claude Code loop to knowledge work on the desktop: it reads and edits local files, drives Chrome, runs scheduled tasks locally or in the cloud, and shares memory with chat, with view and edit controls. Stack inferred from public reporting.",
+  "description": "Cowork is Anthropic's agent for knowledge work and, according to Anthropic, uses the same agentic architecture as Claude Code. Since October 6, 2026, new sessions on Pro and Max plans run in the cloud: the agent loop and code execution run in a per-session sandbox on Anthropic's servers, and the Claude Desktop app relays access to connected local folders, the browser and the computer. Local sessions, kept for earlier tasks and existing desktop deployments, run code in a Linux VM on the device. Cowork shares account memory with chat in the cloud, runs scheduled tasks remotely, coordinates sub-agents and Dispatch tasks, and is extended with MCP connectors, skills, plugins and hooks; organisations can export its activity over OpenTelemetry. Anthropic's support center documents this architecture, and a more detailed security architecture overview is available on request from its Trust Center.",
   "links": {
     "site": "https://claude.com/product/cowork",
     "docs": "https://claude.com/resources/guides/claude-cowork-product-guide"
   },
+  "disclosure": "documented",
   "layers": {
-    "channels": "desktop-app",
+    "channels": [
+      "desktop-app",
+      "web-chat",
+      "mobile-app"
+    ],
     "proactivity": "cron",
     "ui": [
       "artifacts",
-      "mcp-apps"
+      "side-panel"
     ],
     "harness": "claude-agent-sdk",
     "model": [
       "claude-opus-5-5",
       "claude-sonnet-5-5"
     ],
+    "inference": "bedrock-vertex-azure",
     "multiagent": "subagents",
     "tools": "read-write-edit-bash",
+    "search": "web-search",
     "sandbox": [
-      "host-machine",
-      "per-user-cloud-computer"
+      "per-task-cloud-vm",
+      "local-vm"
     ],
-    "browser": "chrome-extension",
+    "browser": [
+      "chrome-extension",
+      "computer-use-api"
+    ],
     "mcp": "mcp",
     "skills": [
       "agent-skills-skill-md",
-      "plugins"
+      "plugins",
+      "slash-commands"
     ],
-    "memory": "agent-notes",
-    "hosting": "your-laptop",
-    "guardrails": "permission-modes"
-  }
+    "memory": "account-memory",
+    "hosting": [
+      "vendor-cloud",
+      "your-laptop"
+    ],
+    "guardrails": [
+      "permission-modes",
+      "auto-review",
+      "hooks"
+    ],
+    "identity": "credential-vault"
+  },
+  "evidence": {
+    "channels": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile"
+    ],
+    "proactivity": [
+      "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork"
+    ],
+    "ui": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile"
+    ],
+    "harness": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://claude.com/docs/cowork/overview"
+    ],
+    "model": [
+      "https://claude.com/docs/cowork/changelog",
+      "https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization"
+    ],
+    "inference": [
+      "https://claude.com/docs/third-party/claude-desktop/overview",
+      "https://claude.com/docs/third-party/claude-desktop/feature-matrix"
+    ],
+    "multiagent": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://claude.com/docs/plugins/platform-support"
+    ],
+    "tools": [
+      "https://support.claude.com/en/articles/14479288"
+    ],
+    "search": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork"
+    ],
+    "sandbox": [
+      "https://support.claude.com/en/articles/14479288",
+      "https://www.anthropic.com/engineering/how-we-contain-claude"
+    ],
+    "browser": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://claude.com/docs/cowork/changelog"
+    ],
+    "mcp": [
+      "https://claude.com/docs/cowork/overview",
+      "https://claude.com/docs/plugins/platform-support"
+    ],
+    "skills": [
+      "https://claude.com/docs/plugins/platform-support",
+      "https://claude.com/blog/cowork-plugins"
+    ],
+    "memory": [
+      "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context",
+      "https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork"
+    ],
+    "hosting": [
+      "https://support.claude.com/en/articles/14479288"
+    ],
+    "guardrails": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://claude.com/docs/plugins/platform-support"
+    ],
+    "identity": [
+      "https://support.claude.com/en/articles/14479288",
+      "https://www.anthropic.com/engineering/how-we-contain-claude"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Get started with Claude Cowork (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork"
+    },
+    {
+      "title": "Claude Cowork architecture overview (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/14479288"
+    },
+    {
+      "title": "Use Claude Cowork on web, desktop, and mobile (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile"
+    },
+    {
+      "title": "Schedule recurring tasks in Claude Cowork (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork"
+    },
+    {
+      "title": "Use Claude's chat search and memory to build on previous context (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context"
+    },
+    {
+      "title": "Organize your tasks with projects in Claude Cowork (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork"
+    },
+    {
+      "title": "Set up and manage the new unified Claude experience for your Enterprise organization (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization"
+    },
+    {
+      "title": "Cowork overview (Claude docs)",
+      "url": "https://claude.com/docs/cowork/overview"
+    },
+    {
+      "title": "Run tasks in the background with Dispatch (Claude docs)",
+      "url": "https://claude.com/docs/cowork/guide/dispatch"
+    },
+    {
+      "title": "Claude Desktop changelog (Claude docs)",
+      "url": "https://claude.com/docs/cowork/changelog"
+    },
+    {
+      "title": "Plugin feature support across platforms (Claude docs)",
+      "url": "https://claude.com/docs/plugins/platform-support"
+    },
+    {
+      "title": "Claude Desktop on third-party platforms: overview (Claude docs)",
+      "url": "https://claude.com/docs/third-party/claude-desktop/overview"
+    },
+    {
+      "title": "Claude Desktop on third-party platforms: features (Claude docs)",
+      "url": "https://claude.com/docs/third-party/claude-desktop/feature-matrix"
+    },
+    {
+      "title": "Cowork monitoring with OpenTelemetry (Claude docs)",
+      "url": "https://claude.com/docs/cowork/monitoring"
+    },
+    {
+      "title": "How we contain Claude across products (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/how-we-contain-claude"
+    },
+    {
+      "title": "Customize Cowork with plugins (Claude blog)",
+      "url": "https://claude.com/blog/cowork-plugins"
+    },
+    {
+      "title": "Claude Cowork product page",
+      "url": "https://claude.com/product/cowork"
+    }
+  ],
+  "researched": "2026-10-21"
 }

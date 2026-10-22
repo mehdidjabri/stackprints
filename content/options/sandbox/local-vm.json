@@ -1,0 +1,41 @@
+{
+  "order": 110,
+  "id": "local-vm",
+  "name": "Local VM",
+  "note": "Agent code runs in a VM on your computer",
+  "profile": "pattern",
+  "summary": "The agent's shell commands and generated code run inside a lightweight Linux virtual machine on the user's own computer, started with the operating system's hypervisor. Only folders the user picks are mounted, so the agent can work on local files without reaching the rest of the machine.",
+  "how": [
+    "The app starts a Linux VM with the platform hypervisor",
+    "Folders the user selects are mounted into the VM",
+    "Shell commands and code run inside the VM, with network egress filtered",
+    "The agent loop can stay on the host and send only execution into the VM"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Cowork (local sessions)"
+    ],
+    [
+      "Hypervisors",
+      "Apple Virtualization framework on macOS, Hyper-V on Windows (Cowork)"
+    ],
+    [
+      "Trade-off",
+      "Stronger isolation than a per-command sandbox, but needs hardware virtualization"
+    ]
+  ],
+  "links": {
+    "docs": "https://support.claude.com/en/articles/14479288",
+    "blog": "https://www.anthropic.com/engineering/how-we-contain-claude"
+  },
+  "goodFor": [
+    "Running agent-written code for users who don't read bash",
+    "Working on local files without exposing the whole disk"
+  ],
+  "watchOut": [
+    "Devices without virtualization support can't run commands",
+    "Endpoint security (EDR) tools can't see inside the VM"
+  ],
+  "researched": "2026-10-21"
+}

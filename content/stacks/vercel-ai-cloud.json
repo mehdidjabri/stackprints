@@ -3,16 +3,47 @@
   "name": "Vercel AI Cloud",
   "kind": "Infrastructure",
   "tagline": "Vercel's agent stack as cloud primitives: gateway, sandbox, workflows, drives.",
-  "description": "Guillermo Rauch frames the AI Cloud as old cloud pieces reborn: the AI SDK replaces the frontend framework, AI Gateway is a CDN of tokens, Sandbox is compute for code written by agents, Fluid runs long IO-bound work, Workflow makes it durable, Connect handles scoped credentials, Chat SDK reaches every platform and Drives hold the files.",
+  "description": "Vercel describes its agent stack as cloud primitives: the AI SDK and the eve framework for the agent loop, AI Gateway as a \"CDN of tokens\" across model providers, Sandbox microVMs for agent-written code, Fluid compute for long IO-bound work, Workflow SDK and Queues for durability, Connect for short-lived scoped credentials, Chat SDK for chat platforms and Drives for persistent files. The stack is model-agnostic; Vercel's reference doesn't prescribe a model.",
   "links": {
     "site": "https://vercel.com/ai",
     "announcement": "https://vercel.com/blog/agent-stack"
   },
+  "disclosure": "documented",
+  "sources": [
+    {
+      "title": "Vercel's agent stack (Vercel blog, 2026-06-20)",
+      "url": "https://vercel.com/blog/agent-stack"
+    },
+    {
+      "title": "The AI Cloud (Guillermo Rauch, 2025-10-17)",
+      "url": "https://rauchg.com/2025/the-ai-cloud"
+    },
+    {
+      "title": "Vercel AI",
+      "url": "https://vercel.com/ai"
+    },
+    {
+      "title": "AI SDK: Agents",
+      "url": "https://ai-sdk.dev/docs/agents/overview"
+    },
+    {
+      "title": "eve docs",
+      "url": "https://eve.dev/docs"
+    },
+    {
+      "title": "Model Context Protocol on Vercel",
+      "url": "https://vercel.com/docs/mcp"
+    }
+  ],
   "layers": {
     "channels": [
       "chat-sdk",
       "web-chat",
       "slack"
+    ],
+    "proactivity": [
+      "cron",
+      "webhooks"
     ],
     "ui": [
       "ai-sdk-ui",
@@ -20,33 +51,114 @@
     ],
     "readiness": [
       "botid",
-      "llms-txt"
+      "mcp-server"
     ],
     "harness": [
       "ai-sdk-agent",
       "eve"
     ],
-    "model": [
-      "claude-sonnet-5-5",
-      "gpt-6-1-sol",
-      "kimi-k3"
-    ],
     "router": "vercel-ai-gateway",
+    "multiagent": "subagents",
     "search": "web-search",
     "sandbox": "vercel-sandbox",
     "mcp": "mcp",
     "connectors": "vercel-connect",
-    "memory": "memory-md",
-    "storage": [
-      "vercel-drives",
-      "postgres"
-    ],
+    "skills": "agent-skills-skill-md",
+    "memory": "agent-notes",
+    "storage": "vercel-drives",
     "hosting": "vercel",
     "durable": [
       "workflow-sdk",
       "vercel-queues"
     ],
+    "guardrails": [
+      "per-action-autonomy",
+      "audit-trail"
+    ],
     "identity": "credential-vault",
     "observability": "opentelemetry-genai"
-  }
+  },
+  "evidence": {
+    "channels": [
+      "https://vercel.com/blog/agent-stack",
+      "https://chat-sdk.dev",
+      "https://eve.dev/docs/channels/overview"
+    ],
+    "proactivity": [
+      "https://eve.dev/docs/schedules",
+      "https://vercel.com/docs/cron-jobs",
+      "https://eve.dev/docs/channels/overview",
+      "https://workflow-sdk.dev/docs/foundations/hooks"
+    ],
+    "ui": [
+      "https://ai-sdk.dev/docs/ai-sdk-ui/overview",
+      "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
+      "https://rauchg.com/2025/the-ai-cloud"
+    ],
+    "readiness": [
+      "https://vercel.com/docs/botid",
+      "https://vercel.com/docs/mcp"
+    ],
+    "harness": [
+      "https://vercel.com/blog/agent-stack",
+      "https://ai-sdk.dev/docs/agents/overview",
+      "https://eve.dev/docs"
+    ],
+    "router": [
+      "https://vercel.com/blog/agent-stack",
+      "https://vercel.com/docs/ai-gateway"
+    ],
+    "multiagent": [
+      "https://eve.dev/docs/concepts/project-structure",
+      "https://eve.dev/docs/concepts/built-in-tools"
+    ],
+    "search": [
+      "https://eve.dev/docs/concepts/built-in-tools"
+    ],
+    "sandbox": [
+      "https://vercel.com/blog/agent-stack",
+      "https://vercel.com/docs/sandbox"
+    ],
+    "mcp": [
+      "https://vercel.com/docs/mcp",
+      "https://eve.dev/docs/connections"
+    ],
+    "connectors": [
+      "https://vercel.com/blog/agent-stack",
+      "https://vercel.com/docs/connect"
+    ],
+    "skills": [
+      "https://eve.dev/docs/skills"
+    ],
+    "memory": [
+      "https://eve.dev/docs/memory/file"
+    ],
+    "storage": [
+      "https://vercel.com/ai",
+      "https://vercel.com/docs/sandbox/concepts/drives"
+    ],
+    "hosting": [
+      "https://rauchg.com/2025/the-ai-cloud",
+      "https://vercel.com/docs/fluid-compute"
+    ],
+    "durable": [
+      "https://vercel.com/blog/agent-stack",
+      "https://workflow-sdk.dev/docs",
+      "https://vercel.com/docs/queues"
+    ],
+    "guardrails": [
+      "https://eve.dev/docs/tools",
+      "https://vercel.com/blog/agent-stack"
+    ],
+    "identity": [
+      "https://vercel.com/blog/agent-stack",
+      "https://vercel.com/docs/connect",
+      "https://vercel.com/docs/sandbox"
+    ],
+    "observability": [
+      "https://ai-sdk.dev/docs/ai-sdk-core/telemetry",
+      "https://eve.dev/docs/observability/instrumentation"
+    ]
+  },
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,36 @@
+{
+  "order": 40,
+  "id": "cli-tools",
+  "name": "CLI tools",
+  "note": "Tools as command-line programs",
+  "profile": "pattern",
+  "summary": "Tools are exposed to the model as command-line programs that it runs in a shell, instead of as MCP servers or function schemas. The model passes arguments on the command line and reads the text output. Meta describes the built-in connectors of its Muse agent as CLIs that run inside the agent's sandbox, with written instructions on how to use each one.",
+  "how": [
+    "Package each tool or connector as a command-line program",
+    "Install it in the environment where the agent has a shell",
+    "Describe how to call it in instructions the agent can read",
+    "The agent runs the command and reads its output"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Meta Muse (built-in connectors run as CLIs)"
+    ],
+    [
+      "Trade-off",
+      "Needs a shell or sandbox, but reuses existing CLIs without a protocol layer"
+    ]
+  ],
+  "links": {
+    "example": "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+  },
+  "goodFor": [
+    "Agents that already run in a sandbox with a shell",
+    "Services that ship their own CLI"
+  ],
+  "watchOut": [
+    "Each command runs with the shell's privileges unless sandboxed",
+    "Help text written for humans may not tell the model enough"
+  ],
+  "researched": "2026-10-21"
+}

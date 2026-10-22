@@ -1,0 +1,35 @@
+{
+  "order": 160,
+  "id": "mobile-app",
+  "name": "Mobile app",
+  "note": "The vendor's own iOS or Android app",
+  "profile": "pattern",
+  "summary": "The agent is reached through the vendor's own iOS or Android app, signed in to the same account as on desktop and web. Mobile apps often expose only part of the agent: some tasks need a desktop or keep running on the vendor's servers.",
+  "how": [
+    "User installs the vendor's app and signs in",
+    "Requests reach the same agent and account as on desktop",
+    "Work that outlives the session runs on the vendor's side, if supported"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "ChatGPT (dots), Perplexity Comet, Gemini in Chrome on Android"
+    ],
+    [
+      "Example gap",
+      "Comet for Android: background work not supported yet"
+    ],
+    [
+      "Trade-off",
+      "Always at hand, but small screens make review and take-over harder"
+    ]
+  ],
+  "goodFor": [
+    "Quick requests and check-ins away from a computer",
+    "Voice-first use"
+  ],
+  "watchOut": [
+    "Feature gaps compared with the desktop app"
+  ],
+  "researched": "2026-10-21"
+}

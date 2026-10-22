@@ -3,7 +3,8 @@
   "name": "Poke",
   "kind": "Consumer agent",
   "tagline": "An assistant that lives in your messages and texts you first.",
-  "description": "Poke by The Interaction Company lives in iMessage, SMS and Telegram, sends briefings and alerts proactively, connects to email, calendar and 20+ services with layered memory, and was the first AI agent approved for Apple Messages for Business. Stack inferred from public reporting.",
+  "description": "Poke, from The Interaction Company of California (acquired by Cognition in July 2026), is an assistant that lives in Apple Messages, SMS and RCS, WhatsApp and Telegram. It handles email, calendar, reminders and web search, messages users first, runs automations on schedules or when its API is called, connects to recipe integrations and custom MCP servers, and can hand hard tasks to human operators (Poke Human). Poke says it picks a model per task from major providers or open models, and TechCrunch spotted it on Vercel's AI Gateway leaderboard. The models, memory design, sandboxing and approval rules are not disclosed.",
+  "disclosure": "closed",
   "links": {
     "site": "https://poke.com"
   },
@@ -11,6 +12,7 @@
     "channels": [
       "imessage",
       "sms-rcs",
+      "whatsapp",
       "telegram"
     ],
     "proactivity": [
@@ -19,12 +21,92 @@
       "background-research"
     ],
     "ui": "plain-text",
-    "connectors": [
-      "composio",
-      "calendar-email"
+    "router": "vercel-ai-gateway",
+    "search": "web-search",
+    "mcp": "mcp",
+    "connectors": "calendar-email",
+    "hosting": "vendor-cloud"
+  },
+  "evidence": {
+    "channels": [
+      "https://poke.com/docs",
+      "https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/",
+      "https://poke.com/docs/release-notes"
     ],
-    "memory": "agent-notes",
-    "hosting": "vendor-cloud",
-    "guardrails": "permission-modes"
-  }
+    "proactivity": [
+      "https://poke.com/docs/managing-integrations",
+      "https://poke.com/docs/api",
+      "https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/",
+      "https://poke.com",
+      "https://cognition.com/blog/interaction"
+    ],
+    "ui": [
+      "https://poke.com/docs"
+    ],
+    "router": [
+      "https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/"
+    ],
+    "search": [
+      "https://poke.com/docs"
+    ],
+    "mcp": [
+      "https://poke.com/docs/mcp-servers",
+      "https://poke.com/faq"
+    ],
+    "connectors": [
+      "https://poke.com/docs",
+      "https://poke.com"
+    ],
+    "hosting": [
+      "https://cognition.com/blog/interaction",
+      "https://poke.com/docs"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Poke",
+      "url": "https://poke.com"
+    },
+    {
+      "title": "Poke docs: Welcome",
+      "url": "https://poke.com/docs"
+    },
+    {
+      "title": "Poke docs: Managing Integrations",
+      "url": "https://poke.com/docs/managing-integrations"
+    },
+    {
+      "title": "Poke docs: MCP Servers",
+      "url": "https://poke.com/docs/mcp-servers"
+    },
+    {
+      "title": "Poke docs: Poke API",
+      "url": "https://poke.com/docs/api"
+    },
+    {
+      "title": "Poke docs: Release Notes",
+      "url": "https://poke.com/docs/release-notes"
+    },
+    {
+      "title": "Poke FAQ",
+      "url": "https://poke.com/faq"
+    },
+    {
+      "title": "Poke makes AI agents as easy as sending a text (TechCrunch)",
+      "url": "https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/"
+    },
+    {
+      "title": "Apple approves Poke as the first AI agent on its Messages for Business platform (TechCrunch)",
+      "url": "https://techcrunch.com/2026/06/04/apple-approves-poke-as-the-first-ai-agent-on-its-messages-for-business-platform/"
+    },
+    {
+      "title": "Why Cognition bought Poke (TechCrunch)",
+      "url": "https://techcrunch.com/2026/07/24/why-cognition-bought-poke-ai-personality-is-becoming-a-competitive-advantage/"
+    },
+    {
+      "title": "Interaction is joining Cognition (Cognition)",
+      "url": "https://cognition.com/blog/interaction"
+    }
+  ],
+  "researched": "2026-10-21"
 }

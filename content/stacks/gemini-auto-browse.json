@@ -3,20 +3,104 @@
   "name": "Gemini auto browse",
   "kind": "Browser agent",
   "tagline": "Gemini drives a Chrome tab while you watch the steps.",
-  "description": "Google's auto browse lets Gemini click and type in a tagged Chrome tab, shows each step in a side panel, signs in through Google Password Manager and asks before a final purchase. Stack inferred from public reporting.",
+  "description": "Auto browse lets Gemini in Chrome carry out multi-step web tasks started from its side panel. On desktop it works in your local Chrome with the sites you're signed in to; on mobile it uses a remote browser in the cloud that keeps going when the device is closed. Google documents a separate Gemini-based User Alignment Critic that reviews each action, a prompt-injection classifier, limits on which sites the agent may touch, confirmation or take-over for sensitive steps, and sign-in through Google Password Manager without sharing passwords with Gemini. Google says the features are built on Gemini 3 (desktop, January 2026) and Gemini 3.1 (Android, May 2026), but doesn't name the model auto browse uses today, and hasn't published the agent harness or the remote-browser infrastructure.",
   "links": {
     "site": "https://gemini.google/overview/gemini-in-chrome/",
     "announcement": "https://blog.google/products-and-platforms/products/chrome/gemini-in-chrome-android-auto-browse/"
   },
+  "disclosure": "closed",
+  "sources": [
+    {
+      "title": "Gemini in Chrome (Google)",
+      "url": "https://gemini.google/overview/gemini-in-chrome/"
+    },
+    {
+      "title": "Chrome gets new Gemini 3 features, including auto browse (Google blog)",
+      "url": "https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/"
+    },
+    {
+      "title": "Gemini in Chrome with auto browse comes to Android (Google blog)",
+      "url": "https://blog.google/products-and-platforms/products/chrome/bringing-chrome-ai-to-android/"
+    },
+    {
+      "title": "Tap into the power of Gemini in Chrome on Android (Google blog)",
+      "url": "https://blog.google/products-and-platforms/products/chrome/gemini-in-chrome-android-auto-browse/"
+    },
+    {
+      "title": "Ask Gemini in Chrome to complete tasks for you with auto browse (Gemini Apps Help)",
+      "url": "https://support.google.com/gemini/answer/16821166?hl=en"
+    },
+    {
+      "title": "Architecting Security for Agentic Capabilities in Chrome (Google)",
+      "url": "https://blog.google/security/architecting-security-for-agentic/"
+    }
+  ],
   "layers": {
-    "channels": "desktop-app",
-    "ui": "live-computer-view",
-    "model": "gemini-4-argon",
-    "browser": "chrome-extension",
-    "payments": "ap2",
-    "memory": "agent-notes",
+    "channels": [
+      "desktop-app",
+      "mobile-app"
+    ],
+    "proactivity": "request-response",
+    "ui": [
+      "side-panel",
+      "live-computer-view"
+    ],
+    "voice": "gemini-live",
+    "browser": [
+      "agentic-browser",
+      "cloud-browser"
+    ],
+    "connectors": "calendar-email",
     "hosting": "vendor-cloud",
-    "guardrails": "per-action-autonomy",
-    "identity": "private-sign-in-form"
-  }
+    "guardrails": [
+      "auto-review",
+      "injection-classifier",
+      "per-action-autonomy"
+    ],
+    "identity": [
+      "credential-vault",
+      "private-sign-in-form"
+    ]
+  },
+  "evidence": {
+    "channels": [
+      "https://support.google.com/gemini/answer/16821166?hl=en",
+      "https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/",
+      "https://blog.google/products-and-platforms/products/chrome/bringing-chrome-ai-to-android/",
+      "https://blog.google/products-and-platforms/products/chrome/gemini-in-chrome-android-auto-browse/"
+    ],
+    "proactivity": [
+      "https://gemini.google/overview/gemini-in-chrome/"
+    ],
+    "ui": [
+      "https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/",
+      "https://support.google.com/gemini/answer/16821166?hl=en",
+      "https://blog.google/security/architecting-security-for-agentic/"
+    ],
+    "voice": [
+      "https://gemini.google/overview/gemini-in-chrome/"
+    ],
+    "browser": [
+      "https://support.google.com/gemini/answer/16821166?hl=en",
+      "https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/"
+    ],
+    "connectors": [
+      "https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/",
+      "https://blog.google/products-and-platforms/products/chrome/bringing-chrome-ai-to-android/"
+    ],
+    "hosting": [
+      "https://support.google.com/gemini/answer/16821166?hl=en"
+    ],
+    "guardrails": [
+      "https://blog.google/security/architecting-security-for-agentic/",
+      "https://support.google.com/gemini/answer/16821166?hl=en",
+      "https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/"
+    ],
+    "identity": [
+      "https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/",
+      "https://support.google.com/gemini/answer/16821166?hl=en",
+      "https://blog.google/security/architecting-security-for-agentic/"
+    ]
+  },
+  "researched": "2026-10-21"
 }

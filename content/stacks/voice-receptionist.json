@@ -3,32 +3,51 @@
   "name": "Voice Receptionist",
   "kind": "Voice agent",
   "tagline": "Answers the phone, books the appointment, texts the confirmation.",
-  "description": "A realtime voice agent for small businesses: telephony in, speech-to-speech model, calendar and CRM tools, SMS follow-ups, transcripts and evals for every call.",
+  "description": "An example design for a small-business phone agent: calls arrive over SIP at OpenAI's Realtime API, a speech-to-speech model, and the OpenAI Agents SDK attaches a realtime agent to each call. It books through calendar and CRM tools, asks a person before sensitive actions, uses a smaller text model for SMS confirmations and call summaries, and keeps transcripts and evals for every call.",
+  "disclosure": "example",
+  "sources": [
+    {
+      "title": "OpenAI Realtime API guide",
+      "url": "https://developers.openai.com/api/docs/guides/realtime"
+    },
+    {
+      "title": "Realtime API with SIP",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-sip"
+    },
+    {
+      "title": "OpenAI Agents SDK realtime guide",
+      "url": "https://openai.github.io/openai-agents-python/realtime/guide/"
+    },
+    {
+      "title": "Pipedream Connect documentation",
+      "url": "https://pipedream.com/docs/connect"
+    },
+    {
+      "title": "Braintrust documentation",
+      "url": "https://www.braintrust.dev/docs"
+    }
+  ],
   "layers": {
     "channels": [
       "phone-calls",
       "sms-rcs"
     ],
-    "voice": [
-      "openai-realtime",
-      "deepgram",
-      "elevenlabs",
-      "livekit-agents"
-    ],
+    "voice": "openai-realtime",
     "harness": "openai-agents-sdk",
     "model": "gpt-6-luna",
     "router": "direct-provider",
     "connectors": [
-      "composio",
+      "pipedream",
       "calendar-email"
     ],
     "memory": "supermemory",
     "storage": "postgres",
     "hosting": "fly-io",
     "guardrails": [
-      "permission-modes",
+      "per-action-autonomy",
       "audit-trail"
     ],
     "observability": "braintrust"
-  }
+  },
+  "researched": "2026-10-21"
 }

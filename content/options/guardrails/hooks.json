@@ -1,0 +1,46 @@
+{
+  "order": 120,
+  "id": "hooks",
+  "name": "Hooks",
+  "note": "Your scripts run on agent lifecycle events",
+  "profile": "pattern",
+  "summary": "The harness runs user-defined commands at fixed points in the agent loop, such as before or after a tool call, when a prompt is submitted, or when a session starts or stops. A hook can log, add context or block an action, so a rule is enforced by code instead of being left to the model.",
+  "how": [
+    "Register a command for an event such as PreToolUse in a settings or hooks.json file",
+    "When the event fires, the harness passes the event as JSON on stdin",
+    "The hook's exit code or JSON output allows, blocks or annotates the action",
+    "Plugins can bundle hooks so they install together with skills and MCP servers"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, Codex, Claude Cowork (hooks from plugins)"
+    ],
+    [
+      "Shared events",
+      "PreToolUse, PostToolUse, UserPromptSubmit, PreCompact, SubagentStart, Stop, SessionStart"
+    ],
+    [
+      "Handlers",
+      "Shell commands; Claude Code also supports HTTP, prompt and agent hooks"
+    ],
+    [
+      "Trade-off",
+      "Deterministic control, but every hook is code that runs on each matching event"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/hooks-guide",
+    "codex": "https://learn.chatgpt.com/docs/hooks"
+  },
+  "goodFor": [
+    "Blocking dangerous commands before they run",
+    "Formatting, linting or logging after every edit",
+    "Organisation-wide policy that the model can't skip"
+  ],
+  "watchOut": [
+    "A hook from an untrusted repo or plugin runs code on your machine",
+    "Slow hooks add latency to every matching tool call"
+  ],
+  "researched": "2026-10-21"
+}

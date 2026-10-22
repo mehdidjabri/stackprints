@@ -1,0 +1,58 @@
+{
+  "order": 100,
+  "id": "cloudflare-voice",
+  "name": "Cloudflare Agents Voice",
+  "url": "developers.cloudflare.com/agents/communication-channels/voice",
+  "note": "Voice pipeline in the Agents SDK",
+  "open": true,
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "The voice channel of Cloudflare's Agents SDK streams microphone audio to an agent over a WebSocket and plays synthesized speech back, with continuous speech-to-text, streaming text-to-speech, voice activity detection and interruption handling. Built-in providers run Deepgram models on Workers AI, and add-ons connect ElevenLabs, Deepgram and Telnyx telephony.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Status",
+      "Beta"
+    ],
+    [
+      "Package",
+      "agents/voice (@cloudflare/voice is a compatibility wrapper)"
+    ],
+    [
+      "Transport",
+      "WebSocket, no SFU or meeting infrastructure"
+    ],
+    [
+      "Speech-to-text",
+      "Deepgram Flux (default) or Nova-3 on Workers AI"
+    ],
+    [
+      "Text-to-speech",
+      "Deepgram Aura-1 on Workers AI; ElevenLabs add-on"
+    ],
+    [
+      "Clients",
+      "useVoiceAgent React hook, VoiceClient"
+    ],
+    [
+      "License",
+      "MIT"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.cloudflare.com/agents/communication-channels/voice/",
+    "repo": "https://github.com/cloudflare/agents"
+  },
+  "goodFor": [
+    "Adding voice to an existing Cloudflare agent",
+    "Browser voice without WebRTC infrastructure"
+  ],
+  "watchOut": [
+    "Beta",
+    "Chained speech-to-text and text-to-speech, not a speech-to-speech model"
+  ],
+  "researched": "2026-10-21"
+}

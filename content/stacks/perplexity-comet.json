@@ -3,22 +3,125 @@
   "name": "Perplexity Comet",
   "kind": "Browser agent",
   "tagline": "An AI browser that reads the page and runs errands in the background.",
-  "description": "Comet is Perplexity's AI browser: a sidecar assistant that understands the current page, an agent that clicks and fills forms, and background assistants that work through task lists in parallel. Stack inferred from public reporting.",
+  "description": "Comet is Perplexity's Chromium-based browser for Mac, Windows, iOS and Android. Its assistant runs in a sidecar panel, reads the current tab and tabs you mention, and can act on websites; Max subscribers can run background assistants in parallel and handle their confirmations on one page. Perplexity documents assistant permissions and per-site blocking, confirmation before sensitive actions such as sending email or placing orders, and machine-learning classifiers that screen pages for prompt injection. Memory is the shared Perplexity account memory, and 1Password fills logins without exposing them to the model. Perplexity hasn't published which models the assistant uses, where agent actions and background assistants run, or the voice stack.",
   "links": {
     "site": "https://www.perplexity.ai/comet"
   },
+  "disclosure": "closed",
+  "sources": [
+    {
+      "title": "Comet (Perplexity)",
+      "url": "https://www.perplexity.ai/comet"
+    },
+    {
+      "title": "The Internet is Better on Comet (Perplexity blog)",
+      "url": "https://www.perplexity.ai/hub/blog/comet-is-now-available-to-everyone-worldwide"
+    },
+    {
+      "title": "Comet now available for everyone, background assistants (Perplexity changelog)",
+      "url": "https://www.perplexity.ai/changelog/what-we-shipped-october-3rd"
+    },
+    {
+      "title": "Comet iOS Launch and Computer Updates (Perplexity changelog)",
+      "url": "https://www.perplexity.ai/changelog/what-we-shipped--march-27-2026"
+    },
+    {
+      "title": "Assistant Panel (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/11734688-assistant-panel"
+    },
+    {
+      "title": "Control what Comet Assistant can use (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/12658082-control-what-comet-assistant-can-use"
+    },
+    {
+      "title": "Comet Assistant Privacy & Data Use (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/12867415-comet-assistant-privacy-data-use"
+    },
+    {
+      "title": "Comet memory (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/12658438-comet-memory"
+    },
+    {
+      "title": "Comet Query Shortcuts (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/11906981-comet-query-shortcuts"
+    },
+    {
+      "title": "Extensions (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions"
+    },
+    {
+      "title": "Voice Mode (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/13860420-voice-mode"
+    },
+    {
+      "title": "Comet for Android: Quick Start and Key Features (Comet Help Center)",
+      "url": "https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features"
+    },
+    {
+      "title": "Mitigating Prompt Injection in Comet (Perplexity blog)",
+      "url": "https://www.perplexity.ai/hub/blog/mitigating-prompt-injection-in-comet"
+    },
+    {
+      "title": "How We Built Security Into Comet From Day One (Perplexity blog)",
+      "url": "https://www.perplexity.ai/hub/blog/how-we-built-security-into-comet-from-day-one"
+    },
+    {
+      "title": "1Password now available in Comet (1Password blog)",
+      "url": "https://1password.com/blog/1password-now-available-in-comet-the-ai-browser-by-perplexity"
+    }
+  ],
   "layers": {
-    "channels": "desktop-app",
-    "proactivity": "background-research",
-    "ui": "plain-text",
-    "multiagent": "subagents",
-    "search": "web-search",
-    "browser": [
-      "chrome-extension",
-      "cloud-browser"
+    "channels": [
+      "desktop-app",
+      "mobile-app"
     ],
-    "memory": "agent-notes",
-    "hosting": "vendor-cloud",
-    "guardrails": "permission-modes"
-  }
+    "ui": [
+      "side-panel",
+      "goals-activity-feed"
+    ],
+    "browser": "agentic-browser",
+    "connectors": "calendar-email",
+    "skills": "slash-commands",
+    "memory": "account-memory",
+    "guardrails": [
+      "permission-modes",
+      "injection-classifier"
+    ],
+    "identity": "1password"
+  },
+  "evidence": {
+    "channels": [
+      "https://www.perplexity.ai/comet",
+      "https://www.perplexity.ai/changelog/what-we-shipped--march-27-2026",
+      "https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features"
+    ],
+    "ui": [
+      "https://www.perplexity.ai/help-center/comet/en/articles/11734688-assistant-panel",
+      "https://www.perplexity.ai/changelog/what-we-shipped-october-3rd"
+    ],
+    "browser": [
+      "https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions",
+      "https://www.perplexity.ai/help-center/comet/en/articles/11734688-assistant-panel",
+      "https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features"
+    ],
+    "connectors": [
+      "https://www.perplexity.ai/help-center/comet/en/articles/12658082-control-what-comet-assistant-can-use",
+      "https://www.perplexity.ai/hub/blog/mitigating-prompt-injection-in-comet"
+    ],
+    "skills": [
+      "https://www.perplexity.ai/help-center/comet/en/articles/11906981-comet-query-shortcuts"
+    ],
+    "memory": [
+      "https://www.perplexity.ai/help-center/comet/en/articles/12658438-comet-memory"
+    ],
+    "guardrails": [
+      "https://www.perplexity.ai/help-center/comet/en/articles/12658082-control-what-comet-assistant-can-use",
+      "https://www.perplexity.ai/help-center/comet/en/articles/12867415-comet-assistant-privacy-data-use",
+      "https://www.perplexity.ai/hub/blog/mitigating-prompt-injection-in-comet"
+    ],
+    "identity": [
+      "https://1password.com/blog/1password-now-available-in-comet-the-ai-browser-by-perplexity"
+    ]
+  },
+  "researched": "2026-10-21"
 }

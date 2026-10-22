@@ -3,37 +3,173 @@
   "name": "Meta Muse",
   "kind": "Consumer agent",
   "tagline": "A personal agent with its own secure VM, goals and ideas.",
-  "description": "Muse is Meta's personal agent app, built on the Muse Spark model from Meta Superintelligence Labs. Each user gets a dedicated cloud computer and browser that keeps working after the app closes, a Goals tab for long plans, an Ideas tab for proactive suggestions, connectors it can write itself, and a permission authority kept apart from the agent and its credentials. Stack inferred from public reporting.",
+  "description": "Muse is Meta's personal agent, powered by the Muse Spark model and reached through its iOS, Android and web apps, WhatsApp and its own email address. Meta's security write-up describes one Linux VM per user: the agent's in-house harness (Hatch), files and tools run in a sandboxed cell, while a separate permission authority (Sentinel), a credential store that hands out surrogate tokens, safety classifiers and a Postgres database run outside it. Built-in connectors run as CLIs, Muse can write its own, and purchases use single-use Stripe Link cards. Meta hasn't published the inference setup, the models behind Sentinel and the classifiers, or how memory files are organised; glasses support and the Mac app were announced as coming soon.",
+  "disclosure": "closed",
   "links": {
     "announcement": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
     "docs": "https://www.meta.com/help/superintelligence/1331373868832401/"
   },
   "layers": {
     "channels": [
+      "mobile-app",
+      "web-chat",
       "whatsapp",
-      "web-chat"
+      "email"
     ],
     "proactivity": [
       "background-research",
-      "self-scheduled-wake"
+      "cron"
     ],
-    "ui": "goals-activity-feed",
-    "devices": [
-      "phone",
-      "smart-glasses"
+    "ui": [
+      "goals-activity-feed",
+      "live-computer-view"
     ],
+    "harness": "custom-loop",
     "model": "muse-spark",
-    "router": "direct-provider",
+    "persona": "system-prompt",
+    "multiagent": "subagents",
     "sandbox": "per-user-cloud-computer",
     "browser": "cloud-browser",
-    "connectors": "self-written-connectors",
-    "payments": "single-use-cards",
+    "mcp": "cli-tools",
+    "connectors": [
+      "self-written-connectors",
+      "calendar-email"
+    ],
+    "payments": [
+      "single-use-cards",
+      "shop-pay"
+    ],
     "memory": "agent-notes",
+    "storage": "postgres",
     "hosting": "vendor-cloud",
     "guardrails": [
       "separate-permission-authority",
+      "per-action-autonomy",
+      "injection-classifier",
       "audit-trail"
     ],
-    "identity": "credential-vault"
-  }
+    "identity": [
+      "credential-vault",
+      "private-sign-in-form",
+      "agent-phone-email"
+    ]
+  },
+  "evidence": {
+    "channels": [
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://www.meta.com/help/superintelligence/1331373868832401/",
+      "https://x.com/alexandr_wang/status/2102915571276992875",
+      "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/"
+    ],
+    "proactivity": [
+      "https://introducing.muse.ai",
+      "https://www.meta.com/help/superintelligence/1331373868832401/",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "ui": [
+      "https://introducing.muse.ai",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "harness": [
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "model": [
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "persona": [
+      "https://introducing.muse.ai"
+    ],
+    "multiagent": [
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "sandbox": [
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "browser": [
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "mcp": [
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "connectors": [
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "https://x.com/alexandr_wang/status/2097454574202495340",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"
+    ],
+    "payments": [
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "https://stripe.com/newsroom/news/stripe-helps-meta-muse-shop-with-link",
+      "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/"
+    ],
+    "memory": [
+      "https://introducing.muse.ai",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"
+    ],
+    "storage": [
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "hosting": [
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "guardrails": [
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "https://introducing.muse.ai",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"
+    ],
+    "identity": [
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://x.com/alexandr_wang/status/2102915571276992875",
+      "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Introducing Muse (Meta Newsroom)",
+      "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"
+    },
+    {
+      "title": "Security and safety for AI agents: our approach with Muse (Meta AI Research)",
+      "url": "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    },
+    {
+      "title": "How we designed Muse (Meta)",
+      "url": "https://introducing.muse.ai"
+    },
+    {
+      "title": "Muse help center (Meta)",
+      "url": "https://www.meta.com/help/superintelligence/1331373868832401/"
+    },
+    {
+      "title": "The biggest news from Connect 2026 (Meta Newsroom)",
+      "url": "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/"
+    },
+    {
+      "title": "Alexandr Wang on Muse's launch connectors (X)",
+      "url": "https://x.com/alexandr_wang/status/2097454574202495340"
+    },
+    {
+      "title": "Alexandr Wang announces Muse Mail (X)",
+      "url": "https://x.com/alexandr_wang/status/2102915571276992875"
+    },
+    {
+      "title": "Stripe helps Muse, Meta's new personal AI agent, shop across the internet with Link (Stripe)",
+      "url": "https://stripe.com/newsroom/news/stripe-helps-meta-muse-shop-with-link"
+    },
+    {
+      "title": "Everything new coming to Meta's AI agent Muse (TechCrunch)",
+      "url": "https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/"
+    },
+    {
+      "title": "Rival AI agents Instinct and Meta's Muse both add the ability to make calls (TechCrunch)",
+      "url": "https://techcrunch.com/2026/09/17/rival-ai-agents-instinct-and-metas-muse-both-add-the-ability-to-make-calls/"
+    }
+  ],
+  "researched": "2026-10-21"
 }

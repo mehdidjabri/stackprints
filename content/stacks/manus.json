@@ -3,27 +3,192 @@
   "name": "Manus",
   "kind": "General agent",
   "tagline": "A general agent with its own cloud VM for code, files and research.",
-  "description": "Manus runs each task in a cloud virtual machine where it browses, writes code and produces files, orchestrating several models. It is now part of Meta. Stack inferred from public reporting.",
+  "description": "Manus runs each task in its own cloud sandbox, a virtual machine with a browser, shell and files that sleeps and wakes between sessions. It is reached on the web, desktop and mobile apps, Slack, Telegram and a per-user email address; it splits large jobs across parallel subagents (Wide Research), runs on schedules or app events, connects through MCP, loads Agent Skills, and can act on your own computer or browser through its desktop app and extension. Its in-house harness is called Cascade, but Manus doesn't say which language models it runs on, what its sandbox is built on, or how project memory is stored. Meta announced it was acquiring Manus in December 2025; after Beijing blocked the deal, Manus said in September 2026 that it had resumed independent operations.",
+  "disclosure": "closed",
   "links": {
     "site": "https://manus.im"
   },
   "layers": {
-    "channels": "web-chat",
-    "ui": [
-      "live-computer-view",
-      "artifacts"
+    "channels": [
+      "web-chat",
+      "mobile-app",
+      "desktop-app",
+      "slack",
+      "telegram",
+      "email"
     ],
-    "model": [
-      "claude-sonnet-5-5",
-      "qwen-3-8"
+    "proactivity": [
+      "cron",
+      "webhooks"
     ],
+    "ui": "live-computer-view",
+    "devices": "laptop-node",
+    "harness": "custom-loop",
     "multiagent": "subagents",
-    "tools": "read-write-edit-bash",
-    "search": "web-search",
+    "tools": "image-generation",
     "sandbox": "per-user-cloud-computer",
-    "browser": "browser-use",
-    "memory": "none",
-    "storage": "s3-r2",
-    "hosting": "vendor-cloud"
-  }
+    "browser": [
+      "cloud-browser",
+      "chrome-extension"
+    ],
+    "mcp": "mcp",
+    "connectors": "calendar-email",
+    "skills": [
+      "agent-skills-skill-md",
+      "slash-commands"
+    ],
+    "hosting": "vendor-cloud",
+    "guardrails": "permission-modes",
+    "identity": [
+      "private-sign-in-form",
+      "agent-phone-email"
+    ]
+  },
+  "evidence": {
+    "channels": [
+      "https://manus.im",
+      "https://manus.im/blog/introducing-manus-2-0",
+      "https://manus.im/docs/features/desktop",
+      "https://manus.im/docs/integrations/slack-integration",
+      "https://manus.im/blog/manus-agents-telegram",
+      "https://manus.im/docs/features/mail-manus"
+    ],
+    "proactivity": [
+      "https://manus.im/docs/automations"
+    ],
+    "ui": [
+      "https://manus.im/docs/features/cloud-browser"
+    ],
+    "devices": [
+      "https://manus.im/docs/features/desktop"
+    ],
+    "harness": [
+      "https://manus.im/blog/introducing-manus-2-0"
+    ],
+    "multiagent": [
+      "https://manus.im/docs/features/wide-research"
+    ],
+    "tools": [
+      "https://manus.im/docs/features/multi-modal",
+      "https://manus.im/models"
+    ],
+    "sandbox": [
+      "https://manus.im/docs/introduction/welcome",
+      "https://manus.im/blog/manus-sandbox"
+    ],
+    "browser": [
+      "https://manus.im/docs/features/cloud-browser",
+      "https://manus.im/docs/features/browser-operator"
+    ],
+    "mcp": [
+      "https://manus.im/docs/integrations/mcp-connectors",
+      "https://manus.im/docs/integrations/custom-mcp"
+    ],
+    "connectors": [
+      "https://manus.im/docs/integrations/integrations",
+      "https://manus.im/docs/integrations/mcp-connectors",
+      "https://manus.im/docs/automations"
+    ],
+    "skills": [
+      "https://manus.im/docs/features/skills"
+    ],
+    "hosting": [
+      "https://manus.im/blog/manus-sandbox"
+    ],
+    "guardrails": [
+      "https://manus.im/docs/features/desktop"
+    ],
+    "identity": [
+      "https://manus.im/docs/features/cloud-browser",
+      "https://manus.im/docs/features/mail-manus",
+      "https://manus.im/blog/introducing-manus-2-0"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Manus docs: Welcome",
+      "url": "https://manus.im/docs/introduction/welcome"
+    },
+    {
+      "title": "Manus docs: Automations",
+      "url": "https://manus.im/docs/automations"
+    },
+    {
+      "title": "Manus docs: Wide Research",
+      "url": "https://manus.im/docs/features/wide-research"
+    },
+    {
+      "title": "Manus docs: Cloud browser",
+      "url": "https://manus.im/docs/features/cloud-browser"
+    },
+    {
+      "title": "Manus docs: Browser Operator",
+      "url": "https://manus.im/docs/features/browser-operator"
+    },
+    {
+      "title": "Manus docs: Desktop",
+      "url": "https://manus.im/docs/features/desktop"
+    },
+    {
+      "title": "Manus docs: Manus Skills",
+      "url": "https://manus.im/docs/features/skills"
+    },
+    {
+      "title": "Manus docs: Integrate Manus with your existing tools",
+      "url": "https://manus.im/docs/integrations/integrations"
+    },
+    {
+      "title": "Manus docs: MCP Connectors",
+      "url": "https://manus.im/docs/integrations/mcp-connectors"
+    },
+    {
+      "title": "Manus docs: Custom MCP Servers",
+      "url": "https://manus.im/docs/integrations/custom-mcp"
+    },
+    {
+      "title": "Manus docs: Mail Manus",
+      "url": "https://manus.im/docs/features/mail-manus"
+    },
+    {
+      "title": "Manus docs: Slack Integration",
+      "url": "https://manus.im/docs/integrations/slack-integration"
+    },
+    {
+      "title": "Manus docs: Multimedia Processing",
+      "url": "https://manus.im/docs/features/multi-modal"
+    },
+    {
+      "title": "Manus models",
+      "url": "https://manus.im/models"
+    },
+    {
+      "title": "Understanding Manus sandbox - your cloud computer (Manus blog)",
+      "url": "https://manus.im/blog/manus-sandbox"
+    },
+    {
+      "title": "Introducing Manus 2.0 (Manus blog)",
+      "url": "https://manus.im/blog/introducing-manus-2-0"
+    },
+    {
+      "title": "Introducing Manus in Your Chat (Manus blog)",
+      "url": "https://manus.im/blog/manus-agents-telegram"
+    },
+    {
+      "title": "New: Projects That Learn From Every Task (Manus blog)",
+      "url": "https://manus.im/blog/manus-projects-self-updating"
+    },
+    {
+      "title": "Manus Joins Meta for Next Era of Innovation (Manus blog)",
+      "url": "https://manus.im/blog/manus-joins-meta-for-next-era-of-innovation"
+    },
+    {
+      "title": "Manus Resumes Independent Operations (Manus blog)",
+      "url": "https://manus.im/blog/manus-resumes-independent-operations"
+    },
+    {
+      "title": "Manus resumes solo operations after collapse of US$2 billion Meta deal (South China Morning Post)",
+      "url": "https://scmp.com/tech/big-tech/article/3365986/manus-resumes-solo-operations-after-collapse-us2-billion-meta-deal"
+    }
+  ],
+  "researched": "2026-10-21"
 }

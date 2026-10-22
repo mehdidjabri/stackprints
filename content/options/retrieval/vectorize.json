@@ -1,0 +1,54 @@
+{
+  "order": 110,
+  "id": "vectorize",
+  "name": "Vectorize",
+  "url": "developers.cloudflare.com/vectorize",
+  "note": "Cloudflare's vector database",
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Vectorize is Cloudflare's globally distributed vector database for Workers. It stores embeddings generated with Workers AI or another provider and answers similarity queries, and results can point back to objects in R2, KV or D1. Cloudflare's agent docs use it as a vector store and as a custom search provider for agent memory.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Status",
+      "Generally available"
+    ],
+    [
+      "Max dimensions",
+      "1,536 per vector"
+    ],
+    [
+      "Index size",
+      "Up to 20M vectors per index (Workers Paid)"
+    ],
+    [
+      "Metadata",
+      "10 KiB per vector"
+    ],
+    [
+      "Free tier",
+      "30M queried and 5M stored vector dimensions"
+    ],
+    [
+      "Paid pricing",
+      "$0.01 per 1M queried dimensions, $0.05 per 100M stored, after inclusions"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.cloudflare.com/vectorize/",
+    "pricing": "https://developers.cloudflare.com/vectorize/platform/pricing/",
+    "limits": "https://developers.cloudflare.com/vectorize/platform/limits/"
+  },
+  "goodFor": [
+    "Semantic search inside Workers apps",
+    "Pairing with Workers AI embeddings"
+  ],
+  "watchOut": [
+    "Lower level than AI Search: you create and upsert embeddings yourself",
+    "Tied to Cloudflare's platform"
+  ],
+  "researched": "2026-10-21"
+}

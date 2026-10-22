@@ -1,0 +1,37 @@
+{
+  "order": 100,
+  "id": "agentic-browser",
+  "name": "Agentic browser",
+  "note": "Agent built into the browser itself",
+  "profile": "pattern",
+  "summary": "The browser vendor builds the assistant into the browser instead of shipping it as an extension. It reads the open tabs and clicks, types and navigates in them with the user's own signed-in sessions, while the user watches and can take over.",
+  "how": [
+    "The assistant lives in the browser's own UI, usually a side panel",
+    "It reads the current page and tabs the user points it to",
+    "It clicks, types and navigates in a tab the user can watch",
+    "Sensitive steps pause for confirmation or a take-over"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Perplexity Comet (Chromium-based), Gemini in Chrome (auto browse)"
+    ],
+    [
+      "Logins",
+      "Uses the sites the user is already signed in to"
+    ],
+    [
+      "Trade-off",
+      "Nothing extra to install, but the agent acts with the user's accounts"
+    ]
+  ],
+  "goodFor": [
+    "Tasks on sites the user is already signed in to",
+    "Watching and taking over in the same window"
+  ],
+  "watchOut": [
+    "Every page the agent reads can carry a prompt injection",
+    "Local tasks stop when the device sleeps or closes"
+  ],
+  "researched": "2026-10-21"
+}

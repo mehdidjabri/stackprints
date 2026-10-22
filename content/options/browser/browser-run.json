@@ -1,0 +1,51 @@
+{
+  "order": 100,
+  "id": "browser-run",
+  "name": "Browser Run",
+  "url": "developers.cloudflare.com/browser-run",
+  "note": "Cloudflare's hosted Chrome, ex-Browser Rendering",
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Browser Run, formerly Browser Rendering, runs headless Chrome instances on Cloudflare's network. Quick Actions return Markdown, screenshots, PDFs or scraped data from a single HTTP request, while Browser Sessions are driven with Puppeteer, Playwright, CDP or Stagehand. The Agents SDK browser tool keeps a remote browser open across turns, with a live view for human takeover.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Formerly",
+      "Browser Rendering"
+    ],
+    [
+      "Interfaces",
+      "Quick Actions, Puppeteer, Playwright, CDP, Stagehand, MCP"
+    ],
+    [
+      "Agents SDK",
+      "Persistent sessions, Live View, rrweb session recording"
+    ],
+    [
+      "Free plan",
+      "10 browser minutes per day, 3 concurrent browsers"
+    ],
+    [
+      "Paid plan",
+      "10 browser hours/month included, then $0.09/hour; $2.00 per extra concurrent browser"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.cloudflare.com/browser-run/",
+    "pricing": "https://developers.cloudflare.com/browser-run/pricing/",
+    "agents": "https://developers.cloudflare.com/agents/tools/browser/"
+  },
+  "goodFor": [
+    "Agents built on Workers and the Agents SDK",
+    "One-shot page reads to Markdown or screenshots",
+    "Handing logins or CAPTCHAs to a person via live view"
+  ],
+  "watchOut": [
+    "Persistent agent browsers support only the Chromium engine",
+    "Idle agent browsers close after about 10 minutes by default"
+  ],
+  "researched": "2026-10-21"
+}

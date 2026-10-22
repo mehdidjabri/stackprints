@@ -1,0 +1,36 @@
+{
+  "order": 120,
+  "id": "account-memory",
+  "name": "Account memory",
+  "note": "Saved memories and past chats in your account",
+  "profile": "pattern",
+  "summary": "The assistant keeps saved memories about the user, and can refer to past chats or searches, in the user's account on the vendor's servers. It follows the user across devices and products signed in to the same account, and settings let the user turn references off or edit and delete memories.",
+  "how": [
+    "The assistant saves preferences and facts to the user's account",
+    "Past chats or searches stay available for reference",
+    "Relevant memories are pulled into context on new requests",
+    "Settings let the user turn references off and edit or delete memories"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "ChatGPT memory (also used by dots), Perplexity memory (used by Comet)"
+    ],
+    [
+      "Storage",
+      "Vendor's servers, tied to the account rather than the device"
+    ],
+    [
+      "Trade-off",
+      "Follows you across devices, but is held by the vendor"
+    ]
+  ],
+  "goodFor": [
+    "Personalising answers without repeating context",
+    "One memory across desktop, mobile and browser"
+  ],
+  "watchOut": [
+    "Old or wrong memories keep influencing answers until removed"
+  ],
+  "researched": "2026-10-21"
+}

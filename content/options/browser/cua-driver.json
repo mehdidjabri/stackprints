@@ -1,0 +1,51 @@
+{
+  "order": 75,
+  "id": "cua-driver",
+  "name": "Cua Driver",
+  "url": "cua.ai",
+  "note": "Background desktop control over MCP",
+  "open": true,
+  "profile": "product",
+  "summary": "Cua Driver is an open-source computer-use driver from Cua that lets an agent inspect and operate native desktop apps and browsers on macOS, Windows and Linux. It speaks MCP over stdio and also ships a CLI and typed SDKs. Where the app and platform allow it, input is delivered in the background without moving the user's pointer or taking focus.",
+  "facts": [
+    [
+      "Maker",
+      "Cua (trycua)"
+    ],
+    [
+      "License",
+      "MIT; optional perception extension is AGPL-3.0"
+    ],
+    [
+      "Platforms",
+      "macOS, Windows, Linux"
+    ],
+    [
+      "Interfaces",
+      "MCP over stdio, CLI, typed SDKs"
+    ],
+    [
+      "GitHub stars",
+      "~30.6k (trycua/cua monorepo)"
+    ],
+    [
+      "Used by",
+      "Hermes Agent (computer_use toolset), OpenClaw (experimental CUA provider)"
+    ]
+  ],
+  "links": {
+    "site": "https://cua.ai",
+    "docs": "https://cua.ai/docs/cua-driver/quickstart",
+    "repo": "https://github.com/trycua/cua"
+  },
+  "goodFor": [
+    "Desktop apps that have no API",
+    "Agent and user working on the same machine",
+    "Bringing your own agent and model"
+  ],
+  "watchOut": [
+    "Background input depends on app and platform support",
+    "The optional perception extension is AGPL-licensed"
+  ],
+  "researched": "2026-10-21"
+}

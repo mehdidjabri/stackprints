@@ -1,0 +1,54 @@
+{
+  "order": 120,
+  "id": "cloudflare-ai-search",
+  "name": "Cloudflare AI Search",
+  "url": "developers.cloudflare.com/ai-search",
+  "note": "Managed RAG, formerly AutoRAG",
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "AI Search, renamed from AutoRAG in September 2025, is Cloudflare's managed retrieval service. An instance indexes websites, R2 buckets or uploaded files continuously, and agents query it with hybrid semantic and keyword search, optionally generating an answer in the same call.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Formerly",
+      "AutoRAG (renamed 2025-09-25)"
+    ],
+    [
+      "Sources",
+      "Websites, R2 buckets, uploaded files"
+    ],
+    [
+      "Search",
+      "Hybrid semantic and keyword by default; metadata filters"
+    ],
+    [
+      "Access",
+      "Workers binding, REST API, MCP endpoint"
+    ],
+    [
+      "Models",
+      "Workers AI, or other providers through AI Gateway"
+    ],
+    [
+      "Plans",
+      "All plans"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.cloudflare.com/ai-search/",
+    "agents": "https://developers.cloudflare.com/agents/tools/ai-search/",
+    "changelog": "https://developers.cloudflare.com/changelog/post/2025-09-25-ai-search-more-models/"
+  },
+  "goodFor": [
+    "RAG over docs or a website without building a pipeline",
+    "Agents on Cloudflare Workers"
+  ],
+  "watchOut": [
+    "Embedding model can only be chosen when an instance is created",
+    "Tied to Cloudflare's platform"
+  ],
+  "researched": "2026-10-21"
+}

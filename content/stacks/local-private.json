@@ -3,7 +3,30 @@
   "name": "Local & Private",
   "kind": "Personal agent",
   "tagline": "Nothing leaves your machine. Open weights end to end.",
-  "description": "A fully local agent: an open-weight model on your own GPU through Ollama, a small open harness, local speech in and out, SQLite memory and search, Docker for code. Slower and less capable than frontier APIs, but private and free to run.",
+  "description": "An example design for a fully local agent: open-weight models on your own GPU through Ollama, the small Pi harness with a permission-gate extension, Whisper and Kokoro for speech in and out, SQLite for memory and hybrid search, Docker for running code and Phoenix for tracing on the same machine. Slower and less capable than frontier APIs, but prompts and data stay on your hardware and there are no per-token fees.",
+  "disclosure": "example",
+  "sources": [
+    {
+      "title": "Pi documentation",
+      "url": "https://pi.dev/docs/latest"
+    },
+    {
+      "title": "Ollama OpenAI compatibility",
+      "url": "https://docs.ollama.com/api/openai-compatibility"
+    },
+    {
+      "title": "sqlite-vec",
+      "url": "https://github.com/asg017/sqlite-vec"
+    },
+    {
+      "title": "Docker Sandboxes",
+      "url": "https://docs.docker.com/ai/sandboxes/"
+    },
+    {
+      "title": "Arize Phoenix documentation",
+      "url": "https://arize.com/docs/phoenix"
+    }
+  ],
   "layers": {
     "channels": [
       "cli-tui",
@@ -36,6 +59,7 @@
     "storage": "sqlite",
     "hosting": "your-laptop",
     "guardrails": "permission-modes",
-    "observability": "langfuse"
-  }
+    "observability": "arize-phoenix"
+  },
+  "researched": "2026-10-21"
 }

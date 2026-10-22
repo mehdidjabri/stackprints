@@ -3,19 +3,29 @@
   "name": "Claude Code",
   "kind": "Coding agent",
   "tagline": "Agentic coding in the terminal, desktop and cloud.",
-  "description": "Claude Code runs Anthropic's agent loop against your repo: agentic search instead of embeddings, CLAUDE.md project memory, subagents with isolated context, skills, plugins, hooks and MCP, with permission modes from ask-every-time to auto. The same loop ships as the Claude Agent SDK.",
+  "description": "Claude Code is Anthropic's coding agent. The same agent loop runs in the terminal, IDE extensions, the desktop app, the web and Slack, either on your machine or in an Anthropic-managed cloud VM, and the Claude mobile app connects to those sessions. It reads CLAUDE.md or AGENTS.md, keeps auto memory in a MEMORY.md index, searches files with grep and find, delegates to subagents, and is extended with skills, plugins, hooks and MCP. Permission modes range from manual approval to auto mode, where a classifier reviews actions, and telemetry can be exported over OpenTelemetry. The same loop is available as a library, the Claude Agent SDK. The source code is closed, but Anthropic documents the architecture in depth.",
   "links": {
     "site": "https://claude.com/product/claude-code",
     "docs": "https://code.claude.com/docs"
   },
+  "disclosure": "documented",
   "layers": {
     "channels": [
       "cli-tui",
       "ide",
       "desktop-app",
-      "slack"
+      "web-chat",
+      "mobile-app",
+      "slack",
+      "telegram",
+      "discord",
+      "imessage"
     ],
-    "proactivity": "cron",
+    "proactivity": [
+      "cron",
+      "webhooks",
+      "self-scheduled-wake"
+    ],
     "ui": [
       "plain-text",
       "artifacts"
@@ -24,9 +34,11 @@
     "model": [
       "claude-opus-5-5",
       "claude-sonnet-5-5",
-      "claude-haiku-5-5"
+      "claude-haiku-5-5",
+      "claude-fable-5-1"
     ],
     "router": "direct-provider",
+    "inference": "bedrock-vertex-azure",
     "persona": [
       "claude-md",
       "agents-md"
@@ -39,9 +51,13 @@
     "search": "web-search",
     "sandbox": [
       "host-machine",
-      "docker"
+      "docker",
+      "per-task-cloud-vm"
     ],
-    "browser": "chrome-extension",
+    "browser": [
+      "chrome-extension",
+      "computer-use-api"
+    ],
     "mcp": "mcp",
     "skills": [
       "agent-skills-skill-md",
@@ -54,10 +70,241 @@
       "jsonl-transcripts",
       "git"
     ],
-    "hosting": "your-laptop",
+    "hosting": [
+      "your-laptop",
+      "vendor-cloud"
+    ],
     "guardrails": [
       "permission-modes",
-      "auto-review"
+      "auto-review",
+      "hooks"
+    ],
+    "identity": [
+      "credential-vault",
+      "mcp-oauth-2-1"
     ]
-  }
+  },
+  "evidence": {
+    "channels": [
+      "https://code.claude.com/docs/en/overview",
+      "https://code.claude.com/docs/en/platforms",
+      "https://code.claude.com/docs/en/claude-code-on-the-web",
+      "https://code.claude.com/docs/en/mobile",
+      "https://code.claude.com/docs/en/slack",
+      "https://code.claude.com/docs/en/channels"
+    ],
+    "proactivity": [
+      "https://code.claude.com/docs/en/scheduled-tasks",
+      "https://code.claude.com/docs/en/routines",
+      "https://code.claude.com/docs/en/channels"
+    ],
+    "ui": [
+      "https://code.claude.com/docs/en/how-claude-code-works",
+      "https://code.claude.com/docs/en/artifacts"
+    ],
+    "harness": [
+      "https://code.claude.com/docs/en/agent-sdk/overview",
+      "https://code.claude.com/docs/en/how-claude-code-works"
+    ],
+    "model": [
+      "https://code.claude.com/docs/en/model-config"
+    ],
+    "router": [
+      "https://code.claude.com/docs/en/model-config",
+      "https://code.claude.com/docs/en/third-party-integrations"
+    ],
+    "inference": [
+      "https://code.claude.com/docs/en/third-party-integrations",
+      "https://code.claude.com/docs/en/model-config"
+    ],
+    "persona": [
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "multiagent": [
+      "https://code.claude.com/docs/en/sub-agents",
+      "https://code.claude.com/docs/en/agent-teams",
+      "https://code.claude.com/docs/en/worktrees"
+    ],
+    "tools": [
+      "https://code.claude.com/docs/en/tools-reference"
+    ],
+    "search": [
+      "https://code.claude.com/docs/en/tools-reference"
+    ],
+    "sandbox": [
+      "https://code.claude.com/docs/en/sandbox-environments",
+      "https://code.claude.com/docs/en/sandboxing",
+      "https://code.claude.com/docs/en/devcontainer",
+      "https://code.claude.com/docs/en/cloud-environments"
+    ],
+    "browser": [
+      "https://code.claude.com/docs/en/chrome",
+      "https://code.claude.com/docs/en/computer-use"
+    ],
+    "mcp": [
+      "https://code.claude.com/docs/en/mcp"
+    ],
+    "skills": [
+      "https://code.claude.com/docs/en/skills",
+      "https://code.claude.com/docs/en/plugins/overview"
+    ],
+    "memory": [
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "retrieval": [
+      "https://code.claude.com/docs/en/tools-reference"
+    ],
+    "storage": [
+      "https://code.claude.com/docs/en/sessions",
+      "https://code.claude.com/docs/en/worktrees"
+    ],
+    "hosting": [
+      "https://code.claude.com/docs/en/how-claude-code-works",
+      "https://code.claude.com/docs/en/claude-code-on-the-web"
+    ],
+    "guardrails": [
+      "https://code.claude.com/docs/en/permission-modes",
+      "https://code.claude.com/docs/en/permissions",
+      "https://code.claude.com/docs/en/hooks-guide"
+    ],
+    "identity": [
+      "https://code.claude.com/docs/en/cloud-environments",
+      "https://code.claude.com/docs/en/mcp"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Claude Code overview",
+      "url": "https://code.claude.com/docs/en/overview"
+    },
+    {
+      "title": "How Claude Code works",
+      "url": "https://code.claude.com/docs/en/how-claude-code-works"
+    },
+    {
+      "title": "Platforms and integrations",
+      "url": "https://code.claude.com/docs/en/platforms"
+    },
+    {
+      "title": "Use Claude Code in the cloud",
+      "url": "https://code.claude.com/docs/en/claude-code-on-the-web"
+    },
+    {
+      "title": "Configure cloud environments",
+      "url": "https://code.claude.com/docs/en/cloud-environments"
+    },
+    {
+      "title": "Claude Code on mobile",
+      "url": "https://code.claude.com/docs/en/mobile"
+    },
+    {
+      "title": "Claude Code in Slack",
+      "url": "https://code.claude.com/docs/en/slack"
+    },
+    {
+      "title": "Push events into a running session with channels",
+      "url": "https://code.claude.com/docs/en/channels"
+    },
+    {
+      "title": "Run prompts on a schedule",
+      "url": "https://code.claude.com/docs/en/scheduled-tasks"
+    },
+    {
+      "title": "Automate work with scheduled tasks (cloud)",
+      "url": "https://code.claude.com/docs/en/routines"
+    },
+    {
+      "title": "Share session output as artifacts",
+      "url": "https://code.claude.com/docs/en/artifacts"
+    },
+    {
+      "title": "Agent SDK overview",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview"
+    },
+    {
+      "title": "Model configuration",
+      "url": "https://code.claude.com/docs/en/model-config"
+    },
+    {
+      "title": "Enterprise deployment overview",
+      "url": "https://code.claude.com/docs/en/third-party-integrations"
+    },
+    {
+      "title": "How Claude remembers your project",
+      "url": "https://code.claude.com/docs/en/memory"
+    },
+    {
+      "title": "Create custom subagents",
+      "url": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "title": "Orchestrate teams of Claude Code sessions",
+      "url": "https://code.claude.com/docs/en/agent-teams"
+    },
+    {
+      "title": "Run parallel sessions with worktrees",
+      "url": "https://code.claude.com/docs/en/worktrees"
+    },
+    {
+      "title": "Tools reference",
+      "url": "https://code.claude.com/docs/en/tools-reference"
+    },
+    {
+      "title": "Choose a sandbox environment",
+      "url": "https://code.claude.com/docs/en/sandbox-environments"
+    },
+    {
+      "title": "Configure the sandboxed Bash tool",
+      "url": "https://code.claude.com/docs/en/sandboxing"
+    },
+    {
+      "title": "Development containers",
+      "url": "https://code.claude.com/docs/en/devcontainer"
+    },
+    {
+      "title": "Use Claude Code with Chrome",
+      "url": "https://code.claude.com/docs/en/chrome"
+    },
+    {
+      "title": "Let Claude use your computer from the CLI",
+      "url": "https://code.claude.com/docs/en/computer-use"
+    },
+    {
+      "title": "Connect Claude Code to tools via MCP",
+      "url": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "title": "Extend Claude with skills",
+      "url": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "title": "Plugins overview",
+      "url": "https://code.claude.com/docs/en/plugins/overview"
+    },
+    {
+      "title": "Manage sessions",
+      "url": "https://code.claude.com/docs/en/sessions"
+    },
+    {
+      "title": "Choose a permission mode",
+      "url": "https://code.claude.com/docs/en/permission-modes"
+    },
+    {
+      "title": "Configure permissions",
+      "url": "https://code.claude.com/docs/en/permissions"
+    },
+    {
+      "title": "Automate actions with hooks",
+      "url": "https://code.claude.com/docs/en/hooks-guide"
+    },
+    {
+      "title": "Monitoring (OpenTelemetry)",
+      "url": "https://code.claude.com/docs/en/monitoring-usage"
+    },
+    {
+      "title": "How we contain Claude across products (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/how-we-contain-claude"
+    }
+  ],
+  "researched": "2026-10-21"
 }

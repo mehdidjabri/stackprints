@@ -1,0 +1,59 @@
+{
+  "order": 150,
+  "id": "cloudflare-think",
+  "name": "Think",
+  "url": "developers.cloudflare.com/agents/harnesses/think",
+  "note": "Cloudflare's opinionated agent harness",
+  "open": true,
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Think (@cloudflare/think) is the opinionated harness in Cloudflare's Agents SDK, introduced as Project Think in April 2026. A subclass supplies a model through getModel(), and Think runs the agentic loop, message persistence, streaming and stream resumption on a Durable Object. It adds tree-structured sessions with non-destructive compaction, context-block memory, Agent Skills, sub-agents and a workspace file system.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Package",
+      "@cloudflare/think (cloudflare/agents monorepo)"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "TypeScript"
+    ],
+    [
+      "Status",
+      "Experimental preview"
+    ],
+    [
+      "Runtime",
+      "Durable Object with SQLite storage"
+    ],
+    [
+      "Models",
+      "Any, via getModel(); examples use Kimi on Workers AI"
+    ],
+    [
+      "Code execution",
+      "Workspace, sandboxed isolates, up to a full Cloudflare Sandbox"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.cloudflare.com/agents/harnesses/think/",
+    "repo": "https://github.com/cloudflare/agents",
+    "blog": "https://blog.cloudflare.com/project-think/"
+  },
+  "goodFor": [
+    "Stateful chat agents on Cloudflare Workers",
+    "Long sessions that must survive restarts"
+  ],
+  "watchOut": [
+    "Experimental: APIs may change",
+    "Runs only on Cloudflare's Durable Objects"
+  ],
+  "researched": "2026-10-21"
+}

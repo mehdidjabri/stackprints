@@ -3,12 +3,13 @@
   "name": "OpenClaw",
   "kind": "Personal agent",
   "tagline": "Self-hosted assistant that lives in every chat app you use.",
-  "description": "OpenClaw is a batteries-included, open-source personal assistant. A long-running gateway daemon connects WhatsApp, Telegram, Slack, Discord, iMessage, Signal and more to one agent, with markdown workspace files (AGENTS.md, SOUL.md, MEMORY.md), a heartbeat and cron scheduler, SQLite hybrid memory with nightly 'dreaming', ClawHub skills and companion nodes on every OS.",
+  "description": "OpenClaw is an open-source personal assistant stewarded by the OpenClaw Foundation. A local Gateway daemon connects WhatsApp, Telegram, Slack, Discord, iMessage, Signal, Teams and 20+ other channels, plus native apps on macOS, iOS, Android, Windows and Linux, to one agent. Instructions and memory are Markdown workspace files (AGENTS.md, SOUL.md, USER.md, MEMORY.md) indexed in SQLite with hybrid search and consolidated by a background 'dreaming' sweep. Automation jobs, webhooks and hooks start runs, models and harnesses such as Codex are plugins, and tools run on the host unless a Docker, SSH or other sandbox backend is configured.",
   "links": {
     "site": "https://openclaw.ai",
     "repo": "https://github.com/openclaw/openclaw",
     "docs": "https://docs.openclaw.ai"
   },
+  "disclosure": "open-source",
   "layers": {
     "channels": [
       "whatsapp",
@@ -16,63 +17,361 @@
       "slack",
       "discord",
       "imessage",
-      "signal"
+      "signal",
+      "microsoft-teams",
+      "sms-rcs",
+      "phone-calls",
+      "web-chat",
+      "cli-tui",
+      "ide",
+      "desktop-app",
+      "mobile-app"
     ],
     "proactivity": [
-      "heartbeat",
       "cron",
+      "heartbeat",
       "webhooks",
-      "gmail-pub-sub"
+      "gmail-pub-sub",
+      "self-scheduled-wake"
     ],
     "ui": [
+      "plain-text",
       "canvas",
-      "plain-text"
+      "a2ui",
+      "generative-ui",
+      "live-computer-view"
     ],
-    "voice": "whisper",
+    "voice": [
+      "whisper",
+      "deepgram",
+      "elevenlabs",
+      "openai-realtime",
+      "gemini-live"
+    ],
     "devices": [
       "openclaw-nodes",
       "phone",
       "laptop-node"
     ],
-    "harness": "openclaw-runtime",
+    "harness": [
+      "openclaw-runtime",
+      "codex"
+    ],
     "model": [
       "claude-opus-5-5",
+      "gpt-6-1-sol",
+      "gemini-4-argon",
       "gpt-6-astra",
       "kimi-k3"
     ],
-    "router": "openrouter",
+    "router": [
+      "direct-provider",
+      "openrouter",
+      "litellm",
+      "vercel-ai-gateway",
+      "cloudflare-ai-gateway"
+    ],
+    "inference": [
+      "ollama",
+      "vllm",
+      "groq",
+      "cerebras",
+      "together",
+      "fireworks",
+      "baseten",
+      "deepinfra",
+      "bedrock-vertex-azure"
+    ],
     "persona": [
       "agents-md",
       "soul-md",
       "identity-md-user-md"
     ],
-    "multiagent": "subagents",
+    "multiagent": [
+      "subagents",
+      "a2a"
+    ],
     "tools": [
       "read-write-edit-bash",
-      "apply-patch"
+      "apply-patch",
+      "image-generation"
     ],
-    "search": "web-search",
+    "search": [
+      "web-search",
+      "brave-search",
+      "exa",
+      "firecrawl",
+      "parallel",
+      "tavily"
+    ],
     "sandbox": [
       "host-machine",
-      "docker"
+      "docker",
+      "ssh-host",
+      "daytona"
     ],
-    "browser": "playwright-mcp",
-    "mcp": "mcp",
+    "browser": [
+      "chrome-extension",
+      "browserbase",
+      "cua-driver"
+    ],
+    "mcp": [
+      "mcp",
+      "code-mode"
+    ],
     "skills": [
       "agent-skills-skill-md",
-      "clawhub"
+      "clawhub",
+      "plugins",
+      "slash-commands"
     ],
     "memory": [
       "memory-md",
-      "dreaming"
+      "dreaming",
+      "honcho"
     ],
-    "retrieval": "sqlite-fts5-sqlite-vec",
-    "storage": "sqlite",
+    "retrieval": [
+      "sqlite-fts5-sqlite-vec",
+      "pgvector",
+      "lancedb"
+    ],
+    "storage": [
+      "sqlite",
+      "postgres",
+      "s3-r2"
+    ],
     "hosting": [
+      "your-laptop",
       "home-server-vps",
-      "your-laptop"
+      "fly-io",
+      "railway"
     ],
-    "guardrails": "dm-pairing",
-    "identity": "env-vars"
-  }
+    "guardrails": [
+      "dm-pairing",
+      "permission-modes",
+      "auto-review",
+      "hooks"
+    ],
+    "identity": [
+      "env-vars",
+      "credential-vault",
+      "1password"
+    ],
+    "observability": [
+      "opentelemetry-genai",
+      "logs"
+    ]
+  },
+  "evidence": {
+    "channels": [
+      "https://docs.openclaw.ai/channels",
+      "https://github.com/openclaw/openclaw",
+      "https://docs.openclaw.ai/web/tui",
+      "https://docs.openclaw.ai/cli/acp",
+      "https://docs.openclaw.ai/plugins/voice-call"
+    ],
+    "proactivity": [
+      "https://docs.openclaw.ai/automation",
+      "https://docs.openclaw.ai/gateway/heartbeat",
+      "https://docs.openclaw.ai/automation/cron-jobs/webhooks",
+      "https://docs.openclaw.ai/automation/cron-jobs/gmail",
+      "https://docs.openclaw.ai/tools"
+    ],
+    "ui": [
+      "https://docs.openclaw.ai/channels",
+      "https://docs.openclaw.ai/tools",
+      "https://docs.openclaw.ai/plugins/reference/canvas",
+      "https://docs.openclaw.ai/tools/show-widget",
+      "https://docs.openclaw.ai/nodes/computer-use"
+    ],
+    "voice": [
+      "https://docs.openclaw.ai/nodes/audio",
+      "https://docs.openclaw.ai/tools/tts",
+      "https://docs.openclaw.ai/nodes/talk/realtime-sessions",
+      "https://docs.openclaw.ai/plugins/reference/deepgram"
+    ],
+    "devices": [
+      "https://docs.openclaw.ai/nodes",
+      "https://docs.openclaw.ai/platforms"
+    ],
+    "harness": [
+      "https://docs.openclaw.ai/concepts/agent-runtimes",
+      "https://docs.openclaw.ai/plugins/codex-harness"
+    ],
+    "model": [
+      "https://docs.openclaw.ai/concepts/recommended-models",
+      "https://github.com/openclaw/openclaw/blob/main/scripts/lib/recommended-models.json"
+    ],
+    "router": [
+      "https://docs.openclaw.ai/providers",
+      "https://docs.openclaw.ai/providers/openrouter",
+      "https://docs.openclaw.ai/providers/litellm",
+      "https://docs.openclaw.ai/providers/vercel-ai-gateway",
+      "https://docs.openclaw.ai/providers/cloudflare-ai-gateway"
+    ],
+    "inference": [
+      "https://docs.openclaw.ai/providers"
+    ],
+    "persona": [
+      "https://docs.openclaw.ai/concepts/agent-workspace",
+      "https://docs.openclaw.ai/concepts/soul"
+    ],
+    "multiagent": [
+      "https://docs.openclaw.ai/tools/subagents",
+      "https://docs.openclaw.ai/channels/a2a"
+    ],
+    "tools": [
+      "https://docs.openclaw.ai/tools",
+      "https://docs.openclaw.ai/tools/apply-patch",
+      "https://docs.openclaw.ai/tools/image-generation"
+    ],
+    "search": [
+      "https://docs.openclaw.ai/tools/web"
+    ],
+    "sandbox": [
+      "https://github.com/openclaw/openclaw",
+      "https://docs.openclaw.ai/gateway/sandboxing",
+      "https://docs.openclaw.ai/gateway/sandboxing/ssh-backend",
+      "https://docs.openclaw.ai/gateway/sandboxing/crabbox-backend"
+    ],
+    "browser": [
+      "https://docs.openclaw.ai/tools/browser",
+      "https://docs.openclaw.ai/tools/chrome-extension",
+      "https://docs.openclaw.ai/tools/browser/remote",
+      "https://docs.openclaw.ai/nodes/computer-use",
+      "https://docs.openclaw.ai/plugins/reference/cua-computer"
+    ],
+    "mcp": [
+      "https://docs.openclaw.ai/tools/mcp",
+      "https://docs.openclaw.ai/tools/code-mode"
+    ],
+    "skills": [
+      "https://docs.openclaw.ai/tools/skills",
+      "https://docs.openclaw.ai/tools/plugin",
+      "https://docs.openclaw.ai/tools/slash-commands"
+    ],
+    "memory": [
+      "https://docs.openclaw.ai/concepts/memory",
+      "https://docs.openclaw.ai/concepts/dreaming",
+      "https://docs.openclaw.ai/concepts/memory-honcho"
+    ],
+    "retrieval": [
+      "https://docs.openclaw.ai/concepts/memory-builtin",
+      "https://docs.openclaw.ai/concepts/memory-search",
+      "https://docs.openclaw.ai/plugins/reference/memory-lancedb"
+    ],
+    "storage": [
+      "https://docs.openclaw.ai/concepts/session",
+      "https://docs.openclaw.ai/gateway/postgresql",
+      "https://docs.openclaw.ai/concepts/storage-locations"
+    ],
+    "hosting": [
+      "https://github.com/openclaw/openclaw",
+      "https://docs.openclaw.ai/install",
+      "https://docs.openclaw.ai/install/hetzner",
+      "https://docs.openclaw.ai/install/fly",
+      "https://docs.openclaw.ai/install/railway"
+    ],
+    "guardrails": [
+      "https://docs.openclaw.ai/channels/pairing",
+      "https://docs.openclaw.ai/tools/permission-modes",
+      "https://docs.openclaw.ai/plugins/hooks"
+    ],
+    "identity": [
+      "https://docs.openclaw.ai/tools/web",
+      "https://docs.openclaw.ai/tools/secrets",
+      "https://docs.openclaw.ai/plugins/onepassword"
+    ],
+    "observability": [
+      "https://docs.openclaw.ai/gateway/opentelemetry",
+      "https://docs.openclaw.ai/gateway/logging"
+    ]
+  },
+  "sources": [
+    {
+      "title": "OpenClaw README (GitHub)",
+      "url": "https://github.com/openclaw/openclaw"
+    },
+    {
+      "title": "package.json (GitHub)",
+      "url": "https://github.com/openclaw/openclaw/blob/main/package.json"
+    },
+    {
+      "title": "Chat channels",
+      "url": "https://docs.openclaw.ai/channels"
+    },
+    {
+      "title": "Tools overview",
+      "url": "https://docs.openclaw.ai/tools"
+    },
+    {
+      "title": "Web search",
+      "url": "https://docs.openclaw.ai/tools/web"
+    },
+    {
+      "title": "Browser (OpenClaw-managed)",
+      "url": "https://docs.openclaw.ai/tools/browser"
+    },
+    {
+      "title": "Computer use",
+      "url": "https://docs.openclaw.ai/nodes/computer-use"
+    },
+    {
+      "title": "Automation",
+      "url": "https://docs.openclaw.ai/automation"
+    },
+    {
+      "title": "Heartbeat migration",
+      "url": "https://docs.openclaw.ai/gateway/heartbeat"
+    },
+    {
+      "title": "Memory overview",
+      "url": "https://docs.openclaw.ai/concepts/memory"
+    },
+    {
+      "title": "Builtin memory engine",
+      "url": "https://docs.openclaw.ai/concepts/memory-builtin"
+    },
+    {
+      "title": "Agent runtimes",
+      "url": "https://docs.openclaw.ai/concepts/agent-runtimes"
+    },
+    {
+      "title": "Recommended models",
+      "url": "https://docs.openclaw.ai/concepts/recommended-models"
+    },
+    {
+      "title": "Providers",
+      "url": "https://docs.openclaw.ai/providers"
+    },
+    {
+      "title": "Sandboxing",
+      "url": "https://docs.openclaw.ai/gateway/sandboxing"
+    },
+    {
+      "title": "Permission modes",
+      "url": "https://docs.openclaw.ai/tools/permission-modes"
+    },
+    {
+      "title": "Connect MCP servers",
+      "url": "https://docs.openclaw.ai/tools/mcp"
+    },
+    {
+      "title": "Code Mode",
+      "url": "https://docs.openclaw.ai/tools/code-mode"
+    },
+    {
+      "title": "PostgreSQL operator guide",
+      "url": "https://docs.openclaw.ai/gateway/postgresql"
+    },
+    {
+      "title": "OpenTelemetry",
+      "url": "https://docs.openclaw.ai/gateway/opentelemetry"
+    },
+    {
+      "title": "Install",
+      "url": "https://docs.openclaw.ai/install"
+    }
+  ],
+  "researched": "2026-10-21"
 }

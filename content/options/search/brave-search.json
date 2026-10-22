@@ -1,0 +1,47 @@
+{
+  "order": 60,
+  "id": "brave-search",
+  "name": "Brave Search API",
+  "url": "brave.com/search/api",
+  "note": "Search API on Brave's own index",
+  "profile": "product",
+  "summary": "Brave Search API returns results from Brave's own web index, which Brave crawls and ranks itself. Besides web, news, image and video results it offers an LLM Context endpoint that returns extracted page content within a token budget, and an Answers endpoint with cited summaries.",
+  "facts": [
+    [
+      "Company",
+      "Brave Software"
+    ],
+    [
+      "Index",
+      "Own independent index (vendor-stated)"
+    ],
+    [
+      "Endpoints",
+      "Web search, LLM Context, Answers"
+    ],
+    [
+      "Pricing",
+      "Search $5 per 1,000 requests; Answers $4 per 1,000 plus $5 per 1M tokens"
+    ],
+    [
+      "Rate limit",
+      "50 queries/s (Search), 2 queries/s (Answers)"
+    ],
+    [
+      "Used by",
+      "OpenClaw (first in web_search auto-detection), Hermes Agent"
+    ]
+  ],
+  "links": {
+    "site": "https://brave.com/search/api/"
+  },
+  "goodFor": [
+    "A web index that is not resold from another engine",
+    "Feeding extracted page text to a model within a token budget"
+  ],
+  "watchOut": [
+    "A credit card is required, even for the monthly free credits",
+    "Search and Answers are billed separately"
+  ],
+  "researched": "2026-10-21"
+}
