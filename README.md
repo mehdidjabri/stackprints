@@ -53,4 +53,4 @@ npm run dev
 - Or edit `content/` by hand; see [/contribute](app/contribute/page.tsx). Run `npm run check` first.
 Closed products are described from public reporting; say so in the description and link a source.
 
-MIT licensed. Logos come from [Simple Icons](https://simpleicons.org) (CC0) , [LobeHub Icons](https://github.com/lobehub/lobe-icons) (MIT) and the vendors' own sites (converted to one colour); marks belong to their owners.
+MIT licensed. Logos come from [Simple Icons](https://simpleicons.org) (CC0), [LobeHub Icons](https://github.com/lobehub/lobe-icons) (MIT) and the vendors' own sites (converted to one colour); marks belong to their owners.
