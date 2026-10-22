@@ -1,7 +1,7 @@
 {
   "order": 40,
   "id": "supervisor-swarm",
-  "name": "Supervisor / swarm",
+  "name": "LangGraph Supervisor / Swarm",
   "url": "langchain.com",
   "note": "LangGraph multi-agent patterns",
   "open": true,

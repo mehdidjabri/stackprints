@@ -8,19 +8,44 @@
   "profile": "product",
   "summary": "Modal is a serverless compute platform where you define containers, GPUs and functions in Python code and Modal runs them, scaling to zero when idle. Teams use it to serve their own models, run batch and training jobs, and spin up isolated sandboxes for agents.",
   "facts": [
-    ["Billing", "Per second for GPU, CPU and memory; no charge when scaled to zero"],
-    ["GPU rates", "H100 $0.001097/s (~$3.95/h), B300 $0.001972/s, A100 80GB $0.000694/s"],
-    ["Free credits", "$30/month on Starter, $100/month on Team"],
-    ["Sandboxes", "Isolated environments, billed at non-preemptible rates"],
-    ["Capacity", "Pool spanning 20+ clouds (vendor-reported)"],
-    ["Funding", "$750M Series D at $15.75B valuation, Oct 2026"]
+    [
+      "Billing",
+      "Per second for GPU, CPU and memory; no charge when scaled to zero"
+    ],
+    [
+      "GPU rates",
+      "H100 $0.001097/s (~$3.95/h), B300 $0.001972/s, A100 80GB $0.000694/s"
+    ],
+    [
+      "Free credits",
+      "$30/month on Starter, $100/month on Team"
+    ],
+    [
+      "Sandboxes",
+      "Isolated environments, billed at non-preemptible rates"
+    ],
+    [
+      "Capacity",
+      "Pool spanning 20+ clouds (vendor-reported)"
+    ],
+    [
+      "Funding",
+      "$750M Series D at $15.75B valuation, Oct 2026"
+    ]
   ],
   "links": {
     "site": "https://modal.com",
     "pricing": "https://modal.com/pricing",
     "changelog": "https://modal.com/blog"
   },
-  "goodFor": ["Serving your own or fine-tuned models without managing Kubernetes", "Bursty workloads that should scale to zero", "Agent code sandboxes"],
-  "watchOut": ["No managed per-token API; you deploy the model yourself", "Cold starts and the 60s default keep-alive affect latency and cost"],
+  "goodFor": [
+    "Serving your own or fine-tuned models without managing Kubernetes",
+    "Bursty workloads that should scale to zero",
+    "Agent code sandboxes"
+  ],
+  "watchOut": [
+    "No managed per-token API; you deploy the model yourself",
+    "Cold starts and the 60s default keep-alive affect latency and cost"
+  ],
   "researched": "2026-10-21"
 }

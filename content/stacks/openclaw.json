@@ -14,6 +14,12 @@
       "imessage",
       "signal"
     ],
+    "proactivity": [
+      "heartbeat",
+      "cron",
+      "webhooks",
+      "gmail-pub-sub"
+    ],
     "ui": [
       "canvas",
       "plain-text"
@@ -24,13 +30,13 @@
       "phone",
       "laptop-node"
     ],
+    "harness": "openclaw-runtime",
     "model": [
       "claude-opus-5-5",
       "gpt-6-astra",
       "kimi-k3"
     ],
     "router": "openrouter",
-    "harness": "openclaw-runtime",
     "persona": [
       "agents-md",
       "soul-md",
@@ -39,36 +45,30 @@
     "multiagent": "subagents",
     "tools": [
       "read-write-edit-bash",
-      "apply-patch",
-      "web-search"
+      "apply-patch"
     ],
-    "mcp": "mcp",
-    "skills": [
-      "agent-skills-skill-md",
-      "clawhub"
-    ],
+    "search": "web-search",
     "sandbox": [
       "host-machine",
       "docker"
     ],
     "browser": "playwright-mcp",
+    "mcp": "mcp",
+    "skills": [
+      "agent-skills-skill-md",
+      "clawhub"
+    ],
     "memory": [
       "memory-md",
       "dreaming"
     ],
     "retrieval": "sqlite-fts5-sqlite-vec",
     "storage": "sqlite",
-    "proactivity": [
-      "heartbeat",
-      "cron",
-      "webhooks",
-      "gmail-pub-sub"
-    ],
-    "guardrails": "dm-pairing",
-    "identity": "env-vars",
     "hosting": [
       "home-server-vps",
       "your-laptop"
-    ]
+    ],
+    "guardrails": "dm-pairing",
+    "identity": "env-vars"
   }
 }

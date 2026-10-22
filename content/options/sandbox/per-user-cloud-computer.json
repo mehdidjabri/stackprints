@@ -12,9 +12,18 @@
     "Connect to it from chat, web or a local client"
   ],
   "facts": [
-    ["Built with", "Persistent sandboxes such as Daytona, Vercel Sandbox, Docker Cloud Sandboxes"],
-    ["Persistence", "Disk, and often memory, survive between sessions"],
-    ["Trade-off", "Agent keeps context and setup, but you pay for idle storage and must secure a long-lived machine"]
+    [
+      "Built with",
+      "Persistent sandboxes such as Daytona, Vercel Sandbox, Docker Cloud Sandboxes"
+    ],
+    [
+      "Persistence",
+      "Disk, and often memory, survive between sessions"
+    ],
+    [
+      "Trade-off",
+      "Agent keeps context and setup, but you pay for idle storage and must secure a long-lived machine"
+    ]
   ],
   "goodFor": [
     "Long-running or scheduled agent work",

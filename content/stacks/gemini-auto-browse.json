@@ -10,10 +10,10 @@
     "ui": "live-computer-view",
     "model": "gemini-4-argon",
     "browser": "chrome-extension",
-    "memory": "agent-notes",
-    "identity": "private-sign-in-form",
-    "guardrails": "per-action-autonomy",
     "payments": "ap2",
-    "hosting": "vendor-cloud"
+    "memory": "agent-notes",
+    "hosting": "vendor-cloud",
+    "guardrails": "per-action-autonomy",
+    "identity": "private-sign-in-form"
   }
 }

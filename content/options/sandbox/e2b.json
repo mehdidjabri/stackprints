@@ -8,13 +8,34 @@
   "profile": "product",
   "summary": "E2B runs AI-generated code in isolated Linux sandboxes backed by Firecracker microVMs, controlled through Python and JavaScript/TypeScript SDKs. Sandboxes can be paused, which saves filesystem and memory, and resumed later. The runtime is Apache-2.0 and can be self-hosted, or used as a hosted cloud service.",
   "facts": [
-    ["Isolation", "Firecracker microVMs, resumed from snapshots"],
-    ["License", "Apache-2.0"],
-    ["SDKs", "Python, JavaScript/TypeScript"],
-    ["Persistence", "Pause saves filesystem and memory; kept until killed"],
-    ["Pricing", "Hobby $0 + usage ($100 one-time credit); Pro $150/month + usage"],
-    ["Session length", "Up to 1 h (Hobby), 24 h (Pro)"],
-    ["Self-hosting", "E2B Embed and Terraform deployment on AWS, GCP, Azure or Linux"]
+    [
+      "Isolation",
+      "Firecracker microVMs, resumed from snapshots"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "SDKs",
+      "Python, JavaScript/TypeScript"
+    ],
+    [
+      "Persistence",
+      "Pause saves filesystem and memory; kept until killed"
+    ],
+    [
+      "Pricing",
+      "Hobby $0 + usage ($100 one-time credit); Pro $150/month + usage"
+    ],
+    [
+      "Session length",
+      "Up to 1 h (Hobby), 24 h (Pro)"
+    ],
+    [
+      "Self-hosting",
+      "E2B Embed and Terraform deployment on AWS, GCP, Azure or Linux"
+    ]
   ],
   "links": {
     "site": "https://e2b.dev",

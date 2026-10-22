@@ -12,39 +12,39 @@
       "slack",
       "microsoft-teams"
     ],
-    "ui": [
-      "goals-activity-feed",
-      "live-computer-view",
-      "apps-sdk"
-    ],
-    "voice": "openai-realtime",
-    "model": "gpt-6-astra",
-    "router": "direct-provider",
-    "harness": "openai-agents-sdk",
-    "persona": "avatar-handle",
-    "multiagent": "subagents",
-    "tools": [
-      "web-search",
-      "calendar-email"
-    ],
-    "connectors": "plugins-marketplace",
-    "sandbox": "per-user-cloud-computer",
-    "browser": "cloud-browser",
-    "memory": "agent-notes",
     "proactivity": [
       "self-scheduled-wake",
       "cron",
       "webhooks",
       "background-research"
     ],
+    "ui": [
+      "goals-activity-feed",
+      "live-computer-view",
+      "apps-sdk"
+    ],
+    "voice": "openai-realtime",
+    "harness": "openai-agents-sdk",
+    "model": "gpt-6-astra",
+    "router": "direct-provider",
+    "multiagent": "subagents",
+    "search": "web-search",
+    "sandbox": "per-user-cloud-computer",
+    "browser": "cloud-browser",
+    "connectors": "calendar-email",
+    "payments": "single-use-cards",
+    "skills": "plugins",
+    "memory": "agent-notes",
+    "hosting": "vendor-cloud",
     "durable": "in-process",
     "guardrails": [
       "per-action-autonomy",
       "auto-review",
       "audit-trail"
     ],
-    "identity": "private-sign-in-form",
-    "payments": "single-use-cards",
-    "hosting": "vendor-cloud"
+    "identity": [
+      "private-sign-in-form",
+      "agent-phone-email"
+    ]
   }
 }

@@ -9,13 +9,34 @@
   "profile": "product",
   "summary": "Docker runs software in containers, and many agent setups use a container to keep an agent away from the host filesystem. Docker Sandboxes, managed with the sbx CLI, go further: each coding agent runs in its own microVM with its own kernel and Docker daemon, with only the project workspace mounted and network allow and deny lists. Sandboxes run locally for free or in Docker's cloud on a pay-as-you-go plan.",
   "facts": [
-    ["Company", "Docker, Inc."],
-    ["License", "Docker Engine (Moby) Apache-2.0"],
-    ["Isolation", "Containers; Docker Sandboxes use microVMs"],
-    ["Platforms", "MicroVM sandboxes on macOS and Windows; Linux uses container-based sandboxes"],
-    ["Agents", "Claude Code, Codex, Copilot, Gemini CLI, Kiro and others"],
-    ["Pricing", "Local sandboxes free; cloud from $0.07/h (1 vCPU, 2 GiB)"],
-    ["Session length", "Cloud: 1 h default, up to 24 h"]
+    [
+      "Company",
+      "Docker, Inc."
+    ],
+    [
+      "License",
+      "Docker Engine (Moby) Apache-2.0"
+    ],
+    [
+      "Isolation",
+      "Containers; Docker Sandboxes use microVMs"
+    ],
+    [
+      "Platforms",
+      "MicroVM sandboxes on macOS and Windows; Linux uses container-based sandboxes"
+    ],
+    [
+      "Agents",
+      "Claude Code, Codex, Copilot, Gemini CLI, Kiro and others"
+    ],
+    [
+      "Pricing",
+      "Local sandboxes free; cloud from $0.07/h (1 vCPU, 2 GiB)"
+    ],
+    [
+      "Session length",
+      "Cloud: 1 h default, up to 24 h"
+    ]
   ],
   "links": {
     "site": "https://www.docker.com",

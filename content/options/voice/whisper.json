@@ -6,7 +6,7 @@
   "note": "Local speech-to-text",
   "open": true,
   "logo": "openai",
-  "profile": "product",
+  "profile": "model",
   "summary": "Whisper is OpenAI's open-source speech recognition model and Python package. It runs locally on CPU or GPU and handles multilingual transcription, translation to English and language identification. Model sizes range from tiny (39M parameters) to large (1.55B).",
   "facts": [
     [

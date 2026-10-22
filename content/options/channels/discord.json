@@ -8,12 +8,30 @@
   "profile": "product",
   "summary": "Discord apps get an official bot user that connects over the Gateway (WebSocket) and HTTP API, with slash commands, message components and modals. Bots can be installed to servers or to individual users. Libraries such as discord.js handle the protocol; reading ordinary server messages requires the Message Content privileged intent.",
   "facts": [
-    ["API", "Official Gateway (WebSocket) and HTTP API"],
-    ["Cost", "Free to create apps in the Developer Portal"],
-    ["Install", "Server install or user install"],
-    ["Message content", "Privileged intent; review required above 10,000 users (since 2026-06-10)"],
-    ["Search", "Search Guild Messages endpoint (2026-03-19)"],
-    ["Library", "discord.js (Node.js)"]
+    [
+      "API",
+      "Official Gateway (WebSocket) and HTTP API"
+    ],
+    [
+      "Cost",
+      "Free to create apps in the Developer Portal"
+    ],
+    [
+      "Install",
+      "Server install or user install"
+    ],
+    [
+      "Message content",
+      "Privileged intent; review required above 10,000 users (since 2026-06-10)"
+    ],
+    [
+      "Search",
+      "Search Guild Messages endpoint (2026-03-19)"
+    ],
+    [
+      "Library",
+      "discord.js (Node.js)"
+    ]
   ],
   "links": {
     "site": "https://discord.com/developers",

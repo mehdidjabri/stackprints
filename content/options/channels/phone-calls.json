@@ -4,14 +4,29 @@
   "name": "Phone calls",
   "url": "twilio.com",
   "note": "Agent calls you, you call it",
-  "profile": "product",
+  "profile": "pattern",
   "summary": "Voice agents answer or place calls through a telephony provider. One route is Twilio ConversationRelay, where Twilio handles speech-to-text and text-to-speech and streams text to the agent over a WebSocket. Another is SIP: a trunking provider forwards calls to a speech-to-speech model such as the OpenAI Realtime API, which the backend accepts through a webhook.",
   "facts": [
-    ["API", "Official provider APIs (Twilio Voice, SIP trunking)"],
-    ["Twilio ConversationRelay", "TwiML <Connect> to a wss:// server; Twilio does STT and TTS"],
-    ["Speech providers", "Deepgram, Google, Amazon Polly, ElevenLabs (ConversationRelay)"],
-    ["OpenAI Realtime SIP", "Trunk to sip.api.openai.com, accept via webhook"],
-    ["Number cost", "$1.15/month for a US long code (Twilio)"]
+    [
+      "API",
+      "Official provider APIs (Twilio Voice, SIP trunking)"
+    ],
+    [
+      "Twilio ConversationRelay",
+      "TwiML <Connect> to a wss:// server; Twilio does STT and TTS"
+    ],
+    [
+      "Speech providers",
+      "Deepgram, Google, Amazon Polly, ElevenLabs (ConversationRelay)"
+    ],
+    [
+      "OpenAI Realtime SIP",
+      "Trunk to sip.api.openai.com, accept via webhook"
+    ],
+    [
+      "Number cost",
+      "$1.15/month for a US long code (Twilio)"
+    ]
   ],
   "links": {
     "docs": "https://www.twilio.com/docs/voice/conversationrelay",

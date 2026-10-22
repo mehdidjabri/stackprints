@@ -11,16 +11,18 @@
       "sms-rcs",
       "telegram"
     ],
-    "ui": "plain-text",
-    "tools": "calendar-email",
-    "connectors": "composio",
-    "memory": "agent-notes",
     "proactivity": [
       "cron",
       "webhooks",
       "background-research"
     ],
-    "guardrails": "permission-modes",
-    "hosting": "vendor-cloud"
+    "ui": "plain-text",
+    "connectors": [
+      "composio",
+      "calendar-email"
+    ],
+    "memory": "agent-notes",
+    "hosting": "vendor-cloud",
+    "guardrails": "permission-modes"
   }
 }

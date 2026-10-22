@@ -11,14 +11,15 @@
       "slack"
     ],
     "ui": "assistant-ui",
+    "readiness": "llms-txt",
+    "harness": "ai-sdk-agent",
     "model": [
       "claude-sonnet-5-5",
       "claude-haiku-5-5"
     ],
     "router": "vercel-ai-gateway",
-    "harness": "ai-sdk-agent",
     "multiagent": "handoffs",
-    "tools": "web-search",
+    "search": "web-search",
     "connectors": "arcade",
     "memory": "past-dev",
     "retrieval": [
@@ -27,14 +28,13 @@
       "cohere-rerank-4"
     ],
     "storage": "postgres",
+    "hosting": "vercel",
     "durable": "workflow-sdk",
     "guardrails": [
       "lakera",
       "audit-trail"
     ],
     "identity": "auth0-for-ai-agents",
-    "observability": "braintrust",
-    "hosting": "vercel",
-    "readiness": "llms-txt"
+    "observability": "braintrust"
   }
 }

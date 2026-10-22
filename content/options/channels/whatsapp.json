@@ -8,12 +8,30 @@
   "profile": "product",
   "summary": "Businesses reach WhatsApp users through Meta's WhatsApp Business Platform (Cloud API), which bills per delivered message and only allows free-form replies inside a 24-hour customer service window. Since January 2026 Meta's terms bar general-purpose AI assistants from the Business API, while customer-service bots remain allowed. Unofficial libraries such as Baileys drive a personal account instead, against WhatsApp's terms.",
   "facts": [
-    ["API", "Official WhatsApp Business Platform (Cloud API); unofficial bridges exist"],
-    ["Pricing", "Per delivered message, by category and country (since 2025-07-01)"],
-    ["Service messages", "1,000 free per number per month, then billed (from 2026-10-01)"],
-    ["Messaging window", "Free-form replies only within 24 hours of the user's last message"],
-    ["AI policy", "General-purpose AI assistants barred from the Business API (from 2026-01-15)"],
-    ["AI providers", "Separate AI Providers pricing policy (from 2026-02-16)"]
+    [
+      "API",
+      "Official WhatsApp Business Platform (Cloud API); unofficial bridges exist"
+    ],
+    [
+      "Pricing",
+      "Per delivered message, by category and country (since 2025-07-01)"
+    ],
+    [
+      "Service messages",
+      "1,000 free per number per month, then billed (from 2026-10-01)"
+    ],
+    [
+      "Messaging window",
+      "Free-form replies only within 24 hours of the user's last message"
+    ],
+    [
+      "AI policy",
+      "General-purpose AI assistants barred from the Business API (from 2026-01-15)"
+    ],
+    [
+      "AI providers",
+      "Separate AI Providers pricing policy (from 2026-02-16)"
+    ]
   ],
   "links": {
     "docs": "https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing",

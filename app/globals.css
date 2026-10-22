@@ -14,6 +14,10 @@
   --chart-5: #546dc9; /* periwinkle */
   --chart-6: #865cb9; /* violet */
   --chart-7: #b04b80; /* rose */
+  /* How strongly band colours show in outlines (light needs more to reach ~2:1). */
+  --mix-line: 50%;
+  --mix-core: 80%;
+  --mix-mini: 65%;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --sans: var(--font-dm-sans), ui-sans-serif, -apple-system, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
@@ -34,6 +38,9 @@
     --chart-5: #a5bbfe;
     --chart-6: #cdaafe;
     --chart-7: #fa9bc9;
+    --mix-line: 34%;
+    --mix-core: 55%;
+    --mix-mini: 45%;
   }
 }
 
@@ -302,8 +309,14 @@ button:hover,
 .zone.cpu {
   grid-area: cpu;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  grid-auto-flow: row dense;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+.cpu-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
 }
 .zone.pcie {
   grid-area: pcie;
@@ -332,19 +345,16 @@ button:hover,
 .io .module {
   flex: 1 1 auto;
 }
-.cpu .module {
-  grid-column: span 2;
+/* Empty slots: the part isn't fitted. */
+.module.empty {
+  border-style: dashed;
+  justify-content: center;
 }
-.cpu .module.core {
-  grid-column: span 6;
+.module.empty .silk {
+  opacity: 0.75;
 }
-@media (min-width: 1180px) {
-  .cpu .module.core {
-    grid-column: span 4;
-  }
-}
-.mini .cpu .module.core {
-  grid-column: span 4;
+.module.core.empty {
+  box-shadow: none;
 }
 /* Processor sockets: a second rectangle inside the first. */
 .module.core {
@@ -364,7 +374,7 @@ button:hover,
 }
 .pcie .silk {
   flex: none;
-  width: 130px;
+  width: 190px;
 }
 .pcie .chips {
   flex: 1;
@@ -477,6 +487,7 @@ button:hover,
   }
 }
 .chip .x:hover {
+  color: var(--chart-1);
   color: var(--fg);
 }
 select.add {
@@ -529,9 +540,6 @@ select.add:focus-visible {
   .board:not(.mini) .cpu {
     grid-template-columns: minmax(0, 1fr);
   }
-  .board:not(.mini) .cpu .module {
-    grid-column: auto;
-  }
   .board:not(.mini) .pcie .module {
     flex-direction: column;
     align-items: stretch;
@@ -555,7 +563,8 @@ select.add:focus-visible {
   padding: 6px;
   border-color: var(--line);
 }
-.mini .zone {
+.mini .zone,
+.mini .cpu-col {
   gap: 4px;
 }
 .mini .zone.power {
@@ -564,10 +573,12 @@ select.add:focus-visible {
 .mini .module {
   padding: 5px;
   gap: 0;
+  min-height: 14px;
 }
 .mini .module.core {
   padding: 7px;
-  box-shadow: inset 0 0 0 2px var(--bg), inset 0 0 0 3px var(--line);
+  min-height: 34px;
+  box-shadow: none;
 }
 .mini .chips,
 .mini .io .chips {
@@ -584,19 +595,18 @@ select.add:focus-visible {
   border: 0;
   padding: 0;
 }
-.mini .logo,
+/* Sockets and channels carry the recognisable brands; everything else is small. */
+.mini .logo {
+  width: 12px;
+  height: 12px;
+}
 .mini .core .logo {
+  width: 20px;
+  height: 20px;
+}
+.mini .io .logo {
   width: 14px;
   height: 14px;
-}
-/* In minis, anything without a mark is just a hollow rectangle. */
-.mini .glyph,
-.mini .core .glyph {
-  font-size: 0;
-  width: 10px;
-  height: 10px;
-  margin: 2px;
-  border-color: var(--muted);
 }
 
 /* Grid of stacks */
@@ -1323,11 +1333,13 @@ pre,
   }
 }
 
-/* Colour codes: each band of the stack has its own colour (--c), used by
-   silkscreen refs, logos and module outlines. */
+/* Colour codes. Each band has a colour (--c). It shows as a swatch next to the
+   silkscreen designator, in module outlines and, on mini boards, as a light tint.
+   Logos stay neutral: brands keep their own marks. Coral (--chart-1) is reserved
+   for warnings and destructive actions; aqua is unused. */
 .b-surface,
 .zone.io {
-  --c: var(--chart-4);
+  --c: var(--chart-3);
 }
 .b-brain,
 .zone.cpu {
@@ -1339,40 +1351,56 @@ pre,
 }
 .b-files,
 .zone.ram {
-  --c: var(--chart-3);
+  --c: var(--chart-7);
 }
 .b-ops,
 .zone.power {
-  --c: var(--chart-1);
+  --c: var(--chart-5);
 }
-.module {
-  border-color: color-mix(in srgb, var(--c, var(--line)) 28%, transparent);
+:is(.zone, .b-surface, .b-brain, .b-hands, .b-files, .b-ops) .module,
+.module:is(.b-surface, .b-brain, .b-hands, .b-files, .b-ops) {
+  border-color: color-mix(in srgb, var(--c) var(--mix-line), transparent);
 }
-.module.core {
-  border-color: color-mix(in srgb, var(--c, var(--line-strong)) 70%, transparent);
-  box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px color-mix(in srgb, var(--c, var(--line)) 25%, transparent);
+:is(.zone, .b-surface, .b-brain, .b-hands, .b-files, .b-ops) .module.core {
+  border-color: color-mix(in srgb, var(--c) var(--mix-core), transparent);
+  box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px color-mix(in srgb, var(--c) 25%, transparent);
 }
-.core .chip {
-  border-color: color-mix(in srgb, var(--c, var(--line-strong)) 45%, transparent);
+:is(.zone, .b-surface, .b-brain, .b-hands, .b-files, .b-ops) .module.core.empty {
+  box-shadow: none;
 }
-.silk .ref,
-.logo {
-  color: var(--c, currentColor);
+.silk .ref {
+  color: var(--fg);
 }
-.glyph {
-  border-color: var(--c, var(--line-strong));
-}
-.mini .glyph,
-.mini .core .glyph {
-  border-color: color-mix(in srgb, var(--c, var(--muted)) 80%, transparent);
+:is(.zone, .b-surface, .b-brain, .b-hands, .b-files, .b-ops) .silk .ref::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 5px;
+  background: var(--c);
+  vertical-align: 1px;
 }
 .chip:has(.chip-link):hover,
 .alts .chip:hover {
   border-color: var(--c, var(--line-strong));
 }
-.board.mini,
-.card:hover .board.mini {
+.ticks.warn li::before {
+  border-color: var(--chart-1);
+}
+/* Mini boards: outlines carry the band map; a fitted slot is tinted, an empty one is dashed. */
+.mini .zone .module {
+  border-color: color-mix(in srgb, var(--c) var(--mix-mini), transparent);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+}
+.mini .zone .module.empty {
   border-color: var(--line);
+  background: none;
+}
+.board.mini {
+  border-color: var(--line);
+}
+.card:hover .board.mini {
+  border-color: var(--line-strong);
 }
 
 /* Legend under full boards */
@@ -1398,4 +1426,48 @@ pre,
 }
 .legend .board-label {
   margin-left: auto;
+}
+
+/* Home hero */
+.hero h1 {
+  font: 500 clamp(28px, 4vw, 40px) / 1.1 var(--sans);
+  letter-spacing: -0.02em;
+  margin: 48px 0 10px;
+}
+.hero .lede {
+  margin-bottom: 8px;
+}
+.hero + .editor .title {
+  margin-top: 28px;
+}
+.title h2 {
+  font: inherit;
+  margin: 0;
+}
+.title .shuffle {
+  border: 0;
+  padding: 2px 6px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--muted);
+}
+.title .shuffle:hover {
+  color: var(--fg);
+}
+button.link {
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* Picker that fills an empty slot */
+select.add.fill {
+  width: 100%;
+  min-height: 30px;
+  font-size: 12px;
+  text-align: left;
+  text-align-last: left;
+  padding: 0 8px;
 }

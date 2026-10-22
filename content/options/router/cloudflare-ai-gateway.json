@@ -8,13 +8,34 @@
   "profile": "product",
   "summary": "Cloudflare AI Gateway is a proxy that runs on Cloudflare's network in front of model providers. It adds analytics, logging, response caching, rate limiting, retries and model fallbacks. Requests can use your own provider keys or Cloudflare's Unified Billing credits.",
   "facts": [
-    ["Company", "Cloudflare"],
-    ["Pricing", "Core features free on all plans"],
-    ["Unified Billing", "5% fee on purchased credits, no markup on inference"],
-    ["BYOK", "Yes, stored provider keys"],
-    ["Providers", "Workers AI, OpenAI, Anthropic, Google Gemini, Replicate and others"],
-    ["Features", "Caching, rate limiting, retries, fallbacks, logs, analytics"],
-    ["Self-hostable", "No"]
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Pricing",
+      "Core features free on all plans"
+    ],
+    [
+      "Unified Billing",
+      "5% fee on purchased credits, no markup on inference"
+    ],
+    [
+      "BYOK",
+      "Yes, stored provider keys"
+    ],
+    [
+      "Providers",
+      "Workers AI, OpenAI, Anthropic, Google Gemini, Replicate and others"
+    ],
+    [
+      "Features",
+      "Caching, rate limiting, retries, fallbacks, logs, analytics"
+    ],
+    [
+      "Self-hostable",
+      "No"
+    ]
   ],
   "links": {
     "site": "https://www.cloudflare.com",

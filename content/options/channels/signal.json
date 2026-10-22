@@ -8,12 +8,30 @@
   "profile": "product",
   "summary": "Signal has no official bot API, so agents usually run signal-cli, an unofficial client that registers or links a phone number and exposes command-line, JSON-RPC and D-Bus interfaces. The agent then sends and receives end-to-end encrypted messages like any Signal user. It suits personal or small-group agents rather than business messaging.",
   "facts": [
-    ["API", "No official bot API; unofficial signal-cli"],
-    ["signal-cli license", "GPL-3.0"],
-    ["Interfaces", "CLI, JSON-RPC, D-Bus"],
-    ["Runtime", "Java (JRE 25)"],
-    ["Latest release", "signal-cli v0.14.9"],
-    ["Cost", "Free; needs a phone number to register"]
+    [
+      "API",
+      "No official bot API; unofficial signal-cli"
+    ],
+    [
+      "signal-cli license",
+      "GPL-3.0"
+    ],
+    [
+      "Interfaces",
+      "CLI, JSON-RPC, D-Bus"
+    ],
+    [
+      "Runtime",
+      "Java (JRE 25)"
+    ],
+    [
+      "Latest release",
+      "signal-cli v0.14.9"
+    ],
+    [
+      "Cost",
+      "Free; needs a phone number to register"
+    ]
   ],
   "links": {
     "site": "https://signal.org",

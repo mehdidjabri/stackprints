@@ -12,12 +12,32 @@
     "Keep a hosted model as a fallback for tasks the local model can't handle"
   ],
   "facts": [
-    ["Runtimes", "Ollama, llama.cpp, LM Studio, vLLM"],
-    ["Cost", "Hardware and power up front, no per-token fees"],
-    ["Privacy", "Prompts and data stay on your machine"],
-    ["Trade-off", "Smaller models and lower throughput than hosted frontier APIs"]
+    [
+      "Runtimes",
+      "Ollama, llama.cpp, LM Studio, vLLM"
+    ],
+    [
+      "Cost",
+      "Hardware and power up front, no per-token fees"
+    ],
+    [
+      "Privacy",
+      "Prompts and data stay on your machine"
+    ],
+    [
+      "Trade-off",
+      "Smaller models and lower throughput than hosted frontier APIs"
+    ]
   ],
-  "goodFor": ["Private or offline work", "High-volume background tasks with no token bill", "Experimenting with open models"],
-  "watchOut": ["Large models need a lot of VRAM or unified memory", "Quantized small models are weaker at long agentic tool use", "You maintain drivers, runtimes and updates"],
+  "goodFor": [
+    "Private or offline work",
+    "High-volume background tasks with no token bill",
+    "Experimenting with open models"
+  ],
+  "watchOut": [
+    "Large models need a lot of VRAM or unified memory",
+    "Quantized small models are weaker at long agentic tool use",
+    "You maintain drivers, runtimes and updates"
+  ],
   "researched": "2026-10-21"
 }

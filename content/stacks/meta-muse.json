@@ -10,6 +10,10 @@
       "whatsapp",
       "web-chat"
     ],
+    "proactivity": [
+      "background-research",
+      "self-scheduled-wake"
+    ],
     "ui": "goals-activity-feed",
     "devices": [
       "phone",
@@ -17,20 +21,16 @@
     ],
     "model": "muse-spark",
     "router": "direct-provider",
-    "connectors": "self-written-connectors",
     "sandbox": "per-user-cloud-computer",
     "browser": "cloud-browser",
+    "connectors": "self-written-connectors",
+    "payments": "single-use-cards",
     "memory": "agent-notes",
-    "proactivity": [
-      "background-research",
-      "self-scheduled-wake"
-    ],
+    "hosting": "vendor-cloud",
     "guardrails": [
       "separate-permission-authority",
       "audit-trail"
     ],
-    "identity": "credential-vault",
-    "payments": "single-use-cards",
-    "hosting": "vendor-cloud"
+    "identity": "credential-vault"
   }
 }

@@ -5,7 +5,7 @@ import { newFileUrl, slugify } from "@/lib/github";
 import type { Layer } from "@/lib/types";
 import { Board } from "./Board";
 
-type L = Pick<Layer, "id" | "name" | "band" | "description">;
+type L = Pick<Layer, "id" | "name" | "band" | "ref" | "description">;
 
 export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
   const [layer, setLayer] = useState(layers[0].id);

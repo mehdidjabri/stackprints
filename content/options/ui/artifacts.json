@@ -8,12 +8,30 @@
   "profile": "product",
   "summary": "Artifacts are documents, decks, designs, dashboards and small interactive tools that Claude creates in a panel beside the chat, where they can be edited, revisited and shared. Artifacts can call Claude using each viewer's own account, connect to the viewer's apps, and store data between sessions.",
   "facts": [
-    ["Company", "Anthropic"],
-    ["Availability", "Free, Pro, Max, Team and Enterprise plans; also in Claude Code"],
-    ["Templates", "Docs, Slides, Design; Dashboards and Motion in beta"],
-    ["AI calls", "Use the viewer's Claude plan; no API key, no cost to the creator"],
-    ["Storage", "Personal or shared, 20 MB text per artifact"],
-    ["Sharing", "Private by default, shared by link permissions"]
+    [
+      "Company",
+      "Anthropic"
+    ],
+    [
+      "Availability",
+      "Free, Pro, Max, Team and Enterprise plans; also in Claude Code"
+    ],
+    [
+      "Templates",
+      "Docs, Slides, Design; Dashboards and Motion in beta"
+    ],
+    [
+      "AI calls",
+      "Use the viewer's Claude plan; no API key, no cost to the creator"
+    ],
+    [
+      "Storage",
+      "Personal or shared, 20 MB text per artifact"
+    ],
+    [
+      "Sharing",
+      "Private by default, shared by link permissions"
+    ]
   ],
   "links": {
     "site": "https://claude.ai",

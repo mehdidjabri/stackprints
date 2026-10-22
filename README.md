@@ -10,19 +10,21 @@ Every possible AI agent stack, mapped, and drawn as an abstract motherboard: eac
 
 ## The model
 
-27 layers in five bands, top to bottom:
+28 layers in five bands, drawn as regions of a motherboard. Each layer has a fixed silkscreen designator.
 
-| Band | Layers |
-| --- | --- |
-| Surface | Channels, Interface, Voice, Devices |
-| Brain | Model, Router, Inference host, Harness, Persona, Multi-agent |
-| Hands | Core tools, Protocols, Connectors, Skills, Compute, Browser use |
-| Files | Memory, Retrieval, State |
-| Ops | Proactivity, Durable execution, Guardrails, Identity & secrets, Payments, Observability, Hosting, Agent readiness |
+| Band | Board region | Layers |
+| --- | --- | --- |
+| Surface | rear I/O strip | Channels J1, Triggers Y1, Interface J2, Voice J3, Devices J4, Agent access J5 |
+| Brain | processor area | Harness U1, Model U2, Model gateway U3, Inference U4, Instructions U5, Multi-agent U6 |
+| Hands | expansion slots | Built-in tools, Web search, Sandbox, Browser & computer use, Tool interface, Connectors, Payments, Skills & plugins (PCIE1–8) |
+| Files | memory sticks | Memory DIMM1, Retrieval DIMM2, Sessions & files DIMM3 |
+| Ops | bottom-edge headers | Hosting PS1, Durable execution BT1, Guardrails F1, Identity & secrets U7, Observability & evals J6 |
+
+Brain and hands follow Anthropic's Managed Agents split (brain = model + harness; hands = tools and sandboxes). Unused layers show as empty slots, so every board has the same floorplan.
 
 All data lives in [`content/`](content):
 
-- `layers.json`: the layers
+- `layers.json`: the layers, their band and board designator
 - `options/<layer>/<id>.json`: one file per product or pattern, so submissions never conflict
 - `stacks/<slug>.json`: one file per stack; each becomes a page at `/stack/<slug>/`
 - `logos/<name>.svg`: one-colour marks, combined at build time into a single cached `/logos.svg` sprite

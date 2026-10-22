@@ -13,6 +13,8 @@ for (const l of layers) {
   if (index.has(l.id)) errors.push(`duplicate layer id: ${l.id}`);
   if (!bands.has(l.band)) errors.push(`${l.id}: unknown band "${l.band}"`);
   if (!l.name || !l.description) errors.push(`${l.id}: needs name and description`);
+  if (!/^[A-Z]+\d+$/.test(l.ref ?? "")) errors.push(`${l.id}: needs a board designator like J1, U2, DIMM1`);
+  if (layers.filter((x) => x.ref === l.ref).length > 1) errors.push(`${l.id}: designator ${l.ref} is already used`);
   index.set(l.id, new Set());
 }
 for (const dir of fs.readdirSync("content/options")) {

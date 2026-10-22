@@ -12,10 +12,11 @@ export default function Home() {
   const layers = getLayers();
   const stacks = getStacks();
   // Ship only what the editor needs to the client.
-  const lite = layers.map(({ id, name, band, options }) => ({
+  const lite = layers.map(({ id, name, band, ref, options }) => ({
     id,
     name,
     band,
+    ref,
     description: "",
     options: options.map(({ id, name, note, logo }) => ({ id, name, note, logo })),
   }));
@@ -42,21 +43,16 @@ export default function Home() {
           },
         }}
       />
+      <header className="hero">
+        <h1>Every AI agent stack, mapped</h1>
+        <p className="lede">
+          An agent is more than a model: it&apos;s where people reach it, the loop that calls tools, the sandbox its code
+          runs in, what it remembers and what wakes it up. Pick a stack, change any part, save it, share it.
+        </p>
+      </header>
+
       <Editor layers={lite} presets={presets} initial={DEFAULT} repo={SITE.repo} />
 
-      <p className="lede" style={{ marginTop: 24 }}>
-        An agent is more than a model. It is a stack: where people reach it, the model and router behind it, the
-        loop that calls tools, the sandbox its code runs in, what it remembers, what wakes it up, and who it is
-        allowed to pay. Pick any stack below, change any layer, save it, rename it, share it.
-      </p>
-
-      <div className="section-head" id="trending">
-        <h2>Trending</h2>
-        <Link href="/trending/" className="muted">
-          most in the news, last 30 days →
-        </Link>
-      </div>
-      <Trending limit={6} />
 
       <div className="section-head" id="stacks">
         <h2>Stacks</h2>
@@ -82,6 +78,14 @@ export default function Home() {
           </Link>
         ))}
       </div>
+
+      <div className="section-head" id="trending">
+        <h2>Trending</h2>
+        <Link href="/trending/" className="muted">
+          most in the news, last 30 days →
+        </Link>
+      </div>
+      <Trending limit={6} />
     </>
   );
 }

@@ -1,5 +1,5 @@
 {
-  "order": 120,
+  "order": 110,
   "id": "vllm",
   "name": "vLLM",
   "url": "vllm.ai",
@@ -9,13 +9,34 @@
   "profile": "product",
   "summary": "vLLM is an open-source inference engine for serving LLMs on your own GPUs. It uses PagedAttention memory management, continuous batching and prefix caching to raise throughput, and ships an OpenAI-compatible server that also speaks the Anthropic Messages API. It started at UC Berkeley's Sky Computing Lab and is maintained by a broad community.",
   "facts": [
-    ["Origin", "UC Berkeley Sky Computing Lab; 2,000+ contributors"],
-    ["License", "Apache-2.0"],
-    ["GitHub stars", "~95k (Oct 2026)"],
-    ["API", "OpenAI-compatible server, Anthropic Messages API, gRPC"],
-    ["Hardware", "NVIDIA, AMD and Intel GPUs, CPUs; plugins for TPU, Gaudi, Ascend, Apple Silicon"],
-    ["Techniques", "PagedAttention, continuous batching, chunked prefill, prefix caching, quantization"],
-    ["Self-hostable", "Yes, self-host only"]
+    [
+      "Origin",
+      "UC Berkeley Sky Computing Lab; 2,000+ contributors"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "GitHub stars",
+      "~95k (Oct 2026)"
+    ],
+    [
+      "API",
+      "OpenAI-compatible server, Anthropic Messages API, gRPC"
+    ],
+    [
+      "Hardware",
+      "NVIDIA, AMD and Intel GPUs, CPUs; plugins for TPU, Gaudi, Ascend, Apple Silicon"
+    ],
+    [
+      "Techniques",
+      "PagedAttention, continuous batching, chunked prefill, prefix caching, quantization"
+    ],
+    [
+      "Self-hostable",
+      "Yes, self-host only"
+    ]
   ],
   "links": {
     "site": "https://vllm.ai",

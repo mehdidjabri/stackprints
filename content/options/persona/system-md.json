@@ -5,7 +5,7 @@
   "url": "pi.dev",
   "note": "Per-project system prompt override",
   "logo": "pi",
-  "profile": "product",
+  "profile": "pattern",
   "summary": "In the Pi coding agent, SYSTEM.md replaces the default system prompt and APPEND_SYSTEM.md adds to it. Each can live in the agent directory (~/.pi/agent/) or in a project's .pi/ folder; the project file wins and loads only after the project is trusted. AGENTS.md context files are still loaded separately.",
   "facts": [
     [

@@ -12,28 +12,28 @@
       "phone-calls",
       "email"
     ],
-    "ui": "plain-text",
-    "voice": "elevenlabs",
-    "devices": "phone",
-    "sandbox": "per-user-cloud-computer",
-    "browser": "cloud-browser",
-    "multiagent": "agent-network",
-    "tools": "calendar-email",
-    "memory": "agent-notes",
     "proactivity": [
       "background-research",
       "self-scheduled-wake"
     ],
+    "ui": "plain-text",
+    "voice": "elevenlabs",
+    "devices": "phone",
+    "multiagent": "agent-network",
+    "sandbox": "per-user-cloud-computer",
+    "browser": "cloud-browser",
+    "connectors": "calendar-email",
+    "payments": [
+      "single-use-cards",
+      "shop-pay"
+    ],
+    "memory": "agent-notes",
+    "hosting": "vendor-cloud",
     "guardrails": "audit-trail",
     "identity": [
       "credential-vault",
       "signed-tool-calls",
       "agent-phone-email"
-    ],
-    "payments": [
-      "single-use-cards",
-      "shop-pay"
-    ],
-    "hosting": "vendor-cloud"
+    ]
   }
 }

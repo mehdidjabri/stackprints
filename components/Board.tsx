@@ -1,23 +1,30 @@
 import Link from "next/link";
-import type { Layer, Option } from "@/lib/types";
 import { optionHref } from "@/lib/links";
+import type { Layer, Option } from "@/lib/types";
 import { Logo } from "./Logo";
 
-export type Module = { layer: Pick<Layer, "id" | "name" | "band">; picks: Pick<Option, "id" | "name" | "note" | "logo">[] };
+export type Slot = Pick<Layer, "id" | "name" | "band" | "ref">;
+export type Module = { layer: Slot; picks: Pick<Option, "id" | "name" | "note" | "logo">[] };
 
 type Band = Layer["band"];
 
 // The floorplan of an abstract motherboard. Each band of the stack is a region of the board:
 // surface is the rear I/O strip, brain the processor area, hands the expansion slots,
-// files the memory slots down the side, ops the power components along the bottom.
+// files the memory sticks down the side, ops the headers along the bottom edge.
 const ZONE: Record<Band, string> = { surface: "io", brain: "cpu", hands: "pcie", files: "ram", ops: "power" };
-// Silkscreen reference designators: J connectors, U chips, Q drivers, M memory, P power.
-const PREFIX: Record<Band, string> = { surface: "J", brain: "U", hands: "Q", files: "M", ops: "P" };
+const BAND_NAME: Record<Band, string> = { surface: "Surface", brain: "Brain", hands: "Hands", files: "Files", ops: "Ops" };
 const BANDS: Band[] = ["surface", "brain", "hands", "files", "ops"];
-// The processor sockets.
+// The processor area is two columns: the harness socket with what shapes it,
+// the model socket with what feeds it.
+const CPU_COLUMNS = [
+  ["harness", "persona", "multiagent"],
+  ["model", "router", "inference"],
+];
 const CORE = new Set(["model", "harness"]);
+// Mini boards show one mark per module, except the I/O strip where channels are the fingerprint.
+const MINI_MARKS: Record<string, number> = { channels: 4 };
 
-/** grid-template-areas for whichever regions this stack actually uses. */
+/** grid-template-areas for whichever regions are drawn. */
 function floorplan(has: Record<string, boolean>) {
   const side = has.ram && (has.cpu || has.pcie);
   const row = (a: string) => (side ? `"${a} ${a}"` : `"${a}"`);
@@ -37,94 +44,111 @@ function floorplan(has: Record<string, boolean>) {
 
 type Props = {
   modules: Module[];
+  /** Every layer. When given, the floorplan is fixed: unused layers draw as empty slots. */
+  slots?: Slot[];
   mini?: boolean;
   label?: string;
-  /** Editor hooks: when present, chips get a remove button and modules an add slot. */
+  /** Editor hooks: remove a pick, add to a filled module, fill an empty slot. */
   onRemove?: (layerId: string, optionId: string) => void;
   addSlot?: (layerId: string) => React.ReactNode;
-  /** Extra slots, placed with the power components. */
-  children?: React.ReactNode;
+  emptySlot?: (layer: Slot) => React.ReactNode;
 };
 
-export function Board({ modules, mini = false, label, onRemove, addSlot, children }: Props) {
-  const byBand = BANDS.map((band) => ({ band, mods: modules.filter((m) => m.layer.band === band) }));
+export function Board({ modules, slots, mini = false, label, onRemove, addSlot, emptySlot }: Props) {
+  const filled = new Map(modules.map((m) => [m.layer.id, m]));
+  const all = slots ?? modules.map((m) => m.layer);
+
   const has: Record<string, boolean> = {};
-  for (const { band, mods } of byBand) has[ZONE[band]] = mods.length > 0;
-  if (children) has.power = true;
+  for (const l of all) has[ZONE[l.band]] = true;
   const { areas, cols } = floorplan(has);
 
+  const renderSlot = (layer: Slot) => {
+    const m = filled.get(layer.id);
+    const core = CORE.has(layer.id);
+    if (!m)
+      return (
+        <section key={layer.id} className={core ? "module core empty" : "module empty"} aria-label={`${layer.name}: empty`}>
+          {!mini && (
+            <header className="silk">
+              <span className="ref">{layer.ref}</span>
+              <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
+            </header>
+          )}
+          {!mini && emptySlot?.(layer)}
+        </section>
+      );
+    const picks = mini ? m.picks.filter((p) => p.logo).slice(0, MINI_MARKS[layer.id] ?? 1) : m.picks;
+    return (
+      <section
+        key={layer.id}
+        className={core ? "module core" : "module"}
+        aria-label={layer.name}
+        title={mini ? `${layer.name}: ${m.picks.map((p) => p.name).join(", ")}` : undefined}
+      >
+        {!mini && (
+          <header className="silk">
+            <span className="ref">{layer.ref}</span>
+            <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
+          </header>
+        )}
+        <div className="chips">
+          {picks.map((p) => (
+            <div key={p.id} className="chip">
+              <Logo option={p} />
+              {mini ? (
+                <Link href={optionHref(layer.id, p.id)} className="chip-link" aria-label={p.name} />
+              ) : (
+                <span className="chip-text">
+                  <Link href={optionHref(layer.id, p.id)} className="chip-link chip-name">
+                    {p.name}
+                  </Link>
+                  {p.note && <span className="chip-note">{p.note}</span>}
+                </span>
+              )}
+              {onRemove && (
+                <button className="x" aria-label={`Remove ${p.name}`} onClick={() => onRemove(layer.id, p.id)}>
+                  ×
+                </button>
+              )}
+            </div>
+          ))}
+          {!mini && addSlot?.(layer.id)}
+        </div>
+      </section>
+    );
+  };
+
   return (
-    <div
-      className={mini ? "board mini" : "board"}
-      style={{ "--areas": areas, "--cols": cols } as React.CSSProperties}
-    >
-      {byBand.map(({ band, mods }) => {
-        const extra = band === "ops" ? children : null;
-        if (!mods.length && !extra) return null;
+    <div className={mini ? "board mini" : "board"} style={{ "--areas": areas, "--cols": cols } as React.CSSProperties}>
+      {BANDS.map((band) => {
+        const layers = all.filter((l) => l.band === band);
+        if (!layers.length) return null;
+        const zone = ZONE[band];
         return (
-          <div key={band} className={`zone ${ZONE[band]}`}>
-            {mods.map((m, i) => {
-              const core = CORE.has(m.layer.id);
-              return (
-                <section
-                  key={m.layer.id}
-                  className={core ? "module core" : "module"}
-                  aria-label={m.layer.name}
-                  title={mini ? `${m.layer.name}: ${m.picks.map((p) => p.name).join(", ")}` : undefined}
-                >
-                  {!mini && (
-                    <header className="silk">
-                      <span className="ref">
-                        {PREFIX[band]}
-                        {i + 1}
-                      </span>
-                      <Link href={`/layer/${m.layer.id}/`}>{m.layer.name}</Link>
-                    </header>
-                  )}
-                  <div className="chips">
-                    {m.picks.map((p) => (
-                      <div key={p.id} className="chip">
-                        <Logo option={p} />
-                        {mini ? (
-                          <Link href={optionHref(m.layer.id, p.id)} className="chip-link" aria-label={p.name} />
-                        ) : (
-                          <span className="chip-text">
-                            <Link href={optionHref(m.layer.id, p.id)} className="chip-link chip-name">
-                              {p.name}
-                            </Link>
-                            {p.note && <span className="chip-note">{p.note}</span>}
-                          </span>
-                        )}
-                        {onRemove && (
-                          <button
-                            className="x"
-                            aria-label={`Remove ${p.name}`}
-                            onClick={() => onRemove(m.layer.id, p.id)}
-                          >
-                            ×
-                          </button>
-                        )}
-                      </div>
-                    ))}
-                    {addSlot?.(m.layer.id)}
-                  </div>
-                </section>
-              );
-            })}
-            {extra}
+          <div key={band} className={`zone ${zone}`} role="group" aria-label={BAND_NAME[band]}>
+            {band === "brain"
+              ? CPU_COLUMNS.map((col) => {
+                  const ls = col.map((id) => layers.find((l) => l.id === id)).filter((l): l is Slot => Boolean(l));
+                  // Any brain layer not in the fixed columns (a future addition) joins the second column.
+                  if (col === CPU_COLUMNS[1]) ls.push(...layers.filter((l) => !CPU_COLUMNS.flat().includes(l.id)));
+                  return ls.length ? (
+                    <div key={col[0]} className="cpu-col">
+                      {ls.map(renderSlot)}
+                    </div>
+                  ) : null;
+                })
+              : layers.map(renderSlot)}
           </div>
         );
       })}
       {!mini && (
         <div className="legend" aria-hidden="true">
-          {byBand
-            .filter(({ mods }) => mods.length)
-            .map(({ band }) => (
-              <span key={band} className={`b-${band}`}>
-                <i />
-                {PREFIX[band]} {band}
-              </span>
-            ))}
+          {BANDS.filter((b) => all.some((l) => l.band === b)).map((band) => (
+            <span key={band} className={`b-${band}`}>
+              <i />
+              {BAND_NAME[band]}
+            </span>
+          ))}
           {label && <span className="board-label">{label}</span>}
         </div>
       )}

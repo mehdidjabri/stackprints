@@ -12,10 +12,22 @@
     "Handle retries and rate limits in your own code"
   ],
   "facts": [
-    ["Extra hop", "None"],
-    ["Fees", "Lab list price only"],
-    ["Failover", "None unless you build it"],
-    ["Trade-off", "Simplest and newest features, but single-vendor"]
+    [
+      "Extra hop",
+      "None"
+    ],
+    [
+      "Fees",
+      "Lab list price only"
+    ],
+    [
+      "Failover",
+      "None unless you build it"
+    ],
+    [
+      "Trade-off",
+      "Simplest and newest features, but single-vendor"
+    ]
   ],
   "goodFor": [
     "Prototypes and single-model agents",

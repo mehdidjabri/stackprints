@@ -12,10 +12,22 @@
     "Rebuild or snapshot the box if the agent breaks it"
   ],
   "facts": [
-    ["Used by", "Hermes Agent (SSH terminal backend)"],
-    ["Isolation", "Separate machine; no isolation within it"],
-    ["Cost", "Whatever the remote machine costs"],
-    ["Trade-off", "Any hardware you like, but you manage it yourself"]
+    [
+      "Used by",
+      "Hermes Agent (SSH terminal backend)"
+    ],
+    [
+      "Isolation",
+      "Separate machine; no isolation within it"
+    ],
+    [
+      "Cost",
+      "Whatever the remote machine costs"
+    ],
+    [
+      "Trade-off",
+      "Any hardware you like, but you manage it yourself"
+    ]
   ],
   "links": {
     "repo": "https://github.com/NousResearch/hermes-agent"

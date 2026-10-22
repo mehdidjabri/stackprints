@@ -1,8 +1,8 @@
 {
   "order": 90,
   "id": "agent-phone-email",
-  "name": "Agent phone & email",
-  "note": "Its own number and inbox",
+  "name": "Agent identity",
+  "note": "Its own name, handle, avatar, phone and inbox",
   "profile": "pattern",
   "summary": "The agent gets its own email address or phone number instead of acting through the user's. It can sign up, receive codes and correspond under its own identity, and the user's inbox stays out of reach.",
   "how": [

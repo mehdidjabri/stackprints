@@ -1,5 +1,5 @@
 {
-  "order": 90,
+  "order": 30,
   "id": "image-generation",
   "name": "Image generation",
   "note": "GPT Image, Nano Banana, FLUX",

@@ -4,14 +4,29 @@
   "name": "Email",
   "note": "The agent has its own inbox",
   "logo": "gmail",
-  "profile": "product",
+  "profile": "pattern",
   "summary": "Giving an agent its own email address lets anyone reach it without a new app, and lets it handle sign-ups, verification codes and threads. Options range from inbox APIs built for agents, such as AgentMail, to receiving mail in code with Cloudflare Email Workers, to connecting a person's existing mailbox through the Gmail API.",
   "facts": [
-    ["API", "Standard email (SMTP/IMAP) plus provider APIs and webhooks"],
-    ["AgentMail", "Inbox API with webhooks, WebSockets, IMAP/SMTP, MCP server"],
-    ["AgentMail pricing", "Free 3 inboxes and 3,000 emails/month; Developer $20/month"],
-    ["Cloudflare Email Workers", "email() handler can forward, reject or reply"],
-    ["Approval", "None; needs a domain with SPF, DKIM, DMARC for good deliverability"]
+    [
+      "API",
+      "Standard email (SMTP/IMAP) plus provider APIs and webhooks"
+    ],
+    [
+      "AgentMail",
+      "Inbox API with webhooks, WebSockets, IMAP/SMTP, MCP server"
+    ],
+    [
+      "AgentMail pricing",
+      "Free 3 inboxes and 3,000 emails/month; Developer $20/month"
+    ],
+    [
+      "Cloudflare Email Workers",
+      "email() handler can forward, reject or reply"
+    ],
+    [
+      "Approval",
+      "None; needs a domain with SPF, DKIM, DMARC for good deliverability"
+    ]
   ],
   "links": {
     "site": "https://www.agentmail.to",

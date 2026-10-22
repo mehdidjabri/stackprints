@@ -8,13 +8,34 @@
   "profile": "product",
   "summary": "Portkey is an AI gateway that puts 250+ models behind one API and adds logging, guardrails, caching and access controls. The core gateway is open source and can be self-hosted; a managed control plane adds observability and governance. Palo Alto Networks completed its acquisition of Portkey in May 2026 and is making it the AI gateway of Prisma AIRS.",
   "facts": [
-    ["Company", "Portkey, part of Palo Alto Networks since May 2026"],
-    ["License", "MIT (open-source gateway)"],
-    ["Models", "250+"],
-    ["Self-hostable", "Yes, open-source gateway"],
-    ["Pricing", "Free Developer tier (10k logs/month); Production $49/month; Enterprise custom"],
-    ["Added latency", "20–40 ms (vendor-reported)"],
-    ["Compliance", "SOC 2, ISO 27001, GDPR, HIPAA (vendor-reported)"]
+    [
+      "Company",
+      "Portkey, part of Palo Alto Networks since May 2026"
+    ],
+    [
+      "License",
+      "MIT (open-source gateway)"
+    ],
+    [
+      "Models",
+      "250+"
+    ],
+    [
+      "Self-hostable",
+      "Yes, open-source gateway"
+    ],
+    [
+      "Pricing",
+      "Free Developer tier (10k logs/month); Production $49/month; Enterprise custom"
+    ],
+    [
+      "Added latency",
+      "20–40 ms (vendor-reported)"
+    ],
+    [
+      "Compliance",
+      "SOC 2, ISO 27001, GDPR, HIPAA (vendor-reported)"
+    ]
   ],
   "links": {
     "site": "https://portkey.ai",

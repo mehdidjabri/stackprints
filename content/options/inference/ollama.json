@@ -1,5 +1,5 @@
 {
-  "order": 110,
+  "order": 100,
   "id": "ollama",
   "name": "Ollama",
   "url": "ollama.com",
@@ -9,13 +9,34 @@
   "profile": "product",
   "summary": "Ollama downloads and runs open-weight models on your own machine with one command and serves them on a local REST API. It also exposes a subset of the OpenAI API, so most agent tools can point at it unchanged. A paid Ollama cloud offers larger models on the same interface.",
   "facts": [
-    ["License", "MIT"],
-    ["Language", "Go"],
-    ["Platforms", "macOS, Windows, Linux, Docker"],
-    ["API", "Native REST on localhost:11434; OpenAI-compatible /v1 subset"],
-    ["GitHub stars", "~184k (Oct 2026)"],
-    ["Local use", "Free"],
-    ["Cloud plans", "Free tier; Pro $20, Max $100, Team $500 per month"]
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "Go"
+    ],
+    [
+      "Platforms",
+      "macOS, Windows, Linux, Docker"
+    ],
+    [
+      "API",
+      "Native REST on localhost:11434; OpenAI-compatible /v1 subset"
+    ],
+    [
+      "GitHub stars",
+      "~184k (Oct 2026)"
+    ],
+    [
+      "Local use",
+      "Free"
+    ],
+    [
+      "Cloud plans",
+      "Free tier; Pro $20, Max $100, Team $500 per month"
+    ]
   ],
   "links": {
     "site": "https://ollama.com",

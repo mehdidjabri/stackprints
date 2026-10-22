@@ -2,7 +2,7 @@
   "slug": "vercel-ai-cloud",
   "name": "Vercel AI Cloud",
   "kind": "Infrastructure",
-  "tagline": "Brain, hands, files: the agent stack as cloud primitives.",
+  "tagline": "Vercel's agent stack as cloud primitives: gateway, sandbox, workflows, drives.",
   "description": "Guillermo Rauch frames the AI Cloud as old cloud pieces reborn: the AI SDK replaces the frontend framework, AI Gateway is a CDN of tokens, Sandbox is compute for code written by agents, Fluid runs long IO-bound work, Workflow makes it durable, Connect handles scoped credentials, Chat SDK reaches every platform and Drives hold the files.",
   "source": "vercel.com/blog/agent-stack",
   "layers": {
@@ -15,35 +15,35 @@
       "ai-sdk-ui",
       "generative-ui"
     ],
+    "readiness": [
+      "botid",
+      "llms-txt"
+    ],
+    "harness": [
+      "ai-sdk-agent",
+      "eve"
+    ],
     "model": [
       "claude-sonnet-5-5",
       "gpt-6-1-sol",
       "kimi-k3"
     ],
     "router": "vercel-ai-gateway",
-    "harness": [
-      "ai-sdk-agent",
-      "eve"
-    ],
-    "tools": "web-search",
+    "search": "web-search",
+    "sandbox": "vercel-sandbox",
     "mcp": "mcp",
     "connectors": "vercel-connect",
-    "sandbox": "vercel-sandbox",
     "memory": "memory-md",
     "storage": [
       "vercel-drives",
       "postgres"
     ],
+    "hosting": "vercel",
     "durable": [
       "workflow-sdk",
       "vercel-queues"
     ],
     "identity": "credential-vault",
-    "observability": "opentelemetry-genai",
-    "hosting": "vercel",
-    "readiness": [
-      "botid",
-      "llms-txt"
-    ]
+    "observability": "opentelemetry-genai"
   }
 }

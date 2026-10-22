@@ -7,29 +7,29 @@
   "source": "developers.cloudflare.com/agents",
   "layers": {
     "channels": "web-chat",
+    "proactivity": [
+      "cron",
+      "webhooks"
+    ],
+    "harness": "ai-sdk-agent",
     "model": [
       "glm-5-3",
       "gemma-4",
       "claude-sonnet-5-5"
     ],
     "router": "cloudflare-ai-gateway",
-    "harness": "ai-sdk-agent",
-    "mcp": "mcp",
     "sandbox": "cloudflare-sandbox",
     "browser": "cloud-browser",
+    "mcp": "mcp",
+    "payments": "x402",
     "memory": "supermemory",
+    "retrieval": "grep-glob",
     "storage": [
       "durable-objects",
       "sqlite",
       "s3-r2"
     ],
-    "retrieval": "grep-glob",
-    "proactivity": [
-      "cron",
-      "webhooks"
-    ],
-    "durable": "cloudflare-workflows",
-    "payments": "x402",
-    "hosting": "cloudflare-workers"
+    "hosting": "cloudflare-workers",
+    "durable": "cloudflare-workflows"
   }
 }

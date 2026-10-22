@@ -1,7 +1,7 @@
 import type { Layer } from "./types";
 
-// Ordered top (what users touch) to bottom (what keeps it running).
-// Loosely after Guillermo Rauch's "brain, hands, files" framing of agents.
+// Ordered top (what starts a run and where results land) to bottom (what keeps it running).
+// Brain and hands follow Anthropic's Managed Agents split: brain = model + harness, hands = tools and sandboxes.
 export const BANDS: [Layer["band"], string][] = [
   ["surface", "Surface"],
   ["brain", "Brain"],

@@ -8,11 +8,26 @@
   "profile": "product",
   "summary": "Apple has no public iMessage bot API. Businesses use Apple Messages for Business through an Apple-approved Messaging Service Provider and pass an Experience Review before going live. Individuals and startups instead use Mac-based bridges such as the open-source BlueBubbles server, or commercial iMessage API providers such as Sendblue.",
   "facts": [
-    ["API", "No public bot API; Messages for Business via approved MSPs"],
-    ["Approval", "Apple Business Register account and Experience Review"],
-    ["Automation rules", "First automated reply within 5 s, labelled as automated, live-agent escape"],
-    ["Bridges", "BlueBubbles server (Apache-2.0, runs on a Mac)"],
-    ["Hosted APIs", "Sendblue: free sandbox, $100/month per AI agent line"]
+    [
+      "API",
+      "No public bot API; Messages for Business via approved MSPs"
+    ],
+    [
+      "Approval",
+      "Apple Business Register account and Experience Review"
+    ],
+    [
+      "Automation rules",
+      "First automated reply within 5 s, labelled as automated, live-agent escape"
+    ],
+    [
+      "Bridges",
+      "BlueBubbles server (Apache-2.0, runs on a Mac)"
+    ],
+    [
+      "Hosted APIs",
+      "Sendblue: free sandbox, $100/month per AI agent line"
+    ]
   ],
   "links": {
     "docs": "https://register.apple.com/resources/messages/messaging-documentation/",

@@ -1,5 +1,5 @@
 {
-  "order": 40,
+  "order": 30,
   "id": "openapi-tools",
   "name": "OpenAPI tools",
   "note": "Any REST API as a tool",

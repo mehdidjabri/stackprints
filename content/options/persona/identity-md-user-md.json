@@ -5,7 +5,7 @@
   "url": "openclaw.ai",
   "note": "Who the agent is, who you are",
   "logo": "openclaw",
-  "profile": "product",
+  "profile": "pattern",
   "summary": "In OpenClaw's agent workspace, IDENTITY.md holds the agent's name, creature, vibe, emoji and avatar, and USER.md describes the person the agent works for and how to address them. IDENTITY.md is created during a first-run bootstrap ritual; USER.md is optional and loaded every session. Both are injected into the system prompt alongside SOUL.md and AGENTS.md.",
   "facts": [
     [

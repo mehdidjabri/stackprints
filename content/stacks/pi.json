@@ -8,36 +8,36 @@
   "layers": {
     "channels": "cli-tui",
     "ui": "plain-text",
+    "harness": "pi",
     "model": [
       "claude-opus-5-5",
       "gpt-6-1-sol",
       "qwen-3-8"
     ],
     "router": "pi-ai",
-    "harness": "pi",
     "persona": [
       "agents-md",
       "system-md"
     ],
     "multiagent": "worktrees-tmux",
-    "tools": [
-      "read-write-edit-bash",
+    "tools": "read-write-edit-bash",
+    "sandbox": "host-machine",
+    "mcp": [
+      "mcp",
       "code-mode"
     ],
-    "mcp": "mcp",
     "skills": [
       "agent-skills-skill-md",
       "pi-packages",
       "slash-commands"
     ],
-    "sandbox": "host-machine",
     "memory": "none",
     "retrieval": "grep-glob",
     "storage": [
       "jsonl-transcripts",
       "branching-sessions"
     ],
-    "guardrails": "yolo",
-    "hosting": "your-laptop"
+    "hosting": "your-laptop",
+    "guardrails": "yolo"
   }
 }

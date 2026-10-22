@@ -5,7 +5,7 @@
   "url": "claude.com",
   "note": "Claude Code project memory",
   "logo": "claude",
-  "profile": "product",
+  "profile": "pattern",
   "summary": "CLAUDE.md is the instruction file Claude Code loads at the start of every session. It can live at managed (org), user (~/.claude/CLAUDE.md), project (./CLAUDE.md) and local (CLAUDE.local.md) scopes, and all found files are concatenated. It sits beside auto memory, which Claude writes itself, and .claude/rules/ for path-scoped rules.",
   "facts": [
     [

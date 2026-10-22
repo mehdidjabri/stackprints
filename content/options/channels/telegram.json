@@ -8,13 +8,34 @@
   "profile": "product",
   "summary": "Telegram's official Bot API lets anyone create a bot through @BotFather and talk to it over HTTPS with long polling or webhooks. Recent API versions add features aimed at AI bots, such as streamed message drafts, rich messages and guest mode. Frameworks like grammY wrap the API for TypeScript and JavaScript.",
   "facts": [
-    ["API", "Official Bot API (HTTPS, polling or webhooks)"],
-    ["Latest version", "Bot API 10.3 (2026-08-24)"],
-    ["Cost", "Free; paid broadcasts above 30 msg/s cost 0.1 Stars per message"],
-    ["Approval", "None; bots are created in @BotFather"],
-    ["Rate limits", "About 1 msg/s per chat, 20 msg/min per group"],
-    ["Streaming", "sendMessageDraft and sendRichMessageDraft"],
-    ["Framework", "grammY (TypeScript/JavaScript)"]
+    [
+      "API",
+      "Official Bot API (HTTPS, polling or webhooks)"
+    ],
+    [
+      "Latest version",
+      "Bot API 10.3 (2026-08-24)"
+    ],
+    [
+      "Cost",
+      "Free; paid broadcasts above 30 msg/s cost 0.1 Stars per message"
+    ],
+    [
+      "Approval",
+      "None; bots are created in @BotFather"
+    ],
+    [
+      "Rate limits",
+      "About 1 msg/s per chat, 20 msg/min per group"
+    ],
+    [
+      "Streaming",
+      "sendMessageDraft and sendRichMessageDraft"
+    ],
+    [
+      "Framework",
+      "grammY (TypeScript/JavaScript)"
+    ]
   ],
   "links": {
     "site": "https://core.telegram.org/bots",

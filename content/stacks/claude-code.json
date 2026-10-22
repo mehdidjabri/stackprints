@@ -12,17 +12,18 @@
       "desktop-app",
       "slack"
     ],
+    "proactivity": "cron",
     "ui": [
       "plain-text",
       "artifacts"
     ],
+    "harness": "claude-agent-sdk",
     "model": [
       "claude-opus-5-5",
       "claude-sonnet-5-5",
       "claude-haiku-5-5"
     ],
     "router": "direct-provider",
-    "harness": "claude-agent-sdk",
     "persona": [
       "claude-md",
       "agents-md"
@@ -31,32 +32,29 @@
       "subagents",
       "worktrees-tmux"
     ],
-    "tools": [
-      "read-write-edit-bash",
-      "web-search"
+    "tools": "read-write-edit-bash",
+    "search": "web-search",
+    "sandbox": [
+      "host-machine",
+      "docker"
     ],
+    "browser": "chrome-extension",
     "mcp": "mcp",
     "skills": [
       "agent-skills-skill-md",
       "plugins",
       "slash-commands"
     ],
-    "sandbox": [
-      "host-machine",
-      "docker"
-    ],
-    "browser": "chrome-extension",
     "memory": "memory-md",
     "retrieval": "grep-glob",
     "storage": [
       "jsonl-transcripts",
       "git"
     ],
-    "proactivity": "cron",
+    "hosting": "your-laptop",
     "guardrails": [
       "permission-modes",
       "auto-review"
-    ],
-    "hosting": "your-laptop"
+    ]
   }
 }

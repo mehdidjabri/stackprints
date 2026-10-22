@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Submit() {
-  const layers = getLayers().map(({ id, name, band, description }) => ({ id, name, band, description }));
+  const layers = getLayers().map(({ id, name, band, ref, description }) => ({ id, name, band, ref, description }));
   return (
     <>
       <Title detail="Submit" />

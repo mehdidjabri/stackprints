@@ -8,12 +8,30 @@
   "profile": "product",
   "summary": "assistant-ui is an open-source TypeScript library of composable chat primitives (threads, composers, messages, branching, attachments) with runtimes that connect them to different agent backends. It also renders tool UIs, generative UI and MCP Apps, and offers an optional hosted Assistant Cloud for thread persistence.",
   "facts": [
-    ["License", "MIT"],
-    ["Language", "TypeScript"],
-    ["Platforms", "React, Vue, React Native, terminal (Ink)"],
-    ["Backends", "AI SDK, LangGraph, Mastra, Google ADK, OpenAI Agents SDK, AG-UI, A2A and custom"],
-    ["Rendering", "Tool UI, generative UI, MCP Apps"],
-    ["GitHub stars", "12.7k"]
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "TypeScript"
+    ],
+    [
+      "Platforms",
+      "React, Vue, React Native, terminal (Ink)"
+    ],
+    [
+      "Backends",
+      "AI SDK, LangGraph, Mastra, Google ADK, OpenAI Agents SDK, AG-UI, A2A and custom"
+    ],
+    [
+      "Rendering",
+      "Tool UI, generative UI, MCP Apps"
+    ],
+    [
+      "GitHub stars",
+      "12.7k"
+    ]
   ],
   "links": {
     "site": "https://www.assistant-ui.com",

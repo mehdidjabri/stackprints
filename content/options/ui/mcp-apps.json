@@ -9,12 +9,30 @@
   "profile": "protocol",
   "summary": "MCP Apps is an official extension to the Model Context Protocol that lets an MCP tool declare an interactive HTML interface. The host fetches a ui:// resource from the server, renders it in a sandboxed iframe in the conversation, and talks to it over a postMessage JSON-RPC dialect so the app can call tools and update the model's context.",
   "facts": [
-    ["Basis", "MCP extension; tools link UI via _meta.ui.resourceUri"],
-    ["Rendering", "Sandboxed iframe, postMessage JSON-RPC"],
-    ["Hosts", "Claude, Claude Desktop, ChatGPT, VS Code GitHub Copilot, Microsoft 365 Copilot, Goose, Postman"],
-    ["SDK", "@modelcontextprotocol/ext-apps (App class, AppBridge for hosts)"],
-    ["Spec version", "2026-01-26"],
-    ["License", "Apache-2.0 (transitioning from MIT)"]
+    [
+      "Basis",
+      "MCP extension; tools link UI via _meta.ui.resourceUri"
+    ],
+    [
+      "Rendering",
+      "Sandboxed iframe, postMessage JSON-RPC"
+    ],
+    [
+      "Hosts",
+      "Claude, Claude Desktop, ChatGPT, VS Code GitHub Copilot, Microsoft 365 Copilot, Goose, Postman"
+    ],
+    [
+      "SDK",
+      "@modelcontextprotocol/ext-apps (App class, AppBridge for hosts)"
+    ],
+    [
+      "Spec version",
+      "2026-01-26"
+    ],
+    [
+      "License",
+      "Apache-2.0 (transitioning from MIT)"
+    ]
   ],
   "links": {
     "site": "https://modelcontextprotocol.io/extensions/apps/overview",

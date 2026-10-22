@@ -7,31 +7,30 @@
   "source": "claude.com",
   "layers": {
     "channels": "desktop-app",
+    "proactivity": "cron",
     "ui": [
       "artifacts",
       "mcp-apps"
     ],
+    "harness": "claude-agent-sdk",
     "model": [
       "claude-opus-5-5",
       "claude-sonnet-5-5"
     ],
-    "harness": "claude-agent-sdk",
     "multiagent": "subagents",
     "tools": "read-write-edit-bash",
-    "mcp": "mcp",
-    "connectors": "plugins-marketplace",
-    "skills": [
-      "agent-skills-skill-md",
-      "plugins"
-    ],
     "sandbox": [
       "host-machine",
       "per-user-cloud-computer"
     ],
     "browser": "chrome-extension",
+    "mcp": "mcp",
+    "skills": [
+      "agent-skills-skill-md",
+      "plugins"
+    ],
     "memory": "agent-notes",
-    "proactivity": "cron",
-    "guardrails": "permission-modes",
-    "hosting": "your-laptop"
+    "hosting": "your-laptop",
+    "guardrails": "permission-modes"
   }
 }

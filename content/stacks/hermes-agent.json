@@ -14,10 +14,13 @@
       "whatsapp",
       "signal",
       "email",
-      "sms-rcs"
+      "sms-rcs",
+      "ide"
     ],
+    "proactivity": "cron",
     "voice": "whisper",
     "devices": "home-assistant",
+    "harness": "hermes-agent",
     "model": [
       "hermes-4",
       "kimi-k3",
@@ -27,23 +30,13 @@
       "nous-portal",
       "openrouter"
     ],
-    "harness": "hermes-agent",
     "persona": "soul-md",
     "multiagent": "subagents",
     "tools": [
       "read-write-edit-bash",
-      "code-mode",
-      "web-search",
       "image-generation"
     ],
-    "mcp": [
-      "mcp",
-      "acp-agent-client"
-    ],
-    "skills": [
-      "agent-skills-skill-md",
-      "hermes-skills-hub"
-    ],
+    "search": "web-search",
     "sandbox": [
       "docker",
       "ssh-host",
@@ -53,14 +46,20 @@
       "singularity"
     ],
     "browser": "cloud-browser",
+    "mcp": [
+      "mcp",
+      "code-mode"
+    ],
+    "skills": [
+      "agent-skills-skill-md",
+      "hermes-skills-hub"
+    ],
     "memory": [
       "agent-notes",
       "honcho"
     ],
     "retrieval": "sqlite-fts5-sqlite-vec",
     "storage": "sqlite",
-    "proactivity": "cron",
-    "observability": "atropos",
     "hosting": "home-server-vps"
   }
 }

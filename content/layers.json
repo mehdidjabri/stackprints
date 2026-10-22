@@ -3,162 +3,196 @@
     "id": "channels",
     "name": "Channels",
     "band": "surface",
+    "ref": "J1",
     "description": "Where people reach the agent. Messaging-native agents live in the apps people already use."
+  },
+  {
+    "id": "proactivity",
+    "name": "Triggers",
+    "band": "surface",
+    "ref": "Y1",
+    "description": "What starts a run when nobody is talking to the agent: schedules, heartbeats, events, its own wake-ups."
   },
   {
     "id": "ui",
     "name": "Interface",
     "band": "surface",
+    "ref": "J2",
     "description": "How results are shown. From plain text to generative UI and canvases the agent draws itself."
   },
   {
     "id": "voice",
     "name": "Voice",
     "band": "surface",
+    "ref": "J3",
     "description": "Speech in, speech out, or full-duplex realtime conversation."
   },
   {
     "id": "devices",
     "name": "Devices",
     "band": "surface",
+    "ref": "J4",
     "description": "Hardware and nodes the agent can see, hear or act through."
   },
   {
-    "id": "model",
-    "name": "Model",
-    "band": "brain",
-    "description": "The reasoning core. Frontier closed models, open weights, or a mix routed per task."
-  },
-  {
-    "id": "router",
-    "name": "Router",
-    "band": "brain",
-    "description": "One API in front of many models: fallbacks, cost and latency routing, keys."
-  },
-  {
-    "id": "inference",
-    "name": "Inference host",
-    "band": "brain",
-    "description": "Who actually runs open-weight models, when you're not using a lab's own API."
+    "id": "readiness",
+    "name": "Agent access",
+    "band": "surface",
+    "ref": "J5",
+    "description": "How other people's agents find and use your product: llms.txt, an MCP server, readiness scores."
   },
   {
     "id": "harness",
     "name": "Harness",
     "band": "brain",
-    "description": "The agent loop: prompt, call tools, observe, repeat. Owns context, compaction and sessions."
+    "ref": "U1",
+    "description": "The agent loop: prompt, call tools, observe, repeat. Owns context engineering, compaction and sessions."
+  },
+  {
+    "id": "model",
+    "name": "Model",
+    "band": "brain",
+    "ref": "U2",
+    "description": "The reasoning core. Frontier closed models, open weights, or a mix routed per task."
+  },
+  {
+    "id": "router",
+    "name": "Model gateway",
+    "band": "brain",
+    "ref": "U3",
+    "description": "One endpoint across model providers: routing, fallbacks, keys and spend."
+  },
+  {
+    "id": "inference",
+    "name": "Inference",
+    "band": "brain",
+    "ref": "U4",
+    "description": "What actually runs the weights: hosted providers for open models, or engines on your own hardware."
   },
   {
     "id": "persona",
-    "name": "Persona",
+    "name": "Instructions",
     "band": "brain",
-    "description": "Instruction files that shape who the agent is and how it works in a project."
+    "ref": "U5",
+    "description": "Files and prompts that tell the agent who it is and how to work: AGENTS.md, CLAUDE.md, SOUL.md, a system prompt."
   },
   {
     "id": "multiagent",
     "name": "Multi-agent",
     "band": "brain",
+    "ref": "U6",
     "description": "Delegation: subagents, handoffs, swarms, and agents talking to other people's agents."
   },
   {
     "id": "tools",
-    "name": "Core tools",
+    "name": "Built-in tools",
     "band": "hands",
-    "description": "Built-in actions the loop can take. Coding agents start from read, write, edit, bash."
+    "ref": "PCIE1",
+    "description": "Actions the loop ships with. Coding agents start from read, write, edit and bash."
+  },
+  {
+    "id": "search",
+    "name": "Web search",
+    "band": "hands",
+    "ref": "PCIE2",
+    "description": "Live web search and crawling the agent calls as a tool, chosen against each other on quality, speed and price."
+  },
+  {
+    "id": "sandbox",
+    "name": "Sandbox",
+    "band": "hands",
+    "ref": "PCIE3",
+    "description": "Where the agent's own code runs: your machine, a container, or an isolated microVM in the cloud."
+  },
+  {
+    "id": "browser",
+    "name": "Browser & computer use",
+    "band": "hands",
+    "ref": "PCIE4",
+    "description": "Seeing and driving websites and desktops when there's no API."
   },
   {
     "id": "mcp",
-    "name": "Protocols",
+    "name": "Tool interface",
     "band": "hands",
-    "description": "Open standards that let agents plug into tools, editors and each other."
+    "ref": "PCIE5",
+    "description": "How tools are exposed to the model: MCP servers, OpenAPI specs, plain CLIs, or code the model writes."
   },
   {
     "id": "connectors",
     "name": "Connectors",
     "band": "hands",
+    "ref": "PCIE6",
     "description": "Authenticated access to the user's SaaS: Gmail, GitHub, Notion, Salesforce…"
   },
   {
+    "id": "payments",
+    "name": "Payments",
+    "band": "hands",
+    "ref": "PCIE7",
+    "description": "Letting agents buy things, and get paid, safely."
+  },
+  {
     "id": "skills",
-    "name": "Skills",
+    "name": "Skills & plugins",
     "band": "hands",
-    "description": "Procedural knowledge loaded on demand: folders of instructions, scripts and resources."
-  },
-  {
-    "id": "sandbox",
-    "name": "Compute",
-    "band": "hands",
-    "description": "Where the agent's code runs. Rauch: 'EC2 becomes compute for code written by agents.'"
-  },
-  {
-    "id": "browser",
-    "name": "Browser use",
-    "band": "hands",
-    "description": "Seeing and driving websites and desktops when there's no API."
+    "ref": "PCIE8",
+    "description": "Procedural knowledge and bundles loaded on demand: skill folders, plugins, slash commands."
   },
   {
     "id": "memory",
     "name": "Memory",
     "band": "files",
+    "ref": "DIMM1",
     "description": "What the agent remembers across sessions about you and its work. Usually several at once: files, a user model, a graph, an API."
   },
   {
     "id": "retrieval",
     "name": "Retrieval",
     "band": "files",
-    "description": "Search over documents and history: vectors, keywords, rerankers."
+    "ref": "DIMM2",
+    "description": "Search over your own documents and history: vectors, keywords, rerankers."
   },
   {
     "id": "storage",
-    "name": "State",
+    "name": "Sessions & files",
     "band": "files",
-    "description": "Where sessions, transcripts and files live. Rauch's 'files' leg of brain, hands, files."
+    "ref": "DIMM3",
+    "description": "Where sessions, transcripts and the agent's files live."
   },
   {
-    "id": "proactivity",
-    "name": "Proactivity",
+    "id": "hosting",
+    "name": "Hosting",
     "band": "ops",
-    "description": "What wakes the agent up when nobody's talking to it."
+    "ref": "PS1",
+    "description": "Where the agent itself lives and runs."
   },
   {
     "id": "durable",
     "name": "Durable execution",
     "band": "ops",
+    "ref": "BT1",
     "description": "Long-running work that survives crashes, waits for humans, and resumes."
   },
   {
     "id": "guardrails",
     "name": "Guardrails",
     "band": "ops",
-    "description": "Who may do what. Graded autonomy, pre-action review, injection defense."
+    "ref": "F1",
+    "description": "Who may do what: graded autonomy, human approvals, pre-action review, injection defence."
   },
   {
     "id": "identity",
     "name": "Identity & secrets",
     "band": "ops",
+    "ref": "U7",
     "description": "Credentials the model never sees, and an identity for the agent itself."
   },
   {
-    "id": "payments",
-    "name": "Payments",
-    "band": "ops",
-    "description": "Letting agents buy things, and get paid, safely."
-  },
-  {
     "id": "observability",
-    "name": "Observability",
+    "name": "Observability & evals",
     "band": "ops",
-    "description": "Traces, evals and costs, so you know what the agent actually did."
-  },
-  {
-    "id": "hosting",
-    "name": "Hosting",
-    "band": "ops",
-    "description": "Where the agent itself lives and runs."
-  },
-  {
-    "id": "readiness",
-    "name": "Agent readiness",
-    "band": "ops",
-    "description": "Making your own site and APIs usable by other people's agents."
+    "ref": "J6",
+    "description": "Traces, evals and costs, so you know what the agent actually did and whether it got better."
   }
 ]

@@ -8,13 +8,34 @@
   "profile": "product",
   "summary": "LiteLLM is an open-source Python SDK and self-hosted gateway that calls 100+ LLM providers through one OpenAI-style interface. The proxy adds virtual keys, per-team budgets, rate limits, spend tracking and retry/fallback routing. It is maintained by BerriAI, which sells an enterprise tier with SSO and audit logs.",
   "facts": [
-    ["Company", "BerriAI"],
-    ["License", "MIT, except the enterprise/ directory"],
-    ["Providers", "100+ (OpenAI, Anthropic, Bedrock, Vertex, Azure…)"],
-    ["GitHub stars", "~62k (Oct 2026)"],
-    ["Self-hostable", "Yes, Python SDK or proxy server"],
-    ["Pricing", "Open source free; paid enterprise tier"],
-    ["Features", "Virtual keys, budgets, cost tracking, fallbacks, auto-router"]
+    [
+      "Company",
+      "BerriAI"
+    ],
+    [
+      "License",
+      "MIT, except the enterprise/ directory"
+    ],
+    [
+      "Providers",
+      "100+ (OpenAI, Anthropic, Bedrock, Vertex, Azure…)"
+    ],
+    [
+      "GitHub stars",
+      "~62k (Oct 2026)"
+    ],
+    [
+      "Self-hostable",
+      "Yes, Python SDK or proxy server"
+    ],
+    [
+      "Pricing",
+      "Open source free; paid enterprise tier"
+    ],
+    [
+      "Features",
+      "Virtual keys, budgets, cost tracking, fallbacks, auto-router"
+    ]
   ],
   "links": {
     "site": "https://litellm.ai",

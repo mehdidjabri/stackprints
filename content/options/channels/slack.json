@@ -7,13 +7,34 @@
   "profile": "product",
   "summary": "Slack apps can act as agents with dedicated surfaces: an agent entry point in the top nav, split view, threaded agent sessions, streamed text and suggested prompts. Apps are built with the Bolt frameworks or the Web and Events APIs, and Slack also runs its own MCP server and a Real-time Search API for agents outside Slack.",
   "facts": [
-    ["API", "Official Web API, Events API, Bolt SDKs"],
-    ["SDKs", "Bolt for JavaScript, Bolt for Python"],
-    ["Streaming", "chat.startStream / appendStream / stopStream"],
-    ["Agent scope", "assistant:write enables agent features"],
-    ["Plan", "Some AI features require a paid plan; free developer sandbox"],
-    ["History limits", "conversations.history at 1 req/min for unlisted commercial apps (since 2025-05-29)"],
-    ["MCP", "Official Slack MCP server (GA 2026-02-17)"]
+    [
+      "API",
+      "Official Web API, Events API, Bolt SDKs"
+    ],
+    [
+      "SDKs",
+      "Bolt for JavaScript, Bolt for Python"
+    ],
+    [
+      "Streaming",
+      "chat.startStream / appendStream / stopStream"
+    ],
+    [
+      "Agent scope",
+      "assistant:write enables agent features"
+    ],
+    [
+      "Plan",
+      "Some AI features require a paid plan; free developer sandbox"
+    ],
+    [
+      "History limits",
+      "conversations.history at 1 req/min for unlisted commercial apps (since 2025-05-29)"
+    ],
+    [
+      "MCP",
+      "Official Slack MCP server (GA 2026-02-17)"
+    ]
   ],
   "links": {
     "site": "https://slack.dev",

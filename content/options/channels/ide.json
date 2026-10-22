@@ -4,16 +4,41 @@
   "name": "IDE",
   "url": "agentclientprotocol.com",
   "note": "Editors via ACP or extensions",
-  "profile": "protocol",
+  "profile": "pattern",
   "summary": "Coding agents reach developers inside their editor, either through editor-specific extensions or through the Agent Client Protocol (ACP). ACP, created by Zed, standardizes how an editor talks to an agent: local agents run as subprocesses and speak JSON-RPC over stdio, reusing MCP's JSON types where possible. Any ACP agent can then work in any ACP editor.",
   "facts": [
-    ["Created by", "Zed (introduced 2025-08-27)"],
-    ["License", "Apache-2.0"],
-    ["Transport", "JSON-RPC over stdio; remote over HTTP or WebSocket in progress"],
-    ["Editors", "Zed, JetBrains IDEs, VS Code and Neovim via extensions, Emacs"],
-    ["Agents", "Claude Code, Codex, Gemini CLI, GitHub Copilot, Cursor, OpenCode and more"],
-    ["SDKs", "TypeScript, Rust (both 1.0), Python, Kotlin, Java"],
-    ["Version", "Protocol v1 stable; v2 in draft (2026-07-20)"]
+    [
+      "Created by",
+      "Zed (introduced 2025-08-27)"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Transport",
+      "JSON-RPC over stdio; remote over HTTP or WebSocket in progress"
+    ],
+    [
+      "Editors",
+      "Zed, JetBrains IDEs, VS Code and Neovim via extensions, Emacs"
+    ],
+    [
+      "Agents",
+      "Claude Code, Codex, Gemini CLI, GitHub Copilot, Cursor, OpenCode and more"
+    ],
+    [
+      "SDKs",
+      "TypeScript, Rust (both 1.0), Python, Kotlin, Java"
+    ],
+    [
+      "Version",
+      "Protocol v1 stable; v2 in draft (2026-07-20)"
+    ],
+    [
+      "Protocol",
+      "Agent Client Protocol (ACP) for editor ↔ agent"
+    ]
   ],
   "links": {
     "site": "https://agentclientprotocol.com",

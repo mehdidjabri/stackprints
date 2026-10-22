@@ -8,19 +8,43 @@
   "profile": "product",
   "summary": "Baseten is an inference platform for running models in production. It offers per-token Model APIs for popular open models, dedicated GPU deployments for your own models billed by the minute, and on-demand training compute. Enterprise customers can run it in Baseten's cloud, their own VPC or a hybrid setup.",
   "facts": [
-    ["Products", "Model APIs, dedicated deployments, training"],
-    ["Pricing", "Per 1M tokens for Model APIs; per-minute GPU billing (H100 $0.108/min, B200 $0.166/min)"],
-    ["Deployment", "Baseten Cloud, self-hosted in your VPC, or hybrid (Enterprise)"],
-    ["Compliance", "SOC 2 Type II and HIPAA on all plans"],
-    ["Plans", "Basic pay-as-you-go, Pro and Enterprise by quote"],
-    ["Funding", "$1.5B Series F, June 2026"]
+    [
+      "Products",
+      "Model APIs, dedicated deployments, training"
+    ],
+    [
+      "Pricing",
+      "Per 1M tokens for Model APIs; per-minute GPU billing (H100 $0.108/min, B200 $0.166/min)"
+    ],
+    [
+      "Deployment",
+      "Baseten Cloud, self-hosted in your VPC, or hybrid (Enterprise)"
+    ],
+    [
+      "Compliance",
+      "SOC 2 Type II and HIPAA on all plans"
+    ],
+    [
+      "Plans",
+      "Basic pay-as-you-go, Pro and Enterprise by quote"
+    ],
+    [
+      "Funding",
+      "$1.5B Series F, June 2026"
+    ]
   ],
   "links": {
     "site": "https://www.baseten.co",
     "pricing": "https://www.baseten.co/pricing/",
     "changelog": "https://www.baseten.co/blog/"
   },
-  "goodFor": ["Serving custom or fine-tuned models on dedicated GPUs", "Teams needing VPC or hybrid deployment"],
-  "watchOut": ["Autoscaling and priority GPU access are Pro-tier features", "Dedicated GPUs cost money while scaled up"],
+  "goodFor": [
+    "Serving custom or fine-tuned models on dedicated GPUs",
+    "Teams needing VPC or hybrid deployment"
+  ],
+  "watchOut": [
+    "Autoscaling and priority GPU access are Pro-tier features",
+    "Dedicated GPUs cost money while scaled up"
+  ],
   "researched": "2026-10-21"
 }

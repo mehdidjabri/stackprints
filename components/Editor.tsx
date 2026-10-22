@@ -77,6 +77,7 @@ export function Editor({
     });
 
   const shuffle = () => {
+    if (dirty && touched.current && !confirm("Discard your changes and load a random stack?")) return;
     const pool = presets.filter((p) => p.slug !== draft.from);
     const p = pool[Math.floor(Math.random() * pool.length)];
     edit(fromPreset(p));
@@ -130,7 +131,28 @@ export function Editor({
 
   const kinds = [...new Set(presets.map((p) => p.kind))].sort();
   const kind = preset?.kind ?? "Personal stack";
-  const unused = layers.filter((l) => !draft.layers[l.id]);
+
+  /** A native select listing a layer's options not yet picked. */
+  const picker = (layer: Layer, picks: string[], label: string, aria: string) => {
+    const rest = layer.options.filter((o) => !picks.includes(o.id));
+    if (!rest.length) return null;
+    return (
+      <select
+        className={picks.length ? "add" : "add fill"}
+        aria-label={aria}
+        value=""
+        onChange={(e) => e.target.value && update(layer.id, [...picks, e.target.value])}
+      >
+        <option value="">{label}</option>
+        {rest.map((o) => (
+          <option key={o.id} value={o.id}>
+            {o.name}
+            {o.note ? ` — ${o.note}` : ""}
+          </option>
+        ))}
+      </select>
+    );
+  };
 
   return (
     <div className="editor">
@@ -156,7 +178,7 @@ export function Editor({
         </span>
         <details className="dd crumb">
           <summary>
-            <h1>{draft.name || "Untitled"}</h1>
+            <h2>{draft.name || "Untitled"}</h2>
           </summary>
           <div className="dd-menu">
             <label className="dd-rename">
@@ -185,21 +207,31 @@ export function Editor({
             </ul>
           </div>
         </details>
+        <button className="shuffle" onClick={shuffle} title="Load a random stack" aria-label="Load a random stack">
+          ↻
+        </button>
       </nav>
       <div className="meta-line">
         {Object.keys(draft.layers).length} layers
-        {preset && dirty && <> · remixed from <Link href={`/stack/${preset.slug}/`}>{preset.name}</Link></>}
+        {preset && dirty && (
+          <>
+            {" · remixed from "}
+            <Link href={`/stack/${preset.slug}/`}>{preset.name}</Link>
+            {" · "}
+            <button className="link" onClick={() => edit(fromPreset(preset))}>
+              reset
+            </button>
+          </>
+        )}
         {preset && !dirty && <> · <Link href={`/stack/${preset.slug}/`}>about this stack</Link></>}
       </div>
 
       <div className="toolbar" role="toolbar" aria-label="Stack actions" id="publish">
-        <button onClick={shuffle}>Shuffle</button>
         <button onClick={save}>Save</button>
         <button onClick={share}>Share</button>
         <button onClick={() => setPublishing((v) => !v)} aria-expanded={publishing}>
           Publish as a page
         </button>
-        {preset && dirty && <button onClick={() => edit(fromPreset(preset))}>Reset</button>}
         <span className="status" aria-live="polite">
           {status}
         </span>
@@ -256,6 +288,7 @@ export function Editor({
       )}
 
       <Board
+        slots={layers}
         modules={layers
           .filter((l) => draft.layers[l.id])
           .map((layer) => ({
@@ -269,47 +302,10 @@ export function Editor({
         addSlot={(layerId) => {
           const layer = layers.find((l) => l.id === layerId)!;
           const picks = draft.layers[layerId];
-          const rest = layer.options.filter((o) => !picks.includes(o.id));
-          if (!rest.length) return null;
-          return (
-            <select
-              className="add"
-              aria-label={`Add to ${layer.name}`}
-              value=""
-              onChange={(e) => e.target.value && update(layer.id, [...picks, e.target.value])}
-            >
-              <option value="">+</option>
-              {rest.map((o) => (
-                <option key={o.id} value={o.id}>
-                  {o.name}
-                  {o.note ? ` — ${o.note}` : ""}
-                </option>
-              ))}
-            </select>
-          );
+          return picker(layer, picks, "+", `Add to ${layer.name}`);
         }}
-      >
-        {unused.length > 0 && (
-          <div className="module slot">
-            <select
-              className="add add-layer"
-              aria-label="Add a layer"
-              value=""
-              onChange={(e) => {
-                const l = layers.find((x) => x.id === e.target.value);
-                if (l) update(l.id, [l.options[0].id]);
-              }}
-            >
-              <option value="">+ empty slot</option>
-              {unused.map((l) => (
-                <option key={l.id} value={l.id}>
-                  {l.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-      </Board>
+        emptySlot={(slot) => picker(layers.find((l) => l.id === slot.id)!, [], `+ ${slot.name}`, `Add ${slot.name}`)}
+      />
     </div>
   );
 }

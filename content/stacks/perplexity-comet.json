@@ -7,16 +7,16 @@
   "source": "perplexity.ai/comet",
   "layers": {
     "channels": "desktop-app",
+    "proactivity": "background-research",
     "ui": "plain-text",
-    "tools": "web-search",
+    "multiagent": "subagents",
+    "search": "web-search",
     "browser": [
       "chrome-extension",
       "cloud-browser"
     ],
-    "multiagent": "subagents",
     "memory": "agent-notes",
-    "proactivity": "background-research",
-    "guardrails": "permission-modes",
-    "hosting": "vendor-cloud"
+    "hosting": "vendor-cloud",
+    "guardrails": "permission-modes"
   }
 }

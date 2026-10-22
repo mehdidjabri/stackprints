@@ -15,18 +15,20 @@
       "elevenlabs",
       "livekit-agents"
     ],
+    "harness": "openai-agents-sdk",
     "model": "gpt-6-luna",
     "router": "direct-provider",
-    "harness": "openai-agents-sdk",
-    "tools": "calendar-email",
-    "connectors": "composio",
+    "connectors": [
+      "composio",
+      "calendar-email"
+    ],
     "memory": "supermemory",
     "storage": "postgres",
+    "hosting": "fly-io",
     "guardrails": [
       "permission-modes",
       "audit-trail"
     ],
-    "observability": "braintrust",
-    "hosting": "fly-io"
+    "observability": "braintrust"
   }
 }

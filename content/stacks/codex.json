@@ -11,32 +11,32 @@
       "ide",
       "web-chat"
     ],
+    "harness": "codex",
     "model": [
       "gpt-6-astra",
       "gpt-6-1-sol"
     ],
     "router": "direct-provider",
-    "harness": "codex",
     "persona": "agents-md",
     "multiagent": "subagents",
     "tools": [
       "read-write-edit-bash",
-      "apply-patch",
-      "web-search"
+      "apply-patch"
     ],
-    "mcp": "mcp",
-    "skills": "agent-skills-skill-md",
+    "search": "web-search",
     "sandbox": [
       "host-machine",
       "per-user-cloud-computer"
     ],
+    "mcp": "mcp",
+    "skills": "agent-skills-skill-md",
     "memory": "agent-notes",
     "retrieval": "grep-glob",
     "storage": "git",
-    "guardrails": "permission-modes",
     "hosting": [
       "your-laptop",
       "vendor-cloud"
-    ]
+    ],
+    "guardrails": "permission-modes"
   }
 }

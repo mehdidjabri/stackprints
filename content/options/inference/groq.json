@@ -8,19 +8,40 @@
   "profile": "product",
   "summary": "Groq runs GroqCloud, an inference cloud built on its LPU (Language Processing Unit) chips and serving open-weight models through a mostly OpenAI-compatible API. After licensing its inference technology to NVIDIA in December 2025, it repositioned as an inference neocloud and now also deploys NVIDIA hardware alongside its own.",
   "facts": [
-    ["Hardware", "Groq LPU; NVIDIA Groq 3 LPX and Vera Rubin NVL72 announced"],
-    ["API", "OpenAI-compatible at api.groq.com/openai/v1 (some params unsupported)"],
-    ["Footprint", "13 data centers in North America, Europe, Middle East, APAC (vendor-reported)"],
-    ["Funding", "$650M (June 2026) and $350M Series A at $3.5B valuation (Aug 2026)"],
-    ["NVIDIA deal", "Non-exclusive technology license, Dec 2025; founder Jonathan Ross joined NVIDIA"],
-    ["CEO", "Simon Edwards (since Dec 2025)"]
+    [
+      "Hardware",
+      "Groq LPU; NVIDIA Groq 3 LPX and Vera Rubin NVL72 announced"
+    ],
+    [
+      "API",
+      "OpenAI-compatible at api.groq.com/openai/v1 (some params unsupported)"
+    ],
+    [
+      "Footprint",
+      "13 data centers in North America, Europe, Middle East, APAC (vendor-reported)"
+    ],
+    [
+      "Funding",
+      "$650M (June 2026) and $350M Series A at $3.5B valuation (Aug 2026)"
+    ],
+    [
+      "NVIDIA deal",
+      "Non-exclusive technology license, Dec 2025; founder Jonathan Ross joined NVIDIA"
+    ],
+    [
+      "CEO",
+      "Simon Edwards (since Dec 2025)"
+    ]
   ],
   "links": {
     "site": "https://groq.com",
     "docs": "https://console.groq.com/docs/openai",
     "changelog": "https://groq.com/newsroom"
   },
-  "goodFor": ["Latency-sensitive agent loops", "Drop-in OpenAI client swap for open models"],
+  "goodFor": [
+    "Latency-sensitive agent loops",
+    "Drop-in OpenAI client swap for open models"
+  ],
   "watchOut": [
     "Founder and much of the team moved to NVIDIA in Dec 2025; strategy is still shifting",
     "logprobs, logit_bias and n>1 are not supported"

@@ -16,10 +16,8 @@
       "qwen-3-8"
     ],
     "multiagent": "subagents",
-    "tools": [
-      "read-write-edit-bash",
-      "web-search"
-    ],
+    "tools": "read-write-edit-bash",
+    "search": "web-search",
     "sandbox": "per-user-cloud-computer",
     "browser": "browser-use",
     "memory": "none",

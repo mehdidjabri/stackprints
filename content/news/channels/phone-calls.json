@@ -1,9 +1,0 @@
-{
-  "updated": "2026-10-21",
-  "items": [
-    { "date": "2026-10-05", "title": "Segment Conversation Memory Integration now in GA", "url": "https://www.twilio.com/en-us/changelog/segment-conversation-memory-integration-now-in-ga", "source": "twilio.com" },
-    { "date": "2026-10-01", "title": "Voice Insights now shows why carriers block your calls", "url": "https://www.twilio.com/en-us/changelog/voice-insights-shows-why-carriers-block-your-calls-603-reason", "source": "twilio.com" },
-    { "date": "2026-09-22", "title": "Introducing Provider Failover and \"Auto\" mode Provider selection for Real-Time Transcriptions on October 22, 2026", "url": "https://www.twilio.com/en-us/changelog/real-time-transcriptions-october-2026", "source": "twilio.com" },
-    { "date": "2026-09-09", "title": "ElevenLabs Voices for Say is now Public Beta", "url": "https://www.twilio.com/en-us/changelog/elevenlabs-voices-for-say-is-now-public-beta", "source": "twilio.com" }
-  ]
-}

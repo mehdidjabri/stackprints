@@ -45,6 +45,8 @@ export type Layer = {
   name: string;
   /** Which band of the stack the layer belongs to. */
   band: "surface" | "brain" | "hands" | "files" | "ops";
+  /** Fixed silkscreen designator on the board, e.g. J1, U2, DIMM1, PS1. */
+  ref: string;
   description: string;
   options: Option[];
 };

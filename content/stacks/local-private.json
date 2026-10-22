@@ -13,27 +13,29 @@
       "whisper",
       "kokoro"
     ],
+    "harness": "pi",
     "model": [
       "qwen-3-8",
       "gemma-4",
       "gpt-oss"
     ],
-    "router": "ollama",
-    "inference": "local-gpu",
-    "harness": "pi",
+    "inference": [
+      "local-gpu",
+      "ollama"
+    ],
     "persona": "agents-md",
     "tools": "read-write-edit-bash",
+    "sandbox": "docker",
     "mcp": "mcp",
     "skills": "agent-skills-skill-md",
-    "sandbox": "docker",
     "memory": "memory-md",
     "retrieval": [
       "sqlite-fts5-sqlite-vec",
       "qwen3-embedding"
     ],
     "storage": "sqlite",
+    "hosting": "your-laptop",
     "guardrails": "permission-modes",
-    "observability": "langfuse",
-    "hosting": "your-laptop"
+    "observability": "langfuse"
   }
 }

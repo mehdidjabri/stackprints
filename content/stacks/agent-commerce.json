@@ -9,31 +9,28 @@
       "imessage",
       "web-chat"
     ],
+    "readiness": [
+      "mcp-server",
+      "agentready",
+      "ora"
+    ],
+    "harness": "openai-agents-sdk",
     "model": "gpt-6-1-sol",
     "router": "openrouter",
-    "harness": "openai-agents-sdk",
-    "mcp": [
-      "mcp",
-      "acp-agentic-commerce"
-    ],
     "browser": "stagehand",
-    "memory": "zep-graphiti",
-    "identity": "credential-vault",
+    "mcp": "mcp",
     "payments": [
       "agentic-commerce-protocol",
       "single-use-cards",
       "stripe-agent-toolkit",
       "x402"
     ],
+    "memory": "zep-graphiti",
+    "hosting": "vercel",
     "guardrails": [
       "per-action-autonomy",
       "audit-trail"
     ],
-    "readiness": [
-      "mcp-server",
-      "agentready",
-      "ora"
-    ],
-    "hosting": "vercel"
+    "identity": "credential-vault"
   }
 }

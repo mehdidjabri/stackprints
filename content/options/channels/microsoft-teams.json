@@ -8,12 +8,30 @@
   "profile": "product",
   "summary": "Teams agents are bots registered with Microsoft and built with the Teams SDK (formerly Teams AI library v2), which handles authentication, event routing and Teams-specific features. A Teams Developer CLI scaffolds, registers and sideloads apps, and agents can stream replies, use slash commands, reactions and prompt starters. Organizations control which apps users may install.",
   "facts": [
-    ["API", "Official bot platform; Teams SDK"],
-    ["Languages", "TypeScript, C#, Python"],
-    ["SDK version", "2.1.0 TypeScript/Python, 2.1.1 .NET (2026-09-28)"],
-    ["Protocols", "MCP and A2A support in Teams SDK"],
-    ["Tooling", "Teams Developer CLI, Microsoft 365 Agents Playground"],
-    ["Legacy", "Teams AI library v1 deprecated"]
+    [
+      "API",
+      "Official bot platform; Teams SDK"
+    ],
+    [
+      "Languages",
+      "TypeScript, C#, Python"
+    ],
+    [
+      "SDK version",
+      "2.1.0 TypeScript/Python, 2.1.1 .NET (2026-09-28)"
+    ],
+    [
+      "Protocols",
+      "MCP and A2A support in Teams SDK"
+    ],
+    [
+      "Tooling",
+      "Teams Developer CLI, Microsoft 365 Agents Playground"
+    ],
+    [
+      "Legacy",
+      "Teams AI library v1 deprecated"
+    ]
   ],
   "links": {
     "docs": "https://learn.microsoft.com/en-us/microsoftteams/platform/teams-sdk/welcome",
