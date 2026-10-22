@@ -30,6 +30,7 @@
       "host-machine",
       "per-user-cloud-computer"
     ],
+    "memory": "agent-notes",
     "retrieval": "grep-glob",
     "storage": "git",
     "guardrails": "permission-modes",

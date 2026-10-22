@@ -29,6 +29,7 @@
     "mcp": "mcp",
     "connectors": "vercel-connect",
     "sandbox": "vercel-sandbox",
+    "memory": "memory-md",
     "storage": [
       "vercel-drives",
       "postgres"

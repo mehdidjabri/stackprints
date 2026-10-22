@@ -23,6 +23,7 @@
       "firecrawl"
     ],
     "browser": "browserbase",
+    "memory": "agent-notes",
     "retrieval": [
       "lancedb",
       "cohere-rerank-4"

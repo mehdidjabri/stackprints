@@ -17,6 +17,7 @@
       "acp-agentic-commerce"
     ],
     "browser": "stagehand",
+    "memory": "zep-graphiti",
     "identity": "credential-vault",
     "payments": [
       "agentic-commerce-protocol",

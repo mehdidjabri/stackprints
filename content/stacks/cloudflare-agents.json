@@ -17,6 +17,7 @@
     "mcp": "mcp",
     "sandbox": "cloudflare-sandbox",
     "browser": "cloud-browser",
+    "memory": "supermemory",
     "storage": [
       "durable-objects",
       "sqlite",
