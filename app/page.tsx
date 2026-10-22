@@ -12,7 +12,7 @@ const DEFAULT = "openclaw";
 
 export const metadata: Metadata = {
   alternates: withMarkdown("/"),
-  openGraph: { type: "website", siteName: SITE.name, url: "/", title: "Agentic Stack", description: SITE.description },
+  openGraph: { type: "website", siteName: SITE.name, url: "/", title: "Stackprints", description: SITE.description },
 };
 
 export default function Home() {

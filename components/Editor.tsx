@@ -142,7 +142,7 @@ export function Editor({
     history.replaceState(null, "", url);
     if (navigator.share && matchMedia("(pointer: coarse)").matches) {
       try {
-        await navigator.share({ title: `Agentic Stack / ${draft.name.trim() || UNTITLED}`, url });
+        await navigator.share({ title: `Stackprints / ${draft.name.trim() || UNTITLED}`, url });
         return;
       } catch (e) {
         if ((e as Error).name === "AbortError") return;

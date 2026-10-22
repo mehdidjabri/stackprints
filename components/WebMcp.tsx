@@ -35,9 +35,9 @@ const layerInput = (layers: LayerName[]) =>
 
 const tools = (layers: LayerName[]): Tool[] => [
   {
-    name: "search_agentic_stack",
+    name: "search_stackprints",
     description:
-      "Search Agentic Stack for AI agent stacks, layers (model, harness, memory, sandbox…) and components (OpenRouter, E2B, Langfuse…). Returns matches with their page URLs.",
+      "Search Stackprints for AI agent stacks, layers (model, harness, memory, sandbox…) and components (OpenRouter, E2B, Langfuse…). Returns matches with their page URLs.",
     inputSchema: schema({ query: str("What to look for, e.g. 'memory', 'browser use', 'OpenClaw'") }),
     annotations: { readOnlyHint: true },
     execute: async (input) => {

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Not found",
   robots: { index: false, follow: true },
   alternates: { types: { "text/markdown": "/404.md" } },
-  openGraph: { type: "website", siteName: "Agentic Stack", title: "Not found" },
+  openGraph: { type: "website", siteName: "Stackprints", title: "Not found" },
 };
 
 export default function NotFound() {

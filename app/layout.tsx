@@ -20,14 +20,14 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: "Agentic Stack — every AI agent stack, mapped", template: "%s · Agentic Stack" },
+  title: { default: "Stackprints — every AI agent stack, mapped", template: "%s · Stackprints" },
   description: SITE.description,
   applicationName: SITE.name,
   keywords: ["agentic stack", "AI agent stack", "agent architecture", "LLM", "MCP", "agent harness", "agent memory", "sandbox", "OpenRouter", "AI SDK"],
   // No canonical, markdown twin or og:url here: every page names its own (the home page in app/page.tsx),
   // so a page that doesn't, like the 404, never inherits the home page's.
-  openGraph: { type: "website", siteName: SITE.name, title: "Agentic Stack", description: SITE.description },
-  twitter: { card: "summary_large_image", title: "Agentic Stack", description: SITE.description },
+  openGraph: { type: "website", siteName: SITE.name, title: "Stackprints", description: SITE.description },
+  twitter: { card: "summary_large_image", title: "Stackprints", description: SITE.description },
 };
 
 export const viewport: Viewport = {
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="top">
           <div className="wrap">
             <Link href="/" className="brand">
-              agentic stack
+              stackprints
             </Link>
             <SearchBox />
             <PrimaryNav />

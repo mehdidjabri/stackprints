@@ -4,7 +4,7 @@ import { Title } from "@/components/Title";
 
 export const metadata: Metadata = {
   title: "Search",
-  description: "Search every agent stack, layer and tool on Agentic Stack.",
+  description: "Search every agent stack, layer and tool on Stackprints.",
   alternates: { canonical: "/search/" },
   robots: { index: false, follow: true },
 };

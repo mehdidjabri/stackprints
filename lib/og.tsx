@@ -33,22 +33,26 @@ function Mark({ o, size }: { o: Option; size: number }) {
 
 type Row = { layer: Layer; picks: Option[] };
 
-function Mod({ r, grow = 0, core = false, column = false }: { r: Row; grow?: number; core?: boolean; column?: boolean }) {
+// Like the site's mini boards: marks only, a few per module, so any stack fits the card.
+function Mod({ r, grow = 0, core = false, column = false, basis }: { r: Row; grow?: number; core?: boolean; column?: boolean; basis?: string }) {
   return (
     <div
       style={{
         display: "flex",
         flexDirection: column ? "column" : "row",
-        flexWrap: column ? "nowrap" : "wrap",
         alignItems: "center",
-        gap: core ? 14 : 8,
-        padding: core ? 14 : 8,
+        gap: 6,
+        padding: core ? 9 : 6,
         border: `${core ? 2 : 1}px solid ${core ? FG : LINE}`,
         flexGrow: grow,
+        flexShrink: 1,
+        ...(basis ? { flexBasis: basis } : {}), // the renderer rejects undefined style values
+        minWidth: 0,
+        overflow: "hidden",
       }}
     >
-      {r.picks.slice(0, core ? 4 : 6).map((p) => (
-        <Mark key={p.id} o={p} size={core ? 30 : 20} />
+      {r.picks.slice(0, core ? 4 : 3).map((p) => (
+        <Mark key={p.id} o={p} size={core ? 26 : 18} />
       ))}
     </div>
   );
@@ -68,21 +72,17 @@ export function ogImage(detail: string, stack?: Pick<Stack, "layers">) {
       <div style={{ width: "100%", height: "100%", display: "flex", background: BG, color: FG, padding: 56, fontSize: 28 }}>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: rows.length ? 400 : 1088 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <div style={{ display: "flex", fontSize: 38, letterSpacing: -1 }}>Agentic Stack /</div>
+            <div style={{ display: "flex", fontSize: 38, letterSpacing: -1 }}>Stackprints /</div>
             <div style={{ display: "flex", fontSize: 60, letterSpacing: -2, color: "#6b6b6b", lineHeight: 1.05 }}>{detail}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6, width: 52 }}>
-            {[0, 1, 2].map((i) => (
-              <div key={i} style={{ display: "flex", height: 13, border: `2px solid ${FG}` }} />
-            ))}
-          </div>
+          <div style={{ display: "flex", fontSize: 22, color: "#6b6b6b" }}>stackprints.com</div>
         </div>
         {rows.length > 0 && (
           <div style={{ display: "flex", flexDirection: "column", flex: 1, gap, padding: 14, marginLeft: 40, border: `2px solid ${FG}` }}>
             {/* Rear I/O */}
-            <div style={{ display: "flex", gap }}>
+            <div style={{ display: "flex", gap, overflow: "hidden" }}>
               {io.map((r) => (
-                <Mod key={r.layer.id} r={r} grow={r.picks.length} />
+                <Mod key={r.layer.id} r={r} grow={Math.min(r.picks.length, 3)} />
               ))}
             </div>
             <div style={{ display: "flex", flex: 1, gap }}>
@@ -100,10 +100,12 @@ export function ogImage(detail: string, stack?: Pick<Stack, "layers">) {
                     ))}
                   </div>
                 </div>
-                {/* Expansion slots */}
-                {hands.map((r) => (
-                  <Mod key={r.layer.id} r={r} />
-                ))}
+                {/* Expansion slots, two to a row */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap }}>
+                  {hands.map((r) => (
+                    <Mod key={r.layer.id} r={r} grow={1} basis="45%" />
+                  ))}
+                </div>
               </div>
               {/* Memory sticks */}
               {files.length > 0 && (
@@ -115,7 +117,7 @@ export function ogImage(detail: string, stack?: Pick<Stack, "layers">) {
               )}
             </div>
             {/* Power */}
-            <div style={{ display: "flex", gap }}>
+            <div style={{ display: "flex", gap, overflow: "hidden" }}>
               {ops.map((r) => (
                 <Mod key={r.layer.id} r={r} grow={1} />
               ))}

@@ -5,7 +5,7 @@
   "url": "past.dev",
   "note": "Time-aware, access-filtered recall API",
   "logo": "past",
-  "affiliation": "Agentic Stack is built by the team behind past.dev.",
+  "affiliation": "Stackprints is built by the team behind past.dev.",
   "profile": "product",
   "summary": "past.dev is a hosted memory API for AI agents. Applications send timestamped text to an ingest endpoint and query a recall endpoint, which returns ranked evidence with dated sources, tracks how facts change over time, and filters results by what the requesting identity is allowed to see.",
   "facts": [

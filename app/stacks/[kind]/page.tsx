@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${k} stacks`,
     description,
     alternates: withMarkdown(kindHref(k)),
-    openGraph: { type: "website", url: kindHref(k), title: `Agentic Stack / ${k}`, description, images: "/opengraph-image" },
-    twitter: { title: `Agentic Stack / ${k}`, description },
+    openGraph: { type: "website", url: kindHref(k), title: `Stackprints / ${k}`, description, images: "/opengraph-image" },
+    twitter: { title: `Stackprints / ${k}`, description },
   };
 }
 
@@ -48,7 +48,7 @@ export default async function KindPage({ params }: Props) {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Agentic Stack", item: `${SITE.url}/` },
+            { "@type": "ListItem", position: 1, name: "Stackprints", item: `${SITE.url}/` },
             { "@type": "ListItem", position: 2, name: k, item: `${SITE.url}${kindHref(k)}` },
           ],
         }}

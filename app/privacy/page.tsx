@@ -6,9 +6,9 @@ import { withMarkdown } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "What Agentic Stack does and doesn't collect about visitors.",
+  description: "What Stackprints does and doesn't collect about visitors.",
   alternates: withMarkdown("/privacy/"),
-  openGraph: { type: "website", url: "/privacy/", title: "Agentic Stack / Privacy", images: "/opengraph-image" },
+  openGraph: { type: "website", url: "/privacy/", title: "Stackprints / Privacy", images: "/opengraph-image" },
 };
 
 export default function Page() {

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Free, read-only JSON API for AI agent stacks, layers and options. No key, no sign-up. OpenAPI 3.1 spec included.",
   alternates: withMarkdown("/api/"),
-  openGraph: { type: "website", url: "/api/", title: "Agentic Stack / API", images: "/opengraph-image" },
+  openGraph: { type: "website", url: "/api/", title: "Stackprints / API", images: "/opengraph-image" },
 };
 
 /** The copy is shared with /api.md, where `backticks` mark code. */

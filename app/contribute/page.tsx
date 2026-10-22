@@ -6,7 +6,7 @@ import { withMarkdown } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Contribute",
-  description: "Add an agent stack, a layer or an option to Agentic Stack. Everything is plain JSON in a public repo.",
+  description: "Add an agent stack, a layer or an option to Stackprints. Everything is plain JSON in a public repo.",
   alternates: withMarkdown("/contribute/"),
 };
 

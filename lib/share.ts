@@ -51,12 +51,14 @@ export function normalizeDraft(d: Draft, layers: LayerIds[]) {
 /** A stack saved in this browser (see /mine/). */
 export type Saved = Draft & { id: string; savedAt?: number };
 
-const KEY = "agentic-stack:saved";
+const KEY = "stackprints:saved";
+// Saves made before the rename to Stackprints; read once, then moved to KEY.
+const LEGACY_KEY = "agentic-stack:saved";
 export const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
 export function loadSaved(): Saved[] {
   try {
-    const list = JSON.parse(localStorage.getItem(KEY) ?? "[]");
+    const list = JSON.parse(localStorage.getItem(KEY) ?? localStorage.getItem(LEGACY_KEY) ?? "[]");
     // Saves from before ids existed get one now; names no longer have to be unique to tell rows apart.
     return Array.isArray(list) ? list.filter((d) => d && d.layers).map((d) => ({ ...d, id: d.id ?? newId() })) : [];
   } catch {
@@ -67,6 +69,7 @@ export function loadSaved(): Saved[] {
 export function storeSaved(list: Saved[]) {
   try {
     localStorage.setItem(KEY, JSON.stringify(list));
+    localStorage.removeItem(LEGACY_KEY);
   } catch {}
 }
 

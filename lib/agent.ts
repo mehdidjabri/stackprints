@@ -34,7 +34,7 @@ const abs = (p: string) => `${SITE.url}${p}`;
 const host = new URL(SITE.url).host;
 
 
-const WHEN_TO_USE = `Use Agentic Stack when you need to:
+const WHEN_TO_USE = `Use Stackprints when you need to:
 
 - Pick a component for an AI agent: compare the real options in any of ${"{layers}"} layers (models, model gateways, harnesses, sandboxes, browser use, memory, retrieval, triggers, guardrails, payments, observability…).
 - See how a known agent is built (OpenClaw, Hermes Agent, Pi, Claude Code, Codex, ChatGPT dots, Meta Muse, Manus, Poke…), with a source for every pick and an explicit "not disclosed" where a closed product hasn't said.
@@ -176,7 +176,7 @@ function trendingMd() {
 }
 
 // Trust pages share their copy between HTML and markdown.
-export const ABOUT = `Agentic Stack is an open, community-maintained map of how AI agents are built. It breaks an agent into ${"{layers}"} layers, from the channels people reach it through to the model, the harness that runs the loop, the sandbox its code runs in, its memory, what wakes it up, its guardrails and where it is hosted. Each layer lists the real options people use today, and each stack shows which option a known agent picks in every layer. Stacks marked Example are designs written for this site to show how the parts fit together; they are not products, and the site counts them apart from real use.
+export const ABOUT = `Stackprints is an open, community-maintained map of how AI agents are built. It breaks an agent into ${"{layers}"} layers, from the channels people reach it through to the model, the harness that runs the loop, the sandbox its code runs in, its memory, what wakes it up, its guardrails and where it is hosted. Each layer lists the real options people use today, and each stack shows which option a known agent picks in every layer. Stacks marked Example are designs written for this site to show how the parts fit together; they are not products, and the site counts them apart from real use.
 
 Every pick in a real product's stack links to the source that backs it. Option datasheets are researched from public pages, such as the vendor links shown on each option, and each says when it was last researched. Open-source stacks are built from their public code; closed products are built only from what their makers and reputable press have published, and every layer they haven't disclosed is marked "Not disclosed" rather than guessed. Benchmark numbers that a vendor publishes about itself are labelled vendor-reported. Rankings and listings are never paid for.
 
@@ -194,15 +194,15 @@ export const READING = `Every stack carries a disclosure level, shown as a badge
 On the board, a hatched slot is not disclosed: the maker hasn't said, so the layer is unknown rather than absent. A slot outlined with a "?" is in use, but the maker hasn't said with what; a source confirms it's there. A dashed slot is not used. A part marked "Supported" or "Also supported" is one the stack can be configured to use rather than what it runs out of the box. Any model, Any provider and Any host mark stacks that work with whichever model, gateway or host you choose.`;
 
 // The site's conflict of interest, said wherever it applies (see Option.affiliation) and in full here.
-export const AFFILIATION = `Agentic Stack is built by the team behind past.dev, a memory API listed here. past.dev is the first suggestion in the Memory layer and the memory in example designs where a hosted memory API fits. Stacks of real products list past.dev only where a source shows they use it, and its benchmark numbers are marked vendor-reported like everyone else's.`;
+export const AFFILIATION = `Stackprints is built by the team behind past.dev, a memory API listed here. past.dev is the first suggestion in the Memory layer and the memory in example designs where a hosted memory API fits. Stacks of real products list past.dev only where a source shows they use it, and its benchmark numbers are marked vendor-reported like everyone else's.`;
 
-export const PRIVACY = `Agentic Stack is a static website. It sets no cookies, runs no analytics or advertising scripts, and has no accounts, so we don't collect personal data about visitors.
+export const PRIVACY = `Stackprints is a static website. It sets no cookies, runs no analytics or advertising scripts, and has no accounts, so we don't collect personal data about visitors.
 
 Stacks you save with the Save button are kept in your own browser's local storage and never leave your device; clearing your browser data removes them. Share links encode the stack inside the URL itself, so whoever has the link can read that stack, and nothing is stored on a server.
 
 The hosting provider may keep standard server logs (IP address, user agent, requested URL) for security and operations, under its own privacy policy. Links to other websites, logos of third-party products and the GitHub pull-request flow are subject to those services' own policies. If you contribute through GitHub, your contribution and GitHub username become part of the public repository history.`;
 
-export const CONTACT = `Agentic Stack is maintained in the open on GitHub. To report a mistake, ask for a correction or suggest a product, open an issue or a pull request in the repository; every page also has an "Edit" link that opens the right file. Vendors who want their product listed can use the Submit form, which opens a pre-filled pull request, and can request corrections to a stack or an option the same way.
+export const CONTACT = `Stackprints is maintained in the open on GitHub. To report a mistake, ask for a correction or suggest a product, open an issue or a pull request in the repository; every page also has an "Edit" link that opens the right file. Vendors who want their product listed can use the Submit form, which opens a pre-filled pull request, and can request corrections to a stack or an option the same way.
 
 For questions about how the site works, see the About page and the contribution guide. Security issues should be reported privately through GitHub's security advisory form on the repository rather than in a public issue.`;
 
@@ -212,7 +212,7 @@ const pageMd = (title: string, path: string, body: string, description: string) 
 
 export const PRICING_MD = `# Pricing
 
-Agentic Stack is free.
+Stackprints is free.
 
 - Website: free, no account.
 - JSON API (${"{api}"}): free, read-only, no API key, no rate-limit tiers. Please cache responses; data changes weekly.
@@ -277,7 +277,7 @@ export const STACK_EXAMPLE = `{
 // Mirrors app/contribute/page.tsx; change both together.
 function contributeMd() {
   return (
-    frontmatter({ title: "Contribute", description: "Add an agent stack, a layer or an option to Agentic Stack. Everything is plain JSON in a public repo.", canonical: abs("/contribute/") }) +
+    frontmatter({ title: "Contribute", description: "Add an agent stack, a layer or an option to Stackprints. Everything is plain JSON in a public repo.", canonical: abs("/contribute/") }) +
     `${h1("Contribute", "/contribute/")}Everything on this site is plain JSON in [a public repo](${SITE.repo}). No database. You need a GitHub account to open a pull request; it ships on merge.\n\n` +
     `## Publish your stack as a page\n\nBuild it on the [home page](${abs("/")}), press **Publish as a page**, add your name, a tagline and two sentences, and open the pull request. It becomes \`content/stacks/your-stack.json\` and, once merged, gets its own page at \`/stack/your-stack/\` with a preview image.\n\n\`\`\`json\n${STACK_EXAMPLE}\n\`\`\`\n\n` +
     `\`disclosure\` decides what an empty slot means: on \`open-source\` and \`example\` stacks it is not used; on \`documented\` and \`closed\` stacks it is not disclosed. \`evidence\` gives, for each layer the stack picks, the URLs that back the pick, taken from \`sources\`. \`notUsed\` lists layers a source confirms are absent. Three optional fields cover the in-between cases: \`inUseUndisclosed\` (present, component not named), \`closedLayers\` (open source with closed parts) and \`supports\` (configurable rather than default). The full rules are in [docs/RESEARCH.md](${SITE.repo}/blob/main/docs/RESEARCH.md).\n\n` +
@@ -320,7 +320,7 @@ ${WHEN_TO_USE.replace("{layers}", String(layers.length))}
 - Read any content page as markdown: ${MD_RULE}. Cite the HTML URL; each twin names it under its title.
 - Query the JSON API, no key needed: ${abs("/api/stacks.json")}, ${abs("/api/stacks/{slug}.json")}, ${abs("/api/layers/{layer}.json")}, ${abs("/api/options/{layer}/{option}.json")}. Spec: ${abs("/openapi.json")}. Docs: ${abs("/api/")}.
 - Layer ids are fixed and some differ from the name shown: ${renamedLayers(layers)}. URLs and the API use ids; ${abs("/api/layers.json")} lists them all.
-- In a browser with WebMCP, the pages expose tools: search_agentic_stack, list_stacks, get_stack, get_layer, get_option, open_stack_in_editor.
+- In a browser with WebMCP, the pages expose tools: search_stackprints, list_stacks, get_stack, get_layer, get_option, open_stack_in_editor.
 - On a closed or documented product, a layer that isn't listed is "not disclosed", not "not used". In the API, read each stack's notDisclosed, inUseUndisclosed (present, but the component isn't named) and notUsed lists rather than inferring from the disclosure field.
 - A pick with "supported": true is something the stack can be configured to use, not what it runs by default.
 - Stacks with disclosure "example" are designs written for this site, not products. Don't count them as adoption: an option's API record counts them apart (usage.exampleDesigns).
@@ -643,11 +643,11 @@ function openapi() {
 // ── Discovery catalogs and the skill ───────────────────────────────────────
 
 const SKILL_MD = () => `---
-name: agentic-stack
+name: stackprints
 description: Look up how AI agents are built and compare components for each layer of an agent stack (models, model gateways, harnesses, sandboxes, browser use, memory, retrieval, triggers, guardrails, payments, observability). Use when choosing infrastructure for an agent, comparing options in one layer, or explaining how a known agent (OpenClaw, Hermes, Pi, Claude Code, Codex, ChatGPT dots, Meta Muse, Manus, Poke…) is put together.
 ---
 
-# Agentic Stack
+# Stackprints
 
 Read-only data about AI agent stacks at ${SITE.url}. No key needed.
 
@@ -682,12 +682,12 @@ function catalog() {
     specVersion: "1.0",
     host: { displayName: SITE.name, identifier: `did:web:${host}`, documentationUrl: abs("/api/") },
     entries: [
-      entry("api:agentic-stack", `${SITE.name} API`, "application/vnd.oai.openapi+json", abs("/openapi.json"), "Read-only JSON API: stacks with sources, layers, and options with vendor links and news. No key.", {
+      entry("api:stackprints", `${SITE.name} API`, "application/vnd.oai.openapi+json", abs("/openapi.json"), "Read-only JSON API: stacks with sources, layers, and options with vendor links and news. No key.", {
         tags: ["ai-agents", "agent-stack", "directory", "comparison"],
         capabilities: ["listStacks", "getStack", "listLayers", "getLayer", "getOption"],
         representativeQueries: ["how is OpenClaw built", "which sandboxes exist for AI agents", "compare memory APIs for agents", "what model does ChatGPT dots use"],
       }),
-      entry("skill:agentic-stack", "Agentic Stack skill", "text/markdown", abs("/.well-known/agent-skills/agentic-stack/SKILL.md"), "Agent Skill: how to look up stacks and compare components, respecting disclosure."),
+      entry("skill:stackprints", "Stackprints skill", "text/markdown", abs("/.well-known/agent-skills/stackprints/SKILL.md"), "Agent Skill: how to look up stacks and compare components, respecting disclosure."),
       entry("docs:llms-txt", "llms.txt", "text/plain", abs("/llms.txt"), "Guide for AI readers: when to use the site and where everything is."),
       entry("data:search-index", "Search index", "application/json", abs("/search.json"), "Every stack, layer and option in one compact index."),
     ],
@@ -728,14 +728,14 @@ export function agentFiles(): Record<string, AgentFile> {
   );
   files["/trending.md"] = md(trendingMd());
   files["/about.md"] = md(
-    pageMd("About", "/about/", `${ABOUT}\n\n## Reading a stack\n\n${READING}\n\n## Affiliation\n\n${AFFILIATION}`, "What Agentic Stack is and how it is researched."),
+    pageMd("About", "/about/", `${ABOUT}\n\n## Reading a stack\n\n${READING}\n\n## Affiliation\n\n${AFFILIATION}`, "What Stackprints is and how it is researched."),
   );
-  files["/privacy.md"] = md(pageMd("Privacy", "/privacy/", PRIVACY, "What Agentic Stack does and doesn't collect."));
+  files["/privacy.md"] = md(pageMd("Privacy", "/privacy/", PRIVACY, "What Stackprints does and doesn't collect."));
   files["/contact.md"] = md(pageMd("Contact", "/contact/", CONTACT, "How to reach the maintainers."));
   files["/api.md"] = md(apiMd());
   files["/contribute.md"] = md(contributeMd());
   files["/pricing.md"] = md(
-    frontmatter({ title: "Pricing", description: "Agentic Stack is free.", canonical: abs("/pricing.md") }) +
+    frontmatter({ title: "Pricing", description: "Stackprints is free.", canonical: abs("/pricing.md") }) +
       PRICING_MD.replace("{api}", abs("/api/")),
   );
   files["/404.md"] = md(frontmatter({ title: "Not found" }) + `# Not found\n\nThat page doesn't exist on ${SITE.name}. Start from ${abs("/llms.txt")}, the sitemap at ${abs("/sitemap.xml")}, or search at ${abs("/search.json")}.\n`);
@@ -770,15 +770,15 @@ export function agentFiles(): Record<string, AgentFile> {
   files["/.well-known/did.json"] = json({ "@context": ["https://www.w3.org/ns/did/v1"], id: `did:web:${host}` });
   files["/.well-known/api-catalog"] = { ...json(apiCatalog()), type: 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"' };
   const skill = SKILL_MD();
-  files["/.well-known/agent-skills/agentic-stack/SKILL.md"] = md(skill);
+  files["/.well-known/agent-skills/stackprints/SKILL.md"] = md(skill);
   files["/.well-known/agent-skills/index.json"] = json({
     $schema: "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
     skills: [
       {
-        name: "agentic-stack",
+        name: "stackprints",
         type: "skill-md",
         description: skill.match(/^description: (.*)$/m)![1],
-        url: "/.well-known/agent-skills/agentic-stack/SKILL.md",
+        url: "/.well-known/agent-skills/stackprints/SKILL.md",
         digest: `sha256:${crypto.createHash("sha256").update(skill).digest("hex")}`,
       },
     ],

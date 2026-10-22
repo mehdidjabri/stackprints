@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${l.name} for AI agents`,
     description,
     alternates: withMarkdown(`/layer/${l.id}/`),
-    openGraph: { type: "website", title: `Agentic Stack / ${l.name}`, description, url: `/layer/${l.id}/`, images: "/opengraph-image" },
+    openGraph: { type: "website", title: `Stackprints / ${l.name}`, description, url: `/layer/${l.id}/`, images: "/opengraph-image" },
   };
 }
 

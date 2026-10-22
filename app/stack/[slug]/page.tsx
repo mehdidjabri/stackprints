@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: stackTitle(s),
     description,
     alternates: withMarkdown(`/stack/${s.slug}/`),
-    openGraph: { type: "article", title: `Agentic Stack / ${s.name}`, description, url: `/stack/${s.slug}/` },
+    openGraph: { type: "article", title: `Stackprints / ${s.name}`, description, url: `/stack/${s.slug}/` },
     // The stack's own board image (opengraph-image.tsx) is picked up; this makes it the large card.
-    twitter: { card: "summary_large_image", title: `Agentic Stack / ${s.name}`, description },
+    twitter: { card: "summary_large_image", title: `Stackprints / ${s.name}`, description },
   };
 }
 
@@ -102,7 +102,7 @@ export default async function StackPage({ params }: Props) {
             {
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Agentic Stack", item: `${SITE.url}/` },
+                { "@type": "ListItem", position: 1, name: "Stackprints", item: `${SITE.url}/` },
                 { "@type": "ListItem", position: 2, name: s.kind, item: `${SITE.url}${kindHref(s.kind)}` },
                 { "@type": "ListItem", position: 3, name: s.name, item: `${SITE.url}/stack/${s.slug}/` },
               ],

@@ -6,7 +6,7 @@ import { SITE, getLayers } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Submit your product",
   description:
-    "List your model, router, harness, memory, sandbox or any other agent infrastructure as an option on Agentic Stack. One JSON file, one pull request.",
+    "List your model, router, harness, memory, sandbox or any other agent infrastructure as an option on Stackprints. One JSON file, one pull request.",
   alternates: { canonical: "/submit/" },
 };
 

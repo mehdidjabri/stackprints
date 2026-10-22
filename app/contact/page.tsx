@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description: "How to reach the maintainers, report a mistake or list a product.",
   alternates: withMarkdown("/contact/"),
-  openGraph: { type: "website", url: "/contact/", title: "Agentic Stack / Contact", images: "/opengraph-image" },
+  openGraph: { type: "website", url: "/contact/", title: "Stackprints / Contact", images: "/opengraph-image" },
 };
 
 export default function Page() {

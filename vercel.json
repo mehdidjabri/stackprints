@@ -118,14 +118,14 @@
     {
       "src": "^/index\\.md$",
       "headers": {
-        "Link": "<https://agenticstack.dev/>; rel=\"canonical\", </sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json\", </api/>; rel=\"service-doc\"; type=\"text/html\", </.well-known/api-catalog>; rel=\"api-catalog\""
+        "Link": "<https://stackprints.com/>; rel=\"canonical\", </sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json\", </api/>; rel=\"service-doc\"; type=\"text/html\", </.well-known/api-catalog>; rel=\"api-catalog\""
       },
       "continue": true
     },
     {
       "src": "^/((?:stack|stacks|layer|layers|trending|about|contact|privacy|api|contribute)(?:/.*)?)\\.md$",
       "headers": {
-        "Link": "<https://agenticstack.dev/$1/>; rel=\"canonical\", </sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json\", </api/>; rel=\"service-doc\"; type=\"text/html\", </.well-known/api-catalog>; rel=\"api-catalog\""
+        "Link": "<https://stackprints.com/$1/>; rel=\"canonical\", </sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json\", </api/>; rel=\"service-doc\"; type=\"text/html\", </.well-known/api-catalog>; rel=\"api-catalog\""
       },
       "continue": true
     },

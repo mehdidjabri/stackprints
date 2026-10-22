@@ -5,11 +5,11 @@ import type { Layer, News, Option, Stack } from "./types";
 const root = path.join(process.cwd(), "content");
 
 export const SITE = {
-  name: "Agentic Stack",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://agenticstack.dev",
+  name: "Stackprints",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://stackprints.com",
   description:
     "Every possible agentic stack, mapped. Models, routers, harnesses, tools, memory, sandboxes, channels and more — browse, remix, save and share your own AI agent stack.",
-  repo: "https://github.com/agentic-stack/agentic-stack",
+  repo: "https://github.com/stackprints/stackprints",
 };
 
 let layers: Layer[] | undefined;
