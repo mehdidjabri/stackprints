@@ -254,7 +254,7 @@ export function Editor({
         }}
       >
         {unused.length > 0 && (
-          <div className="module slot s3">
+          <div className="module slot">
             <select
               className="add add-layer"
               aria-label="Add a layer"

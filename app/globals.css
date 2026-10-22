@@ -193,44 +193,49 @@ button:hover,
   color: var(--muted);
 }
 
-/* The board: a stack drawn as an abstract motherboard */
+/* The board: a stack drawn as an abstract motherboard.
+   Regions: rear I/O on top, processor area, expansion slots below it,
+   memory slots down the side, power components along the bottom. */
 .board {
+  --ram-w: clamp(210px, 25%, 290px);
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-flow: row dense;
-  gap: 10px;
-  padding: 14px;
+  grid-template-areas: var(--areas);
+  grid-template-columns: var(--cols);
+  gap: 14px;
+  padding: 16px;
   border: 1px solid var(--line-strong);
 }
-.s3 {
-  grid-column: span 3;
+.zone {
+  min-width: 0;
+  gap: 10px;
 }
-.s6 {
-  grid-column: span 6;
+.zone.io {
+  grid-area: io;
+  display: flex;
+  flex-wrap: wrap;
 }
-.s9 {
-  grid-column: span 9;
+.zone.cpu {
+  grid-area: cpu;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-flow: row dense;
 }
-.s12 {
-  grid-column: span 12;
+.zone.pcie {
+  grid-area: pcie;
+  display: flex;
+  flex-direction: column;
 }
-@media (max-width: 960px) {
-  .board:not(.mini) {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-  .board:not(.mini) > :is(.s9, .s12) {
-    grid-column: span 6;
-  }
+.zone.ram {
+  grid-area: ram;
+  display: flex;
+  flex-direction: column;
 }
-@media (max-width: 560px) {
-  .board:not(.mini) {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 10px;
-  }
-  .board:not(.mini) > * {
-    grid-column: 1 / -1;
-  }
+.zone.power {
+  grid-area: power;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
+
 .module {
   border: 1px solid var(--line);
   padding: 8px;
@@ -239,12 +244,47 @@ button:hover,
   gap: 8px;
   min-width: 0;
 }
+.io .module {
+  flex: 1 1 auto;
+}
+.cpu .module {
+  grid-column: span 2;
+}
+.cpu .module.core {
+  grid-column: span 6;
+}
+@media (min-width: 1180px) {
+  .cpu .module.core {
+    grid-column: span 4;
+  }
+}
+.mini .cpu .module.core {
+  grid-column: span 4;
+}
 /* Processor sockets: a second rectangle inside the first. */
 .module.core {
   border-color: var(--line-strong);
   box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px var(--line);
   padding: 12px;
 }
+/* Memory sticks stretch to fill the side column. */
+.ram .module {
+  flex: 1 1 auto;
+}
+/* Expansion slots: one long rectangle, label on the left. */
+.pcie .module {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.pcie .silk {
+  flex: none;
+  width: 130px;
+}
+.pcie .chips {
+  flex: 1;
+}
+
 .silk {
   display: flex;
   gap: 8px;
@@ -262,6 +302,16 @@ button:hover,
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 6px;
+}
+.io .chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+.io .chip {
+  max-width: 220px;
+}
+.ram .chips {
+  grid-template-columns: minmax(0, 1fr);
 }
 .chip {
   position: relative;
@@ -371,7 +421,7 @@ select.add:focus-visible {
   font-size: 12px;
   width: 100%;
   height: 100%;
-  min-height: 64px;
+  min-height: 56px;
 }
 .board-label {
   grid-column: 1 / -1;
@@ -381,11 +431,50 @@ select.add:focus-visible {
   text-align: right;
 }
 
-/* Mini boards inside cards: logos only. */
+/* Small screens: the regions stack, in the same order. */
+@media (max-width: 760px) {
+  .board:not(.mini) {
+    grid-template-areas: none;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 10px;
+  }
+  .board:not(.mini) .zone {
+    grid-area: auto;
+  }
+  .board:not(.mini) .cpu {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .board:not(.mini) .cpu .module {
+    grid-column: auto;
+  }
+  .board:not(.mini) .pcie .module {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .board:not(.mini) .pcie .silk {
+    width: auto;
+  }
+  .board:not(.mini) .io .chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+  .io .chip {
+    max-width: none;
+  }
+}
+
+/* Mini boards inside cards: the same floorplan, logos only. */
 .board.mini {
+  --ram-w: 22%;
   gap: 4px;
   padding: 6px;
   border-color: var(--line);
+}
+.mini .zone {
+  gap: 4px;
+}
+.mini .zone.power {
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
 }
 .mini .module {
   padding: 5px;
@@ -395,10 +484,15 @@ select.add:focus-visible {
   padding: 7px;
   box-shadow: inset 0 0 0 2px var(--bg), inset 0 0 0 3px var(--line);
 }
-.mini .chips {
+.mini .chips,
+.mini .io .chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+}
+.mini .ram .chips {
+  flex-direction: column;
+  align-items: center;
 }
 .mini .chip,
 .mini .core .chip {
