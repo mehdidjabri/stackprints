@@ -1,6 +1,7 @@
 {
   "slug": "gemini-auto-browse",
   "name": "Gemini auto browse",
+  "logo": "gemini",
   "kind": "Browser agent",
   "tagline": "Gemini drives a Chrome tab while you watch the steps.",
   "description": "Auto browse lets Gemini in Chrome carry out multi-step web tasks started from its side panel. On desktop it works in your local Chrome with the sites you're signed in to; on mobile it uses a remote browser in the cloud that keeps going when the device is closed. Google documents a separate Gemini-based User Alignment Critic that reviews each action, a prompt-injection classifier, limits on which sites the agent may touch, confirmation or take-over for sensitive steps, and sign-in through Google Password Manager without sharing passwords with Gemini. Google says the features are built on Gemini 3 (desktop, January 2026) and Gemini 3.1 (Android, May 2026), but doesn't name the model auto browse uses today, and hasn't published the agent harness or the remote-browser infrastructure.",

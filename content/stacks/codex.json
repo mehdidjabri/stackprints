@@ -1,6 +1,7 @@
 {
   "slug": "codex",
   "name": "Codex",
+  "logo": "codex",
   "kind": "Coding agent",
   "tagline": "OpenAI's open-source coding agent, local and in the cloud.",
   "description": "Codex is OpenAI's coding agent. The CLI, the app server that powers rich clients such as the VS Code extension, and the Codex SDK are open source (Rust, Apache-2.0) in openai/codex; the IDE extension and Codex Cloud are not. Locally, Codex runs shell commands and apply_patch edits inside an OS-level sandbox (Seatbelt on macOS, bubblewrap on Linux and WSL2, a native Windows sandbox), with approval prompts or an automatic reviewer for anything that crosses it. Cloud tasks run on OpenAI's infrastructure, each in its own VM built from a published environment, and can be started from the web, the ChatGPT desktop and mobile apps, Slack, Linear or GitHub. AGENTS.md carries instructions; skills, plugins, hooks and MCP extend it, optional local memories are generated in the background from past chats, and telemetry can be exported over OpenTelemetry.",

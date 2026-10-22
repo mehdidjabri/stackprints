@@ -12,6 +12,6 @@ export function GET() {
     for (const o of l.options)
       rows.push(["option", o.name, `${l.name} · ${o.note ?? ""}`, optionHref(l.id, o.id), o.logo ?? "", `${o.url ?? ""} ${o.summary ?? ""}`]);
   }
-  for (const s of getStacks()) rows.push(["stack", s.name, `${s.kind} · ${s.tagline}`, `/stack/${s.slug}/`, "", s.description]);
+  for (const s of getStacks()) rows.push(["stack", s.name, `${s.kind} · ${s.tagline}`, `/stack/${s.slug}/`, s.logo ?? "", s.description]);
   return Response.json(rows);
 }

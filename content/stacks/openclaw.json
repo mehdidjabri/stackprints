@@ -1,6 +1,7 @@
 {
   "slug": "openclaw",
   "name": "OpenClaw",
+  "logo": "openclaw",
   "kind": "Personal agent",
   "tagline": "Self-hosted assistant that lives in every chat app you use.",
   "description": "OpenClaw is an open-source personal assistant stewarded by the OpenClaw Foundation. A local Gateway daemon connects WhatsApp, Telegram, Slack, Discord, iMessage, Signal, Teams and 20+ other channels, plus native apps on macOS, iOS, Android, Windows and Linux, to one agent. Instructions and memory are Markdown workspace files (AGENTS.md, SOUL.md, USER.md, MEMORY.md) indexed in SQLite with hybrid search and consolidated by a background 'dreaming' sweep. Automation jobs, webhooks and hooks start runs, models and harnesses such as Codex are plugins, and tools run on the host unless a Docker, SSH or other sandbox backend is configured.",

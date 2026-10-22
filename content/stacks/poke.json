@@ -1,6 +1,7 @@
 {
   "slug": "poke",
   "name": "Poke",
+  "logo": "poke",
   "kind": "Consumer agent",
   "tagline": "An assistant that lives in your messages and texts you first.",
   "description": "Poke, from The Interaction Company of California (acquired by Cognition in July 2026), is an assistant that lives in Apple Messages, SMS and RCS, WhatsApp and Telegram. It handles email, calendar, reminders and web search, messages users first, runs automations on schedules or when its API is called, connects to recipe integrations and custom MCP servers, and can hand hard tasks to human operators (Poke Human). Poke says it picks a model per task from major providers or open models, and TechCrunch spotted it on Vercel's AI Gateway leaderboard. The models, memory design, sandboxing and approval rules are not disclosed.",

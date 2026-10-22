@@ -1,6 +1,7 @@
 {
   "slug": "instinct",
   "name": "Instinct",
+  "logo": "instinct",
   "kind": "Consumer agent",
   "tagline": "No app: text, call or email an agent with its own phone number and inbox.",
   "description": "Instinct, from Spear Street Technology, is an invite-only personal agent reached by text (SMS, iMessage, WhatsApp), phone call or email. Press reports that it works on its own virtual phone and computer, has its own email address and phone number, connects to Google Workspace, pays through Stripe Link, and coordinates with friends' Instincts through a trusted network; its founder says users share logins through an Instinct vault, with a 1Password integration rolling out. Instinct publishes no technical documentation, so the models, the computer and browser setup, memory, approval rules and hosting provider are not disclosed, and most details here come from press coverage and the founder's posts.",

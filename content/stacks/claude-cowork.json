@@ -1,6 +1,7 @@
 {
   "slug": "claude-cowork",
   "name": "Claude Cowork",
+  "logo": "claude",
   "kind": "Desktop agent",
   "tagline": "Claude works on your local files and apps, on a schedule.",
   "description": "Cowork is Anthropic's agent for knowledge work and, according to Anthropic, uses the same agentic architecture as Claude Code. Since October 6, 2026, new sessions on Pro and Max plans run in the cloud: the agent loop and code execution run in a per-session sandbox on Anthropic's servers, and the Claude Desktop app relays access to connected local folders, the browser and the computer. Local sessions, kept for earlier tasks and existing desktop deployments, run code in a Linux VM on the device. Cowork shares account memory with chat in the cloud, runs scheduled tasks remotely, coordinates sub-agents and Dispatch tasks, and is extended with MCP connectors, skills, plugins and hooks; organisations can export its activity over OpenTelemetry. Anthropic's support center documents this architecture, and a more detailed security architecture overview is available on request from its Trust Center.",

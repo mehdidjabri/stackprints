@@ -1,6 +1,7 @@
 {
   "slug": "hermes-agent",
   "name": "Hermes Agent",
+  "logo": "nousresearch",
   "kind": "Personal agent",
   "tagline": "Nous Research's self-improving agent that writes its own skills.",
   "description": "Hermes Agent from Nous Research is a Python agent with a learning loop: it writes and refines its own skills, keeps bounded MEMORY.md and USER.md notes through a memory tool, and searches past sessions stored in SQLite with FTS5. One gateway serves 20+ messaging platforms next to a TUI, a desktop app and a web dashboard. The terminal tool runs locally or in Docker, SSH, Singularity, Modal, Daytona or Vercel Sandbox, external memory providers such as Honcho, Mem0 and Supermemory plug in, and Nous Portal bundles models with a tool gateway for search, images, speech and cloud browsers.",

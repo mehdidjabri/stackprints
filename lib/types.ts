@@ -54,6 +54,8 @@ export type Layer = {
 export type Stack = {
   slug: string;
   name: string;
+  /** The product's mark, a file name in content/logos (real products only). */
+  logo?: string;
   tagline: string;
   description: string;
   kind: string;

@@ -1,6 +1,7 @@
 {
   "slug": "vercel-ai-cloud",
   "name": "Vercel AI Cloud",
+  "logo": "vercel",
   "kind": "Infrastructure",
   "tagline": "Vercel's agent stack as cloud primitives: gateway, sandbox, workflows, drives.",
   "description": "Vercel describes its agent stack as cloud primitives: the AI SDK and the eve framework for the agent loop, AI Gateway as a \"CDN of tokens\" across model providers, Sandbox microVMs for agent-written code, Fluid compute for long IO-bound work, Workflow SDK and Queues for durability, Connect for short-lived scoped credentials, Chat SDK for chat platforms and Drives for persistent files. The stack is model-agnostic; Vercel's reference doesn't prescribe a model.",

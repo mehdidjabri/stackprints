@@ -1,6 +1,7 @@
 {
   "slug": "meta-muse",
   "name": "Meta Muse",
+  "logo": "meta",
   "kind": "Consumer agent",
   "tagline": "A personal agent with its own secure VM, goals and ideas.",
   "description": "Muse is Meta's personal agent, powered by the Muse Spark model and reached through its iOS, Android and web apps, WhatsApp and its own email address. Meta's security write-up describes one Linux VM per user: the agent's in-house harness (Hatch), files and tools run in a sandboxed cell, while a separate permission authority (Sentinel), a credential store that hands out surrogate tokens, safety classifiers and a Postgres database run outside it. Built-in connectors run as CLIs, Muse can write its own, and purchases use single-use Stripe Link cards. Meta hasn't published the inference setup, the models behind Sentinel and the classifiers, or how memory files are organised; glasses support and the Mac app were announced as coming soon.",

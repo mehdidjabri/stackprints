@@ -1,6 +1,7 @@
 {
   "slug": "chatgpt-dots",
   "name": "ChatGPT dots",
+  "logo": "openai",
   "kind": "Consumer agent",
   "tagline": "Always-on personal agents with their own computer, handle and face.",
   "description": "Announced at OpenAI DevDay 2026, dots are always-on agents in ChatGPT that OpenAI says are powered by GPT-6 Astra. Each dot has its own cloud computer and browser, keeps its own notes, runs on saved schedules, events and its own wake-ups, can split work across background agents, and acts, asks or hands off under per-action rules checked by an automatic review. You reach it in the ChatGPT apps, Slack, Teams or by voice call, and it has a name, @handle and avatar. OpenAI hasn't published the agent harness, the cloud computer and browser technology, the voice stack or how notes are stored. The docs don't cover payments, and they describe no email address or phone number for a dot.",

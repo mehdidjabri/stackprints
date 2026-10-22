@@ -149,8 +149,8 @@ a:hover {
 .title .crumb {
   color: var(--muted);
 }
-.title .crumb:last-child,
-.title .crumb:last-child > summary {
+.title .current,
+.title .current > summary {
   color: var(--fg);
 }
 .dd {
@@ -1543,4 +1543,34 @@ select.add.fill {
   font-size: 14px;
   display: grid;
   gap: 6px;
+}
+
+/* Product marks next to stack names */
+.title .logo {
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.35em;
+  vertical-align: -0.08em;
+}
+.dd > summary .logo {
+  flex: none;
+  margin-right: 0;
+}
+.dd-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.dd-menu .logo {
+  width: 14px;
+  height: 14px;
+}
+.card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card h3 .logo {
+  width: 16px;
+  height: 16px;
 }

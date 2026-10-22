@@ -1,6 +1,7 @@
 {
   "slug": "manus",
   "name": "Manus",
+  "logo": "manus",
   "kind": "General agent",
   "tagline": "A general agent with its own cloud VM for code, files and research.",
   "description": "Manus runs each task in its own cloud sandbox, a virtual machine with a browser, shell and files that sleeps and wakes between sessions. It is reached on the web, desktop and mobile apps, Slack, Telegram and a per-user email address; it splits large jobs across parallel subagents (Wide Research), runs on schedules or app events, connects through MCP, loads Agent Skills, and can act on your own computer or browser through its desktop app and extension. Its in-house harness is called Cascade, but Manus doesn't say which language models it runs on, what its sandbox is built on, or how project memory is stored. Meta announced it was acquiring Manus in December 2025; after Beijing blocked the deal, Manus said in September 2026 that it had resumed independent operations.",

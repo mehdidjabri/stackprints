@@ -85,6 +85,7 @@ for (const f of jsonFiles("content/stacks")) {
   slugs.add(s.slug);
   for (const k of ["name", "kind", "tagline", "description"]) if (!s[k]) errors.push(`${f}: missing ${k}`);
   if (s.author && !s.author.name) errors.push(`${f}: author needs a name`);
+  if (s.logo && !fs.existsSync(`content/logos/${s.logo}.svg`)) errors.push(`${f}: missing content/logos/${s.logo}.svg`);
   for (const [k, v] of Object.entries(s.links ?? {}))
     if (!["site", "repo", "docs", "announcement"].includes(k) || !/^https:\/\//.test(v)) errors.push(`${f}: links.${k} must be site/repo/docs/announcement with an https URL`);
   if (s.disclosure && !["open-source", "documented", "closed", "example"].includes(s.disclosure))

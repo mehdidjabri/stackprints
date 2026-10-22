@@ -1,6 +1,7 @@
 {
   "slug": "cloudflare-agents",
   "name": "Cloudflare Agents",
+  "logo": "cloudflare",
   "kind": "Infrastructure",
   "tagline": "Stateful agents as Durable Objects on the edge.",
   "description": "Cloudflare's Agents SDK runs each agent as a Durable Object with its own SQLite storage, WebSockets and scheduling, with Think as its opinionated harness; chat agents also build on the AI SDK. Models come from Workers AI or from other providers through AI Gateway. Workflows and fibers add durability, Containers-based sandboxes run code, Browser Run drives websites, AI Search and Vectorize handle retrieval, and x402 handles payments. The docs use several models in examples but don't prescribe one.",

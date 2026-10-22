@@ -94,9 +94,10 @@ export default async function StackPage({ params }: Props) {
           },
           {
             label: s.name,
+            logo: s.logo,
             items: all
               .filter((x) => x.kind === s.kind)
-              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug })),
+              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug, logo: x.logo })),
           },
         ]}
       />

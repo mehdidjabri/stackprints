@@ -1,6 +1,7 @@
 {
   "slug": "perplexity-comet",
   "name": "Perplexity Comet",
+  "logo": "perplexity",
   "kind": "Browser agent",
   "tagline": "An AI browser that reads the page and runs errands in the background.",
   "description": "Comet is Perplexity's Chromium-based browser for Mac, Windows, iOS and Android. Its assistant runs in a sidecar panel, reads the current tab and tabs you mention, and can act on websites; Max subscribers can run background assistants in parallel and handle their confirmations on one page. Perplexity documents assistant permissions and per-site blocking, confirmation before sensitive actions such as sending email or placing orders, and machine-learning classifiers that screen pages for prompt injection. Memory is the shared Perplexity account memory, and 1Password fills logins without exposing them to the model. Perplexity hasn't published which models the assistant uses, where agent actions and background assistants run, or the voice stack.",

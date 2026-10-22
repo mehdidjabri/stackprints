@@ -8,12 +8,14 @@ import { decodeDraft, encodeDraft, loadSaved, storeSaved } from "@/lib/share";
 import { unknownLabel } from "@/lib/disclosure";
 import type { Draft, Layer, Stack } from "@/lib/types";
 import { Board } from "./Board";
+import { Logo } from "./Logo";
 
 type Preset = {
   slug: string;
   name: string;
   kind: string;
   site?: string;
+  logo?: string;
   disclosure?: Stack["disclosure"];
   notUsed?: string[];
   layers: Record<string, string[]>;
@@ -186,8 +188,9 @@ export function Editor({
         <span className="slash" aria-hidden="true">
           /
         </span>
-        <details className="dd crumb">
+        <details className="dd crumb current">
           <summary>
+            {preset?.logo && !dirty && <Logo option={{ name: preset.name, logo: preset.logo }} />}
             <h2>{draft.name || "Untitled"}</h2>
           </summary>
           <div className="dd-menu">
@@ -210,7 +213,10 @@ export function Editor({
                       aria-current={p.slug === draft.from && !dirty ? "true" : undefined}
                       onClick={() => edit(fromPreset(p))}
                     >
-                      {p.name}
+                      <span className="dd-item">
+                        {p.logo && <Logo option={{ name: p.name, logo: p.logo }} />}
+                        {p.name}
+                      </span>
                     </button>
                   </li>
                 ))}

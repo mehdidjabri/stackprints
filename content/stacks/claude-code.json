@@ -1,6 +1,7 @@
 {
   "slug": "claude-code",
   "name": "Claude Code",
+  "logo": "claudecode",
   "kind": "Coding agent",
   "tagline": "Agentic coding in the terminal, desktop and cloud.",
   "description": "Claude Code is Anthropic's coding agent. The same agent loop runs in the terminal, IDE extensions, the desktop app, the web and Slack, either on your machine or in an Anthropic-managed cloud VM, and the Claude mobile app connects to those sessions. It reads CLAUDE.md or AGENTS.md, keeps auto memory in a MEMORY.md index, searches files with grep and find, delegates to subagents, and is extended with skills, plugins, hooks and MCP. Permission modes range from manual approval to auto mode, where a classifier reviews actions, and telemetry can be exported over OpenTelemetry. The same loop is available as a library, the Claude Agent SDK. The source code is closed, but Anthropic documents the architecture in depth.",

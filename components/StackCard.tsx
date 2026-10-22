@@ -2,6 +2,7 @@ import Link from "next/link";
 import { resolve } from "@/lib/data";
 import { primaryLink, prettyUrl } from "@/lib/links";
 import type { Stack } from "@/lib/types";
+import { Logo } from "./Logo";
 import { StackView } from "./StackView";
 
 export function StackCard({ stack }: { stack: Stack }) {
@@ -11,6 +12,7 @@ export function StackCard({ stack }: { stack: Stack }) {
     <div className="card">
       <div className="card-head">
         <h3>
+          {stack.logo && <Logo option={{ name: stack.name, logo: stack.logo }} />}
           <Link href={`/stack/${stack.slug}/`} className="card-link">
             {stack.name}
           </Link>

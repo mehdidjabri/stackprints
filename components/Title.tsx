@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { Logo } from "./Logo";
 
-export type CrumbItem = { label: string; href: string; current?: boolean; hint?: string };
-export type Crumb = { label: string; href?: string; items?: CrumbItem[] };
+export type CrumbItem = { label: string; href: string; current?: boolean; hint?: string; logo?: string };
+export type Crumb = { label: string; href?: string; items?: CrumbItem[]; logo?: string };
 
 /**
  * "Category / Name". Crumbs with items are dropdowns built on <details>,
@@ -13,7 +14,15 @@ export function Title({ detail, crumbs }: { detail?: string; crumbs?: Crumb[] })
     <nav className="title" aria-label="Breadcrumb">
       {list.map((c, n) => {
         // Only the last crumb is the page heading; menus stay outside it.
-        const label = n === list.length - 1 ? <h1>{c.label}</h1> : c.label;
+        const text = n === list.length - 1 ? <h1>{c.label}</h1> : c.label;
+        const label = c.logo ? (
+          <>
+            <Logo option={{ name: c.label, logo: c.logo }} />
+            {text}
+          </>
+        ) : (
+          text
+        );
         return (
         <span key={c.label} style={{ display: "contents" }}>
           {n > 0 && (
@@ -22,13 +31,16 @@ export function Title({ detail, crumbs }: { detail?: string; crumbs?: Crumb[] })
             </span>
           )}
           {c.items ? (
-            <details className="dd crumb">
+            <details className={n === list.length - 1 ? "dd crumb current" : "dd crumb"}>
               <summary>{label}</summary>
               <ul className="dd-menu">
                 {c.items.map((i) => (
                   <li key={i.href}>
                     <Link href={i.href} aria-current={i.current ? "true" : undefined}>
-                      <span>{i.label}</span>
+                      <span className="dd-item">
+                        {i.logo && <Logo option={{ name: i.label, logo: i.logo }} />}
+                        {i.label}
+                      </span>
                       {i.hint && <small>{i.hint}</small>}
                     </Link>
                   </li>
@@ -36,11 +48,11 @@ export function Title({ detail, crumbs }: { detail?: string; crumbs?: Crumb[] })
               </ul>
             </details>
           ) : c.href ? (
-            <Link href={c.href} className="crumb">
+            <Link href={c.href} className={n === list.length - 1 ? "crumb current" : "crumb"}>
               {label}
             </Link>
           ) : (
-            <span className="crumb">{label}</span>
+            <span className={n === list.length - 1 ? "crumb current" : "crumb"}>{label}</span>
           )}
         </span>
         );
