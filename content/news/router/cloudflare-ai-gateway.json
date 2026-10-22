@@ -1,0 +1,9 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-21", "title": "createAI replaces workers-ai-provider and ai-gateway-provider", "url": "https://developers.cloudflare.com/changelog/post/2026-10-21-createai/", "source": "developers.cloudflare.com" },
+    { "date": "2026-09-30", "title": "Pay for AI inference with Machine Payments", "url": "https://developers.cloudflare.com/ai-gateway/features/machine-payments/", "source": "developers.cloudflare.com" },
+    { "date": "2026-09-29", "title": "Identify model overuse and potential savings with User Insights", "url": "https://developers.cloudflare.com/ai-gateway/observability/user-insights/", "source": "developers.cloudflare.com" },
+    { "date": "2026-08-07", "title": "Workers AI and AI Gateway unify model access and billing", "url": "https://developers.cloudflare.com/ai-gateway/features/unified-billing/", "source": "developers.cloudflare.com" }
+  ]
+}

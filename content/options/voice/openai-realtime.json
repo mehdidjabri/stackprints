@@ -4,5 +4,54 @@
   "name": "OpenAI Realtime",
   "url": "openai.com",
   "note": "Speech-to-speech, low latency",
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "product",
+  "summary": "OpenAI's Realtime API runs speech-to-speech models over WebRTC or WebSocket, so a voice agent can listen, reason, call tools and answer in one session. The current models are gpt-realtime-2 and gpt-realtime-2.1 (plus a mini variant), with configurable reasoning effort. OpenAI also offers a separate GPT-Live endpoint for full-duplex voice that delegates reasoning to a backend model.",
+  "facts": [
+    [
+      "Company",
+      "OpenAI"
+    ],
+    [
+      "Models",
+      "gpt-realtime-2.1, gpt-realtime-2.1-mini, gpt-realtime-2"
+    ],
+    [
+      "Context",
+      "128K tokens, 32K max output"
+    ],
+    [
+      "Audio price",
+      "$32 in / $64 out per 1M tokens (gpt-realtime-2.1)"
+    ],
+    [
+      "Text price",
+      "$4 in / $24 out per 1M tokens"
+    ],
+    [
+      "Transport",
+      "WebRTC (browser), WebSocket (server)"
+    ],
+    [
+      "Inputs",
+      "Text, audio, image"
+    ]
+  ],
+  "links": {
+    "site": "https://developers.openai.com/api/docs/guides/realtime",
+    "docs": "https://developers.openai.com/api/docs/models/gpt-realtime-2.1",
+    "pricing": "https://developers.openai.com/api/docs/pricing",
+    "changelog": "https://developers.openai.com/api/docs/changelog"
+  },
+  "goodFor": [
+    "Low-latency speech-to-speech agents",
+    "Tool calls during a live conversation",
+    "Browser voice apps over WebRTC"
+  ],
+  "watchOut": [
+    "Audio tokens cost far more than text tokens",
+    "Closed model, OpenAI-hosted only",
+    "The Realtime API beta was removed on 2026-05-12, so old beta clients must migrate"
+  ],
+  "researched": "2026-10-21"
 }

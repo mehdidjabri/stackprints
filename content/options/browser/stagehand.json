@@ -4,5 +4,49 @@
   "name": "Stagehand",
   "url": "stagehand.dev",
   "note": "act / extract / observe primitives",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Open-source SDK from Browserbase that mixes Playwright-style code with three AI primitives: act, extract and observe. It drives Chromium over CDP, locally or on Browserbase, and can be the hands for an agent built elsewhere.",
+  "facts": [
+    [
+      "Maintainer",
+      "Browserbase"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Languages",
+      "TypeScript, Python, Go"
+    ],
+    [
+      "GitHub stars",
+      "~26k"
+    ],
+    [
+      "Primitives",
+      "act, extract, observe"
+    ],
+    [
+      "Runtime",
+      "Local Chromium or Browserbase"
+    ]
+  ],
+  "links": {
+    "site": "https://www.stagehand.dev",
+    "docs": "https://docs.stagehand.dev",
+    "repo": "https://github.com/browserbase/stagehand",
+    "changelog": "https://github.com/browserbase/stagehand/releases"
+  },
+  "goodFor": [
+    "Mixing deterministic code with AI steps",
+    "Structured data extraction",
+    "Teams on Browserbase"
+  ],
+  "watchOut": [
+    "Caching and Model Gateway need Browserbase",
+    "Each AI step costs model tokens"
+  ],
+  "researched": "2026-10-21"
 }

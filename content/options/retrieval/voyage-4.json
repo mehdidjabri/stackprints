@@ -4,5 +4,62 @@
   "name": "Voyage 4",
   "url": "voyageai.com",
   "note": "Embeddings and rerank",
-  "logo": "voyage"
+  "logo": "voyage",
+  "profile": "model",
+  "summary": "Voyage 4 is a family of text embedding models from Voyage AI, part of MongoDB, released January 2026. The voyage-4-large, voyage-4, voyage-4-lite and open-weight voyage-4-nano models share one embedding space, so documents can be indexed with a larger model and queried with a smaller one. Voyage also sells rerankers (rerank-2.5, rerank-3) through the same API.",
+  "model": {
+    "lab": "Voyage AI (MongoDB)",
+    "released": "2026-01-15",
+    "context": "32K tokens",
+    "priceIn": "$0.06 / 1M tokens (voyage-4)",
+    "modalities": [
+      "text"
+    ],
+    "weights": "closed (voyage-4-nano open, Apache-2.0)",
+    "openrouter": "voyageai/voyage-4"
+  },
+  "facts": [
+    [
+      "Models",
+      "voyage-4-large, voyage-4, voyage-4-lite, voyage-4-nano"
+    ],
+    [
+      "Dimensions",
+      "2048, 1024 (default), 512, 256"
+    ],
+    [
+      "Quantization",
+      "float32, int8, uint8, binary"
+    ],
+    [
+      "Pricing",
+      "$0.12 / $0.06 / $0.02 per 1M tokens (large / base / lite); 200M free tokens"
+    ],
+    [
+      "Architecture",
+      "voyage-4-large is mixture-of-experts"
+    ],
+    [
+      "Benchmark",
+      "voyage-4-large top on 29 RTEB datasets (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.voyageai.com",
+    "docs": "https://docs.voyageai.com/docs/embeddings",
+    "pricing": "https://docs.voyageai.com/docs/pricing",
+    "blog": "https://blog.voyageai.com/2026/01/15/voyage-4/",
+    "weights": "https://huggingface.co/voyageai/voyage-4-nano"
+  },
+  "goodFor": [
+    "Indexing with a large model and querying with a cheap one",
+    "Long inputs up to 32K tokens",
+    "MongoDB Atlas vector search users"
+  ],
+  "watchOut": [
+    "Only voyage-4-nano has open weights",
+    "Benchmarks are vendor-reported",
+    "Closed models are API-only (Voyage API, MongoDB Atlas, marketplaces)"
+  ],
+  "researched": "2026-10-21"
 }

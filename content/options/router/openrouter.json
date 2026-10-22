@@ -4,5 +4,33 @@
   "name": "OpenRouter",
   "url": "openrouter.ai",
   "note": "~470 models, auto-router, fallbacks",
-  "logo": "openrouter"
+  "logo": "openrouter",
+  "profile": "product",
+  "summary": "OpenRouter is a hosted API that puts hundreds of models from many providers behind one OpenAI-compatible endpoint and one bill. It routes each request across providers and falls back to another provider when one returns an error. In August 2026 it announced it is joining Stripe.",
+  "facts": [
+    ["Company", "OpenRouter (New York); joining Stripe, announced Aug 2026"],
+    ["Models", "468 in the public models API (Oct 2026)"],
+    ["Inference pricing", "Provider list price, no markup on inference"],
+    ["Platform fee", "5.5% on credit purchases (Standard), 8% (Business)"],
+    ["BYOK", "First $25k/month free, then 5% of list price"],
+    ["Free tier", "25+ free models, 50 requests/day"],
+    ["Self-hostable", "No"]
+  ],
+  "links": {
+    "site": "https://openrouter.ai",
+    "docs": "https://openrouter.ai/docs/faq",
+    "pricing": "https://openrouter.ai/pricing",
+    "changelog": "https://openrouter.ai/announcements"
+  },
+  "goodFor": [
+    "Trying many models with one key",
+    "Automatic provider fallback",
+    "Consolidated billing across labs"
+  ],
+  "watchOut": [
+    "Platform fee on every credit top-up",
+    "Requests pass through a third party",
+    "Ownership change after the Stripe deal"
+  ],
+  "researched": "2026-10-21"
 }

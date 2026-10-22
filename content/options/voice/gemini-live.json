@@ -4,5 +4,53 @@
   "name": "Gemini Live",
   "url": "ai.google.dev",
   "note": "Realtime multimodal sessions",
-  "logo": "gemini"
+  "logo": "gemini",
+  "profile": "product",
+  "summary": "The Gemini Live API is Google's stateful WebSocket API for realtime voice and video sessions with Gemini models. It streams audio, images and text in and speaks back, with barge-in, tool use and Google Search grounding. The current model is Gemini 3.8 Live, released in September 2026.",
+  "facts": [
+    [
+      "Company",
+      "Google"
+    ],
+    [
+      "Models",
+      "gemini-3.8-live, gemini-3.1-flash-live-preview (legacy)"
+    ],
+    [
+      "Context",
+      "131K input, 65K output tokens (gemini-3.8-live)"
+    ],
+    [
+      "Transport",
+      "Stateful WebSocket"
+    ],
+    [
+      "Audio format",
+      "16 kHz PCM in, 24 kHz PCM out"
+    ],
+    [
+      "Languages",
+      "97, switched mid-conversation (vendor-reported)"
+    ],
+    [
+      "Free tier",
+      "Yes, on the Gemini API free tier"
+    ]
+  ],
+  "links": {
+    "site": "https://ai.google.dev/gemini-api/docs/live",
+    "docs": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-live",
+    "pricing": "https://ai.google.dev/gemini-api/docs/pricing"
+  },
+  "goodFor": [
+    "Voice plus camera or screen input",
+    "Agents that call tools while still talking",
+    "Multilingual conversations"
+  ],
+  "watchOut": [
+    "Free-tier content may be used to improve Google products",
+    "Use ephemeral tokens, not API keys, for client connections",
+    "Older Live models carry fixed discontinuation dates"
+  ],
+  "researched": "2026-10-21"
 }

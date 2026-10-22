@@ -5,5 +5,66 @@
   "url": "minimax.io",
   "note": "Open multimodal, 1M context",
   "open": true,
-  "logo": "minimax"
+  "logo": "minimax",
+  "profile": "model",
+  "summary": "MiniMax M3 is MiniMax's natively multimodal open-weight mixture-of-experts model with a 1M-token context, built on its MiniMax Sparse Attention. It is aimed at long-horizon agent work and coding and works with tools such as Claude Code, Cursor and Codex CLI.",
+  "facts": [
+    [
+      "Lab",
+      "MiniMax (Shanghai)"
+    ],
+    [
+      "Parameters",
+      "About 428B total, 23B active"
+    ],
+    [
+      "License",
+      "minimax-community"
+    ],
+    [
+      "Attention",
+      "MiniMax Sparse Attention (MSA)"
+    ],
+    [
+      "Context",
+      "1M via API, 512K guaranteed minimum"
+    ],
+    [
+      "SWE-bench Verified",
+      "80.5% (vendor-reported)"
+    ],
+    [
+      "Successor",
+      "MiniMax M3.1 Flash (Oct 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.minimax.io/models/text/m3",
+    "repo": "https://huggingface.co/MiniMaxAI/Minimax-M3"
+  },
+  "goodFor": [
+    "Cheap long-context agents",
+    "Video and image understanding",
+    "Coding agents in third-party harnesses"
+  ],
+  "watchOut": [
+    "Custom community license",
+    "Already followed by M3.1 Flash",
+    "API guarantees only 512K context"
+  ],
+  "model": {
+    "lab": "MiniMax",
+    "released": "2026-05-31",
+    "context": "1M tokens",
+    "priceIn": "$0.30 / 1M tokens",
+    "priceOut": "$1.20 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video"
+    ],
+    "weights": "open",
+    "openrouter": "minimax/minimax-m3"
+  },
+  "researched": "2026-10-21"
 }

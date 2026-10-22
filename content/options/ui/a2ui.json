@@ -4,5 +4,51 @@
   "name": "A2UI",
   "note": "Declarative agent-to-UI protocol",
   "open": true,
-  "logo": "google"
+  "logo": "google",
+  "profile": "protocol",
+  "summary": "A2UI is an open protocol, created by Google, for agents to describe interactive interfaces as declarative JSON instead of code. The client renders those descriptions with its own native widgets and only allows components from a pre-approved catalog, so the same agent output can appear on web, mobile and desktop.",
+  "facts": [
+    [
+      "Created by",
+      "Google, with CopilotKit and community contributors"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Format",
+      "Declarative JSON component descriptions"
+    ],
+    [
+      "Renderers",
+      "Angular, Flutter, Lit, Markdown"
+    ],
+    [
+      "Transport",
+      "Can be carried over A2A"
+    ],
+    [
+      "Version",
+      "v0.9.1 production; v1.0 candidate"
+    ],
+    [
+      "GitHub stars",
+      "16.8k"
+    ]
+  ],
+  "links": {
+    "site": "https://a2ui.org",
+    "repo": "https://github.com/a2ui-project/a2ui"
+  },
+  "goodFor": [
+    "Agents that must render natively on several platforms",
+    "Showing UI from untrusted remote agents without running their code"
+  ],
+  "watchOut": [
+    "Pre-1.0 spec still changing",
+    "Limited to components in the client's catalog"
+  ],
+  "researched": "2026-10-21",
+  "url": "a2ui.org"
 }

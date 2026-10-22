@@ -2,5 +2,35 @@
   "order": 110,
   "id": "live-computer-view",
   "name": "Live computer view",
-  "note": "Watch, take over, hand back"
+  "note": "Watch, take over, hand back",
+  "profile": "pattern",
+  "summary": "When an agent drives a browser or desktop, the user sees a live view of that screen, can watch, take over to handle logins or tricky steps, and hand control back. Browser infrastructure such as Browserbase exposes an embeddable live view for this.",
+  "how": [
+    "Run the agent's browser or desktop in a sandbox",
+    "Stream the screen into the UI, read-only by default",
+    "Switch to interactive mode when the user takes over",
+    "Return control to the agent and continue the task"
+  ],
+  "facts": [
+    [
+      "Example",
+      "Browserbase Live View (embeddable iframe, read-only or read/write)"
+    ],
+    [
+      "Trade-off",
+      "Transparent and recoverable, but costly to stream and run"
+    ]
+  ],
+  "links": {
+    "docs": "https://docs.browserbase.com/features/session-live-view"
+  },
+  "goodFor": [
+    "Computer-use and browser agents",
+    "Logins, CAPTCHAs and credential handoff by a human"
+  ],
+  "watchOut": [
+    "Mobile keyboards and small screens are awkward",
+    "Users may see sensitive data on screen"
+  ],
+  "researched": "2026-10-21"
 }

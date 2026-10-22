@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-16",
+      "title": "Version 3.54.1",
+      "url": "https://sqlite.org/releaselog/3_54_1.html",
+      "source": "sqlite.org"
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Version 3.54.0",
+      "url": "https://sqlite.org/releaselog/3_54_0.html",
+      "source": "sqlite.org"
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Version 3.53.4",
+      "url": "https://sqlite.org/releaselog/3_53_4.html",
+      "source": "sqlite.org"
+    },
+    {
+      "date": "2026-04-09",
+      "title": "Version 3.53.0",
+      "url": "https://sqlite.org/releaselog/3_53_0.html",
+      "source": "sqlite.org"
+    },
+    {
+      "date": "2026-03-06",
+      "title": "Version 3.52.0",
+      "url": "https://sqlite.org/releaselog/3_52_0.html",
+      "source": "sqlite.org"
+    }
+  ]
+}

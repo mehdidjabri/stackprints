@@ -3,5 +3,48 @@
   "id": "lakera",
   "name": "Lakera",
   "url": "lakera.ai",
-  "note": "Prompt-injection defense"
+  "note": "Prompt-injection defense",
+  "profile": "product",
+  "summary": "Lakera is an AI security company whose runtime product screens prompts and model outputs for prompt injection, data leakage and other attacks, alongside a red-teaming product. Check Point announced its acquisition in September 2025 and now sells the products under Check Point names.",
+  "facts": [
+    [
+      "Company",
+      "Lakera (Zurich and San Francisco), part of Check Point"
+    ],
+    [
+      "Founded",
+      "2021"
+    ],
+    [
+      "Products",
+      "Check Point AI Agent Security (runtime, formerly Lakera Guard), AI Red Teaming (formerly Lakera Red)"
+    ],
+    [
+      "Detection",
+      ">98% detection, <50 ms latency, <0.5% false positives (vendor-reported)"
+    ],
+    [
+      "Languages",
+      "100+ (vendor-reported)"
+    ],
+    [
+      "Deployment",
+      "Hosted API; free sign-up at platform.lakera.ai"
+    ]
+  ],
+  "links": {
+    "site": "https://www.lakera.ai",
+    "docs": "https://docs.lakera.ai/docs/api",
+    "press": "https://www.checkpoint.com/press-releases/check-point-acquires-lakera-to-deliver-end-to-end-ai-security-for-enterprises/"
+  },
+  "goodFor": [
+    "Screening user input and tool output for prompt injection",
+    "Teams already buying from Check Point"
+  ],
+  "watchOut": [
+    "Detection figures are vendor-reported",
+    "Product naming is mid-transition after the acquisition",
+    "Closed source, API-only"
+  ],
+  "researched": "2026-10-21"
 }

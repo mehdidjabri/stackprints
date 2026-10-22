@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-06-23",
+      "title": "OpenClaw's Skill Marketplace and the Emerging AI Supply Chain Threat",
+      "url": "https://unit42.paloaltonetworks.com/openclaw-ai-supply-chain-risk/",
+      "source": "unit42.paloaltonetworks.com"
+    },
+    {
+      "date": "2026-02-09",
+      "title": "OpenClaw integrates VirusTotal malware scanning as security firms flag enterprise risks",
+      "url": "https://www.csoonline.com/article/4129393/openclaw-integrates-virustotal-malware-scanning-as-security-firms-flag-enterprise-risks.html",
+      "source": "csoonline.com"
+    },
+    {
+      "date": "2026-02-08",
+      "title": "OpenClaw Integrates VirusTotal Scanning to Detect Malicious ClawHub Skills",
+      "url": "https://thehackernews.com/2026/02/openclaw-integrates-virustotal-scanning.html",
+      "source": "thehackernews.com"
+    },
+    {
+      "date": "2026-02-02",
+      "title": "Researchers Find 341 Malicious ClawHub Skills Stealing Data from OpenClaw Users",
+      "url": "https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html",
+      "source": "thehackernews.com"
+    }
+  ]
+}

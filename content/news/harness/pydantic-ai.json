@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-09",
+      "title": "Durable execution in Pydantic AI agents with AWS Lambda Durability",
+      "url": "https://pydantic.dev/articles/harness-aws-lambda",
+      "source": "pydantic.dev"
+    },
+    {
+      "date": "2026-08-26",
+      "title": "Your Pydantic AI agents just gained a voice",
+      "url": "https://pydantic.dev/articles/pydantic-ai-voice-agent",
+      "source": "pydantic.dev"
+    },
+    {
+      "date": "2026-07-20",
+      "title": "You've built this agent before",
+      "url": "https://pydantic.dev/articles/harness-week",
+      "source": "pydantic.dev"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "Official skills for Pydantic Validation, Pydantic AI, and Logfire",
+      "url": "https://pydantic.dev/articles/pydantic-ai-logfire-claude-code-skills",
+      "source": "pydantic.dev"
+    },
+    {
+      "date": "2026-06-23",
+      "title": "Pydantic AI v2: capable agentic loops",
+      "url": "https://pydantic.dev/articles/pydantic-ai-v2",
+      "source": "pydantic.dev"
+    }
+  ]
+}

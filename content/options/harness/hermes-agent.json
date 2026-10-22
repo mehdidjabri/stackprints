@@ -5,5 +5,58 @@
   "url": "github.com/NousResearch/hermes-agent",
   "note": "Self-improving Python agent",
   "open": true,
-  "logo": "nousresearch"
+  "logo": "nousresearch",
+  "profile": "product",
+  "summary": "An open-source, self-hosted personal agent from Nous Research. It writes and refines its own skills after complex tasks, keeps agent-curated memory with full-text session search, and reaches users through a single gateway for Telegram, Discord, Slack, WhatsApp, Signal, email and more. It works with Nous Portal, OpenRouter, OpenAI or any compatible endpoint.",
+  "facts": [
+    [
+      "Company",
+      "Nous Research"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "Python"
+    ],
+    [
+      "GitHub stars",
+      "256k (Oct 2026)"
+    ],
+    [
+      "Skills",
+      "Self-authored, agentskills.io compatible"
+    ],
+    [
+      "Memory",
+      "Agent-curated notes, FTS5 session search, Honcho user model"
+    ],
+    [
+      "Sandboxing",
+      "Local, Docker, SSH, Singularity, Modal, Daytona, Vercel Sandbox"
+    ],
+    [
+      "MCP",
+      "Yes"
+    ]
+  ],
+  "links": {
+    "site": "https://hermes-agent.nousresearch.com",
+    "docs": "https://hermes-agent.nousresearch.com/docs/",
+    "repo": "https://github.com/NousResearch/hermes-agent",
+    "changelog": "https://github.com/NousResearch/hermes-agent/releases"
+  },
+  "goodFor": [
+    "Always-on personal agent over chat apps",
+    "Model-agnostic setups",
+    "Agents that accumulate skills over time"
+  ],
+  "watchOut": [
+    "Self-written skills need review before you trust them",
+    "Broad surface area to secure (gateway, terminals)",
+    "Very fast release cadence"
+  ],
+  "researched": "2026-10-21"
 }

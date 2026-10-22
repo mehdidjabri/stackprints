@@ -4,5 +4,54 @@
   "name": "ElevenLabs",
   "url": "elevenlabs.io",
   "note": "Eleven v4 TTS, Scribe STT, agents",
-  "logo": "elevenlabs"
+  "logo": "elevenlabs",
+  "profile": "product",
+  "summary": "ElevenLabs sells text-to-speech, speech-to-text (Scribe) and a voice agent platform (ElevenAgents) through an API and web apps. Eleven v4 is its expressive TTS model and v4 Turbo the low-latency variant for agents. Used for narration, dubbing and phone or web voice agents.",
+  "facts": [
+    [
+      "Company",
+      "ElevenLabs"
+    ],
+    [
+      "TTS models",
+      "Eleven v4, v4 Turbo, v3, Flash"
+    ],
+    [
+      "TTS price",
+      "$0.08 / 1K chars (v4), $0.04 (v4 Turbo)"
+    ],
+    [
+      "STT price",
+      "Scribe v2 $0.22/hr, Scribe v2 Realtime $0.39/hr"
+    ],
+    [
+      "Agents price",
+      "$0.08 / min plus LLM usage"
+    ],
+    [
+      "Latency",
+      "~150 ms time to first speech, v4 Turbo (vendor-reported)"
+    ],
+    [
+      "Languages",
+      "90+ (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://elevenlabs.io",
+    "docs": "https://elevenlabs.io/docs",
+    "pricing": "https://elevenlabs.io/pricing/api",
+    "changelog": "https://elevenlabs.io/blog"
+  },
+  "goodFor": [
+    "Expressive, natural-sounding TTS",
+    "Voice cloning across languages",
+    "Managed voice agents with telephony"
+  ],
+  "watchOut": [
+    "Per-character TTS pricing adds up for long-form audio",
+    "Eleven v4 drops SSML-style break tags in favour of natural-language tags",
+    "Closed models, cloud only"
+  ],
+  "researched": "2026-10-21"
 }

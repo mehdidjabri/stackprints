@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-05-21",
+      "title": "OpenClaw v2026.5.20: IDENTITY.md, USER.md and SOUL.md in realtime voice sessions",
+      "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.5.20",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-05-04",
+      "title": "OpenClaw v2026.5.3: Codex harness forwards workspace bootstrap files",
+      "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.5.3",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-04-11",
+      "title": "OpenClaw v2026.4.10: preserve richer IDENTITY.md content across agent updates",
+      "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.4.10",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-01-24",
+      "title": "OpenClaw v2026.1.23: ignore IDENTITY.md template placeholders",
+      "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.23",
+      "source": "github.com"
+    }
+  ]
+}

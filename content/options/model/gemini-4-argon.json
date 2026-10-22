@@ -4,5 +4,73 @@
   "name": "Gemini 4 Argon",
   "url": "ai.google.dev",
   "note": "Google flagship, 1M context",
-  "logo": "gemini"
+  "logo": "gemini",
+  "profile": "model",
+  "summary": "Gemini 4 Argon is Google's flagship reasoning model, built for complex software engineering, math and science problems and autonomous multi-step agents. It has a 1M-token context shared between input and output, with an optional long-decode mode that can produce up to 1M output tokens.",
+  "facts": [
+    [
+      "Lab",
+      "Google DeepMind"
+    ],
+    [
+      "API ID",
+      "gemini-4-argon"
+    ],
+    [
+      "Inputs",
+      "Text, image, video, audio, PDF"
+    ],
+    [
+      "Max output",
+      "65,536 tokens default; up to 1M with long decode"
+    ],
+    [
+      "Thinking",
+      "low, medium, high"
+    ],
+    [
+      "Tools",
+      "Function calling, code execution, search grounding, computer use (preview)"
+    ],
+    [
+      "Free tier",
+      "Not available"
+    ],
+    [
+      "Price change",
+      "$4 / $20 per 1M tokens from Dec 1, 2026"
+    ]
+  ],
+  "links": {
+    "site": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-4-argon/",
+    "docs": "https://ai.google.dev/gemini-api/docs/models/gemini-4-argon",
+    "pricing": "https://ai.google.dev/gemini-api/docs/pricing"
+  },
+  "goodFor": [
+    "Long-horizon code migrations",
+    "Very long outputs via long decode",
+    "Multimodal input incl. video and audio"
+  ],
+  "watchOut": [
+    "Launch price doubles on Dec 1, 2026",
+    "No explicit context caching, implicit only",
+    "Paid tier only in the Gemini API"
+  ],
+  "model": {
+    "lab": "Google",
+    "released": "2026-10-13",
+    "context": "1M tokens",
+    "priceIn": "$2 / 1M tokens",
+    "priceOut": "$10 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video",
+      "audio",
+      "pdf"
+    ],
+    "weights": "closed",
+    "openrouter": "google/gemini-4-argon"
+  },
+  "researched": "2026-10-21"
 }

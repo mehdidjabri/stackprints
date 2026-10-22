@@ -2,5 +2,38 @@
   "order": 10,
   "id": "env-vars",
   "name": "Env vars",
-  "note": "API keys in .env"
+  "note": "API keys in .env",
+  "profile": "pattern",
+  "summary": "API keys sit in environment variables or a .env file that the agent's process reads. It is the default for local tools and the MCP spec's recommendation for stdio servers, but every process the agent spawns can usually read them too.",
+  "how": [
+    "Put keys in .env or the shell environment",
+    "The harness or MCP server reads them at start",
+    "Tools send them with each API call"
+  ],
+  "facts": [
+    [
+      "Spec",
+      "MCP: stdio servers should get credentials from the environment"
+    ],
+    [
+      "Used by",
+      "Most local MCP servers and CLIs"
+    ],
+    [
+      "Trade-off",
+      "Zero setup, but long-lived keys that the agent can read and leak"
+    ]
+  ],
+  "links": {
+    "spec": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization"
+  },
+  "goodFor": [
+    "Local prototypes",
+    "Single-user tools on your own machine"
+  ],
+  "watchOut": [
+    "A shell command like env or cat .env puts the key in the model's context",
+    "Keys are long-lived and usually over-scoped"
+  ],
+  "researched": "2026-10-21"
 }

@@ -3,5 +3,41 @@
   "id": "chrome-extension",
   "name": "Chrome extension",
   "note": "Acts in your real browser",
-  "logo": "googlechrome"
+  "logo": "googlechrome",
+  "profile": "pattern",
+  "summary": "The agent runs as a browser extension inside the user's own Chrome, so it acts with the user's real logins, cookies and tabs. This reaches sites that have no API but puts the user's accounts within reach of prompt injection.",
+  "how": [
+    "User installs the agent's extension in their everyday browser",
+    "Extension reads the page and sends it to the model",
+    "Model returns actions (click, type, navigate) that the extension performs",
+    "Risky actions are paused for the user to confirm"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude in Chrome (Anthropic)"
+    ],
+    [
+      "Logins",
+      "Uses the user's existing sessions"
+    ],
+    [
+      "Trade-off",
+      "Full access to real accounts; prompt injection risk stays non-zero"
+    ]
+  ],
+  "links": {
+    "docs": "https://support.claude.com/en/articles/12012173-getting-started-with-claude-for-chrome"
+  },
+  "goodFor": [
+    "Sites behind the user's login",
+    "Tasks the user wants to watch",
+    "No extra browser infrastructure"
+  ],
+  "watchOut": [
+    "A malicious page can try to hijack the agent",
+    "Agent shares the user's identity and data",
+    "Tied to one machine being on"
+  ],
+  "researched": "2026-10-21"
 }

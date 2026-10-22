@@ -4,5 +4,30 @@
   "name": "Signal",
   "url": "signal.org",
   "note": "Private messaging via signal-cli",
-  "logo": "signal"
+  "logo": "signal",
+  "profile": "product",
+  "summary": "Signal has no official bot API, so agents usually run signal-cli, an unofficial client that registers or links a phone number and exposes command-line, JSON-RPC and D-Bus interfaces. The agent then sends and receives end-to-end encrypted messages like any Signal user. It suits personal or small-group agents rather than business messaging.",
+  "facts": [
+    ["API", "No official bot API; unofficial signal-cli"],
+    ["signal-cli license", "GPL-3.0"],
+    ["Interfaces", "CLI, JSON-RPC, D-Bus"],
+    ["Runtime", "Java (JRE 25)"],
+    ["Latest release", "signal-cli v0.14.9"],
+    ["Cost", "Free; needs a phone number to register"]
+  ],
+  "links": {
+    "site": "https://signal.org",
+    "repo": "https://github.com/AsamK/signal-cli",
+    "changelog": "https://github.com/AsamK/signal-cli/releases"
+  },
+  "goodFor": [
+    "Private personal agents with end-to-end encryption",
+    "Self-hosted setups on a server"
+  ],
+  "watchOut": [
+    "Unofficial; releases older than three months may stop working",
+    "Registration may require a CAPTCHA",
+    "Registering a number can unregister its existing client"
+  ],
+  "researched": "2026-10-21"
 }

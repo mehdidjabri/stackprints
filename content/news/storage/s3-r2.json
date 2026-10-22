@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-11",
+      "title": "AWS Lambda now supports direct read configuration for Amazon S3 Files",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/aws-lambda-direct-read-s3files/",
+      "source": "aws.amazon.com"
+    },
+    {
+      "date": "2026-09-04",
+      "title": "R2 Data Access Logs",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-04-r2-data-access-logs/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-04-21",
+      "title": "AWS Lambda functions can now mount Amazon S3 buckets as file systems with S3 Files",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/04/aws-lambda-amazon-s3/",
+      "source": "aws.amazon.com"
+    },
+    {
+      "date": "2026-04-07",
+      "title": "Launching S3 Files, making S3 buckets accessible as file systems",
+      "url": "https://aws.amazon.com/blogs/aws/launching-s3-files-making-s3-buckets-accessible-as-file-systems/",
+      "source": "aws.amazon.com"
+    },
+    {
+      "date": "2025-11-21",
+      "title": "Mount R2 buckets in Containers",
+      "url": "https://developers.cloudflare.com/changelog/post/2025-11-21-fuse-support-in-containers/",
+      "source": "developers.cloudflare.com"
+    }
+  ]
+}

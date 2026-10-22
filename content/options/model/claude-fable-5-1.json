@@ -4,5 +4,70 @@
   "name": "Claude Fable 5.1",
   "url": "anthropic.com",
   "note": "Anthropic top tier",
-  "logo": "claude"
+  "logo": "claude",
+  "profile": "model",
+  "summary": "Claude Fable 5.1 is Anthropic's top-tier generally available model, aimed at demanding reasoning and long-horizon agentic work. It is the same model as Claude Mythos 5.1 but ships with stricter safeguards for cybersecurity, biology and distillation queries, which can redirect flagged requests to a less capable model.",
+  "facts": [
+    [
+      "Lab",
+      "Anthropic"
+    ],
+    [
+      "API ID",
+      "claude-fable-5-1"
+    ],
+    [
+      "Max output",
+      "128K tokens"
+    ],
+    [
+      "Thinking",
+      "Adaptive, always on (default effort high)"
+    ],
+    [
+      "Knowledge cutoff",
+      "June 2026"
+    ],
+    [
+      "Terminal-Bench 4.0",
+      "55.8% (vendor-reported)"
+    ],
+    [
+      "Sibling",
+      "Mythos 5.1: same model, trusted-access only"
+    ],
+    [
+      "Availability",
+      "Claude API, AWS, Google Cloud, Microsoft Azure"
+    ]
+  ],
+  "links": {
+    "site": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+    "docs": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  "goodFor": [
+    "Hard reasoning and research tasks",
+    "Long-horizon agentic work",
+    "Cases where Opus 5.5 at high effort falls short"
+  ],
+  "watchOut": [
+    "Most expensive Claude model",
+    "Slower than the rest of the lineup",
+    "Safeguards can reroute cyber and bio requests"
+  ],
+  "model": {
+    "lab": "Anthropic",
+    "released": "2026-09-01",
+    "context": "1M tokens",
+    "priceIn": "$10 / 1M tokens",
+    "priceOut": "$50 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "anthropic/claude-fable-5.1"
+  },
+  "researched": "2026-10-21"
 }

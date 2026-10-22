@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-08", "title": "Extended Markdown formatting for agent messages", "url": "https://learn.microsoft.com/en-us/microsoftteams/platform/whats-new", "source": "learn.microsoft.com" },
+    { "date": "2026-09-28", "title": "Teams SDK updates (TypeScript, .NET, Python)", "url": "https://learn.microsoft.com/en-us/microsoftteams/platform/whats-new", "source": "learn.microsoft.com" },
+    { "date": "2026-09-24", "title": "Sessions for Teams agents", "url": "https://learn.microsoft.com/en-us/microsoftteams/platform/whats-new", "source": "learn.microsoft.com" },
+    { "date": "2026-07-30", "title": "Targeted messages and agent slash commands", "url": "https://learn.microsoft.com/en-us/microsoftteams/platform/whats-new", "source": "learn.microsoft.com" },
+    { "date": "2025-11-19", "title": "Register MCP servers as agent connectors", "url": "https://learn.microsoft.com/en-us/microsoftteams/platform/whats-new", "source": "learn.microsoft.com" }
+  ]
+}

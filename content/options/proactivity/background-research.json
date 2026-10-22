@@ -2,5 +2,29 @@
   "order": 70,
   "id": "background-research",
   "name": "Background research",
-  "note": "Read-only digging, then a nudge"
+  "note": "Read-only digging, then a nudge",
+  "profile": "pattern",
+  "summary": "Between conversations, the agent does read-only work on its own (searching, reading documents, checking feeds) and only interrupts the user with a short nudge when it finds something worth acting on. Any action with side effects waits for the user's approval.",
+  "how": [
+    "A schedule or idle trigger starts a background run",
+    "Agent uses read-only tools to gather and summarise information",
+    "Agent scores whether the finding is worth an interruption",
+    "If so, it sends a brief nudge with a proposed next step",
+    "The user approves before anything is changed"
+  ],
+  "facts": [
+    [
+      "Trade-off",
+      "Useful initiative with low risk, but spends tokens on research nobody asked for"
+    ]
+  ],
+  "goodFor": [
+    "Monitoring topics, competitors or dependencies",
+    "Preparing context before the user asks"
+  ],
+  "watchOut": [
+    "Token spend on unused research",
+    "Notification fatigue if the bar for nudges is low"
+  ],
+  "researched": "2026-10-21"
 }

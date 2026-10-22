@@ -5,5 +5,56 @@
   "url": "huggingface.co",
   "note": "Tiny open TTS",
   "open": true,
-  "logo": "huggingface"
+  "logo": "huggingface",
+  "profile": "model",
+  "summary": "Kokoro-82M is a small open-weight text-to-speech model built on StyleTTS 2 and ISTFTNet. At 82 million parameters it runs on modest hardware, including CPUs, and ships as the `kokoro` Python package. v1.0 supports 8 languages and 54 voices.",
+  "model": {
+    "lab": "hexgrad",
+    "released": "2025-01-27",
+    "modalities": [
+      "text",
+      "audio"
+    ],
+    "weights": "open"
+  },
+  "facts": [
+    [
+      "Parameters",
+      "82M"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Architecture",
+      "StyleTTS 2 + ISTFTNet, decoder only"
+    ],
+    [
+      "Voices",
+      "54 across 8 languages (v1.0)"
+    ],
+    [
+      "Package",
+      "pip install kokoro (uses misaki G2P)"
+    ],
+    [
+      "Downloads",
+      "~10.5M last month on Hugging Face"
+    ]
+  ],
+  "links": {
+    "site": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "repo": "https://github.com/hexgrad/kokoro"
+  },
+  "goodFor": [
+    "Local TTS with no API cost",
+    "Edge and CPU deployments",
+    "Self-hosted voice agent pipelines"
+  ],
+  "watchOut": [
+    "Some languages need extra installs (espeak-ng, misaki extras)",
+    "No new release since v1.0 (Jan 2025)"
+  ],
+  "researched": "2026-10-21"
 }

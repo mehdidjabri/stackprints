@@ -4,5 +4,33 @@
   "name": "LiteLLM",
   "url": "litellm.ai",
   "note": "Self-hosted OpenAI-compatible proxy",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "LiteLLM is an open-source Python SDK and self-hosted gateway that calls 100+ LLM providers through one OpenAI-style interface. The proxy adds virtual keys, per-team budgets, rate limits, spend tracking and retry/fallback routing. It is maintained by BerriAI, which sells an enterprise tier with SSO and audit logs.",
+  "facts": [
+    ["Company", "BerriAI"],
+    ["License", "MIT, except the enterprise/ directory"],
+    ["Providers", "100+ (OpenAI, Anthropic, Bedrock, Vertex, Azure…)"],
+    ["GitHub stars", "~62k (Oct 2026)"],
+    ["Self-hostable", "Yes, Python SDK or proxy server"],
+    ["Pricing", "Open source free; paid enterprise tier"],
+    ["Features", "Virtual keys, budgets, cost tracking, fallbacks, auto-router"]
+  ],
+  "links": {
+    "site": "https://litellm.ai",
+    "docs": "https://docs.litellm.ai/docs/",
+    "repo": "https://github.com/BerriAI/litellm",
+    "changelog": "https://docs.litellm.ai/blog"
+  },
+  "goodFor": [
+    "Self-hosted gateway inside your own network",
+    "Per-team keys, budgets and spend reports",
+    "Swapping providers without code changes"
+  ],
+  "watchOut": [
+    "Release pipeline compromised twice in 2026 (Mar and Oct); pin versions",
+    "Frequent releases; operations and upgrades are on you",
+    "Some governance features need the enterprise license"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,23 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-14",
+      "title": "Introducing Credential Fill and Secrets",
+      "url": "https://hyperbrowser.ai/blog/credential-fill-and-secrets",
+      "source": "hyperbrowser.ai"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "Introducing WebMCP Support",
+      "url": "https://hyperbrowser.ai/blog/webmcp-on-hyperbrowser",
+      "source": "hyperbrowser.ai"
+    },
+    {
+      "date": "2026-10-06",
+      "title": "Browser sessions with x402: Let agents buy their own browser",
+      "url": "https://hyperbrowser.ai/blog/x402-browser-sessions",
+      "source": "hyperbrowser.ai"
+    }
+  ]
+}

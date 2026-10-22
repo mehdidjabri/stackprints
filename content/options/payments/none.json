@@ -2,5 +2,26 @@
   "order": 10,
   "id": "none",
   "name": "None",
-  "note": "Agent can't spend"
+  "note": "Agent can't spend",
+  "profile": "pattern",
+  "summary": "The agent has no payment credentials at all. It can research, compare and fill a cart, but a person completes every purchase.",
+  "how": [
+    "Give the agent no card, wallet or payment tool",
+    "Agent prepares the purchase (links, cart, summary)",
+    "User pays themselves"
+  ],
+  "facts": [
+    [
+      "Trade-off",
+      "No spending risk, but no autonomous purchases"
+    ]
+  ],
+  "goodFor": [
+    "Default for new agents",
+    "Anything touching shared or company money"
+  ],
+  "watchOut": [
+    "Humans become the bottleneck for routine buys"
+  ],
+  "researched": "2026-10-21"
 }

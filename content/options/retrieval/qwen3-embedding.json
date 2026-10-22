@@ -2,8 +2,64 @@
   "order": 100,
   "id": "qwen3-embedding",
   "name": "Qwen3 Embedding",
-  "url": "huggingface.co",
+  "url": "huggingface.co/collections/Qwen/qwen3-embedding",
   "note": "Open embeddings",
   "open": true,
-  "logo": "qwen"
+  "logo": "qwen",
+  "profile": "model",
+  "summary": "Qwen3 Embedding is an open-weight series of text embedding models from Alibaba's Qwen team, built on Qwen3 and released in June 2025 in 0.6B, 4B and 8B sizes, with matching Qwen3-Reranker models. The models accept task instructions, support 100+ natural and programming languages, and can be run locally or through hosted APIs.",
+  "model": {
+    "lab": "Qwen (Alibaba)",
+    "released": "2025-06-05",
+    "context": "32K tokens",
+    "priceIn": "$0.01 / 1M tokens (8B on OpenRouter)",
+    "modalities": [
+      "text"
+    ],
+    "weights": "open",
+    "openrouter": "qwen/qwen3-embedding-8b"
+  },
+  "facts": [
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Sizes",
+      "0.6B, 4B, 8B (plus Qwen3-Reranker 0.6B/4B/8B)"
+    ],
+    [
+      "Dimensions",
+      "Up to 1024 / 2560 / 4096, user-defined from 32"
+    ],
+    [
+      "Languages",
+      "100+, including programming languages"
+    ],
+    [
+      "Benchmark",
+      "8B: 70.58 MTEB multilingual, #1 as of 2025-06-05 (vendor-reported)"
+    ],
+    [
+      "Successor work",
+      "Qwen3-VL-Embedding for multimodal retrieval (Jan 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://huggingface.co/collections/Qwen/qwen3-embedding",
+    "repo": "https://github.com/QwenLM/Qwen3-Embedding",
+    "blog": "https://qwenlm.github.io/blog/qwen3-embedding/",
+    "paper": "https://arxiv.org/abs/2506.05176"
+  },
+  "goodFor": [
+    "Self-hosted embeddings with no per-token fees",
+    "Multilingual and code retrieval",
+    "Choosing a size to fit local hardware"
+  ],
+  "watchOut": [
+    "Self-hosting means running your own inference stack",
+    "Leaderboard rank is a June 2025 snapshot",
+    "Instructions should be added to queries for best results"
+  ],
+  "researched": "2026-10-21"
 }

@@ -5,5 +5,58 @@
   "url": "agentclientprotocol.com",
   "note": "Editor-to-agent protocol",
   "open": true,
-  "logo": "zedindustries"
+  "logo": "zedindustries",
+  "profile": "protocol",
+  "summary": "The Agent Client Protocol standardizes how code editors and IDEs talk to coding agents, similar in spirit to the Language Server Protocol. Local agents run as editor subprocesses and speak JSON-RPC over stdio; remote transports over HTTP or WebSocket are in progress. It is jointly governed by Zed and JetBrains.",
+  "facts": [
+    [
+      "Governance",
+      "Zed and JetBrains (interim, foundation planned)"
+    ],
+    [
+      "Transport",
+      "JSON-RPC over stdio; HTTP/WebSocket in progress"
+    ],
+    [
+      "Spec",
+      "v1 stable; v2 in draft (2026-07-20)"
+    ],
+    [
+      "SDKs",
+      "Rust, TypeScript (1.0), Python, Java, Kotlin"
+    ],
+    [
+      "Clients",
+      "JetBrains IDEs, Neovim, Emacs, Sublime Text and more"
+    ],
+    [
+      "Agents",
+      "Claude Agent, Codex CLI, Cursor, Cline and more"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Repo stars",
+      "4.5k"
+    ]
+  ],
+  "links": {
+    "site": "https://agentclientprotocol.com",
+    "docs": "https://agentclientprotocol.com/protocol/v1/overview",
+    "repo": "https://github.com/agentclientprotocol/agent-client-protocol",
+    "changelog": "https://agentclientprotocol.com/updates"
+  },
+  "goodFor": [
+    "Using one coding agent across several editors",
+    "Editor builders adding many agents at once",
+    "Local agents that run as subprocesses"
+  ],
+  "watchOut": [
+    "Shares the ACP acronym with the Agentic Commerce Protocol",
+    "Remote-agent support is not finished",
+    "v2 is a draft with a migration from v1"
+  ],
+  "researched": "2026-10-21"
 }

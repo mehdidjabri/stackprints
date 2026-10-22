@@ -5,5 +5,71 @@
   "url": "deepseek.com",
   "note": "Open and fast",
   "open": true,
-  "logo": "deepseek"
+  "logo": "deepseek",
+  "profile": "model",
+  "summary": "DeepSeek V4.1 Flash is the smallest model in DeepSeek's new causal encoder-decoder architecture family, an open-weight MoE with native image understanding. It activates about 8B parameters on input and 16B on output and serves the deepseek-flash API name.",
+  "facts": [
+    [
+      "Lab",
+      "DeepSeek (Hangzhou)"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Parameters",
+      "552B backbone; 8B active prefill, 16B decode"
+    ],
+    [
+      "Architecture",
+      "Causal encoder-decoder MoE"
+    ],
+    [
+      "Max output",
+      "Up to 384K tokens"
+    ],
+    [
+      "Pricing",
+      "Off-peak $0.15 / $0.60; peak 2x (per 1M tokens)"
+    ],
+    [
+      "Latest snapshot",
+      "V4.1-Flash-1017 (Oct 17, 2026)"
+    ],
+    [
+      "DeepSWE v1.1",
+      "74.2% (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://api-docs.deepseek.com/news/news260910",
+    "docs": "https://api-docs.deepseek.com/",
+    "pricing": "https://api-docs.deepseek.com/quick_start/pricing",
+    "repo": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash"
+  },
+  "goodFor": [
+    "Very cheap coding agents",
+    "Image plus text agent tasks",
+    "Pairing with DeepSeek Harness or Claude Code"
+  ],
+  "watchOut": [
+    "Peak-hour pricing is double",
+    "Snapshots change behind the same API name",
+    "Search and Fetch tools billed separately"
+  ],
+  "model": {
+    "lab": "DeepSeek",
+    "released": "2026-09-10",
+    "context": "1M tokens",
+    "priceIn": "$0.15 / 1M tokens (off-peak)",
+    "priceOut": "$0.60 / 1M tokens (off-peak)",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "open",
+    "openrouter": "deepseek/deepseek-v4.1-flash"
+  },
+  "researched": "2026-10-21"
 }

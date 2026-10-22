@@ -4,5 +4,42 @@
   "name": "Shop Pay",
   "url": "shopify.com",
   "note": "Merchant checkout",
-  "logo": "shopify"
+  "logo": "shopify",
+  "profile": "product",
+  "summary": "Shopify's stored-details checkout. Agents reach it through Shopify's agent tooling (UCP, Catalog and checkout MCP tools, WebMCP in the browser), and can complete Shop Pay checkouts once the buyer authorizes the purchase.",
+  "facts": [
+    [
+      "Company",
+      "Shopify"
+    ],
+    [
+      "Agent access",
+      "UCP with Catalog, Cart and Checkout MCP; WebMCP checkout tools"
+    ],
+    [
+      "Browser tools",
+      "get_checkout, update_checkout, complete_checkout (Sept 2026)"
+    ],
+    [
+      "Approval",
+      "Order placed only after buyer authorization"
+    ],
+    [
+      "Merchant fee",
+      "No extra fee with Shopify Payments"
+    ]
+  ],
+  "links": {
+    "site": "https://www.shopify.com/shop-pay",
+    "docs": "https://shopify.dev/docs/agents"
+  },
+  "goodFor": [
+    "Buying from Shopify merchants",
+    "Buyers who already have Shop Pay saved"
+  ],
+  "watchOut": [
+    "Limited to Shopify merchants",
+    "Direct checkout completion is gated by agent trust tiers"
+  ],
+  "researched": "2026-10-21"
 }

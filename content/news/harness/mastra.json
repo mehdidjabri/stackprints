@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "Introducing MCP 2.0 Support in Mastra",
+      "url": "https://mastra.ai/blog/introducing-mcp-2",
+      "source": "mastra.ai"
+    },
+    {
+      "date": "2026-10-20",
+      "title": "Announcing Mastra Launch",
+      "url": "https://mastra.ai/blog/announcing-mastra-launch",
+      "source": "mastra.ai"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Introducing Trace Queries",
+      "url": "https://mastra.ai/blog/introducing-trace-queries",
+      "source": "mastra.ai"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "Introducing the Metrics API for Mastra Platform",
+      "url": "https://mastra.ai/blog/introducing-metrics-api-for-mastra-platform",
+      "source": "mastra.ai"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "Introducing Mastra Connect",
+      "url": "https://mastra.ai/blog/introducing-mastra-connect",
+      "source": "mastra.ai"
+    }
+  ]
+}

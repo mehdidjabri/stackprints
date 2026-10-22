@@ -4,5 +4,67 @@
   "name": "Muse Wonder",
   "url": "meta.ai",
   "note": "Meta Superintelligence Labs frontier",
-  "logo": "meta"
+  "logo": "meta",
+  "profile": "model",
+  "summary": "Muse Wonder is Meta's frontier reasoning model for coding, long-running agents and computer use, able to plan long tasks and delegate to sub-agents. It is sold through the Meta Model API and Muse Code; a stronger Muse Wonder Full variant is limited to Muse Code subscriptions.",
+  "facts": [
+    [
+      "Lab",
+      "Meta"
+    ],
+    [
+      "Cached input",
+      "$0.20 / 1M tokens"
+    ],
+    [
+      "Inputs",
+      "Text, images, video, documents"
+    ],
+    [
+      "Variant",
+      "Muse Wonder Full (Muse Code plans only)"
+    ],
+    [
+      "Access",
+      "Meta Model API, Muse Code"
+    ],
+    [
+      "DeepSWE 1.1",
+      "78.8% (vendor-reported)"
+    ],
+    [
+      "OSWorld 2.1",
+      "72.6% partial (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://dev.meta.ai/resources/blog/build-with-muse-wonder",
+    "docs": "https://dev.meta.ai/docs/"
+  },
+  "goodFor": [
+    "Long-running coding agents",
+    "Multi-agent planning and delegation",
+    "Computer use"
+  ],
+  "watchOut": [
+    "Strongest variant is subscription-only",
+    "Audio support not confirmed",
+    "Most benchmarks are Meta's own"
+  ],
+  "model": {
+    "lab": "Meta",
+    "released": "2026-10-12",
+    "context": "1M tokens",
+    "priceIn": "$4 / 1M tokens",
+    "priceOut": "$20 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video",
+      "pdf"
+    ],
+    "weights": "closed",
+    "openrouter": "meta/muse-wonder"
+  },
+  "researched": "2026-10-21"
 }

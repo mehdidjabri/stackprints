@@ -2,5 +2,44 @@
   "order": 10,
   "id": "single-agent",
   "name": "Single agent",
-  "note": "One loop, no delegation"
+  "note": "One loop, no delegation",
+  "profile": "pattern",
+  "summary": "One model runs one loop with all the tools and the full context, and never delegates. Every decision is made with the same history, which keeps behaviour consistent and easy to debug. It is the default starting point; split into several agents only when one agent clearly struggles.",
+  "facts": [
+    [
+      "Strength",
+      "Every action sees the full context and earlier decisions"
+    ],
+    [
+      "Trade-off",
+      "Long tasks fill the context window; no parallelism"
+    ],
+    [
+      "Cost",
+      "Lowest token use of the multi-agent options"
+    ],
+    [
+      "Argued for by",
+      "Cognition, \"Don't Build Multi-Agents\" (June 2025)"
+    ]
+  ],
+  "how": [
+    "Give one agent the task, the tools and the instructions",
+    "Let it loop: think, call a tool, read the result",
+    "Compact or summarise history when the context fills up",
+    "Stop when the task is done or a human is needed"
+  ],
+  "links": {
+    "docs": "https://cognition.com/blog/dont-build-multi-agents"
+  },
+  "goodFor": [
+    "Most tasks, as a first design",
+    "Work where decisions depend on each other",
+    "Easy tracing and debugging"
+  ],
+  "watchOut": [
+    "Too many tools can make tool choice worse",
+    "Context grows without bound on long tasks"
+  ],
+  "researched": "2026-10-21"
 }

@@ -2,5 +2,37 @@
   "order": 10,
   "id": "web-chat",
   "name": "Web chat",
-  "note": "Classic chat UI in the browser"
+  "note": "Classic chat UI in the browser",
+  "profile": "pattern",
+  "summary": "The agent sits behind a chat interface in a web page or web app: a message list, a composer and streamed replies. Developers usually build it with UI libraries such as AI SDK UI or assistant-ui, which handle streaming, message state and tool output rendering.",
+  "how": [
+    "Expose the agent behind a streaming HTTP endpoint",
+    "Render a message list and composer in the browser",
+    "Stream tokens and tool results into the latest message",
+    "Persist threads so users can return to them"
+  ],
+  "facts": [
+    [
+      "Libraries",
+      "AI SDK UI, assistant-ui, Chat SDK web adapter"
+    ],
+    [
+      "Approval",
+      "None; you host it"
+    ],
+    [
+      "Trade-off",
+      "Full control over UI, but users must visit your site"
+    ]
+  ],
+  "goodFor": [
+    "Product-embedded assistants",
+    "Rich tool output and generative UI",
+    "Anonymous or logged-in public users"
+  ],
+  "watchOut": [
+    "You own auth, abuse protection and hosting",
+    "Users must come to the page; no push by default"
+  ],
+  "researched": "2026-10-21"
 }

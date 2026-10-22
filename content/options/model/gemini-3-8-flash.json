@@ -4,5 +4,68 @@
   "name": "Gemini 3.8 Flash",
   "url": "ai.google.dev",
   "note": "Google fast",
-  "logo": "gemini"
+  "logo": "gemini",
+  "profile": "model",
+  "summary": "Gemini 3.8 Flash is Google's fast, lower-cost Gemini model, described by Google as its most intelligent Flash model. It targets long-horizon software engineering, autonomous agents and enterprise workflows, with a 1M-token input window and multimodal input.",
+  "facts": [
+    [
+      "Lab",
+      "Google DeepMind"
+    ],
+    [
+      "API ID",
+      "gemini-3.8-flash"
+    ],
+    [
+      "Inputs",
+      "Text, image, video, audio, PDF"
+    ],
+    [
+      "Max output",
+      "65,536 tokens"
+    ],
+    [
+      "Thinking",
+      "low, medium, high (no minimal)"
+    ],
+    [
+      "Free tier",
+      "Yes, in the Gemini API"
+    ],
+    [
+      "Price change",
+      "$1.50 / $7.50 per 1M tokens from Jan 1, 2027"
+    ]
+  ],
+  "links": {
+    "docs": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+    "pricing": "https://ai.google.dev/gemini-api/docs/pricing"
+  },
+  "goodFor": [
+    "Cheap multimodal agents",
+    "High-volume tool-calling loops",
+    "Prototyping on the free tier"
+  ],
+  "watchOut": [
+    "Launch price doubles on Jan 1, 2027",
+    "Thinking cannot be set to minimal",
+    "Text output only"
+  ],
+  "model": {
+    "lab": "Google",
+    "released": "2026-09-02",
+    "context": "1M tokens",
+    "priceIn": "$0.75 / 1M tokens",
+    "priceOut": "$3.75 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video",
+      "audio",
+      "pdf"
+    ],
+    "weights": "closed",
+    "openrouter": "google/gemini-3.8-flash"
+  },
+  "researched": "2026-10-21"
 }

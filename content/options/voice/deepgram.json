@@ -4,5 +4,54 @@
   "name": "Deepgram",
   "url": "deepgram.com",
   "note": "Nova-3 STT, Aura-2 TTS",
-  "logo": "deepgram"
+  "logo": "deepgram",
+  "profile": "product",
+  "summary": "Deepgram provides speech-to-text (Nova-3, and Flux for conversational turn-taking), text-to-speech (Aura-2, Flux TTS) and a Voice Agent API. Models are available as a hosted API or self-hosted. Aimed at developers building voice agents, call analytics and transcription.",
+  "facts": [
+    [
+      "Company",
+      "Deepgram"
+    ],
+    [
+      "STT",
+      "Nova-3 $0.0048/min streaming, Flux $0.0065/min"
+    ],
+    [
+      "TTS",
+      "Aura-2 $0.030 / 1K chars"
+    ],
+    [
+      "Voice Agent API",
+      "$0.075 / min (standard tier)"
+    ],
+    [
+      "Free credit",
+      "$200 for new accounts"
+    ],
+    [
+      "Deployment",
+      "Hosted API or self-hosted"
+    ],
+    [
+      "Funding",
+      "$130M Series C at $1.3B valuation (Jan 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://deepgram.com",
+    "docs": "https://developers.deepgram.com/docs",
+    "pricing": "https://deepgram.com/pricing",
+    "changelog": "https://developers.deepgram.com/changelog"
+  },
+  "goodFor": [
+    "Cheap, fast streaming transcription",
+    "Turn detection for voice agents (Flux)",
+    "Self-hosted speech for regulated data"
+  ],
+  "watchOut": [
+    "Streaming prices are listed as limited-time promotional rates",
+    "Flux TTS is still early access on self-hosted",
+    "Self-hosting needs GPUs and Engine upgrades"
+  ],
+  "researched": "2026-10-21"
 }

@@ -4,5 +4,60 @@
   "name": "Zep / Graphiti",
   "url": "getzep.com",
   "note": "Temporal knowledge graph",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Graphiti is an open-source framework for building temporal knowledge graphs, where facts carry validity windows and are invalidated rather than deleted when they change. Zep is the managed context platform built on it, adding users, threads, a proprietary graph engine and enterprise deployment options.",
+  "facts": [
+    [
+      "Company",
+      "Zep (founded 2023, Daniel Chalef)"
+    ],
+    [
+      "License",
+      "Graphiti: Apache-2.0; Zep: commercial"
+    ],
+    [
+      "Adoption",
+      "Graphiti 32.1k GitHub stars"
+    ],
+    [
+      "Storage",
+      "Bi-temporal knowledge graph (Neo4j, FalkorDB, Neptune)"
+    ],
+    [
+      "Hosting",
+      "Zep Cloud, BYOK, BYOC on Enterprise; Graphiti self-hosted"
+    ],
+    [
+      "Pricing",
+      "Free 10k credits/mo; Flex $125/mo; Flex Plus $375/mo"
+    ],
+    [
+      "LongMemEval",
+      "90.2% (vendor-reported)"
+    ],
+    [
+      "LoCoMo",
+      "94.7% (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.getzep.com",
+    "docs": "https://help.getzep.com",
+    "repo": "https://github.com/getzep/graphiti",
+    "pricing": "https://www.getzep.com/pricing",
+    "changelog": "https://www.getzep.com/blog/",
+    "x": "https://x.com/zep_ai"
+  },
+  "goodFor": [
+    "Facts that change over time and need point-in-time queries",
+    "Enterprise data plus conversations in one graph",
+    "Self-hosting the graph layer with Graphiti"
+  ],
+  "watchOut": [
+    "Running Graphiti means operating a graph database",
+    "Graphiti's MCP server is a reference, without auth",
+    "Zep's self-serve plans are cloud-only"
+  ],
+  "researched": "2026-10-21"
 }

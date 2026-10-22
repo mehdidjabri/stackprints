@@ -4,5 +4,52 @@
   "name": "ClawHub",
   "url": "clawhub.ai",
   "note": "OpenClaw skill and plugin registry",
-  "logo": "openclaw"
+  "logo": "openclaw",
+  "profile": "product",
+  "summary": "The public registry for OpenClaw, hosting SKILL.md-based skills and a catalog of OpenClaw plugin packages. Users browse, search, install, pin and publish through the website or the clawhub CLI. Uploads are scanned with VirusTotal after a wave of malicious skills in early 2026.",
+  "facts": [
+    [
+      "Operator",
+      "OpenClaw project"
+    ],
+    [
+      "License",
+      "MIT (registry source)"
+    ],
+    [
+      "Content",
+      "Skills (SKILL.md) and OpenClaw plugin packages"
+    ],
+    [
+      "Search",
+      "Embedding-based vector search"
+    ],
+    [
+      "Stack",
+      "TanStack Start, Convex, GitHub OAuth"
+    ],
+    [
+      "Scanning",
+      "VirusTotal checks since Feb 2026; daily re-scans"
+    ],
+    [
+      "CLI",
+      "clawhub search / install / pin / publish"
+    ]
+  ],
+  "links": {
+    "site": "https://clawhub.ai",
+    "repo": "https://github.com/openclaw/clawhub"
+  },
+  "goodFor": [
+    "Finding and installing skills for OpenClaw",
+    "Publishing versioned skills with changelogs",
+    "Pinning installed skills against updates"
+  ],
+  "watchOut": [
+    "Hundreds of malicious skills found in early 2026",
+    "Scanning does not catch all prompt-injection payloads",
+    "Install telemetry on by default when logged in"
+  ],
+  "researched": "2026-10-21"
 }

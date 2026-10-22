@@ -5,5 +5,51 @@
   "url": "meta.com",
   "note": "Safety classifier",
   "open": true,
-  "logo": "meta"
+  "logo": "meta",
+  "profile": "model",
+  "summary": "Llama Guard is Meta's family of open-weight safety classifiers that label a prompt or response as safe or unsafe against a hazard taxonomy. Llama Guard 4 is a 12B model pruned from Llama 4 Scout that classifies both text and images.",
+  "model": {
+    "lab": "Meta",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "open"
+  },
+  "facts": [
+    [
+      "Latest",
+      "Llama Guard 4 (12B)"
+    ],
+    [
+      "Released",
+      "April 2025"
+    ],
+    [
+      "Taxonomy",
+      "14 hazard categories based on MLCommons"
+    ],
+    [
+      "License",
+      "Llama 4 Community License"
+    ],
+    [
+      "Pairs with",
+      "Llama Prompt Guard 2 for prompt-injection detection"
+    ]
+  ],
+  "links": {
+    "site": "https://www.llama.com",
+    "model": "https://huggingface.co/meta-llama/Llama-Guard-4-12B",
+    "repo": "https://github.com/meta-llama/PurpleLlama"
+  },
+  "goodFor": [
+    "Self-hosted content-safety filtering",
+    "Classifying images as well as text"
+  ],
+  "watchOut": [
+    "Content safety, not a prompt-injection defense; Meta points to Prompt Guard for that",
+    "Gated download under Meta's license"
+  ],
+  "researched": "2026-10-21"
 }

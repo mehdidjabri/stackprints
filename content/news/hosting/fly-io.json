@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-03",
+      "title": "Your Agent Speaks MCP. Give It a Computer.",
+      "url": "https://fly.io/blog/sprites-mcp/",
+      "source": "fly.io"
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Turn And Face The Strange",
+      "url": "https://fly.io/blog/kurt-scott-money-sprites/",
+      "source": "fly.io"
+    },
+    {
+      "date": "2026-06-08",
+      "title": "Building Agents that Don't Break Themselves",
+      "url": "https://fly.io/blog/building-agents-that-dont-break-themselves/",
+      "source": "fly.io"
+    },
+    {
+      "date": "2026-01-14",
+      "title": "The Design & Implementation of Sprites",
+      "url": "https://fly.io/blog/design-and-implementation/",
+      "source": "fly.io"
+    },
+    {
+      "date": "2026-01-09",
+      "title": "Code And Let Live",
+      "url": "https://fly.io/blog/code-and-let-live/",
+      "source": "fly.io"
+    }
+  ]
+}

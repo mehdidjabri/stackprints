@@ -5,5 +5,52 @@
   "url": "microsoft.com",
   "note": "AutoGen successor",
   "open": true,
-  "logo": "microsoft"
+  "logo": "microsoft",
+  "profile": "product",
+  "summary": "Microsoft Agent Framework is the open-source successor to AutoGen and Semantic Kernel, built by the same teams. It provides agents with tools and MCP clients, a batteries-included harness agent, and graph-based workflows for explicit multi-agent orchestration. Available for .NET and Python, with Go in preview.",
+  "facts": [
+    [
+      "Company",
+      "Microsoft"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Languages",
+      ".NET, Python; Go in public preview"
+    ],
+    [
+      "GitHub stars",
+      "14K"
+    ],
+    [
+      "1.0 release",
+      "2026-04-02"
+    ],
+    [
+      "Latest release",
+      "python-1.22.0 (Oct 2026)"
+    ],
+    [
+      "Model providers",
+      "Microsoft Foundry, Azure OpenAI, OpenAI, Anthropic, Ollama and more"
+    ]
+  ],
+  "links": {
+    "site": "https://learn.microsoft.com/en-us/agent-framework/overview/",
+    "repo": "https://github.com/microsoft/agent-framework",
+    "changelog": "https://github.com/microsoft/agent-framework/releases"
+  },
+  "goodFor": [
+    ".NET and Azure shops",
+    "Teams migrating from AutoGen or Semantic Kernel",
+    "Explicit, typed multi-agent workflows"
+  ],
+  "watchOut": [
+    "Docs and samples lean on Azure and Foundry",
+    "Go version lacks several features"
+  ],
+  "researched": "2026-10-21"
 }

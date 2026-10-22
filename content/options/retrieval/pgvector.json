@@ -5,5 +5,56 @@
   "url": "github.com/pgvector/pgvector",
   "note": "Vectors in Postgres",
   "open": true,
-  "logo": "postgresql"
+  "logo": "postgresql",
+  "profile": "product",
+  "summary": "pgvector is an open-source Postgres extension that adds vector column types and similarity search, so embeddings live in the same tables as the rest of the data. It supports exact search and approximate search through HNSW and IVFFlat indexes, and can be combined with Postgres full-text search for hybrid queries.",
+  "facts": [
+    [
+      "License",
+      "PostgreSQL License"
+    ],
+    [
+      "Storage",
+      "Postgres tables (vector, halfvec, bit, sparsevec types)"
+    ],
+    [
+      "Indexes",
+      "HNSW and IVFFlat"
+    ],
+    [
+      "Distance",
+      "L2, inner product, cosine, L1, Hamming, Jaccard"
+    ],
+    [
+      "Index limits",
+      "vector up to 2,000 dims; halfvec up to 4,000"
+    ],
+    [
+      "Hosting",
+      "Self-hosted or preinstalled on many hosted Postgres providers"
+    ],
+    [
+      "Latest",
+      "0.8.7 (2026-10-01)"
+    ],
+    [
+      "Stars",
+      "~23k on GitHub"
+    ]
+  ],
+  "links": {
+    "repo": "https://github.com/pgvector/pgvector",
+    "changelog": "https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md"
+  },
+  "goodFor": [
+    "Teams already running Postgres",
+    "Joining vectors with relational data and filters",
+    "Hybrid search with Postgres full-text"
+  ],
+  "watchOut": [
+    "Indexed vector columns are capped at 2,000 dimensions (halfvec 4,000)",
+    "HNSW builds are memory-hungry and slow on large tables",
+    "Several 2026 patch releases fix index build and vacuum bugs; stay current"
+  ],
+  "researched": "2026-10-21"
 }

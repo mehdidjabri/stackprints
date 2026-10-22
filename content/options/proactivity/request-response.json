@@ -2,5 +2,31 @@
   "order": 10,
   "id": "request-response",
   "name": "Request / response",
-  "note": "Only acts when asked"
+  "note": "Only acts when asked",
+  "profile": "pattern",
+  "summary": "The agent only runs when a user sends a message or calls an API, and it stops when it has replied. Nothing happens between requests. This is how most chat assistants and coding agents work by default.",
+  "how": [
+    "User sends a message or request",
+    "Agent runs its loop: model calls, tool calls, reply",
+    "Agent returns a response and goes idle",
+    "Nothing runs until the next request"
+  ],
+  "facts": [
+    [
+      "Infrastructure",
+      "None beyond the request handler"
+    ],
+    [
+      "Trade-off",
+      "Predictable and cheap, but never takes initiative"
+    ]
+  ],
+  "goodFor": [
+    "Chat assistants and coding agents",
+    "Keeping cost and side effects predictable"
+  ],
+  "watchOut": [
+    "Cannot follow up, monitor or remind on its own"
+  ],
+  "researched": "2026-10-21"
 }

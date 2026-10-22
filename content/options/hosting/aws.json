@@ -4,5 +4,57 @@
   "name": "AWS",
   "url": "aws.amazon.com",
   "note": "Bedrock AgentCore and friends",
-  "logo": "aws"
+  "logo": "aws",
+  "profile": "product",
+  "summary": "On AWS, the agent-specific hosting option is Amazon Bedrock AgentCore: a set of managed services for running agents built with any framework and any model. AgentCore Runtime gives each session its own microVM, and companion services cover memory, an MCP tool gateway, identity, code execution, a cloud browser, payments and OpenTelemetry-based observability. Agents can also run on general AWS compute such as Lambda, ECS or EC2.",
+  "facts": [
+    [
+      "Company",
+      "Amazon Web Services"
+    ],
+    [
+      "Agent platform",
+      "Amazon Bedrock AgentCore"
+    ],
+    [
+      "Isolation",
+      "Dedicated microVM per session"
+    ],
+    [
+      "Session length",
+      "Up to 8 hours on microVMs, up to 14 days on Instances"
+    ],
+    [
+      "Frameworks",
+      "Any (LangGraph, CrewAI, Strands, OpenAI Agents SDK, Claude Agent SDK, custom)"
+    ],
+    [
+      "Models",
+      "Any, in or outside Bedrock"
+    ],
+    [
+      "Protocols",
+      "MCP, A2A"
+    ],
+    [
+      "Observability",
+      "OpenTelemetry-compatible"
+    ]
+  ],
+  "links": {
+    "site": "https://aws.amazon.com/bedrock/agentcore/",
+    "docs": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+    "pricing": "https://aws.amazon.com/bedrock/agentcore/pricing/"
+  },
+  "goodFor": [
+    "Enterprises already on AWS",
+    "Per-session isolation for multi-tenant agents",
+    "Pairing hosting with managed memory, identity and tools"
+  ],
+  "watchOut": [
+    "Many separately priced components",
+    "AWS-specific APIs and IAM setup",
+    "More setup than single-command deploy platforms"
+  ],
+  "researched": "2026-10-21"
 }

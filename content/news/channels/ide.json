@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-09-17", "title": "Tool Call Names are Stabilized", "url": "https://agentclientprotocol.com/announcements/tool-call-name-stabilized", "source": "agentclientprotocol.com" },
+    { "date": "2026-07-20", "title": "ACP v2 is Available in Draft", "url": "https://agentclientprotocol.com/announcements/acp-v2-draft", "source": "agentclientprotocol.com" },
+    { "date": "2026-06-25", "title": "Rust and TypeScript SDKs Reach 1.0", "url": "https://agentclientprotocol.com/announcements/sdk-1-0-releases", "source": "agentclientprotocol.com" },
+    { "date": "2026-03-09", "title": "ACP Registry is Released", "url": "https://agentclientprotocol.com/announcements/acp-agent-registry-stabilized", "source": "agentclientprotocol.com" },
+    { "date": "2026-01-28", "title": "The ACP Registry is Live", "url": "https://zed.dev/blog/acp-registry", "source": "zed.dev" }
+  ]
+}

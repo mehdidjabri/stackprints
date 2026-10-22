@@ -2,5 +2,55 @@
   "order": 10,
   "id": "jsonl-transcripts",
   "name": "JSONL transcripts",
-  "note": "Append-only session logs"
+  "note": "Append-only session logs",
+  "profile": "pattern",
+  "summary": "The agent appends every message, tool call and result to a JSON Lines file, one JSON object per line, one file per session. Resuming a session means replaying the file into context. It is the default local session store in several coding-agent CLIs.",
+  "how": [
+    "Create one .jsonl file per session, keyed by session ID",
+    "Append each message, tool call and result as one JSON line as it happens",
+    "On resume, read the file back and rebuild the conversation",
+    "On compaction, append a summary entry rather than rewriting history",
+    "Delete or archive old files on a retention schedule"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, pi, Codex CLI (rollout files)"
+    ],
+    [
+      "Format",
+      "UTF-8, one JSON value per line, newline-terminated"
+    ],
+    [
+      "Claude Code path",
+      "~/.claude/projects/<project>/<session-id>.jsonl"
+    ],
+    [
+      "pi path",
+      "~/.pi/agent/sessions/--<path>--/<timestamp>_<id>.jsonl"
+    ],
+    [
+      "Claude Code retention",
+      "30 days by default (cleanupPeriodDays)"
+    ],
+    [
+      "Trade-off",
+      "Simple and crash-tolerant, but local, unindexed and grows without bound"
+    ]
+  ],
+  "links": {
+    "site": "https://jsonlines.org/",
+    "docs": "https://code.claude.com/docs/en/sessions"
+  },
+  "goodFor": [
+    "Local CLI agents",
+    "Resuming and auditing sessions",
+    "Grepping or replaying past runs"
+  ],
+  "watchOut": [
+    "Entry formats are tool-internal; Claude Code says its format changes between versions",
+    "No query or search without an extra index",
+    "Two processes writing one session interleave messages"
+  ],
+  "researched": "2026-10-21"
 }

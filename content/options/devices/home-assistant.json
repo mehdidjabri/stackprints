@@ -5,5 +5,54 @@
   "url": "home-assistant.io",
   "note": "Smart-home actions",
   "open": true,
-  "logo": "homeassistant"
+  "logo": "homeassistant",
+  "profile": "product",
+  "summary": "Home Assistant is an open-source home automation platform that runs locally and connects thousands of smart-home devices. Its built-in MCP server lets agents such as Claude or ChatGPT read home state and control exposed devices, and it can also call external MCP servers from its own Assist agents.",
+  "facts": [
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "Python"
+    ],
+    [
+      "GitHub stars",
+      "About 91.6k"
+    ],
+    [
+      "MCP server",
+      "Since 2025.2; one-click setup since 2026.10"
+    ],
+    [
+      "MCP auth",
+      "OAuth 2.0 with PKCE; admin-only by default"
+    ],
+    [
+      "MCP client",
+      "Uses external MCP tools in Assist (tools only)"
+    ],
+    [
+      "Hosting",
+      "Self-hosted; remote agents need internet reachability"
+    ]
+  ],
+  "links": {
+    "site": "https://www.home-assistant.io",
+    "docs": "https://www.home-assistant.io/integrations/mcp_server/",
+    "repo": "https://github.com/home-assistant/core",
+    "changelog": "https://www.home-assistant.io/blog/"
+  },
+  "goodFor": [
+    "Letting an agent control lights, climate and media",
+    "Reading home sensor state as context",
+    "Local-first smart home with no vendor lock-in"
+  ],
+  "watchOut": [
+    "Cloud agents need your instance exposed to the internet",
+    "Exposes all LLM APIs by default; scope it down",
+    "MCP server lacks sampling and notifications"
+  ],
+  "researched": "2026-10-21"
 }

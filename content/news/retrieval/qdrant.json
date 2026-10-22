@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-14",
+      "title": "Reachy Remembers: Giving a Robot a Local Semantic Memory with Qdrant Edge",
+      "url": "https://qdrant.tech/blog/reachy-robot-memory-qdrant-edge/",
+      "source": "qdrant.tech"
+    },
+    {
+      "date": "2026-09-29",
+      "title": "Constella Preview: Swap Query Models Without Re-Embedding",
+      "url": "https://qdrant.tech/blog/constella-research-preview/",
+      "source": "qdrant.tech"
+    },
+    {
+      "date": "2026-09-01",
+      "title": "Enough with the Bad Benchmarks: Tools for Production-Grade Research",
+      "url": "https://qdrant.tech/blog/qdrant-fineweb-10b-release/",
+      "source": "qdrant.tech"
+    },
+    {
+      "date": "2026-08-05",
+      "title": "Qdrant v1.19.0",
+      "url": "https://github.com/qdrant/qdrant/releases/tag/v1.19.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-05-11",
+      "title": "Qdrant v1.18.0",
+      "url": "https://github.com/qdrant/qdrant/releases/tag/v1.18.0",
+      "source": "github.com"
+    }
+  ]
+}

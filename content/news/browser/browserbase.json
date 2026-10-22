@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-14",
+      "title": "Browserbase and Parallel: the right search for every agent",
+      "url": "https://browserbase.com/blog/browserbase-and-parallel-search",
+      "source": "browserbase.com"
+    },
+    {
+      "date": "2026-10-14",
+      "title": "Who let the Bots in? - Rethinking CAPTCHAs in the Age of AI Agents",
+      "url": "https://browserbase.com/blog/who-let-the-bots-in-rethinking-captchas-in-the-age-of-ai-agents",
+      "source": "browserbase.com"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "Introducing Secrets in Browserbase Functions",
+      "url": "https://browserbase.com/blog/introducing-secrets-in-browserbase-functions",
+      "source": "browserbase.com"
+    },
+    {
+      "date": "2026-09-22",
+      "title": "Browserbase and Okta: Cross App Access ecosystem brings identity-governed AI to browser agents",
+      "url": "https://browserbase.com/blog/browser-agent-identity-okta",
+      "source": "browserbase.com"
+    },
+    {
+      "date": "2026-09-22",
+      "title": "How to build frontier RL browser tasks - Browserbase x Hud",
+      "url": "https://browserbase.com/blog/browserbase-hud-frontier-evals",
+      "source": "browserbase.com"
+    }
+  ]
+}

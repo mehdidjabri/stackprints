@@ -2,5 +2,31 @@
   "order": 90,
   "id": "ssh-host",
   "name": "SSH host",
-  "note": "Any remote box"
+  "note": "Any remote box",
+  "profile": "pattern",
+  "summary": "The agent runs locally but executes its commands on a remote machine over SSH, such as a VPS, a home server or a cluster login node. Isolation is whatever that machine provides: the agent's mistakes land on the remote box rather than your laptop.",
+  "how": [
+    "Provision or pick a remote machine and an SSH key",
+    "Point the agent's terminal backend at the host",
+    "Commands and file edits run on the remote filesystem",
+    "Rebuild or snapshot the box if the agent breaks it"
+  ],
+  "facts": [
+    ["Used by", "Hermes Agent (SSH terminal backend)"],
+    ["Isolation", "Separate machine; no isolation within it"],
+    ["Cost", "Whatever the remote machine costs"],
+    ["Trade-off", "Any hardware you like, but you manage it yourself"]
+  ],
+  "links": {
+    "repo": "https://github.com/NousResearch/hermes-agent"
+  },
+  "goodFor": [
+    "Reusing an existing server, GPU box or cluster",
+    "Keeping agent activity off your laptop"
+  ],
+  "watchOut": [
+    "SSH key gives the agent everything that user can do on the box",
+    "No built-in snapshots or reset; you handle cleanup"
+  ],
+  "researched": "2026-10-21"
 }

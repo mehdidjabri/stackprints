@@ -5,5 +5,57 @@
   "url": "langchain.com",
   "note": "Stateful graph orchestration",
   "open": true,
-  "logo": "langgraph"
+  "logo": "langgraph",
+  "profile": "product",
+  "summary": "A low-level orchestration framework from LangChain for building stateful, long-running agents as graphs of nodes and edges. It provides durable execution, human-in-the-loop interrupts and short- and long-term memory, and can be used with or without LangChain. LangSmith adds tracing, evals and a managed deployment platform.",
+  "facts": [
+    [
+      "Company",
+      "LangChain"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Languages",
+      "Python, JavaScript/TypeScript (LangGraph.js)"
+    ],
+    [
+      "GitHub stars",
+      "43.7k (Python repo, Oct 2026)"
+    ],
+    [
+      "Current version",
+      "1.2.x (1.2.0 released May 2026)"
+    ],
+    [
+      "Persistence",
+      "Durable execution, resumes after failures"
+    ],
+    [
+      "Deployment",
+      "Self-host or LangSmith Deployment"
+    ],
+    [
+      "Higher-level layer",
+      "Deep Agents (planning, subagents, filesystem)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.langchain.com/langgraph",
+    "docs": "https://docs.langchain.com/oss/python/langgraph/",
+    "repo": "https://github.com/langchain-ai/langgraph",
+    "changelog": "https://github.com/langchain-ai/langgraph/releases"
+  },
+  "goodFor": [
+    "Explicit control flow with branches and cycles",
+    "Human approval steps mid-run",
+    "Long-running workflows that must resume"
+  ],
+  "watchOut": [
+    "Low-level: more code than prebuilt agent loops",
+    "Best tooling (Studio, Deployment) sits in paid LangSmith"
+  ],
+  "researched": "2026-10-21"
 }

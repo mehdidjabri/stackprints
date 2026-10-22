@@ -4,5 +4,66 @@
   "name": "Claude Haiku 5.5",
   "url": "anthropic.com",
   "note": "Anthropic fast and cheap",
-  "logo": "claude"
+  "logo": "claude",
+  "profile": "model",
+  "summary": "Claude Haiku 5.5 is Anthropic's smallest and cheapest current model, replacing Haiku 4.5. It targets high-volume, latency-sensitive work such as classification, extraction, summarization and subagents, and is the first Haiku with an adjustable effort setting.",
+  "facts": [
+    [
+      "Lab",
+      "Anthropic"
+    ],
+    [
+      "API ID",
+      "claude-haiku-5-5"
+    ],
+    [
+      "Max output",
+      "128K tokens"
+    ],
+    [
+      "Pricing tiers",
+      "$0.10/$0.50 up to 100K prompt; $0.50/$2.50 above"
+    ],
+    [
+      "Terminal-Bench 4.0",
+      "39.2% (vendor-reported)"
+    ],
+    [
+      "OSWorld 2.1 offline",
+      "72.4% (vendor-reported)"
+    ],
+    [
+      "Knowledge cutoff",
+      "June 2026"
+    ]
+  ],
+  "links": {
+    "site": "https://www.anthropic.com/claude-haiku-5-5",
+    "docs": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  "goodFor": [
+    "Subagents and routing",
+    "Classification and extraction at scale",
+    "Live support and browser use"
+  ],
+  "watchOut": [
+    "Long prompts cost 5x the base rate",
+    "Well behind Sonnet 5.5 on agentic coding",
+    "Stricter cyber safeguards block pentesting"
+  ],
+  "model": {
+    "lab": "Anthropic",
+    "released": "2026-10-07",
+    "context": "1M tokens",
+    "priceIn": "$0.10 / 1M tokens",
+    "priceOut": "$0.50 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "anthropic/claude-haiku-5.5"
+  },
+  "researched": "2026-10-21"
 }

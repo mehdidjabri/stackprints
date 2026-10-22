@@ -1,0 +1,23 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "Codex CLI 0.163.0",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-06-02",
+      "title": "Codex for every role, tool, and workflow",
+      "url": "https://openai.com/index/codex-for-every-role-tool-workflow/",
+      "source": "openai.com"
+    },
+    {
+      "date": "2026-02-05",
+      "title": "Introducing GPT-5.3-Codex",
+      "url": "https://openai.com/index/introducing-gpt-5-3-codex/",
+      "source": "openai.com"
+    }
+  ]
+}

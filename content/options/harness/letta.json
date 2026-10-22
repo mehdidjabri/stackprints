@@ -4,5 +4,60 @@
   "name": "Letta",
   "url": "letta.com",
   "note": "Stateful agents, MemGPT lineage",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Letta (formerly MemGPT) builds stateful agents whose memory, identity and conversations persist over time. Since March 2026 its main product is Letta Code, a model-agnostic agent harness with git-tracked memory files, skills, subagents and messaging channels; the older Letta V1 API server is archived. Agents run locally or with state kept in Letta Cloud.",
+  "facts": [
+    [
+      "Company",
+      "Letta (formerly MemGPT)"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "TypeScript (Letta Code); install via npm, uv or pipx"
+    ],
+    [
+      "Adoption",
+      "~3.7k GitHub stars on letta-code; ~25k on the archived letta repo"
+    ],
+    [
+      "Memory",
+      "Memory blocks in git-tracked files (MemFS), self-editing"
+    ],
+    [
+      "Subagents",
+      "Built-in (general-purpose, forked, recall); agents can call other agents"
+    ],
+    [
+      "Channels",
+      "CLI, chat.letta.com, Slack, Telegram, Discord"
+    ],
+    [
+      "Pricing",
+      "Free tier; Pro and API plans from $20/month"
+    ]
+  ],
+  "links": {
+    "site": "https://www.letta.com",
+    "docs": "https://docs.letta.com",
+    "repo": "https://github.com/letta-ai/letta-code",
+    "pricing": "https://docs.letta.com/pricing",
+    "changelog": "https://github.com/letta-ai/letta-code/releases",
+    "x": "https://x.com/Letta_AI"
+  },
+  "goodFor": [
+    "Long-lived agents that learn across sessions",
+    "Memory you can inspect and version with git",
+    "One agent reachable from CLI, web and chat apps"
+  ],
+  "watchOut": [
+    "March 2026 pivot deprecated many V1 server features",
+    "Letta Cloud is the default backend; local mode is opt-in",
+    "Remote computers and secrets require a Letta sign-in"
+  ],
+  "researched": "2026-10-21"
 }

@@ -3,5 +3,53 @@
   "id": "pipedream",
   "name": "Pipedream",
   "url": "pipedream.com",
-  "note": "Thousands of API integrations"
+  "note": "Thousands of API integrations",
+  "profile": "product",
+  "summary": "Pipedream Connect lets developers embed integrations with 3,000+ APIs in their own apps and agents, with Pipedream running the OAuth flows and storing and refreshing each user's tokens. Its 10,000+ prebuilt actions and triggers are available through SDKs and a remote MCP server. Pipedream also offers a workflow automation product.",
+  "facts": [
+    [
+      "Company",
+      "Pipedream"
+    ],
+    [
+      "APIs",
+      "3,000+; 10,000+ tools and triggers (vendor-reported)"
+    ],
+    [
+      "Auth",
+      "Managed OAuth with automatic token refresh"
+    ],
+    [
+      "Access",
+      "TypeScript, Python, Java SDKs; remote MCP server"
+    ],
+    [
+      "Pricing",
+      "Free in development; Startup from $99/month (annual) for production"
+    ],
+    [
+      "Metering",
+      "External users plus credits per 30 s of compute"
+    ],
+    [
+      "Components",
+      "Source-available registry on GitHub (~12K stars)"
+    ]
+  ],
+  "links": {
+    "site": "https://pipedream.com/connect",
+    "docs": "https://pipedream.com/docs/connect",
+    "repo": "https://github.com/PipedreamHQ/pipedream",
+    "pricing": "https://pipedream.com/pricing"
+  },
+  "goodFor": [
+    "Embedding user-facing integrations in a product",
+    "Very broad API coverage",
+    "Running custom code next to prebuilt actions"
+  ],
+  "watchOut": [
+    "Production requires a paid plan billed per external user",
+    "Component registry is source-available, not open source"
+  ],
+  "researched": "2026-10-21"
 }

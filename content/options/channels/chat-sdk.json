@@ -2,8 +2,54 @@
   "order": 140,
   "id": "chat-sdk",
   "name": "Chat SDK",
-  "url": "vercel.com",
+  "url": "chat-sdk.dev",
   "note": "One agent, many chat platforms",
   "open": true,
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Chat SDK is an open-source TypeScript library from Vercel for writing one bot or agent and running it on several chat platforms through adapters. It provides type-safe event handlers, JSX cards and streaming of AI responses into chat threads, with pluggable state storage such as Redis.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "TypeScript"
+    ],
+    [
+      "Adapters",
+      "Slack, Teams, Google Chat, Discord, Telegram, WhatsApp, GitHub, Linear, GitLab, web"
+    ],
+    [
+      "State",
+      "Pluggable state adapters (e.g. Redis)"
+    ],
+    [
+      "Latest release",
+      "4.43.0"
+    ],
+    [
+      "GitHub stars",
+      "2.4k"
+    ]
+  ],
+  "links": {
+    "site": "https://chat-sdk.dev",
+    "repo": "https://github.com/vercel/chat",
+    "changelog": "https://github.com/vercel/chat/releases"
+  },
+  "goodFor": [
+    "One agent deployed to several chat apps",
+    "TypeScript teams already using the AI SDK or Next.js"
+  ],
+  "watchOut": [
+    "Platform features differ; adapters cannot hide every gap",
+    "Platform approval and rate limits still apply per channel"
+  ],
+  "researched": "2026-10-21"
 }

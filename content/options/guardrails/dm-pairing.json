@@ -4,5 +4,47 @@
   "name": "DM pairing",
   "url": "openclaw.ai",
   "note": "Unknown senders must pair first",
-  "logo": "openclaw"
+  "logo": "openclaw",
+  "profile": "pattern",
+  "summary": "On a messaging channel, a sender the agent doesn't know gets a short pairing code and their messages are ignored until the owner approves the code. OpenClaw uses it as the default way to decide who may talk to the agent in direct messages.",
+  "how": [
+    "Unknown sender messages the bot",
+    "Bot replies with a one-time code and drops the message",
+    "Owner approves the code from the CLI or control UI",
+    "Approved sender is added to that channel's allowlist"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw (dmPolicy: \"pairing\")"
+    ],
+    [
+      "Code",
+      "8 uppercase characters, expires after 1 hour"
+    ],
+    [
+      "Pending cap",
+      "3 requests per channel account"
+    ],
+    [
+      "Scope",
+      "Grants DM access only, not group access"
+    ],
+    [
+      "Approve",
+      "openclaw pairing approve <channel> <CODE>"
+    ]
+  ],
+  "links": {
+    "docs": "https://docs.openclaw.ai/channels/pairing"
+  },
+  "goodFor": [
+    "Personal agents on WhatsApp, Telegram, Slack and similar",
+    "Stopping strangers from prompting your agent"
+  ],
+  "watchOut": [
+    "Only controls who can talk to the agent, not what it does",
+    "An approved contact can still send prompt injections"
+  ],
+  "researched": "2026-10-21"
 }

@@ -2,5 +2,35 @@
   "order": 80,
   "id": "canvas",
   "name": "Canvas",
-  "note": "Agent-driven visual workspace"
+  "note": "Agent-driven visual workspace",
+  "profile": "pattern",
+  "summary": "The agent works on a shared visual surface, such as a whiteboard, document or design, next to the chat. It reads the current state of the canvas, including the user's selection and viewport, and edits it through actions like creating, moving or deleting shapes, so user and agent work on the same object.",
+  "how": [
+    "Give the agent a view of the canvas: selection, viewport, simplified shapes or a screenshot",
+    "Expose canvas edits as agent actions",
+    "Apply actions live so the user sees changes as they happen",
+    "Let the user edit by hand and keep the agent's view in sync"
+  ],
+  "facts": [
+    [
+      "Examples",
+      "tldraw agent starter kit, Claude Design"
+    ],
+    [
+      "Trade-off",
+      "Strong for visual work, but complex state to sync"
+    ]
+  ],
+  "links": {
+    "docs": "https://tldraw.dev/starter-kits/agent"
+  },
+  "goodFor": [
+    "Diagrams, designs and whiteboards",
+    "Iterating on one artifact together"
+  ],
+  "watchOut": [
+    "Large canvases exceed context; needs summarising",
+    "Concurrent human and agent edits can conflict"
+  ],
+  "researched": "2026-10-21"
 }

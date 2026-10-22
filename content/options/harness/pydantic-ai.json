@@ -5,5 +5,57 @@
   "url": "ai.pydantic.dev",
   "note": "Typed Python agents",
   "open": true,
-  "logo": "pydanticai"
+  "logo": "pydanticai",
+  "profile": "product",
+  "summary": "Pydantic AI is a typed Python agent framework from the team behind Pydantic. Agents return validated, typed outputs, and features are added as composable capabilities; the separate Pydantic AI Harness package provides memory, guardrails, sub-agents, planning, compaction and a coding agent. Version 2.0 shipped in June 2026.",
+  "facts": [
+    [
+      "Company",
+      "Pydantic"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "Python"
+    ],
+    [
+      "Adoption",
+      "~21k GitHub stars"
+    ],
+    [
+      "Version",
+      "v2.0 stable on 2026-06-23"
+    ],
+    [
+      "MCP",
+      "Built-in MCP capability"
+    ],
+    [
+      "Subagents",
+      "Via Pydantic AI Harness"
+    ],
+    [
+      "Observability",
+      "OpenTelemetry instrumentation; Logfire optional"
+    ]
+  ],
+  "links": {
+    "site": "https://pydantic.dev/pydantic-ai",
+    "docs": "https://pydantic.dev/docs/ai/",
+    "repo": "https://github.com/pydantic/pydantic-ai",
+    "changelog": "https://pydantic.dev/docs/ai/changelog/"
+  },
+  "goodFor": [
+    "Typed, validated structured outputs",
+    "Python teams already using Pydantic",
+    "Composing agents from reusable capabilities"
+  ],
+  "watchOut": [
+    "v2 introduced breaking changes from v1",
+    "Logfire and AI Gateway are paid Pydantic products"
+  ],
+  "researched": "2026-10-21"
 }

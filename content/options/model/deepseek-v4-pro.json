@@ -5,5 +5,70 @@
   "url": "deepseek.com",
   "note": "Open frontier",
   "open": true,
-  "logo": "deepseek"
+  "logo": "deepseek",
+  "profile": "model",
+  "summary": "DeepSeek V4 Pro is DeepSeek's large open-weight mixture-of-experts model, released under MIT with a 1M-token context. It uses a hybrid compressed-attention design to cut long-context compute and KV cache, and offers thinking and non-thinking modes with adjustable reasoning effort.",
+  "facts": [
+    [
+      "Lab",
+      "DeepSeek (Hangzhou)"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Parameters",
+      "1.6T total, 49B active (MoE)"
+    ],
+    [
+      "Max output",
+      "Up to 384K tokens"
+    ],
+    [
+      "Pricing",
+      "Off-peak $0.66 / $1.98; peak 2x (per 1M tokens)"
+    ],
+    [
+      "API formats",
+      "OpenAI Chat Completions, Responses, Anthropic"
+    ],
+    [
+      "SWE-bench Verified",
+      "80.6% (vendor-reported)"
+    ],
+    [
+      "GA snapshot",
+      "DeepSeek-V4-Pro-0813 (Aug 13, 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://api-docs.deepseek.com/news/news260424",
+    "docs": "https://api-docs.deepseek.com/",
+    "pricing": "https://api-docs.deepseek.com/quick_start/pricing",
+    "repo": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+  },
+  "goodFor": [
+    "Self-hosted frontier-class reasoning",
+    "Cheap long-context agents via API",
+    "Drop-in backend for Claude Code or Codex"
+  ],
+  "watchOut": [
+    "Text only, no vision",
+    "Peak-hour pricing is double",
+    "Huge to self-host (1.6T parameters)"
+  ],
+  "model": {
+    "lab": "DeepSeek",
+    "released": "2026-04-24",
+    "context": "1M tokens",
+    "priceIn": "$0.66 / 1M tokens (off-peak)",
+    "priceOut": "$1.98 / 1M tokens (off-peak)",
+    "modalities": [
+      "text"
+    ],
+    "weights": "open",
+    "openrouter": "deepseek/deepseek-v4-pro"
+  },
+  "researched": "2026-10-21"
 }

@@ -3,5 +3,32 @@
   "id": "not-diamond",
   "name": "Not Diamond",
   "url": "notdiamond.ai",
-  "note": "Learned prompt-to-model routing"
+  "note": "Learned prompt-to-model routing",
+  "profile": "product",
+  "summary": "Not Diamond is a model router that predicts which model to use for each input, aiming to lower cost while keeping accuracy. It now focuses on coding agents and plugs into existing harnesses and gateways through an API rather than replacing them. It decides the model; the request still goes through your provider or gateway.",
+  "facts": [
+    ["Company", "Not Diamond"],
+    ["Approach", "Learned per-input model selection"],
+    ["Focus", "Coding agents (Not Diamond Code, Aug 2026)"],
+    ["Pricing", "$0.05 per 1M tokens routed; Enterprise custom"],
+    ["Access", "Pay-as-you-go by application"],
+    ["Claimed savings", "50%+ cost savings (vendor-reported)"],
+    ["Compliance", "SOC 2, ISO 27001 (vendor-reported)"]
+  ],
+  "links": {
+    "site": "https://www.notdiamond.ai",
+    "pricing": "https://www.notdiamond.ai/pricing",
+    "changelog": "https://www.notdiamond.ai/blog"
+  },
+  "goodFor": [
+    "Cutting coding-agent spend across several models",
+    "Adding routing on top of an existing gateway",
+    "Teams with many engineers on agents"
+  ],
+  "watchOut": [
+    "Savings figures are vendor-reported",
+    "Access is by application",
+    "Adds a routing decision service to the request path"
+  ],
+  "researched": "2026-10-21"
 }

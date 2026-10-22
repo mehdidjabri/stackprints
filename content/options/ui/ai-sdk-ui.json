@@ -5,5 +5,30 @@
   "url": "ai-sdk.dev",
   "note": "Streaming React chat hooks",
   "open": true,
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "AI SDK UI is the frontend half of Vercel's open-source AI SDK. Hooks such as useChat, useCompletion and useObject stream chat messages, completions and structured JSON from a server route and manage message, loading and error state, leaving the visual design to the app.",
+  "facts": [
+    ["Company", "Vercel"],
+    ["License", "Apache-2.0"],
+    ["Hooks", "useChat, useCompletion, useObject"],
+    ["Frameworks", "React, Vue, Svelte, Angular (SolidJS via community)"],
+    ["MCP Apps", "React package supports MCP Apps"],
+    ["GitHub stars", "27.4k (vercel/ai)"]
+  ],
+  "links": {
+    "site": "https://ai-sdk.dev",
+    "docs": "https://ai-sdk.dev/docs/ai-sdk-ui/overview",
+    "repo": "https://github.com/vercel/ai"
+  },
+  "goodFor": [
+    "Custom chat UIs in Next.js or React apps",
+    "Streaming text and structured objects to the browser",
+    "Teams that want hooks, not prebuilt components"
+  ],
+  "watchOut": [
+    "No visual components; you build the interface",
+    "Frequent major versions with migration work"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-16",
+      "title": "Added nine natural voices for GPT-Live",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "source": "developers.openai.com"
+    },
+    {
+      "date": "2026-09-10",
+      "title": "GPT-Live 1 is now generally available in the API",
+      "url": "https://developers.openai.com/api/docs/models/gpt-live-1",
+      "source": "developers.openai.com"
+    },
+    {
+      "date": "2026-07-06",
+      "title": "Released GPT-Realtime-2.1, an updated realtime reasoning model",
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-2.1",
+      "source": "developers.openai.com"
+    },
+    {
+      "date": "2026-05-07",
+      "title": "GPT-Realtime-2, GPT-Realtime-Translate and GPT-Realtime-Whisper launched in the Realtime API",
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-2",
+      "source": "developers.openai.com"
+    },
+    {
+      "date": "2026-02-23",
+      "title": "GPT-Realtime-1.5 released to the Realtime API",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "source": "developers.openai.com"
+    }
+  ]
+}

@@ -5,5 +5,49 @@
   "url": "opentelemetry.io",
   "note": "Standard semantic conventions",
   "open": true,
-  "logo": "opentelemetry"
+  "logo": "opentelemetry",
+  "profile": "protocol",
+  "summary": "The OpenTelemetry GenAI semantic conventions define standard span, metric and event attributes for generative AI: model inference calls, token usage, agent operations (such as create_agent and invoke_agent) and MCP. Instrumenting against them lets any OpenTelemetry-compatible backend read LLM and agent traces without vendor-specific SDKs. The conventions now live in their own repository and are still marked Development.",
+  "facts": [
+    [
+      "Steward",
+      "OpenTelemetry (CNCF)"
+    ],
+    [
+      "Status",
+      "Development (not yet stable)"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Signals",
+      "Spans, metrics, events, exceptions"
+    ],
+    [
+      "Covers",
+      "Inference, agent spans, MCP, token metrics"
+    ],
+    [
+      "Provider conventions",
+      "Anthropic, OpenAI, AWS Bedrock, Azure AI Inference"
+    ]
+  ],
+  "links": {
+    "site": "https://opentelemetry.io",
+    "docs": "https://github.com/open-telemetry/semantic-conventions-genai/tree/main/docs/gen-ai",
+    "repo": "https://github.com/open-telemetry/semantic-conventions-genai",
+    "blog": "https://opentelemetry.io/blog/2026/genai-observability/"
+  },
+  "goodFor": [
+    "Avoiding lock-in to one tracing vendor",
+    "Sending agent traces to existing observability stacks",
+    "Mixing frameworks under one trace format"
+  ],
+  "watchOut": [
+    "Development status: attribute names can still change",
+    "Message content capture is opt-in and raises privacy questions"
+  ],
+  "researched": "2026-10-21"
 }

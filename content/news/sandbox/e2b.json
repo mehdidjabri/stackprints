@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-07", "title": "Introducing E2B Secrets", "url": "https://e2b.dev/resources/introducing-e2b-secrets", "source": "e2b.dev" },
+    { "date": "2026-09-30", "title": "Introducing E2B Embed", "url": "https://e2b.dev/resources/introducing-e2b-embed", "source": "e2b.dev" },
+    { "date": "2026-06-10", "title": "E2B sandboxes are now available through Stripe Projects", "url": "https://e2b.dev/resources/e2b-sandboxes-are-now-available-through-stripe-projects", "source": "e2b.dev" },
+    { "date": "2026-04-15", "title": "E2B is now supported in the OpenAI Agents SDK", "url": "https://e2b.dev/resources/e2b-is-now-in-agents-sdk", "source": "e2b.dev" },
+    { "date": "2025-10-23", "title": "Docker & E2B partner to introduce MCP support in E2B Sandbox", "url": "https://e2b.dev/resources/docker-e2b-partner-to-introduce-mcp-support-in-e2b-sandbox", "source": "e2b.dev" }
+  ]
+}

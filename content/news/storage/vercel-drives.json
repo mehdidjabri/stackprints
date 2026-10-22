@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "Introducing Vercel Drives: persistent storage for agents",
+      "url": "https://vercel.com/blog/introducing-vercel-drives-persistent-storage-for-agents",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Vercel Drives is now generally available",
+      "url": "https://vercel.com/changelog/vercel-drives-is-now-generally-available",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-09-23",
+      "title": "Drives for Vercel Sandbox are now in public beta",
+      "url": "https://vercel.com/changelog/drives-for-vercel-sandbox-are-now-in-public-beta",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-06-05",
+      "title": "Drives for Vercel Sandbox in Private Beta",
+      "url": "https://vercel.com/changelog/drives-for-vercel-sandbox-in-private-beta",
+      "source": "vercel.com"
+    }
+  ]
+}

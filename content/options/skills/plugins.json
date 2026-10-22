@@ -2,5 +2,40 @@
   "order": 60,
   "id": "plugins",
   "name": "Plugins",
-  "note": "Bundles of skills, hooks, commands"
+  "note": "Bundles of skills, hooks, commands",
+  "profile": "pattern",
+  "summary": "A plugin is a directory that bundles several extension types, such as skills, slash commands, subagents, hooks and MCP servers, so they install, update and toggle as one unit. Plugins are usually distributed through a marketplace file in a git repository.",
+  "how": [
+    "Put skills, agents, hooks and MCP config in one directory",
+    "Add a manifest (for example .claude-plugin/plugin.json) with name and version",
+    "List it in a marketplace catalog or share the folder",
+    "Users install by name and enable per user or project",
+    "Plugin skills appear namespaced, such as /plugin:skill"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, Codex, OpenClaw, Hermes Agent, Pi (packages)"
+    ],
+    [
+      "Distribution",
+      "Git-based marketplaces, npm, registries like ClawHub"
+    ],
+    [
+      "Trade-off",
+      "One-step setup, but every enabled plugin adds context and runs as you"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/plugins"
+  },
+  "goodFor": [
+    "Sharing a whole team setup in one install",
+    "Versioned releases of skills plus hooks"
+  ],
+  "watchOut": [
+    "Enabled plugins cost context on every turn",
+    "Hooks and MCP servers run with your privileges"
+  ],
+  "researched": "2026-10-21"
 }

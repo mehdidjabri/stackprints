@@ -5,5 +5,47 @@
   "url": "x402.org",
   "note": "HTTP 402 stablecoin payments",
   "open": true,
-  "logo": "coinbase"
+  "logo": "coinbase",
+  "profile": "protocol",
+  "summary": "An HTTP-native payment standard: a server answers 402 Payment Required with its price, the client pays (mostly in stablecoins) and retries with proof of payment. Built for agents paying per request for APIs and content, now governed by the x402 Foundation under the Linux Foundation.",
+  "facts": [
+    [
+      "Origin",
+      "Coinbase, with Cloudflare and Stripe"
+    ],
+    [
+      "Governance",
+      "x402 Foundation, Linux Foundation (since 2026-04-02)"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Networks",
+      "EVM chains, Solana and others; chain-agnostic"
+    ],
+    [
+      "Protocol fees",
+      "None (network fees apply)"
+    ],
+    [
+      "SDKs",
+      "TypeScript, Python, Go"
+    ]
+  ],
+  "links": {
+    "site": "https://www.x402.org",
+    "repo": "https://github.com/x402-foundation/x402",
+    "docs": "https://docs.cdp.coinbase.com/x402/support/x402-foundation"
+  },
+  "goodFor": [
+    "Pay-per-call APIs without accounts or API keys",
+    "Machine-to-machine micropayments"
+  ],
+  "watchOut": [
+    "Mostly crypto rails today",
+    "Reported on-chain volume includes self-dealing (per third-party analysis)"
+  ],
+  "researched": "2026-10-21"
 }

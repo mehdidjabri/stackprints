@@ -5,5 +5,70 @@
   "url": "moonshot.ai",
   "note": "2.8T open MoE, agentic",
   "open": true,
-  "logo": "kimi"
+  "logo": "kimi",
+  "profile": "model",
+  "summary": "Kimi K3 is Moonshot AI's 2.8-trillion-parameter open-weight mixture-of-experts model with native vision and a 1M-token context. It targets long-horizon coding, knowledge work and agentic workflows and is available in the Kimi apps, Kimi Code and the Kimi API.",
+  "facts": [
+    [
+      "Lab",
+      "Moonshot AI (Beijing)"
+    ],
+    [
+      "Parameters",
+      "2.8T total, 104B active (896 experts, 16 routed)"
+    ],
+    [
+      "License",
+      "Kimi K3 License (custom)"
+    ],
+    [
+      "Architecture",
+      "Kimi Delta Attention plus gated MLA"
+    ],
+    [
+      "Quantization",
+      "MXFP4 weights, quantization-aware training"
+    ],
+    [
+      "Cached input",
+      "$0.30 / 1M tokens"
+    ],
+    [
+      "Terminal-Bench 2.1",
+      "88.3% (vendor-reported)"
+    ],
+    [
+      "API",
+      "OpenAI- and Anthropic-compatible"
+    ]
+  ],
+  "links": {
+    "site": "https://www.kimi.com/blog/kimi-k3",
+    "repo": "https://huggingface.co/moonshotai/Kimi-K3"
+  },
+  "goodFor": [
+    "Self-hostable frontier-scale agent model",
+    "Long-horizon coding",
+    "Vision plus long context"
+  ],
+  "watchOut": [
+    "Unstable if the harness drops thinking history",
+    "Can be over-proactive without constraints",
+    "Max effort only at launch, so slow and costly output"
+  ],
+  "model": {
+    "lab": "Moonshot AI",
+    "released": "2026-07-16",
+    "context": "1M tokens",
+    "priceIn": "$3 / 1M tokens",
+    "priceOut": "$15 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video"
+    ],
+    "weights": "open",
+    "openrouter": "moonshotai/kimi-k3"
+  },
+  "researched": "2026-10-21"
 }

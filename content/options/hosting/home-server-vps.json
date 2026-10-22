@@ -2,5 +2,37 @@
   "order": 20,
   "id": "home-server-vps",
   "name": "Home server / VPS",
-  "note": "Always-on, self-hosted"
+  "note": "Always-on, self-hosted",
+  "profile": "pattern",
+  "summary": "The agent runs 24/7 on hardware or a virtual server you control, such as a Raspberry Pi, a spare Mac or a small cloud VPS. This keeps schedules, webhooks and chat connections alive without depending on a managed agent platform, in exchange for doing your own updates, backups and security.",
+  "how": [
+    "Provision a home machine or a VPS",
+    "Install the agent (often with Docker) as a long-running service",
+    "Connect chat channels and expose webhooks through a tunnel or reverse proxy",
+    "Set up restarts, backups and updates"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw (guides for Linux VPS, Hetzner, Raspberry Pi), Hermes Agent"
+    ],
+    [
+      "Trade-off",
+      "Always-on and under your control, but you own uptime and security"
+    ]
+  ],
+  "links": {
+    "docs": "https://docs.openclaw.ai/vps"
+  },
+  "goodFor": [
+    "Always-on personal assistants",
+    "Cron, heartbeat and webhook triggers",
+    "Predictable flat monthly cost"
+  ],
+  "watchOut": [
+    "You patch, back up and secure the box",
+    "Exposed endpoints and stored API keys are an attack surface",
+    "Single machine means single point of failure"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "createAI replaces workers-ai-provider and ai-gateway-provider",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-21-createai/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-20",
+      "title": "Think agents now use a @cloudflare/computer workspace",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-20-think-computer-workspace/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "New persistent browser tool in the Agents SDK, with tabs and logins that last between turns",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-13-persistent-browser/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-12",
+      "title": "Run OpenCode 2.0 on Cloudflare with the Agents SDK",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-12-opencode-harness/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Introducing on-demand CPU and memory profiling with flamegraphs for Workers and Durable Objects",
+      "url": "https://blog.cloudflare.com/workers-on-demand-profiling/",
+      "source": "blog.cloudflare.com"
+    }
+  ]
+}

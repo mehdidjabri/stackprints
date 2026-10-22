@@ -2,5 +2,36 @@
   "order": 10,
   "id": "none",
   "name": "None",
-  "note": "Every session starts fresh"
+  "note": "Every session starts fresh",
+  "profile": "pattern",
+  "summary": "The agent keeps no state between sessions: each conversation starts from the system prompt and whatever the user pastes in. LLM APIs are stateless by default, so this is the baseline every other memory option builds on.",
+  "how": [
+    "Start each session with only the system prompt and project files",
+    "Let the user restate context when it matters",
+    "Discard the transcript when the session ends"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Raw LLM API calls, one-off chats, CI and cron jobs"
+    ],
+    [
+      "Storage",
+      "None"
+    ],
+    [
+      "Trade-off",
+      "Predictable and private, but nothing learned carries over"
+    ]
+  ],
+  "goodFor": [
+    "Short, self-contained tasks",
+    "Reproducible or audited runs",
+    "Privacy-sensitive work"
+  ],
+  "watchOut": [
+    "Users repeat preferences and context every time",
+    "Long projects lose decisions between sessions"
+  ],
+  "researched": "2026-10-21"
 }

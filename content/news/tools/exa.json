@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-19",
+      "title": "Introducing Exa 3.0",
+      "url": "https://exa.ai/blog/exa-3",
+      "source": "exa.ai"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "Exa Crosses $100M in Annualized Revenue",
+      "url": "https://exa.ai/blog/100m-run-rate",
+      "source": "exa.ai"
+    },
+    {
+      "date": "2026-10-05",
+      "title": "Introducing Exa Places: Search 211M Places with Structured Data",
+      "url": "https://exa.ai/blog/places-search",
+      "source": "exa.ai"
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Introducing Exa Agent Ultra - A New Frontier for Deep Research",
+      "url": "https://exa.ai/blog/exa-agent-ultra",
+      "source": "exa.ai"
+    },
+    {
+      "date": "2026-05-20",
+      "title": "Exa raises $250M Series C to build the search engine for AIs",
+      "url": "https://exa.ai/blog/announcing-series-c",
+      "source": "exa.ai"
+    }
+  ]
+}

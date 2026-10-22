@@ -4,5 +4,52 @@
   "name": "Zapier MCP",
   "url": "zapier.com",
   "note": "Zapier actions over MCP",
-  "logo": "zapier"
+  "logo": "zapier",
+  "profile": "product",
+  "summary": "Zapier MCP exposes actions from Zapier's 9,000+ app integrations as tools to any MCP client, such as Claude, ChatGPT or Cursor. Zapier keeps the app credentials, and you choose which actions each server allows or let the AI add them as needed. Tool calls draw on the same task quota as Zaps.",
+  "facts": [
+    [
+      "Company",
+      "Zapier"
+    ],
+    [
+      "Apps",
+      "9,000+; 40,000+ actions (vendor-reported)"
+    ],
+    [
+      "Billing",
+      "2 Zapier tasks per successful tool call"
+    ],
+    [
+      "Plans",
+      "Included on all Zapier plans"
+    ],
+    [
+      "Transport",
+      "Streamable HTTP only (no SSE)"
+    ],
+    [
+      "Auth",
+      "OAuth from the client; Zapier holds app credentials"
+    ],
+    [
+      "Compliance",
+      "SOC 2 Type II"
+    ]
+  ],
+  "links": {
+    "site": "https://zapier.com/mcp",
+    "docs": "https://docs.zapier.com/mcp/home"
+  },
+  "goodFor": [
+    "Personal or team assistants acting in everyday SaaS",
+    "Reusing existing Zapier connections",
+    "Non-developers wiring tools into an AI client"
+  ],
+  "watchOut": [
+    "Task-based billing adds up with chatty agents",
+    "Sharing a server needs a Team or Enterprise plan",
+    "Actions use your own Zapier app connections"
+  ],
+  "researched": "2026-10-21"
 }

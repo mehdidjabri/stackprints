@@ -2,5 +2,40 @@
   "order": 140,
   "id": "custom-loop",
   "name": "Custom loop",
-  "note": "A while loop and a switch"
+  "note": "A while loop and a switch",
+  "profile": "pattern",
+  "summary": "Writing the agent loop yourself directly against a model API instead of adopting a framework. The program sends messages and tool definitions, executes any tool calls the model returns, appends the results and repeats until the model stops calling tools. It keeps every prompt and response visible at the cost of building persistence, retries and approvals yourself.",
+  "facts": [
+    [
+      "Dependencies",
+      "A model API client only"
+    ],
+    [
+      "Trade-off",
+      "Full control, but no built-in durability, memory or sandboxing"
+    ],
+    [
+      "Canonical write-up",
+      "Anthropic, Building effective agents (Dec 2024)"
+    ]
+  ],
+  "links": {
+    "docs": "https://www.anthropic.com/engineering/building-effective-agents"
+  },
+  "goodFor": [
+    "Learning how agents work",
+    "Small, single-purpose agents",
+    "Avoiding framework lock-in"
+  ],
+  "watchOut": [
+    "Crash recovery and resumption are on you",
+    "Context management grows complex over long runs"
+  ],
+  "how": [
+    "Send the conversation and tool schemas to the model API",
+    "If the response contains tool calls, dispatch each one in a switch",
+    "Append the tool results to the conversation",
+    "Repeat until the model returns a final answer or a step limit is hit"
+  ],
+  "researched": "2026-10-21"
 }

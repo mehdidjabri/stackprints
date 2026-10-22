@@ -2,5 +2,34 @@
   "order": 90,
   "id": "agent-phone-email",
   "name": "Agent phone & email",
-  "note": "Its own number and inbox"
+  "note": "Its own number and inbox",
+  "profile": "pattern",
+  "summary": "The agent gets its own email address or phone number instead of acting through the user's. It can sign up, receive codes and correspond under its own identity, and the user's inbox stays out of reach.",
+  "how": [
+    "Provision an inbox or number for the agent through an API",
+    "Agent sends and receives through webhooks",
+    "Use it for sign-ups, verification codes and outreach"
+  ],
+  "facts": [
+    [
+      "Example",
+      "AgentMail (inbox API, free tier of 3 inboxes / 3,000 emails a month)"
+    ],
+    [
+      "Trade-off",
+      "Separates identities, but services may treat agent accounts as bots"
+    ]
+  ],
+  "links": {
+    "example": "https://www.agentmail.to"
+  },
+  "goodFor": [
+    "Agents that need to receive verification codes",
+    "Keeping the user's personal inbox private"
+  ],
+  "watchOut": [
+    "Incoming mail is untrusted input (prompt injection)",
+    "Sites' terms may forbid automated accounts"
+  ],
+  "researched": "2026-10-21"
 }

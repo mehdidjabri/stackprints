@@ -2,6 +2,53 @@
   "order": 100,
   "id": "singularity",
   "name": "Singularity",
+  "url": "apptainer.org",
   "note": "HPC containers",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Singularity is a container platform for shared Linux systems and HPC clusters, where unprivileged users run containers packaged as single SIF files. The open-source project was renamed Apptainer and is part of the Linux Foundation; Sylabs maintained a separate SingularityCE fork. Hermes Agent lists it as one of its terminal backends.",
+  "facts": [
+    [
+      "Maintainer",
+      "Apptainer, part of the Linux Foundation"
+    ],
+    [
+      "License",
+      "BSD-3-Clause"
+    ],
+    [
+      "Image format",
+      "Single-file SIF"
+    ],
+    [
+      "Privileges",
+      "Runs as unprivileged user, blocks privilege escalation"
+    ],
+    [
+      "Latest release",
+      "Apptainer v1.5.4 (Sept 2026)"
+    ],
+    [
+      "Fork",
+      "SingularityCE (Sylabs); 4.6.0 expected to be its last Sylabs release"
+    ],
+    [
+      "Used by",
+      "Hermes Agent (terminal backend)"
+    ]
+  ],
+  "links": {
+    "site": "https://apptainer.org/",
+    "docs": "https://apptainer.org/documentation",
+    "repo": "https://github.com/apptainer/apptainer"
+  },
+  "goodFor": [
+    "Running agents on HPC clusters and shared servers",
+    "Packaging an environment as one portable file"
+  ],
+  "watchOut": [
+    "Linux only",
+    "Two forks under one name; SingularityCE development by Sylabs is ending"
+  ],
+  "researched": "2026-10-21"
 }

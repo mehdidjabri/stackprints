@@ -2,5 +2,41 @@
   "order": 20,
   "id": "laptop-node",
   "name": "Laptop node",
-  "note": "Screen, files, local apps"
+  "note": "Screen, files, local apps",
+  "profile": "pattern",
+  "summary": "A laptop or desktop joins the agent as a node so the agent can see the screen, read and move files and run local apps or commands on it. It is how a cloud- or server-hosted agent reaches the machine you actually work on.",
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw macOS, Windows and Linux apps; headless node host"
+    ],
+    [
+      "Typical tools",
+      "Screen capture, computer use, system.run, file transfer"
+    ],
+    [
+      "Trade-off",
+      "Full access to your real environment, with matching blast radius"
+    ]
+  ],
+  "links": {
+    "docs": "https://docs.openclaw.ai/nodes"
+  },
+  "goodFor": [
+    "Acting in desktop apps with no API",
+    "Working on local files and repos",
+    "Reaching a personal machine from a hosted agent"
+  ],
+  "watchOut": [
+    "Command execution on your main machine is risky",
+    "Needs broad OS permissions",
+    "Only works while the laptop is awake and online"
+  ],
+  "how": [
+    "Run the agent's desktop app or headless node host on the laptop",
+    "Pair it with the gateway",
+    "Grant screen recording, accessibility and file permissions",
+    "The agent invokes screen, file, exec or computer-use commands on that machine"
+  ],
+  "researched": "2026-10-21"
 }

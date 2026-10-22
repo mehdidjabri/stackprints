@@ -2,5 +2,45 @@
   "order": 10,
   "id": "phone",
   "name": "Phone",
-  "note": "Camera, location, notifications"
+  "note": "Camera, location, notifications",
+  "profile": "pattern",
+  "summary": "The agent uses your phone as a peripheral: a companion app pairs with the agent's gateway and exposes the phone's camera, location, notifications and screen as tools. The agent itself still runs elsewhere; the phone gives it eyes, a position and a way to reach you.",
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw iOS and Android nodes"
+    ],
+    [
+      "Typical tools",
+      "Photo and clip capture, location, notifications, screen recording"
+    ],
+    [
+      "Trade-off",
+      "Rich real-world context, but mobile OS limits background access"
+    ],
+    [
+      "Privacy",
+      "Camera and location access sit with a remote agent"
+    ]
+  ],
+  "links": {
+    "docs": "https://docs.openclaw.ai/nodes"
+  },
+  "goodFor": [
+    "Location-aware reminders and errands",
+    "Snapping photos for the agent to read",
+    "Pushing alerts that need a human"
+  ],
+  "watchOut": [
+    "iOS and Android restrict background capture",
+    "Sensitive sensors exposed to a remote agent",
+    "Battery drain from always-on pairing"
+  ],
+  "how": [
+    "Install the agent's companion app on the phone",
+    "Pair it with the gateway and approve the device",
+    "Grant OS permissions (camera, location, notifications)",
+    "The agent calls phone commands as tools when a task needs them"
+  ],
+  "researched": "2026-10-21"
 }

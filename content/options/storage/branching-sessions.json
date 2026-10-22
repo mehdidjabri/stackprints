@@ -4,5 +4,51 @@
   "name": "Branching sessions",
   "url": "pi.dev",
   "note": "Tree of conversation forks",
-  "logo": "pi"
+  "logo": "pi",
+  "profile": "pattern",
+  "summary": "The session is stored as a tree rather than a flat list: every entry points to its parent, and the current position is a leaf. Returning to an earlier point and continuing creates a new branch without erasing the old one, and only the active branch is sent to the model. pi, the minimal coding agent at pi.dev, implements this in its session files.",
+  "how": [
+    "Give every session entry an id and a parentId",
+    "Track the current leaf; new entries become its children",
+    "To branch, move the leaf to an earlier entry and continue from there",
+    "Build model context by walking from the leaf back to the root",
+    "Optionally summarise the abandoned branch and attach it to the new one"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "pi (/tree, /fork, /clone); Claude Code /branch copies the transcript to a new session"
+    ],
+    [
+      "pi storage",
+      "JSONL entries linked by id/parentId (session format v2+)"
+    ],
+    [
+      "Context",
+      "Only the active branch reaches the model"
+    ],
+    [
+      "Compaction",
+      "pi adds summary entries and does not delete originals"
+    ],
+    [
+      "Trade-off",
+      "Exploration without losing work, but harder to read and sync than a linear log"
+    ]
+  ],
+  "links": {
+    "site": "https://pi.dev",
+    "docs": "https://pi.dev/docs/latest/tree"
+  },
+  "goodFor": [
+    "Trying alternative approaches mid-session",
+    "Recovering from a bad turn",
+    "Keeping exploration history"
+  ],
+  "watchOut": [
+    "File edits on disk are not rewound by switching branches unless paired with checkpoints",
+    "Trees are harder to export and display than linear transcripts",
+    "Formats are tool-specific"
+  ],
+  "researched": "2026-10-21"
 }

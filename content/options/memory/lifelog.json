@@ -2,5 +2,46 @@
   "order": 110,
   "id": "lifelog",
   "name": "Lifelog",
-  "note": "Everything captured, searchable"
+  "note": "Everything captured, searchable",
+  "profile": "pattern",
+  "summary": "Capture everything the user sees and hears (screen snapshots, OCR text, audio transcripts) and make it searchable, so an agent can answer questions about past activity. Most implementations store data locally and expose it through search or an MCP server.",
+  "how": [
+    "Snapshot the screen every few seconds or on window change",
+    "Extract text with the accessibility tree or OCR, and transcribe audio",
+    "Index the result locally with timestamps",
+    "Expose search and a timeline to the user and to agents (for example via MCP)",
+    "Filter sensitive apps, sites and fields before storing"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Screenpipe, Windows Recall (Copilot+ PCs)"
+    ],
+    [
+      "Storage",
+      "Local snapshots plus a text index"
+    ],
+    [
+      "Disk",
+      "Windows Recall needs at least 50 GB free"
+    ],
+    [
+      "Trade-off",
+      "Complete recall, but large privacy surface and storage cost"
+    ]
+  ],
+  "links": {
+    "repo": "https://github.com/screenpipe/screenpipe"
+  },
+  "goodFor": [
+    "Answering \"what was I looking at last week?\"",
+    "Personal assistants that need ambient context",
+    "Meeting and work recall"
+  ],
+  "watchOut": [
+    "Captures passwords, messages and other people's data unless filtered",
+    "Raw capture is noisy; needs extraction before an agent can use it",
+    "Screenpipe is source-available, not open source"
+  ],
+  "researched": "2026-10-21"
 }

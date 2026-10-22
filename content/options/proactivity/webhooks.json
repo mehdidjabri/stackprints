@@ -2,5 +2,37 @@
   "order": 40,
   "id": "webhooks",
   "name": "Webhooks",
-  "note": "Events from other systems"
+  "note": "Events from other systems",
+  "profile": "pattern",
+  "summary": "External systems call an HTTP endpoint when something happens (a payment, a GitHub event, a form submission), and that call wakes the agent with the event as input. The agent reacts only to real events, so there is no polling cost.",
+  "how": [
+    "Expose an HTTPS endpoint for the agent",
+    "Register it with the source system (GitHub, Stripe, etc.)",
+    "Verify the signature on each incoming request",
+    "Map the event to a prompt or a session and run the agent",
+    "Return quickly and process long work in the background"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw (Gateway HTTP hooks)"
+    ],
+    [
+      "Trade-off",
+      "Real-time and cheap at idle, but needs a public endpoint and per-source setup"
+    ]
+  ],
+  "links": {
+    "docs": "https://docs.openclaw.ai/automation/cron-jobs/webhooks"
+  },
+  "goodFor": [
+    "Reacting to events in other systems",
+    "Avoiding polling loops"
+  ],
+  "watchOut": [
+    "Endpoint must be public and authenticated",
+    "Payloads are untrusted input",
+    "Senders retry, so handlers must be idempotent"
+  ],
+  "researched": "2026-10-21"
 }

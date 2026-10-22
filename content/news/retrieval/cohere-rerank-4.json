@@ -1,0 +1,23 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "Introducing Rerank 5: precise, efficient enterprise document retrieval",
+      "url": "https://cohere.com/blog/rerank-5",
+      "source": "cohere.com"
+    },
+    {
+      "date": "2025-12-11",
+      "title": "Introducing Rerank 4: Cohere’s most powerful reranker yet",
+      "url": "https://cohere.com/blog/rerank-4",
+      "source": "cohere.com"
+    },
+    {
+      "date": "2025-12-10",
+      "title": "Cohere’s Rerank 4 quadruples the context window over 3.5 to cut agent errors and boost enterprise search accuracy",
+      "url": "https://venturebeat.com/ai/coheres-rerank-4-quadruples-the-context-window-to-cut-agent-errors-and-boost",
+      "source": "venturebeat.com"
+    }
+  ]
+}

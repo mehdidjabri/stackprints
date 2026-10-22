@@ -4,5 +4,58 @@
   "name": "Vercel Drives",
   "url": "vercel.com",
   "note": "Persistent files for stateful agents",
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Vercel Drives is persistent storage mounted as a directory inside a Vercel Sandbox. An agent's workspace or file-based memory lives on the drive, so a later sandbox can mount it and continue where the last run stopped. Drives can be forked for parallel workers or shared read-only through snapshots.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "Status",
+      "Generally available since 2026-10-15 (Hobby, Pro, Enterprise)"
+    ],
+    [
+      "Size",
+      "1 TiB default (1 GiB on Hobby), 16 TiB default max quota"
+    ],
+    [
+      "Mounts",
+      "Up to 4 drives per sandbox; one read-write mount at a time"
+    ],
+    [
+      "Sharing",
+      "Read-only point-in-time snapshots; writable forks that never merge back"
+    ],
+    [
+      "Pricing",
+      "$0.05/GB-month storage plus reads and writes"
+    ],
+    [
+      "Region",
+      "One region per drive, iad1 by default"
+    ],
+    [
+      "SDKs",
+      "TypeScript, Python, sandbox CLI"
+    ]
+  ],
+  "links": {
+    "site": "https://vercel.com/blog/introducing-vercel-drives-persistent-storage-for-agents",
+    "docs": "https://vercel.com/docs/sandbox/concepts/drives",
+    "pricing": "https://vercel.com/docs/sandbox/pricing",
+    "changelog": "https://vercel.com/changelog/vercel-drives-is-now-generally-available"
+  },
+  "goodFor": [
+    "Agent workspaces that outlive a sandbox",
+    "Shared dependency or dataset caches",
+    "Forking a base workspace for parallel agents"
+  ],
+  "watchOut": [
+    "Only usable mounted in a Vercel Sandbox",
+    "Only paths under the mount persist; the rest of the sandbox is lost",
+    "Sandbox region must match the drive's region"
+  ],
+  "researched": "2026-10-21"
 }

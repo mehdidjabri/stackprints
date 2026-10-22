@@ -2,5 +2,47 @@
   "order": 20,
   "id": "subagents",
   "name": "Subagents",
-  "note": "Isolated context, parallel, report back"
+  "note": "Isolated context, parallel, report back",
+  "profile": "pattern",
+  "summary": "A main agent hands self-contained subtasks to subagents, each running in its own fresh context window, often in parallel. Each subagent returns only a short result, so the main context stays clean. Claude Code subagents and Anthropic's research system use this orchestrator-worker shape.",
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, Anthropic Research, LangChain subagents"
+    ],
+    [
+      "Strength",
+      "Keeps the main context small; parallel work"
+    ],
+    [
+      "Token cost",
+      "~15x a chat interaction in Anthropic's research system (vendor-reported)"
+    ],
+    [
+      "Trade-off",
+      "Subagents miss context the main agent did not pass on"
+    ]
+  ],
+  "how": [
+    "Main agent splits off a self-contained subtask",
+    "Spawn a subagent with its own prompt, tools and empty context",
+    "Run several subagents in parallel when the subtasks are independent",
+    "Each subagent returns a condensed result",
+    "Main agent merges the results and continues"
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/sub-agents",
+    "site": "https://www.anthropic.com/engineering/multi-agent-research-system"
+  },
+  "goodFor": [
+    "Broad research and codebase exploration",
+    "Parallel, independent subtasks",
+    "Protecting the main context window"
+  ],
+  "watchOut": [
+    "Much higher token use",
+    "Subagents making conflicting decisions on coupled work",
+    "Results are only as good as the handoff prompt"
+  ],
+  "researched": "2026-10-21"
 }

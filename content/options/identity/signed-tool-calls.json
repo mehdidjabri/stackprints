@@ -2,5 +2,39 @@
   "order": 80,
   "id": "signed-tool-calls",
   "name": "Signed tool calls",
-  "note": "Identity-signed execution"
+  "note": "Identity-signed execution",
+  "profile": "pattern",
+  "summary": "The agent signs each outbound request or action with a key tied to its identity, so the receiving service can verify who sent it and that it wasn't altered. Web Bot Auth does this for HTTP requests; AP2 does it for payment mandates.",
+  "how": [
+    "Agent operator publishes a public key directory",
+    "Agent signs each request (e.g. HTTP Message Signatures, RFC 9421)",
+    "Receiver fetches the key and verifies the signature",
+    "Receiver applies its own policy to the verified identity"
+  ],
+  "facts": [
+    [
+      "Standards",
+      "IETF Web Bot Auth draft (Signature-Agent header, JWKS directory); AP2 signed mandates"
+    ],
+    [
+      "Status",
+      "Web Bot Auth is an IETF working-group draft (Sept 2026)"
+    ],
+    [
+      "Trade-off",
+      "Verifiable identity, but says nothing about what the agent may do"
+    ]
+  ],
+  "links": {
+    "spec": "https://datatracker.ietf.org/doc/html/draft-ietf-webbotauth-httpsig-protocol"
+  },
+  "goodFor": [
+    "Agents that browse or call APIs at scale and want to be recognized",
+    "Non-repudiation for high-value actions"
+  ],
+  "watchOut": [
+    "Still drafts; receiver support varies",
+    "Key management and rotation are on you"
+  ],
+  "researched": "2026-10-21"
 }

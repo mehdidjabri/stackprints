@@ -3,5 +3,32 @@
   "id": "requesty",
   "name": "Requesty",
   "url": "requesty.ai",
-  "note": "Price and availability routing"
+  "note": "Price and availability routing",
+  "profile": "product",
+  "summary": "Requesty is a hosted LLM gateway with an OpenAI-compatible API in front of 600+ models from 30+ providers. It routes by cost, latency or availability, with failover chains and weighted load balancing. It adds budgets, spend alerts, PII masking and an EU endpoint for data residency.",
+  "facts": [
+    ["Company", "Requesty"],
+    ["Models", "600+ from 30+ providers"],
+    ["Pricing", "Provider token prices plus 5% fee on credit top-ups"],
+    ["BYOK", "Yes"],
+    ["API", "OpenAI-compatible, US and EU endpoints"],
+    ["Routing", "Cost, latency and availability; failover; load balancing"],
+    ["Self-hostable", "No"]
+  ],
+  "links": {
+    "site": "https://www.requesty.ai",
+    "docs": "https://docs.requesty.ai",
+    "changelog": "https://www.requesty.ai/blog"
+  },
+  "goodFor": [
+    "EU data residency for model traffic",
+    "Per-user budgets and spend alerts",
+    "Drop-in OpenAI-compatible base URL"
+  ],
+  "watchOut": [
+    "5% fee on top of provider prices",
+    "Smaller company than larger gateways",
+    "Hosted only"
+  ],
+  "researched": "2026-10-21"
 }

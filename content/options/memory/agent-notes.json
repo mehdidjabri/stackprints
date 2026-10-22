@@ -2,5 +2,45 @@
   "order": 100,
   "id": "agent-notes",
   "name": "Agent notes",
-  "note": "Agent's own notes across channels"
+  "note": "Agent's own notes across channels",
+  "profile": "pattern",
+  "summary": "The agent writes its own notes through a memory tool and reads them back in later sessions, whichever channel the user reaches it on (CLI, Telegram, Slack). Notes are small and bounded, so the agent has to decide what is worth keeping.",
+  "how": [
+    "Give the agent a memory tool with add, edit and remove actions",
+    "Store notes in a small file or record shared by all channels",
+    "Inject the notes into the system prompt at session start",
+    "Have the agent consolidate when the store is full",
+    "Pair with full-text search over past sessions for specifics"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Hermes Agent (MEMORY.md and USER.md), Claude Code (auto memory)"
+    ],
+    [
+      "Storage",
+      "Bounded text files written by the agent"
+    ],
+    [
+      "Example limit",
+      "Hermes: 2,200 chars for agent notes, 1,375 for user profile"
+    ],
+    [
+      "Trade-off",
+      "Cheap and transparent, but limited by what the agent chooses to write"
+    ]
+  ],
+  "links": {
+    "docs": "https://hermes-agent.nousresearch.com/docs/user-guide/features/memory"
+  },
+  "goodFor": [
+    "One agent reachable from several channels",
+    "Remembering user preferences and corrections",
+    "Low-cost memory without an external service"
+  ],
+  "watchOut": [
+    "Hard size caps force the agent to drop older notes",
+    "Mid-session writes may not appear until the next session"
+  ],
+  "researched": "2026-10-21"
 }

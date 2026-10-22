@@ -3,5 +3,54 @@
   "id": "turbopuffer",
   "name": "turbopuffer",
   "url": "turbopuffer.com",
-  "note": "Object-storage vector search"
+  "note": "Object-storage vector search",
+  "profile": "product",
+  "summary": "turbopuffer is a hosted search engine that keeps all data on object storage (S3) and caches active namespaces on NVMe SSD and memory. It offers vector search (dense and sparse), BM25 full-text search, regex and filtering, aimed at large multi-tenant workloads where cost per stored document matters.",
+  "facts": [
+    [
+      "Architecture",
+      "Object storage as source of truth, SSD and memory cache"
+    ],
+    [
+      "Search",
+      "Dense and sparse vectors, BM25 full-text, regex, filters"
+    ],
+    [
+      "Deployment",
+      "Multi-tenant, single-tenant or BYOC"
+    ],
+    [
+      "Pricing",
+      "Usage-based; $16/mo minimum (Launch), $256/mo (Scale)"
+    ],
+    [
+      "Scale",
+      "1T+ documents, 100k+ queries/s in production (vendor-reported)"
+    ],
+    [
+      "Latency",
+      "Warm vector p50 14 ms on 10M docs (vendor-reported)"
+    ],
+    [
+      "Customers",
+      "Anthropic, Notion, Linear, Atlassian, Ramp (per site)"
+    ]
+  ],
+  "links": {
+    "site": "https://turbopuffer.com",
+    "docs": "https://turbopuffer.com/docs",
+    "pricing": "https://turbopuffer.com/pricing",
+    "blog": "https://turbopuffer.com/blog"
+  },
+  "goodFor": [
+    "Many namespaces, e.g. one per user or tenant",
+    "Large corpora where storage cost dominates",
+    "Combined vector and full-text search"
+  ],
+  "watchOut": [
+    "Cold queries are much slower (p90 ~1.2 s on 1M docs, vendor-reported)",
+    "Closed source and hosted only, no self-host outside BYOC",
+    "Storage engine v3 redesign announced Sept 2026"
+  ],
+  "researched": "2026-10-21"
 }

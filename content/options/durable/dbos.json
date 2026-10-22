@@ -4,5 +4,55 @@
   "name": "DBOS",
   "url": "dbos.dev",
   "note": "Postgres-backed durability",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "DBOS is an open-source library that adds durable workflows, queues and schedules to an application by checkpointing workflow and step state in Postgres. There is no separate orchestration server: the library runs inside your process and recovers interrupted workflows from the database. DBOS Conductor is an optional control plane for monitoring and managing workflows.",
+  "facts": [
+    [
+      "Company",
+      "DBOS, Inc."
+    ],
+    [
+      "License",
+      "MIT (Transact libraries)"
+    ],
+    [
+      "Languages",
+      "Python, TypeScript, Go, Java, Rust"
+    ],
+    [
+      "Storage",
+      "Your Postgres database"
+    ],
+    [
+      "Architecture",
+      "In-process library, no orchestrator to run"
+    ],
+    [
+      "Pricing",
+      "Open-source library free; paid DBOS Pro tooling and support"
+    ],
+    [
+      "GitHub stars",
+      "~1.6k (Python library)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.dbos.dev",
+    "docs": "https://docs.dbos.dev",
+    "repo": "https://github.com/dbos-inc/dbos-transact-py",
+    "pricing": "https://dbos.dev/dbos-pricing",
+    "blog": "https://www.dbos.dev/blog",
+    "x": "https://x.com/DBOS_Inc"
+  },
+  "goodFor": [
+    "Teams already running Postgres",
+    "Adding durability without new infrastructure",
+    "Self-hosted or air-gapped setups"
+  ],
+  "watchOut": [
+    "Throughput is bounded by your Postgres",
+    "Smaller community than Temporal"
+  ],
+  "researched": "2026-10-21"
 }

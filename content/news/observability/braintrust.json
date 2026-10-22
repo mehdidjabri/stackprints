@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "Run evals 50% cheaper with workflow evals",
+      "url": "https://www.braintrust.dev/blog/workflow-evals",
+      "source": "braintrust.dev"
+    },
+    {
+      "date": "2026-10-08",
+      "title": "Application logs and agent traces in one view",
+      "url": "https://www.braintrust.dev/blog/application-logs",
+      "source": "braintrust.dev"
+    },
+    {
+      "date": "2026-09-24",
+      "title": "Faster queries for debugging production agents with Nitro",
+      "url": "https://www.braintrust.dev/blog/nitro",
+      "source": "braintrust.dev"
+    },
+    {
+      "date": "2026-09-03",
+      "title": "One connected system for agent observability",
+      "url": "https://www.braintrust.dev/blog/active-observability-loop-patterns-debugger",
+      "source": "braintrust.dev"
+    },
+    {
+      "date": "2026-02-17",
+      "title": "Braintrust's series B: building the infrastructure for production AI",
+      "url": "https://www.braintrust.dev/blog/announcing-series-b",
+      "source": "braintrust.dev"
+    }
+  ]
+}

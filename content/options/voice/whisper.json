@@ -5,5 +5,51 @@
   "url": "github.com/openai/whisper",
   "note": "Local speech-to-text",
   "open": true,
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "product",
+  "summary": "Whisper is OpenAI's open-source speech recognition model and Python package. It runs locally on CPU or GPU and handles multilingual transcription, translation to English and language identification. Model sizes range from tiny (39M parameters) to large (1.55B).",
+  "facts": [
+    [
+      "Maker",
+      "OpenAI"
+    ],
+    [
+      "License",
+      "MIT (code and weights)"
+    ],
+    [
+      "Models",
+      "tiny, base, small, medium, large, turbo"
+    ],
+    [
+      "VRAM",
+      "~1 GB (tiny) to ~10 GB (large)"
+    ],
+    [
+      "Default",
+      "turbo (809M, optimized large-v3)"
+    ],
+    [
+      "GitHub stars",
+      "111K"
+    ],
+    [
+      "Needs",
+      "Python, PyTorch, ffmpeg"
+    ]
+  ],
+  "links": {
+    "repo": "https://github.com/openai/whisper"
+  },
+  "goodFor": [
+    "Private, offline transcription",
+    "Batch transcribing recordings",
+    "A free baseline for STT"
+  ],
+  "watchOut": [
+    "Transcribes files; no built-in streaming mode for live voice agents",
+    "The turbo model is not trained for translation",
+    "Releases are infrequent (last tagged June 2025)"
+  ],
+  "researched": "2026-10-21"
 }

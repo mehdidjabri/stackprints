@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-19",
+      "title": "How Numan built an eval-first AI health coach with LangGraph and LangSmith",
+      "url": "https://www.langchain.com/blog/how-numan-built-an-eval-first-ai-health-coach-with-langgraph-and-langsmith",
+      "source": "langchain.com"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "LangSmith Cloud changelog: October 12-19, 2026",
+      "url": "https://docs.langchain.com/langsmith/changelog#october-12-19-2026",
+      "source": "docs.langchain.com"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "Search agent traces by behavior with AI Search in LangSmith",
+      "url": "https://www.langchain.com/blog/agent-traces-ai-search-langsmith",
+      "source": "langchain.com"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "How Orange Business Built Live Intelligence on LangChain and LangSmith",
+      "url": "https://www.langchain.com/blog/how-orange-business-built-live-intelligence-on-langchain-and-langsmith",
+      "source": "langchain.com"
+    }
+  ]
+}

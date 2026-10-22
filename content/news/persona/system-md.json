@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-07-29",
+      "title": "Pi v0.83.0: SYSTEM.md and APPEND_SYSTEM.md shown in startup context listing",
+      "url": "https://github.com/earendil-works/pi/releases/tag/v0.83.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-01-26",
+      "title": "Pi v0.50.0: hot reload of AGENTS.md, SYSTEM.md and APPEND_SYSTEM.md",
+      "url": "https://github.com/earendil-works/pi/releases/tag/v0.50.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-01-15",
+      "title": "Pi v0.46.0: support APPEND_SYSTEM.md",
+      "url": "https://github.com/earendil-works/pi/releases/tag/v0.46.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2025-12-25",
+      "title": "Pi v0.29.1: automatic custom SYSTEM.md loading",
+      "url": "https://github.com/earendil-works/pi/releases/tag/v0.29.1",
+      "source": "github.com"
+    }
+  ]
+}

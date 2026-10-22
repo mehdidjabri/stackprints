@@ -4,5 +4,23 @@
   "name": "Together",
   "url": "together.ai",
   "note": "Broad open-model catalog",
-  "logo": "together"
+  "logo": "together",
+  "profile": "product",
+  "summary": "Together AI is an inference and training cloud for open models. It offers serverless per-token APIs across chat, vision, image, audio, video and embeddings, plus provisioned throughput, dedicated endpoints, GPU clusters, sandboxes and fine-tuning. Teams typically start on serverless and move to dedicated capacity as volume grows.",
+  "facts": [
+    ["Products", "Serverless, provisioned throughput, dedicated inference, GPU clusters, fine-tuning, sandbox"],
+    ["Catalog", "About 32 serverless chat models plus image, video and audio models"],
+    ["Pricing", "Per 1M tokens serverless; hourly per GPU for dedicated (H100 $5.49/h on-demand)"],
+    ["GPUs", "H100, H200, B200, B300, GB200/GB300 NVL72"],
+    ["Fine-tuning", "LoRA and full fine-tuning, priced per 1M training tokens"],
+    ["Funding", "$800M Series C at $8.3B valuation, July 2026"]
+  ],
+  "links": {
+    "site": "https://www.together.ai",
+    "pricing": "https://www.together.ai/pricing",
+    "changelog": "https://www.together.ai/blog"
+  },
+  "goodFor": ["Trying many open models behind one API", "Moving from serverless to dedicated GPUs on one vendor"],
+  "watchOut": ["Catalog and prices change often; check per-model rates", "Batch discounts are not published on the pricing page"],
+  "researched": "2026-10-21"
 }

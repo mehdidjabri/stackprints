@@ -1,0 +1,23 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-25",
+      "title": "Claude Code v2.1.283: /doctor prompt-audit for CLAUDE.md files",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.283",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Claude Code v2.1.277: reads AGENTS.md when no CLAUDE.md exists",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.277",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-14",
+      "title": "Claude Code v2.1.271: omitClaudeMd option for subagents",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.271",
+      "source": "github.com"
+    }
+  ]
+}

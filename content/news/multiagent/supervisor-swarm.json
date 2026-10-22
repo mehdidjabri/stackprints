@@ -1,0 +1,17 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2025-12-04",
+      "title": "langgraph-swarm==0.1.0",
+      "url": "https://github.com/langchain-ai/langgraph-swarm-py/releases/tag/langgraph-swarm%3D%3D0.1.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2025-11-19",
+      "title": "langgraph-supervisor==0.0.31",
+      "url": "https://github.com/langchain-ai/langgraph-supervisor-py/releases/tag/langgraph-supervisor%3D%3D0.0.31",
+      "source": "github.com"
+    }
+  ]
+}

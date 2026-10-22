@@ -2,5 +2,44 @@
   "order": 40,
   "id": "web-search",
   "name": "Web search",
-  "note": "Live search grounding"
+  "note": "Live search grounding",
+  "profile": "pattern",
+  "summary": "Giving the model a tool that runs live web searches and returns results with citations, so answers can use information newer than its training data. Most model APIs offer it as a built-in server-side tool; alternatively the harness calls a search API such as Exa, Tavily or Parallel.",
+  "how": [
+    "Enable the provider's built-in search tool or wire a search API as a tool",
+    "Let the model decide when to search and with what query",
+    "Feed results back with source URLs",
+    "Show citations to the user"
+  ],
+  "facts": [
+    [
+      "Anthropic",
+      "web_search server tool, $10 per 1,000 searches plus tokens"
+    ],
+    [
+      "OpenAI",
+      "web_search tool in the Responses API, domain filters up to 100"
+    ],
+    [
+      "Controls",
+      "Allowed/blocked domains, max uses, user location"
+    ],
+    [
+      "Trade-off",
+      "Fresh facts, but results add tokens and injection risk"
+    ]
+  ],
+  "links": {
+    "docs": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool"
+  },
+  "goodFor": [
+    "Questions about recent events or prices",
+    "Grounding answers with citations"
+  ],
+  "watchOut": [
+    "Search results are untrusted input",
+    "Results count as input tokens on every later turn",
+    "Built-in tools differ in availability across clouds"
+  ],
+  "researched": "2026-10-21"
 }

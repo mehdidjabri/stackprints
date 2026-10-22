@@ -5,5 +5,53 @@
   "url": "pipecat.ai",
   "note": "Voice agent framework",
   "open": true,
-  "logo": "pipecat"
+  "logo": "pipecat",
+  "profile": "product",
+  "summary": "Pipecat is an open-source Python framework for building realtime voice and multimodal agents as pipelines of STT, LLM, TTS and transport services. It is built and maintained by Daily, which also runs Pipecat Cloud for hosting. Client SDKs cover web, mobile and C++.",
+  "facts": [
+    [
+      "Maintainer",
+      "Daily"
+    ],
+    [
+      "License",
+      "BSD-2-Clause"
+    ],
+    [
+      "Language",
+      "Python; clients for JS, React, React Native, iOS, Android, C++"
+    ],
+    [
+      "Integrations",
+      "150+ AI services (vendor-reported)"
+    ],
+    [
+      "GitHub stars",
+      "16.7K"
+    ],
+    [
+      "Latest release",
+      "v1.13.0 (Oct 2026)"
+    ],
+    [
+      "Hosting",
+      "Self-hosted or Pipecat Cloud"
+    ]
+  ],
+  "links": {
+    "site": "https://www.pipecat.ai",
+    "docs": "https://docs.pipecat.ai",
+    "repo": "https://github.com/pipecat-ai/pipecat",
+    "changelog": "https://github.com/pipecat-ai/pipecat/releases"
+  },
+  "goodFor": [
+    "Provider-agnostic voice pipelines",
+    "Custom frame processing between stages",
+    "Voice agents deployed on any infrastructure"
+  ],
+  "watchOut": [
+    "Python-only server side",
+    "Fast release cadence; v1.0 came with a migration guide"
+  ],
+  "researched": "2026-10-21"
 }

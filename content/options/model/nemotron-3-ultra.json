@@ -5,5 +5,69 @@
   "url": "nvidia.com",
   "note": "NVIDIA open reasoning",
   "open": true,
-  "logo": "nvidia"
+  "logo": "nvidia",
+  "profile": "model",
+  "summary": "Nemotron 3 Ultra is NVIDIA's open frontier reasoning and orchestration model, a 550B-parameter LatentMoE that mixes Mamba-2, mixture-of-experts and attention layers. NVIDIA releases the weights, data and training recipes, and the model is served widely through NIM, cloud platforms and inference providers.",
+  "facts": [
+    [
+      "Lab",
+      "NVIDIA"
+    ],
+    [
+      "Parameters",
+      "550B total, 55B active"
+    ],
+    [
+      "License",
+      "OpenMDW-1.1"
+    ],
+    [
+      "Context",
+      "Up to 1M tokens (serving default 256K)"
+    ],
+    [
+      "Minimum hardware",
+      "8x B200 or 8x H200 or 16x H100"
+    ],
+    [
+      "SWE-bench Verified",
+      "70.7% (vendor-reported)"
+    ],
+    [
+      "Reasoning",
+      "Switchable on or off"
+    ],
+    [
+      "Precision",
+      "Pretrained in NVFP4"
+    ]
+  ],
+  "links": {
+    "site": "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-powers-faster-more-efficient-reasoning-for-long-running-agents/",
+    "docs": "https://developer.nvidia.com/nemotron",
+    "repo": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16"
+  },
+  "goodFor": [
+    "Fully open stack (weights, data, recipes)",
+    "High-throughput serving on NVIDIA GPUs",
+    "Orchestrating long-running agents"
+  ],
+  "watchOut": [
+    "Text only",
+    "Needs a multi-GPU node to self-host",
+    "Newer Nemotron 3.5 models already out"
+  ],
+  "model": {
+    "lab": "NVIDIA",
+    "released": "2026-06-04",
+    "context": "1M tokens",
+    "priceIn": "$0.60 / 1M tokens",
+    "priceOut": "$2.40 / 1M tokens",
+    "modalities": [
+      "text"
+    ],
+    "weights": "open",
+    "openrouter": "nvidia/nemotron-3-ultra-550b-a55b"
+  },
+  "researched": "2026-10-21"
 }

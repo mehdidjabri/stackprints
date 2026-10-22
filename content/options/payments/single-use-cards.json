@@ -4,5 +4,47 @@
   "name": "Single-use cards",
   "url": "stripe.com",
   "note": "Stripe Link cards you approve",
-  "logo": "stripe"
+  "logo": "stripe",
+  "profile": "product",
+  "summary": "Stripe's Link wallet for agents issues a one-time-use virtual card (or a Shared Payment Token) for one purchase the user has approved. The agent creates a spend request with amount, merchant and context; the user approves it in Link; the agent never sees the real card.",
+  "facts": [
+    [
+      "Company",
+      "Stripe (Link)"
+    ],
+    [
+      "Launched",
+      "2026-04-29"
+    ],
+    [
+      "Credentials",
+      "One-time virtual card, recurring card, Shared Payment Token, Link Pay Token"
+    ],
+    [
+      "Approval",
+      "Per spend request on web or Link app; 30-minute window"
+    ],
+    [
+      "Availability",
+      "US and Canadian customers"
+    ],
+    [
+      "Tooling",
+      "link-cli, OAuth with payment_methods.agentic scope"
+    ]
+  ],
+  "links": {
+    "site": "https://link.com/agents",
+    "docs": "https://docs.stripe.com/agentic-commerce/link-cli/use-link-wallet-pay-online",
+    "blog": "https://stripe.com/blog/giving-agents-the-ability-to-pay"
+  },
+  "goodFor": [
+    "Agents buying at any card-accepting site",
+    "Per-purchase human approval with capped amounts"
+  ],
+  "watchOut": [
+    "Every purchase still needs a human approval",
+    "Card details can leak into transcripts unless written to a file"
+  ],
+  "researched": "2026-10-21"
 }

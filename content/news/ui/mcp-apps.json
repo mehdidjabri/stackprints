@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-05-27", "title": "MCP Apps tool lifecycle updates", "url": "https://developers.openai.com/apps-sdk/changelog", "source": "developers.openai.com" },
+    { "date": "2026-05-21", "title": "The 2026-07-28 MCP Specification Release Candidate", "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/", "source": "blog.modelcontextprotocol.io" },
+    { "date": "2026-03-25", "title": "Interactive apps in Claude for iOS and Android", "url": "https://support.claude.com/en/articles/12138966-release-notes", "source": "support.claude.com" },
+    { "date": "2026-03-11", "title": "Understanding MCP Extensions", "url": "https://blog.modelcontextprotocol.io/posts/2026-03-11-understanding-mcp-extensions/", "source": "blog.modelcontextprotocol.io" },
+    { "date": "2026-02-22", "title": "MCP Apps compatibility", "url": "https://developers.openai.com/apps-sdk/changelog", "source": "developers.openai.com" }
+  ]
+}

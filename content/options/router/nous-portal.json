@@ -2,7 +2,32 @@
   "order": 70,
   "id": "nous-portal",
   "name": "Nous Portal",
-  "url": "nousresearch.com",
+  "url": "portal.nousresearch.com",
   "note": "300+ models plus tool gateway",
-  "logo": "nousresearch"
+  "logo": "nousresearch",
+  "profile": "product",
+  "summary": "Nous Portal is Nous Research's account layer for Hermes Agent: one sign-in gives access to a model catalog, a tool gateway and cloud hosting. Models and hosted tools (web search, scraping, image generation, browser automation, speech) draw from one credit balance. Paid tiers are monthly subscriptions that include credits.",
+  "facts": [
+    ["Company", "Nous Research, Inc."],
+    ["Models", "300+ cited (tier pages say 200+)"],
+    ["Tool gateway", "Web search, scraping, image generation, browser automation, speech; billed per use"],
+    ["Pricing", "Free (free models only); Plus $20, Super $100, Ultra $200 per month with included credits"],
+    ["Alternative", "Connect an eligible ChatGPT plan for supported inference"],
+    ["Self-hostable", "No"]
+  ],
+  "links": {
+    "site": "https://portal.nousresearch.com",
+    "x": "https://x.com/NousResearch"
+  },
+  "goodFor": [
+    "Hermes Agent users wanting one account for models and tools",
+    "Bundling hosted tools with model credits",
+    "Predictable monthly spend"
+  ],
+  "watchOut": [
+    "Built around Hermes Agent rather than as a general gateway",
+    "Credit rollover is capped per tier",
+    "Model count differs between pages"
+  ],
+  "researched": "2026-10-21"
 }

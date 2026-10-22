@@ -2,5 +2,32 @@
   "order": 70,
   "id": "avatar-handle",
   "name": "Avatar & handle",
-  "note": "Name, face, @handle, own email"
+  "note": "Name, face, @handle, own email",
+  "profile": "pattern",
+  "summary": "Giving an agent a public identity: a name, a face, a social @handle and its own email address, so it can act in channels as itself rather than as the user. OpenClaw stores name, emoji and avatar in IDENTITY.md; services such as AgentMail issue inboxes to agents by API.",
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw (IDENTITY.md avatar), agent inbox APIs such as AgentMail"
+    ],
+    [
+      "Trade-off",
+      "Clear separation from the user, but more accounts to manage"
+    ]
+  ],
+  "how": [
+    "Pick a name and avatar and record them (e.g. IDENTITY.md)",
+    "Create channel accounts or bot users under that name",
+    "Give the agent its own inbox instead of the user's",
+    "Make it clear to others they are talking to an agent"
+  ],
+  "goodFor": [
+    "Agents that message other people",
+    "Keeping agent activity out of your personal accounts"
+  ],
+  "watchOut": [
+    "Platform terms may restrict automated accounts",
+    "Others should know they are dealing with an agent"
+  ],
+  "researched": "2026-10-21"
 }

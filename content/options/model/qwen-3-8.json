@@ -5,5 +5,65 @@
   "url": "qwen.ai",
   "note": "Alibaba open family",
   "open": true,
-  "logo": "qwen"
+  "logo": "qwen",
+  "profile": "model",
+  "summary": "Qwen3.8 is Alibaba's Qwen model family, released in August 2026. It mixes open-weight models, such as the dense 27B and the 2.4T-parameter mixture-of-experts model, with hosted variants like Qwen3.8 Max, which adds vision input and built-in tools on top of the open 2.4T weights.",
+  "facts": [
+    [
+      "Lab",
+      "Qwen team, Alibaba"
+    ],
+    [
+      "Open sizes",
+      "27B dense (Apache-2.0); 2.4T total / 95B active MoE"
+    ],
+    [
+      "Hosted",
+      "Qwen3.8 Max, Qwen3.8 Flash, Omni Flash"
+    ],
+    [
+      "Context",
+      "262K native; about 1M with YaRN or on Max"
+    ],
+    [
+      "27B architecture",
+      "Hybrid Gated DeltaNet and Gated Attention"
+    ],
+    [
+      "SWE-bench Pro",
+      "67.7% for Max (vendor-reported)"
+    ],
+    [
+      "27B OSWorld-Verified",
+      "84.3% (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "repo": "https://huggingface.co/Qwen/Qwen3.8-27B"
+  },
+  "goodFor": [
+    "Self-hosted agents on a single node (27B)",
+    "Choice of sizes from small to frontier",
+    "Vision-language tasks with the 27B"
+  ],
+  "watchOut": [
+    "2.4T weights use a custom qwen3.8-max license",
+    "2.4T open model is text-only, thinking always on",
+    "Hosted Max features are not all in the open weights"
+  ],
+  "model": {
+    "lab": "Alibaba (Qwen)",
+    "released": "2026-08-12",
+    "context": "1M tokens",
+    "priceIn": "$2 / 1M tokens",
+    "priceOut": "$6 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video"
+    ],
+    "weights": "open",
+    "openrouter": "qwen/qwen3.8-max-0902"
+  },
+  "researched": "2026-10-21"
 }

@@ -5,5 +5,58 @@
   "url": "modelcontextprotocol.io",
   "note": "Model Context Protocol, tools and resources",
   "open": true,
-  "logo": "mcp"
+  "logo": "mcp",
+  "profile": "protocol",
+  "summary": "An open protocol that connects LLM applications (hosts and their clients) to servers that expose tools, resources and prompts, using JSON-RPC 2.0 messages. It was introduced by Anthropic and donated in December 2025 to the Agentic AI Foundation, a directed fund under the Linux Foundation. The 2026-07-28 spec made the core stateless and moved Tasks into an extension.",
+  "facts": [
+    [
+      "Steward",
+      "Agentic AI Foundation (Linux Foundation)"
+    ],
+    [
+      "Originated by",
+      "Anthropic (2024)"
+    ],
+    [
+      "Current spec",
+      "2026-07-28"
+    ],
+    [
+      "Wire format",
+      "JSON-RPC 2.0 over stdio or Streamable HTTP"
+    ],
+    [
+      "Server features",
+      "Tools, resources, prompts"
+    ],
+    [
+      "Extensions",
+      "Tasks, MCP Apps, Enterprise-Managed Authorization"
+    ],
+    [
+      "Tier 1 SDKs",
+      "TypeScript, Python, Go, C#"
+    ],
+    [
+      "Spec license",
+      "MIT"
+    ]
+  ],
+  "links": {
+    "site": "https://modelcontextprotocol.io",
+    "docs": "https://modelcontextprotocol.io/specification/latest",
+    "repo": "https://github.com/modelcontextprotocol/modelcontextprotocol",
+    "changelog": "https://blog.modelcontextprotocol.io/"
+  },
+  "goodFor": [
+    "Giving one agent access to many tools and data sources",
+    "Reusing integrations across hosts such as ChatGPT, Cursor and VS Code",
+    "Remote, authenticated tool servers"
+  ],
+  "watchOut": [
+    "Tool descriptions are untrusted input; prompt injection is a real risk",
+    "2026-07-28 spec deprecates Roots, Sampling, Logging and HTTP+SSE",
+    "Large tool catalogs consume context"
+  ],
+  "researched": "2026-10-21"
 }

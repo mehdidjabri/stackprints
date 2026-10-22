@@ -4,5 +4,53 @@
   "name": "Steel",
   "url": "steel.dev",
   "note": "Browser infrastructure",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Open-source browser API for agents with a managed cloud. It runs Chrome sessions you control over CDP with Puppeteer, Playwright or Selenium, and handles sessions, proxies, fingerprints and page-to-markdown conversion.",
+  "facts": [
+    [
+      "Company",
+      "Steel"
+    ],
+    [
+      "License",
+      "Apache-2.0 (steel-browser)"
+    ],
+    [
+      "GitHub stars",
+      "~8k"
+    ],
+    [
+      "Self-host",
+      "Docker image, Docker Compose, Railway, Render"
+    ],
+    [
+      "Pricing",
+      "Free $30 one-time credit; Scale $250/mo; $0.08–0.10 per browser-hour"
+    ],
+    [
+      "Max session",
+      "15 min (free) to 24 h (Enterprise)"
+    ],
+    [
+      "SDKs",
+      "Includes Rust and Go"
+    ]
+  ],
+  "links": {
+    "site": "https://steel.dev",
+    "docs": "https://docs.steel.dev",
+    "repo": "https://github.com/steel-dev/steel-browser",
+    "pricing": "https://steel.dev/pricing"
+  },
+  "goodFor": [
+    "Self-hosting browser infrastructure",
+    "Long-lived sessions with saved cookies",
+    "Teams wanting an open-source fallback"
+  ],
+  "watchOut": [
+    "Stealth browser is Enterprise-only in the cloud",
+    "Short session cap on the free plan"
+  ],
+  "researched": "2026-10-21"
 }

@@ -5,5 +5,60 @@
   "url": "nousresearch.com",
   "note": "Steerable open models",
   "open": true,
-  "logo": "nousresearch"
+  "logo": "nousresearch",
+  "profile": "model",
+  "summary": "Hermes 4 is Nous Research's family of open-weight hybrid reasoning models fine-tuned from Meta's Llama 3.1, where the model can think inside <think> tags or answer directly. Nous positions the series as steerable and low-refusal; Hermes 4.3, a 36B model on ByteDance's Seed-OSS base, followed in December 2025.",
+  "facts": [
+    [
+      "Lab",
+      "Nous Research"
+    ],
+    [
+      "Sizes",
+      "405B and 70B (Llama 3.1), 14B; 4.3 at 36B"
+    ],
+    [
+      "License",
+      "Llama 3 license (405B)"
+    ],
+    [
+      "Reasoning",
+      "Hybrid; toggle with thinking=True"
+    ],
+    [
+      "Hermes 4.3",
+      "512K context, trained on the Psyche network"
+    ],
+    [
+      "Formats",
+      "BF16, FP8, GGUF"
+    ]
+  ],
+  "links": {
+    "site": "https://nousresearch.com/introducing-hermes-4-3",
+    "repo": "https://huggingface.co/NousResearch/Hermes-4-405B"
+  },
+  "goodFor": [
+    "Steerable, low-refusal assistants",
+    "Local inference via GGUF builds",
+    "Fine-tuning experiments on open weights"
+  ],
+  "watchOut": [
+    "405B context is 131K on OpenRouter",
+    "Older Llama 3.1 base, behind 2026 frontier",
+    "Fewer hosted providers than major labs"
+  ],
+  "model": {
+    "lab": "Nous Research",
+    "released": "2025-08-26",
+    "context": "131K tokens",
+    "priceIn": "$1 / 1M tokens",
+    "priceOut": "$3 / 1M tokens",
+    "modalities": [
+      "text"
+    ],
+    "weights": "open",
+    "openrouter": "nousresearch/hermes-4-405b"
+  },
+  "researched": "2026-10-21"
 }

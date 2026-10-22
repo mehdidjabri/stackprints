@@ -1,0 +1,23 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "Restate 1.8: Mind the Queue",
+      "url": "https://restate.dev/blog/announcing-restate-1-8",
+      "source": "restate.dev"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "Restate raises $20M Series A to make Durable Execution a building block for every backend",
+      "url": "https://restate.dev/blog/announcing-series-a",
+      "source": "restate.dev"
+    },
+    {
+      "date": "2026-07-07",
+      "title": "Announcing Restate BYOC",
+      "url": "https://restate.dev/blog/announcing-restate-byoc",
+      "source": "restate.dev"
+    }
+  ]
+}

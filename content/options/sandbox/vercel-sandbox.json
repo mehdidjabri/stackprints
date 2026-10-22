@@ -3,6 +3,35 @@
   "id": "vercel-sandbox",
   "name": "Vercel Sandbox",
   "url": "vercel.com/sandbox",
-  "note": "Ephemeral microVMs, injected creds",
-  "logo": "vercel"
+  "note": "Firecracker microVMs, injected creds",
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Vercel Sandbox runs untrusted or agent-generated code in Firecracker microVMs, each with its own filesystem and network, driven by a JS SDK, Python SDK or CLI. Sandboxes persist state on stop by default, and a network firewall can broker credentials by injecting secrets into outbound requests so they never sit inside the sandbox. CPU is billed only while actively used.",
+  "facts": [
+    ["Isolation", "Firecracker microVMs"],
+    ["Persistence", "Auto-saves state on stop by default; snapshots and drives"],
+    ["Session length", "45 min (Hobby), 24 h (Pro, Enterprise)"],
+    ["Pricing", "Active CPU $0.128/h, memory $0.0212/GB-h (iad1, Pro)"],
+    ["Free tier", "Hobby: 5 Active CPU hours and 5,000 creations per month"],
+    ["Size", "Up to 32 vCPU / 64 GB RAM (Enterprise), 64 GB disk"],
+    ["Credentials", "Firewall brokers secrets into outbound requests"],
+    ["SDKs", "JavaScript/TypeScript, Python, CLI"]
+  ],
+  "links": {
+    "site": "https://vercel.com/sandbox",
+    "docs": "https://vercel.com/docs/sandbox",
+    "repo": "https://github.com/vercel/sandbox",
+    "pricing": "https://vercel.com/docs/sandbox/pricing",
+    "changelog": "https://vercel.com/changelog"
+  },
+  "goodFor": [
+    "Agents that wait on model calls (CPU billed only when active)",
+    "Keeping API keys out of the sandbox via credential brokering",
+    "Teams already deploying on Vercel"
+  ],
+  "watchOut": [
+    "Hobby sessions capped at 45 minutes",
+    "Memory is billed for the whole run, including idle time"
+  ],
+  "researched": "2026-10-21"
 }

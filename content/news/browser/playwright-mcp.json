@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-28",
+      "title": "Release v0.0.83",
+      "url": "https://github.com/microsoft/playwright-mcp/releases/tag/v0.0.83",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Release v0.0.82: WebMCP tools exposed as MCP tools",
+      "url": "https://github.com/microsoft/playwright-mcp/releases/tag/v0.0.82",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-14",
+      "title": "Release v0.0.81: experimental WebMCP tools",
+      "url": "https://github.com/microsoft/playwright-mcp/releases/tag/v0.0.81",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-01",
+      "title": "Release v0.0.80: recording tool that turns manual actions into Playwright code",
+      "url": "https://github.com/microsoft/playwright-mcp/releases/tag/v0.0.80",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-07-09",
+      "title": "Release v0.0.78: browser_find and mobile emulation",
+      "url": "https://github.com/microsoft/playwright-mcp/releases/tag/v0.0.78",
+      "source": "github.com"
+    }
+  ]
+}

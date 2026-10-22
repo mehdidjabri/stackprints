@@ -3,5 +3,49 @@
   "id": "parallel",
   "name": "Parallel",
   "url": "parallel.ai",
-  "note": "Deep web research API"
+  "note": "Deep web research API",
+  "profile": "product",
+  "summary": "Parallel offers web APIs for AI agents: Search, Extract, a Task API for structured deep research with citations, FindAll for building entity datasets, and Monitor for tracking web changes. It also has an OpenAI-compatible Responses/Chat API and a search MCP server.",
+  "facts": [
+    [
+      "APIs",
+      "Search, Extract, Task, FindAll, Monitor, Responses"
+    ],
+    [
+      "Search price",
+      "$1 / 1k (Turbo, Fast); $5 / 1k (Basic, Advanced)"
+    ],
+    [
+      "Task price",
+      "$5 to $2,400 per 1k requests by processor"
+    ],
+    [
+      "Free tier",
+      "$5 in credits per month"
+    ],
+    [
+      "MCP",
+      "Free Parallel Search MCP"
+    ],
+    [
+      "Data residency",
+      "EU option for Search and Extract (Oct 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://parallel.ai",
+    "docs": "https://docs.parallel.ai",
+    "pricing": "https://parallel.ai/pricing",
+    "changelog": "https://docs.parallel.ai/resources/changelog"
+  },
+  "goodFor": [
+    "Deep research with citations and confidence scores",
+    "Building lists of companies or people from a query",
+    "Monitoring pages for changes"
+  ],
+  "watchOut": [
+    "Higher Task processors cost much more per request",
+    "Async research runs take longer than plain search"
+  ],
+  "researched": "2026-10-21"
 }

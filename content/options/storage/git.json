@@ -3,5 +3,50 @@
   "id": "git",
   "name": "Git",
   "note": "Workspace as a repo",
-  "logo": "git"
+  "logo": "git",
+  "profile": "pattern",
+  "summary": "The agent's working files live in a git repository, and changes are committed or snapshotted as the agent works. History gives checkpoints, diffs and rollback; branches or worktrees let parallel runs work on separate copies. Some tools keep a separate shadow repository so the user's own git history is untouched.",
+  "how": [
+    "Run the agent inside a git repo, or create a shadow repo for its workspace",
+    "Commit or snapshot after each edit or at turn boundaries",
+    "Use diffs to review what the agent changed",
+    "Roll back by restoring an earlier commit or snapshot",
+    "Give parallel agents their own branch or worktree"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Aider (auto-commits), Hermes Agent and Docker docker-agent (shadow-git checkpoints)"
+    ],
+    [
+      "Aider",
+      "Commits each edit with a generated message; /undo discards the last change"
+    ],
+    [
+      "Hermes Agent",
+      "Opt-in shared shadow repo at ~/.hermes/checkpoints/store/"
+    ],
+    [
+      "docker-agent",
+      "Shadow repo of tree objects at turn boundaries; never writes commits"
+    ],
+    [
+      "Trade-off",
+      "Full history and diffs, but built for text files and adds commit noise"
+    ]
+  ],
+  "links": {
+    "docs": "https://aider.chat/docs/git.html"
+  },
+  "goodFor": [
+    "Coding agents",
+    "Undo and review of agent edits",
+    "Parallel work on branches or worktrees"
+  ],
+  "watchOut": [
+    "Auto-commits can clutter the user's history unless a shadow repo is used",
+    "Large binary files and datasets fit poorly",
+    "Captures files, not the conversation; pair it with a transcript store"
+  ],
+  "researched": "2026-10-21"
 }

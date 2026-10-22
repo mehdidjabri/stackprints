@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-20",
+      "title": "See the whole picture: A brand campaign built with Parallel",
+      "url": "https://parallel.ai/blog/see-the-whole-picture",
+      "source": "parallel.ai"
+    },
+    {
+      "date": "2026-09-23",
+      "title": "Data Connectors",
+      "url": "https://parallel.ai/blog/data-connectors",
+      "source": "parallel.ai"
+    },
+    {
+      "date": "2026-07-15",
+      "title": "Parallel and Google Cloud partnership",
+      "url": "https://parallel.ai/blog/google-cloud-partnership",
+      "source": "parallel.ai"
+    },
+    {
+      "date": "2026-05-19",
+      "title": "Introducing Turbo mode for the Parallel Search API",
+      "url": "https://parallel.ai/blog/parallel-search-turbo",
+      "source": "parallel.ai"
+    },
+    {
+      "date": "2026-03-10",
+      "title": "Parallel on Machine Payments Protocol",
+      "url": "https://parallel.ai/blog/tempo-stripe-mpp",
+      "source": "parallel.ai"
+    }
+  ]
+}

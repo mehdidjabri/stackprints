@@ -5,5 +5,33 @@
   "url": "pi.dev",
   "note": "TypeScript multi-provider client",
   "open": true,
-  "logo": "pi"
+  "logo": "pi",
+  "profile": "product",
+  "summary": "pi-ai is a TypeScript library that gives one API for calling LLMs from about 40 providers, plus any OpenAI-compatible endpoint. It streams typed events for text, thinking and tool calls, tracks tokens and cost per response, and can hand a conversation off to another model mid-session. It is the model layer of the Pi agent harness, but runs on its own as a client library rather than a proxy.",
+  "facts": [
+    ["Maintainer", "Earendil Inc. and contributors"],
+    ["Language", "TypeScript (npm: @earendil-works/pi-ai)"],
+    ["License", "MIT"],
+    ["Providers", "~40, plus any OpenAI-compatible endpoint (Ollama, vLLM, LM Studio)"],
+    ["Features", "Tool calling (TypeBox), unified reasoning option, cost tracking, cross-model hand-off"],
+    ["Repo stars", "~117k for the whole Pi monorepo (Oct 2026)"],
+    ["Self-hostable", "Yes, it is an in-process library"]
+  ],
+  "links": {
+    "site": "https://pi.dev",
+    "repo": "https://github.com/earendil-works/pi",
+    "docs": "https://github.com/earendil-works/pi/tree/main/packages/ai",
+    "changelog": "https://github.com/earendil-works/pi/releases"
+  },
+  "goodFor": [
+    "TypeScript agents that switch models mid-session",
+    "No extra proxy hop between app and provider",
+    "Per-call token and cost accounting"
+  ],
+  "watchOut": [
+    "Library, not a gateway: no central keys, budgets or logs",
+    "Keys must be passed explicitly in the browser",
+    "Fast release cadence"
+  ],
+  "researched": "2026-10-21"
 }

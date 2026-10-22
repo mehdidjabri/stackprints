@@ -2,5 +2,32 @@
   "order": 100,
   "id": "goals-activity-feed",
   "name": "Goals & activity feed",
-  "note": "Long-running plans, progress, ideas"
+  "note": "Long-running plans, progress, ideas",
+  "profile": "pattern",
+  "summary": "For long-running agents, the main interface is a list of goals or tasks plus a feed of what the agent has done, is doing and proposes next. Users check in asynchronously, approve or redirect work, and read progress instead of chatting turn by turn.",
+  "how": [
+    "Let the user set goals or tasks for the agent",
+    "Log each step, result and status change to a feed",
+    "Surface proposals and questions that need approval",
+    "Notify the user on other channels when something needs attention"
+  ],
+  "facts": [
+    [
+      "Related APIs",
+      "Slack agent session status; Teams agent sessions"
+    ],
+    [
+      "Trade-off",
+      "Fits background work, but adds state and notification design"
+    ]
+  ],
+  "goodFor": [
+    "Agents that run for hours or days",
+    "Reviewing many agent actions at a glance"
+  ],
+  "watchOut": [
+    "Feeds get noisy without summarising",
+    "Needs a clear approval flow for risky actions"
+  ],
+  "researched": "2026-10-21"
 }

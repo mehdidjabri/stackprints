@@ -2,5 +2,46 @@
   "order": 10,
   "id": "grep-glob",
   "name": "Grep & glob",
-  "note": "Agentic search, no index"
+  "note": "Agentic search, no index",
+  "profile": "pattern",
+  "summary": "The agent searches files directly with grep (or ripgrep) for content and glob patterns for file names, then reads what it finds. There is no embedding step and no index to build or keep in sync. Common in coding agents, where exact identifiers and fresh file state matter more than semantic similarity.",
+  "how": [
+    "Agent glob-matches file paths (e.g. src/**/*.ts) to narrow the search space",
+    "Agent greps file contents for identifiers, strings or regex patterns",
+    "Agent reads the matching files or line ranges into context",
+    "Agent follows imports and call sites with further searches until it has enough context"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code (ripgrep-based Grep, Glob, or find/grep via Bash), Cline"
+    ],
+    [
+      "Storage",
+      "None; searches the live file system"
+    ],
+    [
+      "Index",
+      "None, so nothing goes stale"
+    ],
+    [
+      "Trade-off",
+      "Exact and always current, but no semantic matching and more tokens per search"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/tools-reference",
+    "writeup": "https://cline.bot/blog/why-cline-doesnt-index-your-codebase-and-why-thats-a-good-thing"
+  },
+  "goodFor": [
+    "Codebases and text repos that change constantly",
+    "Exact identifier and string lookups",
+    "Zero-setup local agents"
+  ],
+  "watchOut": [
+    "Misses synonyms and paraphrases that embeddings would catch",
+    "Uses more tool calls and tokens than an index lookup",
+    "Slows down on very large corpora"
+  ],
+  "researched": "2026-10-21"
 }

@@ -4,5 +4,55 @@
   "name": "Railway",
   "url": "railway.com",
   "note": "Simple deploys",
-  "logo": "railway"
+  "logo": "railway",
+  "profile": "product",
+  "summary": "Railway is a deployment platform that runs services from a GitHub repo, a Docker image or a template, alongside managed databases, volumes and cron jobs. Usage is billed per second for CPU, memory and storage on top of a small plan fee, and services can be set to sleep when idle (Serverless). It suits always-on agent processes that need a server, a database and little ops work.",
+  "facts": [
+    [
+      "Company",
+      "Railway"
+    ],
+    [
+      "Deploy from",
+      "GitHub, Docker image, CLI or template"
+    ],
+    [
+      "Pricing",
+      "Hobby $5/mo, Pro $20/mo per workspace, plus usage"
+    ],
+    [
+      "Usage rates",
+      "About $20 per vCPU-month and $10 per GB-month of RAM"
+    ],
+    [
+      "Persistence",
+      "Volumes and managed databases"
+    ],
+    [
+      "Scheduling",
+      "Built-in cron jobs"
+    ],
+    [
+      "Idle mode",
+      "Serverless (services sleep when idle)"
+    ]
+  ],
+  "links": {
+    "site": "https://railway.com",
+    "docs": "https://docs.railway.com",
+    "pricing": "https://railway.com/pricing",
+    "changelog": "https://railway.com/changelog",
+    "blog": "https://blog.railway.com"
+  },
+  "goodFor": [
+    "Always-on agent servers with a database",
+    "Quick deploys from a repo or template",
+    "Small teams without dedicated ops"
+  ],
+  "watchOut": [
+    "Oct 2026 security incident exposed some customer environment variables",
+    "Usage-based bills grow with always-on services",
+    "Less low-level control than raw VMs"
+  ],
+  "researched": "2026-10-21"
 }

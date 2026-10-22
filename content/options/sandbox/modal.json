@@ -4,5 +4,57 @@
   "name": "Modal",
   "url": "modal.com",
   "note": "Serverless containers and GPUs",
-  "logo": "modal"
+  "logo": "modal",
+  "profile": "product",
+  "summary": "Modal is a serverless compute platform for containers and GPUs, defined from Python code. Its Sandboxes product runs untrusted or LLM-generated code in isolated containers using gVisor, or a VM runtime with its own kernel for workloads that need Docker or FUSE. Sandboxes last up to 24 hours, with filesystem snapshots to carry state further.",
+  "facts": [
+    [
+      "Company",
+      "Modal Labs"
+    ],
+    [
+      "Isolation",
+      "gVisor, or VM runtime with dedicated kernel"
+    ],
+    [
+      "Lifetime",
+      "5 min default, up to 24 h; filesystem snapshots for longer"
+    ],
+    [
+      "SDKs",
+      "Python, JavaScript, Go"
+    ],
+    [
+      "GPUs",
+      "Available in gVisor sandboxes"
+    ],
+    [
+      "Pricing",
+      "Per second; sandboxes billed at non-preemptible rates (3x list)"
+    ],
+    [
+      "Free tier",
+      "Starter plan with $30/month credits"
+    ],
+    [
+      "Scale",
+      "1M concurrent sandboxes (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://modal.com",
+    "docs": "https://modal.com/docs/guide/sandbox",
+    "pricing": "https://modal.com/pricing",
+    "blog": "https://modal.com/blog"
+  },
+  "goodFor": [
+    "Sandboxes that need GPUs",
+    "Bursting to very large numbers of short-lived sandboxes",
+    "Python-first teams already deploying on Modal"
+  ],
+  "watchOut": [
+    "Sandbox compute costs 3x the standard list rate",
+    "Hard 24 h lifetime; long-lived state needs snapshots"
+  ],
+  "researched": "2026-10-21"
 }

@@ -3,5 +3,56 @@
   "id": "supermemory",
   "name": "Supermemory",
   "url": "supermemory.ai",
-  "note": "Universal memory API"
+  "note": "Universal memory API",
+  "profile": "product",
+  "summary": "Supermemory is a memory API that extracts and consolidates context from files, chats and URLs into a vector-graph store and injects it into model context. It offers a hosted API, an MCP server and plugins for coding agents, plus a single-binary local mode.",
+  "facts": [
+    [
+      "Company",
+      "Supermemory (San Francisco)"
+    ],
+    [
+      "License",
+      "MIT (repo, plugins, MCP server)"
+    ],
+    [
+      "Adoption",
+      "31.3k GitHub stars"
+    ],
+    [
+      "Storage",
+      "Vector-graph database"
+    ],
+    [
+      "Hosting",
+      "Hosted API; local binary or Docker; self-hosting on Scale and Enterprise"
+    ],
+    [
+      "Pricing",
+      "Free; Pro $19/mo; Max $100/mo; Scale $399/mo; usage-based"
+    ],
+    [
+      "Benchmarks",
+      "Claims #1 on LongMemEval, LoCoMo, ConvoMem (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://supermemory.ai",
+    "docs": "https://supermemory.ai/docs",
+    "repo": "https://github.com/supermemoryai/supermemory",
+    "pricing": "https://supermemory.ai/pricing",
+    "changelog": "https://supermemory.ai/blog/",
+    "x": "https://x.com/supermemory"
+  },
+  "goodFor": [
+    "Memory across ChatGPT, Claude, Cursor via MCP",
+    "Ingesting documents and connectors alongside chats",
+    "Switching between local and hosted with one SDK"
+  ],
+  "watchOut": [
+    "Product direction has shifted (company brain discontinued Sept 2026, then open-sourced)",
+    "Benchmark claims are not given with comparable numbers",
+    "Local mode's URL ingestion still uses a hosted service"
+  ],
+  "researched": "2026-10-21"
 }

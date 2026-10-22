@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "How we built Langfuse Halo",
+      "url": "https://langfuse.com/blog/2026-10-21-building-the-langfuse-assistant",
+      "source": "langfuse.com"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "Langfuse September Update",
+      "url": "https://langfuse.com/blog/2026-09-30-langfuse-september-update",
+      "source": "langfuse.com"
+    },
+    {
+      "date": "2026-08-17",
+      "title": "Langfuse v4: Faster at Scale",
+      "url": "https://langfuse.com/changelog/2026-08-17-langfuse-v4",
+      "source": "langfuse.com"
+    },
+    {
+      "date": "2026-07-28",
+      "title": "Pulse: find the outliers in your traces",
+      "url": "https://langfuse.com/changelog/2026-07-28-langfuse-pulse",
+      "source": "langfuse.com"
+    },
+    {
+      "date": "2026-01-16",
+      "title": "Langfuse joins ClickHouse",
+      "url": "https://langfuse.com/blog/joining-clickhouse",
+      "source": "langfuse.com"
+    }
+  ]
+}

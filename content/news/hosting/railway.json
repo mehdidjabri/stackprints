@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "Security Disclosure: Wednesday October 21st",
+      "url": "https://blog.railway.com/p/security-disclosure-wednesday-october-21st",
+      "source": "blog.railway.com"
+    },
+    {
+      "date": "2026-10-08",
+      "title": "Introducing Railway Authentication via identity-aware proxy",
+      "url": "https://blog.railway.com/p/railway-authentication-identity-aware-proxy",
+      "source": "blog.railway.com"
+    },
+    {
+      "date": "2026-10-05",
+      "title": "Railway Agent now available in Slack and Discord",
+      "url": "https://blog.railway.com/p/railway-agent-slack-discord",
+      "source": "blog.railway.com"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "Incident Report: September 30, 2026: Domain Routing Disruption",
+      "url": "https://blog.railway.com/p/incident-report-sept-30-2026-routing-disruption",
+      "source": "blog.railway.com"
+    },
+    {
+      "date": "2026-09-10",
+      "title": "First-Class Databases on Railway",
+      "url": "https://blog.railway.com/p/first-class-databases-on-railway",
+      "source": "blog.railway.com"
+    }
+  ]
+}

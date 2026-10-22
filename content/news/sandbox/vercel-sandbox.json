@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-08", "title": "Vercel Sandbox creation now returns a ready sandbox", "url": "https://vercel.com/changelog/sandbox-create-waits-until-ready", "source": "vercel.com" },
+    { "date": "2026-09-11", "title": "Vercel Sandbox now provides 64 GB of storage", "url": "https://vercel.com/changelog/vercel-sandbox-64-gb-storage", "source": "vercel.com" },
+    { "date": "2026-06-16", "title": "Vercel Sandbox can now run for up to 24 hours", "url": "https://vercel.com/changelog/vercel-sandbox-can-now-run-for-up-to-24-hours", "source": "vercel.com" },
+    { "date": "2026-05-29", "title": "Run Docker containers inside Vercel Sandbox", "url": "https://vercel.com/changelog/run-docker-containers-inside-vercel-sandbox", "source": "vercel.com" },
+    { "date": "2026-01-30", "title": "Run untrusted code with Vercel Sandbox, now generally available", "url": "https://vercel.com/blog/vercel-sandbox-is-now-generally-available", "source": "vercel.com" }
+  ]
+}

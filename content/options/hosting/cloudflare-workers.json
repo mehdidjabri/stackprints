@@ -4,5 +4,55 @@
   "name": "Cloudflare Workers",
   "url": "cloudflare.com",
   "note": "Agents SDK on the edge",
-  "logo": "cloudflare"
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Cloudflare Workers runs code in V8 isolates on Cloudflare's global network, and the Agents SDK builds on it for hosting agents. Each agent is a Durable Object: a globally addressable, single-threaded instance with its own SQLite storage, WebSocket connections, scheduled tasks and recoverable execution. Tools such as sandboxes, a browser, web search, MCP and Workflows plug into the same platform.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Runtime",
+      "V8 isolates; agents are Durable Objects"
+    ],
+    [
+      "State",
+      "Per-agent SQLite storage"
+    ],
+    [
+      "Agents SDK license",
+      "MIT"
+    ],
+    [
+      "Languages",
+      "TypeScript/JavaScript (Python Workers also available)"
+    ],
+    [
+      "Pricing",
+      "Free plan (100k requests/day); Paid from $5/mo plus usage"
+    ],
+    [
+      "Egress fees",
+      "None"
+    ]
+  ],
+  "links": {
+    "site": "https://workers.cloudflare.com",
+    "docs": "https://developers.cloudflare.com/agents/",
+    "repo": "https://github.com/cloudflare/agents",
+    "pricing": "https://developers.cloudflare.com/workers/platform/pricing/",
+    "changelog": "https://developers.cloudflare.com/changelog/"
+  },
+  "goodFor": [
+    "Many small, stateful agents (one per user or session)",
+    "Real-time chat and voice over WebSockets",
+    "Low idle cost with global placement"
+  ],
+  "watchOut": [
+    "Workers CPU and memory limits; heavy work needs containers or sandboxes",
+    "Not a full Node.js environment",
+    "Platform-specific APIs (Durable Objects) limit portability"
+  ],
+  "researched": "2026-10-21"
 }

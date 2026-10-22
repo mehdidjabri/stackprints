@@ -4,5 +4,48 @@
   "name": "AgentReady",
   "url": "agentready.org",
   "note": "Open readiness standard",
-  "open": true
+  "open": true,
+  "profile": "protocol",
+  "summary": "AgentReady is an open specification of what a product should implement to be usable by AI agents. Practices are grouped into find, read and act stages, each with a stable ID (such as AR-FIND-01) and a MUST, SHOULD or MAY strength. The spec itself does not score sites; separate tools such as Ora, is-agentic.com and Mintlify's Agent Score do.",
+  "facts": [
+    [
+      "Current version",
+      "v2.0 (October 2026)"
+    ],
+    [
+      "First version",
+      "v1.0.0 (April 2026)"
+    ],
+    [
+      "Structure",
+      "Find, read, act"
+    ],
+    [
+      "Research",
+      "Ora"
+    ],
+    [
+      "Committee",
+      "Ora, Vercel, Mintlify, Auth0, Stripe, Tavily"
+    ],
+    [
+      "License",
+      "MIT"
+    ]
+  ],
+  "links": {
+    "site": "https://agentready.org",
+    "repo": "https://github.com/agentready-org/standard"
+  },
+  "goodFor": [
+    "A vendor-neutral checklist for agent readiness",
+    "Prioritizing work with MUST/SHOULD/MAY levels",
+    "Teams that want a spec rather than a score"
+  ],
+  "watchOut": [
+    "Very new; versions are changing quickly",
+    "Research comes mainly from one company (Ora)",
+    "No built-in scoring or certification"
+  ],
+  "researched": "2026-10-21"
 }

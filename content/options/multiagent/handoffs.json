@@ -4,5 +4,45 @@
   "name": "Handoffs",
   "url": "openai.github.io",
   "note": "Transfer control between agents",
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "pattern",
+  "summary": "One agent transfers control of the conversation to another, more specialised agent, which then talks to the user directly. In the OpenAI Agents SDK each handoff is exposed to the model as a tool such as transfer_to_refund_agent. LangChain and other frameworks offer the same pattern.",
+  "facts": [
+    [
+      "Used by",
+      "OpenAI Agents SDK, LangChain, LangGraph Swarm, LiveKit Agents"
+    ],
+    [
+      "Mechanism",
+      "Handoff appears to the model as a tool call"
+    ],
+    [
+      "History",
+      "Full history passed by default; input filters can trim it"
+    ],
+    [
+      "Trade-off",
+      "Cheap follow-ups with the active agent, but routing errors move the whole conversation"
+    ]
+  ],
+  "how": [
+    "Define specialist agents, each with its own instructions and tools",
+    "Expose each specialist to the current agent as a transfer tool",
+    "The model calls the transfer tool when the request fits a specialist",
+    "The new agent takes over with the conversation history (optionally filtered)"
+  ],
+  "links": {
+    "docs": "https://openai.github.io/openai-agents-python/handoffs/",
+    "repo": "https://github.com/openai/openai-agents-python"
+  },
+  "goodFor": [
+    "Customer support triage",
+    "Voice agents that switch roles mid-call",
+    "Flows where the user talks to each specialist"
+  ],
+  "watchOut": [
+    "Control does not come back unless you add a return handoff",
+    "Long histories get passed along unless filtered"
+  ],
+  "researched": "2026-10-21"
 }

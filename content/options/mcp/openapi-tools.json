@@ -2,5 +2,38 @@
   "order": 40,
   "id": "openapi-tools",
   "name": "OpenAPI tools",
-  "note": "Any REST API as a tool"
+  "note": "Any REST API as a tool",
+  "profile": "pattern",
+  "summary": "Turning an existing REST API described by an OpenAPI document into tools an agent can call. Each operation's path, parameters and schema become a tool name, description and input schema, either directly in the agent framework or through a generated MCP server.",
+  "how": [
+    "Start from the API's OpenAPI (Swagger) document",
+    "Map each operation to a tool with a JSON Schema for its inputs",
+    "Trim or rename operations so the model sees a small, clear set",
+    "Handle auth and execute the HTTP call when the model picks a tool",
+    "Return the response, truncated if large, to the model"
+  ],
+  "facts": [
+    [
+      "Spec",
+      "OpenAPI Specification 3.2.1 (OpenAPI Initiative)"
+    ],
+    [
+      "Trade-off",
+      "Fast to set up, but raw endpoints are often too granular for models"
+    ]
+  ],
+  "links": {
+    "docs": "https://spec.openapis.org/oas/latest.html"
+  },
+  "goodFor": [
+    "APIs that already publish an OpenAPI document",
+    "Internal services without an MCP server",
+    "Quick prototypes"
+  ],
+  "watchOut": [
+    "Large specs flood the context with tools",
+    "Endpoint descriptions written for humans may confuse models",
+    "Write operations need careful permission handling"
+  ],
+  "researched": "2026-10-21"
 }

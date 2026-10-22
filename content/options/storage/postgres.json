@@ -5,5 +5,49 @@
   "url": "postgresql.org",
   "note": "Supabase, Neon, RDS",
   "open": true,
-  "logo": "postgresql"
+  "logo": "postgresql",
+  "profile": "product",
+  "summary": "PostgreSQL is an open-source relational database. For agents it typically holds sessions, messages, checkpoints and app data in one transactional store that many workers can share, and extensions such as pgvector add vector search. It is offered as a managed service by Supabase, Neon, Amazon RDS and others.",
+  "facts": [
+    [
+      "Maintainer",
+      "PostgreSQL Global Development Group"
+    ],
+    [
+      "License",
+      "PostgreSQL License (BSD/MIT-like)"
+    ],
+    [
+      "Current stable",
+      "18.6 (August 2026)"
+    ],
+    [
+      "Next major",
+      "19 RC 1 released 2026-10-15; GA planned 2026-11-19"
+    ],
+    [
+      "Agent integrations",
+      "LangGraph PostgresSaver checkpointer (Python and JS)"
+    ],
+    [
+      "Hosting",
+      "Self-hosted or managed (Supabase, Neon, RDS)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.postgresql.org",
+    "docs": "https://www.postgresql.org/docs/",
+    "changelog": "https://www.postgresql.org/about/newsarchive/"
+  },
+  "goodFor": [
+    "Multi-user agent backends",
+    "Shared state across many workers",
+    "Combining sessions, app data and vectors in one store"
+  ],
+  "watchOut": [
+    "Needs a running server and connection management",
+    "Serverless and edge runtimes may need a pooler or HTTP driver",
+    "Large transcripts in rows can bloat tables; consider object storage for blobs"
+  ],
+  "researched": "2026-10-21"
 }

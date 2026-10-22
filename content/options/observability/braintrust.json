@@ -4,5 +4,54 @@
   "name": "Braintrust",
   "url": "braintrust.dev",
   "note": "Evals and logging",
-  "logo": "braintrust"
+  "logo": "braintrust",
+  "profile": "product",
+  "summary": "Braintrust is a commercial platform for evaluating and observing AI applications and agents. It combines experiments that compare prompts and models, production tracing and logging, scorers and annotation, plus an in-product agent (Loop) that analyzes traces and helps write evals. It is a hosted service, with a self-hosted data plane available for enterprise deployments.",
+  "facts": [
+    [
+      "Company",
+      "Braintrust"
+    ],
+    [
+      "Open source",
+      "No (platform); SDKs on GitHub"
+    ],
+    [
+      "SDKs",
+      "TypeScript, Python, Go, Java, Ruby, C#"
+    ],
+    [
+      "OpenTelemetry",
+      "Accepts OTel traces and logs"
+    ],
+    [
+      "Self-hostable",
+      "Enterprise (self-hosted data plane)"
+    ],
+    [
+      "Pricing",
+      "Free Starter tier; Pro $249/mo"
+    ],
+    [
+      "Funding",
+      "$80M Series B (Feb 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.braintrust.dev",
+    "docs": "https://www.braintrust.dev/docs",
+    "pricing": "https://www.braintrust.dev/pricing",
+    "blog": "https://www.braintrust.dev/blog"
+  },
+  "goodFor": [
+    "Eval-driven development of prompts and agents",
+    "Comparing models and prompts side by side",
+    "Teams wanting evals and tracing in one tool"
+  ],
+  "watchOut": [
+    "Closed-source platform",
+    "Short data retention on lower tiers (14–30 days)",
+    "Self-hosting only on Enterprise"
+  ],
+  "researched": "2026-10-21"
 }

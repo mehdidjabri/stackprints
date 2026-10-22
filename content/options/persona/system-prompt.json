@@ -2,5 +2,31 @@
   "order": 10,
   "id": "system-prompt",
   "name": "System prompt",
-  "note": "One string, hard-coded"
+  "note": "One string, hard-coded",
+  "profile": "pattern",
+  "summary": "The simplest persona: a single system prompt string hard-coded in the agent's code and sent with every model call. Changing the persona means editing and redeploying code.",
+  "facts": [
+    [
+      "Used by",
+      "Most SDK-built agents (e.g. instructions in agent SDKs)"
+    ],
+    [
+      "Trade-off",
+      "Simple and predictable, but not editable without a deploy"
+    ]
+  ],
+  "how": [
+    "Write the persona and rules as one string",
+    "Pass it as the system message on every request",
+    "Version it with the code"
+  ],
+  "goodFor": [
+    "Single-purpose agents",
+    "Prototypes"
+  ],
+  "watchOut": [
+    "No per-project or per-user overrides",
+    "Grows unwieldy as rules accumulate"
+  ],
+  "researched": "2026-10-21"
 }

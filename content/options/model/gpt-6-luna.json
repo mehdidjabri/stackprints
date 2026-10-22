@@ -4,5 +4,65 @@
   "name": "GPT-6 Luna",
   "url": "openai.com",
   "note": "OpenAI fast and cheap",
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "model",
+  "summary": "GPT-6 Luna is the smallest and cheapest model in OpenAI's GPT-6 series, launched alongside GPT-6 Sol. It targets focused, high-volume and latency-sensitive tasks such as chat, classification and lightweight agent steps.",
+  "facts": [
+    [
+      "Lab",
+      "OpenAI"
+    ],
+    [
+      "API ID",
+      "gpt-6-luna"
+    ],
+    [
+      "Max output",
+      "128K tokens"
+    ],
+    [
+      "Reasoning effort",
+      "none to max (default medium)"
+    ],
+    [
+      "Cached input",
+      "$0.01 / 1M tokens"
+    ],
+    [
+      "Knowledge cutoff",
+      "May 18, 2026"
+    ],
+    [
+      "Data residency",
+      "EU available"
+    ]
+  ],
+  "links": {
+    "site": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+    "docs": "https://developers.openai.com/api/docs/models/gpt-6-luna"
+  },
+  "goodFor": [
+    "High-volume classification and extraction",
+    "Cheap subagents",
+    "Latency-sensitive chat"
+  ],
+  "watchOut": [
+    "Long-context surcharge above 272K tokens",
+    "Chat Completions tool calls only with effort none",
+    "Not meant for complex agentic coding"
+  ],
+  "model": {
+    "lab": "OpenAI",
+    "released": "2026-09-22",
+    "context": "1.05M tokens",
+    "priceIn": "$0.10 / 1M tokens",
+    "priceOut": "$0.50 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "openai/gpt-6-luna"
+  },
+  "researched": "2026-10-21"
 }

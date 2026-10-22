@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-19",
+      "title": "Making every harness durable",
+      "url": "https://vercel.com/blog/making-every-harness-durable",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "AI SDK 7 is now available",
+      "url": "https://vercel.com/changelog/ai-sdk-7",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-06-16",
+      "title": "Workflow SDK now supports inflight cancellation",
+      "url": "https://vercel.com/changelog/workflow-sdk-now-supports-inflight-cancellation",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-06-13",
+      "title": "Workflow SDK now runs natively in Nitro v3",
+      "url": "https://vercel.com/changelog/workflow-sdk-now-runs-natively-in-nitro-v3",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-04-16",
+      "title": "A new programming model for durable execution",
+      "url": "https://vercel.com/blog/a-new-programming-model-for-durable-execution",
+      "source": "vercel.com"
+    }
+  ]
+}

@@ -3,5 +3,54 @@
   "id": "composio",
   "name": "Composio",
   "url": "composio.dev",
-  "note": "Hundreds of tools with managed auth"
+  "note": "Hundreds of tools with managed auth",
+  "profile": "product",
+  "summary": "Composio gives agents ready-made tools for 1,500+ apps such as Gmail, Slack, GitHub and Salesforce, and handles each user's OAuth tokens and API keys so the model never sees them. Tools are exposed through its SDKs and over MCP. Aimed at developers adding many third-party actions to an agent quickly.",
+  "facts": [
+    [
+      "Company",
+      "Composio"
+    ],
+    [
+      "Toolkits",
+      "1,500+ (vendor-reported)"
+    ],
+    [
+      "Auth",
+      "Managed OAuth and API keys, stored encrypted"
+    ],
+    [
+      "Access",
+      "SDKs and MCP"
+    ],
+    [
+      "Pricing",
+      "Free Hobby tier with 100K tool calls/month; Pro $29/month plus usage"
+    ],
+    [
+      "Compliance",
+      "SOC 2 Type II"
+    ],
+    [
+      "Repo",
+      "MIT, ~31K GitHub stars"
+    ]
+  ],
+  "links": {
+    "site": "https://composio.dev",
+    "docs": "https://docs.composio.dev",
+    "repo": "https://github.com/ComposioHQ/composio",
+    "pricing": "https://composio.dev/pricing",
+    "changelog": "https://composio.dev/blog"
+  },
+  "goodFor": [
+    "Adding many SaaS actions to an agent fast",
+    "Per-user OAuth without building token storage",
+    "Triggers from app events"
+  ],
+  "watchOut": [
+    "Your users' tokens live with a third party; a May 2026 breach exposed some connections and API keys",
+    "Pricing changed in August 2026 and has many add-ons"
+  ],
+  "researched": "2026-10-21"
 }

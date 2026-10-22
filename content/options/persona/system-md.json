@@ -4,5 +4,52 @@
   "name": "SYSTEM.md",
   "url": "pi.dev",
   "note": "Per-project system prompt override",
-  "logo": "pi"
+  "logo": "pi",
+  "profile": "product",
+  "summary": "In the Pi coding agent, SYSTEM.md replaces the default system prompt and APPEND_SYSTEM.md adds to it. Each can live in the agent directory (~/.pi/agent/) or in a project's .pi/ folder; the project file wins and loads only after the project is trusted. AGENTS.md context files are still loaded separately.",
+  "facts": [
+    [
+      "Vendor",
+      "Pi (earendil-works/pi)"
+    ],
+    [
+      "Global path",
+      "~/.pi/agent/SYSTEM.md"
+    ],
+    [
+      "Project path",
+      ".pi/SYSTEM.md (needs project trust)"
+    ],
+    [
+      "Append variant",
+      "APPEND_SYSTEM.md (since v0.46.0)"
+    ],
+    [
+      "Precedence",
+      "Project over global; same-name files are not combined"
+    ],
+    [
+      "Added",
+      "v0.29.1, 2025-12-25"
+    ],
+    [
+      "License",
+      "MIT"
+    ]
+  ],
+  "links": {
+    "site": "https://pi.dev",
+    "docs": "https://pi.dev/docs/latest/configuration",
+    "repo": "https://github.com/earendil-works/pi"
+  },
+  "goodFor": [
+    "Fully custom system prompts per project",
+    "Small additions via APPEND_SYSTEM.md",
+    "Experimenting with prompt design"
+  ],
+  "watchOut": [
+    "Replacing the default prompt can drop tool guidance",
+    "Pi-specific file convention"
+  ],
+  "researched": "2026-10-21"
 }

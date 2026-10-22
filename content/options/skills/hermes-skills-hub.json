@@ -4,5 +4,54 @@
   "name": "Hermes Skills Hub",
   "url": "nousresearch.com",
   "note": "Agent-authored, self-improving",
-  "logo": "nousresearch"
+  "logo": "nousresearch",
+  "profile": "product",
+  "summary": "The skills system in Nous Research's Hermes Agent, where the agent writes, patches and deletes its own SKILL.md skills as procedural memory, alongside a hub for installing skills from other sources. A background Curator grades, merges and prunes the library on a schedule. Hub installs pass a built-in security scanner.",
+  "facts": [
+    [
+      "Maker",
+      "Nous Research"
+    ],
+    [
+      "License",
+      "MIT (Hermes Agent)"
+    ],
+    [
+      "Format",
+      "SKILL.md, compatible with agentskills.io"
+    ],
+    [
+      "Storage",
+      "~/.hermes/skills/ plus project and external dirs"
+    ],
+    [
+      "Agent authoring",
+      "skill_manage tool; optional write-approval gate"
+    ],
+    [
+      "Hub sources",
+      "official, skills.sh, well-known URLs, GitHub, ClawHub, LobeHub"
+    ],
+    [
+      "Curator",
+      "Background grading and pruning, 7-day default (since v0.12.0)"
+    ]
+  ],
+  "links": {
+    "docs": "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills",
+    "repo": "https://github.com/NousResearch/hermes-agent",
+    "site": "https://hermes-agent.nousresearch.com",
+    "changelog": "https://github.com/NousResearch/hermes-agent/releases"
+  },
+  "goodFor": [
+    "Agents that learn reusable workflows over time",
+    "Pulling skills from several registries in one CLI",
+    "Reviewing agent-written skills before they land"
+  ],
+  "watchOut": [
+    "Agent-written skills can drift; use the approval gate",
+    "Tied to the Hermes Agent runtime",
+    "Fast release cadence with breaking renames"
+  ],
+  "researched": "2026-10-21"
 }

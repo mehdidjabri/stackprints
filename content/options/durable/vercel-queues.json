@@ -4,5 +4,53 @@
   "name": "Vercel Queues",
   "url": "vercel.com",
   "note": "At-least-once delivery",
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Vercel Queues is a managed message queue on Vercel. Producers publish to durable topics, and each subscribed consumer group receives messages with retries, visibility timeouts and at-least-once delivery, either pushed to a Vercel Function or pulled by your own workers. It is the lower-level primitive underneath Vercel Workflows.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "Status",
+      "Public beta (Feb 2026), all plans"
+    ],
+    [
+      "Delivery",
+      "At-least-once, approximate ordering"
+    ],
+    [
+      "Retention",
+      "60 seconds to 7 days (default 24 hours)"
+    ],
+    [
+      "Consumers",
+      "Push to Vercel Functions or poll from anywhere"
+    ],
+    [
+      "SDKs",
+      "JavaScript (@vercel/queue), Python, HTTP API"
+    ],
+    [
+      "Pricing",
+      "Per API operation, regional; 1M ops included on Hobby"
+    ]
+  ],
+  "links": {
+    "docs": "https://vercel.com/docs/queues",
+    "pricing": "https://vercel.com/docs/queues/pricing",
+    "changelog": "https://vercel.com/changelog/vercel-queues-now-in-public-beta"
+  },
+  "goodFor": [
+    "Deferring background work from Vercel Functions",
+    "Fan-out to several independent consumers",
+    "Redelivering agent turns after a crash"
+  ],
+  "watchOut": [
+    "Still in beta",
+    "No built-in dead-letter queue",
+    "Handlers must be idempotent (at-least-once)"
+  ],
+  "researched": "2026-10-21"
 }

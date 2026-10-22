@@ -4,5 +4,34 @@
   "name": "E2B",
   "url": "e2b.dev",
   "note": "Firecracker code sandboxes",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "E2B runs AI-generated code in isolated Linux sandboxes backed by Firecracker microVMs, controlled through Python and JavaScript/TypeScript SDKs. Sandboxes can be paused, which saves filesystem and memory, and resumed later. The runtime is Apache-2.0 and can be self-hosted, or used as a hosted cloud service.",
+  "facts": [
+    ["Isolation", "Firecracker microVMs, resumed from snapshots"],
+    ["License", "Apache-2.0"],
+    ["SDKs", "Python, JavaScript/TypeScript"],
+    ["Persistence", "Pause saves filesystem and memory; kept until killed"],
+    ["Pricing", "Hobby $0 + usage ($100 one-time credit); Pro $150/month + usage"],
+    ["Session length", "Up to 1 h (Hobby), 24 h (Pro)"],
+    ["Self-hosting", "E2B Embed and Terraform deployment on AWS, GCP, Azure or Linux"]
+  ],
+  "links": {
+    "site": "https://e2b.dev",
+    "docs": "https://docs.e2b.dev/",
+    "repo": "https://github.com/e2b-dev/E2B",
+    "pricing": "https://e2b.dev/pricing",
+    "changelog": "https://docs.e2b.dev/changelog",
+    "x": "https://x.com/e2b"
+  },
+  "goodFor": [
+    "Running untrusted agent code with VM-level isolation",
+    "Code-interpreter style tools in Python or TypeScript",
+    "Teams that may later self-host the runtime"
+  ],
+  "watchOut": [
+    "Session length capped by plan (1 h on Hobby)",
+    "Enterprise tier has a $3,000/month minimum"
+  ],
+  "researched": "2026-10-21"
 }

@@ -2,5 +2,36 @@
   "order": 150,
   "id": "desktop-app",
   "name": "Desktop app",
-  "note": "Native app with local access"
+  "note": "Native app with local access",
+  "profile": "pattern",
+  "summary": "The agent ships as a native or Electron-style desktop application, which can reach local files, local MCP servers and other apps on the machine while offering a richer interface than a terminal. Claude Desktop, for example, hosts local MCP servers and renders MCP Apps.",
+  "how": [
+    "Package the agent UI as a desktop app",
+    "Connect local tools such as files or MCP servers over stdio",
+    "Ask the user before sensitive local actions",
+    "Ship updates through an auto-updater"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Desktop"
+    ],
+    [
+      "Local tools",
+      "Local MCP servers, file access"
+    ],
+    [
+      "Trade-off",
+      "Local access and rich UI, but per-OS builds and updates"
+    ]
+  ],
+  "goodFor": [
+    "Agents that work with local files and apps",
+    "Users who want an always-available assistant"
+  ],
+  "watchOut": [
+    "Code signing and updates for each OS",
+    "Broad local access raises security stakes"
+  ],
+  "researched": "2026-10-21"
 }

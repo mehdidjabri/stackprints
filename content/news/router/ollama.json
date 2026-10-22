@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-19", "title": "Clef is available on Ollama's cloud", "url": "https://ollama.com/blog/clef", "source": "ollama.com" },
+    { "date": "2026-10-13", "title": "Run AI agents safely with Ollama and Fly.io", "url": "https://ollama.com/blog/fly-io-sprites", "source": "ollama.com" },
+    { "date": "2026-09-29", "title": "Ollama now supports Jev-style decision models", "url": "https://ollama.com/blog/ollama-now-supports-jev-style-decision-models", "source": "ollama.com" },
+    { "date": "2026-08-31", "title": "Ollama's transparent pricing", "url": "https://ollama.com/blog/transparent-pricing", "source": "ollama.com" },
+    { "date": "2026-08-25", "title": "Claude Desktop support with Ollama", "url": "https://ollama.com/blog/claude-desktop", "source": "ollama.com" }
+  ]
+}

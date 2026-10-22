@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-01",
+      "title": "pgvector 0.8.7",
+      "url": "https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md#087-2026-10-01",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "pgvector 0.8.6",
+      "url": "https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md#086-2026-07-29",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-06-30",
+      "title": "pgvector 0.8.4",
+      "url": "https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md#084-2026-06-30",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-06-17",
+      "title": "pgvector 0.8.3: fixes possible index corruption with HNSW vacuuming",
+      "url": "https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md#083-2026-06-17",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-02-25",
+      "title": "pgvector 0.8.2",
+      "url": "https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md#082-2026-02-25",
+      "source": "github.com"
+    }
+  ]
+}

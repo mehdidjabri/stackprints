@@ -4,5 +4,58 @@
   "name": "Honcho",
   "url": "honcho.dev",
   "note": "Dialectic user modeling",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Honcho, from Plastic Labs, is open-source memory infrastructure that stores messages between peers (users or agents) and reasons over them in the background to build a representation of each peer. Apps query it for context or ask it questions about a user in natural language.",
+  "facts": [
+    [
+      "Company",
+      "Plastic Labs"
+    ],
+    [
+      "License",
+      "AGPL-3.0"
+    ],
+    [
+      "Adoption",
+      "7.7k GitHub stars"
+    ],
+    [
+      "Storage",
+      "Postgres with pgvector"
+    ],
+    [
+      "Hosting",
+      "Honcho Cloud or self-hosted (Docker)"
+    ],
+    [
+      "Pricing",
+      "$2 per 1M tokens ingested; reasoning queries $0.001-$0.50"
+    ],
+    [
+      "LongMemEval",
+      "90.4% on LongMem S (vendor-reported)"
+    ],
+    [
+      "LoCoMo",
+      "89.9% (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://honcho.dev",
+    "docs": "https://honcho.dev/docs",
+    "repo": "https://github.com/plastic-labs/honcho",
+    "changelog": "https://plasticlabs.ai/blog/",
+    "x": "https://x.com/honchodotdev"
+  },
+  "goodFor": [
+    "Modeling users and their preferences over time",
+    "Multi-agent setups where peers observe each other",
+    "Plugging memory into Hermes, OpenClaw, Claude Code"
+  ],
+  "watchOut": [
+    "AGPL-3.0 affects modified network deployments",
+    "Background reasoning adds latency before insights appear"
+  ],
+  "researched": "2026-10-21"
 }

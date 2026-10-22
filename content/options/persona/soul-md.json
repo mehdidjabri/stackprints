@@ -2,5 +2,47 @@
   "order": 40,
   "id": "soul-md",
   "name": "SOUL.md",
-  "note": "Personality and voice (OpenClaw, Hermes)"
+  "note": "Personality and voice (OpenClaw, Hermes)",
+  "profile": "pattern",
+  "summary": "SOUL.md is a Markdown file that defines an agent's personality, tone and boundaries, kept separate from project instructions in AGENTS.md. OpenClaw loads it from the agent workspace every session; Hermes Agent loads it only from HERMES_HOME so the persona does not change between projects.",
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw, Hermes Agent"
+    ],
+    [
+      "OpenClaw path",
+      "~/.openclaw/workspace/SOUL.md"
+    ],
+    [
+      "Hermes path",
+      "~/.hermes/SOUL.md (slot #1 of the system prompt)"
+    ],
+    [
+      "Hermes fallback",
+      "Built-in default identity if empty or unreadable"
+    ],
+    [
+      "Trade-off",
+      "Stable voice, but a writable file that steers every turn"
+    ]
+  ],
+  "links": {
+    "docs": "https://hermes-agent.nousresearch.com/docs/user-guide/features/personality"
+  },
+  "how": [
+    "Write persona, tone and boundaries in SOUL.md",
+    "The harness injects it into the system prompt at session start",
+    "Keep project rules in AGENTS.md, not SOUL.md",
+    "Edit the file to change voice; restart or reload to apply"
+  ],
+  "goodFor": [
+    "Consistent voice across sessions and channels",
+    "Separating personality from project rules"
+  ],
+  "watchOut": [
+    "A tampered SOUL.md hijacks every session",
+    "Large files are truncated"
+  ],
+  "researched": "2026-10-21"
 }

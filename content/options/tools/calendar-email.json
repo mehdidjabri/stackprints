@@ -2,5 +2,41 @@
   "order": 100,
   "id": "calendar-email",
   "name": "Calendar & email",
-  "note": "Read, draft, schedule"
+  "note": "Read, draft, schedule",
+  "profile": "pattern",
+  "summary": "Giving an agent tools to read a mailbox and calendar, draft replies and create or move events, usually through the Gmail, Google Calendar or Microsoft Graph APIs or an MCP server wrapping them. It turns an agent into an assistant that can triage and schedule, and it is one of the most sensitive tool sets an agent can hold.",
+  "how": [
+    "Connect the account with OAuth and request the narrowest scopes",
+    "Expose tools such as search mail, read thread, draft reply, list and create events",
+    "Let the agent prepare drafts and proposed events",
+    "Require human approval before anything is sent or accepted"
+  ],
+  "facts": [
+    [
+      "Typical APIs",
+      "Gmail, Google Calendar, Microsoft Graph"
+    ],
+    [
+      "Access",
+      "OAuth scopes per account"
+    ],
+    [
+      "Trade-off",
+      "High usefulness, high blast radius"
+    ],
+    [
+      "Main risk",
+      "Prompt injection arriving in incoming email"
+    ]
+  ],
+  "goodFor": [
+    "Inbox triage and drafting",
+    "Scheduling across calendars"
+  ],
+  "watchOut": [
+    "Incoming email is untrusted input that can carry prompt injection",
+    "Sending on the user's behalf should need explicit approval",
+    "Broad OAuth scopes expose the whole mailbox"
+  ],
+  "researched": "2026-10-21"
 }

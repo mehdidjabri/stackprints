@@ -5,5 +5,48 @@
   "url": "pi.dev",
   "note": "Extensions, skills, prompts via npm",
   "open": true,
-  "logo": "pi"
+  "logo": "pi",
+  "profile": "product",
+  "summary": "The package format for the Pi coding agent, bundling extensions, skills, prompt templates and themes for sharing through npm or git. Packages install with pi install and are listed in a gallery on pi.dev when tagged with the pi-package keyword.",
+  "facts": [
+    [
+      "Maintainer",
+      "Earendil (Pi project)"
+    ],
+    [
+      "License",
+      "MIT (Pi)"
+    ],
+    [
+      "Contents",
+      "Extensions (TS), skills, prompt templates, themes"
+    ],
+    [
+      "Sources",
+      "npm, git, URL, local path"
+    ],
+    [
+      "Gallery",
+      "~5,500 packages on pi.dev/packages (Oct 2026)"
+    ],
+    [
+      "Manifest",
+      "Conventional dirs or a pi key in package.json"
+    ]
+  ],
+  "links": {
+    "site": "https://pi.dev/packages",
+    "docs": "https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md",
+    "repo": "https://github.com/earendil-works/pi"
+  },
+  "goodFor": [
+    "Adding sub-agents, plan mode and tools to Pi",
+    "Sharing a personal Pi setup",
+    "Trying a package once with -e"
+  ],
+  "watchOut": [
+    "Extensions run arbitrary code; review source",
+    "Specific to the Pi harness"
+  ],
+  "researched": "2026-10-21"
 }

@@ -5,5 +5,63 @@
   "url": "openai.com",
   "note": "OpenAI open weights",
   "open": true,
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "model",
+  "summary": "gpt-oss is OpenAI's family of open-weight reasoning models, released in August 2025 in 120b and 20b sizes under Apache 2.0. Both are mixture-of-experts models that use the harmony response format and support adjustable reasoning effort; the larger one fits on a single 80GB GPU.",
+  "facts": [
+    [
+      "Lab",
+      "OpenAI"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Sizes",
+      "gpt-oss-120b (117B, 5.1B active), gpt-oss-20b (21B)"
+    ],
+    [
+      "Hardware",
+      "120b on one 80GB GPU; 20b on 16GB machines"
+    ],
+    [
+      "Quantization",
+      "MXFP4 MoE weights"
+    ],
+    [
+      "Reasoning effort",
+      "low, medium, high"
+    ],
+    [
+      "Variant",
+      "gpt-oss-safeguard policy classifiers (Oct 2025)"
+    ]
+  ],
+  "links": {
+    "repo": "https://huggingface.co/openai/gpt-oss-120b"
+  },
+  "goodFor": [
+    "Self-hosted agents with no API dependency",
+    "Local or on-prem reasoning",
+    "Fine-tuning on own data"
+  ],
+  "watchOut": [
+    "128K context, far below current frontier models",
+    "Needs the harmony format to work correctly",
+    "Weights only; no training data"
+  ],
+  "model": {
+    "lab": "OpenAI",
+    "released": "2025-08-05",
+    "context": "131K tokens",
+    "priceIn": "$0.15 / 1M tokens",
+    "priceOut": "$0.60 / 1M tokens",
+    "modalities": [
+      "text"
+    ],
+    "weights": "open",
+    "openrouter": "openai/gpt-oss-120b"
+  },
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-01",
+      "title": "Pending I/O operations allow Durable Objects to continue long-running work without a connected client",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-01-pending-io-keep-alive/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-08-20",
+      "title": "View deployments for Durable Objects in the dashboard",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-20-durable-objects-deployments-tab/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-07-09",
+      "title": "New Durable Object namespaces must use the SQLite storage backend",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-09-restrict-new-kv-backed-namespaces/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-06-19",
+      "title": "Outbound connections keep Durable Objects alive",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-06-19-outbound-connections-keep-dos-alive/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2025-12-12",
+      "title": "Billing for SQLite Storage",
+      "url": "https://developers.cloudflare.com/changelog/post/2025-12-12-durable-objects-sqlite-storage-billing/",
+      "source": "developers.cloudflare.com"
+    }
+  ]
+}

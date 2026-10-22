@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-16",
+      "title": "10.16.2026: Claude Managed Agents Tracing and Gemini 4 Argon",
+      "url": "https://arize.com/docs/phoenix/release-notes/10-2026/10-16-2026-claude-managed-agents-tracing-and-gemini-4-argon",
+      "source": "arize.com"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "10.13.2026: Docker Sandboxes and MCP GraphQL Tools",
+      "url": "https://arize.com/docs/phoenix/release-notes/10-2026/10-13-2026-docker-sandboxes-and-mcp-graphql-tools",
+      "source": "arize.com"
+    },
+    {
+      "date": "2026-10-01",
+      "title": "10.01.2026: Trace Tree Evals and Decision Spans",
+      "url": "https://arize.com/docs/phoenix/release-notes/10-2026/10-01-2026-trace-tree-evals-and-decision-spans",
+      "source": "arize.com"
+    },
+    {
+      "date": "2026-09-14",
+      "title": "09.14.2026: Coding Agent Plugins and Error Analysis",
+      "url": "https://arize.com/docs/phoenix/release-notes/09-2026/09-14-2026-coding-agent-plugins-and-error-analysis",
+      "source": "arize.com"
+    },
+    {
+      "date": "2026-08-11",
+      "title": "08.11.2026: Persistent Agent Sessions",
+      "url": "https://arize.com/docs/phoenix/release-notes/08-2026/08-11-2026-persistent-agent-sessions",
+      "source": "arize.com"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-10",
+      "title": "DeepSeek-V4.1-Flash: Smarter, Faster, More Efficient",
+      "url": "https://api-docs.deepseek.com/news/news260910",
+      "source": "api-docs.deepseek.com"
+    },
+    {
+      "date": "2026-08-13",
+      "title": "DeepSeek-V4-Pro GA Release",
+      "url": "https://api-docs.deepseek.com/news/news260813",
+      "source": "api-docs.deepseek.com"
+    },
+    {
+      "date": "2026-04-24",
+      "title": "DeepSeek V4 Preview Release",
+      "url": "https://api-docs.deepseek.com/news/news260424",
+      "source": "api-docs.deepseek.com"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-16",
+      "title": "Everything we shipped in the Zep Context API",
+      "url": "https://www.getzep.com/blog/what-shipped-in-the-context-api/",
+      "source": "getzep.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Hyperedges: accurate answers when a fact has many entities",
+      "url": "https://www.getzep.com/blog/hyperedges-facts-across-many-entities/",
+      "source": "getzep.com"
+    },
+    {
+      "date": "2026-10-14",
+      "title": "Zep v4: the Context API for agents",
+      "url": "https://www.getzep.com/blog/zep-api-for-agents/",
+      "source": "getzep.com"
+    },
+    {
+      "date": "2026-09-02",
+      "title": "Defending Agent Memory Against Poisoning",
+      "url": "https://www.getzep.com/blog/defending-agent-memory-poisoning/",
+      "source": "getzep.com"
+    },
+    {
+      "date": "2026-08-27",
+      "title": "Why we built a graph database service for agent memory",
+      "url": "https://www.getzep.com/blog/why-we-built-a-graph-database-service-for-agent-memory/",
+      "source": "getzep.com"
+    }
+  ]
+}

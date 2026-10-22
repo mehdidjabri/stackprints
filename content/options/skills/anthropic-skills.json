@@ -5,5 +5,48 @@
   "url": "github.com/anthropics/skills",
   "note": "Reference skill library",
   "open": true,
-  "logo": "anthropic"
+  "logo": "anthropic",
+  "profile": "product",
+  "summary": "Anthropic's public GitHub repository of example Agent Skills, along with a skill template and a copy of the Agent Skills spec. It covers creative and design, development, enterprise communication and document (docx, pdf, pptx, xlsx) skills. It also works as a Claude Code plugin marketplace.",
+  "facts": [
+    [
+      "Maintainer",
+      "Anthropic"
+    ],
+    [
+      "Skills",
+      "19 folders in skills/ (Oct 2026)"
+    ],
+    [
+      "License",
+      "Mostly Apache-2.0; document skills are source-available"
+    ],
+    [
+      "GitHub stars",
+      "~183k"
+    ],
+    [
+      "Install in Claude Code",
+      "/plugin marketplace add anthropics/skills"
+    ],
+    [
+      "Includes",
+      "skill-creator, mcp-builder, webapp-testing, frontend-design"
+    ]
+  ],
+  "links": {
+    "repo": "https://github.com/anthropics/skills",
+    "docs": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+    "site": "https://agentskills.io"
+  },
+  "goodFor": [
+    "Reference examples when writing your own skills",
+    "Document skills for Office files and PDFs",
+    "Starting from skill-creator and the template"
+  ],
+  "watchOut": [
+    "Provided for demonstration; test before critical use",
+    "docx/pdf/pptx/xlsx skills are not open source"
+  ],
+  "researched": "2026-10-21"
 }

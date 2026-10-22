@@ -4,5 +4,59 @@
   "name": "Trigger.dev",
   "url": "trigger.dev",
   "note": "Background jobs and schedules",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Trigger.dev is an open-source platform for running background tasks, scheduled jobs and long-running AI agents written in TypeScript. Tasks live in your codebase but execute on Trigger.dev's workers (cloud or self-hosted), with no execution timeout, retries, queues with concurrency limits, cron schedules and waitpoints that pause a run for human approval. A Realtime API streams run status and LLM output to the frontend.",
+  "facts": [
+    [
+      "Company",
+      "Trigger.dev"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "TypeScript"
+    ],
+    [
+      "Triggers",
+      "API calls, cron schedules with timezones, waitpoints"
+    ],
+    [
+      "Hosting",
+      "Trigger.dev Cloud or self-hosted (Docker, Kubernetes)"
+    ],
+    [
+      "Pricing",
+      "Free ($5 credits/mo); Hobby $10/mo; Pro $50/mo; compute billed per second"
+    ],
+    [
+      "Funding",
+      "$16M Series A (Dec 2025)"
+    ],
+    [
+      "GitHub stars",
+      "~16.6k"
+    ]
+  ],
+  "links": {
+    "site": "https://trigger.dev",
+    "docs": "https://trigger.dev/docs/introduction",
+    "repo": "https://github.com/triggerdotdev/trigger.dev",
+    "pricing": "https://trigger.dev/pricing",
+    "changelog": "https://trigger.dev/changelog"
+  },
+  "goodFor": [
+    "Scheduled agent runs without managing cron servers",
+    "Long-running tasks that outlive serverless timeouts",
+    "Human-in-the-loop pauses that don't burn compute"
+  ],
+  "watchOut": [
+    "TypeScript-centric",
+    "Tasks run on Trigger.dev workers, not in your own functions",
+    "Free tier stops when monthly credits run out"
+  ],
+  "researched": "2026-10-21"
 }

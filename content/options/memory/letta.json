@@ -3,6 +3,55 @@
   "id": "letta",
   "name": "Letta",
   "url": "letta.com",
-  "note": "Self-editing memory blocks",
-  "open": true
+  "note": "Git-backed, self-editing agent memory",
+  "open": true,
+  "profile": "product",
+  "summary": "Letta (formerly MemGPT) builds stateful agents whose memory persists across sessions and models. Since March 2026 its focus is Letta Code, a model-agnostic agent harness, with memory stored as a git-backed filesystem of Markdown files (MemFS) that agents edit with ordinary file tools.",
+  "facts": [
+    [
+      "Company",
+      "Letta (origin: MemGPT research project)"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Adoption",
+      "25.2k GitHub stars"
+    ],
+    [
+      "Storage",
+      "Git-backed Markdown files (MemFS), versioned per agent"
+    ],
+    [
+      "Hosting",
+      "Letta Cloud or self-hosted app server"
+    ],
+    [
+      "SDK",
+      "Letta Agents SDK (TypeScript)"
+    ],
+    [
+      "Pricing",
+      "Free; Pro $20/mo; API plan $20/mo plus usage"
+    ]
+  ],
+  "links": {
+    "site": "https://www.letta.com",
+    "docs": "https://docs.letta.com",
+    "repo": "https://github.com/letta-ai/letta",
+    "pricing": "https://docs.letta.com/letta-code/pricing",
+    "changelog": "https://www.letta.com/blog"
+  },
+  "goodFor": [
+    "Long-lived agents that keep identity across models",
+    "Memory with git history and diffs",
+    "Coding agents that learn a codebase over time"
+  ],
+  "watchOut": [
+    "March 2026 pivot deprecated older server-side memory tools, templates and filesystem",
+    "Older tutorials describe memory blocks and APIs that no longer apply"
+  ],
+  "researched": "2026-10-21"
 }

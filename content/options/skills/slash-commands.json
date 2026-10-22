@@ -2,5 +2,47 @@
   "order": 70,
   "id": "slash-commands",
   "name": "Slash commands",
-  "note": "Prompt templates on /name"
+  "note": "Prompt templates on /name",
+  "profile": "pattern",
+  "summary": "A slash command is a saved prompt template the user triggers by typing /name, often with arguments substituted into the text. Several agents now fold commands into skills, so the same file can be run by the user or loaded by the model.",
+  "how": [
+    "Write a Markdown or TOML file with the prompt text",
+    "Place it in the agent's commands folder (project or user)",
+    "Use placeholders such as $ARGUMENTS or {{args}} for input",
+    "Type /name in the session to expand and send it"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, Gemini CLI, Pi (prompt templates), Hermes Agent"
+    ],
+    [
+      "Claude Code",
+      ".claude/commands/*.md, now merged with skills"
+    ],
+    [
+      "Gemini CLI",
+      ".gemini/commands/*.toml"
+    ],
+    [
+      "Codex",
+      "Custom prompts in ~/.codex/prompts, deprecated for skills"
+    ],
+    [
+      "Trade-off",
+      "Predictable and explicit, but only runs when the user remembers it"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/slash-commands"
+  },
+  "goodFor": [
+    "Repeated prompts like commit or review",
+    "Team shortcuts committed to the repo"
+  ],
+  "watchOut": [
+    "Formats differ per agent",
+    "Being replaced by skills in several tools"
+  ],
+  "researched": "2026-10-21"
 }

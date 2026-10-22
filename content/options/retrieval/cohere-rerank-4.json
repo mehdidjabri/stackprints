@@ -4,5 +4,65 @@
   "name": "Cohere Rerank 4",
   "url": "cohere.com",
   "note": "Reranking",
-  "logo": "cohere"
+  "logo": "cohere",
+  "profile": "model",
+  "summary": "Cohere Rerank 4 is a cross-encoder reranking model released in December 2025 in Pro and Fast variants. It takes a query and a list of candidate documents and returns them reordered by relevance, typically as a second stage after vector or keyword search. Cohere released Rerank 5 on 2026-10-21 as its successor.",
+  "model": {
+    "lab": "Cohere",
+    "released": "2025-12-11",
+    "context": "32K tokens",
+    "modalities": [
+      "text"
+    ],
+    "weights": "closed",
+    "openrouter": "cohere/rerank-4-pro"
+  },
+  "facts": [
+    [
+      "Model IDs",
+      "rerank-v4.0-pro, rerank-v4.0-fast"
+    ],
+    [
+      "Context",
+      "32K tokens (query plus document), 4x Rerank 3.5"
+    ],
+    [
+      "Languages",
+      "Multilingual, 100+ languages"
+    ],
+    [
+      "Input",
+      "Text and semi-structured JSON"
+    ],
+    [
+      "Pricing",
+      "Billed per search unit (1 query, up to 100 docs)"
+    ],
+    [
+      "Also on",
+      "OpenRouter, Vercel AI Gateway, Pinecone (rerank-4-fast)"
+    ],
+    [
+      "Successor",
+      "Rerank 5 (rerank-v5.0-pro/fast), 2026-10-21"
+    ]
+  ],
+  "links": {
+    "site": "https://cohere.com/rerank",
+    "docs": "https://docs.cohere.com/docs/rerank",
+    "pricing": "https://cohere.com/pricing",
+    "changelog": "https://docs.cohere.com/changelog",
+    "blog": "https://cohere.com/blog/rerank-4"
+  },
+  "goodFor": [
+    "Second-stage reranking over vector or BM25 results",
+    "Long documents that need a 32K window",
+    "Multilingual corpora"
+  ],
+  "watchOut": [
+    "Superseded by Rerank 5; Cohere's pricing page now lists only Rerank 5",
+    "Closed weights, API or Model Vault only",
+    "Accuracy claims versus other rerankers are vendor-reported"
+  ],
+  "researched": "2026-10-21"
 }

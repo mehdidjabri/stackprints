@@ -2,5 +2,40 @@
   "order": 70,
   "id": "self-written-connectors",
   "name": "Self-written connectors",
-  "note": "Agent writes its own API client"
+  "note": "Agent writes its own API client",
+  "profile": "pattern",
+  "summary": "Instead of installing a connector, the agent reads an API's docs and writes its own small client or script, then runs it in a sandbox or shell. Anthropic describes a related approach where MCP servers are presented as code APIs that the agent calls from code rather than as direct tool calls.",
+  "facts": [
+    [
+      "Needs",
+      "Code execution and a place to keep credentials"
+    ],
+    [
+      "Token use",
+      "~150K to ~2K tokens in Anthropic's code-execution example (vendor-reported)"
+    ],
+    [
+      "Trade-off",
+      "Any API works, but no managed auth or vetted tools"
+    ]
+  ],
+  "how": [
+    "Agent reads the API docs or OpenAPI spec",
+    "Writes a small client or script for the calls it needs",
+    "Runs it with credentials from the environment or a secrets store",
+    "Saves working scripts as reusable tools or skills"
+  ],
+  "links": {
+    "docs": "https://www.anthropic.com/engineering/code-execution-with-mcp"
+  },
+  "goodFor": [
+    "APIs with no existing connector",
+    "Processing large data outside the model's context",
+    "Internal services"
+  ],
+  "watchOut": [
+    "Agent-written code can mishandle credentials or make destructive calls",
+    "You maintain the generated clients when APIs change"
+  ],
+  "researched": "2026-10-21"
 }

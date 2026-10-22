@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-02",
+      "title": "Tencent AIG joins ClawScan",
+      "url": "https://openclaw.ai/blog/tencent-aig-joins-clawscan/",
+      "source": "openclaw.ai"
+    },
+    {
+      "date": "2026-09-29",
+      "title": "OpenClaw Enterprise - The Open Agent Platform",
+      "url": "https://openclaw.ai/blog/openclaw-enterprise",
+      "source": "openclaw.ai"
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Microsoft Autopilot is built on OpenClaw. The contributions go both ways.",
+      "url": "https://openclaw.ai/blog/microsoft-autopilot-openclaw",
+      "source": "openclaw.ai"
+    },
+    {
+      "date": "2026-08-30",
+      "title": "OpenClaw 2.0, Accidentally",
+      "url": "https://openclaw.ai/blog/openclaw-2-accidentally",
+      "source": "openclaw.ai"
+    },
+    {
+      "date": "2026-07-08",
+      "title": "Introducing the OpenClaw Foundation",
+      "url": "https://openclaw.ai/blog/introducing-openclaw-foundation",
+      "source": "openclaw.ai"
+    }
+  ]
+}

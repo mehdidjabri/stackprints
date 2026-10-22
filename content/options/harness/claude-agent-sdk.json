@@ -4,5 +4,58 @@
   "name": "Claude Agent SDK",
   "url": "claude.com",
   "note": "Claude Code's loop as a library",
-  "logo": "claudecode"
+  "logo": "claudecode",
+  "profile": "product",
+  "summary": "Anthropic's library that exposes Claude Code's agent loop, built-in tools and context management to Python and TypeScript programs. It runs the Claude Code binary and inherits its hooks, subagents, MCP, permissions, sessions, skills and plugins. It was previously called the Claude Code SDK.",
+  "facts": [
+    [
+      "Company",
+      "Anthropic"
+    ],
+    [
+      "Languages",
+      "Python, TypeScript"
+    ],
+    [
+      "License",
+      "Anthropic Commercial Terms (Python repo: MIT)"
+    ],
+    [
+      "Built-in tools",
+      "File read/write/edit, shell, web search"
+    ],
+    [
+      "MCP",
+      "Yes"
+    ],
+    [
+      "Subagents",
+      "Yes"
+    ],
+    [
+      "Memory",
+      "CLAUDE.md and .claude/ config, same as Claude Code"
+    ],
+    [
+      "Models",
+      "Claude only"
+    ]
+  ],
+  "links": {
+    "site": "https://code.claude.com/docs/en/agent-sdk/overview",
+    "docs": "https://code.claude.com/docs/en/agent-sdk/overview",
+    "repo": "https://github.com/anthropics/claude-agent-sdk-python",
+    "changelog": "https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md"
+  },
+  "goodFor": [
+    "Embedding a coding-capable agent in your own app",
+    "Reusing Claude Code skills, hooks and plugins",
+    "File and shell heavy automation"
+  ],
+  "watchOut": [
+    "Claude models only",
+    "Third-party products may not offer claude.ai login without approval",
+    "Use governed by Anthropic Commercial Terms"
+  ],
+  "researched": "2026-10-21"
 }

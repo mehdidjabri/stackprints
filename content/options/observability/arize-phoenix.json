@@ -4,5 +4,53 @@
   "name": "Arize Phoenix",
   "url": "phoenix.arize.com",
   "note": "OTel tracing",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Phoenix is Arize AI's open-source tool for tracing and evaluating LLM applications and agents. It is built on OpenTelemetry and the OpenInference instrumentation conventions, and adds LLM-based and code evaluators, datasets and experiments, and a prompt playground. It runs locally, in Docker or on Kubernetes at no cost; Arize AX is the company's separate managed enterprise platform.",
+  "facts": [
+    [
+      "Company",
+      "Arize AI"
+    ],
+    [
+      "License",
+      "Elastic License 2.0 (source-available)"
+    ],
+    [
+      "Self-hostable",
+      "Yes, free, no feature gates"
+    ],
+    [
+      "OpenTelemetry",
+      "Native (OTLP + OpenInference)"
+    ],
+    [
+      "SDKs",
+      "Python and TypeScript"
+    ],
+    [
+      "Deployment",
+      "CLI, Docker, Kubernetes"
+    ],
+    [
+      "GitHub stars",
+      "~12k"
+    ]
+  ],
+  "links": {
+    "site": "https://arize.com/phoenix/",
+    "docs": "https://arize.com/docs/phoenix",
+    "repo": "https://github.com/Arize-ai/phoenix",
+    "changelog": "https://arize.com/docs/phoenix/release-notes"
+  },
+  "goodFor": [
+    "Free self-hosted tracing and evals",
+    "OpenTelemetry-first instrumentation",
+    "Local debugging during development"
+  ],
+  "watchOut": [
+    "ELv2 forbids offering it as a hosted service",
+    "Managed enterprise features live in the separate Arize AX product"
+  ],
+  "researched": "2026-10-21"
 }

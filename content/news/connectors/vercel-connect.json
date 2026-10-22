@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-21",
+      "title": "Vercel Connect now supports Microsoft Teams",
+      "url": "https://vercel.com/changelog/vercel-connect-microsoft-teams",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-08-25",
+      "title": "Vercel Connect is now generally available",
+      "url": "https://vercel.com/changelog/vercel-connect-ga",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-08-25",
+      "title": "The end of credential sprawl for agents",
+      "url": "https://vercel.com/blog/the-end-of-credential-sprawl-for-agents",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Vercel Connect adds observability support",
+      "url": "https://vercel.com/changelog/vercel-connect-adds-observability-support",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-06-17",
+      "title": "Introducing Vercel Connect",
+      "url": "https://vercel.com/blog/introducing-vercel-connect",
+      "source": "vercel.com"
+    }
+  ]
+}

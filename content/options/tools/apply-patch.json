@@ -4,5 +4,46 @@
   "name": "apply_patch",
   "url": "openai.com",
   "note": "Diff-based edits",
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "product",
+  "summary": "apply_patch is a built-in tool in OpenAI's API that lets a model create, update and delete files by emitting structured diffs in the V4A format. The model returns apply_patch_call items, the developer's harness applies them and reports success or failure back, so the model can iterate. It is aimed at coding agents that edit codebases.",
+  "facts": [
+    [
+      "Vendor",
+      "OpenAI"
+    ],
+    [
+      "Patch format",
+      "V4A diff"
+    ],
+    [
+      "Operations",
+      "create_file, update_file, delete_file"
+    ],
+    [
+      "APIs",
+      "Responses, Chat Completions, Assistants"
+    ],
+    [
+      "Models",
+      "GPT-5.1, GPT-5.2, GPT-5.4, GPT-5.5 (per docs)"
+    ],
+    [
+      "SDK support",
+      "Agents SDK ApplyPatchTool (Python) / applyPatchTool (TypeScript)"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.openai.com/api/docs/guides/tools-apply-patch"
+  },
+  "goodFor": [
+    "Multi-file code edits from a coding agent",
+    "Small, reviewable diffs instead of full-file rewrites"
+  ],
+  "watchOut": [
+    "Your harness must parse V4A and apply patches itself",
+    "Validate paths to avoid directory traversal",
+    "Supported only on listed OpenAI models"
+  ],
+  "researched": "2026-10-21"
 }

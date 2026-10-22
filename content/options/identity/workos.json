@@ -3,5 +3,43 @@
   "id": "workos",
   "name": "WorkOS",
   "url": "workos.com",
-  "note": "Enterprise auth for agents"
+  "note": "Enterprise auth for agents",
+  "profile": "product",
+  "summary": "WorkOS sells enterprise auth building blocks (AuthKit, SSO, Directory Sync, Audit Logs, fine-grained authorization). For agents it can act as the OAuth authorization server for MCP servers, and in October 2026 it previewed Airlock, a policy layer that approves, denies or escalates agent actions.",
+  "facts": [
+    [
+      "Products",
+      "AuthKit, SSO, Directory Sync, Audit Logs, FGA, Radar, Pipes"
+    ],
+    [
+      "MCP auth",
+      "AuthKit as authorization server; CIMD and DCR supported"
+    ],
+    [
+      "Agent previews",
+      "Airlock, Atlas, Passport (Oct 2026)"
+    ],
+    [
+      "Pricing",
+      "AuthKit free to 1M MAU; SSO from $125 per connection/month"
+    ],
+    [
+      "Own MCP server",
+      "Hosted WorkOS MCP for managing the account (July 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://workos.com",
+    "docs": "https://workos.com/docs/authkit/mcp",
+    "pricing": "https://workos.com/pricing"
+  },
+  "goodFor": [
+    "B2B apps adding MCP servers that enterprises can SSO into",
+    "Teams that want SSO, SCIM and audit logs from one vendor"
+  ],
+  "watchOut": [
+    "Airlock, Atlas and Passport are previews",
+    "Per-connection SSO pricing adds up with many enterprise customers"
+  ],
+  "researched": "2026-10-21"
 }

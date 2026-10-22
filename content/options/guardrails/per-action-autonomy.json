@@ -2,5 +2,36 @@
   "order": 30,
   "id": "per-action-autonomy",
   "name": "Per-action autonomy",
-  "note": "Act, ask, or hand off, per kind of action"
+  "note": "Act, ask, or hand off, per kind of action",
+  "profile": "pattern",
+  "summary": "Instead of one autonomy level for the whole agent, each kind of action gets its own: act silently, act and report, ask first, or hand off to a person. The level is usually set by how reversible and costly the action is.",
+  "how": [
+    "List the action types the agent can take (read, draft, send, pay, delete…)",
+    "Assign each a level: act, act and notify, ask, or hand off",
+    "Base the level on reversibility and blast radius",
+    "Promote an action type only after its approval history supports it"
+  ],
+  "facts": [
+    [
+      "Examples",
+      "Codex granular approval policy; AP2 human-present vs human-not-present payments; Stripe MCP requires human confirmation for refunds and outbound payments"
+    ],
+    [
+      "Key input",
+      "Reversibility of the action"
+    ],
+    [
+      "Trade-off",
+      "Fewer pointless prompts, but needs an up-front catalogue of actions"
+    ]
+  ],
+  "goodFor": [
+    "Assistants that both read and act (email, payments, ops)",
+    "Gradually widening autonomy as trust grows"
+  ],
+  "watchOut": [
+    "New tools default to the wrong level unless someone classifies them",
+    "Misclassifying an irreversible action as low-risk"
+  ],
+  "researched": "2026-10-21"
 }

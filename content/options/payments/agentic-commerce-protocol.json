@@ -5,5 +5,47 @@
   "url": "agenticcommerce.dev",
   "note": "OpenAI + Stripe checkout",
   "open": true,
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "protocol",
+  "summary": "An open spec from OpenAI and Stripe for agent-led checkout: the agent creates and updates a checkout session at the merchant, then pays with a delegated, scoped payment token, while the merchant stays merchant of record. ChatGPT was the first platform to implement it.",
+  "facts": [
+    [
+      "Maintainers",
+      "OpenAI, Stripe"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Status",
+      "Beta"
+    ],
+    [
+      "Latest spec",
+      "2026-04-17 (adds carts, feed API, orders, MCP binding)"
+    ],
+    [
+      "Payments",
+      "Delegated payment tokens; Stripe Shared Payment Token first"
+    ],
+    [
+      "GitHub stars",
+      "1.6k"
+    ]
+  ],
+  "links": {
+    "site": "https://www.agenticcommerce.dev",
+    "repo": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol",
+    "changelog": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/blob/main/changelog/2026-04-17.md"
+  },
+  "goodFor": [
+    "Merchants selling inside ChatGPT",
+    "Checkout without exposing card numbers to the agent"
+  ],
+  "watchOut": [
+    "Beta with breaking changes between dated versions",
+    "Competes with UCP and AP2 for the same role"
+  ],
+  "researched": "2026-10-21"
 }

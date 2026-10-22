@@ -5,5 +5,58 @@
   "url": "ai-sdk.dev",
   "note": "TypeScript tool-loop agent",
   "open": true,
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "The agent layer of Vercel's open-source AI SDK for TypeScript. ToolLoopAgent wraps a model and a set of tools in a reusable loop with stop conditions and per-step control; AI SDK 7 adds a durable WorkflowAgent and a HarnessAgent that drives existing harnesses such as Claude Code, Codex or Pi. Aimed at TypeScript developers building agents into Node.js, Next.js, React, Vue or Svelte apps.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "TypeScript"
+    ],
+    [
+      "Current major",
+      "AI SDK 7 (June 2026)"
+    ],
+    [
+      "Agent classes",
+      "ToolLoopAgent, WorkflowAgent, HarnessAgent"
+    ],
+    [
+      "Loop control",
+      "stopWhen and prepareStep"
+    ],
+    [
+      "MCP",
+      "Supported, including MCP Apps"
+    ],
+    [
+      "Adoption",
+      "16M+ weekly downloads (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://ai-sdk.dev",
+    "docs": "https://ai-sdk.dev/docs/agents/overview",
+    "repo": "https://github.com/vercel/ai",
+    "changelog": "https://github.com/vercel/ai/releases"
+  },
+  "goodFor": [
+    "Agents inside TypeScript web apps",
+    "Switching model providers behind one API",
+    "Durable, resumable agent runs (WorkflowAgent)"
+  ],
+  "watchOut": [
+    "AI SDK 7 requires Node.js 22+ and ESM only",
+    "Frequent major versions with breaking changes",
+    "Durable execution leans on Vercel's Workflow SDK"
+  ],
+  "researched": "2026-10-21"
 }

@@ -4,5 +4,42 @@
   "name": "Smithery",
   "url": "smithery.ai",
   "note": "MCP server registry",
-  "logo": "smithery"
+  "logo": "smithery",
+  "profile": "product",
+  "summary": "Smithery is a public directory of MCP servers, now owned by Arcade.dev. Until October 2026 it also hosted and proxied MCP servers and managed user connections; those services shut down on October 31, 2026, leaving smithery.ai as a non-proxied directory that links to vendors' own MCP URLs.",
+  "facts": [
+    [
+      "Owner",
+      "Arcade.dev (acquired Aug 2026)"
+    ],
+    [
+      "Catalog",
+      "27,000+ MCP servers listed"
+    ],
+    [
+      "Shutting down",
+      "API, Connect, Toolbox, CLI, SDKs, MCP proxy (2026-10-31)"
+    ],
+    [
+      "Remaining",
+      "Public directory with direct vendor MCP URLs"
+    ],
+    [
+      "Paid plans",
+      "Cancelled; charges since Aug 5 refunded"
+    ]
+  ],
+  "links": {
+    "site": "https://smithery.ai",
+    "docs": "https://smithery.ai/future"
+  },
+  "goodFor": [
+    "Finding MCP servers and their official URLs"
+  ],
+  "watchOut": [
+    "Hosted connections stop working on 2026-10-31; migrate before then",
+    "No longer a place to host or proxy your own server",
+    "Arcade is the suggested replacement for prebuilt integrations"
+  ],
+  "researched": "2026-10-21"
 }

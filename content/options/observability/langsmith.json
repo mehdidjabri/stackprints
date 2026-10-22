@@ -4,5 +4,49 @@
   "name": "LangSmith",
   "url": "smith.langchain.com",
   "note": "LangChain tracing",
-  "logo": "langsmith"
+  "logo": "langsmith",
+  "profile": "product",
+  "summary": "LangSmith is LangChain's commercial platform for tracing, evaluating and monitoring LLM applications and agents. It records runs and threads, supports datasets, online and offline evaluations, annotation queues, dashboards and alerts, and works with LangChain/LangGraph as well as other frameworks and providers. It is offered as a cloud service, with hybrid and self-hosted options on the Enterprise plan.",
+  "facts": [
+    [
+      "Company",
+      "LangChain"
+    ],
+    [
+      "Open source",
+      "No (SDKs are MIT)"
+    ],
+    [
+      "Self-hostable",
+      "Enterprise plan only (self-hosted or hybrid)"
+    ],
+    [
+      "OpenTelemetry",
+      "Can ingest OpenTelemetry traces"
+    ],
+    [
+      "Pricing",
+      "Free Developer seat with 5k base traces/mo; Plus $39/seat/mo"
+    ],
+    [
+      "Trace retention",
+      "14 days (base) or 180 days (extended)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.langchain.com/langsmith",
+    "docs": "https://docs.langchain.com/langsmith/home",
+    "pricing": "https://www.langchain.com/pricing",
+    "changelog": "https://docs.langchain.com/langsmith/changelog"
+  },
+  "goodFor": [
+    "Teams building on LangChain or LangGraph",
+    "Evals and annotation queues next to traces",
+    "Managed setup with little ops"
+  ],
+  "watchOut": [
+    "Closed source; self-hosting requires Enterprise",
+    "Per-seat plus per-trace pricing"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "eve@0.82.0",
+      "url": "https://github.com/vercel/eve/releases/tag/eve%400.82.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-06-26",
+      "title": "Vercel Introduces Eve, an Open-Source Framework for Building AI Agents",
+      "url": "https://www.infoq.com/news/2026/06/vercel-eve-agents/",
+      "source": "infoq.com"
+    },
+    {
+      "date": "2026-06-23",
+      "title": "Vercel debuts eve open source agent framework, tries to fix shadow AI with Passport",
+      "url": "https://www.devclass.com/devops/2026/06/23/vercel-debuts-eve-open-source-agent-framework-tries-to-fix-shadow-ai-with-passport/5260169",
+      "source": "devclass.com"
+    },
+    {
+      "date": "2026-06-17",
+      "title": "Introducing eve",
+      "url": "https://vercel.com/blog/introducing-eve",
+      "source": "vercel.com"
+    }
+  ]
+}

@@ -2,5 +2,32 @@
   "order": 10,
   "id": "plain-text",
   "name": "Plain text",
-  "note": "Markdown in a thread"
+  "note": "Markdown in a thread",
+  "profile": "pattern",
+  "summary": "The agent replies with Markdown text in a thread, with no custom components. It works almost everywhere, from web chat to Slack, Teams and Telegram, and many channels now render richer Markdown and streamed text natively.",
+  "how": [
+    "Have the model answer in Markdown",
+    "Stream or post the text into the conversation thread",
+    "Convert Markdown to each channel's formatting rules",
+    "Use links or attachments for anything that does not fit in text"
+  ],
+  "facts": [
+    [
+      "Channel support",
+      "Slack streaming APIs, Teams extended Markdown, Telegram rich messages"
+    ],
+    [
+      "Trade-off",
+      "Portable and simple, but no interactive controls"
+    ]
+  ],
+  "goodFor": [
+    "Agents that run on many channels",
+    "Simple question-and-answer and status updates"
+  ],
+  "watchOut": [
+    "Markdown dialects differ between channels",
+    "Long tables and code blocks can render poorly on mobile"
+  ],
+  "researched": "2026-10-21"
 }

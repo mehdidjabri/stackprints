@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-08",
+      "title": "Create Workflow instance batches by count or list",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-08-create-batch-object-form/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-24",
+      "title": "Declare Workflows in the `exports` configuration",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-24-workflow-exports/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-15",
+      "title": "Stream Workflow instance events in your Worker or via the API with .subscribe()",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-15-instance-event-subscriptions/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-10",
+      "title": "Default instance retention for new Workflows on Workers Paid is seven days",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-10-paid-retention-default/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-07-07",
+      "title": "Workflows pricing adds per-step billing. Step and storage billing to start no earlier than August 10, 2026.",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-07-workflows-billing-updates/",
+      "source": "developers.cloudflare.com"
+    }
+  ]
+}

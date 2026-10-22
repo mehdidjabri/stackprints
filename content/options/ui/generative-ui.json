@@ -2,5 +2,39 @@
   "order": 40,
   "id": "generative-ui",
   "name": "Generative UI",
-  "note": "Model streams components, not text"
+  "note": "Model streams components, not text",
+  "profile": "pattern",
+  "summary": "Instead of only text, the agent's output is rendered as interface components. Typically the model calls a tool, and the client maps that tool's input and result to a component such as a weather card, form or chart; declarative protocols like A2UI and MCP Apps standardize the same idea across hosts.",
+  "how": [
+    "Define tools whose results describe UI data",
+    "Let the model choose a tool during the conversation",
+    "Map each tool part to a component by tool name",
+    "Show loading, result and error states as the tool runs"
+  ],
+  "facts": [
+    [
+      "Implementations",
+      "AI SDK UI tool parts, assistant-ui tool UI"
+    ],
+    [
+      "Standards",
+      "A2UI (declarative JSON), MCP Apps (sandboxed HTML)"
+    ],
+    [
+      "Trade-off",
+      "Richer answers, but more components to build and maintain"
+    ]
+  ],
+  "links": {
+    "docs": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces"
+  },
+  "goodFor": [
+    "Structured results like charts, cards and forms",
+    "Letting users act on results with clicks"
+  ],
+  "watchOut": [
+    "Every component must be designed and tested",
+    "Does not carry over to text-only channels"
+  ],
+  "researched": "2026-10-21"
 }

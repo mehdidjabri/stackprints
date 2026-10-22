@@ -2,5 +2,41 @@
   "order": 90,
   "id": "agent-network",
   "name": "Agent network",
-  "note": "Your agent coordinates with theirs"
+  "note": "Your agent coordinates with theirs",
+  "profile": "pattern",
+  "summary": "Your agent works with agents run by other people or companies instead of only its own sub-agents: it finds them, sends them tasks and receives results, much like calling a service. Protocols such as A2A define the discovery and task exchange. Trust, auth and payment between parties become part of the design.",
+  "facts": [
+    [
+      "Standard",
+      "A2A (Agent2Agent)"
+    ],
+    [
+      "Strength",
+      "Reuse capabilities you do not build or host"
+    ],
+    [
+      "Trade-off",
+      "You cannot see or control the remote agent's internals"
+    ]
+  ],
+  "how": [
+    "Discover a remote agent and read what it can do (for example an A2A Agent Card)",
+    "Authenticate with the scheme the remote agent declares",
+    "Send it a task and stream or poll for status",
+    "Answer follow-up questions if it needs more input",
+    "Use the returned result or artifact in your own flow"
+  ],
+  "links": {
+    "docs": "https://a2a-protocol.org/latest/specification/"
+  },
+  "goodFor": [
+    "Booking, purchasing or support with outside parties",
+    "Cross-company workflows",
+    "Using a specialist agent as a service"
+  ],
+  "watchOut": [
+    "Trust and data sharing with third parties",
+    "Remote agents can fail, change or disappear"
+  ],
+  "researched": "2026-10-21"
 }

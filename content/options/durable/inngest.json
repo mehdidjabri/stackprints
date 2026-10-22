@@ -4,5 +4,54 @@
   "name": "Inngest",
   "url": "inngest.com",
   "note": "Event-driven durable steps",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Inngest is an event-driven durable execution platform: functions are triggered by events or schedules and broken into steps that are retried and memoized individually. The Inngest service calls your functions over HTTP (or via persistent worker connections), so it works with serverless platforms as well as long-running servers. It offers a hosted cloud and a self-hostable server.",
+  "facts": [
+    [
+      "Company",
+      "Inngest, Inc."
+    ],
+    [
+      "License",
+      "Server: SSPL with delayed Apache-2.0; SDKs: Apache-2.0"
+    ],
+    [
+      "Model",
+      "Event-triggered functions with durable steps"
+    ],
+    [
+      "Hosting",
+      "Inngest Cloud or self-hosted"
+    ],
+    [
+      "Pricing",
+      "Free tier (50k executions/mo); Pro from $99/mo"
+    ],
+    [
+      "Billing unit",
+      "Executions (each run and each step count)"
+    ],
+    [
+      "GitHub stars",
+      "~6k"
+    ]
+  ],
+  "links": {
+    "site": "https://www.inngest.com",
+    "docs": "https://www.inngest.com/docs",
+    "repo": "https://github.com/inngest/inngest",
+    "pricing": "https://www.inngest.com/pricing",
+    "blog": "https://www.inngest.com/blog"
+  },
+  "goodFor": [
+    "Durable background steps on serverless hosts",
+    "Event-driven agent pipelines",
+    "Concurrency and throttling controls per key"
+  ],
+  "watchOut": [
+    "Server license is SSPL, not OSI open source",
+    "Every step counts toward billed executions"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-13",
+      "title": "Temporal and AWS: A partnership built for production-grade AI",
+      "url": "https://temporal.io/blog/temporal-and-aws-a-partnership-built-for-production-grade-ai",
+      "source": "temporal.io"
+    },
+    {
+      "date": "2026-10-06",
+      "title": "Accelerating AI agent security — Welcome Oso team",
+      "url": "https://temporal.io/blog/oso-security-joins-temporal-accelerate-ai-agent-security",
+      "source": "temporal.io"
+    },
+    {
+      "date": "2026-09-23",
+      "title": "Build durable applications in Rust: the Temporal Rust SDK is now generally available",
+      "url": "https://temporal.io/blog/build-durable-applications-rust-temporal-rust-sdk-now-generally-available",
+      "source": "temporal.io"
+    },
+    {
+      "date": "2026-09-14",
+      "title": "Temporal Raises $550M at a $12.55B Valuation as Demand Surges for Reliable AI Infrastructure",
+      "url": "https://temporal.io/news/temporal-raises-550m-at-a-12-55b-valuation",
+      "source": "temporal.io"
+    },
+    {
+      "date": "2026-09-14",
+      "title": "Temporal raises $550m at $12.55bn to keep AI agents from failing",
+      "url": "https://thenextweb.com/news/temporal-550m-series-e-12-55bn-valuation-lightspeed",
+      "source": "thenextweb.com"
+    }
+  ]
+}

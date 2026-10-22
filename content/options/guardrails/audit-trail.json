@@ -2,5 +2,32 @@
   "order": 100,
   "id": "audit-trail",
   "name": "Audit trail",
-  "note": "Every action logged and reviewable"
+  "note": "Every action logged and reviewable",
+  "profile": "pattern",
+  "summary": "Every action the agent takes, and every permission decision behind it, is written to an append-only log that people can review later. It doesn't prevent anything on its own; it makes mistakes and abuse traceable after the fact.",
+  "how": [
+    "Record each tool call with inputs, result, time and acting identity",
+    "Record who or what approved it",
+    "Store the log outside the agent's reach",
+    "Review or alert on it"
+  ],
+  "facts": [
+    [
+      "Examples",
+      "WorkOS Airlock audits every decision; AP2 chains signed mandates into an audit trail; Stripe Workbench logs MCP tool calls"
+    ],
+    [
+      "Trade-off",
+      "Cheap to add, but only detects after the fact"
+    ]
+  ],
+  "goodFor": [
+    "Compliance and incident review",
+    "Pairing with higher autonomy"
+  ],
+  "watchOut": [
+    "Logs can capture secrets or personal data",
+    "A log nobody reads catches nothing"
+  ],
+  "researched": "2026-10-21"
 }

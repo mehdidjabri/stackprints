@@ -3,5 +3,30 @@
   "id": "sms-rcs",
   "name": "SMS / RCS",
   "url": "twilio.com",
-  "note": "Any phone, no app"
+  "note": "Any phone, no app",
+  "profile": "product",
+  "summary": "An agent can text any phone through a messaging provider such as Twilio, which delivers inbound messages to a webhook and sends replies through an API. RCS adds branded senders and rich media on Android and iOS 18 devices. In the US, application-to-person SMS from long-code numbers requires A2P 10DLC brand and campaign registration.",
+  "facts": [
+    ["API", "Official carrier channels via providers (e.g. Twilio Programmable Messaging)"],
+    ["US SMS price", "$0.0083 per segment in or out, plus carrier fees (Twilio)"],
+    ["US RCS price", "$0.0083 per segment (Rich), $0.022 per message (Rich Media), plus carrier fees"],
+    ["Number cost", "$1.15/month for a US long code (Twilio)"],
+    ["Approval", "A2P 10DLC registration required for US long-code SMS"],
+    ["RCS reach", "Android and iOS 18 devices"]
+  ],
+  "links": {
+    "docs": "https://www.twilio.com/docs/rcs",
+    "pricing": "https://www.twilio.com/en-us/sms/pricing/us",
+    "changelog": "https://www.twilio.com/en-us/changelog"
+  },
+  "goodFor": [
+    "Reaching users without any app install",
+    "Notifications and short back-and-forth with an agent"
+  ],
+  "watchOut": [
+    "US registration (A2P 10DLC) before sending at scale",
+    "Per-segment and carrier fees add up for long replies",
+    "Plain SMS has no rich formatting or streaming"
+  ],
+  "researched": "2026-10-21"
 }

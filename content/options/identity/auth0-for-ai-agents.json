@@ -4,5 +4,47 @@
   "name": "Auth0 for AI Agents",
   "url": "auth0.com",
   "note": "Agent identity and token vault",
-  "logo": "auth0"
+  "logo": "auth0",
+  "profile": "product",
+  "summary": "Okta's Auth0 product set for agent apps: user login, a Token Vault that stores and refreshes third-party OAuth tokens on the user's behalf, asynchronous approval (CIBA) for sensitive actions, and fine-grained authorization for RAG. Auth for MCP went GA in May 2026.",
+  "facts": [
+    [
+      "Company",
+      "Okta (Auth0)"
+    ],
+    [
+      "GA",
+      "November 2025"
+    ],
+    [
+      "Features",
+      "User auth, Token Vault, async authorization (CIBA), FGA for RAG, Auth for MCP"
+    ],
+    [
+      "Token Vault",
+      "35+ prebuilt integrations, any standard OAuth service"
+    ],
+    [
+      "SDKs",
+      "LangChain/LangGraph, LlamaIndex, Vercel AI SDK, Cloudflare Agents"
+    ],
+    [
+      "Pricing",
+      "Free plan includes two Token Vault connected apps"
+    ]
+  ],
+  "links": {
+    "site": "https://auth0.com/ai",
+    "docs": "https://auth0.com/ai/docs/intro/overview",
+    "changelog": "https://www.okta.com/newsroom/articles/auth0-may-2026-product-innovations/"
+  },
+  "goodFor": [
+    "Agents calling Google, Slack, GitHub etc. on a user's behalf",
+    "Human approval of high-risk actions out of band"
+  ],
+  "watchOut": [
+    "Several pieces are still early access or developer preview",
+    "Ties agent identity to the Okta/Auth0 platform"
+  ],
+  "researched": "2026-10-21"
 }

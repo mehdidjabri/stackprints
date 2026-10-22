@@ -3,5 +3,49 @@
   "id": "hyperbrowser",
   "name": "Hyperbrowser",
   "url": "hyperbrowser.ai",
-  "note": "Scalable browser sessions"
+  "note": "Scalable browser sessions",
+  "profile": "product",
+  "summary": "Cloud platform that gives agents hosted Chrome sessions, isolated sandboxes and a web scraping API. Sessions are controlled with Playwright or Puppeteer, and it can run HyperAgent, Browser Use or computer-use models for you.",
+  "facts": [
+    [
+      "Company",
+      "Hyperbrowser (San Francisco, YC-backed, founded 2024)"
+    ],
+    [
+      "Products",
+      "Browsers, sandboxes, Web API, hosted agents"
+    ],
+    [
+      "Open source",
+      "HyperAgent (Playwright + natural language)"
+    ],
+    [
+      "SDKs",
+      "Node.js, Python, CLI, MCP server"
+    ],
+    [
+      "Pricing",
+      "Credit-based: free 5,000 credits, Startup $30/mo, Scale $100/mo"
+    ],
+    [
+      "Startup time",
+      "Under 500ms (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.hyperbrowser.ai",
+    "docs": "https://www.hyperbrowser.ai/docs/home",
+    "pricing": "https://www.hyperbrowser.ai/pricing",
+    "repo": "https://github.com/hyperbrowserai/HyperAgent"
+  },
+  "goodFor": [
+    "One vendor for browsers, sandboxes and scraping",
+    "Trying several browser-agent frameworks",
+    "Reusable logged-in profiles"
+  ],
+  "watchOut": [
+    "Credit pricing is harder to compare with per-hour rivals",
+    "Smaller company with little independent coverage"
+  ],
+  "researched": "2026-10-21"
 }

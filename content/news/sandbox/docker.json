@@ -1,0 +1,8 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-09-24", "title": "Introducing Cloud Sandboxes: Start on Your Laptop, Finish in the Cloud", "url": "https://www.docker.com/blog/introducing-cloud-sandboxes-start-on-your-laptop-finish-in-the-cloud/", "source": "docker.com" },
+    { "date": "2026-03-11", "title": "Building AI Teams: How Docker Sandboxes and Docker Agent Transform Development", "url": "https://www.docker.com/blog/building-ai-teams-docker-sandboxes-agent/", "source": "docker.com" },
+    { "date": "2026-01-30", "title": "Docker Sandboxes: Run Claude Code and Other Coding Agents Unsupervised (but Safely)", "url": "https://www.docker.com/blog/docker-sandboxes-run-claude-code-and-other-coding-agents-unsupervised-but-safely/", "source": "docker.com" }
+  ]
+}

@@ -4,5 +4,70 @@
   "name": "Claude Opus 5.5",
   "url": "anthropic.com",
   "note": "Anthropic flagship",
-  "logo": "claude"
+  "logo": "claude",
+  "profile": "model",
+  "summary": "Claude Opus 5.5 is the first model in Anthropic's Claude 5.5 family and its recommended default for most workloads. Anthropic positions it for long-running agentic coding, computer use and knowledge work, at roughly Fable 5.1 level on most tasks for a lower price.",
+  "facts": [
+    [
+      "Lab",
+      "Anthropic"
+    ],
+    [
+      "API ID",
+      "claude-opus-5-5"
+    ],
+    [
+      "Max output",
+      "128K tokens"
+    ],
+    [
+      "Thinking",
+      "Adaptive, always on (default effort medium)"
+    ],
+    [
+      "Fast mode",
+      "Up to 2.5x speed at $8 / $40 per 1M tokens"
+    ],
+    [
+      "Terminal-Bench 4.0",
+      "66.4% (vendor-reported)"
+    ],
+    [
+      "OSWorld 2.1",
+      "81.8% partial credit (vendor-reported)"
+    ],
+    [
+      "Knowledge cutoff",
+      "June 2026"
+    ]
+  ],
+  "links": {
+    "site": "https://www.anthropic.com/news/claude-opus-5-5",
+    "docs": "https://platform.claude.com/docs/en/models/opus-5-5/overview",
+    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  "goodFor": [
+    "Agentic coding in large codebases",
+    "Computer use and long tasks",
+    "Default model for agent harnesses"
+  ],
+  "watchOut": [
+    "Thinking cannot be switched off",
+    "Most cybersecurity tasks are rerouted to Opus 4.8",
+    "Pricier than Sonnet 5.5 for routine work"
+  ],
+  "model": {
+    "lab": "Anthropic",
+    "released": "2026-09-22",
+    "context": "1M tokens",
+    "priceIn": "$4 / 1M tokens",
+    "priceOut": "$20 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "anthropic/claude-opus-5.5"
+  },
+  "researched": "2026-10-21"
 }

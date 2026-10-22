@@ -4,5 +4,52 @@
   "name": "Playwright MCP",
   "url": "playwright.dev",
   "note": "Accessibility-tree browser control",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Microsoft's MCP server that gives an LLM browser control through Playwright. It works on accessibility-tree snapshots instead of screenshots, so a text-only model can click and type by element reference.",
+  "facts": [
+    [
+      "Maintainer",
+      "Microsoft"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "GitHub stars",
+      "~38k"
+    ],
+    [
+      "Input",
+      "Accessibility snapshots; vision is opt-in"
+    ],
+    [
+      "Install",
+      "npx @playwright/mcp@latest"
+    ],
+    [
+      "Runtime",
+      "Node.js 18+, Docker image, HTTP mode"
+    ],
+    [
+      "Pricing",
+      "Free, open source"
+    ]
+  ],
+  "links": {
+    "site": "https://playwright.dev/docs/getting-started-mcp",
+    "repo": "https://github.com/microsoft/playwright-mcp",
+    "changelog": "https://github.com/microsoft/playwright-mcp/releases"
+  },
+  "goodFor": [
+    "Giving any MCP client a browser",
+    "Deterministic clicks without a vision model",
+    "Local testing and debugging flows"
+  ],
+  "watchOut": [
+    "Snapshots can eat a lot of context",
+    "Microsoft points coding agents to Playwright CLI as a lighter option"
+  ],
+  "researched": "2026-10-21"
 }

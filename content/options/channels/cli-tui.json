@@ -2,5 +2,40 @@
   "order": 120,
   "id": "cli-tui",
   "name": "CLI / TUI",
-  "note": "Terminal-native"
+  "note": "Terminal-native",
+  "profile": "pattern",
+  "summary": "The agent runs in the terminal as a command-line tool or full-screen text UI, reading and writing files and running commands in the user's working directory. Coding agents such as Claude Code, Codex and Gemini CLI use this form.",
+  "how": [
+    "Ship the agent as a CLI installed on the user's machine",
+    "Read prompts from the terminal and stream output back",
+    "Run tools against the local filesystem and shell with permission prompts",
+    "Optionally offer a non-interactive mode for scripts and CI"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, Codex, Gemini CLI, OpenCode"
+    ],
+    [
+      "Libraries",
+      "Ink (React for terminals), supported by assistant-ui"
+    ],
+    [
+      "Editor bridge",
+      "Many CLI agents also speak ACP to run inside editors"
+    ],
+    [
+      "Trade-off",
+      "Direct local access, but limited visual UI"
+    ]
+  ],
+  "goodFor": [
+    "Developers and coding agents",
+    "Scripting and automation in CI"
+  ],
+  "watchOut": [
+    "Local commands need careful permission handling",
+    "Not suited to non-technical users"
+  ],
+  "researched": "2026-10-21"
 }

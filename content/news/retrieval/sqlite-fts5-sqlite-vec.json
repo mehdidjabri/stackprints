@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-09",
+      "title": "SQLite Release 3.54.0",
+      "url": "https://sqlite.org/releaselog/3_54_0.html",
+      "source": "sqlite.org"
+    },
+    {
+      "date": "2026-04-09",
+      "title": "SQLite Release 3.53.0",
+      "url": "https://sqlite.org/releaselog/3_53_0.html",
+      "source": "sqlite.org"
+    },
+    {
+      "date": "2026-03-31",
+      "title": "sqlite-vec v0.1.10-alpha.1: initial alpha with new ANN indexes (rescore, IVF, DiskANN)",
+      "url": "https://github.com/asg017/sqlite-vec/releases/tag/v0.1.10-alpha.1",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-03-31",
+      "title": "sqlite-vec v0.1.9",
+      "url": "https://github.com/asg017/sqlite-vec/releases/tag/v0.1.9",
+      "source": "github.com"
+    }
+  ]
+}

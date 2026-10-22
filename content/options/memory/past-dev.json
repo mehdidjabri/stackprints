@@ -4,5 +4,54 @@
   "name": "past.dev",
   "url": "past.dev",
   "note": "Long-term, multiplayer memory API",
-  "logo": "past"
+  "logo": "past",
+  "profile": "product",
+  "summary": "past.dev is a hosted memory API for AI agents. Applications send timestamped text to an ingest endpoint and query a recall endpoint, which returns ranked evidence with dated sources, tracks how facts change over time, and filters results by what the requesting identity is allowed to see.",
+  "facts": [
+    [
+      "Company",
+      "past.dev (founders Mehdi Djabri, Alex Ronse)"
+    ],
+    [
+      "API",
+      "REST ingest and recall, plus a remote MCP server"
+    ],
+    [
+      "Hosting",
+      "Managed cloud; bring-your-own-cloud on Enterprise"
+    ],
+    [
+      "Pricing",
+      "Pay as you go from $45; Flex $99/mo; Enterprise custom"
+    ],
+    [
+      "BEAM",
+      "92.08% at 100K, 85.03% at 10M (vendor-reported)"
+    ],
+    [
+      "Compliance",
+      "SOC 2 Type II, ISO 27001, ISO 27701 (vendor-stated)"
+    ],
+    [
+      "Integrations",
+      "Hermes Agent plugin maintained by past.dev"
+    ]
+  ],
+  "links": {
+    "site": "https://past.dev",
+    "docs": "https://past.dev/docs",
+    "pricing": "https://past.dev/pricing",
+    "repo": "https://github.com/pastdotdev"
+  },
+  "goodFor": [
+    "Multi-user or team memory with access control",
+    "Facts that change over time and need sources",
+    "Agents that need memory over MCP"
+  ],
+  "watchOut": [
+    "New product (launched Sept-Oct 2026); no named customers published",
+    "Benchmark comparisons use each vendor's own runs, not one harness",
+    "No open-source self-host outside Enterprise"
+  ],
+  "researched": "2026-10-21"
 }

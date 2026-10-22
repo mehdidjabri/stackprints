@@ -3,5 +3,49 @@
   "id": "s3-r2",
   "name": "S3 / R2",
   "note": "Object storage",
-  "logo": "aws"
+  "logo": "aws",
+  "profile": "product",
+  "summary": "Object storage such as Amazon S3 and Cloudflare R2 holds files, artifacts, attachments and archived transcripts by key. R2 implements the S3 API, so the same clients work against both. Conditional writes (If-Match, If-None-Match) let agents update objects without overwriting each other's changes.",
+  "facts": [
+    [
+      "Providers",
+      "Amazon S3 (AWS), Cloudflare R2"
+    ],
+    [
+      "S3 durability",
+      "11 nines (vendor-reported)"
+    ],
+    [
+      "R2 pricing",
+      "$0.015/GB-month, free egress, 10 GB-month free"
+    ],
+    [
+      "R2 consistency",
+      "Strong read-after-write"
+    ],
+    [
+      "Concurrency control",
+      "Conditional writes on both (If-Match / If-None-Match)"
+    ],
+    [
+      "File-system access",
+      "S3 Files (NFS, GA April 2026); R2 FUSE mounts in Cloudflare Containers"
+    ]
+  ],
+  "links": {
+    "site": "https://aws.amazon.com/s3/",
+    "docs": "https://developers.cloudflare.com/r2/",
+    "pricing": "https://developers.cloudflare.com/r2/pricing/"
+  },
+  "goodFor": [
+    "Large files, artifacts and attachments",
+    "Archiving transcripts cheaply",
+    "Sharing files across many workers"
+  ],
+  "watchOut": [
+    "No in-place appends; logs must be rewritten or chunked into objects",
+    "Request latency is higher than local disk or a database",
+    "R2 does not implement every S3 API feature"
+  ],
+  "researched": "2026-10-21"
 }

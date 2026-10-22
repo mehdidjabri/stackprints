@@ -5,5 +5,59 @@
   "url": "pi.dev",
   "note": "Pi Agent, minimal extensible loop",
   "open": true,
-  "logo": "pi"
+  "logo": "pi",
+  "profile": "product",
+  "summary": "Pi is a minimal, extensible agent harness and coding agent CLI, developed by Earendil and created by Mario Zechner. It ships a small core and leaves out sub-agents, plan mode and permission prompts by design; users add them through TypeScript extensions, skills, prompt templates and Pi packages from npm or git. It runs interactively, in print/JSON mode, over RPC or embedded via an SDK.",
+  "facts": [
+    [
+      "Company",
+      "Earendil (Pi creator Mario Zechner)"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "TypeScript (Node.js 22.19+)"
+    ],
+    [
+      "Adoption",
+      "~117k GitHub stars"
+    ],
+    [
+      "Version",
+      "1.0 released 2026-10-01"
+    ],
+    [
+      "MCP",
+      "Built in since v0.99"
+    ],
+    [
+      "Subagents",
+      "Not built in; add via extensions or packages"
+    ],
+    [
+      "Sandboxing",
+      "None built in; container or micro-VM patterns documented"
+    ]
+  ],
+  "links": {
+    "site": "https://pi.dev",
+    "docs": "https://pi.dev/docs/latest",
+    "repo": "https://github.com/earendil-works/pi",
+    "changelog": "https://pi.dev/changelog",
+    "x": "https://x.com/pidotdev"
+  },
+  "goodFor": [
+    "Building your own harness on a small core",
+    "Embedding an agent loop via SDK or RPC",
+    "Multi-provider model switching mid-session"
+  ],
+  "watchOut": [
+    "No permission system; runs with your user's rights",
+    "Issues and PRs from new contributors auto-closed by default",
+    "Moved from @mariozechner to @earendil-works npm scope"
+  ],
+  "researched": "2026-10-21"
 }

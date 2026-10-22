@@ -5,5 +5,53 @@
   "url": "crewai.com",
   "note": "Role-based crews",
   "open": true,
-  "logo": "crewai"
+  "logo": "crewai",
+  "profile": "product",
+  "summary": "CrewAI is a standalone Python framework for multi-agent systems. Crews are teams of role-based agents that collaborate and delegate; Flows are event-driven workflows with state and branching, and the two can be combined. CrewAI Inc. also sells a hosted control plane called CrewAI AMP.",
+  "facts": [
+    [
+      "Company",
+      "CrewAI Inc."
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "Python 3.10 to 3.13"
+    ],
+    [
+      "GitHub stars",
+      "60K"
+    ],
+    [
+      "Latest release",
+      "1.15.28 (Oct 2026)"
+    ],
+    [
+      "Protocols",
+      "MCP and A2A support"
+    ],
+    [
+      "Commercial",
+      "CrewAI AMP Suite"
+    ]
+  ],
+  "links": {
+    "site": "https://crewai.com",
+    "docs": "https://docs.crewai.com",
+    "repo": "https://github.com/crewAIInc/crewAI",
+    "changelog": "https://github.com/crewAIInc/crewAI/releases"
+  },
+  "goodFor": [
+    "Role-based agent teams",
+    "Business process automation",
+    "Quick prototypes of multi-agent setups"
+  ],
+  "watchOut": [
+    "Very frequent releases to track",
+    "Enterprise features sit in the commercial AMP suite"
+  ],
+  "researched": "2026-10-21"
 }

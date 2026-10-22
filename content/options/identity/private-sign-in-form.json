@@ -2,5 +2,32 @@
   "order": 30,
   "id": "private-sign-in-form",
   "name": "Private sign-in form",
-  "note": "User logs in, model never sees it"
+  "note": "User logs in, model never sees it",
+  "profile": "pattern",
+  "summary": "When the agent hits a login, it pauses and hands the browser or a form to the user, who signs in directly. The model sees the logged-in session afterwards but never the password.",
+  "how": [
+    "Agent reaches a sign-in page and pauses",
+    "User takes over and types credentials (or uses a password manager)",
+    "Screenshots and model input are suspended meanwhile",
+    "Agent resumes with the authenticated session"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "ChatGPT agent (take over browser), 1Password for Claude (fills logins after approval)"
+    ],
+    [
+      "Trade-off",
+      "Password stays private, but the session it unlocks does not"
+    ]
+  ],
+  "goodFor": [
+    "Browser agents on sites without APIs",
+    "Accounts the user won't share with a vault"
+  ],
+  "watchOut": [
+    "The agent can do anything the session allows",
+    "Persisted cookies keep the session open across runs"
+  ],
+  "researched": "2026-10-21"
 }

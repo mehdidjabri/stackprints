@@ -3,5 +3,54 @@
   "id": "arcade",
   "name": "Arcade",
   "url": "arcade.dev",
-  "note": "Delegated user OAuth for tools"
+  "note": "Delegated user OAuth for tools",
+  "profile": "product",
+  "summary": "Arcade is a runtime that lets agents act in services like Gmail, Slack and GitHub on behalf of a specific user, handling OAuth, token storage and per-action authorization. It runs MCP servers, offers MCP gateways for governance and ships thousands of prebuilt tools. Arcade acquired the Smithery MCP registry in August 2026.",
+  "facts": [
+    [
+      "Company",
+      "Arcade.dev"
+    ],
+    [
+      "Tools",
+      "7,500+ across 81 MCP servers (vendor-reported)"
+    ],
+    [
+      "Auth",
+      "Delegated user OAuth, per-action authorization"
+    ],
+    [
+      "Deployment",
+      "Arcade Cloud, AWS/Azure marketplace, self-hosted with Helm"
+    ],
+    [
+      "Pricing",
+      "Free tier (2,000 auth events and 2,000 tool calls/month); Team $25/month plus usage"
+    ],
+    [
+      "SDKs",
+      "Python, TypeScript; arcade-mcp framework (MIT)"
+    ],
+    [
+      "Funding",
+      "$60M Series A (June 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://www.arcade.dev",
+    "docs": "https://docs.arcade.dev",
+    "repo": "https://github.com/ArcadeAI/arcade-mcp",
+    "pricing": "https://www.arcade.dev/pricing",
+    "changelog": "https://www.arcade.dev/blog"
+  },
+  "goodFor": [
+    "Agents acting as individual users in SaaS apps",
+    "Enterprise governance of tool calls",
+    "Self-hosted or VPC deployments"
+  ],
+  "watchOut": [
+    "Billed per auth event and per tool call",
+    "VPC and air-gapped deployment are Enterprise only"
+  ],
+  "researched": "2026-10-21"
 }

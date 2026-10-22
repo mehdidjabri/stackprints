@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-08-21", "title": "Stable OAuth callbacks and CIMD client IDs", "url": "https://developers.openai.com/apps-sdk/changelog", "source": "developers.openai.com" },
+    { "date": "2026-06-12", "title": "App permission controls in ChatGPT", "url": "https://developers.openai.com/apps-sdk/changelog", "source": "developers.openai.com" },
+    { "date": "2026-05-28", "title": "MCP Apps host style variables", "url": "https://developers.openai.com/apps-sdk/changelog", "source": "developers.openai.com" },
+    { "date": "2026-03-25", "title": "Plugin distribution guidance", "url": "https://developers.openai.com/apps-sdk/changelog", "source": "developers.openai.com" },
+    { "date": "2026-02-22", "title": "MCP Apps compatibility", "url": "https://developers.openai.com/apps-sdk/changelog", "source": "developers.openai.com" }
+  ]
+}

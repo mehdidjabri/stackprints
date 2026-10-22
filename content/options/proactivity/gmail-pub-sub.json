@@ -4,5 +4,53 @@
   "name": "Gmail Pub/Sub",
   "url": "cloud.google.com",
   "note": "React to new email",
-  "logo": "gmail"
+  "logo": "gmail",
+  "profile": "product",
+  "summary": "Gmail push notifications let an agent react to new mail instead of polling. You call users.watch on a mailbox with a Google Cloud Pub/Sub topic; Gmail then publishes a small message (email address and new historyId) whenever the mailbox changes, and your service fetches the actual changes with history.list. Pub/Sub can push to an HTTPS webhook or be pulled by a worker.",
+  "facts": [
+    [
+      "Provider",
+      "Google (Gmail API + Cloud Pub/Sub)"
+    ],
+    [
+      "API",
+      "Official"
+    ],
+    [
+      "Setup",
+      "Pub/Sub topic with publish rights for gmail-api-push@system.gserviceaccount.com"
+    ],
+    [
+      "Watch renewal",
+      "At least every 7 days (Google recommends daily)"
+    ],
+    [
+      "Payload",
+      "emailAddress and historyId only; fetch details via history.list"
+    ],
+    [
+      "Rate limit",
+      "1 notification per second per user; excess dropped"
+    ],
+    [
+      "Cost",
+      "Pub/Sub usage billed at Google Cloud rates"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.google.com/workspace/gmail/api/guides/push",
+    "pricing": "https://cloud.google.com/pubsub/pricing",
+    "changelog": "https://developers.google.com/workspace/gmail/release-notes"
+  },
+  "goodFor": [
+    "Triaging or answering email as it arrives",
+    "Replacing inbox polling loops",
+    "Feeding mail into a sandboxed reader agent"
+  ],
+  "watchOut": [
+    "Needs a Google Cloud project and a public HTTPS endpoint for push",
+    "Notifications can be delayed or dropped; keep a periodic history.list fallback",
+    "Incoming mail is untrusted input (prompt-injection risk)"
+  ],
+  "researched": "2026-10-21"
 }

@@ -4,5 +4,52 @@
   "name": "CLAUDE.md",
   "url": "claude.com",
   "note": "Claude Code project memory",
-  "logo": "claude"
+  "logo": "claude",
+  "profile": "product",
+  "summary": "CLAUDE.md is the instruction file Claude Code loads at the start of every session. It can live at managed (org), user (~/.claude/CLAUDE.md), project (./CLAUDE.md) and local (CLAUDE.local.md) scopes, and all found files are concatenated. It sits beside auto memory, which Claude writes itself, and .claude/rules/ for path-scoped rules.",
+  "facts": [
+    [
+      "Vendor",
+      "Anthropic (Claude Code)"
+    ],
+    [
+      "Scopes",
+      "Managed policy, user, project, local"
+    ],
+    [
+      "Imports",
+      "@path syntax, up to four hops deep"
+    ],
+    [
+      "Scaffold",
+      "/init generates a starter file"
+    ],
+    [
+      "Size guidance",
+      "Under 200 lines per file (vendor docs)"
+    ],
+    [
+      "AGENTS.md",
+      "Read instead when no CLAUDE.md exists (since v2.1.277)"
+    ],
+    [
+      "Enforcement",
+      "Context only; use hooks or permissions to block actions"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/memory",
+    "changelog": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"
+  },
+  "goodFor": [
+    "Team conventions checked into the repo",
+    "Org-wide guidance via a managed file",
+    "Personal preferences across all projects"
+  ],
+  "watchOut": [
+    "Instructions are guidance, not enforced rules",
+    "Contradicting files make behavior unpredictable",
+    "Claude Code-specific; other agents use AGENTS.md"
+  ],
+  "researched": "2026-10-21"
 }

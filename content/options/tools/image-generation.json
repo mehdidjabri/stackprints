@@ -3,5 +3,43 @@
   "id": "image-generation",
   "name": "Image generation",
   "note": "GPT Image, Nano Banana, FLUX",
-  "logo": "nanobanana"
+  "logo": "nanobanana",
+  "profile": "pattern",
+  "summary": "Giving an agent a tool that creates or edits images from a text prompt and optional reference images. Model providers expose it as a built-in tool or a separate API, for example OpenAI's GPT Image models, Google's Gemini image models (Nano Banana) and Black Forest Labs' FLUX.",
+  "how": [
+    "Pick a model or provider and expose a generate-image tool",
+    "Pass the prompt plus any reference or mask images",
+    "Store the returned image and hand the agent a file path or URL",
+    "Iterate with edit calls on the previous image"
+  ],
+  "facts": [
+    [
+      "OpenAI",
+      "image_generation tool in the Responses API, GPT Image models"
+    ],
+    [
+      "Google",
+      "Gemini image models (Nano Banana), SynthID watermark on outputs"
+    ],
+    [
+      "Black Forest Labs",
+      "FLUX 3, FLUX.2 and FLUX.1 Kontext via API"
+    ],
+    [
+      "Trade-off",
+      "Per-image cost and latency are higher than text tools"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.openai.com/api/docs/guides/image-generation"
+  },
+  "goodFor": [
+    "Producing assets inside agent workflows",
+    "Multi-turn image editing"
+  ],
+  "watchOut": [
+    "Each provider has its own content policies and watermarking",
+    "Costs per image can grow quickly in loops"
+  ],
+  "researched": "2026-10-21"
 }

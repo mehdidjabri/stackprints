@@ -4,5 +4,31 @@
   "name": "Apps SDK",
   "url": "openai.com",
   "note": "Apps inside ChatGPT",
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "product",
+  "summary": "OpenAI's Apps SDK lets developers put their own tools and interfaces inside ChatGPT. An app is an MCP server whose tools can return UI templates that ChatGPT renders in a sandboxed iframe; the open MCP Apps standard is the base layer, with ChatGPT-specific extensions under window.openai. OpenAI's developer docs now present this work as ChatGPT plugins, published through the ChatGPT Directory after review.",
+  "facts": [
+    ["Company", "OpenAI"],
+    ["Basis", "MCP server plus MCP Apps UI resources"],
+    ["UI runtime", "Sandboxed iframe; window.openai for ChatGPT extensions"],
+    ["MCP Apps", "ChatGPT fully compatible with the spec (2026-02-22)"],
+    ["Distribution", "Submission and review for the ChatGPT Directory"],
+    ["Commerce", "Checkout API for in-plugin purchases"],
+    ["Examples", "openai/openai-apps-sdk-examples (MIT)"]
+  ],
+  "links": {
+    "docs": "https://developers.openai.com/plugins",
+    "changelog": "https://developers.openai.com/apps-sdk/changelog",
+    "repo": "https://github.com/openai/openai-apps-sdk-examples"
+  },
+  "goodFor": [
+    "Reaching ChatGPT users with an interactive tool",
+    "Reusing one MCP server across ChatGPT and other MCP Apps hosts"
+  ],
+  "watchOut": [
+    "Public listing requires OpenAI review",
+    "ChatGPT-only extensions reduce portability",
+    "Terminology and docs have shifted from apps to plugins"
+  ],
+  "researched": "2026-10-21"
 }

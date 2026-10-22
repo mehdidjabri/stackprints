@@ -5,5 +5,50 @@
   "url": "langfuse.com",
   "note": "Open tracing and evals",
   "open": true,
-  "logo": "langfuse"
+  "logo": "langfuse",
+  "profile": "product",
+  "summary": "Langfuse is an open-source platform for tracing, evaluating and debugging LLM applications and agents. It records traces of model calls, tool calls and agent steps, and adds prompt management, datasets, LLM-as-a-judge evaluators and dashboards. It can be self-hosted for free or used as Langfuse Cloud; the company joined ClickHouse in January 2026.",
+  "facts": [
+    [
+      "Company",
+      "Langfuse (part of ClickHouse since Jan 2026)"
+    ],
+    [
+      "License",
+      "MIT core; enterprise features under a separate license"
+    ],
+    [
+      "Self-hostable",
+      "Yes, free"
+    ],
+    [
+      "OpenTelemetry",
+      "Accepts OTLP traces"
+    ],
+    [
+      "Cloud pricing",
+      "Free Hobby tier (50k units/mo); Core from $29/mo"
+    ],
+    [
+      "GitHub stars",
+      "~36k"
+    ]
+  ],
+  "links": {
+    "site": "https://langfuse.com",
+    "docs": "https://langfuse.com/docs",
+    "repo": "https://github.com/langfuse/langfuse",
+    "pricing": "https://langfuse.com/pricing",
+    "changelog": "https://langfuse.com/changelog"
+  },
+  "goodFor": [
+    "Self-hosted tracing and evals",
+    "Framework-agnostic setups via OpenTelemetry",
+    "Prompt management alongside traces"
+  ],
+  "watchOut": [
+    "Some features (e.g. SSO, audit) sit in the enterprise license",
+    "Self-hosting needs Postgres, ClickHouse, Redis and blob storage"
+  ],
+  "researched": "2026-10-21"
 }

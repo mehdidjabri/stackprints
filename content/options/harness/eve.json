@@ -2,8 +2,61 @@
   "order": 50,
   "id": "eve",
   "name": "eve",
-  "url": "vercel.com",
+  "url": "eve.dev",
   "note": "Markdown instructions, TS tools, one folder",
   "open": true,
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "An open-source, filesystem-first agent framework from Vercel, launched in public preview in June 2026. An agent is a directory: instructions.md holds the system prompt, tools/ holds typed TypeScript tools, and skills, channels, schedules and subagents live in their own folders. Each conversation runs as a durable workflow and agent code runs in an isolated sandbox.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "TypeScript"
+    ],
+    [
+      "Status",
+      "Public preview (beta)"
+    ],
+    [
+      "Durability",
+      "Checkpointed steps on Workflow SDK"
+    ],
+    [
+      "Sandboxing",
+      "Vercel Sandbox deployed; Docker, microsandbox or just-bash locally"
+    ],
+    [
+      "Channels",
+      "HTTP, Slack, Discord, Teams, Telegram, Twilio, GitHub, Linear"
+    ],
+    [
+      "Observability",
+      "OpenTelemetry traces"
+    ]
+  ],
+  "links": {
+    "site": "https://eve.dev",
+    "docs": "https://eve.dev/docs",
+    "repo": "https://github.com/vercel/eve",
+    "changelog": "https://github.com/vercel/eve/releases"
+  },
+  "goodFor": [
+    "Agents defined as readable files in one folder",
+    "Deploying one agent to many chat channels",
+    "Long-running sessions that survive deploys"
+  ],
+  "watchOut": [
+    "Beta: APIs may change before GA",
+    "Frequent breaking minor releases",
+    "Most polished path assumes Vercel hosting"
+  ],
+  "researched": "2026-10-21"
 }

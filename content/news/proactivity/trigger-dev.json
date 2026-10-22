@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-20",
+      "title": "Trigger.dev v4.7.6",
+      "url": "https://trigger.dev/changelog/v4-7-6",
+      "source": "trigger.dev"
+    },
+    {
+      "date": "2026-10-06",
+      "title": "Vercel environment variables cleared during synchronization",
+      "url": "https://trigger.dev/blog/incident-report-oct-6-2026",
+      "source": "trigger.dev"
+    },
+    {
+      "date": "2026-10-05",
+      "title": "Introducing Ask Trigger to your dashboard",
+      "url": "https://trigger.dev/changelog/dashboard-agent-beta",
+      "source": "trigger.dev"
+    },
+    {
+      "date": "2026-10-01",
+      "title": "Trigger.dev v4.7.0 Release Notes",
+      "url": "https://trigger.dev/changelog/v4-7-0",
+      "source": "trigger.dev"
+    },
+    {
+      "date": "2026-03-27",
+      "title": "Why we replaced Node.js with Bun for 5x throughput",
+      "url": "https://trigger.dev/blog/firebun",
+      "source": "trigger.dev"
+    }
+  ]
+}

@@ -4,5 +4,24 @@
   "name": "DeepInfra",
   "url": "deepinfra.com",
   "note": "Cheap per-token",
-  "logo": "deepinfra"
+  "logo": "deepinfra",
+  "profile": "product",
+  "summary": "DeepInfra is an inference cloud that serves open-weight and some proprietary models through an OpenAI-compatible API, billed per token, per image or per audio minute. It also rents dedicated GPUs for custom models by the minute and runs its own GPU data centers.",
+  "facts": [
+    ["API", "OpenAI-compatible at api.deepinfra.com/v1/openai"],
+    ["Pricing", "Per 1M tokens (e.g. DeepSeek-V4-Flash $0.09 in / $0.18 out)"],
+    ["Service tiers", "Standard, Priority (1.5x), Flex (0.8x)"],
+    ["Custom models", "Dedicated GPUs: H100 $2.90/h, B200 $4.89/h, billed per minute"],
+    ["Infrastructure", "Owns GPU infrastructure in eight US data centers plus Toronto"],
+    ["Funding", "$107M Series B, May 2026"]
+  ],
+  "links": {
+    "site": "https://deepinfra.com",
+    "docs": "https://docs.deepinfra.com/chat/overview",
+    "pricing": "https://deepinfra.com/pricing",
+    "changelog": "https://deepinfra.com/blog"
+  },
+  "goodFor": ["Low per-token cost on open models", "Cheap dedicated GPUs for custom models"],
+  "watchOut": ["Not 100% compatible with every OpenAI parameter", "No free tier; card or prepay required"],
+  "researched": "2026-10-21"
 }

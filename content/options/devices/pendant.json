@@ -2,5 +2,45 @@
   "order": 40,
   "id": "pendant",
   "name": "Pendant",
-  "note": "Ambient audio capture, lifelog"
+  "note": "Ambient audio capture, lifelog",
+  "profile": "pattern",
+  "summary": "A small wearable microphone records conversations through the day, transcribes them and turns them into a searchable memory the agent can query. It gives an agent context about meetings and spoken commitments that never reach a screen.",
+  "facts": [
+    [
+      "Examples",
+      "Omi (open source, MIT), Bee (Amazon)"
+    ],
+    [
+      "Omi",
+      "Pendant, 10-14 h battery, MCP server in repo"
+    ],
+    [
+      "Bee",
+      "Wrist or clip, up to 7 days battery, $74.99"
+    ],
+    [
+      "Market note",
+      "Limitless stopped selling its Pendant on Dec 5, 2025 after joining Meta"
+    ]
+  ],
+  "links": {
+    "repo": "https://github.com/BasedHardware/omi"
+  },
+  "goodFor": [
+    "Remembering meetings and verbal to-dos",
+    "Lifelogging and personal memory",
+    "Feeding agents context from offline life"
+  ],
+  "watchOut": [
+    "Recording others raises consent and legal issues",
+    "Vendors can be acquired and shut down",
+    "Transcripts of everything are sensitive data"
+  ],
+  "how": [
+    "Wear a recording pendant or clip that streams audio to a phone app",
+    "Audio is transcribed and summarised into memories and tasks",
+    "Expose the memory store to the agent, for example over MCP",
+    "The agent searches past conversations when answering or planning"
+  ],
+  "researched": "2026-10-21"
 }

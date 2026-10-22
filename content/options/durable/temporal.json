@@ -5,5 +5,55 @@
   "url": "temporal.io",
   "note": "Workflow-as-code",
   "open": true,
-  "logo": "temporal"
+  "logo": "temporal",
+  "profile": "product",
+  "summary": "Temporal is a durable execution platform where workflows are written as ordinary code and their event history is persisted, so a workflow resumes where it left off after failures. Workers run in your infrastructure and poll a Temporal service, which can be self-hosted (open source) or used as Temporal Cloud. It is widely used for long-running business processes and, increasingly, for AI agent loops.",
+  "facts": [
+    [
+      "Company",
+      "Temporal Technologies"
+    ],
+    [
+      "License",
+      "MIT (server)"
+    ],
+    [
+      "SDKs",
+      "Go, Java, Python, TypeScript, .NET, PHP, Ruby, Rust"
+    ],
+    [
+      "Hosting",
+      "Self-hosted or Temporal Cloud"
+    ],
+    [
+      "Cloud pricing",
+      "From $50 per 1M actions plus storage; $150 starter credits"
+    ],
+    [
+      "GitHub stars",
+      "~24k"
+    ],
+    [
+      "Funding",
+      "$550M Series E at $12.55B valuation (Sep 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://temporal.io",
+    "docs": "https://docs.temporal.io",
+    "repo": "https://github.com/temporalio/temporal",
+    "pricing": "https://temporal.io/pricing",
+    "blog": "https://temporal.io/blog"
+  },
+  "goodFor": [
+    "Long-running, multi-step agent workflows",
+    "Polyglot teams (many SDKs)",
+    "Self-hosting with a permissive license"
+  ],
+  "watchOut": [
+    "Workflow code must be deterministic; versioning takes care",
+    "Self-hosting the cluster is operationally heavy",
+    "Per-action cloud billing adds up for chatty workflows"
+  ],
+  "researched": "2026-10-21"
 }

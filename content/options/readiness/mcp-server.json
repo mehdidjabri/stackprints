@@ -5,5 +5,38 @@
   "url": "modelcontextprotocol.io",
   "note": "Expose your product as tools",
   "open": true,
-  "logo": "mcp"
+  "logo": "mcp",
+  "profile": "pattern",
+  "summary": "Publishing an MCP server so agents can use your product through tools rather than by scraping pages or driving a browser. The server wraps your API as tools, resources and prompts, usually as a remote server over Streamable HTTP with OAuth.",
+  "how": [
+    "Pick the actions and data agents need most",
+    "Implement them as tools and resources with an official MCP SDK",
+    "Host it remotely over Streamable HTTP with OAuth authorization",
+    "Document the server URL in your docs or llms.txt",
+    "Test it in clients such as Claude, ChatGPT, Cursor or VS Code"
+  ],
+  "facts": [
+    [
+      "Protocol",
+      "MCP, spec 2026-07-28"
+    ],
+    [
+      "Trade-off",
+      "Agents can act directly, but you own another API surface and its security"
+    ]
+  ],
+  "links": {
+    "docs": "https://modelcontextprotocol.io/docs/develop/build-server"
+  },
+  "goodFor": [
+    "SaaS products agents should act on",
+    "Replacing brittle browser automation",
+    "Reaching users inside AI clients"
+  ],
+  "watchOut": [
+    "Needs auth, rate limits and abuse handling like any API",
+    "Tool descriptions must be written for models",
+    "Spec is still changing between versions"
+  ],
+  "researched": "2026-10-21"
 }

@@ -4,5 +4,49 @@
   "name": "Tavily",
   "url": "tavily.com",
   "note": "Search built for agents",
-  "logo": "tavily"
+  "logo": "tavily",
+  "profile": "product",
+  "summary": "Tavily is a web access API for AI agents with endpoints for search, extract, crawl, map and an in-depth research agent. It is billed in credits with a free monthly allowance. Tavily announced in February 2026 that it is joining Nebius.",
+  "facts": [
+    [
+      "Owner",
+      "Nebius (announced Feb 2026)"
+    ],
+    [
+      "Founder",
+      "Rotem Weiss"
+    ],
+    [
+      "Endpoints",
+      "Search, Extract, Crawl, Map, Research"
+    ],
+    [
+      "Free tier",
+      "1,000 credits/month"
+    ],
+    [
+      "Pricing",
+      "Plans from $30/month; pay-as-you-go $0.008/credit"
+    ],
+    [
+      "Search cost",
+      "1 credit basic, 2 credits advanced"
+    ]
+  ],
+  "links": {
+    "site": "https://www.tavily.com",
+    "docs": "https://docs.tavily.com",
+    "pricing": "https://www.tavily.com/pricing",
+    "changelog": "https://www.tavily.com/blog"
+  },
+  "goodFor": [
+    "Simple search grounding for agents",
+    "Extracting clean content from URLs",
+    "Credit-based pricing with a free tier"
+  ],
+  "watchOut": [
+    "Research endpoint cost varies widely per request (4–250 credits)",
+    "Ownership change to Nebius may shift roadmap"
+  ],
+  "researched": "2026-10-21"
 }

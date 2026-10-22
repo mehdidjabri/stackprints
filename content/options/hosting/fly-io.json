@@ -4,5 +4,50 @@
   "name": "Fly.io",
   "url": "fly.io",
   "note": "Machines near users",
-  "logo": "flydotio"
+  "logo": "flydotio",
+  "profile": "product",
+  "summary": "Fly.io runs applications as Fly Machines: Firecracker microVMs that start quickly, are controlled through a REST API, and can be placed in many regions close to users. Machines are billed per second while running and can stop or suspend when idle. In 2026 the company made Sprites, disposable agent computers with durable filesystems, its core focus while keeping Machines and the app platform.",
+  "facts": [
+    [
+      "Company",
+      "Fly.io"
+    ],
+    [
+      "Isolation",
+      "Firecracker microVMs"
+    ],
+    [
+      "Control",
+      "Machines REST API and flyctl"
+    ],
+    [
+      "Idle behavior",
+      "Stop or suspend; stopped Machines billed only for rootfs"
+    ],
+    [
+      "Pricing",
+      "Per second while running; shared-cpu-1x 256MB from $2.19/mo"
+    ],
+    [
+      "Agent product",
+      "Sprites (disposable computers with durable filesystems)"
+    ]
+  ],
+  "links": {
+    "site": "https://fly.io",
+    "docs": "https://fly.io/docs/machines/overview/",
+    "pricing": "https://fly.io/docs/about/pricing/",
+    "blog": "https://fly.io/blog/"
+  },
+  "goodFor": [
+    "Always-on agent processes in a real VM",
+    "Per-user or per-task VMs via the Machines API",
+    "Running close to users in many regions"
+  ],
+  "watchOut": [
+    "More ops work than serverless platforms",
+    "Company focus shifting toward Sprites",
+    "Costs grow with always-on Machines"
+  ],
+  "researched": "2026-10-21"
 }

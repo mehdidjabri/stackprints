@@ -4,5 +4,29 @@
   "name": "assistant-ui",
   "url": "assistant-ui.com",
   "note": "Composable chat components",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "assistant-ui is an open-source TypeScript library of composable chat primitives (threads, composers, messages, branching, attachments) with runtimes that connect them to different agent backends. It also renders tool UIs, generative UI and MCP Apps, and offers an optional hosted Assistant Cloud for thread persistence.",
+  "facts": [
+    ["License", "MIT"],
+    ["Language", "TypeScript"],
+    ["Platforms", "React, Vue, React Native, terminal (Ink)"],
+    ["Backends", "AI SDK, LangGraph, Mastra, Google ADK, OpenAI Agents SDK, AG-UI, A2A and custom"],
+    ["Rendering", "Tool UI, generative UI, MCP Apps"],
+    ["GitHub stars", "12.7k"]
+  ],
+  "links": {
+    "site": "https://www.assistant-ui.com",
+    "repo": "https://github.com/assistant-ui/assistant-ui",
+    "changelog": "https://github.com/assistant-ui/assistant-ui/releases"
+  },
+  "goodFor": [
+    "Production chat UIs without building primitives from scratch",
+    "Swapping agent backends behind one UI"
+  ],
+  "watchOut": [
+    "Many packages still on 0.x versions",
+    "Hosted persistence is a separate paid service"
+  ],
+  "researched": "2026-10-21"
 }

@@ -4,5 +4,48 @@
   "name": "llms.txt",
   "url": "llmstxt.org",
   "note": "Markdown map for models",
-  "open": true
+  "open": true,
+  "profile": "protocol",
+  "summary": "A proposal for a Markdown file at /llms.txt that gives language models a short summary of a site and a curated list of links. Jeremy Howard of Answer.AI published it in September 2024; version 2 of the proposal (August 2026) also recommends clean .md versions of pages, linked with rel=\"alternate\" and rel=\"describedby\".",
+  "facts": [
+    [
+      "Proposed by",
+      "Jeremy Howard (Answer.AI), 2024-09-03"
+    ],
+    [
+      "Current text",
+      "v2, last modified 2026-08-10"
+    ],
+    [
+      "Format",
+      "Markdown: H1, blockquote summary, H2 link lists, \"Optional\" section"
+    ],
+    [
+      "Location",
+      "/llms.txt at a site root or any subpath"
+    ],
+    [
+      "Generators",
+      "Mintlify, GitBook, Yoast SEO, AIOSEO, Wix"
+    ],
+    [
+      "License",
+      "Apache-2.0 (repo)"
+    ]
+  ],
+  "links": {
+    "site": "https://llmstxt.org",
+    "repo": "https://github.com/AnswerDotAI/llms-txt"
+  },
+  "goodFor": [
+    "A first, low-effort step toward agent readiness",
+    "Docs and content sites",
+    "Pairing with .md versions of pages"
+  ],
+  "watchOut": [
+    "A proposal, not a formal standard",
+    "Only helps agents that look for it",
+    "Has to be kept in sync with the site"
+  ],
+  "researched": "2026-10-21"
 }

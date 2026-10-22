@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-08",
+      "title": "Testing voice agents with Agent Simulations",
+      "url": "https://livekit.com/blog/testing-voice-agents-with-agent-simulations",
+      "source": "livekit.com"
+    },
+    {
+      "date": "2026-09-22",
+      "title": "Introducing Private Links on LiveKit",
+      "url": "https://livekit.com/blog/introducing-private-links-on-livekit",
+      "source": "livekit.com"
+    },
+    {
+      "date": "2026-09-16",
+      "title": "Introducing the LiveKit Startup Program: Your whole stack, on us",
+      "url": "https://livekit.com/blog/introducing-livekit-startups",
+      "source": "livekit.com"
+    },
+    {
+      "date": "2026-09-05",
+      "title": "livekit-agents@1.8.0",
+      "url": "https://github.com/livekit/agents/releases/tag/livekit-agents%401.8.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-01",
+      "title": "Introducing LiveKit Connectors: voice agents where people already talk",
+      "url": "https://livekit.com/blog/introducing-livekit-connectors",
+      "source": "livekit.com"
+    }
+  ]
+}

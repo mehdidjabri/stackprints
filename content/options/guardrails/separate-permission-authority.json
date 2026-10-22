@@ -2,5 +2,39 @@
   "order": 60,
   "id": "separate-permission-authority",
   "name": "Separate permission authority",
-  "note": "Policy service apart from the agent"
+  "note": "Policy service apart from the agent",
+  "profile": "pattern",
+  "summary": "Permission decisions live in a service outside the agent process. The agent asks the authority whether an action is allowed; the authority applies central policy, returns allow, deny or escalate, and records the decision, so a compromised or confused agent can't grant itself access.",
+  "how": [
+    "Agent sends the intended action and context to the policy service",
+    "Service evaluates who is asking, what action, on which system",
+    "It allows, denies, or escalates to a human",
+    "Every decision is logged centrally"
+  ],
+  "facts": [
+    [
+      "Examples",
+      "WorkOS Airlock (preview, Oct 2026); Auth0 asynchronous authorization (CIBA)"
+    ],
+    [
+      "Related",
+      "Claude Code: permission rules are enforced by the harness, not the model"
+    ],
+    [
+      "Trade-off",
+      "Stronger isolation and one place for policy, but another service to run and a network hop per action"
+    ]
+  ],
+  "links": {
+    "example": "https://workos.com/blog/init-2026-recap"
+  },
+  "goodFor": [
+    "Companies running many agents under one policy",
+    "Regulated environments that need a decision log"
+  ],
+  "watchOut": [
+    "Policy service becomes a single point of failure",
+    "Coarse policies push everything into escalation"
+  ],
+  "researched": "2026-10-21"
 }

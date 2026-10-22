@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-21", "title": "Contained: Oct 21, 2026 LiteLLM release v1.107.0 Compromised", "url": "https://docs.litellm.ai/blog/security-incident-oct-21-2026", "source": "docs.litellm.ai" },
+    { "date": "2026-10-01", "title": "Launching LiteLLM Lens", "url": "https://docs.litellm.ai/blog/litellm-lens-launch", "source": "docs.litellm.ai" },
+    { "date": "2026-07-13", "title": "Auto Router v2: one router for complexity, semantic, and adaptive routing", "url": "https://docs.litellm.ai/blog/autorouter-v2", "source": "docs.litellm.ai" },
+    { "date": "2026-06-22", "title": "Migrating LiteLLM to Rust - Building the Fastest and Litest AI Gateway", "url": "https://docs.litellm.ai/blog/litellm-rust-launch", "source": "docs.litellm.ai" },
+    { "date": "2026-03-24", "title": "Security Update: Suspected Supply Chain Incident", "url": "https://docs.litellm.ai/blog/security-update-march-2026", "source": "docs.litellm.ai" }
+  ]
+}

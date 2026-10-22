@@ -5,5 +5,48 @@
   "url": "langchain.com",
   "note": "LangGraph multi-agent patterns",
   "open": true,
-  "logo": "langgraph"
+  "logo": "langgraph",
+  "profile": "product",
+  "summary": "LangChain's LangGraph offers two prebuilt multi-agent libraries: langgraph-supervisor, where a central agent routes work to specialists, and langgraph-swarm, where agents hand off control to each other and the last active agent is remembered. LangChain now recommends building the supervisor pattern directly with tools for most cases.",
+  "facts": [
+    [
+      "Maker",
+      "LangChain"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Packages",
+      "langgraph-supervisor, langgraph-swarm (Python)"
+    ],
+    [
+      "GitHub stars",
+      "~1.7K (supervisor), ~1.6K (swarm)"
+    ],
+    [
+      "Python",
+      "3.10+"
+    ],
+    [
+      "State",
+      "Swarm needs a checkpointer to remember the active agent"
+    ]
+  ],
+  "links": {
+    "site": "https://www.langchain.com",
+    "docs": "https://docs.langchain.com/oss/python/langchain/multi-agent",
+    "repo": "https://github.com/langchain-ai/langgraph-supervisor-py"
+  },
+  "goodFor": [
+    "Teams already on LangGraph",
+    "Hierarchical teams of agents",
+    "Persisted multi-agent conversations"
+  ],
+  "watchOut": [
+    "The supervisor library is no longer the recommended route; LangChain suggests tools instead",
+    "Both libraries are pre-1.0 with infrequent releases"
+  ],
+  "researched": "2026-10-21"
 }

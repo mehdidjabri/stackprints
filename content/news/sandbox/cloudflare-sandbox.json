@@ -1,0 +1,9 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-09-30", "title": "Cloudflare Containers, rebuilt to scale agent sandboxes", "url": "https://blog.cloudflare.com/faster-agent-sandboxes", "source": "blog.cloudflare.com" },
+    { "date": "2026-09-30", "title": "Sandbox SDK 1.0: control every sandbox from your own Durable Object", "url": "https://developers.cloudflare.com/changelog/post/2026-09-30-sandbox-sdk-1-0/", "source": "developers.cloudflare.com" },
+    { "date": "2026-08-07", "title": "Sandbox SDK 1.0 preview on @next", "url": "https://developers.cloudflare.com/changelog/post/2026-08-07-sandbox-sdk-1-0-preview/", "source": "developers.cloudflare.com" },
+    { "date": "2026-04-13", "title": "Containers and Sandboxes are now generally available", "url": "https://developers.cloudflare.com/changelog/post/2026-04-13-containers-sandbox-ga/", "source": "developers.cloudflare.com" }
+  ]
+}

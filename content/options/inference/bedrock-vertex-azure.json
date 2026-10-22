@@ -3,5 +3,43 @@
   "id": "bedrock-vertex-azure",
   "name": "Bedrock / Vertex / Azure",
   "note": "Hyperscaler-hosted",
-  "logo": "aws"
+  "logo": "aws",
+  "profile": "product",
+  "summary": "The three big clouds each host frontier and open models behind their own APIs: Amazon Bedrock on AWS, Gemini Enterprise Agent Platform (formerly Vertex AI) on Google Cloud, and Microsoft Foundry on Azure. Usage is billed on the existing cloud account and runs under that cloud's identity, networking and compliance controls.",
+  "facts": [
+    [
+      "AWS",
+      "Amazon Bedrock: Anthropic, OpenAI, xAI and open-weight models"
+    ],
+    [
+      "Google Cloud",
+      "Gemini Enterprise Agent Platform (Vertex AI successor, Apr 2026): Gemini and Claude"
+    ],
+    [
+      "Azure",
+      "Microsoft Foundry (renamed from Azure AI Foundry): OpenAI, Anthropic, Meta, Mistral, DeepSeek, xAI and more"
+    ],
+    [
+      "Billing",
+      "Charged to the existing cloud account and commitments"
+    ],
+    [
+      "Governance",
+      "Cloud IAM, private networking and regional data controls"
+    ]
+  ],
+  "links": {
+    "site": "https://aws.amazon.com/bedrock/",
+    "docs": "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+  },
+  "goodFor": [
+    "Enterprises with cloud commitments to burn down",
+    "Keeping data and IAM inside an existing cloud",
+    "Procurement-friendly access to Claude and GPT models"
+  ],
+  "watchOut": [
+    "Model availability varies by region",
+    "Each cloud has its own API shape and quotas"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "openclaw 2026.10.10-beta.3",
+      "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.10.10-beta.3",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-10-18",
+      "title": "openclaw 2026.10.5",
+      "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.10.5",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "openclaw 2026.10.10-beta.1",
+      "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.10.10-beta.1",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-03",
+      "title": "OpenClaw improves user onboarding with a new installer on macOS, plus easier local model setup for Windows NVIDIA RTX PCs",
+      "url": "https://openclaw.ai/blog/macos-installer-windows-local-ai",
+      "source": "openclaw.ai"
+    }
+  ]
+}

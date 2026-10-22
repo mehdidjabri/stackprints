@@ -5,5 +5,57 @@
   "url": "agentskills.io",
   "note": "Open standard, progressive disclosure",
   "open": true,
-  "logo": "agentskills"
+  "logo": "agentskills",
+  "profile": "protocol",
+  "summary": "An open format for packaging agent capabilities as folders, each with a SKILL.md file holding YAML frontmatter and Markdown instructions, plus optional scripts, references and assets. Agents load only each skill's name and description at startup and read the full instructions when a task matches. Originally developed by Anthropic and published as an open standard in December 2025.",
+  "facts": [
+    [
+      "Origin",
+      "Anthropic, opened as a standard on 2025-12-18"
+    ],
+    [
+      "Required fields",
+      "name (max 64 chars), description (max 1024 chars)"
+    ],
+    [
+      "Optional fields",
+      "license, compatibility, metadata, allowed-tools (experimental)"
+    ],
+    [
+      "Loading",
+      "Metadata at startup, body on activation, files on demand"
+    ],
+    [
+      "Size guidance",
+      "SKILL.md under 500 lines, body under ~5,000 tokens"
+    ],
+    [
+      "Validator",
+      "skills-ref (skills-ref validate ./my-skill)"
+    ],
+    [
+      "License",
+      "Apache-2.0 code, CC-BY-4.0 docs"
+    ],
+    [
+      "GitHub stars",
+      "~26k (agentskills/agentskills)"
+    ]
+  ],
+  "links": {
+    "site": "https://agentskills.io",
+    "docs": "https://agentskills.io/specification",
+    "repo": "https://github.com/agentskills/agentskills"
+  },
+  "goodFor": [
+    "Skills that work across several agent products",
+    "Keeping many capabilities available at low context cost",
+    "Versioning team procedures in git"
+  ],
+  "watchOut": [
+    "Spec is short; some fields are loosely defined",
+    "Clients add their own frontmatter fields that do not port",
+    "Skills can bundle code; audit before installing"
+  ],
+  "researched": "2026-10-21"
 }

@@ -5,5 +5,59 @@
   "url": "mastra.ai",
   "note": "TypeScript agents and workflows",
   "open": true,
-  "logo": "mastra"
+  "logo": "mastra",
+  "profile": "product",
+  "summary": "Mastra is a TypeScript framework for AI agents and applications. It combines agents, a graph-based workflow engine with suspend and resume, memory, RAG, evals and observability, and can run inside React, Next.js or Node apps or as a standalone server. The company also sells a managed platform.",
+  "facts": [
+    [
+      "Company",
+      "Mastra (Y Combinator W25)"
+    ],
+    [
+      "License",
+      "Apache-2.0 core; ee/ directories under Mastra Enterprise License"
+    ],
+    [
+      "Language",
+      "TypeScript"
+    ],
+    [
+      "Adoption",
+      "~29k GitHub stars"
+    ],
+    [
+      "Models",
+      "40+ providers via its model router"
+    ],
+    [
+      "MCP",
+      "Consumes MCP tools and can author MCP servers"
+    ],
+    [
+      "Memory",
+      "Conversation history, RAG, Observational Memory"
+    ],
+    [
+      "Pricing",
+      "Framework free; platform Starter $0, Teams $250/month"
+    ]
+  ],
+  "links": {
+    "site": "https://mastra.ai",
+    "docs": "https://mastra.ai/docs",
+    "repo": "https://github.com/mastra-ai/mastra",
+    "pricing": "https://mastra.ai/pricing",
+    "changelog": "https://mastra.ai/blog",
+    "x": "https://x.com/mastra"
+  },
+  "goodFor": [
+    "TypeScript teams building agents into web apps",
+    "Mixing free-form agents with explicit workflows",
+    "Human-in-the-loop flows that pause and resume"
+  ],
+  "watchOut": [
+    "Some enterprise features (e.g. RBAC, SSO) need a paid license",
+    "Pull requests limited to collaborators"
+  ],
+  "researched": "2026-10-21"
 }

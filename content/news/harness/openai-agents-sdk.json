@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "v0.24.0",
+      "url": "https://github.com/openai/openai-agents-python/releases/tag/v0.24.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-10-02",
+      "title": "v0.23.0",
+      "url": "https://github.com/openai/openai-agents-python/releases/tag/v0.23.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-04-15",
+      "title": "The next evolution of the Agents SDK",
+      "url": "https://openai.com/index/the-next-evolution-of-the-agents-sdk/",
+      "source": "openai.com"
+    },
+    {
+      "date": "2026-04-15",
+      "title": "E2B is now supported in the OpenAI Agents SDK",
+      "url": "https://e2b.dev/resources/e2b-is-now-in-agents-sdk.md",
+      "source": "e2b.dev"
+    }
+  ]
+}

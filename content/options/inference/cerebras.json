@@ -4,5 +4,27 @@
   "name": "Cerebras",
   "url": "cerebras.ai",
   "note": "Wafer-scale speed",
-  "logo": "cerebras"
+  "logo": "cerebras",
+  "profile": "product",
+  "summary": "Cerebras builds wafer-scale AI chips and sells high-speed inference on them through a public cloud API, dedicated capacity and on-prem systems. The shared API serves a small set of open-weight models at thousands of tokens per second; OpenAI has contracted 750 MW of Cerebras capacity for its own customers.",
+  "facts": [
+    ["Company", "Cerebras Systems, Nasdaq: CBRS (IPO May 2026)"],
+    ["Hardware", "Wafer-scale engine systems"],
+    ["Shared models", "gpt-oss-120b (~3000 tok/s), Qwen 3.8 27B (~1850 tok/s) (vendor-reported)"],
+    ["Pricing", "Free tier with $5 credit, pay-as-you-go credits, enterprise by agreement"],
+    ["Big customer", "OpenAI, multi-year 750 MW deal announced Jan 2026"],
+    ["Capacity", "600 MW of data center capacity under contract (vendor-reported)"]
+  ],
+  "links": {
+    "site": "https://www.cerebras.ai",
+    "docs": "https://inference-docs.cerebras.ai/models/overview",
+    "pricing": "https://www.cerebras.ai/pricing"
+  },
+  "goodFor": ["Very low-latency generation", "Fast agent loops on open models"],
+  "watchOut": [
+    "Small shared-model catalog",
+    "Free-tier context is shorter than paid (e.g. 65k vs 131k)",
+    "Speed comparisons are vendor-run benchmarks"
+  ],
+  "researched": "2026-10-21"
 }

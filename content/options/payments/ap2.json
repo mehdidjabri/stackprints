@@ -2,8 +2,50 @@
   "order": 50,
   "id": "ap2",
   "name": "AP2",
-  "url": "google.com",
+  "url": "ap2-protocol.org",
   "note": "Google agent payments protocol",
   "open": true,
-  "logo": "google"
+  "logo": "google",
+  "profile": "protocol",
+  "summary": "Agent Payments Protocol, started by Google and donated to the FIDO Alliance in April 2026. Users authorize purchases through signed, verifiable mandates (checkout and payment) that merchants, networks and issuers can check, for both human-present and human-not-present purchases.",
+  "facts": [
+    [
+      "Origin",
+      "Google, announced 2025-09-16"
+    ],
+    [
+      "Governance",
+      "FIDO Alliance (donated April 2026)"
+    ],
+    [
+      "Version",
+      "v0.2 (adds human-not-present payments)"
+    ],
+    [
+      "Mechanism",
+      "Signed checkout and payment mandates as verifiable credentials"
+    ],
+    [
+      "Extends",
+      "A2A and UCP; samples include x402"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ]
+  ],
+  "links": {
+    "site": "https://ap2-protocol.org",
+    "repo": "https://github.com/google-agentic-commerce/AP2",
+    "blog": "https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/"
+  },
+  "goodFor": [
+    "Payment-method-agnostic agent purchases",
+    "Auditable proof that a user authorized a purchase"
+  ],
+  "watchOut": [
+    "Early (v0.2); standardization still in FIDO working groups",
+    "Needs merchants, issuers and networks to adopt it"
+  ],
+  "researched": "2026-10-21"
 }

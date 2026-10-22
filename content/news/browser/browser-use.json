@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "Release 0.13.13: OpenAI browser-tool driver",
+      "url": "https://github.com/browser-use/browser-use/releases/tag/0.13.13",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "Release 0.13.11: Browser Use toolsets for Claude",
+      "url": "https://github.com/browser-use/browser-use/releases/tag/0.13.11",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-09-21",
+      "title": "How Composio's Browser Tool Uses Browser Use to Automate Websites Without APIs",
+      "url": "https://browser-use.com/posts/composio",
+      "source": "browser-use.com"
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Release 0.13.9: bu-2-0 restored as ChatBrowserUse default",
+      "url": "https://github.com/browser-use/browser-use/releases/tag/0.13.9",
+      "source": "github.com"
+    }
+  ]
+}

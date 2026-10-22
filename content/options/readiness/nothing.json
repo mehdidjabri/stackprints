@@ -2,5 +2,27 @@
   "order": 10,
   "id": "nothing",
   "name": "Nothing",
-  "note": "Humans only"
+  "note": "Humans only",
+  "profile": "pattern",
+  "summary": "Making no changes for agents: the site serves humans only, and agents get whatever they can scrape or click through in a browser.",
+  "how": [
+    "Keep the site as built for human visitors",
+    "Leave robots.txt and bot rules unchanged",
+    "Let agents parse HTML or use browser automation on their own"
+  ],
+  "facts": [
+    [
+      "Trade-off",
+      "No work, but agents may misread pages or fail at tasks"
+    ]
+  ],
+  "goodFor": [
+    "Sites with no need for agent traffic",
+    "Early-stage projects"
+  ],
+  "watchOut": [
+    "Agents may fail or misrepresent your product",
+    "Browser-driving agents cost more and are slower"
+  ],
+  "researched": "2026-10-21"
 }

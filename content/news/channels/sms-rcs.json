@@ -1,0 +1,9 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-08", "title": "RCS messaging now supported on all major Canadian carriers", "url": "https://www.twilio.com/en-us/changelog/rcs-messaging-now-supports-rogers-canada", "source": "twilio.com" },
+    { "date": "2026-10-05", "title": "Short Codes are now supported in Data Residency for SMS (EU)", "url": "https://www.twilio.com/en-us/changelog/short-codes-are-now-supported-in-data-residency-for-sms--eu-", "source": "twilio.com" },
+    { "date": "2026-09-17", "title": "Twilio Heightened Awareness Period (HAP) – November 19, 2026 - January 4, 2027", "url": "https://www.twilio.com/en-us/changelog/hap-nov192026-jan42026", "source": "twilio.com" },
+    { "date": "2026-09-02", "title": "Verify Custom Templates are now Generally Available", "url": "https://www.twilio.com/en-us/changelog/verify-custom-templates-are-now-generally-available", "source": "twilio.com" }
+  ]
+}

@@ -2,5 +2,33 @@
   "order": 10,
   "id": "logs",
   "name": "Logs",
-  "note": "console.log and hope"
+  "note": "console.log and hope",
+  "profile": "pattern",
+  "summary": "The agent prints what it does (prompts, tool calls, errors) to stdout or a log file, and you read the logs when something goes wrong. There is no trace structure, cost tracking or evaluation, but also nothing to set up.",
+  "how": [
+    "Log each model call, tool call and error with a timestamp",
+    "Include a run or session ID so lines can be grouped",
+    "Ship logs to your host's log viewer or a file",
+    "Grep or read logs when debugging"
+  ],
+  "facts": [
+    [
+      "Infrastructure",
+      "None (stdout, files or your host's log viewer)"
+    ],
+    [
+      "Trade-off",
+      "Zero setup, but hard to follow nested agent steps or compare runs"
+    ]
+  ],
+  "goodFor": [
+    "Prototypes and single-user agents",
+    "Quick debugging during development"
+  ],
+  "watchOut": [
+    "No token or cost accounting",
+    "Prompts and outputs in logs may contain sensitive data",
+    "No way to evaluate quality over time"
+  ],
+  "researched": "2026-10-21"
 }

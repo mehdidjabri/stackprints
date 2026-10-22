@@ -1,0 +1,17 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-04-01",
+      "title": "Vercel Queues now supports 7-day message TTL",
+      "url": "https://vercel.com/changelog/queues-now-supports-7-day-ttl",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-02-27",
+      "title": "Vercel Queues now in public beta",
+      "url": "https://vercel.com/changelog/vercel-queues-now-in-public-beta",
+      "source": "vercel.com"
+    }
+  ]
+}

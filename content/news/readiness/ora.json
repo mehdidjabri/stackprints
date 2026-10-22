@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-19",
+      "title": "Introducing AgentReady.org: the first open standard for AX",
+      "url": "https://ora.ai/blog/agentready-launch",
+      "source": "ora.ai"
+    },
+    {
+      "date": "2026-10-08",
+      "title": "AX is the new AEO",
+      "url": "https://ora.ai/blog/ax-is-the-new-aeo",
+      "source": "ora.ai"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "When a WebMCP tool returns an MCP App",
+      "url": "https://ora.ai/blog/when-a-webmcp-tool-returns-an-mcp-app",
+      "source": "ora.ai"
+    },
+    {
+      "date": "2026-08-20",
+      "title": "We partnered with Vercel to launch is-agentic.com",
+      "url": "https://ora.ai/blog/is-agentic-with-vercel",
+      "source": "ora.ai"
+    },
+    {
+      "date": "2026-07-07",
+      "title": "Deep Scan v2: we ran the agents, then scored what they did",
+      "url": "https://ora.ai/blog/deep-scan-v2",
+      "source": "ora.ai"
+    }
+  ]
+}

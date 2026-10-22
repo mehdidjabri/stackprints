@@ -1,0 +1,17 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "claude-agent-sdk-python v0.2.171",
+      "url": "https://github.com/anthropics/claude-agent-sdk-python/releases/tag/v0.2.171",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-06-15",
+      "title": "Use the Claude Agent SDK with your Claude plan",
+      "url": "https://support.claude.com/en/articles/15036540",
+      "source": "support.claude.com"
+    }
+  ]
+}

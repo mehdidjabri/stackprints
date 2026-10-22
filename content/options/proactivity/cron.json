@@ -2,5 +2,39 @@
   "order": 30,
   "id": "cron",
   "name": "Cron",
-  "note": "Natural-language schedules"
+  "note": "Natural-language schedules",
+  "profile": "pattern",
+  "summary": "Jobs run the agent with a fixed prompt on a schedule, written either as a cron expression or in natural language (\"every monday 9am\", \"in 30m\"). Each run typically starts a fresh session and delivers its final answer to a chat or file. Agents such as Hermes Agent and OpenClaw ship this as a built-in scheduler.",
+  "how": [
+    "Define a job: schedule plus prompt (via chat, CLI or the agent itself)",
+    "Scheduler parses natural language or a cron expression",
+    "At each due time, the agent runs in an isolated session",
+    "The result is delivered to the origin chat, a channel or a local file"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Hermes Agent, OpenClaw"
+    ],
+    [
+      "Schedule formats",
+      "Cron expressions, intervals, one-shot times, natural language"
+    ],
+    [
+      "Trade-off",
+      "Predictable timing, but runs whether or not there is work to do"
+    ]
+  ],
+  "links": {
+    "docs": "https://hermes-agent.nousresearch.com/docs/user-guide/features/cron"
+  },
+  "goodFor": [
+    "Daily briefings and digests",
+    "Recurring reports and check-ins"
+  ],
+  "watchOut": [
+    "Needs an always-on host or a hosted scheduler",
+    "Timezone and daylight-saving edge cases"
+  ],
+  "researched": "2026-10-21"
 }

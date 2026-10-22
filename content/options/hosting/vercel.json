@@ -4,5 +4,50 @@
   "name": "Vercel",
   "url": "vercel.com",
   "note": "Fluid compute, AI Cloud",
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Vercel is a cloud platform for deploying web apps and backends, increasingly positioned for AI agents. Its Functions run on Fluid compute, which lets one instance serve many concurrent requests, keeps working after the response with waitUntil, and bills on active CPU rather than wall-clock time, which suits agents that spend most time waiting on models. Related services include AI Gateway, Sandbox, Queues, Workflows and Drives for persistent agent storage.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "Compute model",
+      "Fluid compute (concurrent, server-like functions)"
+    ],
+    [
+      "Max function duration",
+      "300s on Hobby; 800s on Pro/Enterprise (30 min in beta)"
+    ],
+    [
+      "Runtimes",
+      "Node.js, Python, Bun and others"
+    ],
+    [
+      "Billing basis",
+      "Active CPU, provisioned memory, invocations"
+    ],
+    [
+      "Agent services",
+      "AI Gateway, Sandbox, Queues, Workflows, Drives"
+    ]
+  ],
+  "links": {
+    "site": "https://vercel.com",
+    "docs": "https://vercel.com/docs/fluid-compute",
+    "pricing": "https://vercel.com/pricing",
+    "changelog": "https://vercel.com/changelog"
+  },
+  "goodFor": [
+    "Next.js and TypeScript agent apps",
+    "Agents that mostly wait on model calls",
+    "Pairing hosting with durable workflows and an AI gateway"
+  ],
+  "watchOut": [
+    "Function duration limits; long runs need Workflows or Queues",
+    "Usage-based bills can be hard to predict",
+    "Many features tie you to Vercel-specific services"
+  ],
+  "researched": "2026-10-21"
 }

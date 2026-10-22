@@ -1,0 +1,8 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-08-19", "title": "Introducing Vercel for Slack", "url": "https://vercel.com/blog/introducing-vercel-for-slack", "source": "vercel.com" },
+    { "date": "2026-03-19", "title": "Chat SDK brings agents to your users", "url": "https://vercel.com/blog/chat-sdk-brings-agents-to-your-users", "source": "vercel.com" },
+    { "date": "2026-03-03", "title": "Building Slack agents can be easy", "url": "https://vercel.com/blog/building-slack-agents-can-be-easy", "source": "vercel.com" }
+  ]
+}

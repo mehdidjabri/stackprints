@@ -4,5 +4,54 @@
   "name": "Cloudflare Workflows",
   "url": "cloudflare.com",
   "note": "Durable steps on Workers",
-  "logo": "cloudflare"
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Cloudflare Workflows is a durable execution engine built on Cloudflare Workers. A workflow is split into steps with step.do(), each persisted and retried on failure, and can sleep or wait for external events (such as an approval) for hours or weeks without consuming CPU. It suits teams already deploying to Workers, including agents built with Cloudflare's Agents SDK.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Runtime",
+      "Cloudflare Workers"
+    ],
+    [
+      "Languages",
+      "TypeScript/JavaScript, Python SDK"
+    ],
+    [
+      "Primitives",
+      "step.do, step.sleep, step.waitForEvent"
+    ],
+    [
+      "Plans",
+      "Workers Free and Paid"
+    ],
+    [
+      "Pricing (Paid)",
+      "CPU time, requests, storage and steps; 500k steps/mo included, then $0.80 per 100k"
+    ],
+    [
+      "Self-hostable",
+      "No"
+    ]
+  ],
+  "links": {
+    "site": "https://www.cloudflare.com/developer-platform/products/workflows/",
+    "docs": "https://developers.cloudflare.com/workflows/",
+    "pricing": "https://developers.cloudflare.com/workflows/reference/pricing/",
+    "changelog": "https://developers.cloudflare.com/workflows/reference/changelog/"
+  },
+  "goodFor": [
+    "Agents already running on Workers",
+    "Long waits for human approval or webhooks",
+    "Idle time that costs no CPU"
+  ],
+  "watchOut": [
+    "Tied to the Cloudflare platform",
+    "Per-step and storage billing started in 2026",
+    "Workers CPU and memory limits apply"
+  ],
+  "researched": "2026-10-21"
 }

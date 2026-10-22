@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-08-22",
+      "title": "The New MCP Roadmap",
+      "url": "https://blog.modelcontextprotocol.io/posts/mcp-roadmap/",
+      "source": "blog.modelcontextprotocol.io"
+    },
+    {
+      "date": "2026-07-28",
+      "title": "The 2026-07-28 Specification",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "source": "blog.modelcontextprotocol.io"
+    },
+    {
+      "date": "2026-07-27",
+      "title": "The Official Ruby SDK for MCP Reaches 1.0",
+      "url": "https://blog.modelcontextprotocol.io/posts/ruby-sdk-1-0/",
+      "source": "blog.modelcontextprotocol.io"
+    },
+    {
+      "date": "2026-03-09",
+      "title": "The 2026 MCP Roadmap",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/",
+      "source": "blog.modelcontextprotocol.io"
+    },
+    {
+      "date": "2025-12-09",
+      "title": "Donating the Model Context Protocol and establishing the Agentic AI Foundation",
+      "url": "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
+      "source": "anthropic.com"
+    }
+  ]
+}

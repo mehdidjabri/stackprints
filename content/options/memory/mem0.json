@@ -4,5 +4,58 @@
   "name": "Mem0",
   "url": "mem0.ai",
   "note": "Extracted fact memory",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Mem0 is a memory layer that extracts facts from conversations and retrieves them for later prompts. It ships as an Apache-2.0 library and self-hostable server, and as a hosted platform that adds graph memory and Dream background consolidation on paid plans.",
+  "facts": [
+    [
+      "Company",
+      "Mem0 (Y Combinator S24)"
+    ],
+    [
+      "License",
+      "Apache-2.0 (open-source library and server)"
+    ],
+    [
+      "Adoption",
+      "67.6k GitHub stars"
+    ],
+    [
+      "SDKs",
+      "Python, TypeScript, CLI"
+    ],
+    [
+      "Pricing",
+      "Free tier; Starter $19/mo; Pro $249/mo; Enterprise custom"
+    ],
+    [
+      "LongMemEval",
+      "94.4 (vendor-reported, managed platform)"
+    ],
+    [
+      "BEAM",
+      "64.1 at 1M, 48.6 at 10M (vendor-reported)"
+    ],
+    [
+      "Funding",
+      "$24M seed and Series A (Oct 2025)"
+    ]
+  ],
+  "links": {
+    "site": "https://mem0.ai",
+    "docs": "https://docs.mem0.ai",
+    "repo": "https://github.com/mem0ai/mem0",
+    "pricing": "https://mem0.ai/pricing",
+    "changelog": "https://mem0.ai/blog"
+  },
+  "goodFor": [
+    "Adding user memory to an existing app quickly",
+    "Teams that want open source with a hosted option",
+    "Python and TypeScript stacks"
+  ],
+  "watchOut": [
+    "Published scores include managed-platform optimizations not in open source",
+    "Graph memory and Dream are paid-plan features"
+  ],
+  "researched": "2026-10-21"
 }

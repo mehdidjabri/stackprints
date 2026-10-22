@@ -2,5 +2,47 @@
   "order": 70,
   "id": "worktrees-tmux",
   "name": "Worktrees + tmux",
-  "note": "Parallel coding agents, DIY"
+  "note": "Parallel coding agents, DIY",
+  "profile": "pattern",
+  "summary": "Run several coding agents at once, each in its own git worktree so their edits never collide, and watch them side by side in tmux panes. It needs no framework: git and a terminal multiplexer do the isolation and the layout. You review and merge each branch yourself.",
+  "facts": [
+    [
+      "Tools",
+      "git worktree, tmux, any CLI coding agent"
+    ],
+    [
+      "Built in",
+      "Claude Code has a --worktree flag"
+    ],
+    [
+      "Isolation",
+      "Separate checkout per agent; shared git history"
+    ],
+    [
+      "Trade-off",
+      "Simple and transparent, but merging and conflicts are on you"
+    ]
+  ],
+  "how": [
+    "Create a git worktree per task, each on its own branch",
+    "Open a tmux window or pane per worktree",
+    "Start a coding agent in each pane with its task",
+    "Review each branch's diff and merge or discard it"
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/common-workflows",
+    "site": "https://git-scm.com/docs/git-worktree",
+    "repo": "https://github.com/tmux/tmux"
+  },
+  "goodFor": [
+    "Several independent coding tasks in one repo",
+    "Comparing attempts at the same task",
+    "Keeping full manual control"
+  ],
+  "watchOut": [
+    "Each worktree needs its own dependencies and ports",
+    "Merge conflicts when tasks touch the same files",
+    "Watching many panes is tiring"
+  ],
+  "researched": "2026-10-21"
 }

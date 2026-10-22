@@ -3,5 +3,50 @@
   "id": "pinecone",
   "name": "Pinecone",
   "url": "pinecone.io",
-  "note": "Managed vector DB"
+  "note": "Managed vector DB",
+  "profile": "product",
+  "summary": "Pinecone is a fully managed vector database offered as a serverless service. It stores dense and sparse vectors with metadata, adds full-text search (GA in September 2026), and hosts embedding and reranking models behind the same API. Plans range from a free tier to enterprise and BYOC deployments.",
+  "facts": [
+    [
+      "Hosting",
+      "Managed serverless; BYOC in your own cloud account"
+    ],
+    [
+      "Search",
+      "Dense, sparse and full-text (BM25) in one index"
+    ],
+    [
+      "Pricing",
+      "Free Starter; Standard from $50/mo minimum; Enterprise $500/mo"
+    ],
+    [
+      "Storage price",
+      "$0.33 per GB per month"
+    ],
+    [
+      "Hosted models",
+      "llama-text-embed-v2, multilingual-e5-large, bge-reranker-v2-m3, cohere-rerank-4-fast"
+    ],
+    [
+      "Open source",
+      "No"
+    ]
+  ],
+  "links": {
+    "site": "https://www.pinecone.io",
+    "docs": "https://docs.pinecone.io",
+    "pricing": "https://www.pinecone.io/pricing/",
+    "changelog": "https://docs.pinecone.io/release-notes"
+  },
+  "goodFor": [
+    "Teams that want no database operations",
+    "Integrated embedding, rerank and search in one API",
+    "Regulated deployments via BYOC"
+  ],
+  "watchOut": [
+    "Closed source; Pinecone Local emulator reached end of life in Oct 2026",
+    "Costs scale with read and write units, which vary by region",
+    "Free tier limited to one AWS region"
+  ],
+  "researched": "2026-10-21"
 }

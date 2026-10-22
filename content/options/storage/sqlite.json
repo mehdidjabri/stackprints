@@ -5,5 +5,49 @@
   "url": "sqlite.org",
   "note": "Per-agent local database",
   "open": true,
-  "logo": "sqlite"
+  "logo": "sqlite",
+  "profile": "product",
+  "summary": "SQLite is an in-process SQL database engine that stores a whole database in a single file, with no server. Agents use it for local session history, indexes and full-text search, often one database per agent or per user. It also backs the storage of Cloudflare Durable Objects.",
+  "facts": [
+    [
+      "License",
+      "Public domain"
+    ],
+    [
+      "Latest release",
+      "3.54.1 (2026-10-16)"
+    ],
+    [
+      "Architecture",
+      "Embedded library, single cross-platform file"
+    ],
+    [
+      "Concurrency",
+      "Unlimited readers, one writer at a time"
+    ],
+    [
+      "Max database size",
+      "281 TB"
+    ],
+    [
+      "Used by agents",
+      "Hermes Agent (~/.hermes/state.db with FTS5), Cloudflare Agents via Durable Objects"
+    ]
+  ],
+  "links": {
+    "site": "https://sqlite.org",
+    "docs": "https://sqlite.org/docs.html",
+    "changelog": "https://sqlite.org/news.html"
+  },
+  "goodFor": [
+    "Per-agent or per-user databases",
+    "Local CLI and desktop agents",
+    "Full-text search over past sessions (FTS5)"
+  ],
+  "watchOut": [
+    "One writer at a time; heavy concurrent writes need a client/server database",
+    "Network filesystems can corrupt databases due to buggy locking",
+    "Sharing across machines needs replication or a hosted variant"
+  ],
+  "researched": "2026-10-21"
 }

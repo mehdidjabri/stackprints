@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-08",
+      "title": "Composio Instant: your agents can now pay for their own tools",
+      "url": "https://composio.dev/blog/composio-instant",
+      "source": "composio.dev"
+    },
+    {
+      "date": "2026-09-17",
+      "title": "Build reactive integrations with Composio webhook triggers",
+      "url": "https://composio.dev/blog/build-reactive-integrations-with-webhook-triggers",
+      "source": "composio.dev"
+    },
+    {
+      "date": "2026-09-14",
+      "title": "Introducing Composio Shared Connections",
+      "url": "https://composio.dev/blog/introducing-composio-shared-connections",
+      "source": "composio.dev"
+    },
+    {
+      "date": "2026-05-21",
+      "title": "Composio May 2026 security incident update",
+      "url": "https://composio.dev/blog/composio-may-2026-security-incident",
+      "source": "composio.dev"
+    },
+    {
+      "date": "2026-03-27",
+      "title": "Announcing Universal CLI by Composio",
+      "url": "https://composio.dev/blog/announcing-universal-cli-by-composio",
+      "source": "composio.dev"
+    }
+  ]
+}

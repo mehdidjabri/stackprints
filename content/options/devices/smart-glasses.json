@@ -4,5 +4,49 @@
   "name": "Smart glasses",
   "url": "meta.com",
   "note": "Always-there camera and audio",
-  "logo": "meta"
+  "logo": "meta",
+  "profile": "product",
+  "summary": "AI glasses put a camera, microphones and open-ear speakers on your face, so an assistant can see and hear what you do and answer by voice. Meta's line (Ray-Ban Meta, Oakley Meta, Meta Ray-Ban Display) is the main mass-market option, and Meta's Wearables Device Access Toolkit lets mobile apps use the glasses' camera and audio.",
+  "facts": [
+    [
+      "Company",
+      "Meta, with EssilorLuxottica"
+    ],
+    [
+      "Models",
+      "Meta Glasses, Ray-Ban Meta, Oakley Meta, Meta Ray-Ban Display"
+    ],
+    [
+      "Starting price",
+      "$224 (meta.com)"
+    ],
+    [
+      "Developer access",
+      "Wearables Device Access Toolkit, iOS and Android SDKs"
+    ],
+    [
+      "SDK status",
+      "Developer preview"
+    ],
+    [
+      "Sensors via SDK",
+      "Camera, speech, motion, display, inputs"
+    ]
+  ],
+  "links": {
+    "site": "https://www.meta.com/ai-glasses/",
+    "docs": "https://developers.meta.com/wearables/",
+    "repo": "https://github.com/facebook/meta-wearables-dat-ios"
+  },
+  "goodFor": [
+    "Hands-free camera input for an agent",
+    "Voice interaction away from a screen",
+    "Accessibility and visual description"
+  ],
+  "watchOut": [
+    "Third-party access is still a developer preview",
+    "Recording in public raises privacy concerns",
+    "Tied to Meta's apps and account"
+  ],
+  "researched": "2026-10-21"
 }

@@ -4,5 +4,35 @@
   "name": "Cloudflare Sandbox",
   "url": "cloudflare.com",
   "note": "Containers at the edge",
-  "logo": "cloudflare"
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Cloudflare Sandbox SDK runs untrusted or generated code in Linux containers that a Worker controls through a Durable Object, one sandbox per user, task or session. Each Container instance is a microVM with its own kernel and network, and outbound requests can be handled in Worker code so credentials stay outside the sandbox. It requires the Workers Paid plan.",
+  "facts": [
+    ["Company", "Cloudflare"],
+    ["Isolation", "Container instances run as microVMs with their own kernel"],
+    ["Built on", "Cloudflare Containers and Durable Objects"],
+    ["License", "SDK is Apache-2.0"],
+    ["Cold start", "648 ms median at 100 concurrent (vendor-reported)"],
+    ["Persistence", "Snapshots, R2 bucket mounts"],
+    ["Pricing", "Workers Paid ($5/month) with included usage; CPU billed on active use"],
+    ["Status", "GA since April 2026; SDK 1.0 released Sept 2026"]
+  ],
+  "links": {
+    "site": "https://www.cloudflare.com",
+    "docs": "https://developers.cloudflare.com/sandbox/",
+    "repo": "https://github.com/cloudflare/sandbox-sdk",
+    "pricing": "https://developers.cloudflare.com/containers/pricing/",
+    "changelog": "https://developers.cloudflare.com/changelog/"
+  },
+  "goodFor": [
+    "Apps already built on Workers and Durable Objects",
+    "Per-user or per-session sandboxes close to users",
+    "Keeping secrets in the Worker rather than the sandbox"
+  ],
+  "watchOut": [
+    "Not available on the Workers Free plan",
+    "Memory and disk billed on provisioned size while running",
+    "Legacy Sandbox class supported only through 2026-12-31"
+  ],
+  "researched": "2026-10-21"
 }

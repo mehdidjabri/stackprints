@@ -4,5 +4,53 @@
   "name": "Restate",
   "url": "restate.dev",
   "note": "Durable handlers",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Restate is a durable execution runtime that journals each step of a handler so code resumes from the last completed step after a crash, restart or deploy. Beyond workflows it offers keyed state (Virtual Objects), durable RPC, timers and queues. It ships as a single Rust binary with no external database or broker, and is also offered as a managed cloud.",
+  "facts": [
+    [
+      "Company",
+      "Restate Software"
+    ],
+    [
+      "License",
+      "BSL 1.1 (server)"
+    ],
+    [
+      "Language",
+      "Rust (server)"
+    ],
+    [
+      "SDKs",
+      "TypeScript, Python, Java, Kotlin, Go, Rust, Ruby"
+    ],
+    [
+      "Deployment",
+      "Self-hosted binary, Restate Cloud, or BYOC (AWS, GCP)"
+    ],
+    [
+      "Funding",
+      "$20M Series A (Sep 2026)"
+    ],
+    [
+      "GitHub stars",
+      "~4.6k"
+    ]
+  ],
+  "links": {
+    "site": "https://restate.dev",
+    "docs": "https://docs.restate.dev",
+    "repo": "https://github.com/restatedev/restate",
+    "blog": "https://restate.dev/blog"
+  },
+  "goodFor": [
+    "Durable agent loops and tool calls",
+    "Stateful per-key handlers",
+    "Self-hosting without a separate database"
+  ],
+  "watchOut": [
+    "Server is source-available (BSL), not OSI open source",
+    "Smaller ecosystem than Temporal"
+  ],
+  "researched": "2026-10-21"
 }

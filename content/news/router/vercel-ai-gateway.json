@@ -1,0 +1,9 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-18", "title": "AI Gateway logs now show session affinity", "url": "https://vercel.com/changelog/ai-gateway-logs-now-show-session-affinity", "source": "vercel.com" },
+    { "date": "2026-09-30", "title": "AI Gateway adds Browserbase Search and Fetch tools", "url": "https://vercel.com/changelog/ai-gateway-adds-browserbase-search-and-fetch-tools", "source": "vercel.com" },
+    { "date": "2026-09-17", "title": "Open-weight models take 56% of token volume, Astra doubles Fable 5.1 spend", "url": "https://vercel.com/blog/ai-gateway-production-index-september-2026", "source": "vercel.com" },
+    { "date": "2026-07-02", "title": "Routing rules now available on AI Gateway", "url": "https://vercel.com/changelog/ai-gateway-routing-rules", "source": "vercel.com" }
+  ]
+}

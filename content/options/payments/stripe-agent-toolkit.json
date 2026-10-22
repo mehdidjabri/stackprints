@@ -5,5 +5,47 @@
   "url": "stripe.com",
   "note": "Payments as tools",
   "open": true,
-  "logo": "stripe"
+  "logo": "stripe",
+  "profile": "product",
+  "summary": "Stripe's tools for letting agents operate a Stripe account: a hosted MCP server at mcp.stripe.com plus open-source SDKs (now in the stripe/ai repo). Agents can search the API, read and write Stripe objects, and search docs; some writes such as refunds need human confirmation.",
+  "facts": [
+    [
+      "Company",
+      "Stripe"
+    ],
+    [
+      "License",
+      "MIT (stripe/ai repo)"
+    ],
+    [
+      "MCP server",
+      "https://mcp.stripe.com, OAuth or agent API keys"
+    ],
+    [
+      "Tools",
+      "API search/read/write, account info, docs search, analytics"
+    ],
+    [
+      "Safeguard",
+      "Human confirmation for refunds and outbound payments"
+    ],
+    [
+      "GitHub stars",
+      "2.0k"
+    ]
+  ],
+  "links": {
+    "site": "https://docs.stripe.com/agents",
+    "docs": "https://docs.stripe.com/mcp",
+    "repo": "https://github.com/stripe/ai"
+  },
+  "goodFor": [
+    "Agents that run billing, refunds or support on your own Stripe account",
+    "Coding agents building Stripe integrations"
+  ],
+  "watchOut": [
+    "Stripe MCP stops accepting secret and non-agent restricted keys after 2026-11-30",
+    "Write access to a live account is powerful; scope keys tightly"
+  ],
+  "researched": "2026-10-21"
 }

@@ -2,5 +2,49 @@
   "order": 40,
   "id": "auto-review",
   "name": "Auto-review",
-  "note": "Second model checks each action"
+  "note": "Second model checks each action",
+  "profile": "pattern",
+  "summary": "A second model reviews each risky action before it runs and approves, blocks or escalates it, replacing most human prompts. Shipped in Claude Code as auto mode and in Codex as auto-review.",
+  "how": [
+    "The agent proposes a tool call",
+    "A separate reviewer model checks it against the user's request and a risk policy",
+    "Safe calls run; risky ones are blocked so the agent tries another way",
+    "Repeated blocks or critical risks fall back to the human"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code (auto mode), Codex (approvals_reviewer = \"auto_review\")"
+    ],
+    [
+      "Claude Code",
+      "Announced 2026-03-24, generally available 2026-07-10"
+    ],
+    [
+      "Codex",
+      "Reviews only actions that already need approval; review failures fail closed"
+    ],
+    [
+      "Cost",
+      "Extra model calls add tokens and latency"
+    ],
+    [
+      "Trade-off",
+      "Far fewer prompts, but the reviewer can miss risk or block benign actions"
+    ]
+  ],
+  "links": {
+    "blog": "https://claude.com/blog/auto-mode",
+    "docs": "https://code.claude.com/docs/en/permissions",
+    "codex": "https://learn.chatgpt.com/docs/agent-approvals-security"
+  },
+  "goodFor": [
+    "Long agent runs where constant prompts are impractical",
+    "A middle ground between manual approval and YOLO"
+  ],
+  "watchOut": [
+    "Anthropic says it reduces risk but doesn't eliminate it",
+    "Ambiguous intent or missing context can let risky actions through"
+  ],
+  "researched": "2026-10-21"
 }

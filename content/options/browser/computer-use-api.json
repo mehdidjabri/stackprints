@@ -2,5 +2,46 @@
   "order": 70,
   "id": "computer-use-api",
   "name": "Computer use API",
-  "note": "Screenshot, click, type"
+  "note": "Screenshot, click, type",
+  "profile": "pattern",
+  "summary": "A model API tool where the model looks at screenshots and returns mouse and keyboard actions with pixel coordinates. Your code runs the actions in a VM, container or browser and sends back the next screenshot.",
+  "how": [
+    "Declare the provider's computer-use tool in the API call",
+    "Model returns actions such as screenshot, click at (x, y), type",
+    "Your app executes them in a sandboxed display",
+    "Return a new screenshot and loop until the task is done"
+  ],
+  "facts": [
+    [
+      "Offered by",
+      "Anthropic computer use tool, OpenAI computer-use-preview, Gemini Computer Use"
+    ],
+    [
+      "Input",
+      "Screenshots (pixels)"
+    ],
+    [
+      "Scope",
+      "Any GUI, not just web pages"
+    ],
+    [
+      "Trade-off",
+      "Works anywhere, but slower and costlier than DOM-based control"
+    ]
+  ],
+  "links": {
+    "docs": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+    "repo": "https://github.com/anthropics/claude-quickstarts"
+  },
+  "goodFor": [
+    "Desktop apps without an API",
+    "Sites that resist DOM automation",
+    "Legacy and visual-heavy UIs"
+  ],
+  "watchOut": [
+    "Needs an isolated VM or container",
+    "Screenshot loops use many tokens",
+    "Instructions in pages or images can hijack it"
+  ],
+  "researched": "2026-10-21"
 }

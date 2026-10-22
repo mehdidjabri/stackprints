@@ -2,5 +2,22 @@
   "order": 90,
   "id": "local-gpu",
   "name": "Local GPU",
-  "note": "Your own hardware"
+  "note": "Your own hardware",
+  "profile": "pattern",
+  "summary": "Run open-weight models on hardware you own, such as a workstation GPU, an Apple Silicon Mac or an on-prem server, and point the agent at a local OpenAI-compatible endpoint. There is no per-token bill and prompts never leave the machine, but model size and speed are capped by your memory and compute.",
+  "how": [
+    "Pick an open-weight model that fits your GPU or unified memory, usually a quantized build",
+    "Serve it with a local runtime such as Ollama, llama.cpp, LM Studio or vLLM",
+    "Point the agent at the local OpenAI-compatible endpoint",
+    "Keep a hosted model as a fallback for tasks the local model can't handle"
+  ],
+  "facts": [
+    ["Runtimes", "Ollama, llama.cpp, LM Studio, vLLM"],
+    ["Cost", "Hardware and power up front, no per-token fees"],
+    ["Privacy", "Prompts and data stay on your machine"],
+    ["Trade-off", "Smaller models and lower throughput than hosted frontier APIs"]
+  ],
+  "goodFor": ["Private or offline work", "High-volume background tasks with no token bill", "Experimenting with open models"],
+  "watchOut": ["Large models need a lot of VRAM or unified memory", "Quantized small models are weaker at long agentic tool use", "You maintain drivers, runtimes and updates"],
+  "researched": "2026-10-21"
 }

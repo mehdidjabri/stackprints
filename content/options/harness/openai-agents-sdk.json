@@ -5,5 +5,57 @@
   "url": "openai.github.io/openai-agents-python",
   "note": "Handoffs, guardrails, sessions",
   "open": true,
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "product",
+  "summary": "The OpenAI Agents SDK is a lightweight framework for multi-agent workflows in Python, with a separate JavaScript/TypeScript version. Agents are LLMs with instructions, tools, guardrails and handoffs; the SDK adds sessions, tracing, human-in-the-loop and, since April 2026, sandbox agents that work in containers over long tasks. It supports the OpenAI Responses and Chat Completions APIs plus other LLMs.",
+  "facts": [
+    [
+      "Company",
+      "OpenAI"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "Python 3.10+; separate JS/TS SDK"
+    ],
+    [
+      "Adoption",
+      "~30k GitHub stars (Python)"
+    ],
+    [
+      "MCP",
+      "Supported as a tool source"
+    ],
+    [
+      "Subagents",
+      "Handoffs and agents-as-tools"
+    ],
+    [
+      "Sandboxing",
+      "Sandbox agents: local Unix, Docker or hosted clients (E2B, Modal, Daytona, Vercel and others)"
+    ],
+    [
+      "Memory",
+      "Sessions, including a Redis option"
+    ]
+  ],
+  "links": {
+    "site": "https://openai.github.io/openai-agents-python/",
+    "docs": "https://openai.github.io/openai-agents-python/",
+    "repo": "https://github.com/openai/openai-agents-python",
+    "changelog": "https://github.com/openai/openai-agents-python/releases"
+  },
+  "goodFor": [
+    "Multi-agent handoffs with guardrails",
+    "Voice and realtime agents",
+    "Long-running coding or file tasks in sandboxes"
+  ],
+  "watchOut": [
+    "Still pre-1.0 (v0.24 in October 2026)",
+    "Python and JS/TS SDKs are separate projects"
+  ],
+  "researched": "2026-10-21"
 }

@@ -5,5 +5,54 @@
   "url": "sqlite.org",
   "note": "Local hybrid search",
   "open": true,
-  "logo": "sqlite"
+  "logo": "sqlite",
+  "profile": "product",
+  "summary": "A local hybrid search setup inside a single SQLite file: FTS5, SQLite's built-in full-text extension, handles keyword search with BM25 ranking, and sqlite-vec, a separate extension, adds vector search through vec0 virtual tables. Results from both can be fused in SQL. Suits local or embedded agents that want search without a server.",
+  "facts": [
+    [
+      "Storage",
+      "Single SQLite database file, in-process"
+    ],
+    [
+      "Keyword search",
+      "FTS5 with built-in bm25(), unicode61/porter/trigram tokenizers"
+    ],
+    [
+      "Vector search",
+      "sqlite-vec vec0 tables: float, int8 and binary vectors"
+    ],
+    [
+      "ANN indexes",
+      "sqlite-vec brute-force KNN in stable releases; DiskANN, IVF and rescore in v0.1.10 alphas"
+    ],
+    [
+      "License",
+      "SQLite: public domain; sqlite-vec: MIT or Apache-2.0"
+    ],
+    [
+      "Bindings",
+      "sqlite-vec: Python, Node.js, Ruby, Go, Rust, WASM"
+    ],
+    [
+      "Stars",
+      "sqlite-vec ~8.2k on GitHub"
+    ]
+  ],
+  "links": {
+    "site": "https://sqlite.org",
+    "docs": "https://sqlite.org/fts5.html",
+    "repo": "https://github.com/asg017/sqlite-vec",
+    "changelog": "https://sqlite.org/news.html"
+  },
+  "goodFor": [
+    "Local-first and desktop agents",
+    "Hybrid keyword plus vector search with no server",
+    "Small to medium corpora"
+  ],
+  "watchOut": [
+    "sqlite-vec is pre-v1 and warns of breaking changes",
+    "ANN indexes are still alpha; stable search is brute force",
+    "Hybrid ranking must be written by hand in SQL"
+  ],
+  "researched": "2026-10-21"
 }

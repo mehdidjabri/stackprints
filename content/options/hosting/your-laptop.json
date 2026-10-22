@@ -2,5 +2,37 @@
   "order": 10,
   "id": "your-laptop",
   "name": "Your laptop",
-  "note": "Local first, always yours"
+  "note": "Local first, always yours",
+  "profile": "pattern",
+  "summary": "The agent runs on the machine you work on, as a CLI, desktop app or local daemon. It has direct access to your files and tools and costs nothing extra to host, but it only runs while the laptop is awake and online.",
+  "how": [
+    "Install the agent as a CLI, app or background service",
+    "Point it at local files, tools and API keys",
+    "Run it on demand or while the machine is on",
+    "Optionally expose it to chat apps through a tunnel"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Coding agents such as Claude Code and Codex CLI; OpenClaw and Hermes Agent can also run locally"
+    ],
+    [
+      "Cost",
+      "No hosting cost"
+    ],
+    [
+      "Trade-off",
+      "Full local access and privacy, but no uptime when the lid is closed"
+    ]
+  ],
+  "goodFor": [
+    "Coding and personal agents",
+    "Keeping data on your own machine",
+    "Getting started with zero infrastructure"
+  ],
+  "watchOut": [
+    "Schedules and webhooks stop when the machine sleeps",
+    "Agent has broad access to your files; sandbox risky tools"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-21", "title": "Announcing Humming: Fast, Flexible Kernels for Quantized Inference", "url": "https://vllm.ai/blog/2026-10-21-humming", "source": "vllm.ai" },
+    { "date": "2026-10-20", "title": "Introducing vLLM TorchTPU", "url": "https://vllm.ai/blog/2026-10-20-vllm-torchtpu", "source": "vllm.ai" },
+    { "date": "2026-10-19", "title": "Achieving near-zero-downtime scaling in Elastic Expert Parallelism", "url": "https://vllm.ai/blog/2026-10-19-elastic-ep-near-zero-downtime", "source": "vllm.ai" },
+    { "date": "2026-10-16", "title": "Hyper Optimizing Kimi K3 in vLLM: Moving Fast and Responsibly", "url": "https://vllm.ai/blog/2026-10-16-kimi-k3-megakernel", "source": "vllm.ai" },
+    { "date": "2026-10-16", "title": "Scaling Kimi K3 on AMD Instinct MI355X: Matching NVIDIA HGX B300 Throughput per GPU on AgentX", "url": "https://vllm.ai/blog/2026-10-16-kimi-k3-mi355x", "source": "vllm.ai" }
+  ]
+}

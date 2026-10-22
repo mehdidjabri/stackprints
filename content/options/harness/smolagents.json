@@ -5,5 +5,58 @@
   "url": "huggingface.co",
   "note": "Code-acting minimal agents",
   "open": true,
-  "logo": "huggingface"
+  "logo": "huggingface",
+  "profile": "product",
+  "summary": "smolagents is a small Python library from Hugging Face for agents that write their actions as Python code. Its CodeAgent logic fits in about 1,000 lines, it works with any LLM (local transformers, Ollama, Hub inference providers or LiteLLM) and it can run generated code in sandboxes such as E2B, Modal, Blaxel or Docker.",
+  "facts": [
+    [
+      "Company",
+      "Hugging Face"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "Python"
+    ],
+    [
+      "Adoption",
+      "~30k GitHub stars"
+    ],
+    [
+      "Agent style",
+      "Code actions (CodeAgent) or tool-calling agents"
+    ],
+    [
+      "MCP",
+      "Tools can be loaded from MCP servers"
+    ],
+    [
+      "Sandboxing",
+      "E2B, Modal, Blaxel or Docker executors"
+    ],
+    [
+      "Latest release",
+      "v1.26.0 (2026-05-29)"
+    ]
+  ],
+  "links": {
+    "site": "https://huggingface.co/docs/smolagents",
+    "docs": "https://huggingface.co/docs/smolagents",
+    "repo": "https://github.com/huggingface/smolagents",
+    "changelog": "https://github.com/huggingface/smolagents/releases",
+    "blog": "https://huggingface.co/blog/smolagents"
+  },
+  "goodFor": [
+    "Learning how agent loops work from small code",
+    "Code-acting agents for multi-step tool use",
+    "Sharing tools and agents via the Hugging Face Hub"
+  ],
+  "watchOut": [
+    "Generated code must be sandboxed for safety",
+    "No release since May 2026"
+  ],
+  "researched": "2026-10-21"
 }

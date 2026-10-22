@@ -2,5 +2,48 @@
   "order": 20,
   "id": "permission-modes",
   "name": "Permission modes",
-  "note": "Allow / ask / deny per tool"
+  "note": "Allow / ask / deny per tool",
+  "profile": "pattern",
+  "summary": "The harness keeps allow, ask and deny rules per tool (and per command or path pattern) and switches between preset modes that change how much it asks. Rules are enforced by the harness, not by the model.",
+  "how": [
+    "Write allow, ask and deny rules per tool or pattern, e.g. Bash(npm run *)",
+    "The harness checks each call: deny first, then ask, then allow",
+    "Pick a session mode (manual, accept edits, plan, auto, bypass) for everything the rules don't cover",
+    "Admins can pin or forbid modes through managed settings"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, Codex (approval policies + sandbox modes)"
+    ],
+    [
+      "Claude Code modes",
+      "default, acceptEdits, plan, auto, dontAsk, bypassPermissions"
+    ],
+    [
+      "Rule order",
+      "Deny, then ask, then allow; first match wins (Claude Code)"
+    ],
+    [
+      "Codex policies",
+      "on-request, never, granular"
+    ],
+    [
+      "Trade-off",
+      "Predictable, but rules drift and prompts cause approval fatigue"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/permissions",
+    "codex": "https://learn.chatgpt.com/docs/agent-approvals-security"
+  },
+  "goodFor": [
+    "Coding agents on a developer machine",
+    "Teams that check rules into the repo"
+  ],
+  "watchOut": [
+    "Broad allow rules quietly widen what the agent can do",
+    "Frequent prompts train people to click yes"
+  ],
+  "researched": "2026-10-21"
 }

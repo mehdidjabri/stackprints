@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-20",
+      "title": "WebSocket support is now generally available",
+      "url": "https://vercel.com/changelog/websocket-support-is-now-generally-available",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "Making every harness durable",
+      "url": "https://vercel.com/blog/making-every-harness-durable",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Introducing Vercel Drives: persistent storage for agents",
+      "url": "https://vercel.com/blog/introducing-vercel-drives-persistent-storage-for-agents",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Backends on Vercel: Python, containers, and Daemons",
+      "url": "https://vercel.com/blog/backends-on-vercel-python-containers-and-daemons",
+      "source": "vercel.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Vercel Ship 2026 recap",
+      "url": "https://vercel.com/blog/vercel-ship-2026-recap",
+      "source": "vercel.com"
+    }
+  ]
+}

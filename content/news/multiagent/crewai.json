@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-14",
+      "title": "CrewAI 1.15.28",
+      "url": "https://github.com/crewAIInc/crewAI/releases/tag/1.15.28",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-06-22",
+      "title": "Stop giving your agents database credentials",
+      "url": "https://blog.crewai.com/stop-giving-your-agents-database-credentials/",
+      "source": "blog.crewai.com"
+    },
+    {
+      "date": "2026-06-08",
+      "title": "How to build Agents Where Data Already Lives",
+      "url": "https://blog.crewai.com/how-to-build-agents-where-data-already-lives/",
+      "source": "blog.crewai.com"
+    },
+    {
+      "date": "2026-04-14",
+      "title": "Agent Harnesses Are Dead. Long Live Agent Harnesses.",
+      "url": "https://blog.crewai.com/agent-harnesses-are-dead-long-live-agent-harnesses/",
+      "source": "blog.crewai.com"
+    }
+  ]
+}

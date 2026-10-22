@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-28",
+      "title": "Dynamic workflows for stateful agents and decision models",
+      "url": "https://www.letta.com/blog/dynamic-workflows/",
+      "source": "letta.com"
+    },
+    {
+      "date": "2026-08-17",
+      "title": "Letta Agents SDK: An SDK for stateful agents",
+      "url": "https://www.letta.com/blog/introducing-the-letta-agent-sdk/",
+      "source": "letta.com"
+    },
+    {
+      "date": "2026-06-24",
+      "title": "Introducing Mods: Enabling Agents to Self-Improve through Harness-Level Adaptation",
+      "url": "https://www.letta.com/blog/introducing-mods/",
+      "source": "letta.com"
+    },
+    {
+      "date": "2026-04-06",
+      "title": "Introducing the Letta Code App",
+      "url": "https://www.letta.com/blog/introducing-the-letta-code-app/",
+      "source": "letta.com"
+    },
+    {
+      "date": "2026-03-16",
+      "title": "Letta's Next Phase",
+      "url": "https://www.letta.com/blog/our-next-phase/",
+      "source": "letta.com"
+    }
+  ]
+}

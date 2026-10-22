@@ -2,5 +2,36 @@
   "order": 10,
   "id": "in-process",
   "name": "In-process",
-  "note": "If it crashes, it's gone"
+  "note": "If it crashes, it's gone",
+  "profile": "pattern",
+  "summary": "The agent loop runs as ordinary code inside one process, with state held in memory. Nothing is checkpointed, so a crash, deploy or timeout loses the run and it has to start over. It is the default for scripts, CLIs and prototypes.",
+  "how": [
+    "Start the agent loop inside your server or CLI process",
+    "Keep conversation and tool state in memory (optionally save transcripts at the end)",
+    "Retry failed calls with simple in-code retry logic",
+    "On crash or redeploy, rerun the task from the beginning"
+  ],
+  "facts": [
+    [
+      "Infrastructure",
+      "None beyond the process itself"
+    ],
+    [
+      "Failure mode",
+      "Run is lost on crash, deploy or timeout"
+    ],
+    [
+      "Trade-off",
+      "Simplest to build; no resume or exactly-once side effects"
+    ]
+  ],
+  "goodFor": [
+    "Prototypes and local tools",
+    "Short tasks that are cheap to rerun"
+  ],
+  "watchOut": [
+    "Long runs die on serverless timeouts",
+    "Side effects may repeat when rerun"
+  ],
+  "researched": "2026-10-21"
 }

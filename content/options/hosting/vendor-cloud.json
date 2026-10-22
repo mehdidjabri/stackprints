@@ -2,5 +2,29 @@
   "order": 80,
   "id": "vendor-cloud",
   "name": "Vendor cloud",
-  "note": "Fully managed by the product"
+  "note": "Fully managed by the product",
+  "profile": "pattern",
+  "summary": "The agent product hosts and runs the agent for you: you configure it in the vendor's app or API, and the vendor manages compute, scaling, storage and updates. You trade control and portability for zero operations.",
+  "how": [
+    "Sign up for a hosted agent product",
+    "Configure instructions, tools and integrations in its UI or API",
+    "The vendor runs the agent, schedules and connections",
+    "Use exports or APIs if you need your data elsewhere"
+  ],
+  "facts": [
+    [
+      "Trade-off",
+      "No ops work, but less control over data, models and runtime"
+    ]
+  ],
+  "goodFor": [
+    "Teams without infrastructure staff",
+    "Fast setup and managed updates"
+  ],
+  "watchOut": [
+    "Lock-in to one vendor's runtime and pricing",
+    "Data leaves your environment",
+    "Limited control over models and tool access"
+  ],
+  "researched": "2026-10-21"
 }

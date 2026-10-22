@@ -2,5 +2,32 @@
   "order": 10,
   "id": "host-machine",
   "name": "Host machine",
-  "note": "Runs on your computer, trusted"
+  "note": "Runs on your computer, trusted",
+  "profile": "pattern",
+  "summary": "The agent runs its shell commands and file edits directly on the user's own computer, with the same access as the user. This is the default for local coding agents and needs no setup, but the only protection comes from permission prompts or an OS-level sandbox around commands.",
+  "how": [
+    "Agent process starts in a project folder on your machine",
+    "Shell and file tools act on the real filesystem and network",
+    "Risky actions go through permission prompts or an allowlist",
+    "Optionally wrap commands in an OS sandbox (Seatbelt, bubblewrap)"
+  ],
+  "facts": [
+    ["Used by", "Claude Code, Hermes Agent (local backend)"],
+    ["OS sandboxing", "Claude Code uses Seatbelt on macOS, bubblewrap on Linux/WSL2"],
+    ["Setup", "None"],
+    ["Trade-off", "Full access to your tools and files, and to your mistakes"]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/sandboxing"
+  },
+  "goodFor": [
+    "Interactive coding where you watch the agent",
+    "Using your installed tools, credentials and local services"
+  ],
+  "watchOut": [
+    "A bad command can damage your files or leak secrets",
+    "Unattended runs are risky without an OS sandbox",
+    "Work stops when the computer sleeps"
+  ],
+  "researched": "2026-10-21"
 }

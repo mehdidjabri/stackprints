@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-08",
+      "title": "Introducing Universal Scrape",
+      "url": "https://www.firecrawl.dev/blog/universal-scrape",
+      "source": "firecrawl.dev"
+    },
+    {
+      "date": "2026-10-06",
+      "title": "Firecrawl is Now an Official ChatGPT Plugin",
+      "url": "https://www.firecrawl.dev/blog/firecrawl-official-chatgpt-plugin",
+      "source": "firecrawl.dev"
+    },
+    {
+      "date": "2026-09-29",
+      "title": "Firecrawl Alexandria and the Developer Index Are Now in ChatGPT and Codex",
+      "url": "https://www.firecrawl.dev/blog/alexandria-chatgpt-codex",
+      "source": "firecrawl.dev"
+    },
+    {
+      "date": "2026-09-22",
+      "title": "Introducing Alexandria and our $75M Series B",
+      "url": "https://www.firecrawl.dev/blog/introducing-alexandria-series-b",
+      "source": "firecrawl.dev"
+    }
+  ]
+}

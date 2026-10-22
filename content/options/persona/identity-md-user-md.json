@@ -4,5 +4,49 @@
   "name": "IDENTITY.md / USER.md",
   "url": "openclaw.ai",
   "note": "Who the agent is, who you are",
-  "logo": "openclaw"
+  "logo": "openclaw",
+  "profile": "product",
+  "summary": "In OpenClaw's agent workspace, IDENTITY.md holds the agent's name, creature, vibe, emoji and avatar, and USER.md describes the person the agent works for and how to address them. IDENTITY.md is created during a first-run bootstrap ritual; USER.md is optional and loaded every session. Both are injected into the system prompt alongside SOUL.md and AGENTS.md.",
+  "facts": [
+    [
+      "Vendor",
+      "OpenClaw"
+    ],
+    [
+      "Location",
+      "~/.openclaw/workspace by default"
+    ],
+    [
+      "IDENTITY.md fields",
+      "Name, Creature, Vibe, Emoji, Avatar (path, URL or data URI)"
+    ],
+    [
+      "USER.md budget",
+      "Separate 4,000-character budget"
+    ],
+    [
+      "Loading",
+      "Injected into the system prompt's project context"
+    ],
+    [
+      "CLI",
+      "set-identity --from-identity syncs into agent config"
+    ]
+  ],
+  "links": {
+    "site": "https://openclaw.ai",
+    "docs": "https://docs.openclaw.ai/concepts/agent-workspace",
+    "repo": "https://github.com/openclaw/openclaw"
+  },
+  "goodFor": [
+    "Personal assistants with a stable name and avatar",
+    "Telling the agent who you are once",
+    "Multi-agent setups with per-agent identities"
+  ],
+  "watchOut": [
+    "OpenClaw-specific conventions",
+    "Workspace files are prompt-injection targets; restrict write access",
+    "Adds to every session's context"
+  ],
+  "researched": "2026-10-21"
 }

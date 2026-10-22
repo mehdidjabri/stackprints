@@ -4,5 +4,49 @@
   "name": "Dreaming",
   "url": "openclaw.ai",
   "note": "Background consolidation into MEMORY.md",
-  "logo": "openclaw"
+  "logo": "openclaw",
+  "profile": "pattern",
+  "summary": "Dreaming is OpenClaw's background memory consolidation: a scheduled job in the memory-core plugin reviews recent short-term notes and promotes durable items into MEMORY.md, with a readable diary in DREAMS.md. Listed as a pattern because the same idea ships under the same name elsewhere (Mem0 Dream, Honcho dreaming, Supermemory Dynamic Dreaming, Letta's memory and dreaming).",
+  "how": [
+    "Collect short-term recall candidates from daily notes and sessions",
+    "Run a scheduled sweep (OpenClaw default: 3 AM daily)",
+    "Light and REM phases sort material and look for recurring themes",
+    "Deep phase scores candidates and promotes those passing thresholds into MEMORY.md",
+    "Write a diary of what was promoted for human review"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "OpenClaw (memory-core); similar features in Mem0, Honcho, Supermemory, Letta"
+    ],
+    [
+      "OpenClaw default",
+      "Enabled, cron 0 3 * * *"
+    ],
+    [
+      "Outputs",
+      "MEMORY.md (deep phase only), DREAMS.md diary"
+    ],
+    [
+      "Gating",
+      "Score, recall-frequency and query-diversity thresholds"
+    ],
+    [
+      "Trade-off",
+      "Keeps MEMORY.md curated, but adds a model call per sweep and can promote the wrong things"
+    ]
+  ],
+  "links": {
+    "docs": "https://docs.openclaw.ai/concepts/dreaming"
+  },
+  "goodFor": [
+    "Long-running personal agents",
+    "Keeping a curated file from going stale",
+    "Reviewable, file-based consolidation"
+  ],
+  "watchOut": [
+    "Promotions happen without the user asking; review DREAMS.md",
+    "Extra model cost on each scheduled run"
+  ],
+  "researched": "2026-10-21"
 }

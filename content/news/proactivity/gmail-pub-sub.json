@@ -1,0 +1,11 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-12",
+      "title": "Gmail API release notes: OAuth clients calling the Gmail MCP server must be marked for AI-powered agents",
+      "url": "https://developers.google.com/workspace/gmail/release-notes",
+      "source": "developers.google.com"
+    }
+  ]
+}

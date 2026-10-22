@@ -4,5 +4,54 @@
   "name": "AssemblyAI",
   "url": "assemblyai.com",
   "note": "Universal STT",
-  "logo": "assemblyai"
+  "logo": "assemblyai",
+  "profile": "product",
+  "summary": "AssemblyAI offers speech-to-text APIs for pre-recorded and streaming audio, plus a Voice Agent API that combines STT, an LLM and TTS over one WebSocket. Its Universal-3.x Pro models are promptable and aimed at voice agents and meeting or call transcription.",
+  "facts": [
+    [
+      "Company",
+      "AssemblyAI"
+    ],
+    [
+      "Streaming",
+      "Universal-3.6 Pro Realtime, $0.45/hr"
+    ],
+    [
+      "Pre-recorded",
+      "Universal-3.5 Pro $0.21/hr, Universal-2 $0.15/hr"
+    ],
+    [
+      "Voice Agent API",
+      "$4.50/hr flat"
+    ],
+    [
+      "Languages",
+      "99 (Universal-2), 32 (Universal-3.6 Pro Realtime)"
+    ],
+    [
+      "Free credit",
+      "$50, no card required"
+    ],
+    [
+      "SDKs",
+      "Python, TypeScript; MCP server"
+    ]
+  ],
+  "links": {
+    "site": "https://www.assemblyai.com",
+    "docs": "https://www.assemblyai.com/docs",
+    "pricing": "https://www.assemblyai.com/pricing",
+    "changelog": "https://www.assemblyai.com/changelog"
+  },
+  "goodFor": [
+    "Accurate transcription with diarization",
+    "Streaming STT inside LiveKit or Pipecat",
+    "Post-call analysis (summaries, PII redaction)"
+  ],
+  "watchOut": [
+    "Streaming bills for open connection time, including idle",
+    "Model names change often (3, 3.5, 3.6)",
+    "Cloud only"
+  ],
+  "researched": "2026-10-21"
 }

@@ -2,5 +2,40 @@
   "order": 10,
   "id": "read-write-edit-bash",
   "name": "read / write / edit / bash",
-  "note": "The minimal coding core"
+  "note": "The minimal coding core",
+  "profile": "pattern",
+  "summary": "A coding agent given only four tools: read a file, write a file, edit a file by string replacement, and run shell commands. Everything else (search, tests, git) goes through bash. Mario Zechner's pi agent uses exactly this set and argues it is enough because models are already trained on these tools.",
+  "how": [
+    "Expose read, write, edit and bash as the only tools",
+    "Let the model use bash for search, builds, tests and git",
+    "Keep the system prompt and tool definitions small",
+    "Add more tools only when a clear need appears"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "pi coding agent (Mario Zechner)"
+    ],
+    [
+      "Prompt size",
+      "Under 1,000 tokens for pi's system prompt and tools (author-reported)"
+    ],
+    [
+      "Trade-off",
+      "Small and general, but bash is broad and needs sandboxing"
+    ]
+  ],
+  "links": {
+    "docs": "https://mariozechner.at/posts/2025-11-30-pi-coding-agent/"
+  },
+  "goodFor": [
+    "Minimal coding agents",
+    "Keeping context small",
+    "Models trained on similar tool schemas"
+  ],
+  "watchOut": [
+    "Bash gives full shell access, so isolation matters",
+    "No structured guardrails on what commands run"
+  ],
+  "researched": "2026-10-21"
 }

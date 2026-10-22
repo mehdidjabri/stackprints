@@ -4,5 +4,69 @@
   "name": "Grok 4.7",
   "url": "x.ai",
   "note": "xAI flagship",
-  "logo": "grok"
+  "logo": "grok",
+  "profile": "model",
+  "summary": "Grok 4.7 is the flagship Grok model for coding, agentic tasks and knowledge work, succeeding Grok 4.6 at the same price and speed. It was trained with a longer reinforcement-learning run on multi-hour tasks and is available in the Grok API, Grok Build, Cursor and model routers.",
+  "facts": [
+    [
+      "API ID",
+      "grok-4.7"
+    ],
+    [
+      "Long prompts",
+      "$4 / $12 per 1M tokens at 200K+ tokens"
+    ],
+    [
+      "Cached input",
+      "$0.50 / 1M tokens"
+    ],
+    [
+      "Fast variant",
+      "2x output speed at 2x price"
+    ],
+    [
+      "Built-in tools",
+      "Web Search and X Search"
+    ],
+    [
+      "Knowledge cutoff",
+      "May 2026"
+    ],
+    [
+      "Terminal-Bench 4.0",
+      "37.6% (vendor-reported)"
+    ],
+    [
+      "CursorBench 4.0",
+      "46.3% (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://x.ai/news/grok-4-7",
+    "docs": "https://docs.x.ai/docs/models"
+  },
+  "goodFor": [
+    "Price-sensitive coding agents",
+    "Agents that need live X and web data",
+    "Legal and engineering knowledge work"
+  ],
+  "watchOut": [
+    "500K context, half of most rivals",
+    "Trails Claude and GPT-6 on Terminal-Bench (vendor-reported)",
+    "Price doubles for prompts over 200K"
+  ],
+  "model": {
+    "lab": "xAI",
+    "released": "2026-09-21",
+    "context": "500K tokens",
+    "priceIn": "$2 / 1M tokens",
+    "priceOut": "$6 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "x-ai/grok-4.7"
+  },
+  "researched": "2026-10-21"
 }

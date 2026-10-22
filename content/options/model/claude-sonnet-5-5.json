@@ -4,5 +4,70 @@
   "name": "Claude Sonnet 5.5",
   "url": "anthropic.com",
   "note": "Anthropic workhorse",
-  "logo": "claude"
+  "logo": "claude",
+  "profile": "model",
+  "summary": "Claude Sonnet 5.5 is Anthropic's mid-tier model in the Claude 5.5 family, a faster and cheaper companion to Opus 5.5. Anthropic aims it at well-scoped everyday work such as feature building, bug fixes and office documents.",
+  "facts": [
+    [
+      "Lab",
+      "Anthropic"
+    ],
+    [
+      "API ID",
+      "claude-sonnet-5-5"
+    ],
+    [
+      "Max output",
+      "128K tokens"
+    ],
+    [
+      "Thinking",
+      "Adaptive; between_tools mode replaces thinking off"
+    ],
+    [
+      "Terminal-Bench 4.0",
+      "70.6% (vendor-reported)"
+    ],
+    [
+      "GDPval-AA v2.1",
+      "1844 Elo (vendor-reported)"
+    ],
+    [
+      "Speed",
+      "30%+ faster output than Sonnet 5 (vendor-reported)"
+    ],
+    [
+      "Knowledge cutoff",
+      "June 2026"
+    ]
+  ],
+  "links": {
+    "site": "https://www.anthropic.com/claude-sonnet-5-5",
+    "docs": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  "goodFor": [
+    "Everyday coding and bug fixes",
+    "Documents, slides and spreadsheets",
+    "High-volume agent loops on a budget"
+  ],
+  "watchOut": [
+    "Opus 5.5 is stronger on open-ended judgment",
+    "Thinking cannot be fully disabled",
+    "Bio safeguards can misflag some requests"
+  ],
+  "model": {
+    "lab": "Anthropic",
+    "released": "2026-09-28",
+    "context": "1M tokens",
+    "priceIn": "$2 / 1M tokens",
+    "priceOut": "$10 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "anthropic/claude-sonnet-5.5"
+  },
+  "researched": "2026-10-21"
 }

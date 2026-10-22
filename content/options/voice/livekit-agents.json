@@ -2,8 +2,57 @@
   "order": 80,
   "id": "livekit-agents",
   "name": "LiveKit Agents",
-  "url": "livekit.io",
+  "url": "livekit.com",
   "note": "Realtime voice pipelines",
   "open": true,
-  "logo": "livekit"
+  "logo": "livekit",
+  "profile": "product",
+  "summary": "LiveKit Agents is an open-source framework for building voice, video and text agents that join LiveKit WebRTC rooms as realtime participants. It handles turn detection, interruptions, STT/LLM/TTS plugins, SIP telephony and multi-agent handoffs. Agents can be self-hosted or deployed on LiveKit Cloud.",
+  "facts": [
+    [
+      "Company",
+      "LiveKit"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Languages",
+      "Python, Node.js"
+    ],
+    [
+      "GitHub stars",
+      "15K"
+    ],
+    [
+      "Latest release",
+      "1.8.8 (Oct 2026)"
+    ],
+    [
+      "Telephony",
+      "SIP integration"
+    ],
+    [
+      "Hosting",
+      "Self-hosted or LiveKit Cloud"
+    ]
+  ],
+  "links": {
+    "site": "https://livekit.com",
+    "docs": "https://docs.livekit.io/agents/",
+    "repo": "https://github.com/livekit/agents",
+    "pricing": "https://livekit.com/pricing",
+    "changelog": "https://github.com/livekit/agents/releases"
+  },
+  "goodFor": [
+    "Production voice agents over WebRTC and phone",
+    "Mixing providers per pipeline stage",
+    "Self-hosting the whole media stack"
+  ],
+  "watchOut": [
+    "You run a LiveKit server or pay for LiveKit Cloud",
+    "Fast release cadence means frequent upgrades"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-08-24", "title": "Bot API 10.3", "url": "https://core.telegram.org/bots/api-changelog", "source": "core.telegram.org" },
+    { "date": "2026-07-14", "title": "Rich Text Editor, Communities, Ephemeral Messages in Groups, 350 Million GIFs", "url": "https://telegram.org/blog/communities-editor-invisible-messages", "source": "telegram.org" },
+    { "date": "2026-06-11", "title": "Smartwatch Apps, Rich Text for Bots, AI Guardians for Groups, and Much More", "url": "https://telegram.org/blog/watch-apps-and-more", "source": "telegram.org" },
+    { "date": "2026-05-07", "title": "Guest AI Bots, Bot-to-Bot Chats, Chat Automation, Custom AI Styles, 100M+ Emoji & Sticker Search and Much More", "url": "https://telegram.org/blog/ai-bot-revolution-11-new-features", "source": "telegram.org" },
+    { "date": "2026-03-31", "title": "AI Editor, Mighty Polls, Live Photos, Bots Managed by Bots, and More", "url": "https://telegram.org/blog/ai-editor-mighty-polls-and-more", "source": "telegram.org" }
+  ]
+}

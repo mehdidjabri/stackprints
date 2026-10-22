@@ -4,5 +4,69 @@
   "name": "GPT-6.1 Sol",
   "url": "openai.com",
   "note": "OpenAI mid tier",
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "model",
+  "summary": "GPT-6.1 Sol is OpenAI's mid-tier GPT-6 model, an upgrade to GPT-6 Sol released at DevDay 2026. OpenAI says it nearly matches GPT-6 Astra on agentic coding, computer use and professional work at one-fifth of Astra's per-token price.",
+  "facts": [
+    [
+      "Lab",
+      "OpenAI"
+    ],
+    [
+      "API ID",
+      "gpt-6.1-sol"
+    ],
+    [
+      "Max output",
+      "128K tokens"
+    ],
+    [
+      "Reasoning effort",
+      "low to max (no none)"
+    ],
+    [
+      "Cached input",
+      "$0.10 / 1M tokens"
+    ],
+    [
+      "Speed tiers",
+      "Fast 2x, Ultrafast 6x the standard price"
+    ],
+    [
+      "Knowledge cutoff",
+      "April 30, 2026"
+    ],
+    [
+      "Predecessor",
+      "GPT-6 Sol (Sept 22, 2026)"
+    ]
+  ],
+  "links": {
+    "site": "https://openai.com/index/introducing-gpt-6-1-sol/",
+    "docs": "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+  },
+  "goodFor": [
+    "Agentic coding at lower cost",
+    "Computer use",
+    "Document-heavy professional work"
+  ],
+  "watchOut": [
+    "Near-Astra claims are vendor-reported",
+    "Tool calling needs the Responses API",
+    "Long-context surcharge above 272K tokens"
+  ],
+  "model": {
+    "lab": "OpenAI",
+    "released": "2026-09-29",
+    "context": "1.05M tokens",
+    "priceIn": "$2 / 1M tokens",
+    "priceOut": "$10 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "openai/gpt-6.1-sol"
+  },
+  "researched": "2026-10-21"
 }

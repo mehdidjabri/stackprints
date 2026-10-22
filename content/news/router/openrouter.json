@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-14", "title": "Private Endpoints: Bring Your Fine-Tuned Models and Capacity to OpenRouter", "url": "https://openrouter.ai/blog/announcements/private-endpoints/", "source": "openrouter.ai" },
+    { "date": "2026-10-02", "title": "Model Router Benchmarks", "url": "https://openrouter.ai/blog/announcements/model-router-benchmarks/", "source": "openrouter.ai" },
+    { "date": "2026-09-22", "title": "Batch API: half-price inference by bundling requests", "url": "https://openrouter.ai/blog/announcements/batch-api/", "source": "openrouter.ai" },
+    { "date": "2026-08-19", "title": "OpenRouter is Joining Stripe", "url": "https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/", "source": "openrouter.ai" },
+    { "date": "2026-05-26", "title": "OpenRouter Raises $113M Series B", "url": "https://openrouter.ai/blog/announcements/series-b/", "source": "openrouter.ai" }
+  ]
+}

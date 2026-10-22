@@ -3,5 +3,53 @@
   "id": "browserbase",
   "name": "Browserbase",
   "url": "browserbase.com",
-  "note": "Hosted headless browsers"
+  "note": "Hosted headless browsers",
+  "profile": "product",
+  "summary": "Hosted headless Chrome infrastructure for agents and automation, controlled through Playwright, Puppeteer or its Stagehand SDK. It adds proxies, CAPTCHA solving, session recording, and extra APIs for search, fetch and serverless functions.",
+  "facts": [
+    [
+      "Company",
+      "Browserbase (CEO Paul Klein IV)"
+    ],
+    [
+      "Funding",
+      "$40M Series B led by Notable Capital (June 2025)"
+    ],
+    [
+      "Pricing",
+      "Free (1 browser-hour), Developer $20/mo, Startup $99/mo, Scale custom"
+    ],
+    [
+      "Overage",
+      "$0.10–0.12 per browser-hour"
+    ],
+    [
+      "Concurrency",
+      "3 (free) to 250+ (Scale)"
+    ],
+    [
+      "Regions",
+      "US East, US West, EU Central, UK"
+    ],
+    [
+      "Compliance",
+      "SOC 2; HIPAA BAA on Scale"
+    ]
+  ],
+  "links": {
+    "site": "https://www.browserbase.com",
+    "docs": "https://docs.browserbase.com",
+    "pricing": "https://www.browserbase.com/pricing",
+    "repo": "https://github.com/browserbase/stagehand"
+  },
+  "goodFor": [
+    "Running many browser sessions in parallel",
+    "Teams already using Stagehand",
+    "Compliance-sensitive workloads"
+  ],
+  "watchOut": [
+    "Stealth and CAPTCHA solving are not on the free plan",
+    "Usage billing adds up for long sessions"
+  ],
+  "researched": "2026-10-21"
 }

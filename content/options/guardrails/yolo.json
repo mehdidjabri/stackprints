@@ -2,5 +2,43 @@
   "order": 10,
   "id": "yolo",
   "name": "YOLO",
-  "note": "No permission checks"
+  "note": "No permission checks",
+  "profile": "pattern",
+  "summary": "The agent runs every tool call without asking and without a policy check. Harnesses expose it as an explicit opt-in flag, and their own docs recommend it only inside isolated environments such as containers or VMs.",
+  "how": [
+    "Start the harness with its bypass flag or mode",
+    "Every tool call runs without a prompt or rule check",
+    "Contain damage with a container, VM or throwaway machine instead"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code (bypassPermissions mode), Codex (--yolo flag)"
+    ],
+    [
+      "Codex flag",
+      "--yolo is an alias for --dangerously-bypass-approvals-and-sandbox"
+    ],
+    [
+      "Admin control",
+      "Claude Code managed settings can disable bypass mode"
+    ],
+    [
+      "Trade-off",
+      "No interruptions, but nothing stops a destructive or injected action"
+    ]
+  ],
+  "links": {
+    "docs": "https://code.claude.com/docs/en/permissions",
+    "codex": "https://learn.chatgpt.com/docs/agent-approvals-security"
+  },
+  "goodFor": [
+    "Disposable sandboxes and CI containers",
+    "Long unattended runs on throwaway machines"
+  ],
+  "watchOut": [
+    "Prompt injection goes straight to execution",
+    "Codex's flag also removes the sandbox, not just approvals"
+  ],
+  "researched": "2026-10-21"
 }

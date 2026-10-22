@@ -4,5 +4,54 @@
   "name": "LanceDB",
   "url": "lancedb.com",
   "note": "Embedded vector DB",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "LanceDB is a vector and multimodal database built on the open-source Lance columnar format. The open-source version runs embedded in-process with no server, reading from local disk or object storage, while LanceDB Enterprise adds a distributed, managed deployment. It supports vector, full-text and hybrid search with SQL filters.",
+  "facts": [
+    [
+      "Company",
+      "LanceDB Inc. (San Francisco)"
+    ],
+    [
+      "License",
+      "Apache-2.0 (OSS)"
+    ],
+    [
+      "Storage",
+      "Lance columnar files on local disk or object storage"
+    ],
+    [
+      "Search",
+      "Vector, full-text, hybrid, reranking, SQL filters"
+    ],
+    [
+      "Deployment",
+      "Embedded OSS library; LanceDB Enterprise (managed or private)"
+    ],
+    [
+      "SDKs",
+      "Python, TypeScript, Rust"
+    ],
+    [
+      "Stars",
+      "~11.7k on GitHub"
+    ]
+  ],
+  "links": {
+    "site": "https://lancedb.com",
+    "docs": "https://docs.lancedb.com",
+    "repo": "https://github.com/lancedb/lancedb",
+    "changelog": "https://github.com/lancedb/lancedb/releases"
+  },
+  "goodFor": [
+    "Embedded vector search without running a server",
+    "Multimodal data (images, video, embeddings) in one table",
+    "Agent memory stored on object storage"
+  ],
+  "watchOut": [
+    "Frequent releases with breaking changes",
+    "Enterprise pricing is not published",
+    "Scope is broader than a vector DB, which adds concepts to learn"
+  ],
+  "researched": "2026-10-21"
 }

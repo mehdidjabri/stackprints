@@ -2,5 +2,46 @@
   "order": 30,
   "id": "code-mode",
   "name": "Code mode",
-  "note": "Model writes code that calls tools"
+  "note": "Model writes code that calls tools",
+  "profile": "pattern",
+  "summary": "Instead of calling tools one at a time through function calling, the model writes a short program against a typed API generated from the tools, and that program runs in a sandbox. Intermediate results stay in the sandbox, so only the final output returns to the model's context. Cloudflare named the approach Code Mode in September 2025, and Anthropic described the same idea for MCP in November 2025.",
+  "how": [
+    "Convert tool or MCP schemas into a typed code API (e.g. TypeScript)",
+    "Give the model one tool: run code",
+    "Execute the code in an isolated sandbox with bindings to the real tools",
+    "Return only what the code logs or returns to the model"
+  ],
+  "facts": [
+    [
+      "Described by",
+      "Cloudflare (Sep 2025), Anthropic (Nov 2025)"
+    ],
+    [
+      "Sandbox",
+      "Cloudflare uses V8 isolates via the Worker Loader API"
+    ],
+    [
+      "Token savings",
+      "150,000 to 2,000 tokens in one example (Anthropic-reported)"
+    ],
+    [
+      "Trade-off",
+      "Fewer tokens and round trips, but needs a secure code sandbox"
+    ]
+  ],
+  "links": {
+    "site": "https://blog.cloudflare.com/code-mode/",
+    "docs": "https://www.anthropic.com/engineering/code-execution-with-mcp"
+  },
+  "goodFor": [
+    "Agents with many MCP tools",
+    "Chaining several tool calls without passing data through the model",
+    "Filtering large tool results before they reach context"
+  ],
+  "watchOut": [
+    "Running model-written code needs real sandboxing",
+    "Adds infrastructure compared with plain tool calls",
+    "Errors surface as code failures, which can be harder to trace"
+  ],
+  "researched": "2026-10-21"
 }

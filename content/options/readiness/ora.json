@@ -3,5 +3,50 @@
   "id": "ora",
   "name": "Ora",
   "url": "ora.ai",
-  "note": "Scores how agent-ready a site is"
+  "note": "Scores how agent-ready a site is",
+  "profile": "product",
+  "summary": "Ora scores how well a website or MCP server works for AI agents, checking how agents find, read and act on it, and gives letter grades with suggested fixes. It also runs Journey, which sends an agent at a site with a goal and records where it stalls, and offers a CLI (npx ax audit). Ora does the research behind the AgentReady standard.",
+  "facts": [
+    [
+      "Company",
+      "era labs"
+    ],
+    [
+      "Checks",
+      "127 across discovery, access, usability, payments (vendor-reported)"
+    ],
+    [
+      "Sites scanned",
+      "125,056, average score 42 (vendor-reported)"
+    ],
+    [
+      "Interfaces",
+      "Web, API, CLI (npx ax audit)"
+    ],
+    [
+      "Access",
+      "Waitlist, rolling out gradually"
+    ],
+    [
+      "Related",
+      "is-agentic.com with Vercel (free)"
+    ]
+  ],
+  "links": {
+    "site": "https://ora.ai",
+    "docs": "https://ora.ai/docs",
+    "changelog": "https://ora.ai/blog",
+    "x": "https://x.com/oradotai"
+  },
+  "goodFor": [
+    "Measuring a site's agent readiness",
+    "Finding where agents get stuck on a site",
+    "Tracking score over time"
+  ],
+  "watchOut": [
+    "Waitlist access; no public pricing",
+    "Scores and weights can change independently of AgentReady",
+    "Benchmarks are self-published"
+  ],
+  "researched": "2026-10-21"
 }

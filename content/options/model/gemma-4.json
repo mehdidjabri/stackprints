@@ -5,5 +5,67 @@
   "url": "ai.google.dev",
   "note": "Small open model, on-device",
   "open": true,
-  "logo": "gemma"
+  "logo": "gemma",
+  "profile": "model",
+  "summary": "Gemma 4 is Google DeepMind's open-weight model family, released under Apache 2.0. It spans small E2B and E4B models for phones and laptops up to 12B, 26B mixture-of-experts and 31B dense models for consumer GPUs and workstations.",
+  "facts": [
+    [
+      "Lab",
+      "Google DeepMind"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Sizes",
+      "E2B, E4B, 12B, 26B A4B (MoE), 31B"
+    ],
+    [
+      "Context",
+      "128K (E2B, E4B); 256K (12B and up)"
+    ],
+    [
+      "Audio input",
+      "E2B, E4B and 12B only"
+    ],
+    [
+      "LiveCodeBench v6",
+      "80.0% for 31B (vendor-reported)"
+    ],
+    [
+      "GPQA Diamond",
+      "84.3% for 31B (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://deepmind.google/models/gemma/gemma-4/",
+    "repo": "https://huggingface.co/google/gemma-4-31B-it"
+  },
+  "goodFor": [
+    "On-device agents on phones and laptops",
+    "Self-hosted models on a single GPU",
+    "Fine-tuning under a permissive license"
+  ],
+  "watchOut": [
+    "Far smaller than frontier models",
+    "Shorter context than hosted Gemini",
+    "Audio only on the smaller sizes"
+  ],
+  "model": {
+    "lab": "Google",
+    "released": "2026-04-02",
+    "context": "256K tokens",
+    "priceIn": "$0.20 / 1M tokens",
+    "priceOut": "$0.40 / 1M tokens",
+    "modalities": [
+      "text",
+      "image",
+      "video",
+      "audio"
+    ],
+    "weights": "open",
+    "openrouter": "google/gemma-4-31b-it"
+  },
+  "researched": "2026-10-21"
 }

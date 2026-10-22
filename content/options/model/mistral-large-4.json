@@ -4,5 +4,64 @@
   "name": "Mistral Large 4",
   "url": "mistral.ai",
   "note": "European flagship",
-  "logo": "mistral"
+  "logo": "mistral",
+  "profile": "model",
+  "summary": "Mistral Large 4 is Mistral AI's flagship model, a natively multimodal mixture-of-experts model trained from scratch in Mistral's European datacenters. It launched as a public API preview on Mistral Studio, with open weights announced to follow.",
+  "facts": [
+    [
+      "Lab",
+      "Mistral AI (Paris)"
+    ],
+    [
+      "Architecture",
+      "MoE, 1T total / 52B active parameters"
+    ],
+    [
+      "Languages",
+      "Training data in 160+ languages"
+    ],
+    [
+      "Weights",
+      "Open-weight announced; preview API first"
+    ],
+    [
+      "DeepSWE v1.1",
+      "61.7% (vendor-reported)"
+    ],
+    [
+      "Terminal-Bench 4",
+      "28.3% (vendor-reported)"
+    ],
+    [
+      "Hosting",
+      "European deployment run by Mistral"
+    ]
+  ],
+  "links": {
+    "site": "https://mistral.ai/news/mistral-large-4/",
+    "docs": "https://docs.mistral.ai/getting-started/models/models_overview/"
+  },
+  "goodFor": [
+    "EU data-sovereignty requirements",
+    "Multilingual agents",
+    "Teams planning to self-host later"
+  ],
+  "watchOut": [
+    "Still a preview, model in training at launch",
+    "License terms not yet published",
+    "Behind US frontier models on agentic coding"
+  ],
+  "model": {
+    "lab": "Mistral AI",
+    "released": "2026-10-06",
+    "context": "1M tokens",
+    "priceIn": "$1.36 / 1M tokens",
+    "priceOut": "$4.18 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "openrouter": "mistralai/mistral-large-4-0"
+  },
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "python-1.22.0",
+      "url": "https://github.com/microsoft/agent-framework/releases/tag/python-1.22.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-06-02",
+      "title": "Build and run agents at scale with Microsoft Foundry at Build 2026",
+      "url": "https://devblogs.microsoft.com/foundry/agent-service-build2026/",
+      "source": "devblogs.microsoft.com"
+    },
+    {
+      "date": "2026-04-22",
+      "title": "From Local to Production: The Complete Developer Journey for Building, Composing, and Deploying AI Agents",
+      "url": "https://devblogs.microsoft.com/foundry/from-local-to-production-the-complete-developer-journey-for-building-composing-and-deploying-ai-agents/",
+      "source": "devblogs.microsoft.com"
+    },
+    {
+      "date": "2026-04-02",
+      "title": "python-1.0.0",
+      "url": "https://github.com/microsoft/agent-framework/releases/tag/python-1.0.0",
+      "source": "github.com"
+    },
+    {
+      "date": "2026-02-19",
+      "title": "Microsoft Agent Framework Reaches Release Candidate",
+      "url": "https://devblogs.microsoft.com/foundry/microsoft-agent-framework-reaches-release-candidate/",
+      "source": "devblogs.microsoft.com"
+    }
+  ]
+}

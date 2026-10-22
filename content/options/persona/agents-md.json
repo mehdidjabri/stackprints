@@ -4,5 +4,52 @@
   "name": "AGENTS.md",
   "url": "agents.md",
   "note": "Repo instructions for any agent",
-  "open": true
+  "open": true,
+  "profile": "protocol",
+  "summary": "AGENTS.md is a plain Markdown file at the root of a repository (or in subfolders) that tells coding agents how to build, test and follow the project's conventions. It has no required fields; agents read the nearest file to the code they edit. It started in August 2025 from OpenAI Codex, Amp, Jules, Cursor and Factory and is now a project of the Agentic AI Foundation under the Linux Foundation.",
+  "facts": [
+    [
+      "Steward",
+      "Agentic AI Foundation (Linux Foundation)"
+    ],
+    [
+      "Format",
+      "Plain Markdown, no required fields"
+    ],
+    [
+      "License",
+      "MIT (spec site repo)"
+    ],
+    [
+      "Adoption",
+      "60k+ open-source projects (site-reported)"
+    ],
+    [
+      "Read by",
+      "Codex, Cursor, Jules, Amp, Gemini CLI, Copilot coding agent, Claude Code, Pi and others"
+    ],
+    [
+      "Precedence",
+      "Nearest file to the edited code wins; chat prompts override"
+    ],
+    [
+      "Repo stars",
+      "25k"
+    ]
+  ],
+  "links": {
+    "site": "https://agents.md",
+    "repo": "https://github.com/agentsmd/agents.md"
+  },
+  "goodFor": [
+    "One instruction file shared across many coding agents",
+    "Monorepos with nested per-package files",
+    "Build, test and style commands for agents"
+  ],
+  "watchOut": [
+    "No schema, so tools interpret content differently",
+    "Some tools prefer their own file (e.g. CLAUDE.md wins over AGENTS.md in Claude Code)",
+    "Long files cost context on every session"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-07",
+      "title": "Build the agent. Don't build its computer.",
+      "url": "https://steel.dev/blog/build-the-agent-not-its-computer",
+      "source": "steel.dev"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "Steel now ships as a browser plugin for Hermes Agent",
+      "url": "https://steel.dev/blog/hermes-steel-plugin",
+      "source": "steel.dev"
+    },
+    {
+      "date": "2026-07-15",
+      "title": "Steel Browser is live in Stripe Projects",
+      "url": "https://steel.dev/blog/steel-browser-is-live-in-stripe-projects",
+      "source": "steel.dev"
+    },
+    {
+      "date": "2026-06-29",
+      "title": "Launch Week v3: everything we shipped",
+      "url": "https://steel.dev/blog/launch-week-v3-recap",
+      "source": "steel.dev"
+    },
+    {
+      "date": "2026-06-22",
+      "title": "Stealth Browser: A Chromium Built for Agents",
+      "url": "https://steel.dev/blog/stealth-browser",
+      "source": "steel.dev"
+    }
+  ]
+}

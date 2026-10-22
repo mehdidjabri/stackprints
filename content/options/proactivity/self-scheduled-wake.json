@@ -2,5 +2,35 @@
   "order": 60,
   "id": "self-scheduled-wake",
   "name": "Self-scheduled wake",
-  "note": "Agent decides when to wake"
+  "note": "Agent decides when to wake",
+  "profile": "pattern",
+  "summary": "The agent itself decides when it should run next, using a scheduling tool to create, move or cancel its own future wake-ups (\"check back on this PR in 2 hours\"). Timing follows the task instead of a fixed interval.",
+  "how": [
+    "Give the agent a tool to create, edit and cancel scheduled jobs",
+    "During a run, the agent schedules a follow-up with a time and a prompt",
+    "The scheduler wakes the agent at that time with the saved context",
+    "The agent finishes, or schedules another wake"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Hermes Agent (cronjob_manage tool)"
+    ],
+    [
+      "Trade-off",
+      "Efficient timing, but the agent can over- or under-schedule itself"
+    ]
+  ],
+  "links": {
+    "docs": "https://hermes-agent.nousresearch.com/docs/user-guide/features/cron"
+  },
+  "goodFor": [
+    "Follow-ups and reminders",
+    "Waiting on slow external processes"
+  ],
+  "watchOut": [
+    "Needs limits so the agent can't schedule runaway loops",
+    "Hard to audit why a wake was set"
+  ],
+  "researched": "2026-10-21"
 }

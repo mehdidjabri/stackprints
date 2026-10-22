@@ -4,5 +4,49 @@
   "name": "BotID",
   "url": "vercel.com",
   "note": "Tell good bots from bad",
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Vercel BotID is an invisible CAPTCHA for high-value routes such as checkouts, signups and AI endpoints. A client-side challenge is checked on the server with checkBotId(); an optional Deep Analysis mode powered by Kasada uses machine learning on client signals. It can identify verified bots, such as ChatGPT's agent, so they can be allowed while others are blocked.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "Detection",
+      "Client challenge; Deep Analysis powered by Kasada"
+    ],
+    [
+      "Pricing",
+      "Basic free on all plans; Deep Analysis $1 per 1,000 checks on Pro"
+    ],
+    [
+      "Verified bots",
+      "Uses Vercel's directory at bots.fyi (botid 1.5.0+)"
+    ],
+    [
+      "Frameworks",
+      "Next.js, SvelteKit, Nuxt and other JS frameworks"
+    ],
+    [
+      "Generally available",
+      "2025-06-25"
+    ]
+  ],
+  "links": {
+    "site": "https://vercel.com/botid",
+    "docs": "https://vercel.com/docs/botid",
+    "pricing": "https://vercel.com/docs/botid#pricing"
+  },
+  "goodFor": [
+    "Protecting expensive AI endpoints from scripted abuse",
+    "Letting verified agents through while blocking others",
+    "Apps already on Vercel"
+  ],
+  "watchOut": [
+    "Tied to Vercel hosting",
+    "Unverified but legitimate agents may be blocked",
+    "Deep Analysis is billed per check"
+  ],
+  "researched": "2026-10-21"
 }

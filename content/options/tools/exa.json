@@ -4,5 +4,52 @@
   "name": "Exa",
   "url": "exa.ai",
   "note": "Neural web search API",
-  "logo": "exa"
+  "logo": "exa",
+  "profile": "product",
+  "summary": "Exa is a web search API built for AI applications and agents. It runs its own crawler and index and uses embedding models it trains itself, and offers search, page contents, answers, scheduled monitors and an asynchronous research agent. Developers use it to ground LLMs in current web results.",
+  "facts": [
+    [
+      "Company",
+      "Exa Labs Inc."
+    ],
+    [
+      "Index",
+      "Own crawler and index, 500B+ URLs tracked (vendor-reported)"
+    ],
+    [
+      "Search price",
+      "$4–$7 / 1k requests; Deep Search $12–$15 / 1k"
+    ],
+    [
+      "Contents",
+      "$1 / 1k pages"
+    ],
+    [
+      "Free tier",
+      "$10 credits, resets monthly"
+    ],
+    [
+      "Funding",
+      "$250M Series C led by a16z at $2.2B valuation (May 2026)"
+    ],
+    [
+      "Latency",
+      "Sub-200ms search (vendor-reported)"
+    ]
+  ],
+  "links": {
+    "site": "https://exa.ai",
+    "pricing": "https://exa.ai/pricing",
+    "changelog": "https://exa.ai/blog"
+  },
+  "goodFor": [
+    "Semantic search for agents and RAG",
+    "Retrieving full page text along with results",
+    "Async deep research and list building"
+  ],
+  "watchOut": [
+    "Usage-based pricing adds up with deep search and agent runs",
+    "Speed and quality claims are vendor-reported"
+  ],
+  "researched": "2026-10-21"
 }

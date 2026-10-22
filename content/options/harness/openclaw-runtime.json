@@ -5,5 +5,58 @@
   "url": "openclaw.ai",
   "note": "Gateway daemon plus embedded loop",
   "open": true,
-  "logo": "openclaw"
+  "logo": "openclaw",
+  "profile": "product",
+  "summary": "OpenClaw is an open-source personal AI assistant that runs on your own machine. A local Gateway daemon is the control plane for sessions, tools, events and channel connections, and each turn runs in-process through an embedded agent loop. Models and alternative harnesses such as Codex plug in, and the assistant is reached through 20+ chat apps and native apps.",
+  "facts": [
+    [
+      "Steward",
+      "OpenClaw Foundation (non-profit, launched July 2026)"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "TypeScript (Node.js)"
+    ],
+    [
+      "Adoption",
+      "~393k GitHub stars"
+    ],
+    [
+      "Channels",
+      "WhatsApp, Telegram, Slack, Discord, Signal, iMessage and more"
+    ],
+    [
+      "Sessions",
+      "Turns serialized per session through the Gateway"
+    ],
+    [
+      "Sandboxing",
+      "Tools run on the host for the main session unless sandboxing is configured"
+    ],
+    [
+      "Pricing",
+      "Free; no paid tier or hosted service"
+    ]
+  ],
+  "links": {
+    "site": "https://openclaw.ai",
+    "docs": "https://docs.openclaw.ai",
+    "repo": "https://github.com/openclaw/openclaw",
+    "changelog": "https://github.com/openclaw/openclaw/releases"
+  },
+  "goodFor": [
+    "Always-on personal assistant on your own hardware",
+    "Reaching one agent from many chat apps",
+    "Swapping models and harnesses as plugins"
+  ],
+  "watchOut": [
+    "Host tool access by default; read the security guide first",
+    "Inbound messages are untrusted input",
+    "Fast release cadence, including beta channels"
+  ],
+  "researched": "2026-10-21"
 }

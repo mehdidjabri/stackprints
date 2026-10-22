@@ -4,5 +4,50 @@
   "name": "W&B Weave",
   "url": "wandb.ai",
   "note": "Traces and evals",
-  "logo": "wandb"
+  "logo": "wandb",
+  "profile": "product",
+  "summary": "Weave is the tracing and evaluation toolkit from Weights & Biases, now part of CoreWeave. It captures agent sessions, LLM calls and tool calls, versions traced functions, and scores outputs with LLM judges or custom scorers. Accounts now run through CoreWeave Forge, and CoreWeave's docs describe its new Agent Lens product as Weave's successor.",
+  "facts": [
+    [
+      "Company",
+      "CoreWeave (acquired Weights & Biases)"
+    ],
+    [
+      "License",
+      "Apache-2.0 (SDK)"
+    ],
+    [
+      "SDKs",
+      "Python and TypeScript"
+    ],
+    [
+      "OpenTelemetry",
+      "Accepts OTLP spans without the SDK"
+    ],
+    [
+      "Pricing",
+      "Free tier (1 GB/mo ingestion); Pro from $60/mo"
+    ],
+    [
+      "Hosting",
+      "Hosted; dedicated instances on Enterprise"
+    ]
+  ],
+  "links": {
+    "site": "https://wandb.ai/site/weave/",
+    "docs": "https://docs.coreweave.com/weave/",
+    "repo": "https://github.com/wandb/weave",
+    "pricing": "https://coreweave.com/forge-pricing"
+  },
+  "goodFor": [
+    "Teams already using W&B for model training",
+    "Python-first tracing with versioned functions",
+    "Evals with custom scorers"
+  ],
+  "watchOut": [
+    "Being succeeded by CoreWeave Agent Lens",
+    "Branding and accounts moving to CoreWeave Forge",
+    "Ingestion-based billing on paid plans"
+  ],
+  "researched": "2026-10-21"
 }

@@ -3,6 +3,57 @@
   "id": "daytona",
   "name": "Daytona",
   "url": "daytona.io",
-  "note": "Hibernating dev sandboxes",
-  "open": true
+  "note": "Stateful agent sandboxes",
+  "profile": "product",
+  "summary": "Daytona provides stateful sandboxes for running AI-generated code, each with its own kernel, filesystem and network stack, managed through SDKs in Python, TypeScript, Ruby, Go and Java. Sandboxes keep state across sessions and can be snapshotted or forked so an agent can try several approaches in parallel. It also offers Windows and GPU sandboxes, billed per second.",
+  "facts": [
+    [
+      "Company",
+      "Daytona (founded 2023)"
+    ],
+    [
+      "Funding",
+      "$60M Series B at $1B valuation, Oct 2026"
+    ],
+    [
+      "License",
+      "Closed source since June 2026; earlier code remains in an archived public repo"
+    ],
+    [
+      "Cold start",
+      "Under 90 ms (vendor-reported)"
+    ],
+    [
+      "Persistence",
+      "Stateful sandboxes, snapshots and forking"
+    ],
+    [
+      "SDKs",
+      "Python, TypeScript, Ruby, Go, Java"
+    ],
+    [
+      "Pricing",
+      "Per second: $0.0504/vCPU-h, $0.0162/GiB-h memory; $200 free credit"
+    ],
+    [
+      "Extras",
+      "Windows and preemptible GPU sandboxes"
+    ]
+  ],
+  "links": {
+    "site": "https://www.daytona.io",
+    "pricing": "https://www.daytona.io/pricing",
+    "repo": "https://github.com/daytonaio/daytona",
+    "changelog": "https://www.daytona.io/dotfiles/updates"
+  },
+  "goodFor": [
+    "Long-running agents that need state between sessions",
+    "Forking a sandbox to explore parallel branches",
+    "Windows or GPU workloads in a sandbox"
+  ],
+  "watchOut": [
+    "No longer open source; public repo is archived",
+    "Isolation technology is not documented on the pricing page or README"
+  ],
+  "researched": "2026-10-21"
 }

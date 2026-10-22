@@ -5,5 +5,59 @@
   "url": "qdrant.tech",
   "note": "Open vector DB",
   "open": true,
-  "logo": "qdrant"
+  "logo": "qdrant",
+  "profile": "product",
+  "summary": "Qdrant is an open-source vector search engine written in Rust. It stores vectors with JSON payloads, applies filters during HNSW traversal, and supports dense plus sparse hybrid search and several quantization schemes. It runs self-hosted or in Qdrant Cloud, including hybrid and private cloud options.",
+  "facts": [
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "Rust"
+    ],
+    [
+      "Search",
+      "Dense and sparse vectors (BM25, SPLADE++, miniCOIL), payload filters"
+    ],
+    [
+      "Quantization",
+      "Scalar, binary, asymmetric; 4-bit TurboQuant storage in v1.19"
+    ],
+    [
+      "Deployment",
+      "Self-hosted, Qdrant Cloud, Hybrid Cloud, Private Cloud"
+    ],
+    [
+      "Pricing",
+      "Free cloud tier (1 GB RAM); usage-based Standard tier"
+    ],
+    [
+      "Latest",
+      "v1.19.2 (2026-10-05)"
+    ],
+    [
+      "Stars",
+      "~35k on GitHub"
+    ]
+  ],
+  "links": {
+    "site": "https://qdrant.tech",
+    "docs": "https://qdrant.tech/documentation/",
+    "repo": "https://github.com/qdrant/qdrant",
+    "pricing": "https://qdrant.tech/pricing/",
+    "changelog": "https://github.com/qdrant/qdrant/releases"
+  },
+  "goodFor": [
+    "Self-hosted vector search with heavy metadata filtering",
+    "Hybrid dense and sparse retrieval",
+    "Moving from self-hosted to managed without changing engines"
+  ],
+  "watchOut": [
+    "A separate service to run and tune (memory, quantization, sharding)",
+    "Premium, hybrid and private cloud prices are not published",
+    "Free cloud tier has no high availability"
+  ],
+  "researched": "2026-10-21"
 }

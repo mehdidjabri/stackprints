@@ -4,5 +4,53 @@
   "name": "browser-use",
   "url": "browser-use.com",
   "note": "LLM-driven Playwright",
-  "open": true
+  "open": true,
+  "profile": "product",
+  "summary": "Open-source Python library that lets an LLM drive a browser, plus Browser Use Cloud, a hosted service with stealth browsers and an agent API. Agents can run against a local Chrome (including your own profile) or remote browsers over CDP.",
+  "facts": [
+    [
+      "Company",
+      "Browser Use (founded 2024 by Magnus Müller and Gregor Žunič)"
+    ],
+    [
+      "License",
+      "MIT"
+    ],
+    [
+      "Language",
+      "Python"
+    ],
+    [
+      "GitHub stars",
+      "~119k"
+    ],
+    [
+      "Models",
+      "OpenAI, Anthropic, Google, Ollama, own bu-2-0 model"
+    ],
+    [
+      "Cloud pricing",
+      "$0.02 per browser-hour; agents at token cost + 20%"
+    ],
+    [
+      "Funding",
+      "$17M seed led by Felicis (March 2025)"
+    ]
+  ],
+  "links": {
+    "site": "https://browser-use.com",
+    "docs": "https://docs.browser-use.com",
+    "repo": "https://github.com/browser-use/browser-use",
+    "pricing": "https://browser-use.com/pricing"
+  },
+  "goodFor": [
+    "Python agents that need a browser",
+    "Reusing a logged-in Chrome profile",
+    "Cheap hosted browsers at scale"
+  ],
+  "watchOut": [
+    "Best results steer you toward its own paid model",
+    "Proxies and CAPTCHA solving need the cloud"
+  ],
+  "researched": "2026-10-21"
 }

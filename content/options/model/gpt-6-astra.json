@@ -4,5 +4,69 @@
   "name": "GPT-6 Astra",
   "url": "openai.com",
   "note": "OpenAI flagship",
-  "logo": "openai"
+  "logo": "openai",
+  "profile": "model",
+  "summary": "GPT-6 Astra is OpenAI's flagship model in the GPT-6 series, aimed at demanding end-to-end work such as software engineering, computer use, deep research and science. OpenAI rated it its first model at the Critical level for cybersecurity capability under its Preparedness Framework and rolled it out in stages.",
+  "facts": [
+    [
+      "Lab",
+      "OpenAI"
+    ],
+    [
+      "API ID",
+      "gpt-6-astra"
+    ],
+    [
+      "Max output",
+      "128K tokens"
+    ],
+    [
+      "Reasoning effort",
+      "low to max"
+    ],
+    [
+      "Long prompts",
+      "Over 272K input: 2x input, 1.5x output price"
+    ],
+    [
+      "Knowledge cutoff",
+      "April 30, 2026"
+    ],
+    [
+      "Tools",
+      "Computer use, MCP, hosted shell, web search (Responses API)"
+    ],
+    [
+      "Also on",
+      "Microsoft Azure, AWS Bedrock"
+    ]
+  ],
+  "links": {
+    "site": "https://openai.com/index/gpt-6-astra/",
+    "docs": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+  },
+  "goodFor": [
+    "Hardest coding and research tasks",
+    "Computer-use agents",
+    "Long-horizon autonomous work"
+  ],
+  "watchOut": [
+    "Five times the price of GPT-6.1 Sol",
+    "Staged, gated rollout at launch",
+    "Long-context surcharge above 272K tokens"
+  ],
+  "model": {
+    "lab": "OpenAI",
+    "released": "2026-09-03",
+    "context": "1.05M tokens",
+    "priceIn": "$10 / 1M tokens",
+    "priceOut": "$50 / 1M tokens",
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "weights": "closed",
+    "openrouter": "openai/gpt-6-astra"
+  },
+  "researched": "2026-10-21"
 }

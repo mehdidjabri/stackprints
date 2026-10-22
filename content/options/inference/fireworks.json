@@ -4,5 +4,23 @@
   "name": "Fireworks",
   "url": "fireworks.ai",
   "note": "Fast serving and fine-tuning",
-  "logo": "fireworks"
+  "logo": "fireworks",
+  "profile": "product",
+  "summary": "Fireworks AI is an inference platform for open and customized models. It offers serverless per-token APIs, on-demand GPU deployments billed per second, managed fine-tuning and a serverless training API for reinforcement learning. Its focus is on companies that tune models for their own workloads.",
+  "facts": [
+    ["Serverless", "Per-token billing (input, output, cached) with prepaid credits"],
+    ["On-demand GPUs", "H100 $8/h, B200 $13/h, B300 $15/h, billed per second"],
+    ["Fine-tuning", "LoRA SFT from $0.50 to $10 per 1M training tokens by model size"],
+    ["Training API", "Serverless pay-per-token RL/training, no idle cost"],
+    ["Funding", "$1.505B Series D at $17.5B valuation, July 2026"],
+    ["Scale", "Over $1B annualized revenue, 40T+ tokens/day (vendor-reported)"]
+  ],
+  "links": {
+    "site": "https://fireworks.ai",
+    "pricing": "https://fireworks.ai/pricing",
+    "changelog": "https://fireworks.ai/blog"
+  },
+  "goodFor": ["Serving fine-tuned open models", "RL and post-training without managing GPUs"],
+  "watchOut": ["On-demand GPU rates are higher than raw GPU clouds", "Region-restricted deployments cost 1.5x"],
+  "researched": "2026-10-21"
 }

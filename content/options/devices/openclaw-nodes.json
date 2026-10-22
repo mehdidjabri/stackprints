@@ -5,5 +5,50 @@
   "url": "openclaw.ai",
   "note": "Companion apps on every OS",
   "open": true,
-  "logo": "openclaw"
+  "logo": "openclaw",
+  "profile": "product",
+  "summary": "OpenClaw nodes are companion apps and headless hosts that connect to an OpenClaw gateway as peripherals and expose device commands to the agent. They add camera, screen recording, location, notifications, voice and command execution on the devices you pair, while messaging channels stay on the gateway.",
+  "facts": [
+    [
+      "Project",
+      "OpenClaw (MIT license)"
+    ],
+    [
+      "Platforms",
+      "macOS, iOS, Android, Windows, Linux; watchOS and headless hosts"
+    ],
+    [
+      "Connection",
+      "Gateway WebSocket with a pairing approval flow"
+    ],
+    [
+      "Commands",
+      "Camera, screen, location, notifications, system.run, computer use, file transfer"
+    ],
+    [
+      "Apple requirement",
+      "macOS and iOS 26.2+ from 2026.10.10 betas"
+    ],
+    [
+      "Repo stars",
+      "About 393k"
+    ]
+  ],
+  "links": {
+    "site": "https://openclaw.ai",
+    "docs": "https://docs.openclaw.ai/nodes",
+    "repo": "https://github.com/openclaw/openclaw",
+    "changelog": "https://github.com/openclaw/openclaw/releases"
+  },
+  "goodFor": [
+    "Giving one agent hands on many devices",
+    "Phone camera and location for a home-server agent",
+    "Remote command execution on Macs"
+  ],
+  "watchOut": [
+    "system.run on nodes is powerful; scope approvals",
+    "Fast release cadence with frequent betas",
+    "Feature support differs per platform"
+  ],
+  "researched": "2026-10-21"
 }

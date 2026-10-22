@@ -2,5 +2,27 @@
   "order": 80,
   "id": "per-user-cloud-computer",
   "name": "Per-user cloud computer",
-  "note": "Persistent VM that keeps working"
+  "note": "Persistent VM that keeps working",
+  "profile": "pattern",
+  "summary": "Each user, or each agent, gets its own long-lived virtual machine in the cloud that keeps its files, installed tools and running processes between sessions. The agent can keep working while the user's laptop is closed, and the user can come back to the same environment later.",
+  "how": [
+    "Create one VM or persistent sandbox per user or agent",
+    "Install tools and keep state on its disk",
+    "Pause or stop it when idle, resume on the next task",
+    "Connect to it from chat, web or a local client"
+  ],
+  "facts": [
+    ["Built with", "Persistent sandboxes such as Daytona, Vercel Sandbox, Docker Cloud Sandboxes"],
+    ["Persistence", "Disk, and often memory, survive between sessions"],
+    ["Trade-off", "Agent keeps context and setup, but you pay for idle storage and must secure a long-lived machine"]
+  ],
+  "goodFor": [
+    "Long-running or scheduled agent work",
+    "Agents that accumulate tools and files over time"
+  ],
+  "watchOut": [
+    "State drift: a long-lived machine collects junk and secrets",
+    "Storage, and on some providers compute, is billed while idle"
+  ],
+  "researched": "2026-10-21"
 }

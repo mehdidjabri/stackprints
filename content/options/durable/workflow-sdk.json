@@ -2,8 +2,57 @@
   "order": 20,
   "id": "workflow-sdk",
   "name": "Workflow SDK",
-  "url": "useworkflow.dev",
+  "url": "workflow-sdk.dev",
   "note": "'use workflow' durable TypeScript",
   "open": true,
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Workflow SDK is an open-source durable functions framework for TypeScript and JavaScript from Vercel. Functions marked with the \"use workflow\" directive are compiled into replayable workflows, and functions marked \"use step\" become retried, persisted steps; workflows can suspend without using compute while they wait. Pluggable \"Worlds\" decide where state and queues live: local files, Postgres, or Vercel.",
+  "facts": [
+    [
+      "Maker",
+      "Vercel"
+    ],
+    [
+      "License",
+      "Apache-2.0"
+    ],
+    [
+      "Language",
+      "TypeScript / JavaScript"
+    ],
+    [
+      "Frameworks",
+      "Next.js, Nitro, TanStack Start, React Router, NestJS and others"
+    ],
+    [
+      "Backends (Worlds)",
+      "Local, Postgres, Vercel, or custom"
+    ],
+    [
+      "Latest version",
+      "5.2.3 (Oct 2026)"
+    ],
+    [
+      "GitHub stars",
+      "~2.5k"
+    ]
+  ],
+  "links": {
+    "site": "https://workflow-sdk.dev",
+    "docs": "https://workflow-sdk.dev/docs",
+    "repo": "https://github.com/vercel/workflow",
+    "changelog": "https://workflow-sdk.dev/docs/changelog"
+  },
+  "goodFor": [
+    "Durable agents in Next.js and other TS apps",
+    "Zero-config durability on Vercel",
+    "Self-hosting via the Postgres World"
+  ],
+  "watchOut": [
+    "TypeScript/JavaScript only",
+    "Relies on a build-time code transform",
+    "Fast-moving API with breaking changes between majors"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-10-20", "title": "Exclusive: Daytona, a startup building the 'agentic cloud,' valued at $1 billion in latest funding round", "url": "https://fortune.com/2026/10/20/daytona-startup-building-the-agentic-cloud-valued-at-1-billion-in-latest-funding-round/", "source": "fortune.com" },
+    { "date": "2026-06-11", "title": "Daytona is going closed source. Here's why.", "url": "https://www.daytona.io/dotfiles/updates/daytona-is-going-closed-source", "source": "daytona.io" },
+    { "date": "2026-04-13", "title": "Security Advisory: API Credential Exposure in Sandboxes", "url": "https://www.daytona.io/dotfiles/updates/security-advisory-api-credential-exposure-in-sandboxes", "source": "daytona.io" },
+    { "date": "2026-02-06", "title": "Daytona raises $24M Series A to build agent-native compute infrastructure", "url": "https://tech.eu/2026/02/06/daytona-raises-24m-series-a-to-build-agent-native-compute-infrastructure/", "source": "tech.eu" },
+    { "date": "2026-01-30", "title": "What's New at Daytona: January 2026", "url": "https://www.daytona.io/dotfiles/updates/what-s-new-at-daytona-january-2026", "source": "daytona.io" }
+  ]
+}

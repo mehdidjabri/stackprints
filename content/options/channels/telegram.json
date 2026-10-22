@@ -4,5 +4,33 @@
   "name": "Telegram",
   "url": "grammy.dev",
   "note": "Bot API, easiest to start",
-  "logo": "telegram"
+  "logo": "telegram",
+  "profile": "product",
+  "summary": "Telegram's official Bot API lets anyone create a bot through @BotFather and talk to it over HTTPS with long polling or webhooks. Recent API versions add features aimed at AI bots, such as streamed message drafts, rich messages and guest mode. Frameworks like grammY wrap the API for TypeScript and JavaScript.",
+  "facts": [
+    ["API", "Official Bot API (HTTPS, polling or webhooks)"],
+    ["Latest version", "Bot API 10.3 (2026-08-24)"],
+    ["Cost", "Free; paid broadcasts above 30 msg/s cost 0.1 Stars per message"],
+    ["Approval", "None; bots are created in @BotFather"],
+    ["Rate limits", "About 1 msg/s per chat, 20 msg/min per group"],
+    ["Streaming", "sendMessageDraft and sendRichMessageDraft"],
+    ["Framework", "grammY (TypeScript/JavaScript)"]
+  ],
+  "links": {
+    "site": "https://core.telegram.org/bots",
+    "docs": "https://core.telegram.org/bots/api",
+    "changelog": "https://core.telegram.org/bots/api-changelog",
+    "repo": "https://github.com/grammyjs/grammY"
+  },
+  "goodFor": [
+    "Personal agents reachable from any phone",
+    "Prototyping a chat agent in minutes",
+    "Streaming replies with native drafts"
+  ],
+  "watchOut": [
+    "Bot chats are not end-to-end encrypted",
+    "Per-chat and per-group rate limits",
+    "Users must find and start the bot first"
+  ],
+  "researched": "2026-10-21"
 }

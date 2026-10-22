@@ -2,7 +2,56 @@
   "order": 50,
   "id": "durable-objects",
   "name": "Durable Objects",
-  "url": "cloudflare.com",
+  "url": "developers.cloudflare.com/durable-objects",
   "note": "Per-agent stateful actors",
-  "logo": "cloudflare"
+  "logo": "cloudflare",
+  "profile": "product",
+  "summary": "Durable Objects are Cloudflare Workers with a globally unique name and their own strongly consistent storage, now backed by an embedded SQLite database per object. Cloudflare's Agents SDK runs each agent instance as a Durable Object, persisting its state and SQL data across evictions. Alarms and WebSocket hibernation let an agent wake on a schedule or hold client connections.",
+  "facts": [
+    [
+      "Company",
+      "Cloudflare"
+    ],
+    [
+      "Storage",
+      "SQLite per object (required for new namespaces since July 2026)"
+    ],
+    [
+      "Storage limit",
+      "10 GB per object on Workers Paid"
+    ],
+    [
+      "Throughput",
+      "Soft limit of 1,000 requests/s per object"
+    ],
+    [
+      "Agents SDK",
+      "Agent class extends Server, which extends DurableObject"
+    ],
+    [
+      "Pricing",
+      "Free plan; Paid $0.15/M requests, $0.20/GB-month stored beyond inclusions"
+    ],
+    [
+      "Scheduling",
+      "Alarms; WebSocket hibernation"
+    ]
+  ],
+  "links": {
+    "site": "https://developers.cloudflare.com/durable-objects/",
+    "docs": "https://developers.cloudflare.com/agents/concepts/agent-class/",
+    "pricing": "https://developers.cloudflare.com/durable-objects/platform/pricing/",
+    "changelog": "https://developers.cloudflare.com/changelog/product/durable-objects/"
+  },
+  "goodFor": [
+    "One stateful actor per agent, user or chat",
+    "Real-time agents with WebSocket clients",
+    "Scheduled and long-running agent work"
+  ],
+  "watchOut": [
+    "Cloudflare Workers runtime only",
+    "Each object is single-instance; hot objects hit per-object throughput limits",
+    "Cross-object queries need a separate database"
+  ],
+  "researched": "2026-10-21"
 }

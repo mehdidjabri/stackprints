@@ -5,5 +5,48 @@
   "url": "modelcontextprotocol.io",
   "note": "Standard tool auth",
   "open": true,
-  "logo": "mcp"
+  "logo": "mcp",
+  "profile": "protocol",
+  "summary": "The MCP specification's authorization layer for HTTP servers. The MCP server is an OAuth 2.1 resource server; the client discovers the authorization server through Protected Resource Metadata, registers, runs an authorization-code flow with PKCE, and sends audience-bound bearer tokens.",
+  "facts": [
+    [
+      "Current spec",
+      "2026-07-28"
+    ],
+    [
+      "Base",
+      "OAuth 2.1 draft, RFC 9728, RFC 8707, RFC 8414"
+    ],
+    [
+      "Client registration",
+      "Client ID Metadata Documents preferred; Dynamic Client Registration deprecated"
+    ],
+    [
+      "Required",
+      "PKCE (S256), resource indicators, issuer check (RFC 9207)"
+    ],
+    [
+      "Scope",
+      "Optional; HTTP transports only, stdio uses environment credentials"
+    ],
+    [
+      "Token passthrough",
+      "Forbidden"
+    ]
+  ],
+  "links": {
+    "spec": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization",
+    "site": "https://modelcontextprotocol.io",
+    "changelog": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+    "repo": "https://github.com/modelcontextprotocol/ext-auth"
+  },
+  "goodFor": [
+    "Remote MCP servers acting for a signed-in user",
+    "Per-user, revocable, scoped access instead of shared keys"
+  ],
+  "watchOut": [
+    "Several spec revisions in a year; older clients may only do DCR",
+    "Each server needs an authorization server behind it"
+  ],
+  "researched": "2026-10-21"
 }

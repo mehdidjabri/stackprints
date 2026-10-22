@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-13",
+      "title": "LEDVANCE joins Works with Home Assistant",
+      "url": "https://www.home-assistant.io/blog/2026/10/13/ledvance-joins-works-with-home-assistant/",
+      "source": "home-assistant.io"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "Home Assistant 2026.10",
+      "url": "https://www.home-assistant.io/blog/2026/10/07/release-202610/",
+      "source": "home-assistant.io"
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Big Tech ruined the cloud, so we're renaming ours",
+      "url": "https://www.home-assistant.io/blog/2026/10/02/big-tech-ruined-the-cloud-so-were-renaming-ours/",
+      "source": "home-assistant.io"
+    },
+    {
+      "date": "2026-09-02",
+      "title": "Home Assistant 2026.9",
+      "url": "https://www.home-assistant.io/blog/2026/09/02/release-20269/",
+      "source": "home-assistant.io"
+    },
+    {
+      "date": "2026-07-31",
+      "title": "A big win for Android interoperability",
+      "url": "https://www.home-assistant.io/blog/2026/07/31/a-big-win-for-android-interoperability/",
+      "source": "home-assistant.io"
+    }
+  ]
+}

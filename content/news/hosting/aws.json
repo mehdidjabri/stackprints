@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-15",
+      "title": "Web Search on Amazon Bedrock AgentCore expands to AWS GovCloud and 3 Regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-bedrock-agentcore/",
+      "source": "aws.amazon.com"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "Amazon Bedrock AgentCore Memory now supports configurable time-to-live for long-term memory",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/10/agentcore-memory-long-term-memory-ttl",
+      "source": "aws.amazon.com"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "Temporal and AWS: A partnership built for production-grade AI",
+      "url": "https://temporal.io/blog/temporal-and-aws-a-partnership-built-for-production-grade-ai",
+      "source": "temporal.io"
+    },
+    {
+      "date": "2026-10-12",
+      "title": "Announcing consumption-based pricing for short-term memory in Amazon Bedrock AgentCore",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/10/agentcore-memory-consumption-based-pricing",
+      "source": "aws.amazon.com"
+    }
+  ]
+}

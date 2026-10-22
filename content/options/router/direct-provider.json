@@ -2,5 +2,30 @@
   "order": 10,
   "id": "direct-provider",
   "name": "Direct provider",
-  "note": "Call one lab's API directly"
+  "note": "Call one lab's API directly",
+  "profile": "pattern",
+  "summary": "The agent calls one model lab's API (for example Anthropic, OpenAI or Google) with that lab's own SDK and key, with no gateway in between. It is the simplest setup: one account, one bill and the lab's newest features on day one. The cost is lock-in to one provider and no automatic fallback when it has an outage.",
+  "how": [
+    "Create an API key with one model lab",
+    "Install that lab's SDK or call its HTTP API",
+    "Point the agent's model setting at the lab's endpoint",
+    "Handle retries and rate limits in your own code"
+  ],
+  "facts": [
+    ["Extra hop", "None"],
+    ["Fees", "Lab list price only"],
+    ["Failover", "None unless you build it"],
+    ["Trade-off", "Simplest and newest features, but single-vendor"]
+  ],
+  "goodFor": [
+    "Prototypes and single-model agents",
+    "Using provider-specific features early",
+    "Fewest moving parts and third parties"
+  ],
+  "watchOut": [
+    "One provider outage stops the agent",
+    "Switching models later means code changes",
+    "Spend and keys tracked per vendor"
+  ],
+  "researched": "2026-10-21"
 }

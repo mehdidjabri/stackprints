@@ -4,5 +4,52 @@
   "name": "Vercel Connect",
   "url": "vercel.com",
   "note": "Short-lived scoped tokens, audit trail",
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Vercel Connect lets apps and agents deployed on Vercel get short-lived, scoped tokens for services like Slack, GitHub, Microsoft, Linear and Snowflake at the moment they need them, so no provider secret sits in environment variables. Connectors are set up once per team and linked to projects; every token request is logged. Generally available since August 2026.",
+  "facts": [
+    [
+      "Company",
+      "Vercel"
+    ],
+    [
+      "Status",
+      "Generally available (Aug 2026), all plans"
+    ],
+    [
+      "Connectors",
+      "Slack, GitHub, Microsoft, Teams, Linear, Snowflake, Salesforce, custom OAuth, API key"
+    ],
+    [
+      "Token subjects",
+      "App, user, or federated identity (jwt-bearer)"
+    ],
+    [
+      "SDK",
+      "@vercel/connect, vercel connect CLI"
+    ],
+    [
+      "Pricing",
+      "Hobby 500 token requests/month; Pro $3 per 1,000"
+    ],
+    [
+      "Audit",
+      "Observability tab logs token requests and revocations"
+    ]
+  ],
+  "links": {
+    "site": "https://vercel.com/connect",
+    "docs": "https://vercel.com/docs/connect",
+    "changelog": "https://vercel.com/changelog/vercel-connect-ga"
+  },
+  "goodFor": [
+    "Agents deployed on Vercel",
+    "Removing long-lived API keys from env vars",
+    "Acting on behalf of users with refreshable tokens"
+  ],
+  "watchOut": [
+    "Best fit inside the Vercel platform (OIDC auth)",
+    "Smaller catalog than tool aggregators; you write the API calls"
+  ],
+  "researched": "2026-10-21"
 }

@@ -1,0 +1,10 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    { "date": "2026-09-22", "title": "Age Assurance: What It Means for Discord Developers", "url": "https://docs.discord.com/developers/change-log", "source": "docs.discord.com" },
+    { "date": "2026-06-10", "title": "Changes to Privileged Intent Access for Discord Apps", "url": "https://docs.discord.com/developers/change-log", "source": "docs.discord.com" },
+    { "date": "2026-04-14", "title": "Message Forwarding Requires Message Content Access", "url": "https://docs.discord.com/developers/change-log", "source": "docs.discord.com" },
+    { "date": "2026-03-19", "title": "Search Guild Messages", "url": "https://docs.discord.com/developers/change-log", "source": "docs.discord.com" },
+    { "date": "2026-02-20", "title": "Server-Side Message Moderation", "url": "https://docs.discord.com/developers/change-log", "source": "docs.discord.com" }
+  ]
+}

@@ -5,5 +5,58 @@
   "url": "github.com/openai/codex",
   "note": "OpenAI coding agent",
   "open": true,
-  "logo": "codex"
+  "logo": "codex",
+  "profile": "product",
+  "summary": "OpenAI's coding agent, with an open-source CLI written in Rust that runs locally in the terminal. The same agent is offered as an IDE extension, a desktop app and a cloud version in ChatGPT. Commands run in an OS-level sandbox, and the CLI can act as an MCP client.",
+  "facts": [
+    [
+      "Company",
+      "OpenAI"
+    ],
+    [
+      "License",
+      "Apache-2.0 (CLI)"
+    ],
+    [
+      "Language",
+      "Rust"
+    ],
+    [
+      "GitHub stars",
+      "130k+ (Oct 2026)"
+    ],
+    [
+      "Sandboxing",
+      "Seatbelt on macOS, Landlock/seccomp on Linux"
+    ],
+    [
+      "MCP",
+      "Client, servers configured in config.toml"
+    ],
+    [
+      "Auth",
+      "ChatGPT plan sign-in or API key"
+    ],
+    [
+      "Surfaces",
+      "CLI, IDE extension, desktop app, web"
+    ]
+  ],
+  "links": {
+    "site": "https://chatgpt.com/codex",
+    "docs": "https://developers.openai.com/codex",
+    "repo": "https://github.com/openai/codex",
+    "changelog": "https://developers.openai.com/codex/changelog"
+  },
+  "goodFor": [
+    "Terminal-based coding with OpenAI models",
+    "Sandboxed local command execution",
+    "Teams already on ChatGPT plans"
+  ],
+  "watchOut": [
+    "Sandboxing depends on host Landlock/seccomp support",
+    "Windows users are pointed to WSL or Docker in the security guide",
+    "Very fast release cadence"
+  ],
+  "researched": "2026-10-21"
 }

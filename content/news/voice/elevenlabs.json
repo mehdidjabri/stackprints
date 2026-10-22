@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-09-30",
+      "title": "ElevenLabs valuation increases to $22 billion fueled by enterprise demand for conversational agents",
+      "url": "https://elevenlabs.io/blog/tender-22bn",
+      "source": "elevenlabs.io"
+    },
+    {
+      "date": "2026-09-28",
+      "title": "Introducing Eleven v4, our most emotive model",
+      "url": "https://elevenlabs.io/blog/eleven-v4",
+      "source": "elevenlabs.io"
+    },
+    {
+      "date": "2026-09-10",
+      "title": "Universal Music Group and ElevenLabs announce multi-year strategic agreement",
+      "url": "https://elevenlabs.io/blog/umg",
+      "source": "elevenlabs.io"
+    },
+    {
+      "date": "2026-08-24",
+      "title": "Introducing the ElevenLabs CLI v1",
+      "url": "https://elevenlabs.io/blog/elevenlabs-cli-v1",
+      "source": "elevenlabs.io"
+    },
+    {
+      "date": "2026-06-30",
+      "title": "Introducing Procedures in ElevenAgents",
+      "url": "https://elevenlabs.io/blog/procedures",
+      "source": "elevenlabs.io"
+    }
+  ]
+}

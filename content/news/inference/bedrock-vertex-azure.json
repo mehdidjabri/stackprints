@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-21",
+  "items": [
+    {
+      "date": "2026-10-05",
+      "title": "AWS Weekly Roundup: Amazon Bedrock Managed Agents powered by OpenAI, Q3 service availability updates, Kiro workflows, and more (October 5, 2026)",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-amazon-bedrock-managed-agents-powered-by-openai-q3-service-availability-updates-kiro-workflows-and-more-october-5-2026/",
+      "source": "aws.amazon.com"
+    },
+    {
+      "date": "2026-09-24",
+      "title": "Ship agents faster with expanded model choice, voice agents, and continuous optimization",
+      "url": "https://azure.microsoft.com/en-us/blog/ship-agents-faster-with-expanded-model-choice-voice-agents-and-continuous-optimization/",
+      "source": "azure.microsoft.com"
+    },
+    {
+      "date": "2026-09-22",
+      "title": "GPT-6 Astra, Sol, and Luna: For production agents in Microsoft Foundry",
+      "url": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-sol-and-luna-for-production-agents-in-microsoft-foundry/",
+      "source": "azure.microsoft.com"
+    },
+    {
+      "date": "2026-04-22",
+      "title": "Gemini Enterprise Agent Platform lets you build, govern and optimize your agents.",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-enterprise-agent-platform/",
+      "source": "blog.google"
+    }
+  ]
+}

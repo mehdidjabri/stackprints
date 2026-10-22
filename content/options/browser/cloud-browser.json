@@ -2,5 +2,37 @@
   "order": 90,
   "id": "cloud-browser",
   "name": "Cloud browser",
-  "note": "Agent's own persistent browser"
+  "note": "Agent's own persistent browser",
+  "profile": "pattern",
+  "summary": "The agent gets its own browser running on a server, with a profile that keeps cookies and logins between runs. It works while the user's laptop is closed, and the user can watch or take over through a live view.",
+  "how": [
+    "Provision a hosted browser session for the agent",
+    "Save cookies and storage to a reusable profile",
+    "Agent drives it over CDP, Playwright or a computer-use loop",
+    "User logs in or approves steps through a live view when needed"
+  ],
+  "facts": [
+    [
+      "Offered by",
+      "Browserbase, Browser Use Cloud, Hyperbrowser, Steel"
+    ],
+    [
+      "Persistence",
+      "Reusable profiles keep logins across sessions"
+    ],
+    [
+      "Trade-off",
+      "Always available, but you hand session cookies to a vendor"
+    ]
+  ],
+  "goodFor": [
+    "Background and scheduled tasks",
+    "Keeping agent logins apart from personal ones",
+    "Scaling to many sessions"
+  ],
+  "watchOut": [
+    "Sites may block datacenter IPs and headless browsers",
+    "Stored sessions are sensitive credentials"
+  ],
+  "researched": "2026-10-21"
 }

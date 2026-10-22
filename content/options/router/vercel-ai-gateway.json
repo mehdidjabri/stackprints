@@ -4,5 +4,33 @@
   "name": "Vercel AI Gateway",
   "url": "vercel.com/ai-gateway",
   "note": "CDN of tokens, failover, BYOK",
-  "logo": "vercel"
+  "logo": "vercel",
+  "profile": "product",
+  "summary": "Vercel AI Gateway is a managed endpoint that gives one API key access to models from many providers. It routes requests across providers, applies provider and model fallbacks, and logs latency, tokens and cost per request. It works from any infrastructure, not only apps deployed on Vercel.",
+  "facts": [
+    ["Company", "Vercel"],
+    ["Pricing", "Provider list price, no markup or platform fee on tokens"],
+    ["BYOK", "Yes, no fee; requires purchased credits"],
+    ["APIs", "AI SDK, OpenAI Chat Completions and Responses, Anthropic Messages"],
+    ["Free tier", "Monthly free credit on a subset of models"],
+    ["Observability", "Request logs, budgets, OpenTelemetry trace drains (Pro+)"],
+    ["Self-hostable", "No"]
+  ],
+  "links": {
+    "site": "https://vercel.com/ai-gateway",
+    "docs": "https://vercel.com/docs/ai-gateway",
+    "pricing": "https://vercel.com/docs/ai-gateway/pricing",
+    "changelog": "https://vercel.com/changelog"
+  },
+  "goodFor": [
+    "Teams already using the AI SDK or Vercel",
+    "Multi-provider failover with per-request logs",
+    "Spend budgets per project, key or member"
+  ],
+  "watchOut": [
+    "Free tier limited to some models and lower rate limits",
+    "Some controls (ZDR, allowlists, trace drains) cost extra",
+    "Hosted only, tied to a Vercel team account"
+  ],
+  "researched": "2026-10-21"
 }
