@@ -13,8 +13,8 @@ export default function Contribute() {
     <div className="prose">
       <Title detail="Contribute" />
       <p className="lede">
-        Everything on this site is plain JSON in <a href={SITE.repo}>a public repo</a>. No database, no accounts.
-        Open a pull request and it ships on merge.
+        Everything on this site is plain JSON in <a href={SITE.repo}>a public repo</a>. No database. You need a GitHub
+        account to open a pull request; it ships on merge.
       </p>
 
       <h2>Publish your stack as a page</h2>
@@ -27,32 +27,37 @@ export default function Contribute() {
         <code>{`{
   "slug": "my-agent",
   "name": "My Agent",
-  "kind": "Personal stack",
+  "kind": "Personal agent",
   "tagline": "One line people will read in the grid.",
   "description": "Two or three sentences on how it works.",
   "author": { "name": "Ada", "url": "https://x.com/ada" },
   "links": { "site": "https://my-agent.dev", "repo": "https://github.com/me/my-agent" },
+  "disclosure": "open-source",
+  "sources": [{ "title": "README", "url": "https://github.com/me/my-agent" }],
   "layers": {
     "channels": ["telegram", "email"],
     "model": "claude-sonnet-5-5",
     "harness": "pi",
     "memory": "memory-md"
-  }
+  },
+  "evidence": { "memory": ["https://github.com/me/my-agent"] },
+  "notUsed": ["sandbox"],
+  "researched": "YYYY-MM-DD"
 }`}</code>
       </pre>
+      <p>
+        <code>disclosure</code> decides what an empty slot means: on <code>open-source</code> and <code>example</code>{" "}
+        stacks it is not used; on <code>documented</code> and <code>closed</code> stacks it is not disclosed.{" "}
+        <code>evidence</code> gives, for each layer the stack picks, the URLs that back the pick, taken from{" "}
+        <code>sources</code>. <code>notUsed</code> lists layers a source confirms are absent. Three optional fields
+        cover the in-between cases: <code>inUseUndisclosed</code> (present, component not named),{" "}
+        <code>closedLayers</code> (open source with closed parts) and <code>supports</code> (configurable rather than
+        default). The full rules are in <a href={`${SITE.repo}/blob/main/docs/RESEARCH.md`}>docs/RESEARCH.md</a>.
+      </p>
 
       <h2>List your product</h2>
       <p>
-        Use the <a href="/submit/">submit form</a>, or add one file per product at{" "}
-        <code>content/options/&lt;layer&gt;/&lt;id&gt;.json</code>. The <code>id</code> must match the file name.
-        Add a <code>url</code> (domain, no protocol), a <code>note</code> under 60 characters, and{" "}
-        <code>&quot;open&quot;: true</code> for open source or open weights. Leave out <code>order</code>: new entries
-        are listed alphabetically after the curated ones.
-      </p>
-      <p>
-        Logos: one-colour SVG with a <code>viewBox</code>, under 8 KB, no scripts, at{" "}
-        <code>content/logos/&lt;name&gt;.svg</code>, referenced as <code>&quot;logo&quot;: &quot;&lt;name&gt;&quot;</code>
-        . They are drawn in the page&apos;s text colour, so colours are ignored.
+        Use the <a href="/submit/">submit form</a>: it writes the file and opens the pull request.
       </p>
 
       <h2>Add a layer</h2>

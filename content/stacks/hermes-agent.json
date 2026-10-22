@@ -123,6 +123,11 @@
       "1password"
     ]
   },
+  "supports": {
+    "router": [
+      "any-provider"
+    ]
+  },
   "evidence": {
     "channels": [
       "https://hermes-agent.nousresearch.com/docs/user-guide/messaging",

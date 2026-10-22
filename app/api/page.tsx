@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const ENDPOINTS: [string, string, string][] = [
   ["GET /api/stacks.json", "Every stack: name, kind, tagline, disclosure, links", "/api/stacks.json"],
-  ["GET /api/stacks/{slug}.json", "One stack, layer by layer, with evidence URLs, sources, notDisclosed and notUsed", "/api/stacks/openclaw.json"],
+  ["GET /api/stacks/{slug}.json", "One stack, layer by layer, with evidence URLs, sources, notDisclosed, inUseUndisclosed and notUsed", "/api/stacks/openclaw.json"],
   ["GET /api/layers.json", "Every layer with its options", "/api/layers.json"],
   ["GET /api/layers/{layer}.json", "One layer with option summaries", "/api/layers/memory.json"],
   ["GET /api/options/{layer}/{option}.json", "One option: datasheet facts, links, caveats, news, stacks that use it", "/api/options/router/openrouter.json"],
@@ -52,10 +52,14 @@ export default function Api() {
       <p>
         Each stack has a <code>disclosure</code>: <code>open-source</code> and <code>example</code> stacks list everything
         they use, so a missing layer is not used. <code>documented</code> and <code>closed</code> stacks only list what
-        their makers or reputable press have published; layers in <code>notDisclosed</code> are unknown, not absent. Every
-        pick on a real product has evidence URLs in <code>layers[].evidence</code>. An <code>example</code> stack is a
-        design written for this site, not a product: an option&apos;s <code>usage</code> counts examples apart from real
-        stacks, so don&apos;t read them as adoption. See also <a href="/about/#disclosure">Reading a stack</a>.
+        their makers or reputable press have published; layers in <code>notDisclosed</code> are unknown, not absent. An
+        open-source stack with closed parts lists the layers only those parts could fill under <code>notDisclosed</code>{" "}
+        too. Layers in <code>inUseUndisclosed</code> are present, with evidence, but their component isn&apos;t named. A
+        pick with <code>&quot;supported&quot;: true</code> is something the stack can be configured to use, not what it
+        runs by default. Every pick on a real product has evidence URLs in <code>layers[].evidence</code>. An{" "}
+        <code>example</code> stack is a design written for this site, not a product: an option&apos;s <code>usage</code>{" "}
+        counts examples apart from real stacks, so don&apos;t read them as adoption. See also{" "}
+        <a href="/about/#disclosure">Reading a stack</a>.
       </p>
 
       <h2>Machine-readable</h2>

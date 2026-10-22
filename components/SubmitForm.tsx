@@ -2,10 +2,19 @@
 
 import { useState } from "react";
 import { newFileUrl, slugify } from "@/lib/github";
-import type { Layer } from "@/lib/types";
+import type { Layer, Option } from "@/lib/types";
 import { Board } from "./Board";
 
 type L = Pick<Layer, "id" | "name" | "band" | "ref" | "description">;
+type Profile = NonNullable<Option["profile"]>;
+
+// The profiles of docs/RESEARCH.md, which decide the layout of the option's page.
+const PROFILES: [Profile, string][] = [
+  ["product", "Product, service or open-source project"],
+  ["model", "Model or model family"],
+  ["protocol", "Protocol or open standard"],
+  ["pattern", "Pattern, with no vendor"],
+];
 
 export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
   const [layer, setLayer] = useState(layers[0].id);
@@ -13,20 +22,27 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
   const [url, setUrl] = useState("");
   const [note, setNote] = useState("");
   const [open, setOpen] = useState(false);
+  const [profile, setProfile] = useState<Profile>("product");
+  const [docs, setDocs] = useState("");
   const [copied, setCopied] = useState(false);
 
   const id = slugify(name);
+  // The source reviewers check. check.mjs wants a full https URL in links.*.
+  const source = docs.trim();
+  const sourceOk = !source || /^https:\/\/[^\s/]+\.[^\s]+$/.test(source);
   const option = {
     id,
     name: name.trim(),
     ...(url.trim() ? { url: url.trim().replace(/^https?:\/\//, "").replace(/\/$/, "") } : {}),
     ...(note.trim() ? { note: note.trim() } : {}),
     ...(open ? { open: true } : {}),
+    profile,
+    ...(source && sourceOk ? { links: { docs: source } } : {}),
   };
   const json = JSON.stringify(option, null, 2) + "\n";
   const file = `content/options/${layer}/${id || "your-product"}.json`;
   const l = layers.find((x) => x.id === layer)!;
-  const ready = id && name.trim();
+  const ready = id && name.trim() && sourceOk;
 
   return (
     <div className="submit">
@@ -59,6 +75,27 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
             placeholder="Memory API for agents"
           />
           <small>{60 - note.length} characters left. Say what it is, not how great it is.</small>
+        </label>
+        <label>
+          <span>Profile</span>
+          <select value={profile} onChange={(e) => setProfile(e.target.value as Profile)}>
+            {PROFILES.map(([v, label]) => (
+              <option key={v} value={v}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>Docs or source URL</span>
+          <input
+            value={docs}
+            onChange={(e) => setDocs(e.target.value)}
+            placeholder="https://acme.dev/docs"
+            inputMode="url"
+            aria-invalid={!sourceOk}
+          />
+          <small>{sourceOk ? "Optional. Where reviewers can check what you wrote." : "Use a full https:// URL."}</small>
         </label>
         <label className="check">
           <input type="checkbox" checked={open} onChange={(e) => setOpen(e.target.checked)} />

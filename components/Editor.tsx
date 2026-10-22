@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { newFileUrl, slugify } from "@/lib/github";
 import { prettyUrl } from "@/lib/links";
 import { decodeDraft, encodeDraft, loadSaved, storeSaved } from "@/lib/share";
-import { DISCLOSURE, disclosureMark, unknownLabel } from "@/lib/disclosure";
+import { disclosureMark, disclosureOf } from "@/lib/disclosure";
 import type { Draft, Layer, Stack } from "@/lib/types";
 import { Board } from "./Board";
 import { Logo } from "./Logo";
@@ -16,10 +16,8 @@ type Preset = {
   kind: string;
   site?: string;
   logo?: string;
-  disclosure?: Stack["disclosure"];
-  notUsed?: string[];
   layers: Record<string, string[]>;
-};
+} & Pick<Stack, "disclosure" | "notUsed" | "inUseUndisclosed" | "closedLayers" | "supports">;
 
 const fromPreset = (p: Preset): Draft => ({ name: p.name, from: p.slug, layers: structuredClone(p.layers) });
 
@@ -127,7 +125,7 @@ export function Editor({
       {
         slug,
         name: draft.name,
-        kind: preset && !dirty ? preset.kind : "Personal stack",
+        kind: preset && !dirty ? preset.kind : "Personal agent",
         tagline: meta.tagline,
         description: meta.description,
         ...(meta.author ? { author: { name: meta.author, ...(meta.authorUrl ? { url: meta.authorUrl } : {}) } } : {}),
@@ -142,13 +140,13 @@ export function Editor({
   });
 
   const kinds = [...new Set(presets.map((p) => p.kind))].sort();
-  const kind = preset?.kind ?? "Personal stack";
+  const kind = preset?.kind ?? "Personal agent";
   // A kind made only of example designs says so in the menu, as each example does.
   const kindHint = (k: string) => {
     const ps = presets.filter((p) => p.kind === k);
     return ps.every((p) => p.disclosure === "example") ? `${ps.length} example${ps.length > 1 ? "s" : ""}` : String(ps.length);
   };
-  const mark = preset ? disclosureMark(preset.disclosure) : null;
+  const mark = preset ? disclosureMark(preset) : null;
 
   /** A native select listing a layer's options not yet picked. */
   const picker = (layer: Layer, picks: string[], label: string, aria: string) => {
@@ -223,7 +221,7 @@ export function Editor({
                         {p.logo && <Logo option={{ name: p.name, logo: p.logo }} />}
                         {p.name}
                       </span>
-                      {disclosureMark(p.disclosure) && <small>{disclosureMark(p.disclosure)}</small>}
+                      {disclosureMark(p) && <small>{disclosureMark(p)}</small>}
                     </button>
                   </li>
                 ))}
@@ -239,7 +237,7 @@ export function Editor({
         {mark && !dirty && (
           <>
             {" · "}
-            <span title={DISCLOSURE[preset!.disclosure!].about}>{mark}</span>
+            <span title={disclosureOf(preset!)!.about}>{mark}</span>
           </>
         )}
         {preset && dirty && (
@@ -325,6 +323,7 @@ export function Editor({
         </div>
       )}
 
+      {/* Empty slots keep the preset's meaning; "supported" marks only hold while the preset is unchanged. */}
       <Board
         slots={layers}
         modules={layers
@@ -336,8 +335,7 @@ export function Editor({
               .filter((o): o is NonNullable<typeof o> => Boolean(o)),
           }))}
         label={`${draft.name.toUpperCase()} · REV ${dirty ? "X" : "1"}`}
-        unknown={unknownLabel(preset?.disclosure)}
-        notUsed={preset?.notUsed}
+        stack={preset && { ...preset, supports: dirty ? undefined : preset.supports }}
         onRemove={(layerId, id) => update(layerId, draft.layers[layerId].filter((p) => p !== id))}
         addSlot={(layerId) => {
           const layer = layers.find((l) => l.id === layerId)!;

@@ -1,5 +1,5 @@
 import { getLayers } from "@/lib/data";
-import { unknownLabel } from "@/lib/disclosure";
+import type { Knowable } from "@/lib/disclosure";
 import type { Layer, Option, Stack } from "@/lib/types";
 import { Board } from "./Board";
 
@@ -13,19 +13,10 @@ export function StackView({
   label,
 }: {
   rows: Row[];
-  stack?: Pick<Stack, "disclosure" | "notUsed">;
+  stack?: Knowable & Pick<Stack, "supports">;
   compact?: boolean;
   label?: string;
 }) {
   const slots = getLayers().map(({ id, name, band, ref }) => ({ id, name, band, ref }));
-  return (
-    <Board
-      modules={rows}
-      slots={slots}
-      mini={compact}
-      label={label}
-      unknown={unknownLabel(stack?.disclosure)}
-      notUsed={stack?.notUsed}
-    />
-  );
+  return <Board modules={rows} slots={slots} mini={compact} label={label} stack={stack} />;
 }

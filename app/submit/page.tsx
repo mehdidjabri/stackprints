@@ -17,8 +17,8 @@ export default function Submit() {
       <Title detail="Submit" />
       <p className="lede">
         Build something agents use? Add it as an option in any layer. Fill this in, open the pull request, and once it
-        merges your product shows up in that layer, in the editor, and on every stack that uses it. Free, no
-        accounts, reviewed for accuracy.
+        merges your product shows up in that layer, in the editor, and on every stack that uses it. Free. You need a
+        GitHub account to open the pull request. Reviewed for accuracy.
       </p>
       <SubmitForm layers={layers} repo={SITE.repo} />
     </>

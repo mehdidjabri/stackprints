@@ -5,7 +5,7 @@
 import crypto from "node:crypto";
 import { BANDS } from "./bands";
 import { SITE, affiliated, asArray, getLayers, getNews, getStacks, getTrending, resolve, usage, usageText, usedBy } from "./data";
-import { DISCLOSURE, unknownLabel } from "./disclosure";
+import { EMPTY, disclosureOf, emptyLayers, isSupported } from "./disclosure";
 import { mdPath, optionHref } from "./links";
 import type { Layer, Option, Stack } from "./types";
 
@@ -37,7 +37,7 @@ function homeMd() {
   return (
     frontmatter({ title: SITE.name, description: SITE.description, canonical: abs("/"), "last-updated": BUILT }) +
     `# ${SITE.name}\n\n> ${SITE.description}\n\n## When to use this\n\n${WHEN_TO_USE.replace("{layers}", String(layers.length))}\n\n` +
-    `## Stacks\n\n${stacks.map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline} (${s.kind}${s.disclosure ? `, ${DISCLOSURE[s.disclosure].badge.toLowerCase()}` : ""})`).join("\n")}\n\n` +
+    `## Stacks\n\n${stacks.map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline} (${s.kind}${disclosureOf(s) ? `, ${disclosureOf(s)!.badge.toLowerCase()}` : ""})`).join("\n")}\n\n` +
     `## Layers\n\n${BANDS.map(([b, name]) => `### ${name}\n\n${layers
       .filter((l) => l.band === b)
       .map((l) => `- [${l.name}](${abs(mdPath(`/layer/${l.id}/`))}) (${l.ref}): ${l.description}`)
@@ -48,26 +48,32 @@ function homeMd() {
 
 function stackMd(s: Stack) {
   const rows = resolve(s);
-  const layers = getLayers();
-  const unk = unknownLabel(s.disclosure);
+  const badge = disclosureOf(s);
   const sources = [...(s.sources ?? [])];
   for (const u of Object.values(s.evidence ?? {}).flat()) if (!sources.some((x) => x.url === u)) sources.push({ title: u, url: u });
   const cite = (u: string) => `[${sources.findIndex((x) => x.url === u) + 1}]`;
-  const missing = layers.filter((l) => !(l.id in s.layers) && !s.notUsed?.includes(l.id));
-  // Where an empty slot means "not used", every unlisted layer is absent; elsewhere only confirmed ones are.
-  const absent = layers.filter((l) => !(l.id in s.layers) && (!unk || s.notUsed?.includes(l.id)));
+  const cites = (layerId: string) => (s.evidence?.[layerId] ?? []).map(cite).join("");
+  const link = (layerId: string, p: Option) => `[${p.name}](${abs(mdPath(optionHref(layerId, p.id)))})`;
+  // Picks the stack runs, then the ones it only supports.
+  const picksMd = (layerId: string, picks: Option[]) => {
+    const used = picks.filter((p) => !isSupported(s, layerId, p.id)).map((p) => link(layerId, p));
+    const extra = picks.filter((p) => isSupported(s, layerId, p.id)).map((p) => link(layerId, p));
+    return [used.join(", "), extra.length ? `${used.length ? "also supports" : "supports"}: ${extra.join(", ")}` : ""].filter(Boolean).join("; ");
+  };
+  const empty = emptyLayers(s, getLayers());
   const own = affiliated(s);
   return (
     frontmatter({ title: `${s.name} agent stack`, description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
-    `# ${s.name}\n\n${s.kind}${s.disclosure ? ` · ${DISCLOSURE[s.disclosure].badge}: ${DISCLOSURE[s.disclosure].about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}\n\n${s.description}\n\n` +
+    `# ${s.name}\n\n${s.kind}${badge ? ` · ${badge.badge}: ${badge.about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}\n\n${s.description}\n\n` +
     (own.length ? `> Disclosure: this ${s.disclosure === "example" ? "example" : "stack"} uses ${own.map((o) => o.name).join(", ")}. ${[...new Set(own.map((o) => o.affiliation))].join(" ")}\n\n` : "") +
     (s.links ? `${Object.entries(s.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n\n` : "") +
-    `## Layers\n\n${rows
-      .map(({ layer, picks }) => `- **${layer.name}** (${layer.ref}): ${picks.map((p) => `[${p.name}](${abs(mdPath(optionHref(layer.id, p.id)))})`).join(", ")}${(s.evidence?.[layer.id] ?? []).map(cite).join("")}`)
-      .join("\n")}\n` +
-    (unk && missing.length ? `\n## ${unk}\n\n${missing.map((l) => l.name).join(", ")}\n` : "") +
-    // "Confirmed" only means something next to a "Not disclosed" list.
-    (absent.length ? `\n## ${unk ? "Not used (confirmed)" : "Not used"}\n\n${absent.map((l) => l.name).join(", ")}\n` : "") +
+    `## Layers\n\n${rows.map(({ layer, picks }) => `- **${layer.name}** (${layer.ref}): ${picksMd(layer.id, picks)}${cites(layer.id)}`).join("\n")}\n` +
+    (empty.present.length ? `\n## In use, not disclosed\n\n${empty.present.map((l) => `${l.name}${cites(l.id)}`).join(", ")}\n` : "") +
+    (empty.unknown.length ? `\n## ${EMPTY.unknown}\n\n${empty.unknown.map((l) => l.name).join(", ")}\n` : "") +
+    // "Confirmed" only means something next to a list of layers that aren't known.
+    (empty.unused.length
+      ? `\n## ${empty.unknown.length || empty.present.length ? "Not used (confirmed)" : EMPTY.unused}\n\n${empty.unused.map((l) => l.name).join(", ")}\n`
+      : "") +
     (sources.length ? `\n## ${s.disclosure === "example" ? "Further reading" : "Sources"}\n\n${sources.map((x, i) => `${i + 1}. [${x.title}](${x.url})`).join("\n")}\n` : "") +
     `\nAs JSON: ${abs(`/api/stacks/${s.slug}.json`)}\n`
   );
@@ -143,11 +149,12 @@ The site is static and free: no accounts, no ads, no tracking. All data lives as
 export const READING = `Every stack carries a disclosure level, shown as a badge on its page and, for all but open source, next to its kind on its card:
 
 - Open source: built from the public code, so a layer that isn't listed is not used.
+- Open core: open source with closed parts (apps or a hosted service). The layers only those parts could fill are built from docs and read as not disclosed.
 - Documented: built from the vendor's docs, for products that aren't fully open (closed code or hosted services).
 - Closed: inferred from what the maker and reputable press have published.
 - Example: a design written for this site, not a product. Its links are further reading, not evidence.
 
-On the board, a hatched slot is not disclosed: the maker hasn't said, so the layer is unknown rather than absent. A dashed slot is not used. Any model, Any provider and Any host mark stacks that work with whichever model, gateway or host you choose.`;
+On the board, a hatched slot is not disclosed: the maker hasn't said, so the layer is unknown rather than absent. A slot outlined with a "?" is in use, but the maker hasn't said with what; a source confirms it's there. A dashed slot is not used. A part marked "Supported" or "Also supported" is one the stack can be configured to use rather than what it runs out of the box. Any model, Any provider and Any host mark stacks that work with whichever model, gateway or host you choose.`;
 
 // The site's conflict of interest, said wherever it applies (see Option.affiliation) and in full here.
 export const AFFILIATION = `Agentic Stack is built by the team behind past.dev, a memory API listed here. past.dev is the first suggestion in the Memory layer and the memory in example designs where a hosted memory API fits. Stacks of real products list past.dev only where a source shows they use it, and its benchmark numbers are marked vendor-reported like everyone else's.`;
@@ -192,7 +199,8 @@ ${WHEN_TO_USE.replace("{layers}", String(layers.length))}
 - Read a page as markdown: append .md to any URL, e.g. ${abs("/stack/openclaw.md")} or ${abs("/layer/memory.md")}.
 - Query the JSON API, no key needed: ${abs("/api/stacks.json")}, ${abs("/api/stacks/{slug}.json")}, ${abs("/api/layers/{layer}.json")}, ${abs("/api/options/{layer}/{option}.json")}. Spec: ${abs("/openapi.json")}. Docs: ${abs("/api/")}.
 - In a browser with WebMCP, the pages expose tools: search_agentic_stack, list_stacks, get_stack, get_layer, get_option, open_stack_in_editor.
-- On a closed or documented product, a layer that isn't listed is "not disclosed", not "not used". Check each stack's disclosure field.
+- On a closed or documented product, a layer that isn't listed is "not disclosed", not "not used". In the API, read each stack's notDisclosed, inUseUndisclosed (present, but the component isn't named) and notUsed lists rather than inferring from the disclosure field.
+- A pick with "supported": true is something the stack can be configured to use, not what it runs by default.
 - Stacks with disclosure "example" are designs written for this site, not products. Don't count them as adoption: an option's API record counts them apart (usage.exampleDesigns).
 
 ## Disclosure
@@ -219,7 +227,7 @@ ${AFFILIATION}
 
 const stacksLlms = () =>
   `# ${SITE.name}: stacks\n\n> How known AI agents are built, layer by layer, with sources.\n\n${getStacks()
-    .map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline} (${s.kind}; ${s.disclosure ?? "unknown"})`)
+    .map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline} (${s.kind}; ${s.disclosure ?? "unknown"}${s.closedLayers?.length ? ", open core" : ""})`)
     .join("\n")}\n`;
 
 const layersLlms = () =>
@@ -244,7 +252,7 @@ const stackSummary = (s: Stack) => ({
 
 function stackJson(s: Stack) {
   const layers = getLayers();
-  const unk = unknownLabel(s.disclosure);
+  const empty = emptyLayers(s, layers);
   return {
     ...stackSummary(s),
     description: s.description,
@@ -258,13 +266,22 @@ function stackJson(s: Stack) {
         ref: l.ref,
         picks: asArray(s.layers[l.id]).map((id) => {
           const o = l.options.find((x) => x.id === id)!;
-          return { id, name: o.name, note: o.note ?? null, ...(o.affiliation ? { affiliation: o.affiliation } : {}), url: abs(optionHref(l.id, id)), api: abs(`/api/options/${l.id}/${id}.json`) };
+          return {
+            id,
+            name: o.name,
+            note: o.note ?? null,
+            ...(o.affiliation ? { affiliation: o.affiliation } : {}),
+            ...(isSupported(s, l.id, id) ? { supported: true } : {}),
+            url: abs(optionHref(l.id, id)),
+            api: abs(`/api/options/${l.id}/${id}.json`),
+          };
         }),
         evidence: s.evidence?.[l.id] ?? [],
       })),
-    // On closed or documented stacks, unlisted layers are unknown rather than absent.
-    notDisclosed: unk ? layers.filter((l) => !(l.id in s.layers) && !s.notUsed?.includes(l.id)).map((l) => l.id) : [],
-    notUsed: unk ? s.notUsed ?? [] : layers.filter((l) => !(l.id in s.layers)).map((l) => l.id),
+    // Every unlisted layer is in exactly one list: unknown, present but unnamed, or absent.
+    notDisclosed: empty.unknown.map((l) => l.id),
+    inUseUndisclosed: empty.present.map((l) => ({ id: l.id, name: l.name, evidence: s.evidence?.[l.id] ?? [] })),
+    notUsed: empty.unused.map((l) => l.id),
     sources: s.sources ?? [],
   };
 }
@@ -372,7 +389,7 @@ function openapi() {
             name: { type: "string" },
             kind: { type: "string" },
             tagline: { type: "string" },
-            disclosure: { type: ["string", "null"], enum: ["open-source", "documented", "closed", "example", null], description: "What an absent layer means: open-source/example = not used, documented/closed = not disclosed. example = a design written for this site, not a product" },
+            disclosure: { type: ["string", "null"], enum: ["open-source", "documented", "closed", "example", null], description: "What an absent layer means: open-source/example = not used, documented/closed = not disclosed. An open-source stack with closed parts (open core) lists the layers only those parts could fill under notDisclosed. example = a design written for this site, not a product" },
             researched: { type: ["string", "null"], format: "date" },
             links: { type: "object", additionalProperties: { type: "string", format: "uri" } },
             url: { type: "string", format: "uri" },
@@ -397,12 +414,25 @@ function openapi() {
                       name: { type: "string" },
                       band: { type: "string" },
                       ref: { type: "string" },
-                      picks: { type: "array", items: { $ref: "#/components/schemas/OptionSummary" } },
+                      picks: {
+                        type: "array",
+                        items: {
+                          allOf: [
+                            { $ref: "#/components/schemas/OptionSummary" },
+                            { type: "object", properties: { supported: { type: "boolean", description: "Present and true when the stack can be configured to use this option but doesn't run it by default" } } },
+                          ],
+                        },
+                      },
                       evidence: { type: "array", items: { type: "string", format: "uri" } },
                     },
                   },
                 },
-                notDisclosed: { type: "array", items: { type: "string" }, description: "Layer ids the maker hasn't disclosed" },
+                notDisclosed: { type: "array", items: { type: "string" }, description: "Layer ids the maker hasn't disclosed: unknown, not absent" },
+                inUseUndisclosed: {
+                  type: "array",
+                  description: "Layers a source confirms are present, but whose component the maker hasn't named",
+                  items: { type: "object", properties: { id: { type: "string" }, name: { type: "string" }, evidence: { type: "array", items: { type: "string", format: "uri" } } } },
+                },
                 notUsed: { type: "array", items: { type: "string" }, description: "Layer ids known not to be used" },
                 sources: { type: "array", items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" } } } },
               },
@@ -477,7 +507,7 @@ Read-only data about AI agent stacks at ${SITE.url}. No key needed.
 1. Find things: GET ${abs("/search.json")} (rows of [kind, title, subtitle, href, logo, extra]) or list them: GET ${abs("/api/stacks.json")}, ${abs("/api/layers.json")}.
 2. Read a stack: GET ${abs("/api/stacks/{slug}.json")}. Each layer has picks and evidence URLs; cite those when you repeat a claim.
 3. Compare a layer: GET ${abs("/api/layers/{layer}.json")}, then ${abs("/api/options/{layer}/{option}.json")} for datasheets, caveats ("watchOut") and recent news.
-4. Respect disclosure: if a stack's disclosure is "closed" or "documented", a layer listed in notDisclosed is unknown, not absent. Say "not disclosed" rather than guessing.
+4. Respect disclosure: a layer listed in notDisclosed is unknown, not absent. Say "not disclosed" rather than guessing. A layer in inUseUndisclosed is present, but its component isn't named; cite its evidence. A pick marked "supported": true is configurable, not the default.
 5. Link people to the HTML page (the url field) or the markdown twin (append .md).
 
 ## Notes

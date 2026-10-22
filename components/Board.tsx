@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { EMPTY, type Knowable, emptyState, isSupported } from "@/lib/disclosure";
 import { optionHref } from "@/lib/links";
-import type { Layer, Option } from "@/lib/types";
+import type { Layer, Option, Stack } from "@/lib/types";
 import { Logo } from "./Logo";
 
 export type Slot = Pick<Layer, "id" | "name" | "band" | "ref">;
@@ -48,19 +49,19 @@ type Props = {
   slots?: Slot[];
   mini?: boolean;
   label?: string;
-  /** What an empty slot means on this stack ("Not disclosed"), or null when it just isn't used. */
-  unknown?: string | null;
-  /** Layers confirmed absent: always drawn as "not used", even on a closed stack. */
-  notUsed?: string[];
+  /** What the empty slots of this stack mean (see lib/disclosure), and which picks are only supported. */
+  stack?: Knowable & Pick<Stack, "supports">;
   /** Editor hooks: remove a pick, add to a filled module, fill an empty slot. */
   onRemove?: (layerId: string, optionId: string) => void;
   addSlot?: (layerId: string) => React.ReactNode;
   emptySlot?: (layer: Slot) => React.ReactNode;
 };
 
-export function Board({ modules, slots, mini = false, label, unknown, notUsed = [], onRemove, addSlot, emptySlot }: Props) {
+export function Board({ modules, slots, mini = false, label, stack, onRemove, addSlot, emptySlot }: Props) {
   const filled = new Map(modules.map((m) => [m.layer.id, m]));
   const all = slots ?? modules.map((m) => m.layer);
+  // The kinds of empty slot this board draws, for the legend.
+  const empties = new Set(slots ? all.filter((l) => !filled.has(l.id)).map((l) => emptyState(stack, l.id)) : []);
 
   const has: Record<string, boolean> = {};
   for (const l of all) has[ZONE[l.band]] = true;
@@ -70,14 +71,15 @@ export function Board({ modules, slots, mini = false, label, unknown, notUsed = 
     const m = filled.get(layer.id);
     const core = CORE.has(layer.id);
     if (!m) {
-      // Unknown (hatched) on closed stacks unless confirmed absent; otherwise simply not used (dashed).
-      const unk = unknown && !notUsed.includes(layer.id) ? unknown : null;
+      // Hatched: not disclosed. Outlined with a "?": in use, component not named. Dashed: not used.
+      const state = emptyState(stack, layer.id);
+      const text = EMPTY[state];
       return (
         <section
           key={layer.id}
-          className={`module empty${core ? " core" : ""}${unk ? " unknown" : ""}`}
-          aria-label={`${layer.name}: ${unk ?? "not used"}`}
-          title={mini ? `${layer.name}: ${unk ?? "not used"}` : undefined}
+          className={`module empty${core ? " core" : ""}${state === "unused" ? "" : ` ${state}`}`}
+          aria-label={`${layer.name}: ${text.toLowerCase()}`}
+          title={mini ? `${layer.name}: ${text.toLowerCase()}` : undefined}
         >
           {!mini && (
             <header className="silk">
@@ -85,19 +87,29 @@ export function Board({ modules, slots, mini = false, label, unknown, notUsed = 
               <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
             </header>
           )}
-          {/* Both empty states say what they are, not only the hatched one. */}
-          {!mini && !emptySlot && <span className="unknown-label">{unk ?? "Not used"}</span>}
+          {/* Every empty state says what it is, not only the hatched one. */}
+          {!mini && !emptySlot && (
+            <span className="unknown-label">
+              {state === "present" && <b className="q" aria-hidden="true">?</b>}
+              {text}
+            </span>
+          )}
+          {mini && state === "present" && <b className="q" aria-hidden="true">?</b>}
           {!mini && emptySlot?.(layer)}
         </section>
       );
     }
-    const picks = mini ? m.picks.filter((p) => p.logo).slice(0, MINI_MARKS[layer.id] ?? 1) : m.picks;
+    // What the stack runs comes first; picks it only supports follow, marked as such.
+    const sup = (p: { id: string }) => isSupported(stack, layer.id, p.id);
+    const ordered = [...m.picks.filter((p) => !sup(p)), ...m.picks.filter(sup)];
+    const supportedLabel = m.picks.some((p) => !sup(p)) ? "Also supported" : "Supported";
+    const picks = mini ? ordered.filter((p) => p.logo).slice(0, MINI_MARKS[layer.id] ?? 1) : ordered;
     return (
       <section
         key={layer.id}
         className={core ? "module core" : "module"}
         aria-label={layer.name}
-        title={mini ? `${layer.name}: ${m.picks.map((p) => p.name).join(", ")}` : undefined}
+        title={mini ? `${layer.name}: ${ordered.map((p) => (sup(p) ? `${p.name} (supported)` : p.name)).join(", ")}` : undefined}
       >
         {!mini && (
           <header className="silk">
@@ -107,7 +119,7 @@ export function Board({ modules, slots, mini = false, label, unknown, notUsed = 
         )}
         <div className="chips">
           {picks.map((p) => (
-            <div key={p.id} className="chip">
+            <div key={p.id} className={sup(p) ? "chip supported" : "chip"}>
               <Logo option={p} />
               {mini ? (
                 <Link href={optionHref(layer.id, p.id)} className="chip-link" aria-label={p.name} />
@@ -116,7 +128,13 @@ export function Board({ modules, slots, mini = false, label, unknown, notUsed = 
                   <Link href={optionHref(layer.id, p.id)} className="chip-link chip-name">
                     {p.name}
                   </Link>
-                  {p.note && <span className="chip-note">{p.note}</span>}
+                  {sup(p) ? (
+                    <span className="chip-note" title={p.note}>
+                      {supportedLabel}
+                    </span>
+                  ) : (
+                    p.note && <span className="chip-note">{p.note}</span>
+                  )}
                 </span>
               )}
               {onRemove && (
@@ -163,16 +181,22 @@ export function Board({ modules, slots, mini = false, label, unknown, notUsed = 
               {BAND_NAME[band]}
             </span>
           ))}
-          {slots && all.some((l) => !filled.has(l.id) && unknown && !notUsed.includes(l.id)) && (
+          {empties.has("unknown") && (
             <span className="lg-unknown">
               <i />
-              {unknown}
+              {EMPTY.unknown}
             </span>
           )}
-          {slots && all.some((l) => !filled.has(l.id) && (!unknown || notUsed.includes(l.id))) && (
+          {empties.has("present") && (
+            <span className="lg-present">
+              <i />
+              {EMPTY.present}
+            </span>
+          )}
+          {empties.has("unused") && (
             <span className="lg-empty">
               <i />
-              Not used
+              {EMPTY.unused}
             </span>
           )}
           {label && <span className="board-label">{label}</span>}

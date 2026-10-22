@@ -99,12 +99,37 @@ for (const f of jsonFiles("content/stacks")) {
   for (const src of s.sources ?? [])
     if (!src.title || !/^https:\/\//.test(src.url ?? "")) errors.push(`${f}: each source needs a title and an https url`);
   for (const [layer, urls] of Object.entries(s.evidence ?? {})) {
-    if (!(layer in (s.layers ?? {}))) errors.push(`${f}: evidence for "${layer}" but the stack doesn't pick it`);
+    if (!(layer in (s.layers ?? {})) && !s.inUseUndisclosed?.includes(layer)) errors.push(`${f}: evidence for "${layer}" but the stack doesn't pick it`);
     if (!Array.isArray(urls) || !urls.every((u) => /^https:\/\//.test(u))) errors.push(`${f}: evidence.${layer} must be a list of https URLs`);
   }
   for (const layer of s.notUsed ?? []) {
     if (!index.has(layer)) errors.push(`${f}: notUsed has unknown layer "${layer}"`);
     if (layer in (s.layers ?? {})) errors.push(`${f}: "${layer}" is both picked and notUsed`);
+  }
+  // In use, not disclosed: a presence claim, so it needs a source like any pick.
+  for (const layer of s.inUseUndisclosed ?? []) {
+    if (!index.has(layer)) errors.push(`${f}: inUseUndisclosed has unknown layer "${layer}"`);
+    if (layer in (s.layers ?? {})) errors.push(`${f}: "${layer}" is both picked and inUseUndisclosed`);
+    if (s.notUsed?.includes(layer)) errors.push(`${f}: "${layer}" is both notUsed and inUseUndisclosed`);
+    if (!s.evidence?.[layer]?.length) errors.push(`${f}: inUseUndisclosed "${layer}" needs an evidence URL`);
+  }
+  // Open core: the layers only an open-source stack's closed parts could fill.
+  if (s.closedLayers && s.disclosure !== "open-source") errors.push(`${f}: closedLayers only applies to open-source stacks`);
+  for (const layer of s.closedLayers ?? []) {
+    if (!index.has(layer)) errors.push(`${f}: closedLayers has unknown layer "${layer}"`);
+    if (s.notUsed?.includes(layer)) errors.push(`${f}: "${layer}" is both closedLayers and notUsed`);
+  }
+  // Supported picks are a subset of the layer's picks.
+  for (const [layer, ids] of Object.entries(s.supports ?? {})) {
+    const picked = [s.layers?.[layer] ?? []].flat();
+    if (!Array.isArray(ids) || !ids.every((id) => picked.includes(id))) errors.push(`${f}: supports.${layer} must list ids the stack picks in ${layer}`);
+  }
+  // Any model, Any provider and Any host stand alone, or next to a default as a supported pick.
+  for (const [layer, v] of Object.entries(s.layers ?? {})) {
+    const picks = [v].flat();
+    for (const id of picks)
+      if (/^any-/.test(id) && picks.length > 1 && !s.supports?.[layer]?.includes(id))
+        errors.push(`${f}: ${layer}/${id} next to other picks must be listed in supports.${layer}`);
   }
   if (s.researched && !/^\d{4}-\d{2}-\d{2}$/.test(s.researched)) errors.push(`${f}: researched must be YYYY-MM-DD`);
   for (const [layer, v] of Object.entries(s.layers ?? {})) {

@@ -51,7 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/#stacks">Stacks</Link>
               <Link href="/layers/">Layers</Link>
               <Link href="/mine/">Mine</Link>
-              <Link href="/submit/">Submit</Link>
               <Link href="/contribute/">Contribute</Link>
             </nav>
           </div>

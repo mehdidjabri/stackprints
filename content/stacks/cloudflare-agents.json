@@ -77,6 +77,11 @@
     "identity": "mcp-oauth-2-1",
     "observability": "opentelemetry-genai"
   },
+  "supports": {
+    "inference": [
+      "any-host"
+    ]
+  },
   "evidence": {
     "channels": [
       "https://developers.cloudflare.com/agents/communication-channels/chat/",

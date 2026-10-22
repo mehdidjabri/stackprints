@@ -164,6 +164,27 @@
       "logs"
     ]
   },
+  "supports": {
+    "router": [
+      "any-provider",
+      "openrouter",
+      "litellm",
+      "vercel-ai-gateway",
+      "cloudflare-ai-gateway"
+    ],
+    "inference": [
+      "any-host",
+      "groq",
+      "cerebras",
+      "fireworks",
+      "together",
+      "baseten",
+      "deepinfra",
+      "bedrock-vertex-azure",
+      "ollama",
+      "vllm"
+    ]
+  },
   "evidence": {
     "channels": [
       "https://docs.openclaw.ai/channels",

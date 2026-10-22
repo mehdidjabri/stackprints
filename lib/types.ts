@@ -75,6 +75,15 @@ export type Stack = {
   evidence?: Record<string, string[]>;
   /** Layers confirmed absent, even on a closed stack. */
   notUsed?: string[];
+  /** Layers a source confirms are present but whose component the vendor hasn't named. Each needs evidence. */
+  inUseUndisclosed?: string[];
+  /**
+   * Open-source stacks with closed parts (apps, a hosted service): layers only those parts could fill.
+   * Built from docs, so an empty one is "not disclosed" rather than "not used", and the badge reads "Open core".
+   */
+  closedLayers?: string[];
+  /** Per layer: picks that are supported (configurable) rather than what the stack runs by default. */
+  supports?: Record<string, string[]>;
   researched?: string;
   /** Official links for stacks that are real products. Full https URLs. */
   links?: Partial<Record<"site" | "repo" | "docs" | "announcement", string>>;

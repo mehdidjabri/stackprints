@@ -4,7 +4,7 @@
   "logo": "openai",
   "kind": "Consumer agent",
   "tagline": "Always-on personal agents with their own computer, handle and face.",
-  "description": "Announced at OpenAI DevDay 2026, dots are always-on agents in ChatGPT that OpenAI says are powered by GPT-6 Astra. Each dot has its own cloud computer and browser, keeps its own notes, runs on saved schedules, on events from connected services such as Slack and on its own wake-ups, can split work across background agents, and acts, asks or hands off under per-action rules checked by an automatic review. It can also work on one connected personal computer, using its local files and apps while the ChatGPT app stays open; workspace admins have to allow local computer access separately. You reach it in the ChatGPT apps, Slack, Teams (invite-only alpha) or by voice call. It has a name, @handle and avatar, and it can have its own Slack identity. OpenAI hasn't published the agent harness, the cloud computer and browser technology, the voice stack or how notes are stored. The docs don't cover payments, and they describe no email address or phone number for a dot.",
+  "description": "Announced at OpenAI DevDay 2026, dots are always-on agents in ChatGPT that OpenAI says are powered by GPT-6 Astra. Each dot has its own cloud computer and browser, keeps its own notes, runs on saved schedules, on events from connected services such as Slack and on its own wake-ups, can split work across background agents, and acts, asks or hands off under per-action rules checked by an automatic review. It can also work on one connected personal computer, using its local files and apps while the ChatGPT app stays open; workspace admins have to allow local computer access separately. You reach it in the ChatGPT apps, Slack, Teams (invite-only alpha) or by voice call. It has a name, @handle and avatar, and it can have its own Slack identity. OpenAI hasn't published the agent harness, the cloud computer and browser vendors, the voice stack or how notes are stored. The docs don't cover payments, and they describe no email address or phone number for a dot.",
   "links": {
     "site": "https://chatgpt.com/features/dots/",
     "announcement": "https://openai.com/index/introducing-dots/",
@@ -93,6 +93,10 @@
       "credential-vault"
     ]
   },
+  "inUseUndisclosed": [
+    "voice",
+    "harness"
+  ],
   "evidence": {
     "channels": [
       "https://learn.chatgpt.com/codex/dots/channels",
@@ -108,6 +112,13 @@
       "https://learn.chatgpt.com/codex/dots/tasks-and-memory",
       "https://learn.chatgpt.com/codex/dots/computers-and-apps",
       "https://learn.chatgpt.com/docs/whats-new/devday-2026"
+    ],
+    "voice": [
+      "https://learn.chatgpt.com/codex/dots/channels",
+      "https://learn.chatgpt.com/docs/dots"
+    ],
+    "harness": [
+      "https://learn.chatgpt.com/docs/dots"
     ],
     "model": [
       "https://learn.chatgpt.com/docs/dots",

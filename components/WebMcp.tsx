@@ -47,7 +47,7 @@ const TOOLS: Tool[] = [
   {
     name: "get_stack",
     description:
-      "Get how one agent is built, layer by layer, with evidence URLs and sources. On closed and documented stacks, layers in notDisclosed are unknown, not absent. Stacks with disclosure 'example' are designs, not products.",
+      "Get how one agent is built, layer by layer, with evidence URLs and sources. Layers in notDisclosed are unknown, not absent; layers in inUseUndisclosed are present but their component isn't named; picks with supported: true are configurable, not the default. Stacks with disclosure 'example' are designs, not products.",
     inputSchema: schema({ slug: str("Stack slug, e.g. openclaw, chatgpt-dots, pi, poke") }),
     annotations: { readOnlyHint: true },
     execute: (i, o) => getJson(`/api/stacks/${encodeURIComponent(String(i.slug))}.json`, o?.signal),

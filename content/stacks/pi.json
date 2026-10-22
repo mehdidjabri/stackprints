@@ -65,6 +65,24 @@
     ],
     "identity": "env-vars"
   },
+  "supports": {
+    "router": [
+      "any-provider",
+      "openrouter",
+      "vercel-ai-gateway",
+      "cloudflare-ai-gateway"
+    ],
+    "inference": [
+      "any-host",
+      "groq",
+      "cerebras",
+      "fireworks",
+      "together",
+      "baseten",
+      "bedrock-vertex-azure",
+      "workers-ai"
+    ]
+  },
   "evidence": {
     "channels": [
       "https://github.com/earendil-works/pi",

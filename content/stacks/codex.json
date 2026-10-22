@@ -11,6 +11,14 @@
     "docs": "https://developers.openai.com/codex"
   },
   "disclosure": "open-source",
+  "closedLayers": [
+    "voice",
+    "devices",
+    "readiness",
+    "connectors",
+    "payments",
+    "durable"
+  ],
   "layers": {
     "channels": [
       "cli-tui",
@@ -76,6 +84,14 @@
       "mcp-oauth-2-1"
     ],
     "observability": "opentelemetry-genai"
+  },
+  "supports": {
+    "model": [
+      "any-model"
+    ],
+    "router": [
+      "any-provider"
+    ]
   },
   "evidence": {
     "channels": [

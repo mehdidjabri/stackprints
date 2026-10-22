@@ -122,7 +122,9 @@ Set `disclosure`. It decides what an **empty** slot means:
 | `closed` | closed product; only announcements and press | not disclosed |
 | `example` | an illustrative stack we designed, not a real product | not used |
 
-There are only two empty states, named the same everywhere (board, prose, markdown, API): a **hatched** slot is *not disclosed* (unknown, not absent; `notDisclosed` in the API) and a **dashed** slot is *not used* (`notUsed`). Any model, Any provider and Any host are picks, not empty states: they mark stacks that work with whichever model, gateway or host you choose.
+There are three empty states, named the same everywhere (board, prose, markdown, API): a **hatched** slot is *not disclosed* (unknown, not absent; `notDisclosed` in the API), a slot **outlined with a "?"** is *in use, not disclosed* (a source confirms the layer is there but not what fills it; `inUseUndisclosed`), and a **dashed** slot is *not used* (`notUsed`). Any model, Any provider and Any host are picks, not empty states: they mark stacks that work with whichever model, gateway or host you choose.
+
+**Open core.** Some open-source products have closed parts: desktop or mobile apps, an IDE extension, a hosted service. Keep `disclosure: "open-source"` and list in `closedLayers` the layers only those closed parts could fill. Those layers are built from docs, so when empty they read *not disclosed* instead of *not used*, and the stack's badge reads "Open core". Codex is the example.
 
 ### Fields
 
@@ -138,7 +140,19 @@ There are only two empty states, named the same everywhere (board, prose, markdo
     "model": ["https://help.openai.com/en/articles/20001530-getting-started-with-your-dot"]
   },
   "notUsed": ["voice"],               // only layers a source confirms are absent
+  "inUseUndisclosed": ["harness"],    // present per a source, component not named; needs evidence too
   "researched": "2026-10-21"
+}
+```
+
+Two more fields, for the cases above:
+
+```jsonc
+{
+  "disclosure": "open-source",
+  "closedLayers": ["voice", "payments"],          // open core: layers only the closed parts could fill
+  "layers": { "model": ["gpt-6-astra", "any-model"], "router": ["direct-provider", "any-provider"] },
+  "supports": { "model": ["any-model"], "router": ["any-provider"] }   // picks that are configurable, not the default
 }
 ```
 
@@ -150,7 +164,9 @@ There are only two empty states, named the same everywhere (board, prose, markdo
    On **documented** and **closed** stacks, a layer the product simply doesn't have still shows as "not disclosed" until you set `notUsed`. Set it only when a first-party page makes the absence clear (the feature reference says so, or the layer is plainly outside what the product is, such as payments on a coding agent with no way to spend), and add that page to `sources`. Where a pattern option describes reality (`payments/none`, `durable/in-process`), pick it with evidence instead.
 4. **Use existing options.** If a documented component has no option yet, add one in `content/options/<layer>/<id>.json` per the rules above. Check it doesn't already exist under another name first.
 5. Keep the `description` neutral and say what's public: "OpenAI hasn't published the model routing…" is fine.
-6. `npm run check` must pass.
+6. **Present but unnamed.** When a source confirms a layer is there but not what fills it (dots take voice calls; nothing says with what), add the layer to `inUseUndisclosed` with an `evidence` entry. Don't invent a "proprietary X" option for it. Pick a pattern option instead only when the architecture itself is documented (a persistent per-user cloud computer is `per-user-cloud-computer` even if the vendor behind it isn't named).
+7. **Default or supported.** A plain pick is what the stack runs, out of the box where that applies, as a cited source states. Picks the stack can be configured to use go in `layers` too, and also in `supports` for that layer. Any model, Any provider and Any host stand alone, or go in `supports` next to a default. If sources name specific supported options that exist as options (OpenRouter, LiteLLM…), list them rather than collapsing them into Any provider. When no source names a default, every pick in the layer is in `supports`. "Recommended" is not "default".
+8. `npm run check` must pass. It rejects a layer that is both picked and `notUsed` or `inUseUndisclosed`, an `inUseUndisclosed` layer with no evidence, `closedLayers` on a stack that isn't open source, a `supports` id the layer doesn't pick, and Any model, Any provider or Any host next to other picks without `supports`.
 
 ### Example stacks
 

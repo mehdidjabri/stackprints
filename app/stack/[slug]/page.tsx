@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { StackView } from "@/components/StackView";
 import { Title } from "@/components/Title";
 import { SITE, affiliated, getLayers, getStack, getStacks, resolve } from "@/lib/data";
-import { DISCLOSURE, disclosureMark, slotsNote, unknownLabel } from "@/lib/disclosure";
+import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, slotsNote } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
 import { primaryLink, prettyUrl, withMarkdown } from "@/lib/links";
 
@@ -43,18 +43,22 @@ export default async function StackPage({ params }: Props) {
   const similar = all.filter((x) => x.kind === s.kind && x.slug !== s.slug);
   const site = primaryLink(s.links);
   const d = s.disclosure;
-  const unk = unknownLabel(d);
-  const layers = getLayers();
-  const notUsed = layers.filter((l) => s.notUsed?.includes(l.id));
-  const missing = layers.filter((l) => !(l.id in s.layers) && !s.notUsed?.includes(l.id));
-  // Where an empty slot means "not used", every unlisted layer is absent; elsewhere only confirmed ones are.
-  const absent = layers.filter((l) => !(l.id in s.layers) && (!unk || s.notUsed?.includes(l.id)));
+  const badge = disclosureOf(s);
+  // Empty layers split by meaning: not disclosed (hatched), in use but unnamed ("?"), not used (dashed).
+  const empty = emptyLayers(s, getLayers());
+  const unknowable = empty.unknown.length + empty.present.length > 0;
   const own = affiliated(s);
   // Sources are numbered; evidence URLs not in the list get appended so every citation resolves.
   const sources = [...(s.sources ?? [])];
   for (const u of Object.values(s.evidence ?? {}).flat())
     if (!sources.some((x) => x.url === u)) sources.push({ title: prettyUrl(u), url: u });
   const cite = (u: string) => sources.findIndex((x) => x.url === u) + 1;
+  const cites = (layerId: string) =>
+    (s.evidence?.[layerId] ?? []).map((u) => (
+      <a key={u} className="cite" href={u} rel="noopener" title={sources.find((x) => x.url === u)?.title ?? u}>
+        [{cite(u)}]
+      </a>
+    ));
   // A kind made only of example designs says so in the menu, as each example does.
   const kindHint = (k: string) => {
     const xs = all.filter((x) => x.kind === k);
@@ -105,20 +109,21 @@ export default async function StackPage({ params }: Props) {
             logo: s.logo,
             items: all
               .filter((x) => x.kind === s.kind)
-              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug, logo: x.logo, hint: disclosureMark(x.disclosure) ?? undefined })),
+              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug, logo: x.logo, hint: disclosureMark(x) ?? undefined })),
           },
         ]}
       />
       <div className="meta-line">
-        {d && (
-          <span className="tag disclosure" title={DISCLOSURE[d].about}>
-            {DISCLOSURE[d].badge}
+        {badge && (
+          <span className="tag disclosure" title={badge.about}>
+            {badge.badge}
           </span>
         )}
         <span>
-          {rows.length} {unk ? "known layers" : "layers"}
-          {unk && missing.length > 0 && ` · ${missing.length} ${unk.toLowerCase()}`}
-          {absent.length > 0 && ` · ${absent.length} not used`}
+          {rows.length} {unknowable ? "known layers" : "layers"}
+          {empty.present.length > 0 && ` · ${empty.present.length} in use, undisclosed`}
+          {empty.unknown.length > 0 && ` · ${empty.unknown.length} ${EMPTY.unknown.toLowerCase()}`}
+          {empty.unused.length > 0 && ` · ${empty.unused.length} ${EMPTY.unused.toLowerCase()}`}
         </span>
         {s.author && (
           <>
@@ -141,10 +146,10 @@ export default async function StackPage({ params }: Props) {
           </>
         )}
       </div>
-      {d && (
+      {badge && (
         <p className="muted small reading">
-          {DISCLOSURE[d].about}
-          {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}. {slotsNote(d, notUsed.length)}{" "}
+          {badge.about}
+          {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}. {slotsNote(empty)}{" "}
           <Link href="/about/#disclosure">How to read a stack</Link>
         </p>
       )}
@@ -167,38 +172,53 @@ export default async function StackPage({ params }: Props) {
       <div className="prose">
         <h2>Layer by layer</h2>
         <dl>
-          {rows.map(({ layer, picks }) => (
-            <div key={layer.id} style={{ marginBottom: 12 }}>
-              <dt>
-                <Link href={`/layer/${layer.id}/`}>
-                  <strong>{layer.name}</strong>
-                </Link>
-              </dt>
-              <dd style={{ margin: 0 }} className="muted">
-                {picks.map((p, i) => (
-                  <span key={p.id}>
-                    {i > 0 && ", "}
-                    {p.name}
-                    {p.note && ` (${p.note.toLowerCase()})`}
-                  </span>
-                ))}
-                {(s.evidence?.[layer.id] ?? []).map((u) => (
-                  <a key={u} className="cite" href={u} rel="noopener" title={sources.find((x) => x.url === u)?.title ?? u}>
-                    [{cite(u)}]
-                  </a>
-                ))}
-              </dd>
-            </div>
-          ))}
+          {rows.map(({ layer, picks: all }) => {
+            // What the stack runs, then what it only supports, said once.
+            const picks = all.filter((p) => !isSupported(s, layer.id, p.id));
+            const extra = all.filter((p) => isSupported(s, layer.id, p.id));
+            return (
+              <div key={layer.id} style={{ marginBottom: 12 }}>
+                <dt>
+                  <Link href={`/layer/${layer.id}/`}>
+                    <strong>{layer.name}</strong>
+                  </Link>
+                </dt>
+                <dd style={{ margin: 0 }} className="muted">
+                  {picks.map((p, i) => (
+                    <span key={p.id}>
+                      {i > 0 && ", "}
+                      {p.name}
+                      {p.note && ` (${p.note.toLowerCase()})`}
+                    </span>
+                  ))}
+                  {extra.length > 0 && `${picks.length ? "; also supports " : "Supports "}${extra.map((p) => p.name).join(", ")}`}
+                  {cites(layer.id)}
+                </dd>
+              </div>
+            );
+          })}
         </dl>
-        {unk && missing.length > 0 && (
+        {empty.present.length > 0 && (
           <p className="muted">
-            <strong>{unk}:</strong> {missing.map((l) => l.name).join(", ")}.
+            <strong>In use, not disclosed:</strong>{" "}
+            {empty.present.map((l, i) => (
+              <span key={l.id}>
+                {i > 0 && ", "}
+                {l.name}
+                {cites(l.id)}
+              </span>
+            ))}
+            .
           </p>
         )}
-        {absent.length > 0 && (
+        {empty.unknown.length > 0 && (
           <p className="muted">
-            <strong>Not used:</strong> {absent.map((l) => l.name).join(", ")}.
+            <strong>{EMPTY.unknown}:</strong> {empty.unknown.map((l) => l.name).join(", ")}.
+          </p>
+        )}
+        {empty.unused.length > 0 && (
+          <p className="muted">
+            <strong>{EMPTY.unused}:</strong> {empty.unused.map((l) => l.name).join(", ")}.
           </p>
         )}
         {own.length > 0 && (

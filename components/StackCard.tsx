@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { resolve } from "@/lib/data";
-import { DISCLOSURE, disclosureMark } from "@/lib/disclosure";
+import { disclosureMark, disclosureOf } from "@/lib/disclosure";
 import { primaryLink, prettyUrl } from "@/lib/links";
 import type { Stack } from "@/lib/types";
 import { Logo } from "./Logo";
@@ -10,7 +10,7 @@ export function StackCard({ stack }: { stack: Stack }) {
   const rows = resolve(stack);
   const site = primaryLink(stack.links);
   // Example designs, documented and closed stacks say so on the card, so none passes for an open, real product.
-  const mark = disclosureMark(stack.disclosure);
+  const mark = disclosureMark(stack);
   return (
     <div className="card">
       <div className="card-head">
@@ -25,7 +25,7 @@ export function StackCard({ stack }: { stack: Stack }) {
           {mark && (
             <>
               {" · "}
-              <span title={DISCLOSURE[stack.disclosure!].about}>{mark}</span>
+              <span title={disclosureOf(stack)!.about}>{mark}</span>
             </>
           )}
         </span>

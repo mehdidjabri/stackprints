@@ -4,6 +4,7 @@ import { StackCard } from "@/components/StackCard";
 import { Trending } from "@/components/Trending";
 import { SITE, asArray, getLayers, getStacks } from "@/lib/data";
 import { BANDS } from "@/lib/bands";
+import { EMPTY } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
 import { primaryLink } from "@/lib/links";
 
@@ -29,6 +30,9 @@ export default function Home() {
     logo: s.logo,
     disclosure: s.disclosure,
     notUsed: s.notUsed,
+    inUseUndisclosed: s.inUseUndisclosed,
+    closedLayers: s.closedLayers,
+    supports: s.supports,
     layers: Object.fromEntries(Object.entries(s.layers).map(([k, v]) => [k, asArray(v)])),
   }));
 
@@ -98,15 +102,21 @@ export default function Home() {
 
       <div className="section-head" id="stacks">
         <h2>Stacks</h2>
-        {/* The two empty states the cards use, same swatches as the board legend. */}
+        {/* The empty states the cards use, same swatches as the board legend. */}
         <span className="legend">
           <span className="lg-unknown">
             <i />
-            Not disclosed
+            {EMPTY.unknown}
           </span>
+          {stacks.some((s) => s.inUseUndisclosed?.length) && (
+            <span className="lg-present">
+              <i />
+              {EMPTY.present}
+            </span>
+          )}
           <span className="lg-empty">
             <i />
-            Not used
+            {EMPTY.unused}
           </span>
         </span>
         <span className="muted">{stacks.length}</span>
