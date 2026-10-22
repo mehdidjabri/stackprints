@@ -59,10 +59,11 @@ export default async function StackPage({ params }: Props) {
   const own = affiliated(s);
   // Sources are numbered the same on the page, in markdown and in the API (evidence URLs appended).
   const sources = stackSources(s);
-  // Evidence is per layer, so citations are too, in source order.
+  // Evidence is per layer, so citations are too, in source order. Each goes to its entry in the
+  // numbered list below, which links out; its name says which source it is.
   const cites = (layerId: string) =>
     citeNumbers(sources, s.evidence?.[layerId]).map((n) => (
-      <a key={n} className="cite" href={sources[n - 1].url} rel="noopener" title={sources[n - 1].title}>
+      <a key={n} className="cite" href={`#src-${n}`} aria-label={`Source ${n}: ${sources[n - 1].title}`} title={sources[n - 1].title}>
         [{n}]
       </a>
     ));

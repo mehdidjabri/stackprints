@@ -122,7 +122,21 @@ a:hover {
 .top nav,
 .foot nav {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap; /* at 320px the links take a second row rather than run off the screen */
+  gap: 4px 20px;
+}
+/* The section you're in: weight and an underline, not colour alone. */
+.top nav a[aria-current] {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+/* Phones: links at least 24px tall to tap. */
+@media (max-width: 640px) {
+  .top nav a,
+  .foot nav a {
+    padding-block: 6px;
+  }
 }
 .brand {
   display: flex;
@@ -288,6 +302,26 @@ a:hover {
   letter-spacing: 0.12em;
   color: var(--muted);
   padding: 10px 8px 4px;
+}
+/* Phones: every crumb's menu opens under the whole breadcrumb, gutter to gutter, so none runs off
+   the screen however long the name or wherever the title wraps. */
+@media (max-width: 640px) {
+  .title {
+    position: relative;
+  }
+  .title .dd {
+    position: static;
+  }
+  .title .dd-menu {
+    left: 0;
+    right: 0;
+    min-width: 0;
+    max-width: none;
+  }
+  .dd-menu a,
+  .dd-menu button {
+    overflow-wrap: anywhere;
+  }
 }
 .meta-line {
   font-size: 13px;
@@ -630,16 +664,22 @@ html[data-hash-stack] .editor {
 .core .glyph {
   font-size: 10px;
 }
+/* The editor's remove button: a 24px target in the chip's corner, faint until the chip is hovered
+   or focused. The chip keeps its corner free, so the × never sits on the name. */
 .chip .x {
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  min-height: 24px;
   border: 0;
-  padding: 0 4px;
-  font-size: 13px;
-  line-height: 1.2;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1;
   color: var(--muted);
-  opacity: 0;
+  opacity: 0.35;
 }
 .chip:hover .x,
 .chip:focus-within .x {
@@ -651,8 +691,28 @@ html[data-hash-stack] .editor {
   }
 }
 .chip .x:hover {
-  color: var(--chart-1);
   color: var(--fg);
+}
+/* The ring sits round the ×, inside the chip: never a second line along the chip's own border. */
+.chip .x:focus-visible {
+  outline-offset: -4px;
+}
+.chip:has(.x) {
+  padding-right: 26px;
+}
+/* Touch: a bigger ×, and the chip's link stops short of its column, so a slipped tap lands on neither. */
+@media (pointer: coarse) {
+  .chip .x {
+    min-width: 28px;
+    min-height: 28px;
+    font-size: 15px;
+  }
+  .chip:has(.x) {
+    padding-right: 30px;
+  }
+  .chip:has(.x) .chip-link::after {
+    right: 28px;
+  }
 }
 select.add {
   font: 14px var(--sans);
@@ -853,6 +913,33 @@ select.add:focus-visible {
   font-size: 13px;
   min-height: 3em;
 }
+/* The board in words, one line on every card (the tooltip has it all when it's cut). */
+.card-summary {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Phones: a card shows the top of its board, the channels and the processor area, not the whole
+   board; the line above says the rest. Twenty full boards in a column were a long scroll. */
+@media (max-width: 640px) {
+  .card .board.mini {
+    grid-template-areas: "io" "cpu";
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .card .board.mini .zone:not(.io, .cpu) {
+    display: none;
+  }
+  .card {
+    contain-intrinsic-size: auto 280px;
+  }
+  /* One card per row here: no row of boards to keep level. */
+  .card-tag {
+    min-height: 0;
+  }
+}
 .more {
   font: 10.5px var(--sans);
   color: var(--muted);
@@ -983,8 +1070,9 @@ select.add:focus-visible {
   white-space: nowrap;
 }
 @media (max-width: 480px) {
-  .top nav {
-    gap: 12px;
+  .top nav,
+  .foot nav {
+    gap: 4px 12px;
   }
 }
 
@@ -1332,20 +1420,21 @@ pre,
   z-index: 1;
 }
 
-/* Cards: the title link covers the card; chips inside sit above it. */
+/* Cards: the title link covers the card. The mini board's own link (to the same page) sits above it,
+   so its slots keep their tooltips. */
 .card-link::after {
   content: "";
   position: absolute;
   inset: 0;
 }
-.card-link:hover {
+.card-link:hover,
+.card-board:hover {
   text-decoration: none;
 }
-.card .chip {
+.card-board {
+  position: relative;
   z-index: 1;
-}
-.card:has(.chip-link:hover) {
-  background: transparent;
+  display: block;
 }
 
 /* Header search */
@@ -1361,12 +1450,13 @@ pre,
   background: transparent;
   border: 1px solid var(--line-input);
   border-radius: 0;
-  padding: 6px 28px 6px 10px;
+  padding: 6px 52px 6px 10px; /* room for the shortcut hint, which hides on focus */
   -webkit-appearance: none;
 }
 .search input:focus {
   outline: none;
   border-color: var(--line-strong);
+  padding-right: 10px;
 }
 .search kbd {
   position: absolute;
@@ -1382,14 +1472,22 @@ pre,
 .search input:focus + kbd {
   display: none;
 }
-.search-results {
+/* A keyboard hint means nothing on a touch screen. */
+@media (hover: none), (pointer: coarse) {
+  .search input {
+    padding-right: 10px;
+  }
+  .search kbd {
+    display: none;
+  }
+}
+/* The suggestions (a listbox) and the link to every result, under the box. */
+.search-popover {
   position: absolute;
   z-index: 30;
   top: calc(100% + 6px);
   right: 0;
   width: min(420px, calc(100vw - 32px));
-  list-style: none;
-  margin: 0;
   padding: 6px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -1397,11 +1495,19 @@ pre,
   background: var(--bg);
   border: 1px solid var(--line-strong);
 }
+.search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+}
 .search-results .chip,
 .results .chip {
   border-color: transparent;
 }
-.search-results [aria-selected="true"] .chip,
+.search-results .chip[aria-selected="true"],
 .search-results .chip:hover,
 .results .chip:hover {
   border-color: var(--line-strong);
@@ -1541,6 +1647,12 @@ pre,
   color: var(--muted);
   border: 1px solid var(--line);
   padding: 0 4px;
+}
+/* No Escape key to point at on a touch screen. */
+@media (hover: none), (pointer: coarse) {
+  .modal-close kbd {
+    display: none;
+  }
 }
 .modal-body {
   flex: 1;
@@ -1811,10 +1923,11 @@ select.add.fill:focus-visible {
   font-size: 11px;
   vertical-align: 0;
 }
+/* Inline padding: a target 24px or more each way that doesn't push the lines apart. */
 .cite {
   font-size: 11px;
   font-variant-numeric: tabular-nums;
-  margin-left: 4px;
+  padding: 6px 7px;
   vertical-align: 1px;
 }
 .sources {
@@ -1823,6 +1936,13 @@ select.add.fill:focus-visible {
   display: grid;
   gap: 6px;
   overflow-wrap: anywhere;
+}
+/* The source a citation jumped to. */
+.sources li {
+  scroll-margin-top: 24px;
+}
+.sources li:target {
+  background: var(--hover);
 }
 
 /* Stack page: layer by layer, the board as a table, each row with the sources behind it. */
@@ -1863,7 +1983,10 @@ select.add.fill:focus-visible {
   text-align: right;
 }
 .ev-cites .cite {
-  margin: 0 0 0 4px;
+  margin: 0;
+}
+.ev-cites .cite:last-child {
+  margin-right: -7px; /* the last number ends on the column's edge */
 }
 /* Column labels for a table's rows, above its top rule. */
 .ev-head,
@@ -1891,8 +2014,11 @@ select.add.fill:focus-visible {
   .ev-cites {
     text-align: left;
   }
-  .ev-cites .cite {
-    margin: 0 4px 0 0;
+  .ev-cites .cite:first-child {
+    margin-left: -7px; /* the first number starts on the column's edge */
+  }
+  .ev-cites .cite:last-child {
+    margin-right: 0;
   }
 }
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { resolve } from "@/lib/data";
-import { EMPTY, disclosureMark, disclosureOf } from "@/lib/disclosure";
+import { getLayers, resolve } from "@/lib/data";
+import { EMPTY, disclosureMark, disclosureOf, emptyLayers } from "@/lib/disclosure";
 import { primaryLink, prettyUrl } from "@/lib/links";
 import type { Stack } from "@/lib/types";
 import { Logo } from "./Logo";
@@ -11,6 +11,16 @@ export function StackCard({ stack }: { stack: Stack }) {
   const site = primaryLink(stack.links);
   // Example designs, documented and closed stacks say so on the card, so none passes for an open, real product.
   const mark = disclosureMark(stack);
+  // The board in words, as the stack page's meta line says it: the mini board is a picture only.
+  const empty = emptyLayers(stack, getLayers());
+  const summary = [
+    `${rows.length} ${empty.unknown.length + empty.present.length ? "known layers" : "layers"}`,
+    empty.present.length && `${empty.present.length} in use, undisclosed`,
+    empty.unknown.length && `${empty.unknown.length} ${EMPTY.unknown.toLowerCase()}`,
+    empty.unused.length && `${empty.unused.length} ${EMPTY.unused.toLowerCase()}`,
+  ]
+    .filter(Boolean)
+    .join(" · ");
   return (
     <div className="card">
       <div className="card-head">
@@ -31,7 +41,14 @@ export function StackCard({ stack }: { stack: Stack }) {
         </span>
       </div>
       <p className="card-tag">{stack.tagline}</p>
-      <StackView rows={rows} stack={stack} compact />
+      <p className="card-summary" title={summary}>
+        {summary}
+      </p>
+      {/* The board goes to the stack too. Above the card's link so its slots keep their tooltips;
+          hidden from the keyboard and screen readers, which have the title link and the line above. */}
+      <Link href={`/stack/${stack.slug}/`} className="card-board" tabIndex={-1} aria-hidden="true">
+        <StackView rows={rows} stack={stack} compact />
+      </Link>
       {site && (
         <a className="card-site" href={site} rel="noopener">
           {prettyUrl(site)} ↗

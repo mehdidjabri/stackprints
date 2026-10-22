@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { type Row, type Why, loadIndex, search, why, whyText } from "@/lib/search";
 import { Result } from "./SearchBox";
 
@@ -22,22 +22,33 @@ export function SearchPage() {
   const [q, setQ] = useState("");
   const [rows, setRows] = useState<Row[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
     setQ(new URLSearchParams(location.search).get("q") ?? "");
     loadIndex().then((r) => {
       setRows(r);
       setLoaded(true);
     });
+    // Ready to type on a desktop; on a phone the keyboard would cover the page before it's read.
+    if (matchMedia("(min-width: 641px)").matches) input.current?.focus();
   }, []);
   const results = search(rows, q, 100);
   const layers = rows.filter((r) => r[0] === "layer");
+  // The count is read out (role=status), so it follows the typing after a pause, not on every key.
+  // The first count, once the index is in, shows at once.
+  const [said, setSaid] = useState<{ q: string; n: number } | null>(null);
+  useEffect(() => {
+    if (!loaded) return;
+    const t = setTimeout(() => setSaid({ q, n: results.length }), said ? 300 : 0);
+    return () => clearTimeout(t);
+  }, [loaded, q, results.length]);
   return (
     <>
-      <form className="fields" role="search" onSubmit={(e) => e.preventDefault()}>
+      <form className="fields" role="search" aria-label="Search page" onSubmit={(e) => e.preventDefault()}>
         <input
+          ref={input}
           type="search"
           value={q}
-          autoFocus
           placeholder="Models, memory, sandboxes, stacks…"
           aria-label="Search"
           onChange={(e) => {
@@ -46,16 +57,16 @@ export function SearchPage() {
           }}
         />
       </form>
-      <p className="muted small search-count" aria-live="polite">
-        {!loaded ? (
+      <p className="muted small search-count" role="status">
+        {!said ? (
           "Loading the index…"
-        ) : !q.trim() ? (
+        ) : !said.q.trim() ? (
           `${rows.length} things to search`
-        ) : results.length ? (
-          `${results.length} ${results.length === 1 ? "result" : "results"}`
+        ) : said.n ? (
+          `${said.n} ${said.n === 1 ? "result" : "results"}`
         ) : (
           <>
-            Nothing matches “{q.trim()}”. <Link href="/layers/">Browse all {layers.length} layers</Link> or, if something is
+            Nothing matches “{said.q.trim()}”. <Link href="/layers/">Browse all {layers.length} layers</Link> or, if something is
             missing, <Link href="/submit/">add it</Link>.
           </>
         )}

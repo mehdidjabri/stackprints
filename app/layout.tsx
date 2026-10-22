@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import { MenuCloser } from "@/components/MenuCloser";
 import { Modal } from "@/components/Modal";
+import { PrimaryNav } from "@/components/PrimaryNav";
 import { SearchBox } from "@/components/SearchBox";
 import { SectionLink } from "@/components/SectionLink";
 import { WebMcp } from "@/components/WebMcp";
@@ -55,13 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               agentic stack
             </Link>
             <SearchBox />
-            <nav aria-label="Primary">
-              <Link href="/trending/">Trending</Link>
-              <SectionLink id="stacks">Stacks</SectionLink>
-              <Link href="/layers/">Layers</Link>
-              <Link href="/mine/">Mine</Link>
-              <Link href="/contribute/">Contribute</Link>
-            </nav>
+            <PrimaryNav />
           </div>
         </header>
         <main id="main" className="wrap">

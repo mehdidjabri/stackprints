@@ -76,11 +76,13 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
       // Hatched: not disclosed. Outlined with a "?": in use, component not named. Dashed: not used.
       const state = emptyState(stack, layer.id);
       const text = EMPTY[state];
+      // A group, not a <section>: a landmark per slot would bury the page's own.
       return (
-        <section
+        <div
           key={layer.id}
+          role={mini ? undefined : "group"}
           className={`module empty${core ? " core" : ""}${state === "unused" ? "" : ` ${state}`}`}
-          aria-label={`${layer.name}: ${text.toLowerCase()}`}
+          aria-label={mini ? undefined : `${layer.name}: ${text.toLowerCase()}`}
           title={mini || state !== "unused" ? `${layer.name}: ${text.toLowerCase()}` : undefined}
         >
           {!mini && (
@@ -98,7 +100,7 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
           )}
           {mini && state === "present" && <b className="q" aria-hidden="true">?</b>}
           {!mini && emptySlot?.(layer)}
-        </section>
+        </div>
       );
     }
     // What the stack runs comes first; picks it only supports follow, marked as such.
@@ -107,10 +109,11 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
     const supportedLabel = m.picks.some((p) => !sup(p)) ? "Also supported" : "Supported";
     const picks = mini ? ordered.filter((p) => p.logo).slice(0, MINI_MARKS[layer.id] ?? 1) : ordered;
     return (
-      <section
+      <div
         key={layer.id}
+        role={mini ? undefined : "group"}
         className={core ? "module core" : "module"}
-        aria-label={layer.name}
+        aria-label={mini ? undefined : layer.name}
         title={mini ? `${layer.name}: ${ordered.map((p) => (sup(p) ? `${p.name} (supported)` : p.name)).join(", ")}` : undefined}
       >
         {!mini && (
@@ -126,9 +129,7 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
           {picks.map((p) => (
             <div key={p.id} className={sup(p) ? "chip supported" : "chip"} title={!mini && p.note ? `${p.name}: ${p.note}` : undefined}>
               <Logo option={p} />
-              {mini ? (
-                <Link href={optionHref(layer.id, p.id)} className="chip-link" aria-label={p.name} />
-              ) : (
+              {!mini && (
                 <span className="chip-text">
                   <Link href={optionHref(layer.id, p.id)} className="chip-link chip-name">
                     {p.name}
@@ -150,18 +151,23 @@ export function Board({ modules, slots, mini = false, label, stack, source, onRe
             </div>
           ))}
         </div>
-      </section>
+      </div>
     );
   };
 
+  // A mini board is a picture of the stack, not a set of links: the card it sits in says the same in words.
   return (
-    <div className={mini ? "board mini" : "board"} style={{ "--areas": areas, "--cols": cols } as React.CSSProperties}>
+    <div
+      className={mini ? "board mini" : "board"}
+      style={{ "--areas": areas, "--cols": cols } as React.CSSProperties}
+      aria-hidden={mini || undefined}
+    >
       {BANDS.map((band) => {
         const layers = all.filter((l) => l.band === band);
         if (!layers.length) return null;
         const zone = ZONE[band];
         return (
-          <div key={band} className={`zone ${zone}`} role="group" aria-label={BAND_NAME[band]}>
+          <div key={band} className={`zone ${zone}`} role={mini ? undefined : "group"} aria-label={mini ? undefined : BAND_NAME[band]}>
             {/* Each region names its band in text, so the band never rests on colour alone. */}
             {!mini && (
               <div className="zone-label silk" aria-hidden="true">

@@ -23,7 +23,7 @@ const fromPreset = (p: Preset): Draft => ({ name: p.name, from: p.slug, layers: 
 const UNTITLED = "Untitled stack";
 
 /** What the last action did. Notes with `ms` fade; the others stay until the next edit. */
-type Status = { text: string; href?: string; link?: string; ms?: number };
+type Status = { text: string; href?: string; link?: string; ms?: number; undo?: { draft: Draft; label: string } };
 
 export function Editor({
   layers,
@@ -86,9 +86,11 @@ export function Editor({
     };
   }, [bySlug, layers]);
 
+  const undoButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!status?.ms) return;
-    const t = setTimeout(() => setStatus(null), status.ms);
+    // An Undo with focus stays until the next edit, so the fade never drops focus to the page.
+    const t = setTimeout(() => document.activeElement !== undoButton.current && setStatus(null), status.ms);
     return () => clearTimeout(t);
   }, [status]);
 
@@ -244,6 +246,13 @@ export function Editor({
     if (state !== "unused") hidden[state]++;
   }
 
+  /** Closes the dropdown an element is in, focus back on its toggle rather than lost to the page. */
+  const closeMenu = (el: Element) => {
+    const dd = el.closest("details");
+    dd?.removeAttribute("open");
+    dd?.querySelector("summary")?.focus();
+  };
+
   /** A native select listing a layer's options not yet picked. */
   const picker = (layer: Layer, picks: string[], label: string, aria: string) => {
     const rest = layer.options.filter((o) => !picks.includes(o.id));
@@ -298,7 +307,7 @@ export function Editor({
                 placeholder="Name your stack"
                 spellCheck={false}
                 onChange={(e) => edit((d) => ({ ...d, name: e.target.value }))}
-                onKeyDown={(e) => e.key === "Enter" && e.currentTarget.closest("details")?.removeAttribute("open")}
+                onKeyDown={(e) => e.key === "Enter" && closeMenu(e.currentTarget)}
               />
             </label>
             <input
@@ -311,8 +320,8 @@ export function Editor({
               onChange={(e) => setFind(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key !== "Enter" || !groups.length) return;
-                const dd = e.currentTarget.closest("details");
-                if (loadPreset(groups[0].stacks[0])) dd?.removeAttribute("open");
+                const at = e.currentTarget;
+                if (loadPreset(groups[0].stacks[0])) closeMenu(at);
               }}
             />
             <ul>
@@ -388,6 +397,24 @@ export function Editor({
             <>
               {" · "}
               <Link href={status.href}>{status.link}</Link>
+            </>
+          )}
+          {status?.undo && (
+            <>
+              {" · "}
+              <button
+                ref={undoButton}
+                className="link"
+                onClick={() => {
+                  const { draft: before, label } = status.undo!;
+                  const focused = document.activeElement === undoButton.current;
+                  edit(before);
+                  // Focus goes back to the pick it brought back.
+                  if (focused) requestAnimationFrame(() => document.querySelector<HTMLElement>(`button.x[aria-label="${CSS.escape(label)}"]`)?.focus());
+                }}
+              >
+                Undo
+              </button>
             </>
           )}
         </span>
@@ -483,7 +510,16 @@ export function Editor({
         label={`${name.toUpperCase()}${dirty ? " · DRAFT" : preset?.researched ? ` · REV ${preset.researched}` : ""}`}
         stack={knowable}
         source={preset && dirty ? preset.name : undefined}
-        onRemove={(layerId, id) => update(layerId, draft.layers[layerId].filter((p) => p !== id))}
+        onRemove={(layerId, id) => {
+          // A slipped tap shouldn't cost a pick: the removal can be undone until the next edit.
+          const before = draft;
+          const name = layers.find((l) => l.id === layerId)?.options.find((o) => o.id === id)?.name ?? id;
+          const focused = document.activeElement instanceof HTMLButtonElement && document.activeElement.classList.contains("x");
+          update(layerId, draft.layers[layerId].filter((p) => p !== id));
+          setStatus({ text: `Removed ${name}`, undo: { draft: before, label: `Remove ${name}` }, ms: 8000 });
+          // The × goes with its chip: keyboard focus moves to Undo rather than to the page.
+          if (focused) requestAnimationFrame(() => undoButton.current?.focus());
+        }}
         addSlot={(layerId) => {
           const layer = layers.find((l) => l.id === layerId)!;
           const picks = draft.layers[layerId];

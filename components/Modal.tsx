@@ -7,7 +7,10 @@ import { useEffect, useRef, useState } from "react";
 // and the modal all read the same static HTML.
 const MODAL_PATH = /^\/layer\/[^/]+\/[^/]+\/$/;
 
-const cache = new Map<string, Promise<string>>();
+/** A component page as the modal shows it: its article, the tab title, and its heading to name the dialog. */
+type Page = { html: string; title: string; name: string };
+
+const cache = new Map<string, Promise<Page>>();
 function load(href: string) {
   if (!cache.has(href)) {
     cache.set(
@@ -17,7 +20,12 @@ function load(href: string) {
         .then((html) => {
           const doc = new DOMParser().parseFromString(html, "text/html");
           doc.querySelectorAll("script").forEach((s) => s.remove());
-          return doc.querySelector("main article")?.outerHTML ?? "";
+          const article = doc.querySelector("main article");
+          return {
+            html: article?.outerHTML ?? "",
+            title: doc.title,
+            name: article?.querySelector("h1")?.textContent?.trim() ?? "",
+          };
         })
         .catch((e) => {
           cache.delete(href);
@@ -38,22 +46,34 @@ export function Modal() {
   const dialog = useRef<HTMLDialogElement>(null);
   const [href, setHref] = useState<string | null>(null);
   const [html, setHtml] = useState("");
+  const [name, setName] = useState("");
   const pushed = useRef(false);
+  // The page's own tab title, put back on close: while open, the tab names the component, as the address bar does.
+  const pageTitle = useRef("");
 
   const show = (path: string) => {
     setHref(path);
+    if (!dialog.current?.open) {
+      pageTitle.current = document.title;
+      dialog.current?.showModal();
+    }
     load(path).then(
-      (h) => setHtml(h || ""),
+      (p) => {
+        setHtml(p.html);
+        setName(p.name);
+        if (p.title && dialog.current?.open) document.title = p.title;
+      },
       () => (location.href = path),
     );
-    if (!dialog.current?.open) dialog.current?.showModal();
     dialog.current?.querySelector(".modal-body")?.scrollTo(0, 0);
   };
 
   const hide = () => {
     dialog.current?.close();
+    if (pageTitle.current) document.title = pageTitle.current;
     setHref(null);
     setHtml("");
+    setName("");
   };
 
   // Close from the UI: rewind every modal entry we pushed, so the page URL comes back
@@ -89,6 +109,10 @@ export function Modal() {
         pushed.current = false;
         hide();
       }
+      // Next's router follows pushState but not this popstate: replacing the entry with itself tells it
+      // the URL again, so usePathname (the header's current section, SectionLink) matches the address bar.
+      const { modal, depth } = e.state ?? {};
+      history.replaceState(modal ? { modal, depth } : null, "", location.href);
     };
     // Capture phase: runs before Next's <Link>, which then sees defaultPrevented and stands down.
     document.addEventListener("click", onClick, true);
@@ -105,7 +129,7 @@ export function Modal() {
     <dialog
       ref={dialog}
       className="modal"
-      aria-label="Details"
+      aria-label={name || "Component"}
       onCancel={(e) => {
         // Esc
         e.preventDefault();

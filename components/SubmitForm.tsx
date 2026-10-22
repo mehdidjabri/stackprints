@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { newFileUrl, slugify } from "@/lib/github";
 import type { Layer, Option } from "@/lib/types";
 import { Board } from "./Board";
@@ -25,6 +25,9 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
   const [profile, setProfile] = useState<Profile>("product");
   const [docs, setDocs] = useState("");
   const [copied, setCopied] = useState(false);
+  // Fields with help text name themselves by their label only; the help is their description.
+  const uid = useId();
+  const ids = (k: string) => ({ "aria-labelledby": `${uid}-${k}-l`, "aria-describedby": `${uid}-${k}-d` });
 
   const id = slugify(name);
   // The source reviewers check. check.mjs wants a full https URL in links.*.
@@ -48,15 +51,15 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
     <div className="submit">
       <form className="fields" onSubmit={(e) => e.preventDefault()}>
         <label>
-          <span>Layer</span>
-          <select value={layer} onChange={(e) => setLayer(e.target.value)}>
+          <span id={`${uid}-layer-l`}>Layer</span>
+          <select value={layer} onChange={(e) => setLayer(e.target.value)} {...ids("layer")}>
             {layers.map((x) => (
               <option key={x.id} value={x.id}>
                 {x.name}
               </option>
             ))}
           </select>
-          <small>{l.description}</small>
+          <small id={`${uid}-layer-d`}>{l.description}</small>
         </label>
         <label>
           <span>Name</span>
@@ -67,14 +70,24 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
           <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="acme.dev" inputMode="url" />
         </label>
         <label>
-          <span>Subtitle</span>
+          <span id={`${uid}-note-l`}>Subtitle</span>
           <input
             value={note}
             onChange={(e) => setNote(e.target.value)}
             maxLength={60}
             placeholder="Memory API for agents"
+            {...ids("note")}
           />
-          <small>{60 - note.length} characters left. Say what it is, not how great it is.</small>
+          <small>
+            {/* The count is shown as you type, and read out only near the limit. */}
+            <span aria-hidden="true">{60 - note.length} characters left. </span>
+            <span id={`${uid}-note-d`}>
+              Say what it is, not how great it is.<span className="sr-only"> Up to 60 characters.</span>
+            </span>
+            <span className="sr-only" aria-live="polite">
+              {60 - note.length <= 10 ? `${60 - note.length} characters left` : ""}
+            </span>
+          </small>
         </label>
         <label>
           <span>Profile</span>
@@ -87,15 +100,16 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
           </select>
         </label>
         <label>
-          <span>Docs or source URL</span>
+          <span id={`${uid}-docs-l`}>Docs or source URL</span>
           <input
             value={docs}
             onChange={(e) => setDocs(e.target.value)}
             placeholder="https://acme.dev/docs"
             inputMode="url"
             aria-invalid={!sourceOk}
+            {...ids("docs")}
           />
-          <small>{sourceOk ? "Optional. Where reviewers can check what you wrote." : "Use a full https:// URL."}</small>
+          <small id={`${uid}-docs-d`}>{sourceOk ? "Optional. Where reviewers can check what you wrote." : "Use a full https:// URL."}</small>
         </label>
         <label className="check">
           <input type="checkbox" checked={open} onChange={(e) => setOpen(e.target.checked)} />
