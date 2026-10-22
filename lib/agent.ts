@@ -9,6 +9,7 @@ import {
   SITE,
   affiliated,
   asArray,
+  getHot,
   getLayers,
   getNews,
   getPrompts,
@@ -58,12 +59,22 @@ function frontmatter(f: Record<string, string | undefined>) {
 
 const h1 = (title: string, page: string) => `# ${title}\n\nCite: ${abs(page)}\n\n`;
 
+/** The hot list as a section: what X talks about this week, each with the page it links to and its sources. */
+function hotMd() {
+  const hot = getHot();
+  if (!hot?.items.length) return "";
+  return `## Hot right now\n\nThe products people on X talked about the most from ${hot.from} to ${hot.updated}, most first. As JSON: ${abs("/api/hot.json")}\n\n${hot.items
+    .map(({ item, name, label, href }) => `- [${name}](${abs(mdPath(href))}) (${label}): ${item.why}${item.since ? ` Since ${item.since}.` : ""} Sources: ${item.sources.map((s) => `[${s.title}](${s.url})`).join(", ")}`)
+    .join("\n")}\n\n`;
+}
+
 function homeMd() {
   const layers = getLayers();
   const stacks = getStacks();
   return (
     frontmatter({ title: SITE.name, description: SITE.description, canonical: abs("/"), "last-updated": siteDate() ?? BUILT }) +
     `${h1(SITE.name, "/")}> ${SITE.description}\n\n## When to use this\n\n${WHEN_TO_USE.replace("{layers}", String(layers.length))}\n\n` +
+    hotMd() +
     `## Stacks\n\n${stacks.map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline} (${s.kind}${disclosureOf(s) ? `, ${disclosureOf(s)!.badge.toLowerCase()}` : ""})`).join("\n")}\n\n` +
     `## Layers\n\n${BANDS.map(([b, name]) => `### ${name}\n\n${layers
       .filter((l) => l.band === b)
@@ -242,6 +253,7 @@ export const API_ENDPOINTS: [string, string, string][] = [
   ["GET /api/layers.json", "Every layer with its options", "/api/layers.json"],
   ["GET /api/layers/{layer}.json", "One layer with option summaries", "/api/layers/memory.json"],
   ["GET /api/options/{layer}/{option}.json", "One option: datasheet facts, links, caveats, news, stacks that use it", "/api/options/router/openrouter.json"],
+  ["GET /api/hot.json", "The products people on X talk about the most this week, ranked, each with its page and sources", "/api/hot.json"],
   ["GET /search.json", "Compact search index of every stack, layer and option", "/search.json"],
 ];
 
@@ -335,7 +347,7 @@ ${WHEN_TO_USE.replace("{layers}", String(layers.length))}
 - Read any content page as markdown: ${MD_RULE}. Cite the HTML URL; each twin names it under its title.
 - Query the JSON API, no key needed: ${abs("/api/stacks.json")}, ${abs("/api/stacks/{slug}.json")}, ${abs("/api/layers/{layer}.json")}, ${abs("/api/options/{layer}/{option}.json")}. Spec: ${abs("/openapi.json")}. Docs: ${abs("/api/")}.
 - Layer ids are fixed and some differ from the name shown: ${renamedLayers(layers)}. URLs and the API use ids; ${abs("/api/layers.json")} lists them all.
-- In a browser with WebMCP, the pages expose tools: search_stackprints, list_stacks, get_stack, get_layer, get_option, open_stack_in_editor.
+- In a browser with WebMCP, the pages expose tools: search_stackprints, list_stacks, get_hot, get_stack, get_layer, get_option, open_stack_in_editor.
 - On a closed or documented product, a layer that isn't listed is "not disclosed", not "not used". In the API, read each stack's notDisclosed, inUseUndisclosed (present, but the component isn't named) and notUsed lists rather than inferring from the disclosure field.
 - A pick with "supported": true is something the stack can be configured to use, not what it runs by default.
 - Stacks with disclosure "example" are designs written for this site, not products. Don't count them as adoption: an option's API record counts them apart (usage.exampleDesigns).
@@ -504,6 +516,9 @@ function openapi() {
     servers: [{ url: SITE.url }],
     security: [],
     paths: {
+      "/api/hot.json": {
+        get: { operationId: "getHot", summary: "The products people on X talk about the most this week", responses: { "200": ok("HotList", "The hot list, most talked about first") } },
+      },
       "/api/stacks.json": {
         get: { operationId: "listStacks", summary: "List all stacks", responses: { "200": ok("StackList", "Every stack, summarised") } },
       },
@@ -639,6 +654,33 @@ function openapi() {
               type: "array",
               description: "Only in getLayer: prompts stacks' makers publish for this layer",
               items: { allOf: [{ $ref: "#/components/schemas/Prompt" }, { type: "object", properties: { stack: { type: "string", description: "The stack's slug" } } }] },
+            },
+          },
+        },
+        HotList: {
+          type: "object",
+          required: ["updated", "from", "items"],
+          properties: {
+            updated: { type: "string", format: "date", description: "When the list was last checked" },
+            from: { type: "string", format: "date", description: "Start of the window the conversation was measured over" },
+            items: {
+              type: "array",
+              description: "Most talked about first",
+              items: {
+                type: "object",
+                required: ["rank", "name", "why", "url", "sources"],
+                properties: {
+                  rank: { type: "integer" },
+                  name: { type: "string" },
+                  option: { type: "string", description: "layer/id, when the card is an option" },
+                  stack: { type: "string", description: "Slug, when the card is a stack" },
+                  why: { type: "string" },
+                  since: { type: ["string", "null"], format: "date" },
+                  url: { type: "string", format: "uri", description: "The page on this site" },
+                  api: { type: "string", format: "uri" },
+                  sources: { type: "array", items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" }, date: { type: "string", format: "date" } } } },
+                },
+              },
             },
           },
         },
@@ -822,6 +864,22 @@ export function agentFiles(): Record<string, AgentFile> {
 
   // JSON API
   files["/api/stacks.json"] = json({ stacks: stacks.map(stackSummary) });
+  const hot = getHot();
+  if (hot)
+    files["/api/hot.json"] = json({
+      updated: hot.updated,
+      from: hot.from,
+      items: hot.items.map(({ item, name, href }, i) => ({
+        rank: i + 1,
+        name,
+        ...(item.option ? { option: item.option } : { stack: item.stack }),
+        why: item.why,
+        since: item.since ?? null,
+        url: abs(href),
+        api: abs(item.option ? `/api/options/${item.option}.json` : `/api/stacks/${item.stack}.json`),
+        sources: item.sources,
+      })),
+    });
   for (const s of stacks) files[`/api/stacks/${s.slug}.json`] = json(stackJson(s));
   files["/api/layers.json"] = json({ layers: layers.map((l) => layerJson(l, false)) });
   for (const l of layers) {

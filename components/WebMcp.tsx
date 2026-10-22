@@ -60,6 +60,14 @@ const tools = (layers: LayerName[]): Tool[] => [
     execute: (_i, o) => getJson("/api/stacks.json", o?.signal),
   },
   {
+    name: "get_hot",
+    description:
+      "The AI agent products people on X talk about the most this week, most first: why each is being discussed, the sources, and its page on the site.",
+    inputSchema: schema({}),
+    annotations: { readOnlyHint: true },
+    execute: (_i, o) => getJson("/api/hot.json", o?.signal),
+  },
+  {
     name: "get_stack",
     description:
       "Get how one agent is built, layer by layer, with evidence URLs and sources. Layers in notDisclosed are unknown, not absent; layers in inUseUndisclosed are present but their component isn't named; picks with supported: true are configurable, not the default. Stacks with disclosure 'example' are designs, not products.",

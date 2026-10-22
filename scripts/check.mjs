@@ -213,9 +213,55 @@ if (fs.existsSync("content/prompts")) {
   }
 }
 
+// Hot list: content/hot.json, rewritten by the research agent (docs/HOT.md). Each card links to a page on the site.
+let hot = 0;
+if (fs.existsSync("content/hot.json")) {
+  const at = "content/hot.json";
+  const day = /^\d{4}-\d{2}-\d{2}$/;
+  const HYPE = /\b(revolutionary|game[- ]chang\w*|insane|mind[- ]blowing|groundbreaking|incredible|unbelievable|crushing|killer)\b/i;
+  let h;
+  try {
+    h = json(at);
+  } catch (e) {
+    errors.push(`${at}: invalid JSON (${e.message})`);
+  }
+  if (h) {
+    if (!day.test(h.updated ?? "") || !day.test(h.from ?? "") || h.from > h.updated) errors.push(`${at}: needs updated and from as YYYY-MM-DD, from first`);
+    const items = Array.isArray(h.items) ? h.items : [];
+    if (!items.length || items.length > 8) errors.push(`${at}: needs 1 to 8 items`);
+    const seen = new Set();
+    items.forEach((it, i) => {
+      const where = `${at} item ${i + 1}`;
+      hot++;
+      if (Boolean(it.option) === Boolean(it.stack)) errors.push(`${where}: set exactly one of option ("layer/id") or stack (slug)`);
+      if (it.option) {
+        const [layer, id] = it.option.split("/");
+        if (!index.get(layer)?.has(id)) errors.push(`${where}: no option ${it.option}`);
+      }
+      if (it.stack && !slugs.has(it.stack)) errors.push(`${where}: no stack ${it.stack}`);
+      const key = it.option ?? it.stack;
+      if (seen.has(key)) errors.push(`${where}: ${key} is listed twice`);
+      seen.add(key);
+      if (!it.why || it.why.length > 120) errors.push(`${where}: why is one sentence of at most 120 characters`);
+      if (HYPE.test(it.why ?? "")) errors.push(`${where}: say what happened, without hype words`);
+      if (it.since && (!day.test(it.since) || it.since > h.updated)) errors.push(`${where}: since must be YYYY-MM-DD, not after updated`);
+      const src = Array.isArray(it.sources) ? it.sources : [];
+      if (!src.length || src.length > 4) errors.push(`${where}: needs 1 to 4 sources`);
+      for (const s of src) {
+        if (!/^https:\/\//.test(s.url ?? "") || !s.title || !day.test(s.date ?? "")) errors.push(`${where}: each source needs title, https url and date`);
+        else if (s.date > h.updated) errors.push(`${where}: source dated after updated: ${s.url}`);
+      }
+      // The list is about this week's conversation: at least one source from inside the window.
+      if (src.length && !src.some((s) => s.date >= h.from)) errors.push(`${where}: no source dated inside the window (from ${h.from})`);
+    });
+    const age = Math.floor((Date.now() - Date.parse(h.updated)) / 864e5);
+    if (age > 3) warnings.push(`${at}: last updated ${age} days ago; the home page shows it as "hot right now"`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 if (warnings.length) console.warn(warnings.join("\n"));
-console.log(`ok: ${layers.length} layers, ${options} options, ${news} news files, ${slugs.size} stacks, ${prompts} prompts`);
+console.log(`ok: ${layers.length} layers, ${options} options, ${news} news files, ${slugs.size} stacks, ${prompts} prompts, ${hot} hot`);

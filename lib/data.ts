@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { Layer, News, Option, Prompt, Stack } from "./types";
+import type { Hot, HotItem, Layer, News, Option, Prompt, Stack } from "./types";
 
 const root = path.join(process.cwd(), "content");
 
@@ -81,6 +81,25 @@ export function getPrompts(slug: string): Prompt[] {
 /** Every stack's published prompts for one layer, stack by stack. */
 export const layerPrompts = (layerId: string) =>
   getStacks().flatMap((stack) => getPrompts(stack.slug).filter((p) => p.layer === layerId).map((prompt) => ({ stack, prompt })));
+
+/** The hot list with each item resolved to the page its card links to. Empty when there's no list. */
+export function getHot() {
+  const file = path.join(root, "hot.json");
+  if (!fs.existsSync(file)) return undefined;
+  const hot = JSON.parse(fs.readFileSync(file, "utf8")) as Hot;
+  type Card = { item: HotItem; name: string; logo?: string; label: string; band?: Layer["band"]; href: string; affiliation?: string };
+  const items = hot.items.flatMap((item): Card[] => {
+    if (item.stack) {
+      const s = getStack(item.stack);
+      return s ? [{ item, name: s.name, logo: s.logo, label: s.kind, href: `/stack/${s.slug}/` }] : [];
+    }
+    const [layerId, id] = (item.option ?? "").split("/");
+    const layer = getLayer(layerId);
+    const o = layer?.options.find((x) => x.id === id);
+    return layer && o ? [{ item, name: o.name, logo: o.logo, label: layer.name, band: layer.band, href: `/layer/${layer.id}/${o.id}/`, affiliation: o.affiliation }] : [];
+  });
+  return { ...hot, items };
+}
 
 export function getLayer(id: string) {
   return getLayers().find((l) => l.id === id);

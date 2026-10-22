@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Editor } from "@/components/Editor";
+import { Hot } from "@/components/Hot";
 import { CardLegend, StackCard } from "@/components/StackCard";
 import { Trending } from "@/components/Trending";
 import { SITE, asArray, getLayers, getStacks } from "@/lib/data";
@@ -102,6 +103,8 @@ export default function Home() {
           runs in, what it remembers and what wakes it up. Pick a stack, change any part, save it, share it.
         </p>
       </header>
+
+      <Hot />
 
       <Editor layers={lite} presets={presets} initial={DEFAULT} repo={SITE.repo} />
 

@@ -122,6 +122,30 @@ export type Prompt = {
   text: string;
 };
 
+/**
+ * The products people on X talk about the most right now (content/hot.json), in rank order.
+ * A research agent rewrites it through the admin MCP; see docs/HOT.md.
+ */
+export type Hot = {
+  /** When the list was last checked, YYYY-MM-DD. */
+  updated: string;
+  /** Start of the window the conversation was measured over, YYYY-MM-DD. */
+  from: string;
+  items: HotItem[];
+};
+
+export type HotItem = {
+  /** What the card links to: an option as "layer/id", or a stack's slug. Exactly one. */
+  option?: string;
+  stack?: string;
+  /** What happened and why people are talking, in one plain sentence. */
+  why: string;
+  /** When the conversation started: the launch, release or post behind it. */
+  since?: string;
+  /** Posts and coverage from the window that show the conversation, an x.com post first when there is one. */
+  sources: { title: string; url: string; date: string }[];
+};
+
 /** A user-made stack, stored locally and in share links. */
 export type Draft = {
   name: string;

@@ -113,15 +113,32 @@ AUTH SUMMARY
 - **`list_proposals`**: open PRs (bot changesets, community submissions and correction issues) with labels, check status, preview URL, review state and age. (read)
 - **`review_pull_request`**: pre-review of any PR. Parses the changed content files, runs the validator, re-fetches every new evidence URL and checks the quotes, flags unlabelled vendor numbers, marketing words and an author.github that does not match. Returns a report for comment_on_pull_request. (read)
 - **`get_audit_log`**: append-only D1 rows for every admin tool call: time, GitHub id, client_id, tool, argument hash, result (including refused proposals and failed fetches) and traceparent. (read)
-- **`open_changeset`**: starts a unit of work. Creates branch bot/<kind>/<date>-<rand> from main, pins base_sha, returns a changeset_id. Kind is news, option or stack. Many subagents can write to one changeset, because the Worker serialises commits through the Git Data API. (write)
+- **`open_changeset`**: starts a unit of work. Creates branch bot/<kind>/<date>-<rand> from main, pins base_sha, returns a changeset_id. Kind is news, option, stack or hot. Many subagents can write to one changeset, because the Worker serialises commits through the Git Data API. (write)
 - **`propose_news`**: adds news items {date, title, url, source} for one option. Every URL needs a fetch_source receipt. The title must match the page title or og:title. The date must match datePublished or article:published_time, or it is flagged 'date unverified'. Canonical URLs are deduplicated and aggregator domains denylisted. The server applies the NEWS.md merge rule (5 newest plus everything from the last 30 days, newest first) and sets `updated`. items: [] records 'checked, nothing new'. (write)
 - **`propose_option_update`**: field-level patch to one option (facts, model.*, links, summary, goodFor, watchOut, how, sources, evidence, researched). Every changed fact needs claims[] of {field, url, quote <=300 chars, vendor_reported}, with the quote found in a receipted fetch. A claim the server cannot machine-check (PDF, JS-only page, paywall, bot challenge) can be sent with verification:'manual' and a reason; it is flagged at the top of the PR. id, order, logo, name, affiliation and exclusive are rejected. (write)
 - **`propose_option_create`**: new product, model or protocol file with profile, summary, facts, links, sources and evidence, under the same claim rules. Requires a clean check_duplicate result and creates the news file alongside. order, logo and affiliation are maintainer-only. (write)
 - **`propose_stack`**: create or patch content/stacks/<slug>.json. Disclosure is required. Every pick on a non-example stack, every inUseUndisclosed layer and every supports entry needs receipted evidence, and notUsed only with a source. A version bump is refused unless the picks are re-cited in the same changeset. (write)
+- **`get_hot_list`**: the current content/hot.json with each item resolved to its page, its age, and the previous list, so a run can see what moved. (read)
+- **`search_x`**: X API v2 recent search (the last 7 days) and post lookup, with public metrics (likes, reposts, quotes, replies, views) and the author's follower count. Every post it returns gets a receipt, so propose_hot_list can cite it even though fetch_source cannot read x.com. The API key is a Worker secret. Capped per run. (read)
+- **`propose_hot_list`**: replaces content/hot.json in a hot changeset. At most 8 items in rank order, each naming an existing option or stack, or one created in the same changeset with propose_option_create or propose_stack. `why` is at most 120 characters and passes the word lint. Each item has 1 to 4 sources, each with a receipt under 48 hours old (search_x for x.com posts, fetch_source for the rest), and at least one dated inside the window. The server sets `updated` to today and `from` to 7 days earlier, and runs the same checks as `npm run check`. (write)
 - **`dismiss_change`**: closes a detector entry that needs no edit (cosmetic diff, irrelevant release), with a reason, so the same hash does not come back. D1 only, logged. (write)
 - **`submit_changeset`**: re-checks base blob SHAs, then stackprints-bot opens the PR. One PR per news run, and one PR per option or stack for fact changes, capped per run. The body is a generated table: field, old and new value, source URL, quote, retrieved_at, hash, and any manual-verification flags. Commit trailers carry Agent, Client-Id, Changeset and traceparent. Returns the PR URL. It never merges. (write)
 - **`comment_on_pull_request`**: posts a review note as the bot, usually the review_pull_request report. It cannot approve or merge. (write)
 - **`close_changeset`**: abandons a changeset by closing its PR and deleting its bot/* branch. destructiveHint true. Needs the content:manage scope, which only the interactive connector entry holds, never the scheduled task. (write)
+
+### The hot list
+
+The cards under the tagline on the home page show what X is talking about this week ([HOT.md](HOT.md)). They go stale in days, so they get their own loop.
+
+1) A separate cloud scheduled task runs twice a day, at about 07:00 and 19:00 UTC, with the same connector.
+2) It calls get_hot_list, then sweeps for candidates: search_x for the conversation itself, plus web search for press, Hacker News, GitHub trending, Reddit and Product Hunt, each cited source fetched through fetch_source.
+3) It ranks by conversation on X, corroborated by at least one other signal, and tries to refute each candidate before keeping it (HOT.md).
+4) open_changeset (kind hot), propose_hot_list, and propose_option_create or propose_stack for any hot product without a page; validate_changeset; submit_changeset. The PR is titled 'hot: YYYY-MM-DD HH:00'.
+5) MERGE. A list that waits half a day for review is already stale, so this is the one lane that may merge without you (a decision for you, below). A hot PR auto-merges only if:
+- it touches content/hot.json and nothing else (a new option or stack always waits for you);
+- validate_changeset passed and every source has a fresh receipt;
+- every item points at a page that already exists on main.
+Anything else waits for your merge like every other PR. A kill switch in KV stops auto-merge, and every merge can be reverted in one click.
 
 ### The update loop
 
@@ -192,6 +209,7 @@ You get a daily digest and one-click revert. Facts, stacks, new options and comm
 - **`prepare_stack_submission`**: validates, slugifies and checks for slug collisions. Returns the exact content/stacks/<slug>.json, a pre-filled GitHub new-file link (built by today's lib/github.ts newFileUrl) when the URL is short enough, a `gh` command sequence and the reviewer checklist. The user or their agent opens the PR as themselves. Nothing is stored. (read)
 - **`prepare_option_submission`**: the same for content/options/<layer>/<id>.json. It runs check_duplicate first, refuses order, logo and affiliation, and requires https links and sources. (read)
 - **`prepare_correction`**: 'this fact is wrong or stale'. Validates the target (option, fact, news item or stack pick), the proposed value and at least one https source, then returns a pre-filled GitHub issue link using the 'correction' template. The admin detector picks it up as a correction entry for your agents to research. Nothing is stored and nothing changes directly. (read)
+- **`get_hot`**: the hot list: the products people on X talk about the most this week, most first, with why, sources and each one's page. The same data as /api/hot.json and the get_hot WebMCP tool. (read)
 - **`get_submission_status`**: reads a submission PR or correction issue by number or branch from the public GitHub API (cached): open, merged or closed, check results, preview URL, review comments. (read)
 - **`submit_stack`**: phase 4 only, if the data shows agents cannot open PRs. Needs GitHub sign-in with the stacks:submit scope. Validates, gets a confirmation (MRTR elicitation, or a second call with an HMAC confirm token bound to the user and the payload hash, valid 15 minutes), then hands off through a service binding to the admin Worker, whose stackprints-submissions App opens a PR with a Co-authored-by credit and a stamped author.github. Requires an idempotency key. destructiveHint false. It never publishes. (write)
 - **`submit_option`**: phase 4 only, same flow for a new option, with check_duplicate and the same caps. (write)
@@ -248,7 +266,7 @@ PHASE 4: ONLY IF PREPARE CALLS FAR OUTNUMBER OPENED PRs (agents cannot open PRs)
 (4) Deploy the 'stackprints' Worker: Static Assets, _headers, and the negotiation handler.
 (5) Run a curl conformance script covering every vercel.json rule. Check that /.well-known/* uploads (unverified). Then point DNS.
 (6) Extract lib/validate.mjs from check.mjs and lib/tools.ts from WebMcp.tsx, and add scripts/mcp-bundle.mjs.
-(7) Serve /mcp with createMcpHandler and 11 anonymous read tools: search_stackprints, list_layers, get_layer, get_option, list_stacks, get_stack, validate_stack, prepare_stack_submission, prepare_option_submission, prepare_correction, get_submission_status. Each tool gets a title, explicit annotations, a self-contained outputSchema plus a text mirror, and data_version.
+(7) Serve /mcp with createMcpHandler and 12 anonymous read tools: search_stackprints, list_layers, get_layer, get_option, list_stacks, get_stack, get_hot, validate_stack, prepare_stack_submission, prepare_option_submission, prepare_correction, get_submission_status. Each tool gets a title, explicit annotations, a self-contained outputSchema plus a text mirror, and data_version.
 (8) Rate limiting: a binding keyed by IP and the one Free WAF rule, with 429, Retry-After and RateLimit headers. Validate Origin. Add a fair-use line to the Pricing copy.
 (9) Test both protocol eras with MCP Inspector, Claude and Claude Code.
 (10) Keep today's desktop news task, but have it push a branch and open a PR instead of committing to main.
@@ -261,10 +279,10 @@ PHASE 4: ONLY IF PREPARE CALLS FAR OUTNUMBER OPENED PRs (agents cannot open PRs)
 (2) Create the stackprints-bot GitHub App and implement Git Data API commits.
 (3) KV for OAuth and the fetch cache; D1 for changes, link_status and audit.
 (4) Build the sourcing gate: path allowlist, immutable fields, receipts, quote, title and date checks, the vendor-reported rule, word lint, the manual-verification lane, base-SHA checks.
-(5) Ship the 20 admin tools and the generated PR bodies.
+(5) Ship the 23 admin tools and the generated PR bodies.
 (6) Daily Cron detector (GitHub releases, RSS/Atom, OpenRouter prices, correction issues) and the weekly link-rot pass.
 (7) Commit the /refresh skill and rewrite docs/NEWS.md so agents write only through the admin MCP.
-(8) Start the nightly cloud scheduled task and the weekly stack and PR-review task. Make Workers preview URLs required on bot PRs.
+(8) Start the nightly cloud scheduled task, the twice-daily hot list task and the weekly stack and PR-review task. Make Workers preview URLs required on bot PRs.
 (9) Run alongside the desktop task for 2-3 runs, then retire it and remove the repo-admin bypass.
 
 3. PHASE 3, PUBLIC PLANNING TOOLS AND LISTINGS (about 1 week).
@@ -305,6 +323,7 @@ Cloudflare:
 Other:
 - GitHub (public repo, Actions minutes, two Apps): $0.
 - Domain renewal at registrar cost, roughly $1/month (check your registrar).
+- The X API behind search_x, only if you choose it for the hot list: a paid API tier, priced by X (check its current pricing). Not counted in the total above.
 - Recheck after 2026-12-01, when Workers Logs moves to Observability pricing.
 - Optional Pro zone, only for more WAF rate rules: +$20-25. Not recommended.
 
@@ -368,6 +387,8 @@ The worst case is a bad PR, never a bad publish.
 - Your review budget and cadence: a small bot PR every night (recommended) or one larger weekly batch. Also whether you pre-commit to the news-only auto-merge criteria after about 6 clean runs, or keep merging every PR yourself.
 - Approve the neutral ranking rule for plan_stack and compare_options: adoption in real, non-example, non-vendor stacks, never `order` and never affiliation, published on /about. It puts past.dev wherever the data puts it.
 - Approve the copy changes: a fair-use rate-limit line on Pricing now. Decide whether you would ever accept GitHub sign-in for direct submissions in phase 4, which ends the unqualified 'no accounts' promise. If not, the PR-only flow is permanent.
+- How the hot list reads X: the X API behind search_x (reliable, measures engagement, a paid API tier), or web search for x.com posts only (free, undercounts smaller conversations). The first list was built without the API.
+- Whether hot-only PRs may merge themselves under the criteria in "The hot list" (recommended: the list is stale within a day), or wait for your merge twice a day.
 - Name a backup admin (a GitHub id for the admin allowlist and a second approver on main), or accept the bus factor of one.
 - Which to build first after phase 1: the admin MCP for your agents (recommended, phase 2) or the public planning tools and directory listings.
 

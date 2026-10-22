@@ -1800,8 +1800,109 @@ pre,
 .hero .lede {
   margin-bottom: 8px;
 }
-.hero + .editor .title {
+.hero + .editor .title,
+.hot + .editor .title {
   margin-top: 28px;
+}
+
+/* Hot right now: cards under the hero for what X is talking about this week. Each card is a
+   module, outlined in its layer's band colour; the product link covers the card. */
+.hot {
+  margin-top: 28px;
+}
+.hot-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+.hot-head h2 {
+  font: 500 13px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+.hot-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.hot-card {
+  position: relative;
+  gap: 6px;
+}
+.hot-card:hover {
+  border-color: var(--line-strong);
+}
+.hot-chip {
+  position: static;
+  border: 0;
+  padding: 0;
+  gap: 8px;
+}
+.hot-chip .chip-name {
+  font: 500 14px var(--sans);
+}
+.hot-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.hot-chip:hover {
+  text-decoration: none;
+}
+.hot-why {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hot-src {
+  margin: auto 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.hot-src time {
+  font-variant-numeric: tabular-nums;
+}
+/* Source links sit above the card's own link. */
+.hot-src a {
+  position: relative;
+  z-index: 1;
+  color: var(--muted);
+}
+.hot-src a:hover {
+  color: var(--fg);
+}
+@media (max-width: 1024px) {
+  .hot-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* On a phone the cards are one row to swipe, so the board stays near the top. */
+@media (max-width: 640px) {
+  .hot-cards {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 78%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* the next card peeking in says there's more */
+  }
+  .hot-card {
+    scroll-snap-align: start;
+  }
 }
 .title h2 {
   font: inherit;
