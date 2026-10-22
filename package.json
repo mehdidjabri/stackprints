@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "node scripts/sprite.mjs && next dev",
-    "build": "node scripts/check.mjs && node scripts/sprite.mjs && next build",
+    "build": "node scripts/check.mjs && node scripts/sprite.mjs && next build && node scripts/agent-files.mjs",
     "check": "node scripts/check.mjs",
     "start": "npx serve out",
     "news:stale": "node scripts/news-stale.mjs"

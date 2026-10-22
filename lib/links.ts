@@ -11,3 +11,9 @@ export const prettyUrl = (u: string) => {
   const path = rest.join("/");
   return path && path.length <= 20 ? `${host}/${path}` : host;
 };
+
+/** "/stack/pi/" → "/stack/pi.md"; "/" → "/index.md". Every content page has a markdown twin. */
+export const mdPath = (page: string) => (page === "/" ? "/index.md" : `${page.replace(/\/$/, "")}.md`);
+
+/** Metadata alternates: canonical URL plus the page's markdown twin. */
+export const withMarkdown = (page: string) => ({ canonical: page, types: { "text/markdown": mdPath(page) } });

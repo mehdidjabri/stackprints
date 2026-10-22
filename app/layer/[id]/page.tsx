@@ -5,7 +5,7 @@ import { Title } from "@/components/Title";
 import { BANDS } from "@/lib/bands";
 import { SITE, getLayer, getLayers, usedBy } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
-import { optionHref } from "@/lib/links";
+import { optionHref, withMarkdown } from "@/lib/links";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${l.name} for AI agents`,
     description,
-    alternates: { canonical: `/layer/${l.id}/` },
-    openGraph: { title: `Agentic Stack / ${l.name}`, description, url: `/layer/${l.id}/`, images: "/opengraph-image" },
+    alternates: withMarkdown(`/layer/${l.id}/`),
+    openGraph: { type: "website", title: `Agentic Stack / ${l.name}`, description, url: `/layer/${l.id}/`, images: "/opengraph-image" },
   };
 }
 

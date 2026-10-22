@@ -4,7 +4,9 @@ import Link from "next/link";
 import { MenuCloser } from "@/components/MenuCloser";
 import { Modal } from "@/components/Modal";
 import { SearchBox } from "@/components/SearchBox";
+import { WebMcp } from "@/components/WebMcp";
 import { SITE } from "@/lib/data";
+import { withMarkdown } from "@/lib/links";
 import "./globals.css";
 
 // Self-hosted at build time: no request to Google at runtime.
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
   description: SITE.description,
   applicationName: SITE.name,
   keywords: ["agentic stack", "AI agent stack", "agent architecture", "LLM", "MCP", "agent harness", "agent memory", "sandbox", "OpenRouter", "AI SDK"],
-  alternates: { canonical: "/" },
+  alternates: withMarkdown("/"),
   openGraph: { type: "website", siteName: SITE.name, url: "/", title: "Agentic Stack", description: SITE.description },
   twitter: { card: "summary_large_image", title: "Agentic Stack", description: SITE.description },
   robots: { index: true, follow: true },
@@ -63,14 +65,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Open source. <Link href="/submit/">List your product</Link> or <Link href="/#publish">publish your stack</Link>.
             </span>
             <nav aria-label="Footer">
-              <a href={SITE.repo}>GitHub</a>
+              <Link href="/about/">About</Link>
+              <Link href="/api/">API</Link>
               <a href="/llms.txt">llms.txt</a>
-              <a href="/stacks.json">stacks.json</a>
+              <Link href="/contact/">Contact</Link>
+              <Link href="/privacy/">Privacy</Link>
+              <a href={SITE.repo}>GitHub</a>
             </nav>
           </div>
         </footer>
         <MenuCloser />
         <Modal />
+        <WebMcp />
       </body>
     </html>
   );

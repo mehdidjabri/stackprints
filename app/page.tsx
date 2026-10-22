@@ -36,15 +36,52 @@ export default function Home() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: SITE.name,
-          url: SITE.url,
-          description: SITE.description,
-          potentialAction: {
-            "@type": "SearchAction",
-            target: `${SITE.url}/search/?q={search_term_string}`,
-            "query-input": "required name=search_term_string",
-          },
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": `${SITE.url}/#org`,
+              name: SITE.name,
+              url: SITE.url,
+              description: "Open, community-maintained map of how AI agents are built.",
+              sameAs: [SITE.repo],
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE.url}/#website`,
+              name: SITE.name,
+              url: SITE.url,
+              description: SITE.description,
+              publisher: { "@id": `${SITE.url}/#org` },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: `${SITE.url}/search/?q={search_term_string}`,
+                "query-input": "required name=search_term_string",
+              },
+            },
+            {
+              "@type": "WebApplication",
+              name: `${SITE.name} editor`,
+              url: SITE.url,
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Any (web browser)",
+              isAccessibleForFree: true,
+              offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+              publisher: { "@id": `${SITE.url}/#org` },
+            },
+            {
+              "@type": "Dataset",
+              name: `${SITE.name}: AI agent stacks, layers and options`,
+              description: `${stacks.length} agent stacks and ${layers.reduce((n, l) => n + l.options.length, 0)} options across ${layers.length} layers, with sources, disclosure levels and weekly news.`,
+              url: SITE.url,
+              license: "https://opensource.org/licenses/MIT",
+              isAccessibleForFree: true,
+              creator: { "@id": `${SITE.url}/#org` },
+              distribution: [
+                { "@type": "DataDownload", encodingFormat: "application/json", contentUrl: `${SITE.url}/api/stacks.json` },
+                { "@type": "DataDownload", encodingFormat: "application/json", contentUrl: `${SITE.url}/api/layers.json` },
+              ],
+            },
+          ],
         }}
       />
       <header className="hero">

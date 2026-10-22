@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Title } from "@/components/Title";
 import { Trending } from "@/components/Trending";
+import { withMarkdown } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Trending in AI agent infrastructure",
   description:
     "The models, harnesses, memory layers, sandboxes and tools most in the news over the last 30 days, with the latest headline for each.",
-  alternates: { canonical: "/trending/" },
+  alternates: withMarkdown("/trending/"),
+  openGraph: { type: "website", url: "/trending/", title: "Agentic Stack / Trending" },
 };
 
 export default function TrendingPage() {

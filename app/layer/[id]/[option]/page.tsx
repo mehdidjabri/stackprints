@@ -6,7 +6,7 @@ import { StackCard } from "@/components/StackCard";
 import { Title } from "@/components/Title";
 import { SITE, getLayers, getNews, getOption, usedBy } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
-import { optionHref } from "@/lib/links";
+import { optionHref, withMarkdown } from "@/lib/links";
 import type { Option } from "@/lib/types";
 
 type Props = { params: Promise<{ id: string; option: string }> };
@@ -43,8 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: url },
-    openGraph: { title: `Agentic Stack / ${layer.name} / ${o.name}`, description, url, images: "/opengraph-image" },
+    alternates: withMarkdown(url),
+    openGraph: { type: "article", title: `Agentic Stack / ${layer.name} / ${o.name}`, description, url, images: "/opengraph-image" },
   };
 }
 

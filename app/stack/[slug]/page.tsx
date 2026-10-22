@@ -6,7 +6,7 @@ import { Title } from "@/components/Title";
 import { SITE, getLayers, getStack, getStacks, resolve } from "@/lib/data";
 import { DISCLOSURE, unknownLabel } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
-import { primaryLink, prettyUrl } from "@/lib/links";
+import { primaryLink, prettyUrl, withMarkdown } from "@/lib/links";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `/stack/${s.slug}/` },
-    openGraph: { title: `Agentic Stack / ${s.name}`, description, url: `/stack/${s.slug}/` },
+    alternates: withMarkdown(`/stack/${s.slug}/`),
+    openGraph: { type: "article", title: `Agentic Stack / ${s.name}`, description, url: `/stack/${s.slug}/` },
     twitter: { title: `Agentic Stack / ${s.name}`, description },
   };
 }

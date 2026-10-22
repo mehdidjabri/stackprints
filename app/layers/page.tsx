@@ -3,12 +3,14 @@ import Link from "next/link";
 import { Title } from "@/components/Title";
 import { BANDS } from "@/lib/bands";
 import { getLayers } from "@/lib/data";
+import { withMarkdown } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Layers of an AI agent stack",
   description:
     "The layers of a modern AI agent: channels, interface, voice, model, router, harness, tools, MCP, skills, sandbox, browser use, memory, retrieval, proactivity, durable execution, guardrails, identity, payments, observability and more.",
-  alternates: { canonical: "/layers/" },
+  alternates: withMarkdown("/layers/"),
+  openGraph: { type: "website", url: "/layers/", title: "Agentic Stack / Layers" },
 };
 
 export default function Layers() {

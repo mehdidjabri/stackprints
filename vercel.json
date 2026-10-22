@@ -1,0 +1,139 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
+    {
+      "src": "^/$",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(?i).*text/markdown.*"
+        }
+      ],
+      "dest": "/index.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept, User-Agent"
+      }
+    },
+    {
+      "src": "^/$",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(GPTBot|ClaudeBot|PerplexityBot|OAI-SearchBot|Claude-SearchBot|ChatGPT-User|Claude-User|Perplexity-User).*"
+        }
+      ],
+      "dest": "/index.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept, User-Agent"
+      }
+    },
+    {
+      "src": "^/(.+?)/?$",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(?i).*text/markdown.*"
+        }
+      ],
+      "dest": "/$1.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept, User-Agent"
+      },
+      "check": true
+    },
+    {
+      "src": "^/(.+?)/$",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(GPTBot|ClaudeBot|PerplexityBot|OAI-SearchBot|Claude-SearchBot|ChatGPT-User|Claude-User|Perplexity-User).*"
+        }
+      ],
+      "dest": "/$1.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept, User-Agent"
+      },
+      "check": true
+    },
+    {
+      "src": "^/.*\\.md$",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept, User-Agent"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/llms(-full)?\\.txt$|^/(stack|layer)/llms\\.txt$",
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/\\.well-known/api-catalog$",
+      "headers": {
+        "Content-Type": "application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""
+      },
+      "continue": true
+    },
+    {
+      "src": "^/openapi\\.json$",
+      "headers": {
+        "Content-Type": "application/vnd.oai.openapi+json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/(api/.*\\.json|search\\.json|stacks\\.json|\\.well-known/.*)$",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/.*",
+      "headers": {
+        "Link": "</sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json\", </api/>; rel=\"service-doc\"; type=\"text/html\", </.well-known/api-catalog>; rel=\"api-catalog\"",
+        "Vary": "Accept, User-Agent"
+      },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "handle": "error"
+    },
+    {
+      "src": "^/.*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(?i).*text/markdown.*"
+        }
+      ],
+      "status": 404,
+      "dest": "/404.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Vary": "Accept, User-Agent"
+      }
+    },
+    {
+      "src": "^/.*",
+      "status": 404,
+      "dest": "/404.html"
+    }
+  ]
+}
