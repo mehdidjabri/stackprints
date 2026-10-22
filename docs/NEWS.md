@@ -12,7 +12,7 @@ News lives in `content/news/<layer>/<id>.json`, one file per option (patterns ha
 
 2. **Split the list into batches by layer**, up to 9 batches, and give each batch to a research agent with this brief:
 
-   > Read docs/RESEARCH.md. For each option below, search for news published after its `updated` date (or the last 12 months if never checked). Merge new items into `content/news/<layer>/<id>.json`: keep at most 5, newest first, no duplicates. Set `updated` to today even if nothing is new. Only use URLs you actually saw. If the news changes a datasheet fact (pricing, license, ownership, a new major version), update that fact in the option file and set its `researched` date. Don't touch other files, and don't build or commit. Finish with `npm run check`.
+   > Read docs/RESEARCH.md. For each option below, search for news published after its `updated` date (or the last 12 months if never checked). Merge new items into `content/news/<layer>/<id>.json`: keep the 5 newest plus every other item from the last 30 days, newest first, no duplicates. Set `updated` to today even if nothing is new. Only use URLs you actually saw. If the news changes a datasheet fact (pricing, license, ownership, a new major version), update that fact in the option file and set its `researched` date. Don't touch other files, and don't build or commit. Finish with `npm run check`.
 
 3. **Validate and build.**
 

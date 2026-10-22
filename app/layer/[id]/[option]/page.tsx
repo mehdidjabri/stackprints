@@ -62,6 +62,9 @@ export default async function OptionPage({ params }: Props) {
   const alternatives = layer.options.filter((x) => x.id !== o.id);
   const links = Object.entries(o.links ?? {});
   if (!links.length && o.url) links.push(["site", `https://${o.url}`]);
+  // The vendor's site, as the meta line links it; the page's own URL is ours.
+  const website = o.links?.site ?? (o.url ? `https://${o.url}` : undefined);
+  const page = `${SITE.url}${optionHref(layer.id, o.id)}`;
   const m = o.model;
   // [label, value, evidence key]
   const stats: [string, string | undefined, string][] = m
@@ -86,15 +89,38 @@ export default async function OptionPage({ params }: Props) {
 
   return (
     <article className={`option b-${layer.band}`}>
+      {/* This page describes someone else's product, so the page is the item and the product what it's
+          about: a Thing typed further by additionalType, not a SoftwareApplication with no offers or
+          rating for search engines to flag. Its url is the vendor's, not ours. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": o.profile === "pattern" || o.profile === "protocol" ? "DefinedTerm" : "SoftwareApplication",
-          name: o.name,
-          description: o.summary ?? o.note,
-          url: `${SITE.url}${optionHref(layer.id, o.id)}`,
-          ...(links.length ? { sameAs: links.map(([, u]) => u) } : {}),
-          ...(o.profile !== "pattern" && o.profile !== "protocol" ? { applicationCategory: `${layer.name} for AI agents` } : {}),
+          "@graph": [
+            {
+              "@type": "WebPage",
+              url: page,
+              name: `${o.name}: ${layer.name.toLowerCase()} for AI agents`,
+              description: o.summary ?? o.note,
+              ...(o.researched ? { dateModified: o.researched } : {}),
+              mainEntity: {
+                ...(o.profile === "pattern" || o.profile === "protocol"
+                  ? { "@type": "DefinedTerm" }
+                  : { "@type": "Thing", additionalType: "https://schema.org/SoftwareApplication" }),
+                name: o.name,
+                description: o.summary ?? o.note,
+                ...(website ? { url: website } : {}),
+                ...(links.length ? { sameAs: links.map(([, u]) => u) } : {}),
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: SITE.name, item: `${SITE.url}/` },
+                { "@type": "ListItem", position: 2, name: layer.name, item: `${SITE.url}/layer/${layer.id}/` },
+                { "@type": "ListItem", position: 3, name: o.name, item: page },
+              ],
+            },
+          ],
         }}
       />
       <Title
@@ -116,7 +142,7 @@ export default async function OptionPage({ params }: Props) {
         {o.url && (
           <>
             {" · "}
-            <a href={links.find(([k]) => k === "site")?.[1] ?? `https://${o.url}`} rel="noopener">
+            <a href={website} rel="noopener">
               {o.url}
             </a>
           </>

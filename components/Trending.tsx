@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getTrending } from "@/lib/data";
+import { getTrending, storyCount } from "@/lib/data";
 import { optionHref } from "@/lib/links";
 import { Logo } from "./Logo";
 
@@ -9,7 +9,7 @@ export function Trending({ limit = 8 }: { limit?: number }) {
   if (!rows.length) return <p className="muted">Nothing in the news yet.</p>;
   return (
     <ol className="trending">
-      {rows.map(({ layer, option, latest, count }, i) => (
+      {rows.map(({ layer, option, latest, count, atLeast }, i) => (
         <li key={`${layer.id}/${option.id}`} className={`module b-${layer.band}`}>
           <span className="silk">
             <span className="ref">R{i + 1}</span>
@@ -19,7 +19,10 @@ export function Trending({ limit = 8 }: { limit?: number }) {
             <span className="chip-text">
               <span className="chip-name">{option.name}</span>
               <span className="chip-note">
-                {layer.name} · {count} {count === 1 ? "story" : "stories"}
+                {layer.name} ·{" "}
+                <span title={atLeast ? "At least 5: this option's news file holds only its 5 newest stories" : undefined}>
+                  {storyCount({ count, atLeast })}
+                </span>
                 {option.affiliation && <span title={option.affiliation}> · affiliated</span>}
               </span>
             </span>

@@ -91,7 +91,10 @@ for (const l of layers) {
     news++;
     if (!index.get(l.id).has(f.slice(0, -5))) errors.push(`${at}: no matching option`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(n.updated ?? "")) errors.push(`${at}: updated must be YYYY-MM-DD`);
-    if (!Array.isArray(n.items) || n.items.length > 5) errors.push(`${at}: items must be a list of at most 5`);
+    // The 5 newest, plus any other story from the 30 days before `updated` (Trending counts them all).
+    if (!Array.isArray(n.items)) errors.push(`${at}: items must be a list`);
+    else if (n.items.slice(5).some((i) => (new Date(n.updated) - new Date(i.date)) / 864e5 > 30))
+      errors.push(`${at}: beyond the 5 newest, keep only items from the 30 days before updated`);
     for (const i of n.items ?? [])
       if (!/^\d{4}-\d{2}-\d{2}$/.test(i.date ?? "") || !i.title || !/^https:\/\//.test(i.url ?? "") || !i.source)
         errors.push(`${at}: each item needs date (YYYY-MM-DD), title, https url, source`);

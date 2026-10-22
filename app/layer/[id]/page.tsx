@@ -45,15 +45,28 @@ export default async function LayerPage({ params }: Props) {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: `${l.name} options for AI agents`,
-          url: `${SITE.url}/layer/${l.id}/`,
-          itemListElement: l.options.map((o, n) => ({
-            "@type": "ListItem",
-            position: n + 1,
-            name: o.name,
-            url: `${SITE.url}${optionHref(l.id, o.id)}`,
-          })),
+          "@graph": [
+            {
+              "@type": "ItemList",
+              name: `${l.name} options for AI agents`,
+              url: `${SITE.url}/layer/${l.id}/`,
+              itemListElement: l.options.map((o, n) => ({
+                "@type": "ListItem",
+                position: n + 1,
+                name: o.name,
+                url: `${SITE.url}${optionHref(l.id, o.id)}`,
+              })),
+            },
+            {
+              // The band crumb on the page is a menu, not a page: the layers page is where the bands are.
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: SITE.name, item: `${SITE.url}/` },
+                { "@type": "ListItem", position: 2, name: "Layers", item: `${SITE.url}/layers/` },
+                { "@type": "ListItem", position: 3, name: l.name, item: `${SITE.url}/layer/${l.id}/` },
+              ],
+            },
+          ],
         }}
       />
       <Title

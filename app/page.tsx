@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Editor } from "@/components/Editor";
 import { CardLegend, StackCard } from "@/components/StackCard";
@@ -5,9 +6,14 @@ import { Trending } from "@/components/Trending";
 import { SITE, asArray, getLayers, getStacks } from "@/lib/data";
 import { BANDS } from "@/lib/bands";
 import { JsonLd } from "@/lib/jsonld";
-import { primaryLink } from "@/lib/links";
+import { primaryLink, withMarkdown } from "@/lib/links";
 
 const DEFAULT = "openclaw";
+
+export const metadata: Metadata = {
+  alternates: withMarkdown("/"),
+  openGraph: { type: "website", siteName: SITE.name, url: "/", title: "Agentic Stack", description: SITE.description },
+};
 
 export default function Home() {
   const layers = getLayers();

@@ -112,11 +112,44 @@ export function getNews(layerId: string, optionId: string): News | undefined {
   return fs.existsSync(p) ? (JSON.parse(fs.readFileSync(p, "utf8")) as News) : undefined;
 }
 
+// ── Dates ───────────────────────────────────────────────────────────────────
+// When a page last changed in substance, for the sitemap's lastmod and the markdown twins'
+// last-updated. ISO dates compare as strings; undefined when nothing is dated (callers fall back).
+
+const newest = (dates: (string | undefined)[]) => dates.filter((d): d is string => Boolean(d)).sort().at(-1);
+
+/** An option's page: its research date or its newest story, whichever is later. */
+export const optionDate = (layerId: string, o: Option) =>
+  newest([o.researched, ...(o.profile === "pattern" ? [] : (getNews(layerId, o.id)?.items ?? []).map((i) => i.date))]);
+
+/** A layer's page lists its options and the stacks that pick them. */
+export const layerDate = (l: Layer) =>
+  newest([...l.options.map((o) => o.researched), ...getStacks().filter((s) => l.id in s.layers).map((s) => s.researched)]);
+
+/** A list of stacks (a kind page). */
+export const stacksDate = (xs: Stack[]) => newest(xs.map((s) => s.researched));
+
+/** The day news was last checked: what Trending is ranked as of, so a rebuild alone never moves it. */
+export function newsDate() {
+  return newest(getLayers().flatMap((l) => l.options.map((o) => getNews(l.id, o.id)?.updated)));
+}
+
+/** The layers page lists every layer and its options. */
+export const layersDate = () => newest(getLayers().map(layerDate));
+
+/** The home page shows every stack and layer, and the top of Trending. */
+export const siteDate = () => newest([layersDate(), stacksDate(getStacks()), newsDate()]);
+
+// A news file keeps its 5 newest stories plus any other from the 30 days before it was checked
+// (docs/RESEARCH.md#news). Files from before that rule stop at 5, so a full one may hold back more.
+const NEWS_KEEP = 5;
+
 /**
- * Trending = most in the news lately. Each item in the last `days` scores by recency (1 → 0),
+ * Trending = most in the news lately. Each item in the `days` before `now` scores by recency (1 → 0),
  * so three stories this week beat one story a month ago. Honest by construction: no hidden inputs.
+ * `now` is the day news was last checked, not the build: the ranking only moves when the news does.
  */
-export function getTrending(days = 30, now = new Date()) {
+export function getTrending(days = 30, now = new Date(newsDate() ?? Date.now())) {
   const out = [];
   for (const layer of getLayers())
     for (const option of layer.options) {
@@ -125,7 +158,13 @@ export function getTrending(days = 30, now = new Date()) {
       const recent = news.items.filter((i) => (now.getTime() - new Date(i.date).getTime()) / 864e5 <= days);
       if (!recent.length) continue;
       const score = recent.reduce((s, i) => s + 1 - (now.getTime() - new Date(i.date).getTime()) / 864e5 / days, 0);
-      out.push({ layer, option, score, latest: recent[0], count: recent.length });
+      // Every story kept is recent and the file is at the old cap: there may be more than it holds.
+      const atLeast = recent.length === news.items.length && news.items.length === NEWS_KEEP;
+      out.push({ layer, option, score, latest: recent[0], count: recent.length, atLeast });
     }
   return out.sort((a, b) => b.score - a.score);
 }
+
+/** "3 stories", "1 story", or "5+ stories" when the news file may hold back more. */
+export const storyCount = ({ count, atLeast }: { count: number; atLeast: boolean }) =>
+  `${count}${atLeast ? "+" : ""} ${count === 1 && !atLeast ? "story" : "stories"}`;

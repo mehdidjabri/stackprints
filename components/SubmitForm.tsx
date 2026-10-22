@@ -118,8 +118,10 @@ export function SubmitForm({ layers, repo }: { layers: L[]; repo: string }) {
       </form>
 
       <div className="preview">
+        {/* The product has no page until the pull request merges, so its chip doesn't link. */}
         <Board
           modules={[{ layer: l, picks: [{ id: id || "x", name: name || "Your product", note: note || "Your subtitle" }] }]}
+          linkPicks={false}
         />
         <pre>
           <code>{json}</code>

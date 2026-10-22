@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { layerIdFrom, renamedLayers } from "@/lib/links";
 import { loadIndex, search, why, whyText } from "@/lib/search";
 
 // WebMCP (W3C draft): tools a browser agent can call on any page of the site, backed by the
@@ -25,7 +26,14 @@ const schema = (properties: Record<string, object>, required = Object.keys(prope
   additionalProperties: false,
 });
 
-const TOOLS: Tool[] = [
+type LayerName = { id: string; name: string };
+
+// The layer input names every id, and display names are accepted too ("Triggers" → proactivity),
+// so an agent that guesses from a name still gets the layer. No enum: it would reject the names.
+const layerInput = (layers: LayerName[]) =>
+  str(`Layer id: ${layers.map((l) => l.id).join(", ")}. Some ids differ from the name shown: ${renamedLayers(layers)}. Display names work too.`);
+
+const tools = (layers: LayerName[]): Tool[] => [
   {
     name: "search_agentic_stack",
     description:
@@ -62,17 +70,20 @@ const TOOLS: Tool[] = [
   {
     name: "get_layer",
     description: "Get one layer of the agent stack and every option in it, to compare choices.",
-    inputSchema: schema({ layer: str("Layer id, e.g. model, harness, router, memory, sandbox, browser, guardrails") }),
+    inputSchema: schema({ layer: layerInput(layers) }),
     annotations: { readOnlyHint: true },
-    execute: (i, o) => getJson(`/api/layers/${encodeURIComponent(String(i.layer))}.json`, o?.signal),
+    execute: (i, o) => getJson(`/api/layers/${encodeURIComponent(layerIdFrom(layers, String(i.layer)))}.json`, o?.signal),
   },
   {
     name: "get_option",
     description: "Get one component's datasheet: summary, facts, links, caveats, recent news and the stacks that use it, with example designs counted apart (usage).",
-    inputSchema: schema({ layer: str("Layer id, e.g. router"), option: str("Option id, e.g. openrouter") }),
+    inputSchema: schema({ layer: layerInput(layers), option: str("Option id, e.g. openrouter (see get_layer)") }),
     annotations: { readOnlyHint: true },
     execute: (i, o) =>
-      getJson(`/api/options/${encodeURIComponent(String(i.layer))}/${encodeURIComponent(String(i.option))}.json`, o?.signal),
+      getJson(
+        `/api/options/${encodeURIComponent(layerIdFrom(layers, String(i.layer)))}/${encodeURIComponent(String(i.option))}.json`,
+        o?.signal,
+      ),
   },
   {
     name: "open_stack_in_editor",
@@ -85,16 +96,17 @@ const TOOLS: Tool[] = [
   },
 ];
 
-export function WebMcp() {
+/** Layers come from the root layout (a server component): just the ids and names. */
+export function WebMcp({ layers }: { layers: LayerName[] }) {
   useEffect(() => {
     const mc = ((document as unknown as { modelContext?: ModelContext }).modelContext ??
       (navigator as unknown as { modelContext?: ModelContext }).modelContext) as ModelContext | undefined;
     if (!mc || typeof mc.registerTool !== "function") return;
-    for (const tool of TOOLS) {
+    for (const tool of tools(layers)) {
       try {
         Promise.resolve(mc.registerTool(tool)).catch(() => {});
       } catch {}
     }
-  }, []);
+  }, [layers]);
   return null;
 }

@@ -7,8 +7,7 @@ import { PrimaryNav } from "@/components/PrimaryNav";
 import { SearchBox } from "@/components/SearchBox";
 import { SectionLink } from "@/components/SectionLink";
 import { WebMcp } from "@/components/WebMcp";
-import { SITE } from "@/lib/data";
-import { withMarkdown } from "@/lib/links";
+import { SITE, getLayers } from "@/lib/data";
 import "./globals.css";
 
 // A link to a stack (#s=… or #from=…) hides the editor until it has loaded that stack, so the default
@@ -25,10 +24,10 @@ export const metadata: Metadata = {
   description: SITE.description,
   applicationName: SITE.name,
   keywords: ["agentic stack", "AI agent stack", "agent architecture", "LLM", "MCP", "agent harness", "agent memory", "sandbox", "OpenRouter", "AI SDK"],
-  alternates: withMarkdown("/"),
-  openGraph: { type: "website", siteName: SITE.name, url: "/", title: "Agentic Stack", description: SITE.description },
+  // No canonical, markdown twin or og:url here: every page names its own (the home page in app/page.tsx),
+  // so a page that doesn't, like the 404, never inherits the home page's.
+  openGraph: { type: "website", siteName: SITE.name, title: "Agentic Stack", description: SITE.description },
   twitter: { card: "summary_large_image", title: "Agentic Stack", description: SITE.description },
-  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
@@ -79,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
         <MenuCloser />
         <Modal />
-        <WebMcp />
+        <WebMcp layers={getLayers().map(({ id, name }) => ({ id, name }))} />
       </body>
     </html>
   );

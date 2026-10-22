@@ -104,7 +104,7 @@ News lives apart from the option, in `content/news/<layer>/<id>.json`, so refres
 }
 ```
 
-- At most 5 items, newest first, from the last 12 months only.
+- Newest first, from the last 12 months only. Keep the 5 newest items, plus every other item from the 30 days before `updated`: Trending counts each story in that window, so dropping one would hide it.
 - `date` is the article's original publish date (the byline date, or `datePublished` / `article:published_time` in the page metadata). Never use an 'Updated on' date or the day you found it.
 - Use real articles, official blog posts, changelogs or release notes. No SEO spam, no aggregators when the original exists, and no social posts unless they are the primary announcement.
 - Only include a URL you saw in search results or opened. Prefer the original source.

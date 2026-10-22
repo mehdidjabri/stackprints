@@ -82,9 +82,19 @@ export default async function StackPage({ params }: Props) {
               ...(s.author ? { author: { "@type": "Person", name: s.author.name, ...(s.author.url ? { url: s.author.url } : {}) } } : {}),
               description: s.description,
               url: `${SITE.url}/stack/${s.slug}/`,
+              ...(s.researched ? { dateModified: s.researched } : {}),
               ...(sources.length ? { citation: sources.map((x) => ({ "@type": "CreativeWork", name: x.title, url: x.url })) } : {}),
               ...(site
-                ? { mainEntity: { "@type": "SoftwareApplication", name: s.name, url: site, sameAs: Object.values(s.links ?? {}) } }
+                ? {
+                    // A Thing typed further, like an option page's: no offers or rating to be flagged for.
+                    mainEntity: {
+                      "@type": "Thing",
+                      additionalType: "https://schema.org/SoftwareApplication",
+                      name: s.name,
+                      url: site,
+                      sameAs: Object.values(s.links ?? {}),
+                    },
+                  }
                 : {}),
               about: rows.flatMap((r) => r.picks.map((p) => ({ "@type": "Thing", name: p.name, ...(p.url ? { url: `https://${p.url}` } : {}) }))),
             },

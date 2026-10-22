@@ -4,9 +4,29 @@
 // them into out/ after the build, so the site stays fully static.
 import crypto from "node:crypto";
 import { BANDS } from "./bands";
-import { SITE, affiliated, asArray, getLayers, getNews, getStacks, getTrending, resolve, stackTitle, usage, usageText, usedBy } from "./data";
+import {
+  SITE,
+  affiliated,
+  asArray,
+  getLayers,
+  getNews,
+  getStacks,
+  getTrending,
+  layerDate,
+  layersDate,
+  newsDate,
+  optionDate,
+  resolve,
+  siteDate,
+  stackTitle,
+  stacksDate,
+  storyCount,
+  usage,
+  usageText,
+  usedBy,
+} from "./data";
 import { EMPTY, disclosureOf, emptyLayers, isSupported } from "./disclosure";
-import { citeNumbers, kindHref, mdPath, numberedSources, optionHref, stackSources } from "./links";
+import { MD_RULE, citeNumbers, kindHref, mdPath, numberedSources, optionHref, renamedLayers, stackSources } from "./links";
 import type { Layer, Option, Stack } from "./types";
 
 export const BUILT = new Date().toISOString().slice(0, 10);
@@ -30,19 +50,23 @@ function frontmatter(f: Record<string, string | undefined>) {
 }
 
 // ── Markdown twins ─────────────────────────────────────────────────────────
+// Twins link each other as .md, for agents reading markdown, but each says under its title which
+// URL to cite: the HTML page (vercel.json sends the same as a canonical Link header).
+
+const h1 = (title: string, page: string) => `# ${title}\n\nCite: ${abs(page)}\n\n`;
 
 function homeMd() {
   const layers = getLayers();
   const stacks = getStacks();
   return (
-    frontmatter({ title: SITE.name, description: SITE.description, canonical: abs("/"), "last-updated": BUILT }) +
-    `# ${SITE.name}\n\n> ${SITE.description}\n\n## When to use this\n\n${WHEN_TO_USE.replace("{layers}", String(layers.length))}\n\n` +
+    frontmatter({ title: SITE.name, description: SITE.description, canonical: abs("/"), "last-updated": siteDate() ?? BUILT }) +
+    `${h1(SITE.name, "/")}> ${SITE.description}\n\n## When to use this\n\n${WHEN_TO_USE.replace("{layers}", String(layers.length))}\n\n` +
     `## Stacks\n\n${stacks.map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline} (${s.kind}${disclosureOf(s) ? `, ${disclosureOf(s)!.badge.toLowerCase()}` : ""})`).join("\n")}\n\n` +
     `## Layers\n\n${BANDS.map(([b, name]) => `### ${name}\n\n${layers
       .filter((l) => l.band === b)
       .map((l) => `- [${l.name}](${abs(mdPath(`/layer/${l.id}/`))}) (${l.ref}): ${l.description}`)
       .join("\n")}`).join("\n\n")}\n\n` +
-    `## For agents\n\n- [API docs](${abs("/api/")}) and [OpenAPI spec](${abs("/openapi.json")}): read-only JSON, no key needed\n- [llms.txt](${abs("/llms.txt")}) and [llms-full.txt](${abs("/llms-full.txt")})\n- Every page has a markdown twin: append .md to its URL\n`
+    `## For agents\n\n- [API docs](${abs("/api/")}) and [OpenAPI spec](${abs("/openapi.json")}): read-only JSON, no key needed\n- [llms.txt](${abs("/llms.txt")}) and [llms-full.txt](${abs("/llms-full.txt")})\n- Every content page has a markdown twin: ${MD_RULE}\n`
   );
 }
 
@@ -62,7 +86,7 @@ function stackMd(s: Stack) {
   const own = affiliated(s);
   return (
     frontmatter({ title: stackTitle(s), description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
-    `# ${s.name}\n\n${s.kind}${badge ? ` · ${badge.badge}: ${badge.about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}${s.version ? ` against ${s.version}` : ""}\n\n${s.description}\n\n` +
+    `${h1(s.name, `/stack/${s.slug}/`)}${s.kind}${badge ? ` · ${badge.badge}: ${badge.about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}${s.version ? ` against ${s.version}` : ""}\n\n${s.description}\n\n` +
     (own.length ? `> Disclosure: this ${s.disclosure === "example" ? "example" : "stack"} uses ${own.map((o) => o.name).join(", ")}. ${[...new Set(own.map((o) => o.affiliation))].join(" ")}\n\n` : "") +
     (s.links ? `${Object.entries(s.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n\n` : "") +
     `## Layers\n\n${rows.map(({ layer, picks }) => `- **${layer.name}** (${layer.ref}): ${picksMd(layer.id, picks)}${cites(layer.id)}`).join("\n")}\n` +
@@ -80,8 +104,8 @@ function stackMd(s: Stack) {
 function kindMd(kind: string) {
   const xs = getStacks().filter((s) => s.kind === kind);
   return (
-    frontmatter({ title: `${kind} stacks`, canonical: abs(kindHref(kind)), "last-updated": BUILT }) +
-    `# ${kind} stacks\n\n${xs
+    frontmatter({ title: `${kind} stacks`, canonical: abs(kindHref(kind)), "last-updated": stacksDate(xs) ?? BUILT }) +
+    `${h1(`${kind} stacks`, kindHref(kind))}${xs
       .map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline}${disclosureOf(s) ? ` (${disclosureOf(s)!.badge.toLowerCase()})` : ""}`)
       .join("\n")}\n\nAll stacks: ${abs("/index.md")}\n`
   );
@@ -90,8 +114,8 @@ function kindMd(kind: string) {
 function layerMd(l: Layer) {
   const own = l.options.filter((o) => o.affiliation);
   return (
-    frontmatter({ title: `${l.name} for AI agents`, description: l.description, canonical: abs(`/layer/${l.id}/`), "last-updated": BUILT }) +
-    `# ${l.name}\n\n${l.ref} · ${BANDS.find(([b]) => b === l.band)![1]} band · ${l.options.length} options\n\n` +
+    frontmatter({ title: `${l.name} for AI agents`, description: l.description, canonical: abs(`/layer/${l.id}/`), "last-updated": layerDate(l) ?? BUILT }) +
+    `${h1(l.name, `/layer/${l.id}/`)}${l.ref} · ${BANDS.find(([b]) => b === l.band)![1]} band · ${l.options.length} options\n\n` +
     own.map((o) => `> Disclosure (${o.name}): ${o.affiliation}\n\n`).join("") +
     `${l.description}\n\n## Options\n\n` +
     l.options
@@ -118,9 +142,9 @@ function optionMd(l: Layer, o: Option) {
       title: `${o.name}: ${l.name.toLowerCase()} for AI agents`,
       description: o.summary ?? o.note,
       canonical: abs(optionHref(l.id, o.id)),
-      "last-updated": o.researched ?? BUILT,
+      "last-updated": optionDate(l.id, o) ?? BUILT,
     }),
-    `# ${o.name}\n\n${[o.profile, l.name, o.open ? "open" : undefined, usageText({ stacks, examples }) || undefined, o.url].filter(Boolean).join(" · ")}\n`,
+    `${h1(o.name, optionHref(l.id, o.id))}${[o.profile, l.name, o.open ? "open" : undefined, usageText({ stacks, examples }) || undefined, o.url].filter(Boolean).join(" · ")}\n`,
     o.affiliation ? `\n> Disclosure: ${o.affiliation}\n` : "",
     o.note ? `\n> ${o.note}\n` : "",
     o.summary ? `\n${o.summary}\n` : "",
@@ -142,10 +166,11 @@ function optionMd(l: Layer, o: Option) {
 
 function trendingMd() {
   const rows = getTrending().slice(0, 40);
+  const asOf = newsDate();
   return (
-    frontmatter({ title: "Trending in AI agent infrastructure", description: "Options most in the news over the last 30 days.", canonical: abs("/trending/"), "last-updated": BUILT }) +
-    `# Trending\n\nRanked by recent news: every story from the last 30 days counts, newer stories count more.\n\n` +
-    rows.map(({ layer, option, latest, count }, i) => `${i + 1}. [${option.name}](${abs(mdPath(optionHref(layer.id, option.id)))}) (${layer.name}, ${count} stories): ${latest.date} [${latest.title}](${latest.url})${option.affiliation ? ` (disclosure: ${option.affiliation})` : ""}`).join("\n") +
+    frontmatter({ title: "Trending in AI agent infrastructure", description: "Options most in the news over the last 30 days.", canonical: abs("/trending/"), "last-updated": asOf ?? BUILT }) +
+    `${h1("Trending", "/trending/")}Ranked by news from the 30 days up to ${asOf ? `${asOf}, when news was last checked` : "today"}: every story counts, newer stories count more.${rows.some((r) => r.atLeast) ? ` "5+" means the option's news file holds only its 5 newest stories, so there may be more.` : ""}\n\n` +
+    rows.map((r, i) => `${i + 1}. [${r.option.name}](${abs(mdPath(optionHref(r.layer.id, r.option.id)))}) (${r.layer.name}, ${storyCount(r)}): ${r.latest.date} [${r.latest.title}](${r.latest.url})${r.option.affiliation ? ` (disclosure: ${r.option.affiliation})` : ""}`).join("\n") +
     "\n"
   );
 }
@@ -181,8 +206,9 @@ export const CONTACT = `Agentic Stack is maintained in the open on GitHub. To re
 
 For questions about how the site works, see the About page and the contribution guide. Security issues should be reported privately through GitHub's security advisory form on the repository rather than in a public issue.`;
 
+// Hand-written pages carry no last-updated: the build date would say nothing about the copy.
 const pageMd = (title: string, path: string, body: string, description: string) =>
-  frontmatter({ title, description, canonical: abs(path), "last-updated": BUILT }) + `# ${title}\n\n${body.replace("{layers}", String(getLayers().length))}\n`;
+  frontmatter({ title, description, canonical: abs(path) }) + `${h1(title, path)}${body.replace("{layers}", String(getLayers().length))}\n`;
 
 export const PRICING_MD = `# Pricing
 
@@ -194,10 +220,93 @@ Agentic Stack is free.
 - Data license: MIT, like the code.
 `;
 
+// The API page's copy, shared with its markdown twin. `code` spans render as <code> on the page.
+export const API_ENDPOINTS: [string, string, string][] = [
+  ["GET /api/stacks.json", "Every stack: name, kind, tagline, disclosure, links", "/api/stacks.json"],
+  ["GET /api/stacks/{slug}.json", "One stack, layer by layer, with evidence URLs, sources, notDisclosed, inUseUndisclosed and notUsed", "/api/stacks/openclaw.json"],
+  ["GET /api/layers.json", "Every layer with its options", "/api/layers.json"],
+  ["GET /api/layers/{layer}.json", "One layer with option summaries", "/api/layers/memory.json"],
+  ["GET /api/options/{layer}/{option}.json", "One option: datasheet facts, links, caveats, news, stacks that use it", "/api/options/router/openrouter.json"],
+  ["GET /search.json", "Compact search index of every stack, layer and option", "/search.json"],
+];
+
+export const apiLede = () =>
+  `Everything on ${SITE.name} is available as static JSON: ${getStacks().length} stacks with their sources, ${getLayers().length} layers, and every option with its links and research date. No authentication, no API key, no rate-limit tiers. It's free.`;
+
+/** Layer ids never change, so some differ from the name a layer goes by now. */
+export const layerIds = () =>
+  `Use layer ids, not names, in \`{layer}\`: \`/api/layers.json\` lists them all. Some differ from the name shown: ${renamedLayers(getLayers())}.`;
+
+export const API_READING = `Each stack has a \`disclosure\`: \`open-source\` and \`example\` stacks list everything they use, so a missing layer is not used. \`documented\` and \`closed\` stacks only list what their makers or reputable press have published; layers in \`notDisclosed\` are unknown, not absent. An open-source stack with closed parts lists the layers only those parts could fill under \`notDisclosed\` too. Layers in \`inUseUndisclosed\` are present, with evidence, but their component isn't named. A pick with \`"supported": true\` is something the stack can be configured to use, not what it runs by default. Every pick on a real product has evidence URLs in \`layers[].evidence\`. An \`example\` stack is a design written for this site, not a product: an option's \`usage\` counts examples apart from real stacks, so don't read them as adoption.`;
+
+export const API_VERSIONING = `The API is version 1. Fields are only added, never renamed or removed, within a major version; a breaking change would ship under a new path with notice in the repository. Unknown slugs return a plain HTTP 404. Data is rebuilt on every deploy and the news refreshes weekly, so cache freely.`;
+
+function apiMd() {
+  return (
+    frontmatter({ title: "API", description: "Free, read-only JSON API for AI agent stacks, layers and options.", canonical: abs("/api/") }) +
+    `${h1("API", "/api/")}${apiLede()}\n\n## Endpoints\n\n${API_ENDPOINTS.map(([route, what, example]) => `- \`${route}\`: ${what}. Example: ${abs(example)}`).join("\n")}\n\n${layerIds()}\n\n` +
+    `## Example\n\n\`\`\`\ncurl ${abs("/api/stacks/openclaw.json")}\n\`\`\`\n\n` +
+    `## Reading stacks correctly\n\n${API_READING} See also [Reading a stack](${abs("/about.md")}).\n\n` +
+    `## Machine-readable\n\n- OpenAPI 3.1: ${abs("/openapi.json")}\n- API catalog (RFC 9727): ${abs("/.well-known/api-catalog")}\n- Agent resource catalog: ${abs("/.well-known/ard.json")}\n- Agent skill: ${abs("/.well-known/agent-skills/index.json")}\n- Guides for AI readers: ${abs("/llms.txt")}, ${abs("/llms-full.txt")}; every content page also has a markdown twin: ${MD_RULE}\n\n` +
+    `## Versioning and errors\n\n${API_VERSIONING}\n`
+  );
+}
+
+/** The stack file the contribute page shows, shared with its markdown twin. */
+export const STACK_EXAMPLE = `{
+  "slug": "my-agent",
+  "name": "My Agent",
+  "kind": "Personal agent",
+  "tagline": "One line people will read in the grid.",
+  "description": "Two or three sentences on how it works.",
+  "author": { "name": "Ada", "url": "https://x.com/ada" },
+  "links": { "site": "https://my-agent.dev", "repo": "https://github.com/me/my-agent" },
+  "disclosure": "open-source",
+  "sources": [{ "title": "README", "url": "https://github.com/me/my-agent" }],
+  "layers": {
+    "channels": ["telegram", "email"],
+    "model": "claude-sonnet-5-5",
+    "harness": "pi",
+    "memory": "memory-md"
+  },
+  "evidence": { "memory": ["https://github.com/me/my-agent"] },
+  "notUsed": ["sandbox"],
+  "researched": "YYYY-MM-DD"
+}`;
+
+// Mirrors app/contribute/page.tsx; change both together.
+function contributeMd() {
+  return (
+    frontmatter({ title: "Contribute", description: "Add an agent stack, a layer or an option to Agentic Stack. Everything is plain JSON in a public repo.", canonical: abs("/contribute/") }) +
+    `${h1("Contribute", "/contribute/")}Everything on this site is plain JSON in [a public repo](${SITE.repo}). No database. You need a GitHub account to open a pull request; it ships on merge.\n\n` +
+    `## Publish your stack as a page\n\nBuild it on the [home page](${abs("/")}), press **Publish as a page**, add your name, a tagline and two sentences, and open the pull request. It becomes \`content/stacks/your-stack.json\` and, once merged, gets its own page at \`/stack/your-stack/\` with a preview image.\n\n\`\`\`json\n${STACK_EXAMPLE}\n\`\`\`\n\n` +
+    `\`disclosure\` decides what an empty slot means: on \`open-source\` and \`example\` stacks it is not used; on \`documented\` and \`closed\` stacks it is not disclosed. \`evidence\` gives, for each layer the stack picks, the URLs that back the pick, taken from \`sources\`. \`notUsed\` lists layers a source confirms are absent. Three optional fields cover the in-between cases: \`inUseUndisclosed\` (present, component not named), \`closedLayers\` (open source with closed parts) and \`supports\` (configurable rather than default). The full rules are in [docs/RESEARCH.md](${SITE.repo}/blob/main/docs/RESEARCH.md).\n\n` +
+    `## List your product\n\nUse the [submit form](${abs("/submit/")}): it writes the file and opens the pull request.\n\n` +
+    `## Add a layer\n\nAdd it to \`content/layers.json\` with a band: \`surface\`, \`brain\`, \`hands\`, \`files\` or \`ops\`, and create \`content/options/<layer>/\`.\n\n` +
+    `## Check before you push\n\n\`\`\`\nnpm run check\n\`\`\`\n\nIt checks ids, file names, logos, and that every stack points at layers and options that exist.\n\n` +
+    `## House rules\n\nBe factual and link a source. For closed products, describe what is publicly reported and say so. No affiliate links. Keep notes short and neutral.\n`
+  );
+}
+
 // ── llms.txt family ─────────────────────────────────────────────────────────
+
+const stripFrontmatter = (m: string) => m.replace(/^---[\s\S]*?---\n\n/, "");
+const SEP = "\n\n---\n\n";
+
+/** A layer, then every option's datasheet, as one text. */
+const layerFull = (l: Layer) => [layerMd(l), ...l.options.map((o) => optionMd(l, o))].map(stripFrontmatter).join(SEP);
+
+// Everything in one file: home, stacks, then each layer followed by its options. It is large, so
+// each layer is also published on its own at /layer/<id>/llms-full.txt.
+let full: string | undefined;
+const llmsFull = () =>
+  (full ??=
+    `# ${SITE.name}: full text\n\n> ${SITE.description}\n\n` +
+    [...[homeMd(), ...getStacks().map(stackMd)].map(stripFrontmatter), ...getLayers().map(layerFull)].join(SEP));
 
 function llmsTxt() {
   const layers = getLayers();
+  const kb = Math.round(Buffer.byteLength(llmsFull()) / 1024);
   return `# ${SITE.name}
 
 > ${SITE.description}
@@ -208,8 +317,9 @@ ${WHEN_TO_USE.replace("{layers}", String(layers.length))}
 
 ## How to use it
 
-- Read a page as markdown: append .md to any URL, e.g. ${abs("/stack/openclaw.md")} or ${abs("/layer/memory.md")}.
+- Read any content page as markdown: ${MD_RULE}. Cite the HTML URL; each twin names it under its title.
 - Query the JSON API, no key needed: ${abs("/api/stacks.json")}, ${abs("/api/stacks/{slug}.json")}, ${abs("/api/layers/{layer}.json")}, ${abs("/api/options/{layer}/{option}.json")}. Spec: ${abs("/openapi.json")}. Docs: ${abs("/api/")}.
+- Layer ids are fixed and some differ from the name shown: ${renamedLayers(layers)}. URLs and the API use ids; ${abs("/api/layers.json")} lists them all.
 - In a browser with WebMCP, the pages expose tools: search_agentic_stack, list_stacks, get_stack, get_layer, get_option, open_stack_in_editor.
 - On a closed or documented product, a layer that isn't listed is "not disclosed", not "not used". In the API, read each stack's notDisclosed, inUseUndisclosed (present, but the component isn't named) and notUsed lists rather than inferring from the disclosure field.
 - A pick with "supported": true is something the stack can be configured to use, not what it runs by default.
@@ -223,16 +333,17 @@ ${AFFILIATION}
 
 - [Stacks index](${abs("/stack/llms.txt")}): every stack with its disclosure level
 - [Layers index](${abs("/layer/llms.txt")}): every layer and its options
-- [Everything in one file](${abs("/llms-full.txt")})
+- [Everything in one file](${abs("/llms-full.txt")}): every stack, layer and option datasheet (about ${kb} KB)
+- One layer with every option's datasheet: ${abs("/layer/{layer}/llms-full.txt")}, e.g. [Memory](${abs("/layer/memory/llms-full.txt")})
 
 ## Key pages
 
 - [Home](${abs("/index.md")})
 - [All layers](${abs("/layers.md")})
 - [Trending](${abs("/trending.md")})
-- [API docs](${abs("/api/")})
+- [API docs](${abs("/api.md")})
 - [About](${abs("/about.md")})
-- [Contribute](${abs("/contribute/")})
+- [Contribute](${abs("/contribute.md")})
 - [Pricing](${abs("/pricing.md")})
 `;
 }
@@ -277,18 +388,11 @@ function stackJson(s: Stack) {
         name: l.name,
         band: l.band,
         ref: l.ref,
-        picks: asArray(s.layers[l.id]).map((id) => {
-          const o = l.options.find((x) => x.id === id)!;
-          return {
-            id,
-            name: o.name,
-            note: o.note ?? null,
-            ...(o.affiliation ? { affiliation: o.affiliation } : {}),
-            ...(isSupported(s, l.id, id) ? { supported: true } : {}),
-            url: abs(optionHref(l.id, id)),
-            api: abs(`/api/options/${l.id}/${id}.json`),
-          };
-        }),
+        // OptionSummary, as the spec says, so profile tells a pattern ("Any model") from a product.
+        picks: asArray(s.layers[l.id]).map((id) => ({
+          ...optionSummary(l, l.options.find((x) => x.id === id)!),
+          ...(isSupported(s, l.id, id) ? { supported: true } : {}),
+        })),
         evidence: s.evidence?.[l.id] ?? [],
       })),
     // Every unlisted layer is in exactly one list: unknown, present but unnamed, or absent.
@@ -299,6 +403,10 @@ function stackJson(s: Stack) {
     sources: stackSources(s),
   };
 }
+
+// `url` is always this site's page; the vendor's site is `website`, host and path without the scheme,
+// as the option file records it (links.site has the full URL when there is one).
+const website = (o: Option) => o.url ?? null;
 
 const optionSummary = (l: Layer, o: Option) => ({
   id: o.id,
@@ -319,7 +427,7 @@ const layerJson = (l: Layer, full: boolean) => ({
   description: l.description,
   url: abs(`/layer/${l.id}/`),
   api: abs(`/api/layers/${l.id}.json`),
-  options: l.options.map((o) => (full ? { ...optionSummary(l, o), summary: o.summary ?? null, website: o.url ?? null } : optionSummary(l, o))),
+  options: l.options.map((o) => (full ? { ...optionSummary(l, o), summary: o.summary ?? null, website: website(o) } : optionSummary(l, o))),
 });
 
 function optionJson(l: Layer, o: Option) {
@@ -329,6 +437,7 @@ function optionJson(l: Layer, o: Option) {
     ...rest,
     layer: { id: l.id, name: l.name, band: l.band },
     url: abs(optionHref(l.id, o.id)),
+    website: website(o),
     news: o.profile === "pattern" ? null : getNews(l.id, o.id) ?? null,
     // usedBy keeps every stack (API v1 never changes a field's meaning); usage counts examples apart.
     usage: { stacks: stacks.length, exampleDesigns: examples.length },
@@ -341,7 +450,17 @@ function openapi() {
     description,
     content: { "application/json": { schema: { $ref: `#/components/schemas/${ref}` } } },
   });
-  const param = (name: string, description: string) => ({ name, in: "path", required: true, description, schema: { type: "string" } });
+  const param = (name: string, description: string, values?: string[]) => ({
+    name,
+    in: "path",
+    required: true,
+    description,
+    schema: values ? { type: "string", enum: values } : { type: "string" },
+  });
+  // The paths are static files, so only exact ids resolve: list them, and the ones a name doesn't give away.
+  const layers = getLayers();
+  const layerIdList = layers.map((l) => l.id);
+  const layerParam = param("layer", `Layer id, not the display name (see /api/layers.json): ${renamedLayers(layers)}`, layerIdList);
   return {
     openapi: "3.1.0",
     info: {
@@ -373,7 +492,7 @@ function openapi() {
         get: {
           operationId: "getLayer",
           summary: "Get one layer and all its options",
-          parameters: [param("layer", "Layer id, e.g. model, harness, memory, sandbox")],
+          parameters: [layerParam],
           responses: { "200": ok("Layer", "The layer"), "404": { description: "No such layer" } },
         },
       },
@@ -381,7 +500,7 @@ function openapi() {
         get: {
           operationId: "getOption",
           summary: "Get one option: datasheet, links, news and the stacks that use it",
-          parameters: [param("layer", "Layer id"), param("option", "Option id, e.g. openrouter, e2b")],
+          parameters: [layerParam, param("option", "Option id, e.g. openrouter, e2b (listed by getLayer)")],
           responses: { "200": ok("Option", "The option"), "404": { description: "No such option" } },
         },
       },
@@ -468,15 +587,17 @@ function openapi() {
             profile: { type: ["string", "null"], enum: ["model", "product", "protocol", "pattern", null] },
             open: { type: "boolean" },
             affiliation: { type: "string", description: "Present only when the people behind this site also make the option" },
-            url: { type: "string", format: "uri" },
+            url: { type: "string", format: "uri", description: "This option's page on the site" },
             api: { type: "string", format: "uri" },
+            summary: { type: ["string", "null"], description: "Only in getLayer" },
+            website: { type: ["string", "null"], description: "Only in getLayer: the vendor or project site as host and path, without the scheme, e.g. mem0.ai" },
           },
         },
         Layer: {
           type: "object",
           required: ["id", "name", "band", "options"],
           properties: {
-            id: { type: "string" },
+            id: { type: "string", enum: layerIdList },
             name: { type: "string" },
             band: { type: "string", enum: BANDS.map(([b]) => b) },
             ref: { type: "string", description: "Board designator, e.g. U2" },
@@ -494,6 +615,9 @@ function openapi() {
             id: { type: "string" },
             name: { type: "string" },
             affiliation: { type: "string", description: "Present only when the people behind this site also make the option" },
+            url: { type: "string", format: "uri", description: "This option's page on the site" },
+            website: { type: ["string", "null"], description: "The vendor or project site as host and path, without the scheme, e.g. mem0.ai; links.site has the full URL when recorded" },
+            links: { type: "object", additionalProperties: { type: "string", format: "uri" }, description: "site, docs, repo, pricing, changelog, …" },
             summary: { type: "string" },
             facts: { type: "array", items: { type: "array", items: { type: "string" }, minItems: 2, maxItems: 2 } },
             sources: { type: "array", description: "Pages the datasheet was researched from, when recorded", items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" } } } },
@@ -533,7 +657,7 @@ Read-only data about AI agent stacks at ${SITE.url}. No key needed.
 2. Read a stack: GET ${abs("/api/stacks/{slug}.json")}. Each layer has picks and evidence URLs; cite those when you repeat a claim.
 3. Compare a layer: GET ${abs("/api/layers/{layer}.json")}, then ${abs("/api/options/{layer}/{option}.json")} for datasheets, caveats ("watchOut") and recent news.
 4. Respect disclosure: a layer listed in notDisclosed is unknown, not absent. Say "not disclosed" rather than guessing. A layer in inUseUndisclosed is present, but its component isn't named; cite its evidence. A pick marked "supported": true is configurable, not the default.
-5. Link people to the HTML page (the url field) or the markdown twin (append .md).
+5. Link people to the HTML page (the url field) or its markdown twin: ${MD_RULE}.
 
 ## Notes
 
@@ -599,8 +723,8 @@ export function agentFiles(): Record<string, AgentFile> {
   // Markdown twins
   files["/index.md"] = md(homeMd());
   files["/layers.md"] = md(
-    frontmatter({ title: "Layers of an AI agent stack", canonical: abs("/layers/"), "last-updated": BUILT }) +
-      `# Layers\n\n${layers.map((l) => `- [${l.name}](${abs(mdPath(`/layer/${l.id}/`))}) (${l.ref}, ${l.band}): ${l.description}`).join("\n")}\n`,
+    frontmatter({ title: "Layers of an AI agent stack", canonical: abs("/layers/"), "last-updated": layersDate() ?? BUILT }) +
+      `${h1("Layers", "/layers/")}${layers.map((l) => `- [${l.name}](${abs(mdPath(`/layer/${l.id}/`))}) (${l.ref}, ${l.band}): ${l.description}`).join("\n")}\n`,
   );
   files["/trending.md"] = md(trendingMd());
   files["/about.md"] = md(
@@ -608,11 +732,13 @@ export function agentFiles(): Record<string, AgentFile> {
   );
   files["/privacy.md"] = md(pageMd("Privacy", "/privacy/", PRIVACY, "What Agentic Stack does and doesn't collect."));
   files["/contact.md"] = md(pageMd("Contact", "/contact/", CONTACT, "How to reach the maintainers."));
+  files["/api.md"] = md(apiMd());
+  files["/contribute.md"] = md(contributeMd());
   files["/pricing.md"] = md(
-    frontmatter({ title: "Pricing", description: "Agentic Stack is free.", canonical: abs("/pricing.md"), "last-updated": BUILT }) +
+    frontmatter({ title: "Pricing", description: "Agentic Stack is free.", canonical: abs("/pricing.md") }) +
       PRICING_MD.replace("{api}", abs("/api/")),
   );
-  files["/404.md"] = md(frontmatter({ title: "Not found", "last-updated": BUILT }) + `# Not found\n\nThat page doesn't exist on ${SITE.name}. Start from ${abs("/llms.txt")}, the sitemap at ${abs("/sitemap.xml")}, or search at ${abs("/search.json")}.\n`);
+  files["/404.md"] = md(frontmatter({ title: "Not found" }) + `# Not found\n\nThat page doesn't exist on ${SITE.name}. Start from ${abs("/llms.txt")}, the sitemap at ${abs("/sitemap.xml")}, or search at ${abs("/search.json")}.\n`);
   for (const s of stacks) files[mdPath(`/stack/${s.slug}/`)] = md(stackMd(s));
   for (const k of new Set(stacks.map((s) => s.kind))) files[mdPath(kindHref(k))] = md(kindMd(k));
   for (const l of layers) {
@@ -621,10 +747,9 @@ export function agentFiles(): Record<string, AgentFile> {
   }
 
   // llms.txt family
-  files["/llms-full.txt"] = txt(
-    `# ${SITE.name}: full text\n\n> ${SITE.description}\n\n` +
-      [homeMd(), ...stacks.map(stackMd), ...layers.map(layerMd)].map((m) => m.replace(/^---[\s\S]*?---\n\n/, "")).join("\n\n---\n\n"),
-  );
+  files["/llms-full.txt"] = txt(llmsFull());
+  for (const l of layers)
+    files[`/layer/${l.id}/llms-full.txt`] = txt(`# ${SITE.name}: ${l.name} in full\n\n> The ${l.name} layer and the datasheet of every option in it.\n\n${layerFull(l)}`);
   files["/stack/llms.txt"] = txt(stacksLlms());
   files["/layer/llms.txt"] = txt(layersLlms());
 
@@ -641,6 +766,8 @@ export function agentFiles(): Record<string, AgentFile> {
   // Discovery
   files["/.well-known/ard.json"] = json(catalog());
   files["/.well-known/ai-catalog.json"] = json(catalog());
+  // The catalogs name the host as did:web:<host>; this is the document that DID resolves to.
+  files["/.well-known/did.json"] = json({ "@context": ["https://www.w3.org/ns/did/v1"], id: `did:web:${host}` });
   files["/.well-known/api-catalog"] = { ...json(apiCatalog()), type: 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"' };
   const skill = SKILL_MD();
   files["/.well-known/agent-skills/agentic-stack/SKILL.md"] = md(skill);

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { Title } from "@/components/Title";
+import { STACK_EXAMPLE } from "@/lib/agent";
 import { SITE } from "@/lib/data";
+import { withMarkdown } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Contribute",
   description: "Add an agent stack, a layer or an option to Agentic Stack. Everything is plain JSON in a public repo.",
-  alternates: { canonical: "/contribute/" },
+  alternates: withMarkdown("/contribute/"),
 };
 
+// This copy is mirrored in /contribute.md (contributeMd in lib/agent.ts): change both together.
 export default function Contribute() {
   return (
     <div className="prose">
@@ -24,26 +27,7 @@ export default function Contribute() {
         once merged, gets its own page at <code>/stack/your-stack/</code> with a preview image.
       </p>
       <pre>
-        <code>{`{
-  "slug": "my-agent",
-  "name": "My Agent",
-  "kind": "Personal agent",
-  "tagline": "One line people will read in the grid.",
-  "description": "Two or three sentences on how it works.",
-  "author": { "name": "Ada", "url": "https://x.com/ada" },
-  "links": { "site": "https://my-agent.dev", "repo": "https://github.com/me/my-agent" },
-  "disclosure": "open-source",
-  "sources": [{ "title": "README", "url": "https://github.com/me/my-agent" }],
-  "layers": {
-    "channels": ["telegram", "email"],
-    "model": "claude-sonnet-5-5",
-    "harness": "pi",
-    "memory": "memory-md"
-  },
-  "evidence": { "memory": ["https://github.com/me/my-agent"] },
-  "notUsed": ["sandbox"],
-  "researched": "YYYY-MM-DD"
-}`}</code>
+        <code>{STACK_EXAMPLE}</code>
       </pre>
       <p>
         <code>disclosure</code> decides what an empty slot means: on <code>open-source</code> and <code>example</code>{" "}

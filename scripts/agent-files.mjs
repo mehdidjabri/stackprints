@@ -11,5 +11,5 @@ for (const [p, { body }] of Object.entries(files)) {
   fs.writeFileSync(dest, body);
 }
 fs.rmSync(src);
-// Content types the static host can't infer from the extension; used by vercel.json and _headers.
+// Content types, content negotiation and Link headers come from vercel.json, not from these files.
 console.log(`agent files: ${Object.keys(files).length}`);

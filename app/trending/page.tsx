@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Title } from "@/components/Title";
 import { Trending } from "@/components/Trending";
+import { getTrending, newsDate } from "@/lib/data";
 import { withMarkdown } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -12,14 +13,27 @@ export const metadata: Metadata = {
 };
 
 export default function TrendingPage() {
+  const asOf = newsDate();
+  const LIMIT = 40;
+  const capped = getTrending().slice(0, LIMIT).some((r) => r.atLeast);
   return (
     <>
       <Title detail="Trending" />
       <p className="lede">
-        Ranked by recent news: every story from the last 30 days counts, newer stories count more. Sources are on each
-        option&apos;s page. No paid placement.
+        {/* The window ends at the last news check, not the build, so the date is printed. */}
+        Ranked by news from the 30 days up to{" "}
+        {asOf ? (
+          <>
+            <time dateTime={asOf}>{asOf}</time>, when news was last checked
+          </>
+        ) : (
+          "today"
+        )}
+        : every story counts, newer stories count more.
+        {capped && " “5+” means the option’s news file holds only its 5 newest stories, so there may be more."} Sources are on
+        each option&apos;s page. No paid placement.
       </p>
-      <Trending limit={40} />
+      <Trending limit={LIMIT} />
     </>
   );
 }
