@@ -123,7 +123,8 @@ export type Prompt = {
 };
 
 /**
- * The products people on X talk about the most right now (content/hot.json), in rank order.
+ * The products people on X talk about the most right now (content/hot.json), as two rows of cards:
+ * agent products that are stacks, and components from the layers. Each row in rank order.
  * A research agent rewrites it through the admin MCP; see docs/HOT.md.
  */
 export type Hot = {
@@ -131,13 +132,13 @@ export type Hot = {
   updated: string;
   /** Start of the window the conversation was measured over, YYYY-MM-DD. */
   from: string;
-  items: HotItem[];
+  /** Agent products, by stack slug. */
+  stacks: (HotItem & { stack: string })[];
+  /** Components, as "layer/id". */
+  options: (HotItem & { option: string })[];
 };
 
 export type HotItem = {
-  /** What the card links to: an option as "layer/id", or a stack's slug. Exactly one. */
-  option?: string;
-  stack?: string;
   /** What happened and why people are talking, in one plain sentence. */
   why: string;
   /** When the conversation started: the launch, release or post behind it. */

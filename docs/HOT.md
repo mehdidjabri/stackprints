@@ -1,6 +1,6 @@
 # Hot right now
 
-The cards under the tagline on the home page show the AI agent products people on X talk about the most right now. They come from `content/hot.json`, which a research agent rewrites. The same list is published at `/api/hot.json`, in the home page's markdown twin and as the `get_hot` WebMCP tool.
+The cards under the tagline on the home page show what people on X talk about the most right now, in two rows: **Stacks**, the agent products (OpenClaw, Claude Code, Poke…), and **Layers**, the components agents are built from (a model, a sandbox, a memory service…). They come from `content/hot.json`, which a research agent rewrites. The same list is published at `/api/hot.json`, in the home page's markdown twin and as the `get_hot` WebMCP tool.
 
 ## Format
 
@@ -8,23 +8,26 @@ The cards under the tagline on the home page show the AI agent products people o
 {
   "updated": "2026-10-22",
   "from": "2026-10-15",
-  "items": [
+  "stacks": [
     {
-      "option": "model/claude-opus-5-5",
-      "why": "Released Oct 20; side-by-side coding demos and benchmark threads all week.",
-      "since": "2026-10-20",
+      "stack": "openclaw",
+      "why": "New beta ships nodes for phones; demo clips of it running a house spread all week.",
+      "since": "2026-10-18",
       "sources": [
-        { "title": "@someone: first words of the post", "url": "https://x.com/someone/status/123", "date": "2026-10-20" },
-        { "title": "Announcement title", "url": "https://vendor.com/news/launch", "date": "2026-10-20" }
+        { "title": "@someone: first words of the post", "url": "https://x.com/someone/status/123", "date": "2026-10-18" },
+        { "title": "Release notes", "url": "https://github.com/…/releases/tag/…", "date": "2026-10-18" }
       ]
-    },
-    { "stack": "poke", "why": "…", "since": "2026-10-18", "sources": [ … ] }
+    }
+  ],
+  "options": [
+    { "option": "model/claude-opus-5-5", "why": "Released Oct 20; side-by-side coding demos and benchmark threads all week.", "since": "2026-10-20", "sources": [ … ] }
   ]
 }
 ```
 
-- `items` are in rank order, most talked about first: 1 to 8 of them. A quiet week can have fewer; never pad the list.
-- Each item names exactly one page: `option` as `layer/id`, or `stack` as a slug. Every card links to a page on the site, so a hot product with no page gets one first (an option or a stack, following [RESEARCH.md](RESEARCH.md)), in the same change.
+- Each row is in rank order, most talked about first, with at most 6 items. A quiet week can have fewer; never pad a row.
+- `stacks` name a stack by slug; `options` name a component as `layer/id`. An agent product people use goes in `stacks`, a part others build with goes in `options`.
+- Every card links to a page on the site, so a hot product with no page gets one first (a stack or an option, following [RESEARCH.md](RESEARCH.md)), in the same change.
 - `why` is one plain sentence, at most 120 characters: what happened and why people are talking. No hype words.
 - `since` is when the conversation started: the launch, release or post behind it.
 - `sources` are 1 to 4 pages you opened, each dated, at least one inside the window. Put an x.com post first when there is one, then the official announcement, then the strongest coverage.
@@ -46,7 +49,7 @@ Until the admin MCP exists, this runs as a Claude Code task in this repo.
 1. **Sweep.** Look for candidates from the last 7 days in several places at once: X itself (posts and replies from the accounts that drive AI conversation), tech press and newsletters, Hacker News (the Algolia API, by points), GitHub trending and Product Hunt, Reddit, and the site's own `content/news` from the window.
 2. **Rank.** Merge duplicates, drop anything out of scope or older than the window, and rank by conversation on X, with the other signals as corroboration.
 3. **Verify.** For each candidate, open every source and keep only those dated in the window and about the product. Separately, try to show it was *not* among the most-discussed products on X that week; cut it if you can.
-4. **Map.** Point each survivor at its option or stack. Add a page for any that has none.
+4. **Map.** Put each survivor in its row: agent products as stacks, components as options. Add a page for any that has none.
 5. **Write** `content/hot.json`, then run `npm run check && npm run build`.
 6. **Commit** as `hot: YYYY-MM-DD`.
 

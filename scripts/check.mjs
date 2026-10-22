@@ -227,19 +227,21 @@ if (fs.existsSync("content/hot.json")) {
   }
   if (h) {
     if (!day.test(h.updated ?? "") || !day.test(h.from ?? "") || h.from > h.updated) errors.push(`${at}: needs updated and from as YYYY-MM-DD, from first`);
-    const items = Array.isArray(h.items) ? h.items : [];
-    if (!items.length || items.length > 8) errors.push(`${at}: needs 1 to 8 items`);
+    // Two rows of cards: agent products (stacks), then components from the layers (options).
+    const rows = { stacks: h.stacks ?? [], options: h.options ?? [] };
+    for (const [row, list] of Object.entries(rows)) if (!Array.isArray(list) || list.length > 6) errors.push(`${at}: ${row} is a list of at most 6`);
+    if (!rows.stacks.length && !rows.options.length) errors.push(`${at}: needs at least one stack or option`);
     const seen = new Set();
-    items.forEach((it, i) => {
-      const where = `${at} item ${i + 1}`;
+    const items = [...rows.stacks.map((it, i) => [it, `stacks ${i + 1}`]), ...rows.options.map((it, i) => [it, `options ${i + 1}`])];
+    for (const [it, n] of items) {
+      const where = `${at} ${n}`;
       hot++;
-      if (Boolean(it.option) === Boolean(it.stack)) errors.push(`${where}: set exactly one of option ("layer/id") or stack (slug)`);
-      if (it.option) {
-        const [layer, id] = it.option.split("/");
-        if (!index.get(layer)?.has(id)) errors.push(`${where}: no option ${it.option}`);
+      if (n.startsWith("stacks") && !slugs.has(it.stack)) errors.push(`${where}: no stack "${it.stack}"`);
+      if (n.startsWith("options")) {
+        const [layer, id] = (it.option ?? "").split("/");
+        if (!index.get(layer)?.has(id)) errors.push(`${where}: no option "${it.option}" (use layer/id)`);
       }
-      if (it.stack && !slugs.has(it.stack)) errors.push(`${where}: no stack ${it.stack}`);
-      const key = it.option ?? it.stack;
+      const key = it.stack ?? it.option;
       if (seen.has(key)) errors.push(`${where}: ${key} is listed twice`);
       seen.add(key);
       if (!it.why || it.why.length > 120) errors.push(`${where}: why is one sentence of at most 120 characters`);
@@ -253,7 +255,7 @@ if (fs.existsSync("content/hot.json")) {
       }
       // The list is about this week's conversation: at least one source from inside the window.
       if (src.length && !src.some((s) => s.date >= h.from)) errors.push(`${where}: no source dated inside the window (from ${h.from})`);
-    });
+    }
     const age = Math.floor((Date.now() - Date.parse(h.updated)) / 864e5);
     if (age > 3) warnings.push(`${at}: last updated ${age} days ago; the home page shows it as "hot right now"`);
   }

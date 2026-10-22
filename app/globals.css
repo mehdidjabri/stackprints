@@ -1805,17 +1805,19 @@ pre,
   margin-top: 28px;
 }
 
-/* Hot right now: cards under the hero for what X is talking about this week. Each card is a
-   module, outlined in its layer's band colour; the product link covers the card. */
+/* Hot right now: two rows of tall cards under the hero, stacks then layers, for what X is talking
+   about this week. Each card is a module outlined in its layer's band colour, its logo large;
+   the product link covers the card. */
 .hot {
   margin-top: 28px;
+  display: grid;
+  gap: 14px;
 }
 .hot-head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 4px 12px;
-  margin-bottom: 10px;
   font-size: 12px;
 }
 .hot-head h2 {
@@ -1824,44 +1826,62 @@ pre,
   letter-spacing: 0.12em;
   margin: 0;
 }
+.hot-row h3 {
+  margin: 0 0 6px;
+  font-weight: 400;
+}
 .hot-cards {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 10px;
 }
 .hot-card {
   position: relative;
-  gap: 6px;
+  gap: 0;
+  padding: 10px 12px 12px;
 }
 .hot-card:hover {
   border-color: var(--line-strong);
 }
-.hot-chip {
-  position: static;
-  border: 0;
-  padding: 0;
-  gap: 8px;
+.hot-card .silk {
+  min-width: 0;
 }
-.hot-chip .chip-name {
-  font: 500 14px var(--sans);
+.hot-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.hot-chip::after {
+.hot-card .logo {
+  width: 36px;
+  height: 36px;
+  margin: 18px 0 14px;
+}
+.hot-card .glyph {
+  font-size: 13px;
+}
+.hot-name {
+  font: 500 15px/1.25 var(--sans);
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.hot-name::after {
   content: "";
   position: absolute;
   inset: 0;
 }
-.hot-chip:hover {
+.hot-name:hover {
   text-decoration: none;
 }
 .hot-why {
-  margin: 0;
-  font-size: 13px;
+  margin: 0 0 12px;
+  font-size: 12.5px;
   line-height: 1.45;
+  color: var(--muted);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1887,15 +1907,15 @@ pre,
 }
 @media (max-width: 1024px) {
   .hot-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-/* On a phone the cards are one row to swipe, so the board stays near the top. */
+/* On a phone each row is a strip to swipe, so the board stays near the top. */
 @media (max-width: 640px) {
   .hot-cards {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 78%;
+    grid-auto-columns: 44%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none; /* the next card peeking in says there's more */

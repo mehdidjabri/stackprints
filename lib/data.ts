@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { optionHref } from "./links";
 import type { Hot, HotItem, Layer, News, Option, Prompt, Stack } from "./types";
 
 const root = path.join(process.cwd(), "content");
@@ -82,23 +83,27 @@ export function getPrompts(slug: string): Prompt[] {
 export const layerPrompts = (layerId: string) =>
   getStacks().flatMap((stack) => getPrompts(stack.slug).filter((p) => p.layer === layerId).map((prompt) => ({ stack, prompt })));
 
-/** The hot list with each item resolved to the page its card links to. Empty when there's no list. */
+/** A card on the hot list. `id` is the stack's slug or the option's "layer/id". */
+export type HotCard = { id: string; item: HotItem; name: string; logo?: string; label: string; band?: Layer["band"]; href: string; affiliation?: string };
+
+/** The hot list, each row resolved to the pages its cards link to. Undefined when there's no list. */
 export function getHot() {
   const file = path.join(root, "hot.json");
   if (!fs.existsSync(file)) return undefined;
   const hot = JSON.parse(fs.readFileSync(file, "utf8")) as Hot;
-  type Card = { item: HotItem; name: string; logo?: string; label: string; band?: Layer["band"]; href: string; affiliation?: string };
-  const items = hot.items.flatMap((item): Card[] => {
-    if (item.stack) {
-      const s = getStack(item.stack);
-      return s ? [{ item, name: s.name, logo: s.logo, label: s.kind, href: `/stack/${s.slug}/` }] : [];
-    }
-    const [layerId, id] = (item.option ?? "").split("/");
+  const stacks = (hot.stacks ?? []).flatMap((item): HotCard[] => {
+    const s = getStack(item.stack);
+    return s ? [{ id: s.slug, item, name: s.name, logo: s.logo, label: s.kind, href: `/stack/${s.slug}/` }] : [];
+  });
+  const options = (hot.options ?? []).flatMap((item): HotCard[] => {
+    const [layerId, id] = item.option.split("/");
     const layer = getLayer(layerId);
     const o = layer?.options.find((x) => x.id === id);
-    return layer && o ? [{ item, name: o.name, logo: o.logo, label: layer.name, band: layer.band, href: `/layer/${layer.id}/${o.id}/`, affiliation: o.affiliation }] : [];
+    return layer && o
+      ? [{ id: item.option, item, name: o.name, logo: o.logo, label: layer.name, band: layer.band, href: optionHref(layer.id, o.id), affiliation: o.affiliation }]
+      : [];
   });
-  return { ...hot, items };
+  return { updated: hot.updated, from: hot.from, stacks, options };
 }
 
 export function getLayer(id: string) {

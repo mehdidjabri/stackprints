@@ -32,6 +32,7 @@ import {
 import { EMPTY, disclosureOf, emptyLayers, isSupported } from "./disclosure";
 import { MD_RULE, citeNumbers, kindHref, mdPath, numberedSources, optionHref, promptFile, promptHref, renamedLayers, stackSources } from "./links";
 import type { Layer, Option, Prompt, Stack } from "./types";
+import type { HotCard } from "./data";
 
 export const BUILT = new Date().toISOString().slice(0, 10);
 const abs = (p: string) => `${SITE.url}${p}`;
@@ -59,13 +60,19 @@ function frontmatter(f: Record<string, string | undefined>) {
 
 const h1 = (title: string, page: string) => `# ${title}\n\nCite: ${abs(page)}\n\n`;
 
-/** The hot list as a section: what X talks about this week, each with the page it links to and its sources. */
+/** The hot list as a section: what X talks about this week, stacks then components, each with its page and sources. */
 function hotMd() {
   const hot = getHot();
-  if (!hot?.items.length) return "";
-  return `## Hot right now\n\nThe products people on X talked about the most from ${hot.from} to ${hot.updated}, most first. As JSON: ${abs("/api/hot.json")}\n\n${hot.items
-    .map(({ item, name, label, href }) => `- [${name}](${abs(mdPath(href))}) (${label}): ${item.why}${item.since ? ` Since ${item.since}.` : ""} Sources: ${item.sources.map((s) => `[${s.title}](${s.url})`).join(", ")}`)
-    .join("\n")}\n\n`;
+  if (!hot || !(hot.stacks.length + hot.options.length)) return "";
+  const list = (cards: HotCard[]) =>
+    cards
+      .map(({ item, name, label, href }) => `- [${name}](${abs(mdPath(href))}) (${label}): ${item.why}${item.since ? ` Since ${item.since}.` : ""} Sources: ${item.sources.map((s) => `[${s.title}](${s.url})`).join(", ")}`)
+      .join("\n");
+  return (
+    `## Hot right now\n\nWhat people on X talked about the most from ${hot.from} to ${hot.updated}, most first. As JSON: ${abs("/api/hot.json")}\n\n` +
+    (hot.stacks.length ? `### Stacks\n\n${list(hot.stacks)}\n\n` : "") +
+    (hot.options.length ? `### Layers\n\n${list(hot.options)}\n\n` : "")
+  );
 }
 
 function homeMd() {
@@ -253,7 +260,7 @@ export const API_ENDPOINTS: [string, string, string][] = [
   ["GET /api/layers.json", "Every layer with its options", "/api/layers.json"],
   ["GET /api/layers/{layer}.json", "One layer with option summaries", "/api/layers/memory.json"],
   ["GET /api/options/{layer}/{option}.json", "One option: datasheet facts, links, caveats, news, stacks that use it", "/api/options/router/openrouter.json"],
-  ["GET /api/hot.json", "The products people on X talk about the most this week, ranked, each with its page and sources", "/api/hot.json"],
+  ["GET /api/hot.json", "What people on X talk about the most this week: stacks and components, each ranked with its page and sources", "/api/hot.json"],
   ["GET /search.json", "Compact search index of every stack, layer and option", "/search.json"],
 ];
 
@@ -659,29 +666,28 @@ function openapi() {
         },
         HotList: {
           type: "object",
-          required: ["updated", "from", "items"],
+          required: ["updated", "from", "stacks", "options"],
           properties: {
             updated: { type: "string", format: "date", description: "When the list was last checked" },
             from: { type: "string", format: "date", description: "Start of the window the conversation was measured over" },
-            items: {
-              type: "array",
-              description: "Most talked about first",
-              items: {
-                type: "object",
-                required: ["rank", "name", "why", "url", "sources"],
-                properties: {
-                  rank: { type: "integer" },
-                  name: { type: "string" },
-                  option: { type: "string", description: "layer/id, when the card is an option" },
-                  stack: { type: "string", description: "Slug, when the card is a stack" },
-                  why: { type: "string" },
-                  since: { type: ["string", "null"], format: "date" },
-                  url: { type: "string", format: "uri", description: "The page on this site" },
-                  api: { type: "string", format: "uri" },
-                  sources: { type: "array", items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" }, date: { type: "string", format: "date" } } } },
-                },
-              },
-            },
+            stacks: { type: "array", description: "Agent products, most talked about first", items: { $ref: "#/components/schemas/HotItem" } },
+            options: { type: "array", description: "Components from the layers, most talked about first", items: { $ref: "#/components/schemas/HotItem" } },
+          },
+        },
+        HotItem: {
+          type: "object",
+          required: ["rank", "name", "label", "why", "url", "sources"],
+          properties: {
+            rank: { type: "integer", description: "Within its row" },
+            stack: { type: "string", description: "Slug, in the stacks row" },
+            option: { type: "string", description: "layer/id, in the options row" },
+            name: { type: "string" },
+            label: { type: "string", description: "The stack's kind or the option's layer" },
+            why: { type: "string" },
+            since: { type: ["string", "null"], format: "date" },
+            url: { type: "string", format: "uri", description: "The page on this site" },
+            api: { type: "string", format: "uri" },
+            sources: { type: "array", items: { type: "object", properties: { title: { type: "string" }, url: { type: "string", format: "uri" }, date: { type: "string", format: "date" } } } },
           },
         },
         Prompt: {
@@ -865,21 +871,21 @@ export function agentFiles(): Record<string, AgentFile> {
   // JSON API
   files["/api/stacks.json"] = json({ stacks: stacks.map(stackSummary) });
   const hot = getHot();
-  if (hot)
-    files["/api/hot.json"] = json({
-      updated: hot.updated,
-      from: hot.from,
-      items: hot.items.map(({ item, name, href }, i) => ({
+  if (hot) {
+    const items = (key: "stack" | "option", cards: HotCard[]) =>
+      cards.map((c, i) => ({
         rank: i + 1,
-        name,
-        ...(item.option ? { option: item.option } : { stack: item.stack }),
-        why: item.why,
-        since: item.since ?? null,
-        url: abs(href),
-        api: abs(item.option ? `/api/options/${item.option}.json` : `/api/stacks/${item.stack}.json`),
-        sources: item.sources,
-      })),
-    });
+        [key]: c.id,
+        name: c.name,
+        label: c.label,
+        why: c.item.why,
+        since: c.item.since ?? null,
+        url: abs(c.href),
+        api: abs(key === "stack" ? `/api/stacks/${c.id}.json` : `/api/options/${c.id}.json`),
+        sources: c.item.sources,
+      }));
+    files["/api/hot.json"] = json({ updated: hot.updated, from: hot.from, stacks: items("stack", hot.stacks), options: items("option", hot.options) });
+  }
   for (const s of stacks) files[`/api/stacks/${s.slug}.json`] = json(stackJson(s));
   files["/api/layers.json"] = json({ layers: layers.map((l) => layerJson(l, false)) });
   for (const l of layers) {
