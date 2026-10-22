@@ -15,15 +15,15 @@
   ],
   "facts": [
     [
-      "Used by",
-      "Aider (auto-commits), Hermes Agent and Docker docker-agent (shadow-git checkpoints)"
+      "Also seen in",
+      "Aider (auto-commits), Docker docker-agent (shadow-git checkpoints)"
     ],
     [
       "Aider",
       "Commits each edit with a generated message; /undo discards the last change"
     ],
     [
-      "Hermes Agent",
+      "Hermes Agent checkpoints",
       "Opt-in shared shadow repo at ~/.hermes/checkpoints/store/"
     ],
     [

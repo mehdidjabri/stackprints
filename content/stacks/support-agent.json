@@ -3,7 +3,7 @@
   "name": "Support Agent",
   "kind": "Business agent",
   "tagline": "Answers tickets from your docs and hands off to humans.",
-  "description": "An example design for a customer-support agent: a chat widget, email and Slack in front of a TypeScript agent on Claude, retrieval over help-center docs with Voyage embeddings and reranking on turbopuffer, connectors to the ticketing system, injection screening on untrusted input, handoffs to humans and evals on resolved tickets.",
+  "description": "An example design for a customer-support agent: a chat widget, email and Slack in front of a single TypeScript agent on Claude, retrieval over help-center docs with Voyage embeddings and reranking on turbopuffer, Arcade connectors to the ticketing system, injection screening on untrusted input, per-action autonomy that hands refunds and unresolved tickets to a human, and evals on resolved tickets.",
   "disclosure": "example",
   "sources": [
     {
@@ -41,7 +41,10 @@
       "claude-haiku-5-5"
     ],
     "router": "vercel-ai-gateway",
-    "multiagent": "handoffs",
+    "inference": "lab-api",
+    "persona": "system-prompt",
+    "multiagent": "single-agent",
+    "mcp": "function-tools",
     "connectors": "arcade",
     "memory": "past-dev",
     "retrieval": [
@@ -53,6 +56,7 @@
     "durable": "workflow-sdk",
     "guardrails": [
       "lakera",
+      "per-action-autonomy",
       "audit-trail"
     ],
     "identity": "auth0-for-ai-agents",

@@ -57,7 +57,7 @@ function stackMd(s: Stack) {
   const notUsed = layers.filter((l) => s.notUsed?.includes(l.id));
   return (
     frontmatter({ title: `${s.name} agent stack`, description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
-    `# ${s.name}\n\n${s.kind}${s.disclosure ? ` · ${DISCLOSURE[s.disclosure].badge}: ${DISCLOSURE[s.disclosure].about.toLowerCase()}` : ""}${s.researched ? ` · researched ${s.researched}` : ""}\n\n${s.description}\n\n` +
+    `# ${s.name}\n\n${s.kind}${s.disclosure ? ` · ${DISCLOSURE[s.disclosure].badge}: ${DISCLOSURE[s.disclosure].about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}\n\n${s.description}\n\n` +
     (s.links ? `${Object.entries(s.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n\n` : "") +
     `## Layers\n\n${rows
       .map(({ layer, picks }) => `- **${layer.name}** (${layer.ref}): ${picks.map((p) => `[${p.name}](${abs(mdPath(optionHref(layer.id, p.id)))})`).join(", ")}${(s.evidence?.[layer.id] ?? []).map(cite).join("")}`)

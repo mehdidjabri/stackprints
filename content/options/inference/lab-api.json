@@ -1,0 +1,44 @@
+{
+  "order": 1,
+  "id": "lab-api",
+  "name": "Lab API",
+  "note": "The model's maker serves it",
+  "profile": "pattern",
+  "summary": "Closed models run on the lab's own API (Anthropic, OpenAI, Google), directly or through a gateway that forwards to it. The weights aren't published, so the lab is the default host; the main alternative is the same model resold on a cloud platform such as Bedrock, Vertex or Azure.",
+  "how": [
+    "Pick a closed model and get an API key from its lab, or from a gateway",
+    "Send requests to the lab's endpoint, directly or through the gateway",
+    "The lab runs the model on its own infrastructure and bills per token"
+  ],
+  "facts": [
+    [
+      "Means",
+      "The company that trained the model also serves it"
+    ],
+    [
+      "Examples",
+      "Anthropic API, OpenAI API, Gemini API"
+    ],
+    [
+      "Alternative",
+      "The same closed models on Bedrock, Vertex or Azure"
+    ],
+    [
+      "Shown on",
+      "Stacks built on a closed model that name no other host"
+    ],
+    [
+      "Trade-off",
+      "Newest models and features first, but one vendor's capacity and data terms"
+    ]
+  ],
+  "goodFor": [
+    "Using closed frontier models as soon as they ship",
+    "No inference infrastructure to run"
+  ],
+  "watchOut": [
+    "Prompts and outputs go to the lab under its data terms",
+    "Data residency and regions are often more limited than on a cloud platform"
+  ],
+  "researched": "2026-10-22"
+}

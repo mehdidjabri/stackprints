@@ -3,8 +3,8 @@
   "name": "Vercel AI Cloud",
   "logo": "vercel",
   "kind": "Infrastructure",
-  "tagline": "Vercel's agent stack as cloud primitives: gateway, sandbox, workflows, drives.",
-  "description": "Vercel describes its agent stack as cloud primitives: the AI SDK and the eve framework for the agent loop, AI Gateway as a \"CDN of tokens\" across model providers, Sandbox microVMs for agent-written code, Fluid compute for long IO-bound work, Workflow SDK and Queues for durability, Connect for short-lived scoped credentials, Chat SDK for chat platforms and Drives for persistent files. The stack is model-agnostic; Vercel's reference doesn't prescribe a model.",
+  "tagline": "Vercel's agent stack as cloud primitives: gateway, sandbox, workflows, connect.",
+  "description": "Vercel's Agent Stack post (2026-06-20) names the AI SDK and the eve framework for the agent loop, AI Gateway (\"the CDN for tokens\") across model providers, Vercel Sandbox microVMs for agent-written code, Workflow SDK for durable runs, Vercel Connect for short-lived scoped credentials and Chat SDK for chat platforms. Other Vercel pages add pieces mapped here: Drives for persistent Sandbox storage (vercel.com/ai), Queues (Vercel docs) and Fluid compute for long IO-bound work (Guillermo Rauch's 2025 AI Cloud post). eve's docs add first-class channels for Slack, Teams, Discord, Telegram, Twilio and iMessage, with Chat SDK adapters optional for other services, and default tools that include bash, read_file and write_file but no separate edit tool; grep and glob are opt-in. The stack is model-agnostic; Vercel's reference doesn't prescribe a model.",
   "links": {
     "site": "https://vercel.com/ai",
     "announcement": "https://vercel.com/blog/agent-stack"
@@ -32,15 +32,34 @@
       "url": "https://eve.dev/docs"
     },
     {
+      "title": "eve docs: Project Structure",
+      "url": "https://eve.dev/docs/concepts/project-structure"
+    },
+    {
+      "title": "eve docs: Instructions",
+      "url": "https://eve.dev/docs/instructions"
+    },
+    {
+      "title": "eve docs: Built-in Tools",
+      "url": "https://eve.dev/docs/concepts/built-in-tools"
+    },
+    {
       "title": "Model Context Protocol on Vercel",
       "url": "https://vercel.com/docs/mcp"
     }
   ],
   "layers": {
     "channels": [
-      "chat-sdk",
       "web-chat",
-      "slack"
+      "slack",
+      "microsoft-teams",
+      "discord",
+      "telegram",
+      "sms-rcs",
+      "imessage",
+      "phone-calls",
+      "whatsapp",
+      "chat-sdk"
     ],
     "proactivity": [
       "cron",
@@ -60,13 +79,17 @@
     ],
     "model": "any-model",
     "router": "vercel-ai-gateway",
+    "inference": "any-host",
+    "persona": "instructions-md",
     "multiagent": "subagents",
+    "tools": "read-write-edit-bash",
     "search": "web-search",
     "sandbox": "vercel-sandbox",
     "mcp": "mcp",
     "connectors": "vercel-connect",
     "skills": "agent-skills-skill-md",
     "memory": "agent-notes",
+    "retrieval": "grep-glob",
     "storage": "vercel-drives",
     "hosting": "vercel",
     "durable": [
@@ -114,8 +137,20 @@
       "https://vercel.com/blog/agent-stack",
       "https://vercel.com/docs/ai-gateway"
     ],
+    "inference": [
+      "https://vercel.com/docs/ai-gateway",
+      "https://vercel.com/blog/agent-stack"
+    ],
+    "persona": [
+      "https://eve.dev/docs/instructions",
+      "https://eve.dev/docs/concepts/project-structure",
+      "https://vercel.com/blog/agent-stack"
+    ],
     "multiagent": [
       "https://eve.dev/docs/concepts/project-structure",
+      "https://eve.dev/docs/concepts/built-in-tools"
+    ],
+    "tools": [
       "https://eve.dev/docs/concepts/built-in-tools"
     ],
     "search": [
@@ -138,6 +173,9 @@
     ],
     "memory": [
       "https://eve.dev/docs/memory/file"
+    ],
+    "retrieval": [
+      "https://eve.dev/docs/concepts/built-in-tools"
     ],
     "storage": [
       "https://vercel.com/ai",

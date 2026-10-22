@@ -4,7 +4,7 @@
   "logo": "meta",
   "kind": "Consumer agent",
   "tagline": "A personal agent with its own secure VM, goals and ideas.",
-  "description": "Muse is Meta's personal agent, powered by the Muse Spark model and reached through its iOS, Android and web apps, WhatsApp and its own email address. Meta's security write-up describes one Linux VM per user: the agent's in-house harness (Hatch), files and tools run in a sandboxed cell, while a separate permission authority (Sentinel), a credential store that hands out surrogate tokens, safety classifiers and a Postgres database run outside it. Built-in connectors run as CLIs, Muse can write its own, and purchases use single-use Stripe Link cards. Meta hasn't published the inference setup, the models behind Sentinel and the classifiers, or how memory files are organised; glasses support and the Mac app were announced as coming soon.",
+  "description": "Muse is Meta's personal agent, powered by the Muse Spark model and reached through its iOS, Android and web apps and WhatsApp. Meta's security write-up describes one Linux VM per user: the agent's in-house harness (Hatch), files and tools run in a sandboxed cell, while a separate permission authority (Sentinel), a credential store that hands out surrogate tokens, safety classifiers and a Postgres database run outside it. Built-in connectors run as CLIs and Muse can write its own. Purchases on new sites use single-use Stripe Link cards (sites with saved payment details use those after a per-purchase approval); Shop Pay and more PayPal support were added in September after launch. A beta since September lets Muse place calls to US businesses on the user's behalf. Meta hasn't published the inference setup, the models behind Sentinel and the classifiers, how memory files are organised, or which voice or telephony stack the calls use; glasses support, the Mac app and Muse's own email address were announced as coming soon.",
   "disclosure": "closed",
   "links": {
     "announcement": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
@@ -14,8 +14,7 @@
     "channels": [
       "mobile-app",
       "web-chat",
-      "whatsapp",
-      "email"
+      "whatsapp"
     ],
     "proactivity": [
       "background-research",
@@ -51,16 +50,13 @@
     ],
     "identity": [
       "credential-vault",
-      "private-sign-in-form",
-      "agent-phone-email"
+      "private-sign-in-form"
     ]
   },
   "evidence": {
     "channels": [
       "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
-      "https://www.meta.com/help/superintelligence/1331373868832401/",
-      "https://x.com/alexandr_wang/status/2102915571276992875",
-      "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/"
+      "https://www.meta.com/help/superintelligence/1331373868832401/"
     ],
     "proactivity": [
       "https://introducing.muse.ai",
@@ -104,7 +100,8 @@
       "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
       "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
       "https://stripe.com/newsroom/news/stripe-helps-meta-muse-shop-with-link",
-      "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/"
+      "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/",
+      "https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/"
     ],
     "memory": [
       "https://introducing.muse.ai",
@@ -125,9 +122,7 @@
     ],
     "identity": [
       "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
-      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
-      "https://x.com/alexandr_wang/status/2102915571276992875",
-      "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/"
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"
     ]
   },
   "sources": [
@@ -172,5 +167,5 @@
       "url": "https://techcrunch.com/2026/09/17/rival-ai-agents-instinct-and-metas-muse-both-add-the-ability-to-make-calls/"
     }
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

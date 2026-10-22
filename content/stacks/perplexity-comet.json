@@ -4,7 +4,7 @@
   "logo": "perplexity",
   "kind": "Browser agent",
   "tagline": "An AI browser that reads the page and runs errands in the background.",
-  "description": "Comet is Perplexity's Chromium-based browser for Mac, Windows, iOS and Android. Its assistant runs in a sidecar panel, reads the current tab and tabs you mention, and can act on websites; Max subscribers can run background assistants in parallel and handle their confirmations on one page. Perplexity documents assistant permissions and per-site blocking, confirmation before sensitive actions such as sending email or placing orders, and machine-learning classifiers that screen pages for prompt injection. Memory is the shared Perplexity account memory, and 1Password fills logins without exposing them to the model. Perplexity hasn't published which models the assistant uses, where agent actions and background assistants run, or the voice stack.",
+  "description": "Comet is Perplexity's Chromium-based browser for Mac, Windows, iOS and Android. Its assistant runs in a sidecar panel, reads the current tab and tabs you mention, and can act on websites; Max subscribers can run background assistants in parallel and handle their confirmations on one page. Perplexity documents assistant permissions and per-site blocking, confirmation before sensitive actions such as sending email or placing orders, and machine-learning classifiers that screen pages for prompt injection. Memory is the shared Perplexity account memory, and 1Password fills logins without exposing them to the model. Perplexity's February 2026 changelogs say Comet's agent runs on Claude Sonnet 4.6 by default for Pro subscribers and Opus 4.6 for Max subscribers, who can pick another model, and that voice mode runs on OpenAI's GPT Realtime 1.5; it hasn't said whether the agent models have changed since, and it hasn't published where agent actions and background assistants run.",
   "links": {
     "site": "https://www.perplexity.ai/comet"
   },
@@ -21,6 +21,22 @@
     {
       "title": "Comet now available for everyone, background assistants (Perplexity changelog)",
       "url": "https://www.perplexity.ai/changelog/what-we-shipped-october-3rd"
+    },
+    {
+      "title": "Upgraded Deep Research, Model Council (Perplexity changelog)",
+      "url": "https://www.perplexity.ai/changelog/what-we-shipped---february-6th-2026"
+    },
+    {
+      "title": "Pre-order Comet on iOS, Claude Sonnet 4.6 and Gemini 3.1 Pro (Perplexity changelog)",
+      "url": "https://www.perplexity.ai/changelog/what-we-shipped---february-20th-2026"
+    },
+    {
+      "title": "Comet Voice Mode improvements (Perplexity changelog)",
+      "url": "https://www.perplexity.ai/changelog/comet-voice-mode-improvements"
+    },
+    {
+      "title": "Perplexity Computer, Perplexity on Samsung Galaxy S26 (Perplexity changelog)",
+      "url": "https://www.perplexity.ai/changelog/what-we-shipped---february-27-2026"
     },
     {
       "title": "Comet iOS Launch and Computer Updates (Perplexity changelog)",
@@ -80,6 +96,7 @@
       "side-panel",
       "goals-activity-feed"
     ],
+    "voice": "openai-realtime",
     "browser": "agentic-browser",
     "connectors": "calendar-email",
     "skills": "slash-commands",
@@ -99,6 +116,10 @@
     "ui": [
       "https://www.perplexity.ai/help-center/comet/en/articles/11734688-assistant-panel",
       "https://www.perplexity.ai/changelog/what-we-shipped-october-3rd"
+    ],
+    "voice": [
+      "https://www.perplexity.ai/changelog/comet-voice-mode-improvements",
+      "https://www.perplexity.ai/changelog/what-we-shipped---february-27-2026"
     ],
     "browser": [
       "https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions",
@@ -124,5 +145,5 @@
       "https://1password.com/blog/1password-now-available-in-comet-the-ai-browser-by-perplexity"
     ]
   },
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

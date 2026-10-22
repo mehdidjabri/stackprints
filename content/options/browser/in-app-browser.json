@@ -1,0 +1,42 @@
+{
+  "order": 85,
+  "id": "in-app-browser",
+  "name": "In-app browser",
+  "note": "Browser pane built into the agent's desktop app",
+  "profile": "pattern",
+  "summary": "The agent's desktop app ships its own browser pane, with sign-ins and cookies kept apart from the user's everyday browser. The agent opens pages, reads them, clicks, types and fills in forms there while the user watches in the app. It is the reverse of an agentic browser: the agent vendor builds a browser into the agent app, rather than the browser vendor building an assistant into the browser. When the session runs in the cloud, the desktop app relays the actions, so it has to stay open.",
+  "how": [
+    "The user opens the browser pane next to the session in the desktop app",
+    "The user signs in, inside the pane, to the sites the agent should use",
+    "The agent opens, reads and acts on pages, asking before it acts on a new site",
+    "Pages load from the user's device, so cloud sessions need the app open and online"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Desktop (Cowork and Code sessions)"
+    ],
+    [
+      "Logins",
+      "Kept in the app's own browser storage, not the user's browser"
+    ],
+    [
+      "Trade-off",
+      "Nothing to install and logins are kept apart from the user's own browser, but it is tied to the desktop app being open"
+    ]
+  ],
+  "links": {
+    "docs": "https://support.claude.com/en/articles/16607400-use-the-built-in-browser-in-claude-cowork"
+  },
+  "goodFor": [
+    "Web tasks without handing over the user's everyday logins",
+    "Watching and taking over in the same app",
+    "Checking a local web app next to the agent's session"
+  ],
+  "watchOut": [
+    "Every page the agent reads can carry a prompt injection",
+    "Needs the desktop app open and online",
+    "Sites that need the user's identity need a fresh sign-in in the pane"
+  ],
+  "researched": "2026-10-22"
+}

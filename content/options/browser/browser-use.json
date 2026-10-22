@@ -3,7 +3,7 @@
   "id": "browser-use",
   "name": "browser-use",
   "url": "browser-use.com",
-  "note": "LLM-driven Playwright",
+  "note": "LLM-driven browser over CDP",
   "open": true,
   "profile": "product",
   "summary": "Open-source Python library that lets an LLM drive a browser, plus Browser Use Cloud, a hosted service with stealth browsers and an agent API. Agents can run against a local Chrome (including your own profile) or remote browsers over CDP.",
@@ -22,7 +22,7 @@
     ],
     [
       "GitHub stars",
-      "~119k"
+      "~119k (Oct 2026)"
     ],
     [
       "Models",
@@ -39,7 +39,7 @@
   ],
   "links": {
     "site": "https://browser-use.com",
-    "docs": "https://docs.browser-use.com",
+    "docs": "https://docs.browser-use.com/open-source/introduction",
     "repo": "https://github.com/browser-use/browser-use",
     "pricing": "https://browser-use.com/pricing"
   },

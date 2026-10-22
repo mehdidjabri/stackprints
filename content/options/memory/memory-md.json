@@ -4,22 +4,26 @@
   "name": "MEMORY.md",
   "note": "Curated file plus daily notes",
   "profile": "pattern",
-  "summary": "Memory lives in plain Markdown in the agent's workspace: a curated MEMORY.md of durable facts and decisions that is loaded at session start, plus dated daily notes that are searched on demand. OpenClaw documents this layout; Claude Code's auto memory uses a MEMORY.md index with topic files in the same spirit.",
+  "summary": "Memory lives in Markdown files that the agent edits with its ordinary file tools: a MEMORY.md index loaded at session start, plus topic or daily files read or searched on demand. OpenClaw keeps a curated MEMORY.md and dated daily notes indexed for search; Claude Code's auto memory keeps a MEMORY.md index that points to one topic file per memory.",
   "how": [
-    "Keep durable facts and decisions in a short MEMORY.md",
-    "Write working context to dated files such as memory/YYYY-MM-DD.md",
+    "The agent writes the files itself with its ordinary file tools",
+    "Keep MEMORY.md short: durable facts, decisions and pointers",
+    "Put detail in topic files or dated notes such as memory/YYYY-MM-DD.md",
     "Load MEMORY.md into the prompt at the start of every session",
-    "Search or open daily notes only when needed",
-    "Prune or consolidate MEMORY.md as it nears its load limit"
+    "Open or search the other files only when needed; prune MEMORY.md near its load limit"
   ],
   "facts": [
     [
       "Used by",
-      "OpenClaw, Claude Code (auto memory), Hermes Agent"
+      "OpenClaw, Claude Code (auto memory)"
     ],
     [
       "Storage",
       "Markdown files on disk"
+    ],
+    [
+      "Writes",
+      "Through the agent's ordinary file tools, not a dedicated memory tool"
     ],
     [
       "Load limit",
@@ -42,5 +46,5 @@
     "Injected copy is truncated once the file outgrows its budget",
     "Quality depends on the model curating the file well"
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

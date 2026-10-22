@@ -1,0 +1,39 @@
+{
+  "order": 5,
+  "id": "function-tools",
+  "name": "Function calling",
+  "note": "Typed functions in code",
+  "profile": "pattern",
+  "summary": "Tools are defined in code as functions with a JSON Schema or typed input. They are passed to the model's tool-calling API, and the harness runs whichever function the model picks.",
+  "how": [
+    "Write each tool as a function with a name, description and typed input",
+    "Send the tool definitions with each model request",
+    "The model replies with a tool call: a tool name and JSON arguments",
+    "The harness validates the arguments, runs the function and returns the result",
+    "Repeat until the model answers without calling a tool"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "AI SDK (tool()), OpenAI Agents SDK (function tools), LangChain and LangGraph (@tool, ToolNode), Mastra (createTool)"
+    ],
+    [
+      "Trade-off",
+      "No server or protocol to run, but tools are tied to one codebase and harness"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.openai.com/api/docs/guides/function-calling"
+  },
+  "goodFor": [
+    "Tools that only one agent needs",
+    "Keeping tool code, types and tests next to the agent",
+    "Small, fixed tool sets"
+  ],
+  "watchOut": [
+    "Each SDK has its own tool format, so tools don't move between harnesses as-is",
+    "Tool definitions are sent with every request and use context",
+    "Arguments come from the model, so tools that change data still need checks"
+  ],
+  "researched": "2026-10-22"
+}

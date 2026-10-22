@@ -38,8 +38,14 @@
     ],
     "voice": "openai-realtime",
     "harness": "openai-agents-sdk",
-    "model": "gpt-6-luna",
+    "model": [
+      "gpt-realtime-2-1",
+      "gpt-6-luna"
+    ],
     "router": "direct-provider",
+    "inference": "lab-api",
+    "persona": "system-prompt",
+    "mcp": "function-tools",
     "connectors": [
       "pipedream",
       "calendar-email"

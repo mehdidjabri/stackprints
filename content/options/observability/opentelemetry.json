@@ -1,0 +1,61 @@
+{
+  "order": 65,
+  "id": "opentelemetry",
+  "name": "OpenTelemetry",
+  "url": "opentelemetry.io",
+  "note": "OTLP logs, metrics and traces",
+  "open": true,
+  "logo": "opentelemetry",
+  "profile": "protocol",
+  "summary": "OpenTelemetry is a vendor-neutral, open-source framework for generating, collecting and exporting telemetry: traces, metrics and logs. Its wire protocol, OTLP, sends that data over gRPC or HTTP to a collector or any compatible backend; OpenTelemetry does not store or display data itself. This option covers plain OTel export, where each product chooses its own event names and attributes; the GenAI semantic conventions are listed separately.",
+  "facts": [
+    [
+      "Steward",
+      "OpenTelemetry (CNCF project)"
+    ],
+    [
+      "License",
+      "Apache-2.0 (specification repo)"
+    ],
+    [
+      "Signals",
+      "Traces, metrics, logs"
+    ],
+    [
+      "Wire protocol",
+      "OTLP over gRPC (port 4317) or HTTP (port 4318)"
+    ],
+    [
+      "OTLP encoding",
+      "Protobuf, binary or JSON over HTTP"
+    ],
+    [
+      "OTLP status",
+      "Stable for traces, metrics and logs; profiles in development"
+    ],
+    [
+      "Backend",
+      "None of its own; export to a collector or compatible backend"
+    ],
+    [
+      "Used by",
+      "Claude Cowork (log events over OTLP)"
+    ]
+  ],
+  "links": {
+    "site": "https://opentelemetry.io",
+    "docs": "https://opentelemetry.io/docs/what-is-opentelemetry/",
+    "repo": "https://github.com/open-telemetry/opentelemetry-specification"
+  },
+  "goodFor": [
+    "Sending agent activity to an existing observability stack",
+    "Avoiding lock-in to one tracing vendor",
+    "Combining agent telemetry with other services' telemetry"
+  ],
+  "watchOut": [
+    "A transport and data model only; each product sets its own event names",
+    "Needs a collector or backend to store and query the data",
+    "Exported events can carry prompts or file paths, depending on settings"
+  ],
+  "researched": "2026-10-22"
+}

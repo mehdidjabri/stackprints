@@ -1,0 +1,42 @@
+{
+  "order": 15,
+  "id": "self-hosted-gateway",
+  "name": "Self-hosted gateway",
+  "note": "Your own proxy in front of the model API",
+  "profile": "pattern",
+  "summary": "The organization runs its own gateway between the agent and the model provider. Developers authenticate to the gateway instead of holding provider keys, and the gateway forwards requests with one organization credential, so access rules, budgets, usage tracking and audit logs sit in one place. The agent is pointed at it with a base-URL override.",
+  "how": [
+    "Deploy the gateway inside your network and give it the provider credential",
+    "Issue each developer a gateway credential",
+    "Point the agent's base URL at the gateway (in Claude Code, ANTHROPIC_BASE_URL or a provider-specific variant)",
+    "Set model allow-lists, budgets and telemetry in the gateway"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code, via Anthropic's Claude apps gateway or a gateway you already run"
+    ],
+    [
+      "Examples",
+      "Claude apps gateway (ships in the claude binary), LiteLLM proxy"
+    ],
+    [
+      "Extra hop",
+      "Yes, inside your network"
+    ],
+    [
+      "Trade-off",
+      "Central control of keys and spend, but one more service to operate"
+    ]
+  ],
+  "goodFor": [
+    "Central credentials and sign-in",
+    "Per-team budgets and model allow-lists",
+    "Changing provider without touching developer machines"
+  ],
+  "watchOut": [
+    "A separately maintained gateway must forward the agent's new headers and fields",
+    "You deploy, patch and scale it"
+  ],
+  "researched": "2026-10-22"
+}

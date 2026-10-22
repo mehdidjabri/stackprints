@@ -1,0 +1,42 @@
+{
+  "order": 110,
+  "id": "built-in-dictation",
+  "name": "Built-in dictation",
+  "note": "Speech-to-text built into the product, run by the vendor",
+  "profile": "pattern",
+  "summary": "The agent product records the user's microphone locally and streams the audio to the vendor's own transcription service. The transcript is inserted into the prompt, where it can be mixed with typing, and is sent as a normal message. It covers speech in only: replies stay text.",
+  "how": [
+    "Turn dictation on in the product (in Claude Code, /voice)",
+    "Hold or tap a key to start recording",
+    "Audio streams to the vendor's speech-to-text service",
+    "The transcript is inserted into the prompt and sent as a normal message"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code (CLI and VS Code extension)"
+    ],
+    [
+      "Runs on",
+      "Vendor's servers; audio is not processed locally"
+    ],
+    [
+      "Direction",
+      "Speech in only; no spoken replies"
+    ],
+    [
+      "Trade-off",
+      "No setup or API key, but tied to the vendor account"
+    ]
+  ],
+  "goodFor": [
+    "Hands-free prompting",
+    "Dictating long instructions"
+  ],
+  "watchOut": [
+    "No spoken replies or voice conversation",
+    "Needs a local microphone; not in cloud, SSH or remote IDE sessions",
+    "Claude Code: claude.ai sign-in only, not API keys, Bedrock, Google Cloud or Foundry"
+  ],
+  "researched": "2026-10-22"
+}

@@ -14,7 +14,7 @@
   "facts": [
     [
       "Examples",
-      "Codex granular approval policy; AP2 human-present vs human-not-present payments; Stripe MCP requires human confirmation for refunds and outbound payments"
+      "Codex granular approval policy; AP2 human-present vs human-not-present payments; Stripe MCP asks a human to confirm certain writes, such as refunds and outbound payments, when connected with user credentials (OAuth)"
     ],
     [
       "Key input",
@@ -25,6 +25,11 @@
       "Fewer pointless prompts, but needs an up-front catalogue of actions"
     ]
   ],
+  "links": {
+    "codex": "https://learn.chatgpt.com/docs/agent-approvals-security",
+    "spec": "https://ap2-protocol.org/ap2/specification/",
+    "example": "https://docs.stripe.com/mcp#confirm-actions-by-agents-acting-on-your-behalf"
+  },
   "goodFor": [
     "Assistants that both read and act (email, payments, ops)",
     "Gradually widening autonomy as trust grows"
@@ -33,5 +38,5 @@
     "New tools default to the wrong level unless someone classifies them",
     "Misclassifying an irreversible action as low-risk"
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

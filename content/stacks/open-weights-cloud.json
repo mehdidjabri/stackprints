@@ -45,6 +45,7 @@
       "together",
       "deepinfra"
     ],
+    "persona": "system-prompt",
     "search": [
       "web-search",
       "firecrawl"

@@ -1,0 +1,73 @@
+{
+  "order": 75,
+  "id": "gpt-realtime-2-1",
+  "name": "GPT-Realtime-2.1",
+  "url": "openai.com",
+  "note": "OpenAI speech-to-speech realtime model",
+  "logo": "openai",
+  "profile": "model",
+  "summary": "GPT-Realtime-2.1 is OpenAI's speech-to-speech reasoning model for the Realtime API, released in July 2026 as an update to GPT-Realtime-2. OpenAI says it improves alphanumeric recognition, silence and noise handling, and interruption behavior, and it supports configurable reasoning effort and tool calling for voice agents. It takes text, audio and image input and answers in text or audio.",
+  "facts": [
+    [
+      "Lab",
+      "OpenAI"
+    ],
+    [
+      "API ID",
+      "gpt-realtime-2.1"
+    ],
+    [
+      "Endpoint",
+      "Realtime API (v1/realtime) only"
+    ],
+    [
+      "Max output",
+      "32K tokens"
+    ],
+    [
+      "Text price",
+      "$4 in / $24 out per 1M tokens"
+    ],
+    [
+      "Knowledge cutoff",
+      "Sep 30, 2024"
+    ],
+    [
+      "Smaller variant",
+      "gpt-realtime-2.1-mini"
+    ],
+    [
+      "Also on",
+      "Microsoft Foundry (version 2026-07-07)"
+    ]
+  ],
+  "links": {
+    "docs": "https://developers.openai.com/api/docs/models/gpt-realtime-2.1",
+    "pricing": "https://developers.openai.com/api/docs/pricing",
+    "changelog": "https://developers.openai.com/api/docs/changelog"
+  },
+  "goodFor": [
+    "Speech-to-speech voice agents",
+    "Tool calls during a live call",
+    "Capturing spoken codes, names and numbers"
+  ],
+  "watchOut": [
+    "Audio input costs 8x text input per token",
+    "Higher reasoning effort adds latency and output tokens",
+    "Realtime endpoint only; no structured outputs"
+  ],
+  "model": {
+    "lab": "OpenAI",
+    "released": "2026-07-06",
+    "context": "128K tokens",
+    "priceIn": "$32 / 1M audio tokens",
+    "priceOut": "$64 / 1M audio tokens",
+    "modalities": [
+      "text",
+      "audio",
+      "image"
+    ],
+    "weights": "closed"
+  },
+  "researched": "2026-10-22"
+}

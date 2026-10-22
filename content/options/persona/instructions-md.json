@@ -1,0 +1,44 @@
+{
+  "order": 15,
+  "id": "instructions-md",
+  "name": "Instructions file",
+  "note": "Markdown system prompt in the agent's folder",
+  "profile": "pattern",
+  "summary": "The agent's identity, tone and standing rules live in a Markdown file inside the agent's own project, such as eve's agent/instructions.md, and the framework sends it as the system prompt on every model call. The file is versioned and deployed with the agent's code. Unlike AGENTS.md or CLAUDE.md, it describes the agent itself rather than a repository the agent works in.",
+  "how": [
+    "Write identity, tone and standing rules in a Markdown file in the agent's folder",
+    "The framework loads the file as the system prompt when the agent is built",
+    "Every model call includes it, outside the conversation history",
+    "Move long or situational procedures into skills instead"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "eve (agent/instructions.md)"
+    ],
+    [
+      "Format",
+      "Plain Markdown; the file's text is the prompt"
+    ],
+    [
+      "eve variants",
+      "instructions/ directory, TypeScript modules, dynamic and user-role instructions"
+    ],
+    [
+      "Trade-off",
+      "Reviewed with the code, but changes need a deploy"
+    ]
+  ],
+  "links": {
+    "docs": "https://eve.dev/docs/instructions"
+  },
+  "goodFor": [
+    "Agents defined as a folder of files",
+    "Prompts reviewed alongside code changes"
+  ],
+  "watchOut": [
+    "Changes reach the agent only with a new build or deploy",
+    "Long instructions cost context on every call"
+  ],
+  "researched": "2026-10-22"
+}

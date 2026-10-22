@@ -188,7 +188,7 @@ export default async function StackPage({ params }: Props) {
         {d && (
           <p className="muted small">
             {DISCLOSURE[d].about}
-            {s.researched ? `, researched ${s.researched}` : ""}.
+            {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}.
           </p>
         )}
 

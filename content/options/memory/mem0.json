@@ -17,12 +17,16 @@
       "Apache-2.0 (open-source library and server)"
     ],
     [
-      "Adoption",
-      "67.6k GitHub stars"
+      "GitHub stars",
+      "~67.6k (Oct 2026)"
     ],
     [
-      "SDKs",
-      "Python, TypeScript, CLI"
+      "API",
+      "REST API; Python and TypeScript SDKs, CLI; hosted remote MCP server (mcp.mem0.ai)"
+    ],
+    [
+      "Hosting",
+      "Managed platform; self-hosted Apache-2.0 server; on-prem (Kubernetes, private cloud or air-gapped) on Enterprise"
     ],
     [
       "Pricing",
@@ -34,7 +38,11 @@
     ],
     [
       "BEAM",
-      "64.1 at 1M, 48.6 at 10M (vendor-reported)"
+      "64.1% at 1M, 48.6% at 10M (vendor-reported)"
+    ],
+    [
+      "Compliance",
+      "SOC 2 Type I, HIPAA, GDPR; BYOK (vendor-stated)"
     ],
     [
       "Funding",
@@ -46,7 +54,8 @@
     "docs": "https://docs.mem0.ai",
     "repo": "https://github.com/mem0ai/mem0",
     "pricing": "https://mem0.ai/pricing",
-    "changelog": "https://mem0.ai/blog"
+    "changelog": "https://mem0.ai/blog",
+    "benchmarks": "https://docs.mem0.ai/core-concepts/memory-evaluation"
   },
   "goodFor": [
     "Adding user memory to an existing app quickly",
@@ -55,7 +64,8 @@
   ],
   "watchOut": [
     "Published scores include managed-platform optimizations not in open source",
-    "Graph memory and Dream are paid-plan features"
+    "Graph memory and Dream are paid-plan features",
+    "Benchmark comparisons use each vendor's own runs, not one harness"
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

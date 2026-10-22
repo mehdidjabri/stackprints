@@ -1,0 +1,43 @@
+{
+  "order": 85,
+  "id": "self-hosted-runners",
+  "name": "Self-hosted runners",
+  "note": "Vendor control plane, your compute",
+  "profile": "pattern",
+  "summary": "The vendor keeps the control plane (session queue, interface and transcripts) while sessions execute on runners your organization deploys inside its own network, the same idea as self-hosted CI runners. Runners poll the vendor over outbound HTTPS, claim queued sessions and run them next to internal services. Isolating sessions and restricting their egress is the operator's job.",
+  "how": [
+    "Create an environment in the vendor's admin settings",
+    "Deploy runners on your hosts, for example on Kubernetes or Docker Compose",
+    "Runners poll the vendor's queue over outbound HTTPS and claim sessions",
+    "Each session clones the repository and runs on your host; model calls go to the vendor's API by default"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Code cloud sessions (public beta on Team and Enterprise, off by default)"
+    ],
+    [
+      "Network",
+      "Outbound only; the vendor never connects into your network"
+    ],
+    [
+      "Inference",
+      "Claude Code: api.anthropic.com by default, or Bedrock or Google Cloud"
+    ],
+    [
+      "Trade-off",
+      "Checkouts and builds stay on your machines, but you run the fleet and its isolation"
+    ]
+  ],
+  "goodFor": [
+    "Reaching internal services and registries",
+    "Pre-installed compilers and internal CLIs",
+    "Keeping checkouts and build artifacts on your infrastructure"
+  ],
+  "watchOut": [
+    "Runners execute model-directed code: isolate per session and default-deny egress",
+    "Prompts, responses and tool results still go to the vendor",
+    "You build the runner image and operate the fleet"
+  ],
+  "researched": "2026-10-22"
+}

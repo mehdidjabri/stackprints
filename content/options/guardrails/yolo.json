@@ -4,7 +4,7 @@
   "name": "YOLO",
   "note": "No permission checks",
   "profile": "pattern",
-  "summary": "The agent runs every tool call without asking and without a policy check. Harnesses expose it as an explicit opt-in flag, and their own docs recommend it only inside isolated environments such as containers or VMs.",
+  "summary": "The agent runs every tool call without asking and without a policy check. Harnesses that default to permission modes expose it as an explicit opt-in, such as Claude Code's bypassPermissions mode and Codex's --yolo flag. Claude Code's docs say to use it only in isolated environments such as containers or VMs, and Codex's docs mark the flag as not recommended.",
   "how": [
     "Start the harness with its bypass flag or mode",
     "Every tool call runs without a prompt or rule check",
@@ -12,7 +12,7 @@
   ],
   "facts": [
     [
-      "Used by",
+      "Exposed as an opt-in mode in",
       "Claude Code (bypassPermissions mode), Codex (--yolo flag)"
     ],
     [

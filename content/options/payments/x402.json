@@ -11,7 +11,7 @@
   "facts": [
     [
       "Origin",
-      "Coinbase, with Cloudflare and Stripe"
+      "Created by Coinbase (2025); x402 Foundation set up with Cloudflare and Stripe"
     ],
     [
       "Governance",
@@ -31,13 +31,13 @@
     ],
     [
       "SDKs",
-      "TypeScript, Python, Go"
+      "TypeScript, Python, Go (Java in development)"
     ]
   ],
   "links": {
     "site": "https://www.x402.org",
     "repo": "https://github.com/x402-foundation/x402",
-    "docs": "https://docs.cdp.coinbase.com/x402/support/x402-foundation"
+    "docs": "https://docs.x402.org"
   },
   "goodFor": [
     "Pay-per-call APIs without accounts or API keys",
@@ -45,7 +45,7 @@
   ],
   "watchOut": [
     "Mostly crypto rails today",
-    "Reported on-chain volume includes self-dealing (per third-party analysis)"
+    "Raw on-chain volume includes wash trading (Visa/Artemis adjusted it to ~$19M)"
   ],
   "researched": "2026-10-21"
 }

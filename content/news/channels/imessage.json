@@ -1,4 +1,7 @@
 {
-  "updated": "2026-10-21",
-  "items": []
+  "updated": "2026-10-22",
+  "items": [
+    { "date": "2026-08-05", "title": "Incident report for August 5, 2026", "url": "https://www.sendblue.com/blog/sendblue-security-incident-update", "source": "sendblue.com" },
+    { "date": "2026-01-29", "title": "BlueBubbles: Server solution forwards iMessages to Android", "url": "https://www.heise.de/en/news/BlueBubbles-Server-solution-forwards-iMessages-to-Android-11158831.html", "source": "heise.de" }
+  ]
 }

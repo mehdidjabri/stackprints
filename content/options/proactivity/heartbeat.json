@@ -2,14 +2,12 @@
   "order": 20,
   "id": "heartbeat",
   "name": "Heartbeat",
-  "url": "openclaw.ai",
   "note": "Periodic wake, check for work",
-  "logo": "openclaw",
   "profile": "pattern",
-  "summary": "The agent is woken on a fixed interval (for example every 30 minutes), checks a short list of things to watch, and either does nothing or acts and reports. OpenClaw used this pattern with a HEARTBEAT.md checklist; in 2026 it migrated heartbeat monitors into ordinary scheduled automation jobs.",
+  "summary": "The agent is woken on a fixed interval (for example every 30 minutes), checks a short list of things to watch, and either does nothing or acts and reports. Hermes Agent ships it as a per-session /heartbeat prompt that fires only when the session is idle; OpenClaw used a HEARTBEAT.md checklist and in 2026 migrated it into ordinary automation jobs (a 'Proactive check' job).",
   "how": [
     "A scheduler wakes the agent every N minutes",
-    "Agent reads its checklist (e.g. HEARTBEAT.md) and current context",
+    "Agent reads its standing prompt or checklist (e.g. a /heartbeat prompt in Hermes; HEARTBEAT.md in older OpenClaw) and current context",
     "Agent decides whether anything needs attention",
     "If yes, it acts or messages the user; if not, it stays silent",
     "Quiet hours and busy sessions suppress wakes"
@@ -17,7 +15,7 @@
   "facts": [
     [
       "Used by",
-      "OpenClaw (now as automation jobs)"
+      "Hermes Agent (/heartbeat, per session); OpenClaw (legacy; now a 'Proactive check' automation job, every 30 min by default)"
     ],
     [
       "Trade-off",
@@ -25,7 +23,8 @@
     ]
   ],
   "links": {
-    "docs": "https://docs.openclaw.ai/gateway/heartbeat"
+    "docs": "https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat",
+    "changelog": "https://docs.openclaw.ai/gateway/heartbeat"
   },
   "goodFor": [
     "Personal assistants that should notice things",
@@ -36,5 +35,5 @@
     "Latency is bounded by the interval",
     "Can become noisy without a silent-by-default rule"
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

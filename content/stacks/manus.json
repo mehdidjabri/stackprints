@@ -4,7 +4,7 @@
   "logo": "manus",
   "kind": "General agent",
   "tagline": "A general agent with its own cloud VM for code, files and research.",
-  "description": "Manus runs each task in its own cloud sandbox, a virtual machine with a browser, shell and files that sleeps and wakes between sessions. It is reached on the web, desktop and mobile apps, Slack, Telegram and a per-user email address; it splits large jobs across parallel subagents (Wide Research), runs on schedules or app events, connects through MCP, loads Agent Skills, and can act on your own computer or browser through its desktop app and extension. Its in-house harness is called Cascade, but Manus doesn't say which language models it runs on, what its sandbox is built on, or how project memory is stored. Meta announced it was acquiring Manus in December 2025; after Beijing blocked the deal, Manus said in September 2026 that it had resumed independent operations.",
+  "description": "Manus runs each task in its own cloud sandbox, a virtual machine with a browser, shell and files that sleeps and wakes between sessions; users can also buy a dedicated Cloud Computer for projects that need an always-on server, such as a multiplayer game. It is reached on the web, desktop and mobile apps, Slack, Telegram and a per-user email address; it splits large jobs across parallel subagents (Wide Research), runs on schedules or app events, connects through MCP, loads Agent Skills, and can act on your own computer or browser through its desktop app and extension. Its in-house harness is called Cascade, but Manus doesn't say which language models it runs on, what its sandbox is built on, or how project memory is stored. Manus joined Meta in December 2025; after China's National Development and Reform Commission ordered the deal unwound in April 2026, Manus said on September 1, 2026 that it had resumed independent operations.",
   "disclosure": "closed",
   "links": {
     "site": "https://manus.im"
@@ -27,7 +27,10 @@
     "harness": "custom-loop",
     "multiagent": "subagents",
     "tools": "image-generation",
-    "sandbox": "per-user-cloud-computer",
+    "sandbox": [
+      "per-task-cloud-vm",
+      "per-user-cloud-computer"
+    ],
     "browser": [
       "cloud-browser",
       "chrome-extension"
@@ -41,8 +44,7 @@
     "hosting": "vendor-cloud",
     "guardrails": "permission-modes",
     "identity": [
-      "private-sign-in-form",
-      "agent-phone-email"
+      "private-sign-in-form"
     ]
   },
   "evidence": {
@@ -75,7 +77,8 @@
     ],
     "sandbox": [
       "https://manus.im/docs/introduction/welcome",
-      "https://manus.im/blog/manus-sandbox"
+      "https://manus.im/blog/manus-sandbox",
+      "https://manus.im/blog/introducing-manus-2-0"
     ],
     "browser": [
       "https://manus.im/docs/features/cloud-browser",
@@ -97,12 +100,11 @@
       "https://manus.im/blog/manus-sandbox"
     ],
     "guardrails": [
-      "https://manus.im/docs/features/desktop"
+      "https://manus.im/docs/features/desktop",
+      "https://manus.im/docs/features/browser-operator"
     ],
     "identity": [
-      "https://manus.im/docs/features/cloud-browser",
-      "https://manus.im/docs/features/mail-manus",
-      "https://manus.im/blog/introducing-manus-2-0"
+      "https://manus.im/docs/features/cloud-browser"
     ]
   },
   "sources": [
@@ -189,6 +191,10 @@
     {
       "title": "Manus resumes solo operations after collapse of US$2 billion Meta deal (South China Morning Post)",
       "url": "https://scmp.com/tech/big-tech/article/3365986/manus-resumes-solo-operations-after-collapse-us2-billion-meta-deal"
+    },
+    {
+      "title": "Meta forced to scrap AI deal after China blocks acquisition (GuruFocus via Yahoo Finance)",
+      "url": "https://finance.yahoo.com/sectors/technology/articles/meta-forced-scrap-ai-deal-124029933.html"
     }
   ],
   "researched": "2026-10-21"

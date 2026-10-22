@@ -67,7 +67,7 @@
     "name": "Inference",
     "band": "brain",
     "ref": "U4",
-    "description": "What actually runs the weights: hosted providers for open models, or engines on your own hardware."
+    "description": "What actually runs the weights: the lab's own API for closed models, hosted providers for open models, or engines on your own hardware."
   },
   {
     "id": "persona",
@@ -116,7 +116,7 @@
     "name": "Tool interface",
     "band": "hands",
     "ref": "PCIE5",
-    "description": "How tools are exposed to the model: MCP servers, OpenAPI specs, plain CLIs, or code the model writes."
+    "description": "How tools are exposed to the model: typed functions, MCP servers, OpenAPI specs, plain CLIs, or code the model writes."
   },
   {
     "id": "connectors",

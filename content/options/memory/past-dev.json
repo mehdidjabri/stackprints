@@ -3,7 +3,7 @@
   "id": "past-dev",
   "name": "past.dev",
   "url": "past.dev",
-  "note": "Long-term, multiplayer memory API",
+  "note": "Time-aware, access-filtered recall API",
   "logo": "past",
   "profile": "product",
   "summary": "past.dev is a hosted memory API for AI agents. Applications send timestamped text to an ingest endpoint and query a recall endpoint, which returns ranked evidence with dated sources, tracks how facts change over time, and filters results by what the requesting identity is allowed to see.",
@@ -11,6 +11,10 @@
     [
       "Company",
       "past.dev (founders Mehdi Djabri, Alex Ronse)"
+    ],
+    [
+      "License",
+      "Closed source (hosted service)"
     ],
     [
       "API",
@@ -22,11 +26,11 @@
     ],
     [
       "Pricing",
-      "Pay as you go from $45; Flex $99/mo; Enterprise custom"
+      "Pay as you go $0/mo ($45 starter credits, $120 with work email; packs from $30); Flex from $99/mo; Enterprise custom"
     ],
     [
       "BEAM",
-      "92.08% at 100K, 85.03% at 10M (vendor-reported)"
+      "90.65% at 1M, 85.03% at 10M (vendor-reported)"
     ],
     [
       "Compliance",
@@ -34,14 +38,15 @@
     ],
     [
       "Integrations",
-      "Hermes Agent plugin maintained by past.dev"
+      "MIT plugins maintained by past.dev for Claude Code, Codex, Cursor, JetBrains (Junie), Hermes Agent, n8n, Dify, CrewAI, LlamaIndex and the Vercel AI SDK"
     ]
   ],
   "links": {
     "site": "https://past.dev",
     "docs": "https://past.dev/docs",
     "pricing": "https://past.dev/pricing",
-    "repo": "https://github.com/pastdotdev"
+    "repo": "https://github.com/pastdotdev",
+    "benchmarks": "https://github.com/pastdotdev/benchmarks/tree/main/beam"
   },
   "goodFor": [
     "Multi-user or team memory with access control",
@@ -51,7 +56,7 @@
   "watchOut": [
     "New product (launched Sept-Oct 2026); no named customers published",
     "Benchmark comparisons use each vendor's own runs, not one harness",
-    "No open-source self-host outside Enterprise"
+    "Closed source with no self-host; Enterprise BYOC runs in your own cloud account but past.dev operates it"
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

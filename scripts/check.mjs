@@ -7,7 +7,10 @@ const layers = json("content/layers.json");
 const bands = new Set(["surface", "brain", "hands", "files", "ops"]);
 const kebab = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const errors = [];
+const warnings = []; // reported, but don't fail the run
 const index = new Map();
+const usedBy = []; // hand-written "Used by" facts, checked against the stacks' picks
+const stacks = [];
 
 for (const l of layers) {
   if (index.has(l.id)) errors.push(`duplicate layer id: ${l.id}`);
@@ -46,6 +49,7 @@ for (const l of layers) {
     for (const k of ["goodFor", "watchOut", "how"]) if (o[k] && (!Array.isArray(o[k]) || o[k].length > 5)) errors.push(`${at}: ${k} must be a short list`);
     if (o.researched && !/^\d{4}-\d{2}-\d{2}$/.test(o.researched)) errors.push(`${at}: researched must be YYYY-MM-DD`);
     index.get(l.id).add(o.id);
+    for (const [k, v] of Array.isArray(o.facts) ? o.facts : []) if (k === "Used by" && typeof v === "string") usedBy.push({ layer: l.id, id: o.id, value: v });
   }
 }
 
@@ -80,6 +84,7 @@ for (const l of layers) {
 const slugs = new Set();
 for (const f of jsonFiles("content/stacks")) {
   const s = json(`content/stacks/${f}`);
+  stacks.push(s);
   if (`${s.slug}.json` !== f) errors.push(`${f}: slug must match filename`);
   if (slugs.has(s.slug)) errors.push(`${f}: duplicate slug`);
   slugs.add(s.slug);
@@ -106,10 +111,27 @@ for (const f of jsonFiles("content/stacks")) {
     if (!opts) errors.push(`${f}: unknown layer "${layer}"`);
     else for (const id of [v].flat()) if (!opts.has(id)) errors.push(`${f}: unknown option ${layer}/${id}`);
   }
+  // On an example an empty slot means "not used", which is false for these core layers.
+  if (s.disclosure === "example")
+    for (const layer of ["harness", "model", "persona", "mcp"])
+      if (!(layer in (s.layers ?? {}))) warnings.push(`${f}: example leaves ${layer} empty, which reads as 'not used'`);
+}
+
+// A "Used by" fact must not name a catalog stack that doesn't pick the option, or it contradicts
+// the computed "Stacks using X" list. Match full stack names only, case-sensitive, and not as the
+// tail of a longer name ("Raspberry Pi"), so "1Password for Claude" or "Gemini CLI" don't count.
+const escapeRe = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+for (const s of stacks) {
+  if (!s.name) continue;
+  const re = new RegExp(`(?<![\\w-]|[A-Z][\\w-]* )${escapeRe(s.name)}(?![\\w-])`);
+  for (const { layer, id, value } of usedBy)
+    if (re.test(value) && ![s.layers?.[layer] ?? []].flat().includes(id))
+      errors.push(`${layer}/${id}: 'Used by' names ${s.name} but that stack does not pick it`);
 }
 
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
+if (warnings.length) console.warn(warnings.join("\n"));
 console.log(`ok: ${layers.length} layers, ${options} options, ${news} news files, ${slugs.size} stacks`);

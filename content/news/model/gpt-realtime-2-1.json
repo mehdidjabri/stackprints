@@ -1,0 +1,17 @@
+{
+  "updated": "2026-10-22",
+  "items": [
+    {
+      "date": "2026-07-07",
+      "title": "OpenAI releases gpt-realtime-2.1 voice models",
+      "url": "https://datanorth.ai/news/openai-releases-gpt-realtime-2-1-voice-models",
+      "source": "datanorth.ai"
+    },
+    {
+      "date": "2026-07-06",
+      "title": "New Realtime models on the API: gpt-realtime-2.1 and gpt-realtime-2.1-mini",
+      "url": "https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896",
+      "source": "community.openai.com"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
   "logo": "claude",
   "kind": "Desktop agent",
   "tagline": "Claude works on your local files and apps, on a schedule.",
-  "description": "Cowork is Anthropic's agent for knowledge work and, according to Anthropic, uses the same agentic architecture as Claude Code. Since October 6, 2026, new sessions on Pro and Max plans run in the cloud: the agent loop and code execution run in a per-session sandbox on Anthropic's servers, and the Claude Desktop app relays access to connected local folders, the browser and the computer. Local sessions, kept for earlier tasks and existing desktop deployments, run code in a Linux VM on the device. Cowork shares account memory with chat in the cloud, runs scheduled tasks remotely, coordinates sub-agents and Dispatch tasks, and is extended with MCP connectors, skills, plugins and hooks; organisations can export its activity over OpenTelemetry. Anthropic's support center documents this architecture, and a more detailed security architecture overview is available on request from its Trust Center.",
+  "description": "Cowork is Anthropic's agent for knowledge work and, according to Anthropic, uses the same agentic architecture as Claude Code; Anthropic does not name the Claude Agent SDK, so the harness pick is inferred from that statement and from a TechCrunch report that Cowork is built on the SDK. Since October 6, 2026, new sessions on Pro and Max plans run in the cloud: the agent loop and code execution run in a per-session sandbox on Anthropic's servers, and the Claude Desktop app relays access to connected local folders, the browser and the computer. By default Claude browses in a pane built into Claude Desktop; people who already use Claude in Chrome keep working in their own browser. Local sessions, kept for earlier tasks and existing desktop deployments, run code in a Linux VM on the device. Cowork shares account memory with chat in the cloud, runs scheduled tasks remotely, coordinates sub-agents and Dispatch tasks, and is extended with MCP connectors, skills, plugins and hooks; organisations can export its activity over OpenTelemetry. Anthropic's support center documents this architecture, and a more detailed security architecture overview is available on request from its Trust Center.",
   "links": {
     "site": "https://claude.com/product/cowork",
     "docs": "https://claude.com/resources/guides/claude-cowork-product-guide"
@@ -21,12 +21,17 @@
       "artifacts",
       "side-panel"
     ],
+    "devices": "laptop-node",
     "harness": "claude-agent-sdk",
     "model": [
       "claude-opus-5-5",
       "claude-sonnet-5-5"
     ],
-    "inference": "bedrock-vertex-azure",
+    "inference": [
+      "lab-api",
+      "bedrock-vertex-azure"
+    ],
+    "persona": "custom-instructions",
     "multiagent": "subagents",
     "tools": "read-write-edit-bash",
     "search": "web-search",
@@ -35,10 +40,12 @@
       "local-vm"
     ],
     "browser": [
+      "in-app-browser",
       "chrome-extension",
       "computer-use-api"
     ],
     "mcp": "mcp",
+    "connectors": "calendar-email",
     "skills": [
       "agent-skills-skill-md",
       "plugins",
@@ -54,7 +61,8 @@
       "auto-review",
       "hooks"
     ],
-    "identity": "credential-vault"
+    "identity": "credential-vault",
+    "observability": "opentelemetry"
   },
   "evidence": {
     "channels": [
@@ -68,9 +76,13 @@
       "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
       "https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile"
     ],
+    "devices": [
+      "https://support.claude.com/en/articles/14479288"
+    ],
     "harness": [
       "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
-      "https://claude.com/docs/cowork/overview"
+      "https://claude.com/docs/cowork/overview",
+      "https://techcrunch.com/2026/01/12/anthropics-new-cowork-tool-offers-claude-code-without-the-code/"
     ],
     "model": [
       "https://claude.com/docs/cowork/changelog",
@@ -79,6 +91,11 @@
     "inference": [
       "https://claude.com/docs/third-party/claude-desktop/overview",
       "https://claude.com/docs/third-party/claude-desktop/feature-matrix"
+    ],
+    "persona": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork",
+      "https://claude.com/docs/cowork/guide/projects"
     ],
     "multiagent": [
       "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
@@ -96,11 +113,17 @@
     ],
     "browser": [
       "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
-      "https://claude.com/docs/cowork/changelog"
+      "https://claude.com/docs/cowork/changelog",
+      "https://support.claude.com/en/articles/16607400-use-the-built-in-browser-in-claude-cowork"
     ],
     "mcp": [
       "https://claude.com/docs/cowork/overview",
       "https://claude.com/docs/plugins/platform-support"
+    ],
+    "connectors": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "https://claude.com/docs/third-party/claude-desktop/connectors-m365",
+      "https://claude.com/docs/third-party/claude-desktop/feature-matrix"
     ],
     "skills": [
       "https://claude.com/docs/plugins/platform-support",
@@ -120,6 +143,10 @@
     "identity": [
       "https://support.claude.com/en/articles/14479288",
       "https://www.anthropic.com/engineering/how-we-contain-claude"
+    ],
+    "observability": [
+      "https://claude.com/docs/cowork/monitoring",
+      "https://support.claude.com/en/articles/14479288"
     ]
   },
   "sources": [
@@ -152,8 +179,16 @@
       "url": "https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization"
     },
     {
+      "title": "Use the built-in browser in Claude Cowork (Claude Help Center)",
+      "url": "https://support.claude.com/en/articles/16607400-use-the-built-in-browser-in-claude-cowork"
+    },
+    {
       "title": "Cowork overview (Claude docs)",
       "url": "https://claude.com/docs/cowork/overview"
+    },
+    {
+      "title": "Organize work with projects (Claude docs)",
+      "url": "https://claude.com/docs/cowork/guide/projects"
     },
     {
       "title": "Run tasks in the background with Dispatch (Claude docs)",
@@ -176,6 +211,10 @@
       "url": "https://claude.com/docs/third-party/claude-desktop/feature-matrix"
     },
     {
+      "title": "Connect to Microsoft 365 (Claude docs)",
+      "url": "https://claude.com/docs/third-party/claude-desktop/connectors-m365"
+    },
+    {
       "title": "Cowork monitoring with OpenTelemetry (Claude docs)",
       "url": "https://claude.com/docs/cowork/monitoring"
     },
@@ -190,7 +229,11 @@
     {
       "title": "Claude Cowork product page",
       "url": "https://claude.com/product/cowork"
+    },
+    {
+      "title": "Anthropic's new Cowork tool offers Claude Code without the code (TechCrunch)",
+      "url": "https://techcrunch.com/2026/01/12/anthropics-new-cowork-tool-offers-claude-code-without-the-code/"
     }
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

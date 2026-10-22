@@ -44,6 +44,8 @@
     "harness": "openai-agents-sdk",
     "model": "gpt-6-1-sol",
     "router": "direct-provider",
+    "inference": "lab-api",
+    "persona": "system-prompt",
     "browser": "stagehand",
     "mcp": "mcp",
     "payments": [

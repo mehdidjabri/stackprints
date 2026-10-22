@@ -40,6 +40,8 @@
       "gemini-4-argon"
     ],
     "router": "openrouter",
+    "inference": "lab-api",
+    "persona": "system-prompt",
     "multiagent": "subagents",
     "search": [
       "exa",
@@ -47,6 +49,7 @@
       "firecrawl"
     ],
     "browser": "browserbase",
+    "mcp": "function-tools",
     "memory": "past-dev",
     "retrieval": [
       "lancedb",

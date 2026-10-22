@@ -17,7 +17,7 @@
   "facts": [
     [
       "Used by",
-      "pi (/tree, /fork, /clone); Claude Code /branch copies the transcript to a new session"
+      "pi (/tree, /fork, /clone)"
     ],
     [
       "pi storage",

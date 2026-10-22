@@ -4,26 +4,30 @@
   "name": "Agent notes",
   "note": "Agent's own notes across channels",
   "profile": "pattern",
-  "summary": "The agent writes its own notes through a memory tool and reads them back in later sessions, whichever channel the user reaches it on (CLI, Telegram, Slack). Notes are small and bounded, so the agent has to decide what is worth keeping.",
+  "summary": "A small, hard-capped note store that the agent changes through a dedicated memory tool rather than its file tools, and that is injected whole into the prompt, usually at session start. Because the store is bounded, the agent has to decide what is worth keeping. Hermes Agent works this way: its MEMORY.md and USER.md are capped notes managed by its memory tool, not a MEMORY.md workspace.",
   "how": [
-    "Give the agent a memory tool with add, edit and remove actions",
-    "Store notes in a small file or record shared by all channels",
-    "Inject the notes into the system prompt at session start",
+    "Give the agent a dedicated memory tool with add, edit and remove actions",
+    "Store notes in a small, capped file or record shared by all channels",
+    "Inject the whole store into the system prompt at session start",
     "Have the agent consolidate when the store is full",
     "Pair with full-text search over past sessions for specifics"
   ],
   "facts": [
     [
       "Used by",
-      "Hermes Agent (MEMORY.md and USER.md), Claude Code (auto memory)"
+      "Hermes Agent (memory tool with add, patch and remove actions)"
     ],
     [
       "Storage",
-      "Bounded text files written by the agent"
+      "Small capped store, written through the memory tool"
     ],
     [
       "Example limit",
       "Hermes: 2,200 chars for agent notes, 1,375 for user profile"
+    ],
+    [
+      "Hermes file names",
+      "MEMORY.md and USER.md, but capped and tool-managed, not a MEMORY.md workspace"
     ],
     [
       "Trade-off",
@@ -42,5 +46,5 @@
     "Hard size caps force the agent to drop older notes",
     "Mid-session writes may not appear until the next session"
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

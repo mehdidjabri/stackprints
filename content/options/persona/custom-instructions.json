@@ -1,0 +1,35 @@
+{
+  "order": 15,
+  "id": "custom-instructions",
+  "name": "Custom instructions",
+  "note": "Standing instructions set in the app, not in code",
+  "profile": "pattern",
+  "summary": "Standing instructions a user writes in a product's settings, or attaches to a project or folder. The product adds them to every session or task in that scope, so tone, format and background don't have to be repeated in each prompt. Changing them needs no code change or deploy.",
+  "how": [
+    "Write tone, format and background about your role in the app's settings",
+    "Optionally add narrower instructions to a project or folder",
+    "The product applies them at the start of every session in that scope",
+    "Edit them in the app whenever they need to change"
+  ],
+  "facts": [
+    [
+      "Used by",
+      "Claude Cowork (global, folder and project instructions)"
+    ],
+    [
+      "Trade-off",
+      "Editable without a deploy, but usually kept in app settings rather than in version control"
+    ]
+  ],
+  "goodFor": [
+    "People shaping an agent without writing code",
+    "Preferences that apply to every task",
+    "Per-project tone, format and rules"
+  ],
+  "watchOut": [
+    "Instructions are guidance, not enforced rules",
+    "Hard to review or share when kept only in app settings",
+    "Global and project instructions can overlap or conflict"
+  ],
+  "researched": "2026-10-22"
+}

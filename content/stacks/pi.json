@@ -4,7 +4,7 @@
   "logo": "pi",
   "kind": "Coding agent",
   "tagline": "Minimal, hackable coding agent: four tools and extensions for the rest.",
-  "description": "Pi is a minimal, extensible agent harness for the terminal, published by Earendil and authored by Mario Zechner. pi-ai gives one API across many model providers, pi-agent-core runs the loop, and the coding agent enables read, write, edit and bash by default, with grep, find, ls, an MCP client and a QuickJS-sandboxed codemode tool built in. It does not ask for approval before tool calls and ships without sub-agents or plan mode; extensions, skills, prompt templates and Pi packages add the rest. Sessions are JSONL trees you can branch, fork and clone.",
+  "description": "Pi is a minimal, extensible agent harness for the terminal, published by Earendil and authored by Mario Zechner. pi-ai gives one API across many model providers, pi-agent-core runs the loop, and the coding agent enables read, write, edit and bash by default, with grep, find, ls, an MCP client and a QuickJS-sandboxed codemode tool built in. It does not ask for approval before tool calls and ships without sub-agents or plan mode; extensions, skills, prompt templates and Pi packages add the rest. Sessions are JSONL trees you can branch, fork and clone. Credentials come from /login (an OAuth sign-in or an API key, saved to ~/.pi/agent/auth.json), from environment variables, or from a shell command such as a secret-manager lookup.",
   "links": {
     "site": "https://pi.dev",
     "repo": "https://github.com/earendil-works/pi",
@@ -18,9 +18,21 @@
     "model": "any-model",
     "router": [
       "pi-ai",
-      "any-provider"
+      "any-provider",
+      "openrouter",
+      "vercel-ai-gateway",
+      "cloudflare-ai-gateway"
     ],
-    "inference": "any-host",
+    "inference": [
+      "any-host",
+      "groq",
+      "cerebras",
+      "fireworks",
+      "together",
+      "baseten",
+      "bedrock-vertex-azure",
+      "workers-ai"
+    ],
     "persona": [
       "agents-md",
       "claude-md",
@@ -115,7 +127,8 @@
       "https://pi.dev/docs/latest/extensions"
     ],
     "identity": [
-      "https://pi.dev/docs/latest/providers"
+      "https://pi.dev/docs/latest/providers",
+      "https://pi.dev/docs/latest/configuration"
     ]
   },
   "notUsed": [

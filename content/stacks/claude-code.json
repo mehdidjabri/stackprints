@@ -4,7 +4,7 @@
   "logo": "claudecode",
   "kind": "Coding agent",
   "tagline": "Agentic coding in the terminal, desktop and cloud.",
-  "description": "Claude Code is Anthropic's coding agent. The same agent loop runs in the terminal, IDE extensions, the desktop app, the web and Slack, either on your machine or in an Anthropic-managed cloud VM, and the Claude mobile app connects to those sessions. It reads CLAUDE.md or AGENTS.md, keeps auto memory in a MEMORY.md index, searches files with grep and find, delegates to subagents, and is extended with skills, plugins, hooks and MCP. Permission modes range from manual approval to auto mode, where a classifier reviews actions, and telemetry can be exported over OpenTelemetry. The same loop is available as a library, the Claude Agent SDK. The source code is closed, but Anthropic documents the architecture in depth.",
+  "description": "Claude Code is Anthropic's coding agent. The same agent loop runs in the terminal, IDE extensions, the desktop app, the web and Slack, on your machine, in an Anthropic-managed cloud VM or on self-hosted runners in your organization's network (public beta), and the Claude mobile app connects to those sessions. Model traffic can go straight to Anthropic or a cloud provider, or through a self-hosted gateway, and prompts can be dictated by voice, with transcription on Anthropic's servers. It reads CLAUDE.md or AGENTS.md, keeps auto memory in a MEMORY.md index, searches files with grep and find, delegates to subagents, and is extended with skills, plugins, hooks and MCP. Permission modes range from manual approval to auto mode, where a classifier reviews actions, and telemetry can be exported over OpenTelemetry. The same loop is available as a library, the Claude Agent SDK. The source code is closed, but Anthropic documents the architecture in depth.",
   "links": {
     "site": "https://claude.com/product/claude-code",
     "docs": "https://code.claude.com/docs"
@@ -31,6 +31,7 @@
       "plain-text",
       "artifacts"
     ],
+    "voice": "built-in-dictation",
     "harness": "claude-agent-sdk",
     "model": [
       "claude-opus-5-5",
@@ -38,8 +39,14 @@
       "claude-haiku-5-5",
       "claude-fable-5-1"
     ],
-    "router": "direct-provider",
-    "inference": "bedrock-vertex-azure",
+    "router": [
+      "direct-provider",
+      "self-hosted-gateway"
+    ],
+    "inference": [
+      "lab-api",
+      "bedrock-vertex-azure"
+    ],
     "persona": [
       "claude-md",
       "agents-md"
@@ -56,10 +63,12 @@
       "per-task-cloud-vm"
     ],
     "browser": [
+      "in-app-browser",
       "chrome-extension",
       "computer-use-api"
     ],
     "mcp": "mcp",
+    "connectors": "calendar-email",
     "skills": [
       "agent-skills-skill-md",
       "plugins",
@@ -73,7 +82,8 @@
     ],
     "hosting": [
       "your-laptop",
-      "vendor-cloud"
+      "vendor-cloud",
+      "self-hosted-runners"
     ],
     "guardrails": [
       "permission-modes",
@@ -83,7 +93,8 @@
     "identity": [
       "credential-vault",
       "mcp-oauth-2-1"
-    ]
+    ],
+    "observability": "opentelemetry-genai"
   },
   "evidence": {
     "channels": [
@@ -103,6 +114,9 @@
       "https://code.claude.com/docs/en/how-claude-code-works",
       "https://code.claude.com/docs/en/artifacts"
     ],
+    "voice": [
+      "https://code.claude.com/docs/en/voice-dictation"
+    ],
     "harness": [
       "https://code.claude.com/docs/en/agent-sdk/overview",
       "https://code.claude.com/docs/en/how-claude-code-works"
@@ -112,7 +126,10 @@
     ],
     "router": [
       "https://code.claude.com/docs/en/model-config",
-      "https://code.claude.com/docs/en/third-party-integrations"
+      "https://code.claude.com/docs/en/third-party-integrations",
+      "https://code.claude.com/docs/en/gateways",
+      "https://code.claude.com/docs/en/claude-apps-gateway",
+      "https://code.claude.com/docs/en/llm-gateway"
     ],
     "inference": [
       "https://code.claude.com/docs/en/third-party-integrations",
@@ -139,11 +156,16 @@
       "https://code.claude.com/docs/en/cloud-environments"
     ],
     "browser": [
+      "https://code.claude.com/docs/en/desktop",
       "https://code.claude.com/docs/en/chrome",
       "https://code.claude.com/docs/en/computer-use"
     ],
     "mcp": [
       "https://code.claude.com/docs/en/mcp"
+    ],
+    "connectors": [
+      "https://code.claude.com/docs/en/mcp",
+      "https://code.claude.com/docs/en/routines"
     ],
     "skills": [
       "https://code.claude.com/docs/en/skills",
@@ -161,7 +183,8 @@
     ],
     "hosting": [
       "https://code.claude.com/docs/en/how-claude-code-works",
-      "https://code.claude.com/docs/en/claude-code-on-the-web"
+      "https://code.claude.com/docs/en/claude-code-on-the-web",
+      "https://code.claude.com/docs/en/self-hosted-environments"
     ],
     "guardrails": [
       "https://code.claude.com/docs/en/permission-modes",
@@ -171,6 +194,9 @@
     "identity": [
       "https://code.claude.com/docs/en/cloud-environments",
       "https://code.claude.com/docs/en/mcp"
+    ],
+    "observability": [
+      "https://code.claude.com/docs/en/monitoring-usage"
     ]
   },
   "sources": [
@@ -195,12 +221,20 @@
       "url": "https://code.claude.com/docs/en/cloud-environments"
     },
     {
+      "title": "Self-hosted environments",
+      "url": "https://code.claude.com/docs/en/self-hosted-environments"
+    },
+    {
       "title": "Claude Code on mobile",
       "url": "https://code.claude.com/docs/en/mobile"
     },
     {
       "title": "Claude Code in Slack",
       "url": "https://code.claude.com/docs/en/slack"
+    },
+    {
+      "title": "Voice dictation",
+      "url": "https://code.claude.com/docs/en/voice-dictation"
     },
     {
       "title": "Push events into a running session with channels",
@@ -229,6 +263,10 @@
     {
       "title": "Enterprise deployment overview",
       "url": "https://code.claude.com/docs/en/third-party-integrations"
+    },
+    {
+      "title": "Run Claude Code through a gateway",
+      "url": "https://code.claude.com/docs/en/gateways"
     },
     {
       "title": "How Claude remembers your project",
@@ -261,6 +299,10 @@
     {
       "title": "Development containers",
       "url": "https://code.claude.com/docs/en/devcontainer"
+    },
+    {
+      "title": "Desktop application",
+      "url": "https://code.claude.com/docs/en/desktop"
     },
     {
       "title": "Use Claude Code with Chrome",
@@ -307,5 +349,5 @@
       "url": "https://www.anthropic.com/engineering/how-we-contain-claude"
     }
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-22"
 }

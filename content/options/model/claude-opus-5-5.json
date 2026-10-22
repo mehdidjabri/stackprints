@@ -3,7 +3,7 @@
   "id": "claude-opus-5-5",
   "name": "Claude Opus 5.5",
   "url": "anthropic.com",
-  "note": "Anthropic flagship",
+  "note": "Anthropic recommended default",
   "logo": "claude",
   "profile": "model",
   "summary": "Claude Opus 5.5 is the first model in Anthropic's Claude 5.5 family and its recommended default for most workloads. Anthropic positions it for long-running agentic coding, computer use and knowledge work, at roughly Fable 5.1 level on most tasks for a lower price.",

@@ -4,7 +4,7 @@
   "logo": "openclaw",
   "kind": "Personal agent",
   "tagline": "Self-hosted assistant that lives in every chat app you use.",
-  "description": "OpenClaw is an open-source personal assistant stewarded by the OpenClaw Foundation. A local Gateway daemon connects WhatsApp, Telegram, Slack, Discord, iMessage, Signal, Teams and 20+ other channels, plus native apps on macOS, iOS, Android, Windows and Linux, to one agent. Instructions and memory are Markdown workspace files (AGENTS.md, SOUL.md, USER.md, MEMORY.md) indexed in SQLite with hybrid search and consolidated by a background 'dreaming' sweep. Automation jobs, webhooks and hooks start runs, models and harnesses such as Codex are plugins, and tools run on the host unless a Docker, SSH or other sandbox backend is configured.",
+  "description": "OpenClaw is an open-source personal assistant stewarded by the OpenClaw Foundation. A local Gateway daemon connects WhatsApp, Telegram, Slack, Discord, iMessage, Signal, Teams and 20+ other channels, plus native apps on macOS, iOS, Android, Windows and Linux, to one agent. Instructions and memory are Markdown workspace files (AGENTS.md, SOUL.md, USER.md, MEMORY.md) indexed in SQLite with hybrid search and consolidated by a background 'dreaming' sweep. Automation jobs, webhooks and hooks start runs, models and harnesses such as Codex are plugins, and tools run on the host unless a Docker, Podman, SSH, OpenShell or Crabbox (Daytona) sandbox backend is configured.",
   "links": {
     "site": "https://openclaw.ai",
     "repo": "https://github.com/openclaw/openclaw",
@@ -54,13 +54,34 @@
       "phone",
       "laptop-node"
     ],
+    "readiness": [
+      "mcp-server",
+      "llms-txt"
+    ],
     "harness": [
       "openclaw-runtime",
       "codex"
     ],
     "model": "any-model",
-    "router": "any-provider",
-    "inference": "any-host",
+    "router": [
+      "any-provider",
+      "openrouter",
+      "litellm",
+      "vercel-ai-gateway",
+      "cloudflare-ai-gateway"
+    ],
+    "inference": [
+      "any-host",
+      "groq",
+      "cerebras",
+      "fireworks",
+      "together",
+      "baseten",
+      "deepinfra",
+      "bedrock-vertex-azure",
+      "ollama",
+      "vllm"
+    ],
     "persona": [
       "agents-md",
       "soul-md",
@@ -92,6 +113,7 @@
     "browser": [
       "chrome-extension",
       "browserbase",
+      "browser-use",
       "cua-driver"
     ],
     "mcp": [
@@ -129,7 +151,8 @@
       "dm-pairing",
       "permission-modes",
       "auto-review",
-      "hooks"
+      "hooks",
+      "audit-trail"
     ],
     "identity": [
       "env-vars",
@@ -173,6 +196,11 @@
       "https://docs.openclaw.ai/nodes",
       "https://docs.openclaw.ai/platforms"
     ],
+    "readiness": [
+      "https://docs.openclaw.ai/cli/mcp/serve",
+      "https://docs.openclaw.ai/channels/a2a",
+      "https://docs.openclaw.ai/llms.txt"
+    ],
     "harness": [
       "https://docs.openclaw.ai/concepts/agent-runtimes",
       "https://docs.openclaw.ai/plugins/codex-harness"
@@ -189,7 +217,16 @@
       "https://docs.openclaw.ai/providers/cloudflare-ai-gateway"
     ],
     "inference": [
-      "https://docs.openclaw.ai/providers"
+      "https://docs.openclaw.ai/providers",
+      "https://docs.openclaw.ai/providers/groq",
+      "https://docs.openclaw.ai/providers/cerebras",
+      "https://docs.openclaw.ai/providers/fireworks",
+      "https://docs.openclaw.ai/providers/together",
+      "https://docs.openclaw.ai/providers/baseten",
+      "https://docs.openclaw.ai/providers/deepinfra",
+      "https://docs.openclaw.ai/providers/bedrock",
+      "https://docs.openclaw.ai/providers/ollama",
+      "https://docs.openclaw.ai/providers/vllm"
     ],
     "persona": [
       "https://docs.openclaw.ai/concepts/agent-workspace",
@@ -254,7 +291,8 @@
     "guardrails": [
       "https://docs.openclaw.ai/channels/pairing",
       "https://docs.openclaw.ai/tools/permission-modes",
-      "https://docs.openclaw.ai/plugins/hooks"
+      "https://docs.openclaw.ai/plugins/hooks",
+      "https://docs.openclaw.ai/gateway/audit"
     ],
     "identity": [
       "https://docs.openclaw.ai/tools/web",
@@ -332,12 +370,20 @@
       "url": "https://docs.openclaw.ai/tools/permission-modes"
     },
     {
+      "title": "Audit history",
+      "url": "https://docs.openclaw.ai/gateway/audit"
+    },
+    {
       "title": "Connect MCP servers",
       "url": "https://docs.openclaw.ai/tools/mcp"
     },
     {
       "title": "Code Mode",
       "url": "https://docs.openclaw.ai/tools/code-mode"
+    },
+    {
+      "title": "Run OpenClaw as an MCP server",
+      "url": "https://docs.openclaw.ai/cli/mcp/serve"
     },
     {
       "title": "PostgreSQL operator guide",
