@@ -35,7 +35,7 @@ export default async function LayerPage({ params }: Props) {
   const band = BANDS.find(([b]) => b === l.band)![1];
 
   return (
-    <article>
+    <article className={`b-${l.band}`}>
       <JsonLd
         data={{
           "@context": "https://schema.org",

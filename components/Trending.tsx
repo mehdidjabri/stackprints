@@ -10,7 +10,7 @@ export function Trending({ limit = 8 }: { limit?: number }) {
   return (
     <ol className="trending">
       {rows.map(({ layer, option, latest, count }, i) => (
-        <li key={`${layer.id}/${option.id}`} className="module">
+        <li key={`${layer.id}/${option.id}`} className={`module b-${layer.band}`}>
           <span className="silk">
             <span className="ref">R{i + 1}</span>
           </span>

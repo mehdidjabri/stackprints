@@ -71,7 +71,7 @@ export default async function OptionPage({ params }: Props) {
     : [];
 
   return (
-    <article className="option">
+    <article className={`option b-${layer.band}`}>
       <JsonLd
         data={{
           "@context": "https://schema.org",

@@ -115,7 +115,19 @@ export function Board({ modules, mini = false, label, onRemove, addSlot, childre
           </div>
         );
       })}
-      {label && !mini && <div className="board-label">{label}</div>}
+      {!mini && (
+        <div className="legend" aria-hidden="true">
+          {byBand
+            .filter(({ mods }) => mods.length)
+            .map(({ band }) => (
+              <span key={band} className={`b-${band}`}>
+                <i />
+                {PREFIX[band]} {band}
+              </span>
+            ))}
+          {label && <span className="board-label">{label}</span>}
+        </div>
+      )}
     </div>
   );
 }
