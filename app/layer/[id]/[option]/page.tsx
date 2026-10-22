@@ -9,6 +9,7 @@ import { disclosureMark } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
 import { citeNumbers, numberedSources, optionHref, withMarkdown } from "@/lib/links";
 import type { Option } from "@/lib/types";
+import { Ext } from "@/components/Ext";
 
 type Props = { params: Promise<{ id: string; option: string }> };
 
@@ -174,7 +175,8 @@ export default async function OptionPage({ params }: Props) {
             <div className="sheet-links">
               {links.map(([k, u]) => (
                 <a key={k} className="btn" href={u} rel="noopener">
-                  {LINK_LABEL[k] ?? k} ↗
+                  {LINK_LABEL[k] ?? k}
+                  <Ext />
                 </a>
               ))}
             </div>

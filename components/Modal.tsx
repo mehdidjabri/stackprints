@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Ext } from "./Ext";
 
 // Component (option) pages open in a modal when clicked from anywhere on the site. Stacks don't.
 // The modal shows the page's own prerendered <article>, so direct visits, crawlers
@@ -142,7 +143,8 @@ export function Modal() {
           <span className="silk">Component</span>
           {href && (
             <a href={href} className="modal-open" onClick={(e) => (e.preventDefault(), (location.href = href))}>
-              Open page ↗
+              Open page
+              <Ext />
             </a>
           )}
           <button className="modal-close" onClick={close} aria-label="Close">

@@ -7,6 +7,7 @@ import { SITE, affiliated, asArray, getLayers, getStack, getStacks, metaDesc, re
 import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, kindCount, slotsNote } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
 import { bareUrl, citeNumbers, kindHref, optionHref, primaryLink, prettyUrl, stackSources, withMarkdown } from "@/lib/links";
+import { Ext } from "@/components/Ext";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -162,7 +163,8 @@ export default async function StackPage({ params }: Props) {
           <>
             <span className="muted"> · </span>
             <a href={site} rel="noopener">
-              {prettyUrl(site)} ↗
+              {prettyUrl(site)}
+              <Ext />
             </a>
           </>
         )}
@@ -179,7 +181,8 @@ export default async function StackPage({ params }: Props) {
       <div className="toolbar">
         {LINKS.filter(([k]) => s.links?.[k]).map(([k, label]) => (
           <a key={k} className="btn" href={s.links![k]} rel="noopener">
-            {label} ↗
+            {label}
+            <Ext />
           </a>
         ))}
         <a className="btn" href="#layers">

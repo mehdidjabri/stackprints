@@ -5,6 +5,7 @@ import { primaryLink, prettyUrl } from "@/lib/links";
 import type { Stack } from "@/lib/types";
 import { Logo } from "./Logo";
 import { StackView } from "./StackView";
+import { Ext } from "./Ext";
 
 export function StackCard({ stack }: { stack: Stack }) {
   const rows = resolve(stack);
@@ -51,7 +52,8 @@ export function StackCard({ stack }: { stack: Stack }) {
       </Link>
       {site && (
         <a className="card-site" href={site} rel="noopener">
-          {prettyUrl(site)} ↗
+          {prettyUrl(site)}
+          <Ext />
         </a>
       )}
     </div>

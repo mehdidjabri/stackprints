@@ -9,6 +9,7 @@ import { EMPTY, disclosureMark, disclosureOf, emptyState, kindCount } from "@/li
 import type { Draft, Layer, Stack } from "@/lib/types";
 import { Board } from "./Board";
 import { Logo } from "./Logo";
+import { Ext } from "./Ext";
 
 type Preset = {
   slug: string;
@@ -278,6 +279,9 @@ export function Editor({
   return (
     <div className="editor">
       <nav className="title" aria-label="Breadcrumb">
+        <button className="shuffle" onClick={shuffle} title="Load a random stack" aria-label="Load a random stack">
+          ↻
+        </button>
         <details className="dd crumb">
           <summary>{kind}</summary>
           <ul className="dd-menu">
@@ -347,9 +351,6 @@ export function Editor({
             </ul>
           </div>
         </details>
-        <button className="shuffle" onClick={shuffle} title="Load a random stack" aria-label="Load a random stack">
-          ↻
-        </button>
       </nav>
       <div className="meta-line">
         {/* Read as on the stack page: what is known, then what isn't. */}
@@ -378,7 +379,8 @@ export function Editor({
           <>
             {" · "}
             <a href={preset.site} rel="noopener">
-              {prettyUrl(preset.site)} ↗
+              {prettyUrl(preset.site)}
+              <Ext />
             </a>
           </>
         )}
