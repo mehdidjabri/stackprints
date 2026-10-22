@@ -128,32 +128,74 @@ export function Editor({
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setMeta((m) => ({ ...m, [k]: e.target.value })),
   });
 
+  const kinds = [...new Set(presets.map((p) => p.kind))].sort();
+  const kind = preset?.kind ?? "Personal stack";
   const unused = layers.filter((l) => !draft.layers[l.id]);
 
   return (
     <div className="editor">
-      <h1 className="title">
-        <Link href="/">Agentic Stack</Link>
-        <span className="slash" aria-hidden="true">/</span>
-        <input
-          className="detail name-input"
-          value={draft.name}
-          aria-label="Stack name"
-          spellCheck={false}
-          onChange={(e) => edit((d) => ({ ...d, name: e.target.value }))}
-          size={Math.max(6, draft.name.length)}
-        />
-      </h1>
+      <nav className="title" aria-label="Breadcrumb">
+        <Link href="/" className="crumb">
+          Agentic Stack
+        </Link>
+        <span className="slash" aria-hidden="true">
+          /
+        </span>
+        <details className="dd crumb">
+          <summary>{kind}</summary>
+          <ul className="dd-menu">
+            {kinds.map((k) => (
+              <li key={k}>
+                <button
+                  aria-current={k === kind ? "true" : undefined}
+                  onClick={() => k !== kind && edit(fromPreset(presets.find((p) => p.kind === k)!))}
+                >
+                  <span>{k}</span>
+                  <small>{presets.filter((p) => p.kind === k).length}</small>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </details>
+        <span className="slash" aria-hidden="true">
+          /
+        </span>
+        <details className="dd crumb">
+          <summary>
+            <h1>{draft.name || "Untitled"}</h1>
+          </summary>
+          <div className="dd-menu">
+            <label className="dd-rename">
+              <input
+                value={draft.name}
+                aria-label="Rename this stack"
+                placeholder="Name your stack"
+                spellCheck={false}
+                onChange={(e) => edit((d) => ({ ...d, name: e.target.value }))}
+                onKeyDown={(e) => e.key === "Enter" && e.currentTarget.closest("details")?.removeAttribute("open")}
+              />
+            </label>
+            <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+              {presets
+                .filter((p) => p.kind === kind)
+                .map((p) => (
+                  <li key={p.slug}>
+                    <button
+                      aria-current={p.slug === draft.from && !dirty ? "true" : undefined}
+                      onClick={() => edit(fromPreset(p))}
+                    >
+                      {p.name}
+                    </button>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </details>
+      </nav>
       <div className="meta-line">
-        {preset ? (
-          <>
-            <Link href={`/stack/${preset.slug}/`}>{preset.kind}</Link>
-            {dirty && <span className="muted"> · remixed from {preset.name}</span>}
-          </>
-        ) : (
-          <span className="muted">custom stack</span>
-        )}
-        <span className="muted"> · {Object.keys(draft.layers).length} layers</span>
+        {Object.keys(draft.layers).length} layers
+        {preset && dirty && <> · remixed from <Link href={`/stack/${preset.slug}/`}>{preset.name}</Link></>}
+        {preset && !dirty && <> · <Link href={`/stack/${preset.slug}/`}>about this stack</Link></>}
       </div>
 
       <div className="toolbar" role="toolbar" aria-label="Stack actions" id="publish">

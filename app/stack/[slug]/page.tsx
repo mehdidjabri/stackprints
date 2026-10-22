@@ -29,7 +29,9 @@ export default async function StackPage({ params }: Props) {
   const s = getStack((await params).slug);
   if (!s) notFound();
   const rows = resolve(s);
-  const similar = getStacks().filter((x) => x.kind === s.kind && x.slug !== s.slug);
+  const all = getStacks();
+  const kinds = [...new Set(all.map((x) => x.kind))].sort();
+  const similar = all.filter((x) => x.kind === s.kind && x.slug !== s.slug);
 
   return (
     <article>
@@ -55,10 +57,27 @@ export default async function StackPage({ params }: Props) {
           ],
         }}
       />
-      <Title detail={s.name} />
+      <Title
+        crumbs={[
+          {
+            label: s.kind,
+            items: kinds.map((k) => ({
+              label: k,
+              href: `/stack/${all.find((x) => x.kind === k)!.slug}/`,
+              current: k === s.kind,
+              hint: String(all.filter((x) => x.kind === k).length),
+            })),
+          },
+          {
+            label: s.name,
+            items: all
+              .filter((x) => x.kind === s.kind)
+              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug })),
+          },
+        ]}
+      />
       <div className="meta-line">
-        <span>{s.kind}</span>
-        <span className="muted"> · {rows.length} layers</span>
+        <span>{rows.length} layers</span>
         {s.author && (
           <>
             <span className="muted"> · by </span>

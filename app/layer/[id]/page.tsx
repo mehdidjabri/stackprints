@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Title } from "@/components/Title";
+import { BANDS } from "@/lib/bands";
 import { SITE, getLayer, getLayers, usedBy } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
 
@@ -30,6 +31,7 @@ export default async function LayerPage({ params }: Props) {
   const i = all.indexOf(l);
   const prev = all[i - 1];
   const next = all[i + 1];
+  const band = BANDS.find(([b]) => b === l.band)![1];
 
   return (
     <article>
@@ -47,11 +49,26 @@ export default async function LayerPage({ params }: Props) {
           })),
         }}
       />
-      <Title detail={l.name} />
+      <Title
+        crumbs={[
+          {
+            label: band,
+            items: BANDS.map(([b, name]) => ({
+              label: name,
+              href: `/layer/${all.find((x) => x.band === b)!.id}/`,
+              current: b === l.band,
+            })),
+          },
+          {
+            label: l.name,
+            items: all
+              .filter((x) => x.band === l.band)
+              .map((x) => ({ label: x.name, href: `/layer/${x.id}/`, current: x.id === l.id, hint: String(x.options.length) })),
+          },
+        ]}
+      />
       <div className="meta-line">
-        <span className="muted">
-          {l.band} · {l.options.length} options
-        </span>
+        <span>{l.options.length} options</span>
       </div>
       <p className="lede">{l.description}</p>
 

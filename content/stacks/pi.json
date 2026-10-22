@@ -1,6 +1,6 @@
 {
   "slug": "pi",
-  "name": "pi",
+  "name": "Pi",
   "kind": "Coding agent",
   "tagline": "Minimal, hackable coding agent: four tools and extensions for the rest.",
   "description": "pi (pi-mono by Mario Zechner) is deliberately small: pi-ai talks to 15+ providers, pi-agent-core runs the loop, and the coding agent ships read, write, edit and bash. No permission system, no built-in memory or subagents; everything else is a TypeScript extension or a pi package. Sessions are a branching tree you can export or share.",

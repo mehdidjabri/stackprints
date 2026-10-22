@@ -1,7 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import { DM_Sans } from "next/font/google";
 import Link from "next/link";
+import { MenuCloser } from "@/components/MenuCloser";
 import { SITE } from "@/lib/data";
 import "./globals.css";
+
+// Self-hosted at build time: no request to Google at runtime.
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -26,7 +31,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.variable}>
       <body>
         <a href="#main" className="skip">
           Skip to content
@@ -65,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </nav>
           </div>
         </footer>
+        <MenuCloser />
       </body>
     </html>
   );

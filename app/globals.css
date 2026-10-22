@@ -7,7 +7,7 @@
   --hover: #f0f0ec;
   --accent: #0c0c0c;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  --sans: ui-sans-serif, -apple-system, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  --sans: var(--font-dm-sans), ui-sans-serif, -apple-system, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
@@ -81,7 +81,7 @@ a:hover {
   align-items: center;
   gap: 16px;
   height: 48px;
-  font: 12px var(--mono);
+  font: 12px var(--sans);
 }
 .top nav,
 .foot nav {
@@ -115,43 +115,123 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* Title: "Agentic Stack / detail" */
+/* Title: a small breadcrumb, "Agentic Stack / Category / Name", each crumb a dropdown. */
 .title {
-  font: 500 clamp(26px, 4.4vw, 48px) / 1.1 var(--mono);
-  letter-spacing: -0.03em;
-  margin: 56px 0 8px;
+  font: 500 20px/1.3 var(--sans);
+  letter-spacing: -0.01em;
+  margin: 40px 0 6px;
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 0.4em;
+  align-items: center;
+  gap: 2px 8px;
   min-width: 0;
+}
+.title h1 {
+  font: inherit;
+  margin: 0;
 }
 .title .slash {
-  color: var(--muted);
+  color: var(--line);
   font-weight: 300;
 }
-.title .detail {
+.title .crumb {
   color: var(--muted);
-  min-width: 0;
-  overflow-wrap: anywhere;
 }
-.name-input {
-  font: inherit;
-  letter-spacing: inherit;
-  color: var(--fg) !important;
-  background: none;
+.title .crumb:last-child,
+.title .crumb:last-child > summary {
+  color: var(--fg);
+}
+.dd {
+  position: relative;
+}
+.dd > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  margin: 0 -6px;
+  border: 1px solid transparent;
+}
+.dd > summary::-webkit-details-marker {
+  display: none;
+}
+.dd > summary::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  opacity: 0.5;
+}
+.dd > summary:hover,
+.dd[open] > summary {
+  border-color: var(--line);
+}
+.dd-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: -6px;
+  min-width: 240px;
+  max-width: min(360px, 90vw);
+  max-height: min(420px, 70vh);
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.dd-menu a,
+.dd-menu button {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 7px 8px;
   border: 0;
-  border-bottom: 1px dashed var(--line);
-  padding: 0;
-  max-width: 100%;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
-.name-input:hover,
-.name-input:focus {
-  border-bottom-color: var(--line-strong);
+.dd-menu a:hover,
+.dd-menu button:hover,
+.dd-menu [aria-current="true"] {
+  background: var(--hover);
+  text-decoration: none;
+}
+.dd-menu small {
+  color: var(--muted);
+}
+.dd-rename {
+  padding: 4px 4px 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+.dd-rename input {
+  width: 100%;
+  font: inherit;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 7px 8px;
+  border-radius: 0;
+}
+.dd-rename input:focus {
   outline: none;
+  border-color: var(--line-strong);
 }
 .meta-line {
-  font: 12px var(--mono);
+  font-size: 13px;
+  color: var(--muted);
   margin-bottom: 20px;
 }
 .muted {
@@ -174,7 +254,7 @@ a:hover {
 }
 button,
 .btn {
-  font: 12px var(--mono);
+  font: 12px var(--sans);
   color: var(--fg);
   background: transparent;
   border: 1px solid var(--line);
@@ -189,7 +269,7 @@ button:hover,
   text-decoration: none;
 }
 .status {
-  font: 12px var(--mono);
+  font: 12px var(--sans);
   color: var(--muted);
 }
 
@@ -289,7 +369,7 @@ button:hover,
   display: flex;
   gap: 8px;
   align-items: baseline;
-  font: 10px var(--mono);
+  font: 10px var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--muted);
@@ -344,7 +424,7 @@ button:hover,
   text-overflow: ellipsis;
 }
 .chip-name {
-  font: 12px var(--mono);
+  font: 12px var(--sans);
 }
 .chip-note {
   font-size: 11px;
@@ -364,7 +444,7 @@ button:hover,
   display: inline-grid;
   place-items: center;
   border: 1px solid var(--line-strong);
-  font: 600 7px/1 var(--mono);
+  font: 600 7px/1 var(--sans);
   letter-spacing: -0.02em;
   overflow: hidden;
 }
@@ -395,7 +475,7 @@ button:hover,
   color: var(--fg);
 }
 select.add {
-  font: 14px var(--mono);
+  font: 14px var(--sans);
   color: var(--muted);
   background: transparent;
   border: 1px dashed var(--line);
@@ -425,7 +505,7 @@ select.add:focus-visible {
 }
 .board-label {
   grid-column: 1 / -1;
-  font: 10px var(--mono);
+  font: 10px var(--sans);
   color: var(--muted);
   letter-spacing: 0.14em;
   text-align: right;
@@ -521,10 +601,10 @@ select.add:focus-visible {
   align-items: baseline;
   margin: 72px 0 16px;
   gap: 16px;
-  font-family: var(--mono);
+  font-family: var(--sans);
 }
 .section-head h2 {
-  font: 500 13px var(--mono);
+  font: 500 13px var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 0;
@@ -565,11 +645,11 @@ select.add:focus-visible {
   align-items: baseline;
 }
 .card h3 {
-  font: 500 15px var(--mono);
+  font: 500 15px var(--sans);
   margin: 0;
 }
 .kind {
-  font: 10px var(--mono);
+  font: 10px var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -582,7 +662,7 @@ select.add:focus-visible {
   min-height: 2.6em;
 }
 .more {
-  font: 10.5px var(--mono);
+  font: 10.5px var(--sans);
   color: var(--muted);
 }
 
@@ -594,7 +674,7 @@ select.add:focus-visible {
   margin-bottom: 16px;
 }
 .filters a {
-  font: 11px var(--mono);
+  font: 11px var(--sans);
   border: 1px solid var(--line);
   padding: 3px 8px;
 }
@@ -615,18 +695,18 @@ select.add:focus-visible {
   align-items: baseline;
 }
 .opt-name {
-  font: 500 13px var(--mono);
+  font: 500 13px var(--sans);
 }
 .opt-note {
   color: var(--muted);
 }
 .opt-used {
-  font: 11px var(--mono);
+  font: 11px var(--sans);
   color: var(--muted);
   text-align: right;
 }
 .tag {
-  font: 10px var(--mono);
+  font: 10px var(--sans);
   border: 1px solid var(--line);
   padding: 0 4px;
   margin-left: 6px;
@@ -663,7 +743,7 @@ select.add:focus-visible {
   text-decoration: none;
 }
 .layer-cell strong {
-  font: 500 13px var(--mono);
+  font: 500 13px var(--sans);
 }
 .layer-cell span {
   color: var(--muted);
@@ -674,18 +754,18 @@ select.add:focus-visible {
   max-width: 70ch;
 }
 .prose h2 {
-  font: 500 13px var(--mono);
+  font: 500 13px var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 40px 0 12px;
 }
 .prose code {
-  font: 12.5px var(--mono);
+  font: 12.5px var(--sans);
   border: 1px solid var(--line);
   padding: 0 4px;
 }
 .prose pre {
-  font: 12.5px/1.6 var(--mono);
+  font: 12.5px/1.6 var(--sans);
   border: 1px solid var(--line);
   padding: 12px;
   overflow-x: auto;
@@ -746,7 +826,7 @@ select.add:focus-visible {
   gap: 6px;
 }
 .fields label > span {
-  font: 10px var(--mono);
+  font: 10px var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--muted);
@@ -754,7 +834,7 @@ select.add:focus-visible {
 .fields input:not([type="checkbox"]),
 .fields select,
 .fields textarea {
-  font: 13px var(--mono);
+  font: 13px var(--sans);
   color: var(--fg);
   background: transparent;
   border: 1px solid var(--line);
@@ -777,7 +857,7 @@ select.add:focus-visible {
   align-items: center;
 }
 .fields .check span {
-  font: 12px var(--mono);
+  font: 12px var(--sans);
   text-transform: none;
   letter-spacing: 0;
   color: var(--fg);
@@ -788,7 +868,7 @@ select.add:focus-visible {
   min-width: 0;
 }
 .preview pre {
-  font: 12px/1.6 var(--mono);
+  font: 12px/1.6 var(--sans);
   border: 1px solid var(--line);
   padding: 12px;
   margin: 0;
@@ -805,5 +885,14 @@ select.add:focus-visible {
   margin: 0;
 }
 code {
+  font-family: var(--sans);
+}
+
+/* Monospace stays only where it reads as silkscreen or code. */
+.silk,
+.board-label,
+code,
+pre,
+.glyph {
   font-family: var(--mono);
 }
