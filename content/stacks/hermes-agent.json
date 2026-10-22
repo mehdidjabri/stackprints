@@ -4,7 +4,11 @@
   "kind": "Personal agent",
   "tagline": "Nous Research's self-improving agent that writes its own skills.",
   "description": "Hermes Agent from Nous Research is a Python agent with a learning loop: after complex tasks it writes and refines its own skills, nudges its memory, and searches past sessions. One gateway serves 20+ platforms, seven terminal backends run code from local to Modal or Daytona, Honcho models the user, and Atropos turns trajectories into RL training data.",
-  "source": "github.com/NousResearch/hermes-agent",
+  "links": {
+    "site": "https://hermes-agent.nousresearch.com",
+    "repo": "https://github.com/NousResearch/hermes-agent",
+    "docs": "https://hermes-agent.nousresearch.com/docs/"
+  },
   "layers": {
     "channels": [
       "cli-tui",

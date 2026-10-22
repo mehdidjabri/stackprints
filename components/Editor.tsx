@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { newFileUrl, slugify } from "@/lib/github";
+import { prettyUrl } from "@/lib/links";
 import { decodeDraft, encodeDraft, loadSaved, storeSaved } from "@/lib/share";
 import type { Draft, Layer } from "@/lib/types";
 import { Board } from "./Board";
 
-type Preset = { slug: string; name: string; kind: string; layers: Record<string, string[]> };
+type Preset = { slug: string; name: string; kind: string; site?: string; layers: Record<string, string[]> };
 
 const fromPreset = (p: Preset): Draft => ({ name: p.name, from: p.slug, layers: structuredClone(p.layers) });
 
@@ -221,6 +222,14 @@ export function Editor({
             <button className="link" onClick={() => edit(fromPreset(preset))}>
               reset
             </button>
+          </>
+        )}
+        {preset?.site && (
+          <>
+            {" · "}
+            <a href={preset.site} rel="noopener">
+              {prettyUrl(preset.site)} ↗
+            </a>
           </>
         )}
         {preset && !dirty && <> · <Link href={`/stack/${preset.slug}/`}>about this stack</Link></>}

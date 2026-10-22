@@ -4,7 +4,10 @@
   "kind": "Consumer agent",
   "tagline": "A personal agent with its own secure VM, goals and ideas.",
   "description": "Muse is Meta's personal agent app, built on the Muse Spark model from Meta Superintelligence Labs. Each user gets a dedicated cloud computer and browser that keeps working after the app closes, a Goals tab for long plans, an Ideas tab for proactive suggestions, connectors it can write itself, and a permission authority kept apart from the agent and its credentials. Stack inferred from public reporting.",
-  "source": "meta.ai",
+  "links": {
+    "announcement": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+    "docs": "https://www.meta.com/help/superintelligence/1331373868832401/"
+  },
   "layers": {
     "channels": [
       "whatsapp",

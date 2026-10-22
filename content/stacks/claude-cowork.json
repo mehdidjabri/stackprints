@@ -4,7 +4,10 @@
   "kind": "Desktop agent",
   "tagline": "Claude works on your local files and apps, on a schedule.",
   "description": "Cowork brings the Claude Code loop to knowledge work on the desktop: it reads and edits local files, drives Chrome, runs scheduled tasks locally or in the cloud, and shares memory with chat, with view and edit controls. Stack inferred from public reporting.",
-  "source": "claude.com",
+  "links": {
+    "site": "https://claude.com/product/cowork",
+    "docs": "https://claude.com/resources/guides/claude-cowork-product-guide"
+  },
   "layers": {
     "channels": "desktop-app",
     "proactivity": "cron",

@@ -85,6 +85,8 @@ for (const f of jsonFiles("content/stacks")) {
   slugs.add(s.slug);
   for (const k of ["name", "kind", "tagline", "description"]) if (!s[k]) errors.push(`${f}: missing ${k}`);
   if (s.author && !s.author.name) errors.push(`${f}: author needs a name`);
+  for (const [k, v] of Object.entries(s.links ?? {}))
+    if (!["site", "repo", "docs", "announcement"].includes(k) || !/^https:\/\//.test(v)) errors.push(`${f}: links.${k} must be site/repo/docs/announcement with an https URL`);
   for (const [layer, v] of Object.entries(s.layers ?? {})) {
     const opts = index.get(layer);
     if (!opts) errors.push(`${f}: unknown layer "${layer}"`);

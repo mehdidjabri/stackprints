@@ -4,7 +4,9 @@
   "kind": "Consumer agent",
   "tagline": "No app. Just text or call your agent, and it texts you first.",
   "description": "Instinct is an invite-only personal agent reachable only over SMS, iMessage and phone calls. It works on its own computer with your connected accounts, has its own email address, reaches out first about dropped threads, pays with single-use cards, keeps logins in a vault, signs its tool calls, falls back to a human concierge, and can coordinate with other people's Instinct agents. Stack inferred from public reporting.",
-  "source": "instinct.com",
+  "links": {
+    "site": "https://instinct.com"
+  },
   "layers": {
     "channels": [
       "imessage",

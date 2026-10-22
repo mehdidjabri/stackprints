@@ -31,6 +31,7 @@ export default function Contribute() {
   "tagline": "One line people will read in the grid.",
   "description": "Two or three sentences on how it works.",
   "author": { "name": "Ada", "url": "https://x.com/ada" },
+  "links": { "site": "https://my-agent.dev", "repo": "https://github.com/me/my-agent" },
   "layers": {
     "channels": ["telegram", "email"],
     "model": "claude-sonnet-5-5",

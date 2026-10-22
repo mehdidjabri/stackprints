@@ -4,7 +4,10 @@
   "kind": "Browser agent",
   "tagline": "Gemini drives a Chrome tab while you watch the steps.",
   "description": "Google's auto browse lets Gemini click and type in a tagged Chrome tab, shows each step in a side panel, signs in through Google Password Manager and asks before a final purchase. Stack inferred from public reporting.",
-  "source": "google.com/chrome",
+  "links": {
+    "site": "https://gemini.google/overview/gemini-in-chrome/",
+    "announcement": "https://blog.google/products-and-platforms/products/chrome/gemini-in-chrome-android-auto-browse/"
+  },
   "layers": {
     "channels": "desktop-app",
     "ui": "live-computer-view",

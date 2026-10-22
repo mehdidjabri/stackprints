@@ -5,6 +5,7 @@ import { Trending } from "@/components/Trending";
 import { SITE, asArray, getLayers, getStacks } from "@/lib/data";
 import { BANDS } from "@/lib/bands";
 import { JsonLd } from "@/lib/jsonld";
+import { primaryLink } from "@/lib/links";
 
 const DEFAULT = "openclaw";
 
@@ -24,6 +25,7 @@ export default function Home() {
     slug: s.slug,
     name: s.name,
     kind: s.kind,
+    site: primaryLink(s.links),
     layers: Object.fromEntries(Object.entries(s.layers).map(([k, v]) => [k, asArray(v)])),
   }));
 

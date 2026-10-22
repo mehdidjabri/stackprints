@@ -5,8 +5,16 @@ import { StackView } from "@/components/StackView";
 import { Title } from "@/components/Title";
 import { SITE, getStack, getStacks, resolve } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
+import { primaryLink, prettyUrl } from "@/lib/links";
 
 type Props = { params: Promise<{ slug: string }> };
+
+const LINKS = [
+  ["site", "Website"],
+  ["announcement", "Announcement"],
+  ["repo", "Source"],
+  ["docs", "Docs"],
+] as const;
 
 export const dynamicParams = false;
 export const generateStaticParams = () => getStacks().map((s) => ({ slug: s.slug }));
@@ -32,6 +40,7 @@ export default async function StackPage({ params }: Props) {
   const all = getStacks();
   const kinds = [...new Set(all.map((x) => x.kind))].sort();
   const similar = all.filter((x) => x.kind === s.kind && x.slug !== s.slug);
+  const site = primaryLink(s.links);
 
   return (
     <article>
@@ -45,6 +54,9 @@ export default async function StackPage({ params }: Props) {
               ...(s.author ? { author: { "@type": "Person", name: s.author.name, ...(s.author.url ? { url: s.author.url } : {}) } } : {}),
               description: s.description,
               url: `${SITE.url}/stack/${s.slug}/`,
+              ...(site
+                ? { mainEntity: { "@type": "SoftwareApplication", name: s.name, url: site, sameAs: Object.values(s.links ?? {}) } }
+                : {}),
               about: rows.flatMap((r) => r.picks.map((p) => ({ "@type": "Thing", name: p.name, ...(p.url ? { url: `https://${p.url}` } : {}) }))),
             },
             {
@@ -90,17 +102,22 @@ export default async function StackPage({ params }: Props) {
             )}
           </>
         )}
-        {s.source && (
+        {site && (
           <>
             <span className="muted"> · </span>
-            <a href={`https://${s.source}`} rel="noopener">
-              {s.source}
+            <a href={site} rel="noopener">
+              {prettyUrl(site)} ↗
             </a>
           </>
         )}
       </div>
       <p className="lede">{s.description}</p>
       <div className="toolbar">
+        {LINKS.filter(([k]) => s.links?.[k]).map(([k, label]) => (
+          <a key={k} className="btn" href={s.links![k]} rel="noopener">
+            {label} ↗
+          </a>
+        ))}
         <Link className="btn" href={`/#from=${s.slug}`}>
           Remix this stack
         </Link>

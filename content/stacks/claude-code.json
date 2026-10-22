@@ -4,7 +4,10 @@
   "kind": "Coding agent",
   "tagline": "Agentic coding in the terminal, desktop and cloud.",
   "description": "Claude Code runs Anthropic's agent loop against your repo: agentic search instead of embeddings, CLAUDE.md project memory, subagents with isolated context, skills, plugins, hooks and MCP, with permission modes from ask-every-time to auto. The same loop ships as the Claude Agent SDK.",
-  "source": "claude.com/claude-code",
+  "links": {
+    "site": "https://claude.com/product/claude-code",
+    "docs": "https://code.claude.com/docs"
+  },
   "layers": {
     "channels": [
       "cli-tui",

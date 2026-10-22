@@ -4,7 +4,11 @@
   "kind": "Personal agent",
   "tagline": "Self-hosted assistant that lives in every chat app you use.",
   "description": "OpenClaw is a batteries-included, open-source personal assistant. A long-running gateway daemon connects WhatsApp, Telegram, Slack, Discord, iMessage, Signal and more to one agent, with markdown workspace files (AGENTS.md, SOUL.md, MEMORY.md), a heartbeat and cron scheduler, SQLite hybrid memory with nightly 'dreaming', ClawHub skills and companion nodes on every OS.",
-  "source": "github.com/openclaw/openclaw",
+  "links": {
+    "site": "https://openclaw.ai",
+    "repo": "https://github.com/openclaw/openclaw",
+    "docs": "https://docs.openclaw.ai"
+  },
   "layers": {
     "channels": [
       "whatsapp",

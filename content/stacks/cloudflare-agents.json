@@ -4,7 +4,11 @@
   "kind": "Infrastructure",
   "tagline": "Stateful agents as Durable Objects on the edge.",
   "description": "Cloudflare's Agents SDK gives each agent its own Durable Object with built-in SQLite state, WebSockets and scheduling, backed by Workers AI or any model through AI Gateway, Workflows for durability, Sandbox containers for code, and Browser Rendering for the web.",
-  "source": "developers.cloudflare.com/agents",
+  "links": {
+    "site": "https://agents.cloudflare.com",
+    "repo": "https://github.com/cloudflare/agents",
+    "docs": "https://developers.cloudflare.com/agents/"
+  },
   "layers": {
     "channels": "web-chat",
     "proactivity": [

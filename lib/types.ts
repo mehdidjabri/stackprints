@@ -57,7 +57,8 @@ export type Stack = {
   tagline: string;
   description: string;
   kind: string;
-  source?: string;
+  /** Official links for stacks that are real products. Full https URLs. */
+  links?: Partial<Record<"site" | "repo" | "docs" | "announcement", string>>;
   /** Who made or submitted the stack. Personal stacks are welcome. */
   author?: { name: string; url?: string };
   /** layerId -> optionId (or several). Missing layers are simply not part of the stack. */

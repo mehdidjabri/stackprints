@@ -4,7 +4,11 @@
   "kind": "Consumer agent",
   "tagline": "Always-on personal agents with their own computer, handle and face.",
   "description": "Announced at OpenAI DevDay 2026, dots are persistent agents that each own a cloud computer and browser you can watch and take over. They wake themselves on schedules, events or their own judgement, keep their own notes, ask before risky actions under per-action autonomy rules with a mandatory auto-review, and have a name, @handle and avatar. Stack inferred from public reporting.",
-  "source": "openai.com",
+  "links": {
+    "site": "https://chatgpt.com/features/dots/",
+    "announcement": "https://openai.com/index/introducing-dots/",
+    "docs": "https://learn.chatgpt.com/docs/dots"
+  },
   "layers": {
     "channels": [
       "web-chat",

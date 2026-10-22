@@ -4,7 +4,11 @@
   "kind": "Coding agent",
   "tagline": "OpenAI's open-source coding agent, local and in the cloud.",
   "description": "Codex is OpenAI's coding agent: a Rust CLI and IDE extension that edits with apply_patch inside an OS-level sandbox, plus cloud tasks that run in parallel containers and return pull requests. AGENTS.md carries repo instructions.",
-  "source": "github.com/openai/codex",
+  "links": {
+    "site": "https://chatgpt.com/codex",
+    "repo": "https://github.com/openai/codex",
+    "docs": "https://developers.openai.com/codex"
+  },
   "layers": {
     "channels": [
       "cli-tui",
