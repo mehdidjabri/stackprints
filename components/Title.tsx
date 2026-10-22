@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { Logo } from "./Logo";
 
-export type CrumbItem = { label: string; href: string; current?: boolean; hint?: string; logo?: string };
+export type CrumbItem = { label: string; href: string; current?: boolean; hint?: string; logo?: string; group?: string };
 export type Crumb = { label: string; href?: string; items?: CrumbItem[]; logo?: string };
 
 /**
@@ -34,16 +35,24 @@ export function Title({ detail, crumbs }: { detail?: string; crumbs?: Crumb[] })
             <details className={n === list.length - 1 ? "dd crumb current" : "dd crumb"}>
               <summary>{label}</summary>
               <ul className="dd-menu">
-                {c.items.map((i) => (
-                  <li key={i.href}>
-                    <Link href={i.href} aria-current={i.current ? "true" : undefined}>
-                      <span className="dd-item">
-                        {i.logo && <Logo option={{ name: i.label, logo: i.logo }} />}
-                        {i.label}
-                      </span>
-                      {i.hint && <small>{i.hint}</small>}
-                    </Link>
-                  </li>
+                {c.items.map((i, k) => (
+                  <Fragment key={i.href}>
+                    {/* Grouped items get a heading wherever the group changes. */}
+                    {i.group && i.group !== c.items![k - 1]?.group && (
+                      <li role="presentation" className="dd-group">
+                        {i.group}
+                      </li>
+                    )}
+                    <li>
+                      <Link href={i.href} aria-current={i.current ? "true" : undefined}>
+                        <span className="dd-item">
+                          {i.logo && <Logo option={{ name: i.label, logo: i.logo }} />}
+                          {i.label}
+                        </span>
+                        {i.hint && <small>{i.hint}</small>}
+                      </Link>
+                    </li>
+                  </Fragment>
                 ))}
               </ul>
             </details>

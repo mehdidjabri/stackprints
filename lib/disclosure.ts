@@ -30,6 +30,10 @@ export const disclosureMark = (s: Pick<Stack, "disclosure" | "closedLayers">) =>
   return b && b !== DISCLOSURE["open-source"] ? b.badge.toLowerCase() : null;
 };
 
+/** A kind's count for menus: "3", or "2 examples" when all its stacks are example designs, as each example says. */
+export const kindCount = (xs: Pick<Stack, "disclosure">[]) =>
+  xs.every((x) => x.disclosure === "example") ? `${xs.length} example${xs.length > 1 ? "s" : ""}` : String(xs.length);
+
 /** The three ways a slot can be empty, named the same everywhere (board, prose, markdown, API). */
 export type Empty = "unknown" | "present" | "unused";
 export const EMPTY: Record<Empty, string> = { unknown: "Not disclosed", present: "In use · not disclosed", unused: "Not used" };

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { BUILT } from "@/lib/agent";
 import { SITE, getLayers, getStacks } from "@/lib/data";
+import { kindHref } from "@/lib/links";
 
 export const dynamic = "force-static";
 
@@ -17,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: u("/submit/"), priority: 0.5, lastModified: BUILT },
     { url: u("/contribute/"), priority: 0.3, lastModified: BUILT },
     ...getStacks().map((s) => ({ url: u(`/stack/${s.slug}/`), priority: 0.9, changeFrequency: "weekly" as const, lastModified: s.researched ?? BUILT })),
+    ...[...new Set(getStacks().map((s) => s.kind))].map((k) => ({ url: u(kindHref(k)), priority: 0.7, changeFrequency: "weekly" as const, lastModified: BUILT })),
     ...getLayers().map((l) => ({ url: u(`/layer/${l.id}/`), priority: 0.7, changeFrequency: "weekly" as const, lastModified: BUILT })),
     ...getLayers().flatMap((l) =>
       l.options.map((o) => ({

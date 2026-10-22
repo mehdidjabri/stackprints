@@ -17,6 +17,8 @@ export type Option = {
    * the option wherever it appears (option and layer pages, stacks that pick it, markdown, API).
    */
   affiliation?: string;
+  /** Means the layer is absent or minimal ("None", "Single agent"), so it can't sit next to other picks. */
+  exclusive?: boolean;
 
   // Research, see docs/RESEARCH.md. Everything below is optional and verified.
   /** Decides the layout of the option's page. */

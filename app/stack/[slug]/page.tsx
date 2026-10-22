@@ -3,10 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StackView } from "@/components/StackView";
 import { Title } from "@/components/Title";
-import { SITE, affiliated, getLayers, getStack, getStacks, resolve } from "@/lib/data";
-import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, slotsNote } from "@/lib/disclosure";
+import { SITE, affiliated, asArray, getLayers, getStack, getStacks, resolve } from "@/lib/data";
+import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, kindCount, slotsNote } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
-import { primaryLink, prettyUrl, withMarkdown } from "@/lib/links";
+import { kindHref, primaryLink, prettyUrl, withMarkdown } from "@/lib/links";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -40,7 +40,16 @@ export default async function StackPage({ params }: Props) {
   const rows = resolve(s);
   const all = getStacks();
   const kinds = [...new Set(all.map((x) => x.kind))].sort();
-  const similar = all.filter((x) => x.kind === s.kind && x.slug !== s.slug);
+  // Similar stacks: the same kind first, then, up to four, the stacks sharing the most parts with this one.
+  const picks = (x: typeof s) => Object.entries(x.layers).flatMap(([l, v]) => asArray(v).map((id) => `${l}/${id}`));
+  const mine = new Set(picks(s));
+  const shared = (x: typeof s) => picks(x).filter((p) => mine.has(p)).length;
+  const sameKind = all.filter((x) => x.kind === s.kind && x.slug !== s.slug);
+  const nearest = all
+    .filter((x) => x.kind !== s.kind && shared(x) > 0)
+    .sort((a, b) => shared(b) - shared(a) || a.name.localeCompare(b.name))
+    .slice(0, Math.max(0, 4 - sameKind.length));
+  const similar = [...sameKind, ...nearest];
   const site = primaryLink(s.links);
   const d = s.disclosure;
   const badge = disclosureOf(s);
@@ -59,11 +68,7 @@ export default async function StackPage({ params }: Props) {
         [{cite(u)}]
       </a>
     ));
-  // A kind made only of example designs says so in the menu, as each example does.
-  const kindHint = (k: string) => {
-    const xs = all.filter((x) => x.kind === k);
-    return xs.every((x) => x.disclosure === "example") ? `${xs.length} example${xs.length > 1 ? "s" : ""}` : String(xs.length);
-  };
+  const kindHint = (k: string) => kindCount(all.filter((x) => x.kind === k));
 
   return (
     <article>
@@ -87,7 +92,8 @@ export default async function StackPage({ params }: Props) {
               "@type": "BreadcrumbList",
               itemListElement: [
                 { "@type": "ListItem", position: 1, name: "Agentic Stack", item: `${SITE.url}/` },
-                { "@type": "ListItem", position: 2, name: s.name, item: `${SITE.url}/stack/${s.slug}/` },
+                { "@type": "ListItem", position: 2, name: s.kind, item: `${SITE.url}${kindHref(s.kind)}` },
+                { "@type": "ListItem", position: 3, name: s.name, item: `${SITE.url}/stack/${s.slug}/` },
               ],
             },
           ],
@@ -97,19 +103,24 @@ export default async function StackPage({ params }: Props) {
         crumbs={[
           {
             label: s.kind,
-            items: kinds.map((k) => ({
-              label: k,
-              href: `/stack/${all.find((x) => x.kind === k)!.slug}/`,
-              current: k === s.kind,
-              hint: kindHint(k),
-            })),
+            items: kinds.map((k) => ({ label: k, href: kindHref(k), current: k === s.kind, hint: kindHint(k) })),
           },
           {
+            // Every stack, grouped by kind, this one's kind first.
             label: s.name,
             logo: s.logo,
-            items: all
-              .filter((x) => x.kind === s.kind)
-              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug, logo: x.logo, hint: disclosureMark(x) ?? undefined })),
+            items: [s.kind, ...kinds.filter((k) => k !== s.kind)].flatMap((k) =>
+              all
+                .filter((x) => x.kind === k)
+                .map((x) => ({
+                  label: x.name,
+                  href: `/stack/${x.slug}/`,
+                  current: x.slug === s.slug,
+                  logo: x.logo,
+                  hint: disclosureMark(x) ?? undefined,
+                  group: k,
+                })),
+            ),
           },
         ]}
       />
@@ -249,12 +260,22 @@ export default async function StackPage({ params }: Props) {
       {similar.length > 0 && (
         <>
           <div className="section-head">
-            <h2>More {s.kind.toLowerCase()} stacks</h2>
+            <h2>{nearest.length ? "Similar stacks" : `More ${s.kind.toLowerCase()} stacks`}</h2>
+            {sameKind.length > 0 && (
+              <Link href={kindHref(s.kind)} className="muted">
+                all {s.kind.toLowerCase()} stacks →
+              </Link>
+            )}
           </div>
           <div className="filters">
             {similar.map((x) => (
-              <Link key={x.slug} href={`/stack/${x.slug}/`}>
+              <Link
+                key={x.slug}
+                href={`/stack/${x.slug}/`}
+                title={x.kind === s.kind ? x.kind : `${x.kind} · ${shared(x)} ${shared(x) === 1 ? "part" : "parts"} in common`}
+              >
                 {x.name}
+                {disclosureMark(x) === "example" && " (example)"}
               </Link>
             ))}
           </div>

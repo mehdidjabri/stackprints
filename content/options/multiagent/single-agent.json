@@ -3,6 +3,7 @@
   "id": "single-agent",
   "name": "Single agent",
   "note": "One loop, no delegation",
+  "exclusive": true,
   "profile": "pattern",
   "summary": "One model runs one loop with all the tools and the full context, and never delegates. Every decision is made with the same history, which keeps behaviour consistent and easy to debug. It is the default starting point; split into several agents only when one agent clearly struggles.",
   "facts": [

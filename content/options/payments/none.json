@@ -3,6 +3,7 @@
   "id": "none",
   "name": "None",
   "note": "Agent can't spend",
+  "exclusive": true,
   "profile": "pattern",
   "summary": "The agent has no payment credentials at all. It can research, compare and fill a cart, but a person completes every purchase.",
   "how": [

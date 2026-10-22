@@ -6,7 +6,7 @@ import crypto from "node:crypto";
 import { BANDS } from "./bands";
 import { SITE, affiliated, asArray, getLayers, getNews, getStacks, getTrending, resolve, usage, usageText, usedBy } from "./data";
 import { EMPTY, disclosureOf, emptyLayers, isSupported } from "./disclosure";
-import { mdPath, optionHref } from "./links";
+import { kindHref, mdPath, optionHref } from "./links";
 import type { Layer, Option, Stack } from "./types";
 
 export const BUILT = new Date().toISOString().slice(0, 10);
@@ -76,6 +76,16 @@ function stackMd(s: Stack) {
       : "") +
     (sources.length ? `\n## ${s.disclosure === "example" ? "Further reading" : "Sources"}\n\n${sources.map((x, i) => `${i + 1}. [${x.title}](${x.url})`).join("\n")}\n` : "") +
     `\nAs JSON: ${abs(`/api/stacks/${s.slug}.json`)}\n`
+  );
+}
+
+function kindMd(kind: string) {
+  const xs = getStacks().filter((s) => s.kind === kind);
+  return (
+    frontmatter({ title: `${kind} stacks`, canonical: abs(kindHref(kind)), "last-updated": BUILT }) +
+    `# ${kind} stacks\n\n${xs
+      .map((s) => `- [${s.name}](${abs(mdPath(`/stack/${s.slug}/`))}): ${s.tagline}${disclosureOf(s) ? ` (${disclosureOf(s)!.badge.toLowerCase()})` : ""}`)
+      .join("\n")}\n\nAll stacks: ${abs("/index.md")}\n`
   );
 }
 
@@ -589,6 +599,7 @@ export function agentFiles(): Record<string, AgentFile> {
   );
   files["/404.md"] = md(frontmatter({ title: "Not found", "last-updated": BUILT }) + `# Not found\n\nThat page doesn't exist on ${SITE.name}. Start from ${abs("/llms.txt")}, the sitemap at ${abs("/sitemap.xml")}, or search at ${abs("/search.json")}.\n`);
   for (const s of stacks) files[mdPath(`/stack/${s.slug}/`)] = md(stackMd(s));
+  for (const k of new Set(stacks.map((s) => s.kind))) files[mdPath(kindHref(k))] = md(kindMd(k));
   for (const l of layers) {
     files[mdPath(`/layer/${l.id}/`)] = md(layerMd(l));
     for (const o of l.options) files[mdPath(optionHref(l.id, o.id))] = md(optionMd(l, o));

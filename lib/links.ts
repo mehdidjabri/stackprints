@@ -1,5 +1,10 @@
 // Client-safe URL helpers (no fs).
+import { slugify } from "./github";
+
 export const optionHref = (layerId: string, optionId: string) => `/layer/${layerId}/${optionId}/`;
+
+/** A kind of stack ("Coding agent") lists its stacks at /stacks/coding-agent/. */
+export const kindHref = (kind: string) => `/stacks/${slugify(kind)}/`;
 
 /** The link a stack is best known by: its site, else its announcement, repo or docs. */
 export const primaryLink = (links?: Partial<Record<"site" | "repo" | "docs" | "announcement", string>>) =>

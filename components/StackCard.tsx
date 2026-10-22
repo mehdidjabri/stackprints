@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { resolve } from "@/lib/data";
-import { disclosureMark, disclosureOf } from "@/lib/disclosure";
+import { EMPTY, disclosureMark, disclosureOf } from "@/lib/disclosure";
 import { primaryLink, prettyUrl } from "@/lib/links";
 import type { Stack } from "@/lib/types";
 import { Logo } from "./Logo";
@@ -38,5 +38,27 @@ export function StackCard({ stack }: { stack: Stack }) {
         </a>
       )}
     </div>
+  );
+}
+
+/** The empty states the cards use, same swatches as the board legend. */
+export function CardLegend({ stacks }: { stacks: Stack[] }) {
+  return (
+    <span className="legend">
+      <span className="lg-unknown">
+        <i />
+        {EMPTY.unknown}
+      </span>
+      {stacks.some((s) => s.inUseUndisclosed?.length) && (
+        <span className="lg-present">
+          <i />
+          {EMPTY.present}
+        </span>
+      )}
+      <span className="lg-empty">
+        <i />
+        {EMPTY.unused}
+      </span>
+    </span>
   );
 }

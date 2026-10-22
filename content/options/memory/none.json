@@ -3,6 +3,7 @@
   "id": "none",
   "name": "None",
   "note": "Every session starts fresh",
+  "exclusive": true,
   "profile": "pattern",
   "summary": "The agent keeps no state between sessions: each conversation starts from the system prompt and whatever the user pastes in. LLM APIs are stateless by default, so this is the baseline every other memory option builds on.",
   "how": [

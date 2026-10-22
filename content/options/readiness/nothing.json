@@ -3,6 +3,7 @@
   "id": "nothing",
   "name": "Nothing",
   "note": "Humans only",
+  "exclusive": true,
   "profile": "pattern",
   "summary": "Making no changes for agents: the site serves humans only, and agents get whatever they can scrape or click through in a browser.",
   "how": [

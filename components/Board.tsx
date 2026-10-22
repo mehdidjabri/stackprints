@@ -51,13 +51,15 @@ type Props = {
   label?: string;
   /** What the empty slots of this stack mean (see lib/disclosure), and which picks are only supported. */
   stack?: Knowable & Pick<Stack, "supports">;
+  /** Whose disclosure the empty slots follow when it isn't this board's own (a remix): named in the legend. */
+  source?: string;
   /** Editor hooks: remove a pick, add to a filled module, fill an empty slot. */
   onRemove?: (layerId: string, optionId: string) => void;
   addSlot?: (layerId: string) => React.ReactNode;
   emptySlot?: (layer: Slot) => React.ReactNode;
 };
 
-export function Board({ modules, slots, mini = false, label, stack, onRemove, addSlot, emptySlot }: Props) {
+export function Board({ modules, slots, mini = false, label, stack, source, onRemove, addSlot, emptySlot }: Props) {
   const filled = new Map(modules.map((m) => [m.layer.id, m]));
   const all = slots ?? modules.map((m) => m.layer);
   // The kinds of empty slot this board draws, for the legend.
@@ -79,7 +81,7 @@ export function Board({ modules, slots, mini = false, label, stack, onRemove, ad
           key={layer.id}
           className={`module empty${core ? " core" : ""}${state === "unused" ? "" : ` ${state}`}`}
           aria-label={`${layer.name}: ${text.toLowerCase()}`}
-          title={mini ? `${layer.name}: ${text.toLowerCase()}` : undefined}
+          title={mini || state !== "unused" ? `${layer.name}: ${text.toLowerCase()}` : undefined}
         >
           {!mini && (
             <header className="silk">
@@ -87,8 +89,8 @@ export function Board({ modules, slots, mini = false, label, stack, onRemove, ad
               <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
             </header>
           )}
-          {/* Every empty state says what it is, not only the hatched one. */}
-          {!mini && !emptySlot && (
+          {/* Every empty state says what it is. In the editor a dashed slot's picker says it for "not used". */}
+          {!mini && (!emptySlot || state !== "unused") && (
             <span className="unknown-label">
               {state === "present" && <b className="q" aria-hidden="true">?</b>}
               {text}
@@ -185,12 +187,14 @@ export function Board({ modules, slots, mini = false, label, stack, onRemove, ad
             <span className="lg-unknown">
               <i />
               {EMPTY.unknown}
+              {source && ` by ${source}`}
             </span>
           )}
           {empties.has("present") && (
             <span className="lg-present">
               <i />
               {EMPTY.present}
+              {source && ` by ${source}`}
             </span>
           )}
           {empties.has("unused") && (

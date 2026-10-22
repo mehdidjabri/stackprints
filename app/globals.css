@@ -241,6 +241,40 @@ a:hover {
   outline: none;
   border-color: var(--line-strong);
 }
+/* The editor's stack menu: every stack under its kind, a find box above, only the list scrolls. */
+.dd-menu.stacks {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dd-menu.stacks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  min-height: 0;
+}
+.dd-find {
+  flex: none;
+  font: inherit;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 6px 8px;
+  margin: 0 4px 6px;
+}
+.dd-find:focus {
+  outline: none;
+  border-color: var(--line-strong);
+}
+.dd-group {
+  font: 10px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  padding: 10px 8px 4px;
+}
 .meta-line {
   font-size: 13px;
   color: var(--muted);
@@ -288,6 +322,34 @@ button:hover,
 .status {
   font: 12px var(--sans);
   color: var(--muted);
+}
+/* A share link the clipboard refused, to copy by hand. */
+.copy-link {
+  display: flex;
+  gap: 8px;
+  flex: 1 1 260px;
+  min-width: 0;
+  max-width: 480px;
+}
+.copy-link input {
+  flex: 1;
+  min-width: 0;
+  font: 12px var(--sans);
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 5px 8px;
+}
+/* Opened from a stack link: the board waits for that stack (see layout.tsx), at most 4s. */
+html[data-hash-stack] .editor {
+  visibility: hidden;
+  animation: hash-reveal 0s 4s forwards;
+}
+@keyframes hash-reveal {
+  to {
+    visibility: visible;
+  }
 }
 
 /* The board: a stack drawn as an abstract motherboard.
@@ -881,6 +943,11 @@ select.add:focus-visible {
   border-radius: 0;
   padding: 9px 10px;
   width: 100%;
+}
+/* Inputs and selects side by side are the same height. */
+.fields input:not([type="checkbox"]),
+.fields select {
+  height: 38px;
 }
 .fields :is(input, select, textarea):focus {
   outline: none;
@@ -1531,6 +1598,10 @@ select.add.fill {
 .unknown-label {
   font-size: 12px;
   color: var(--muted);
+}
+/* In the editor's expansion slots the label sits between the slot's name and its picker. */
+.pcie .module.empty .unknown-label {
+  flex: none;
 }
 /* In use, not disclosed: the part is fitted but unlabelled. A solid outline (an empty slot is dashed),
    no hatching (nothing is unknown about whether it's there), and a "?" where the part's name would be. */

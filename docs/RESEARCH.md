@@ -5,7 +5,7 @@ This is how an option file in `content/options/<layer>/<id>.json` is researched 
 ## Hard rules
 
 1. **Never invent anything.** Every fact, date, price and URL must come from a page you actually opened or a search result you can cite. If you can't verify something, leave the field out. Missing data is fine; wrong data is not.
-2. **Never change** `id`, `order`, `logo`, `name` or `affiliation`. Change `url` or `note` only if they are wrong; a note stays under 60 characters. `affiliation` is set by the maintainers, only on an option made by the people behind this site, as one sentence; the site shows it wherever the option appears.
+2. **Never change** `id`, `order`, `logo`, `name`, `affiliation` or `exclusive`. Change `url` or `note` only if they are wrong; a note stays under 60 characters. `affiliation` is set by the maintainers, only on an option made by the people behind this site, as one sentence; the site shows it wherever the option appears. `exclusive: true` marks an option that means the layer is absent or minimal ("None", "Single agent"): a stack can't list it next to other picks in that layer, and the editor replaces the layer's picks with it.
 3. **Stay neutral.** Write descriptions, not marketing. Avoid words like "best", "leading", "revolutionary" or "seamless".
 4. **Mark vendor claims.** A benchmark or number the vendor publishes about itself is written as "vendor-reported", for example `["LongMemEval", "92% (vendor-reported)"]`.
 5. Write **valid JSON** with 2-space indentation and a trailing newline. Run `npm run check` before you finish.

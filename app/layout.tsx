@@ -4,10 +4,16 @@ import Link from "next/link";
 import { MenuCloser } from "@/components/MenuCloser";
 import { Modal } from "@/components/Modal";
 import { SearchBox } from "@/components/SearchBox";
+import { SectionLink } from "@/components/SectionLink";
 import { WebMcp } from "@/components/WebMcp";
 import { SITE } from "@/lib/data";
 import { withMarkdown } from "@/lib/links";
 import "./globals.css";
+
+// A link to a stack (#s=… or #from=…) hides the editor until it has loaded that stack, so the default
+// one never flashes first. The editor clears the flag; the CSS shows the board anyway after 4s.
+const HASH_FLAG =
+  "try{if(location.pathname==='/'&&/(^#|&)(s|from)=/.test(location.hash))document.documentElement.setAttribute('data-hash-stack','')}catch(e){}";
 
 // Self-hosted at build time: no request to Google at runtime.
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -35,7 +41,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html lang="en" className={dmSans.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: HASH_FLAG }} />
+      </head>
       <body>
         <a href="#main" className="skip">
           Skip to content
@@ -48,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SearchBox />
             <nav aria-label="Primary">
               <Link href="/trending/">Trending</Link>
-              <Link href="/#stacks">Stacks</Link>
+              <SectionLink id="stacks">Stacks</SectionLink>
               <Link href="/layers/">Layers</Link>
               <Link href="/mine/">Mine</Link>
               <Link href="/contribute/">Contribute</Link>
@@ -61,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="foot">
           <div className="wrap">
             <span>
-              Open source. <Link href="/submit/">List your product</Link> or <Link href="/#publish">publish your stack</Link>.
+              Open source. <Link href="/submit/">List your product</Link> or <SectionLink id="publish">publish your stack</SectionLink>.
             </span>
             <nav aria-label="Footer">
               <Link href="/about/">About</Link>

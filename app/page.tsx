@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { Editor } from "@/components/Editor";
-import { StackCard } from "@/components/StackCard";
+import { CardLegend, StackCard } from "@/components/StackCard";
 import { Trending } from "@/components/Trending";
 import { SITE, asArray, getLayers, getStacks } from "@/lib/data";
 import { BANDS } from "@/lib/bands";
-import { EMPTY } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
 import { primaryLink } from "@/lib/links";
 
@@ -20,7 +19,7 @@ export default function Home() {
     band,
     ref,
     description: "",
-    options: options.map(({ id, name, note, logo }) => ({ id, name, note, logo })),
+    options: options.map(({ id, name, note, logo, exclusive }) => ({ id, name, note, logo, ...(exclusive ? { exclusive } : {}) })),
   }));
   const presets = stacks.map((s) => ({
     slug: s.slug,
@@ -102,23 +101,7 @@ export default function Home() {
 
       <div className="section-head" id="stacks">
         <h2>Stacks</h2>
-        {/* The empty states the cards use, same swatches as the board legend. */}
-        <span className="legend">
-          <span className="lg-unknown">
-            <i />
-            {EMPTY.unknown}
-          </span>
-          {stacks.some((s) => s.inUseUndisclosed?.length) && (
-            <span className="lg-present">
-              <i />
-              {EMPTY.present}
-            </span>
-          )}
-          <span className="lg-empty">
-            <i />
-            {EMPTY.unused}
-          </span>
-        </span>
+        <CardLegend stacks={stacks} />
         <span className="muted">{stacks.length}</span>
       </div>
       <div className="grid">
