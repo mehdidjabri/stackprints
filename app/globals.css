@@ -255,6 +255,11 @@ a:hover {
   font-size: 15px;
   margin: 0 0 24px;
 }
+/* How to read a stack's empty slots, right under its meta line. */
+.meta-line + .reading {
+  max-width: 85ch; /* the lede's width, at this smaller size */
+  margin: -12px 0 20px;
+}
 
 /* Toolbar */
 .toolbar {
@@ -623,6 +628,7 @@ select.add:focus-visible {
 /* Grid of stacks */
 .section-head {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
   margin: 72px 0 16px;
@@ -634,6 +640,11 @@ select.add:focus-visible {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 0;
+}
+/* A key for the cards' empty slots, next to the count. Sans: it isn't silkscreen here. */
+.section-head .legend {
+  margin-left: auto;
+  font-family: var(--sans);
 }
 .grid {
   display: grid;
@@ -726,6 +737,11 @@ select.add:focus-visible {
 }
 .opt-note {
   color: var(--muted);
+}
+.opt-aff {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
 }
 .opt-used {
   font: 11px var(--sans);

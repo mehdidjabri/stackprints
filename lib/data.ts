@@ -67,6 +67,26 @@ export function usedBy(layerId: string, optionId: string) {
   return getStacks().filter((s) => asArray(s.layers[layerId]).includes(optionId));
 }
 
+/**
+ * The same, split: example designs are written by this site, so they never count as adoption.
+ * Wherever usage is shown or counted, real stacks and examples are kept apart.
+ */
+export function usage(layerId: string, optionId: string) {
+  const all = usedBy(layerId, optionId);
+  return { stacks: all.filter((s) => s.disclosure !== "example"), examples: all.filter((s) => s.disclosure === "example") };
+}
+
+/** "in 2 stacks · 3 example designs", leaving out whichever part is zero. */
+export function usageText({ stacks, examples }: ReturnType<typeof usage>) {
+  const parts = [];
+  if (stacks.length) parts.push(`${stacks.length} stack${stacks.length > 1 ? "s" : ""}`);
+  if (examples.length) parts.push(`${examples.length} example design${examples.length > 1 ? "s" : ""}`);
+  return parts.length ? `in ${parts.join(" · ")}` : "";
+}
+
+/** Options a stack picks that are made by the people behind this site. */
+export const affiliated = (stack: Pick<Stack, "layers">) => resolve(stack).flatMap((r) => r.picks.filter((p) => p.affiliation));
+
 export function getOption(layerId: string, optionId: string) {
   const layer = getLayer(layerId);
   const option = layer?.options.find((o) => o.id === optionId);

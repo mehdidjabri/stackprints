@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Title } from "@/components/Title";
 import { BANDS } from "@/lib/bands";
-import { SITE, getLayer, getLayers, usedBy } from "@/lib/data";
+import { SITE, getLayer, getLayers, usage } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
 import { optionHref, withMarkdown } from "@/lib/links";
 
@@ -75,21 +75,38 @@ export default async function LayerPage({ params }: Props) {
 
       <div className="options">
         {l.options.map((o) => {
-          const users = usedBy(l.id, o.id);
+          const { stacks, examples } = usage(l.id, o.id);
+          const links = (list: typeof stacks) =>
+            list.map((u, n) => (
+              <span key={u.slug}>
+                {n > 0 && ", "}
+                <Link href={`/stack/${u.slug}/`}>{u.name}</Link>
+              </span>
+            ));
           return (
             <div key={o.id} className="opt" id={o.id}>
               <div className="opt-name">
                 <Link href={optionHref(l.id, o.id)}>{o.name}</Link>
                 {o.open && <span className="tag">open</span>}
               </div>
-              <div className="opt-note">{o.note}</div>
-              <div className="opt-used">
-                {users.map((u, n) => (
-                  <span key={u.slug}>
-                    {n > 0 && ", "}
-                    <Link href={`/stack/${u.slug}/`}>{u.name}</Link>
+              <div className="opt-note">
+                {o.note}
+                {o.affiliation && (
+                  <span className="opt-aff">
+                    Disclosure: {o.affiliation} <Link href="/about/#affiliation">About</Link>
                   </span>
-                ))}
+                )}
+              </div>
+              {/* Real stacks first; example designs are the site's own, so they're named as such. */}
+              <div className="opt-used">
+                {links(stacks)}
+                {examples.length > 0 && (
+                  <>
+                    {stacks.length > 0 && " · "}
+                    <span title="Example designs written for this site, not products">examples: </span>
+                    {links(examples)}
+                  </>
+                )}
               </div>
             </div>
           );

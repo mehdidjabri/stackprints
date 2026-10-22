@@ -12,6 +12,11 @@ export type Option = {
   logo?: string;
   /** Open source / open weights. */
   open?: boolean;
+  /**
+   * Set only when the people behind this site also make the option: one sentence, shown next to
+   * the option wherever it appears (option and layer pages, stacks that pick it, markdown, API).
+   */
+  affiliation?: string;
 
   // Research, see docs/RESEARCH.md. Everything below is optional and verified.
   /** Decides the layout of the option's page. */
@@ -61,7 +66,7 @@ export type Stack = {
   kind: string;
   /**
    * How much of the stack is knowable, which decides what an empty slot means:
-   * open-source and example stacks: not used; documented: not documented; closed: not disclosed.
+   * open-source and example stacks: not used; documented and closed: not disclosed.
    */
   disclosure?: "open-source" | "documented" | "closed" | "example";
   /** Public sources the stack is built from. */

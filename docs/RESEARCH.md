@@ -5,7 +5,7 @@ This is how an option file in `content/options/<layer>/<id>.json` is researched 
 ## Hard rules
 
 1. **Never invent anything.** Every fact, date, price and URL must come from a page you actually opened or a search result you can cite. If you can't verify something, leave the field out. Missing data is fine; wrong data is not.
-2. **Never change** `id`, `order`, `logo` or `name`. Change `url` or `note` only if they are wrong; a note stays under 60 characters.
+2. **Never change** `id`, `order`, `logo`, `name` or `affiliation`. Change `url` or `note` only if they are wrong; a note stays under 60 characters. `affiliation` is set by the maintainers, only on an option made by the people behind this site, as one sentence; the site shows it wherever the option appears.
 3. **Stay neutral.** Write descriptions, not marketing. Avoid words like "best", "leading", "revolutionary" or "seamless".
 4. **Mark vendor claims.** A benchmark or number the vendor publishes about itself is written as "vendor-reported", for example `["LongMemEval", "92% (vendor-reported)"]`.
 5. Write **valid JSON** with 2-space indentation and a trailing newline. Run `npm run check` before you finish.
@@ -118,9 +118,11 @@ Set `disclosure`. It decides what an **empty** slot means:
 | value | use for | an empty slot reads |
 | --- | --- | --- |
 | `open-source` | the code is public (OpenClaw, Pi, Hermes Agent…) | not used (you can check the code) |
-| `documented` | closed, but the vendor documents its architecture in depth (e.g. Claude Code) | not documented |
+| `documented` | not fully open (closed code or hosted services), but the vendor documents its architecture in depth (e.g. Claude Code, Vercel AI Cloud) | not disclosed |
 | `closed` | closed product; only announcements and press | not disclosed |
 | `example` | an illustrative stack we designed, not a real product | not used |
+
+There are only two empty states, named the same everywhere (board, prose, markdown, API): a **hatched** slot is *not disclosed* (unknown, not absent; `notDisclosed` in the API) and a **dashed** slot is *not used* (`notUsed`). Any model, Any provider and Any host are picks, not empty states: they mark stacks that work with whichever model, gateway or host you choose.
 
 ### Fields
 
@@ -145,6 +147,15 @@ Set `disclosure`. It decides what an **empty** slot means:
 1. **Every pick needs evidence**: a URL you opened or saw in search results, preferably first-party (docs, repo, official blog), else reputable press. No evidence means no pick. Remove existing picks you can't back up.
 2. **Don't guess.** "It must use some model" is not a reason to pick one. Leave the layer out, and on a closed stack it shows as "not disclosed".
 3. For **open-source** stacks the repo is the source. Check the README, docs, config and dependencies. Use `notUsed` only when the docs or code clearly show something is absent (for example "no built-in memory").
+   On **documented** and **closed** stacks, a layer the product simply doesn't have still shows as "not disclosed" until you set `notUsed`. Set it only when a first-party page makes the absence clear (the feature reference says so, or the layer is plainly outside what the product is, such as payments on a coding agent with no way to spend), and add that page to `sources`. Where a pattern option describes reality (`payments/none`, `durable/in-process`), pick it with evidence instead.
 4. **Use existing options.** If a documented component has no option yet, add one in `content/options/<layer>/<id>.json` per the rules above. Check it doesn't already exist under another name first.
 5. Keep the `description` neutral and say what's public: "OpenAI hasn't published the model routing…" is fine.
 6. `npm run check` must pass.
+
+### Example stacks
+
+An `example` stack is a design we wrote, not a claim about a product, so it needs no `evidence`, and the site keeps it apart from real stacks wherever usage is counted.
+
+- Start the `description` with "An example design for…" and keep it neutral.
+- `sources` are further reading, not evidence: the docs for the harness and for the one or two parts the design hinges on. Don't link every pick; each option page cites its own sources.
+- When an example picks an option that has an `affiliation`, add one neutral sentence on what that part does in the design ("In this design, past.dev remembers returning callers and their bookings"), with no claim about real-world use. The page adds the disclosure line itself.

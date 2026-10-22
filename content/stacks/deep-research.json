@@ -1,9 +1,9 @@
 {
   "slug": "deep-research",
-  "name": "Deep Research",
+  "name": "Research Fan-out",
   "kind": "Research agent",
   "tagline": "Fans out subagents across the web and writes a cited report.",
-  "description": "An example design for a research agent: a planner splits the question, parallel subagents search and read with Exa, Parallel and Firecrawl, fetched pages are screened and reranked, and a writer produces a cited report. The whole run is a durable, resumable workflow.",
+  "description": "An example design for a research agent: a planner splits the question, parallel subagents search and read with Exa, Parallel and Firecrawl, fetched pages are screened and reranked, and a writer produces a cited report. The whole run is a durable, resumable workflow. In this design, past.dev keeps findings and sources from earlier runs.",
   "disclosure": "example",
   "sources": [
     {

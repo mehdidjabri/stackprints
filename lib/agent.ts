@@ -4,7 +4,7 @@
 // them into out/ after the build, so the site stays fully static.
 import crypto from "node:crypto";
 import { BANDS } from "./bands";
-import { SITE, asArray, getLayers, getNews, getStacks, getTrending, resolve, usedBy } from "./data";
+import { SITE, affiliated, asArray, getLayers, getNews, getStacks, getTrending, resolve, usage, usageText, usedBy } from "./data";
 import { DISCLOSURE, unknownLabel } from "./disclosure";
 import { mdPath, optionHref } from "./links";
 import type { Layer, Option, Stack } from "./types";
@@ -54,30 +54,37 @@ function stackMd(s: Stack) {
   for (const u of Object.values(s.evidence ?? {}).flat()) if (!sources.some((x) => x.url === u)) sources.push({ title: u, url: u });
   const cite = (u: string) => `[${sources.findIndex((x) => x.url === u) + 1}]`;
   const missing = layers.filter((l) => !(l.id in s.layers) && !s.notUsed?.includes(l.id));
-  const notUsed = layers.filter((l) => s.notUsed?.includes(l.id));
+  // Where an empty slot means "not used", every unlisted layer is absent; elsewhere only confirmed ones are.
+  const absent = layers.filter((l) => !(l.id in s.layers) && (!unk || s.notUsed?.includes(l.id)));
+  const own = affiliated(s);
   return (
     frontmatter({ title: `${s.name} agent stack`, description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
     `# ${s.name}\n\n${s.kind}${s.disclosure ? ` · ${DISCLOSURE[s.disclosure].badge}: ${DISCLOSURE[s.disclosure].about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}\n\n${s.description}\n\n` +
+    (own.length ? `> Disclosure: this ${s.disclosure === "example" ? "example" : "stack"} uses ${own.map((o) => o.name).join(", ")}. ${[...new Set(own.map((o) => o.affiliation))].join(" ")}\n\n` : "") +
     (s.links ? `${Object.entries(s.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n\n` : "") +
     `## Layers\n\n${rows
       .map(({ layer, picks }) => `- **${layer.name}** (${layer.ref}): ${picks.map((p) => `[${p.name}](${abs(mdPath(optionHref(layer.id, p.id)))})`).join(", ")}${(s.evidence?.[layer.id] ?? []).map(cite).join("")}`)
       .join("\n")}\n` +
     (unk && missing.length ? `\n## ${unk}\n\n${missing.map((l) => l.name).join(", ")}\n` : "") +
-    (!unk && missing.length ? `\n## Not used\n\n${missing.map((l) => l.name).join(", ")}\n` : "") +
-    (notUsed.length ? `\n## Not used (confirmed)\n\n${notUsed.map((l) => l.name).join(", ")}\n` : "") +
-    (sources.length ? `\n## Sources\n\n${sources.map((x, i) => `${i + 1}. [${x.title}](${x.url})`).join("\n")}\n` : "") +
+    // "Confirmed" only means something next to a "Not disclosed" list.
+    (absent.length ? `\n## ${unk ? "Not used (confirmed)" : "Not used"}\n\n${absent.map((l) => l.name).join(", ")}\n` : "") +
+    (sources.length ? `\n## ${s.disclosure === "example" ? "Further reading" : "Sources"}\n\n${sources.map((x, i) => `${i + 1}. [${x.title}](${x.url})`).join("\n")}\n` : "") +
     `\nAs JSON: ${abs(`/api/stacks/${s.slug}.json`)}\n`
   );
 }
 
 function layerMd(l: Layer) {
+  const own = l.options.filter((o) => o.affiliation);
   return (
     frontmatter({ title: `${l.name} for AI agents`, description: l.description, canonical: abs(`/layer/${l.id}/`), "last-updated": BUILT }) +
-    `# ${l.name}\n\n${l.ref} · ${BANDS.find(([b]) => b === l.band)![1]} band · ${l.options.length} options\n\n${l.description}\n\n## Options\n\n` +
+    `# ${l.name}\n\n${l.ref} · ${BANDS.find(([b]) => b === l.band)![1]} band · ${l.options.length} options\n\n` +
+    own.map((o) => `> Disclosure (${o.name}): ${o.affiliation}\n\n`).join("") +
+    `${l.description}\n\n## Options\n\n` +
     l.options
       .map((o) => {
-        const users = usedBy(l.id, o.id);
-        return `- [${o.name}](${abs(mdPath(optionHref(l.id, o.id)))})${o.note ? `: ${o.note}` : ""}${o.open ? " (open)" : ""}${o.profile ? ` [${o.profile}]` : ""}${users.length ? ` · used by ${users.map((u) => u.name).join(", ")}` : ""}`;
+        const { stacks, examples } = usage(l.id, o.id);
+        const names = (xs: Stack[]) => xs.map((u) => u.name).join(", ");
+        return `- [${o.name}](${abs(mdPath(optionHref(l.id, o.id)))})${o.note ? `: ${o.note}` : ""}${o.open ? " (open)" : ""}${o.profile ? ` [${o.profile}]` : ""}${stacks.length ? ` · used by ${names(stacks)}` : ""}${examples.length ? ` · example designs: ${names(examples)}` : ""}`;
       })
       .join("\n") +
     `\n\nAs JSON: ${abs(`/api/layers/${l.id}.json`)}\n`
@@ -86,7 +93,8 @@ function layerMd(l: Layer) {
 
 function optionMd(l: Layer, o: Option) {
   const news = o.profile === "pattern" ? undefined : getNews(l.id, o.id);
-  const users = usedBy(l.id, o.id);
+  const { stacks, examples } = usage(l.id, o.id);
+  const list = (xs: Stack[]) => xs.map((u) => `- [${u.name}](${abs(mdPath(`/stack/${u.slug}/`))})`).join("\n");
   const m = o.model;
   const parts = [
     frontmatter({
@@ -95,7 +103,8 @@ function optionMd(l: Layer, o: Option) {
       canonical: abs(optionHref(l.id, o.id)),
       "last-updated": o.researched ?? BUILT,
     }),
-    `# ${o.name}\n\n${[o.profile, l.name, o.open ? "open" : undefined, o.url].filter(Boolean).join(" · ")}\n`,
+    `# ${o.name}\n\n${[o.profile, l.name, o.open ? "open" : undefined, usageText({ stacks, examples }) || undefined, o.url].filter(Boolean).join(" · ")}\n`,
+    o.affiliation ? `\n> Disclosure: ${o.affiliation}\n` : "",
     o.note ? `\n> ${o.note}\n` : "",
     o.summary ? `\n${o.summary}\n` : "",
     m ? `\n## Model\n\n${Object.entries(m).map(([k, v]) => `- ${k}: ${Array.isArray(v) ? v.join(", ") : v}`).join("\n")}\n` : "",
@@ -104,7 +113,9 @@ function optionMd(l: Layer, o: Option) {
     o.goodFor?.length ? `\n## Good for\n\n${o.goodFor.map((g) => `- ${g}`).join("\n")}\n` : "",
     o.watchOut?.length ? `\n## Watch out for\n\n${o.watchOut.map((g) => `- ${g}`).join("\n")}\n` : "",
     o.links ? `\n## Links\n\n${Object.entries(o.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n` : "",
-    users.length ? `\n## Used in stacks\n\n${users.map((u) => `- [${u.name}](${abs(mdPath(`/stack/${u.slug}/`))})`).join("\n")}\n` : "",
+    stacks.length ? `\n## Used in stacks\n\n${list(stacks)}\n` : "",
+    // Example designs are written by this site: listed, never counted as adoption.
+    examples.length ? `\n## In example designs\n\n${list(examples)}\n` : "",
     news?.items.length ? `\n## Latest news (checked ${news.updated})\n\n${news.items.map((n) => `- ${n.date}: [${n.title}](${n.url}) (${n.source})`).join("\n")}\n` : "",
     `\nAlternatives: ${abs(mdPath(`/layer/${l.id}/`))} · As JSON: ${abs(`/api/options/${l.id}/${o.id}.json`)}\n`,
   ];
@@ -116,19 +127,30 @@ function trendingMd() {
   return (
     frontmatter({ title: "Trending in AI agent infrastructure", description: "Options most in the news over the last 30 days.", canonical: abs("/trending/"), "last-updated": BUILT }) +
     `# Trending\n\nRanked by recent news: every story from the last 30 days counts, newer stories count more.\n\n` +
-    rows.map(({ layer, option, latest, count }, i) => `${i + 1}. [${option.name}](${abs(mdPath(optionHref(layer.id, option.id)))}) (${layer.name}, ${count} stories): ${latest.date} [${latest.title}](${latest.url})`).join("\n") +
+    rows.map(({ layer, option, latest, count }, i) => `${i + 1}. [${option.name}](${abs(mdPath(optionHref(layer.id, option.id)))}) (${layer.name}, ${count} stories): ${latest.date} [${latest.title}](${latest.url})${option.affiliation ? ` (disclosure: ${option.affiliation})` : ""}`).join("\n") +
     "\n"
   );
 }
 
 // Trust pages share their copy between HTML and markdown.
-export const ABOUT = `Agentic Stack is an open, community-maintained map of how AI agents are built. It breaks an agent into ${"{layers}"} layers, from the channels people reach it through to the model, the harness that runs the loop, the sandbox its code runs in, its memory, what wakes it up, its guardrails and where it is hosted. Each layer lists the real options people use today, and each stack shows which option a known agent picks in every layer.
+export const ABOUT = `Agentic Stack is an open, community-maintained map of how AI agents are built. It breaks an agent into ${"{layers}"} layers, from the channels people reach it through to the model, the harness that runs the loop, the sandbox its code runs in, its memory, what wakes it up, its guardrails and where it is hosted. Each layer lists the real options people use today, and each stack shows which option a known agent picks in every layer. Stacks marked Example are designs written for this site to show how the parts fit together; they are not products, and the site counts them apart from real use.
 
 Every claim about a real product is sourced. Open-source stacks are built from their public code; closed products are built only from what their makers and reputable press have published, and every layer they haven't disclosed is marked "Not disclosed" rather than guessed. Benchmark numbers that a vendor publishes about itself are labelled vendor-reported. Rankings and listings are never paid for.
 
-The site is static and free: no accounts, no ads, no tracking. All data lives as JSON files in a public GitHub repository, anyone can propose a change by pull request, and a weekly job refreshes the news for every option.
+The site is static and free: no accounts, no ads, no tracking. All data lives as JSON files in a public GitHub repository, anyone can propose a change by pull request, and a weekly job refreshes the news for every option.`;
 
-Disclosure: Agentic Stack is built by the team behind past.dev, a memory API listed here. past.dev is the first suggestion in the Memory layer and the memory in example designs where a hosted memory API fits. Stacks of real products list past.dev only where a source shows they use it, and its benchmark numbers are marked vendor-reported like everyone else's.`;
+// How to read a stack: the four disclosure levels and the two empty states. Rendered on /about/#disclosure.
+export const READING = `Every stack carries a disclosure level, shown as a badge on its page and, for all but open source, next to its kind on its card:
+
+- Open source: built from the public code, so a layer that isn't listed is not used.
+- Documented: built from the vendor's docs, for products that aren't fully open (closed code or hosted services).
+- Closed: inferred from what the maker and reputable press have published.
+- Example: a design written for this site, not a product. Its links are further reading, not evidence.
+
+On the board, a hatched slot is not disclosed: the maker hasn't said, so the layer is unknown rather than absent. A dashed slot is not used. Any model, Any provider and Any host mark stacks that work with whichever model, gateway or host you choose.`;
+
+// The site's conflict of interest, said wherever it applies (see Option.affiliation) and in full here.
+export const AFFILIATION = `Agentic Stack is built by the team behind past.dev, a memory API listed here. past.dev is the first suggestion in the Memory layer and the memory in example designs where a hosted memory API fits. Stacks of real products list past.dev only where a source shows they use it, and its benchmark numbers are marked vendor-reported like everyone else's.`;
 
 export const PRIVACY = `Agentic Stack is a static website. It sets no cookies, runs no analytics or advertising scripts, and has no accounts, so we don't collect personal data about visitors.
 
@@ -170,7 +192,12 @@ ${WHEN_TO_USE.replace("{layers}", String(layers.length))}
 - Read a page as markdown: append .md to any URL, e.g. ${abs("/stack/openclaw.md")} or ${abs("/layer/memory.md")}.
 - Query the JSON API, no key needed: ${abs("/api/stacks.json")}, ${abs("/api/stacks/{slug}.json")}, ${abs("/api/layers/{layer}.json")}, ${abs("/api/options/{layer}/{option}.json")}. Spec: ${abs("/openapi.json")}. Docs: ${abs("/api/")}.
 - In a browser with WebMCP, the pages expose tools: search_agentic_stack, list_stacks, get_stack, get_layer, get_option, open_stack_in_editor.
-- On a closed product, a layer that isn't listed is "not disclosed", not "not used". Check each stack's disclosure field.
+- On a closed or documented product, a layer that isn't listed is "not disclosed", not "not used". Check each stack's disclosure field.
+- Stacks with disclosure "example" are designs written for this site, not products. Don't count them as adoption: an option's API record counts them apart (usage.exampleDesigns).
+
+## Disclosure
+
+${AFFILIATION}
 
 ## Sections
 
@@ -197,7 +224,7 @@ const stacksLlms = () =>
 
 const layersLlms = () =>
   `# ${SITE.name}: layers\n\n> The ${getLayers().length} layers of an AI agent stack and the options in each.\n\n${getLayers()
-    .map((l) => `## [${l.name}](${abs(mdPath(`/layer/${l.id}/`))})\n\n${l.description}\n\n${l.options.map((o) => `- [${o.name}](${abs(mdPath(optionHref(l.id, o.id)))})${o.note ? `: ${o.note}` : ""}`).join("\n")}`)
+    .map((l) => `## [${l.name}](${abs(mdPath(`/layer/${l.id}/`))})\n\n${l.description}\n\n${l.options.map((o) => `- [${o.name}](${abs(mdPath(optionHref(l.id, o.id)))})${o.note ? `: ${o.note}` : ""}${o.affiliation ? ` (disclosure: ${o.affiliation})` : ""}`).join("\n")}`)
     .join("\n\n")}\n`;
 
 // ── JSON API ────────────────────────────────────────────────────────────────
@@ -231,7 +258,7 @@ function stackJson(s: Stack) {
         ref: l.ref,
         picks: asArray(s.layers[l.id]).map((id) => {
           const o = l.options.find((x) => x.id === id)!;
-          return { id, name: o.name, note: o.note ?? null, url: abs(optionHref(l.id, id)), api: abs(`/api/options/${l.id}/${id}.json`) };
+          return { id, name: o.name, note: o.note ?? null, ...(o.affiliation ? { affiliation: o.affiliation } : {}), url: abs(optionHref(l.id, id)), api: abs(`/api/options/${l.id}/${id}.json`) };
         }),
         evidence: s.evidence?.[l.id] ?? [],
       })),
@@ -248,6 +275,7 @@ const optionSummary = (l: Layer, o: Option) => ({
   note: o.note ?? null,
   profile: o.profile ?? null,
   open: Boolean(o.open),
+  ...(o.affiliation ? { affiliation: o.affiliation } : {}),
   url: abs(optionHref(l.id, o.id)),
   api: abs(`/api/options/${l.id}/${o.id}.json`),
 });
@@ -265,11 +293,14 @@ const layerJson = (l: Layer, full: boolean) => ({
 
 function optionJson(l: Layer, o: Option) {
   const { order: _order, ...rest } = o;
+  const { stacks, examples } = usage(l.id, o.id);
   return {
     ...rest,
     layer: { id: l.id, name: l.name, band: l.band },
     url: abs(optionHref(l.id, o.id)),
     news: o.profile === "pattern" ? null : getNews(l.id, o.id) ?? null,
+    // usedBy keeps every stack (API v1 never changes a field's meaning); usage counts examples apart.
+    usage: { stacks: stacks.length, exampleDesigns: examples.length },
     usedBy: usedBy(l.id, o.id).map(stackSummary),
   };
 }
@@ -319,7 +350,7 @@ function openapi() {
         get: {
           operationId: "getOption",
           summary: "Get one option: datasheet, links, news and the stacks that use it",
-          parameters: [param("layer", "Layer id"), param("option", "Option id, e.g. openrouter, e2b, past-dev")],
+          parameters: [param("layer", "Layer id"), param("option", "Option id, e.g. openrouter, e2b")],
           responses: { "200": ok("Option", "The option"), "404": { description: "No such option" } },
         },
       },
@@ -341,7 +372,7 @@ function openapi() {
             name: { type: "string" },
             kind: { type: "string" },
             tagline: { type: "string" },
-            disclosure: { type: ["string", "null"], enum: ["open-source", "documented", "closed", "example", null], description: "What an absent layer means: open-source/example = not used, documented/closed = not disclosed" },
+            disclosure: { type: ["string", "null"], enum: ["open-source", "documented", "closed", "example", null], description: "What an absent layer means: open-source/example = not used, documented/closed = not disclosed. example = a design written for this site, not a product" },
             researched: { type: ["string", "null"], format: "date" },
             links: { type: "object", additionalProperties: { type: "string", format: "uri" } },
             url: { type: "string", format: "uri" },
@@ -387,6 +418,7 @@ function openapi() {
             note: { type: ["string", "null"] },
             profile: { type: ["string", "null"], enum: ["model", "product", "protocol", "pattern", null] },
             open: { type: "boolean" },
+            affiliation: { type: "string", description: "Present only when the people behind this site also make the option" },
             url: { type: "string", format: "uri" },
             api: { type: "string", format: "uri" },
           },
@@ -407,15 +439,21 @@ function openapi() {
         LayerList: { type: "object", required: ["layers"], properties: { layers: { type: "array", items: { $ref: "#/components/schemas/Layer" } } } },
         Option: {
           type: "object",
-          description: "An option with its research: summary, facts as [label, value] pairs, links, goodFor, watchOut, how (patterns), model (models), news and usedBy.",
+          description: "An option with its research: summary, facts as [label, value] pairs, links, goodFor, watchOut, how (patterns), model (models), news, usage and usedBy.",
           additionalProperties: true,
           properties: {
             id: { type: "string" },
             name: { type: "string" },
+            affiliation: { type: "string", description: "Present only when the people behind this site also make the option" },
             summary: { type: "string" },
             facts: { type: "array", items: { type: "array", items: { type: "string" }, minItems: 2, maxItems: 2 } },
             news: { type: ["object", "null"] },
-            usedBy: { type: "array", items: { $ref: "#/components/schemas/StackSummary" } },
+            usage: {
+              type: "object",
+              description: "How many stacks pick this option: real ones, and example designs written for this site, which are not adoption",
+              properties: { stacks: { type: "integer" }, exampleDesigns: { type: "integer" } },
+            },
+            usedBy: { type: "array", description: "Every stack that picks this option, example designs included (disclosure: example)", items: { $ref: "#/components/schemas/StackSummary" } },
           },
         },
       },
@@ -445,6 +483,8 @@ Read-only data about AI agent stacks at ${SITE.url}. No key needed.
 ## Notes
 
 - Vendor-published benchmark numbers are marked "(vendor-reported)" in facts; keep that label.
+- Stacks with disclosure "example" are designs written for this site, not products. Don't cite them as evidence that anyone uses an option; an option's usage field counts them apart.
+- Disclosure: ${AFFILIATION}
 - Data changes about weekly; the researched dates tell you how fresh a record is.
 - Spec: ${abs("/openapi.json")}.
 `;
@@ -508,7 +548,9 @@ export function agentFiles(): Record<string, AgentFile> {
       `# Layers\n\n${layers.map((l) => `- [${l.name}](${abs(mdPath(`/layer/${l.id}/`))}) (${l.ref}, ${l.band}): ${l.description}`).join("\n")}\n`,
   );
   files["/trending.md"] = md(trendingMd());
-  files["/about.md"] = md(pageMd("About", "/about/", ABOUT, "What Agentic Stack is and how it is researched."));
+  files["/about.md"] = md(
+    pageMd("About", "/about/", `${ABOUT}\n\n## Reading a stack\n\n${READING}\n\n## Affiliation\n\n${AFFILIATION}`, "What Agentic Stack is and how it is researched."),
+  );
   files["/privacy.md"] = md(pageMd("Privacy", "/privacy/", PRIVACY, "What Agentic Stack does and doesn't collect."));
   files["/contact.md"] = md(pageMd("Contact", "/contact/", CONTACT, "How to reach the maintainers."));
   files["/pricing.md"] = md(

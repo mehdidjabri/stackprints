@@ -3,7 +3,7 @@
   "name": "Support Agent",
   "kind": "Business agent",
   "tagline": "Answers tickets from your docs and hands off to humans.",
-  "description": "An example design for a customer-support agent: a chat widget, email and Slack in front of a single TypeScript agent on Claude, retrieval over help-center docs with Voyage embeddings and reranking on turbopuffer, Arcade connectors to the ticketing system, injection screening on untrusted input, per-action autonomy that hands refunds and unresolved tickets to a human, and evals on resolved tickets.",
+  "description": "An example design for a customer-support agent: a chat widget, email and Slack in front of a single TypeScript agent on Claude, retrieval over help-center docs with Voyage embeddings and reranking on turbopuffer, Arcade connectors to the ticketing system, injection screening on untrusted input, per-action autonomy that hands refunds and unresolved tickets to a human, and evals on resolved tickets. In this design, past.dev keeps each customer's history across tickets.",
   "disclosure": "example",
   "sources": [
     {

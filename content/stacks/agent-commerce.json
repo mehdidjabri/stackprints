@@ -3,7 +3,7 @@
   "name": "Agent Commerce",
   "kind": "Commerce agent",
   "tagline": "An agent that can shop, pay and get paid, within limits.",
-  "description": "An example design for a shopping agent: it browses merchants, compares, and checks out through agent commerce protocols with single-use cards and per-purchase approval, while merchants expose their catalogs as MCP servers and llms.txt. Stripe's agent toolkit and x402 cover the receiving side.",
+  "description": "An example design for a shopping agent: it browses merchants, compares, and checks out through agent commerce protocols with single-use cards and per-purchase approval, while merchants expose their catalogs as MCP servers and llms.txt. Stripe's agent toolkit and x402 cover the receiving side. In this design, past.dev keeps the shopper's preferences and past orders between sessions.",
   "disclosure": "example",
   "sources": [
     {

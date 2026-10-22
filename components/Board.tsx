@@ -85,7 +85,8 @@ export function Board({ modules, slots, mini = false, label, unknown, notUsed = 
               <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
             </header>
           )}
-          {!mini && unk && !emptySlot && <span className="unknown-label">{unk}</span>}
+          {/* Both empty states say what they are, not only the hatched one. */}
+          {!mini && !emptySlot && <span className="unknown-label">{unk ?? "Not used"}</span>}
           {!mini && emptySlot?.(layer)}
         </section>
       );

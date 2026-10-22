@@ -98,6 +98,17 @@ export default function Home() {
 
       <div className="section-head" id="stacks">
         <h2>Stacks</h2>
+        {/* The two empty states the cards use, same swatches as the board legend. */}
+        <span className="legend">
+          <span className="lg-unknown">
+            <i />
+            Not disclosed
+          </span>
+          <span className="lg-empty">
+            <i />
+            Not used
+          </span>
+        </span>
         <span className="muted">{stacks.length}</span>
       </div>
       <div className="grid">

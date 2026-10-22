@@ -53,7 +53,9 @@ export default function Api() {
         Each stack has a <code>disclosure</code>: <code>open-source</code> and <code>example</code> stacks list everything
         they use, so a missing layer is not used. <code>documented</code> and <code>closed</code> stacks only list what
         their makers or reputable press have published; layers in <code>notDisclosed</code> are unknown, not absent. Every
-        pick on a real product has evidence URLs in <code>layers[].evidence</code>.
+        pick on a real product has evidence URLs in <code>layers[].evidence</code>. An <code>example</code> stack is a
+        design written for this site, not a product: an option&apos;s <code>usage</code> counts examples apart from real
+        stacks, so don&apos;t read them as adoption. See also <a href="/about/#disclosure">Reading a stack</a>.
       </p>
 
       <h2>Machine-readable</h2>

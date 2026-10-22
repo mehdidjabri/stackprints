@@ -29,7 +29,7 @@ const TOOLS: Tool[] = [
   {
     name: "search_agentic_stack",
     description:
-      "Search Agentic Stack for AI agent stacks, layers (model, harness, memory, sandbox…) and components (OpenRouter, E2B, past.dev…). Returns matches with their page URLs.",
+      "Search Agentic Stack for AI agent stacks, layers (model, harness, memory, sandbox…) and components (OpenRouter, E2B, Langfuse…). Returns matches with their page URLs.",
     inputSchema: schema({ query: str("What to look for, e.g. 'memory', 'browser use', 'OpenClaw'") }),
     annotations: { readOnlyHint: true },
     execute: async (input) => {
@@ -47,7 +47,7 @@ const TOOLS: Tool[] = [
   {
     name: "get_stack",
     description:
-      "Get how one agent is built, layer by layer, with evidence URLs and sources. On closed stacks, layers in notDisclosed are unknown, not absent.",
+      "Get how one agent is built, layer by layer, with evidence URLs and sources. On closed and documented stacks, layers in notDisclosed are unknown, not absent. Stacks with disclosure 'example' are designs, not products.",
     inputSchema: schema({ slug: str("Stack slug, e.g. openclaw, chatgpt-dots, pi, poke") }),
     annotations: { readOnlyHint: true },
     execute: (i, o) => getJson(`/api/stacks/${encodeURIComponent(String(i.slug))}.json`, o?.signal),
@@ -61,8 +61,8 @@ const TOOLS: Tool[] = [
   },
   {
     name: "get_option",
-    description: "Get one component's datasheet: summary, facts, links, caveats, recent news and the stacks that use it.",
-    inputSchema: schema({ layer: str("Layer id, e.g. memory"), option: str("Option id, e.g. past-dev") }),
+    description: "Get one component's datasheet: summary, facts, links, caveats, recent news and the stacks that use it, with example designs counted apart (usage).",
+    inputSchema: schema({ layer: str("Layer id, e.g. router"), option: str("Option id, e.g. openrouter") }),
     annotations: { readOnlyHint: true },
     execute: (i, o) =>
       getJson(`/api/options/${encodeURIComponent(String(i.layer))}/${encodeURIComponent(String(i.option))}.json`, o?.signal),

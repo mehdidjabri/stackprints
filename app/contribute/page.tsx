@@ -36,7 +36,7 @@ export default function Contribute() {
     "channels": ["telegram", "email"],
     "model": "claude-sonnet-5-5",
     "harness": "pi",
-    "memory": ["past-dev", "memory-md"]
+    "memory": "memory-md"
   }
 }`}</code>
       </pre>

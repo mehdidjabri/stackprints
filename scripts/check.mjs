@@ -43,6 +43,7 @@ for (const l of layers) {
     if (o.url && /^https?:/.test(o.url)) errors.push(`${at}: url without protocol please`);
     if (o.logo && !fs.existsSync(`content/logos/${o.logo}.svg`)) errors.push(`${at}: missing content/logos/${o.logo}.svg`);
     if (o.profile && !["model", "product", "protocol", "pattern"].includes(o.profile)) errors.push(`${at}: unknown profile`);
+    if (o.affiliation !== undefined && (typeof o.affiliation !== "string" || !o.affiliation)) errors.push(`${at}: affiliation must be one sentence`);
     if (o.facts && !(Array.isArray(o.facts) && o.facts.every((f) => Array.isArray(f) && f.length === 2 && f.every((x) => typeof x === "string"))))
       errors.push(`${at}: facts must be [label, value] string pairs`);
     for (const [k, v] of Object.entries(o.links ?? {})) if (!/^https:\/\//.test(v)) errors.push(`${at}: links.${k} must be an https URL`);

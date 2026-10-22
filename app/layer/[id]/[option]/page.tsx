@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { StackCard } from "@/components/StackCard";
 import { Title } from "@/components/Title";
-import { SITE, getLayers, getNews, getOption, usedBy } from "@/lib/data";
+import { SITE, getLayers, getNews, getOption, usage, usageText } from "@/lib/data";
 import { JsonLd } from "@/lib/jsonld";
 import { optionHref, withMarkdown } from "@/lib/links";
 import type { Option } from "@/lib/types";
@@ -55,7 +55,9 @@ export default async function OptionPage({ params }: Props) {
   const { layer, option: o } = found;
   const layers = getLayers();
   const news = o.profile === "pattern" ? undefined : getNews(layer.id, o.id);
-  const stacks = usedBy(layer.id, o.id);
+  // Example designs are the site's own, so they're counted and listed apart from real stacks.
+  const used = usage(layer.id, o.id);
+  const { stacks, examples } = used;
   const alternatives = layer.options.filter((x) => x.id !== o.id);
   const links = Object.entries(o.links ?? {});
   if (!links.length && o.url) links.push(["site", `https://${o.url}`]);
@@ -98,7 +100,7 @@ export default async function OptionPage({ params }: Props) {
       <div className="meta-line">
         {o.profile ? PROFILE[o.profile] : "Option"}
         {o.open && " · open"}
-        {stacks.length > 0 && ` · in ${stacks.length} stack${stacks.length > 1 ? "s" : ""}`}
+        {usageText(used) && ` · ${usageText(used)}`}
         {o.url && (
           <>
             {" · "}
@@ -108,6 +110,11 @@ export default async function OptionPage({ params }: Props) {
           </>
         )}
       </div>
+      {o.affiliation && (
+        <p className="muted small reading">
+          Disclosure: {o.affiliation} <Link href="/about/#affiliation">About</Link>
+        </p>
+      )}
 
       {/* Datasheet: the component itself on the left, its pin-out on the right. */}
       <section className="sheet">
@@ -233,6 +240,17 @@ export default async function OptionPage({ params }: Props) {
           <h2 className="block-head">Stacks using {o.name}</h2>
           <div className="grid">
             {stacks.map((s) => (
+              <StackCard key={s.slug} stack={s} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {examples.length > 0 && (
+        <section className="block">
+          <h2 className="block-head">Example designs using {o.name}</h2>
+          <div className="grid">
+            {examples.map((s) => (
               <StackCard key={s.slug} stack={s} />
             ))}
           </div>

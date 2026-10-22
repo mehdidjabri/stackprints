@@ -20,6 +20,7 @@ export function Trending({ limit = 8 }: { limit?: number }) {
               <span className="chip-name">{option.name}</span>
               <span className="chip-note">
                 {layer.name} · {count} {count === 1 ? "story" : "stories"}
+                {option.affiliation && <span title={option.affiliation}> · affiliated</span>}
               </span>
             </span>
           </Link>

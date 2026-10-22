@@ -3,8 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StackView } from "@/components/StackView";
 import { Title } from "@/components/Title";
-import { SITE, getLayers, getStack, getStacks, resolve } from "@/lib/data";
-import { DISCLOSURE, unknownLabel } from "@/lib/disclosure";
+import { SITE, affiliated, getLayers, getStack, getStacks, resolve } from "@/lib/data";
+import { DISCLOSURE, disclosureMark, slotsNote, unknownLabel } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
 import { primaryLink, prettyUrl, withMarkdown } from "@/lib/links";
 
@@ -47,11 +47,19 @@ export default async function StackPage({ params }: Props) {
   const layers = getLayers();
   const notUsed = layers.filter((l) => s.notUsed?.includes(l.id));
   const missing = layers.filter((l) => !(l.id in s.layers) && !s.notUsed?.includes(l.id));
+  // Where an empty slot means "not used", every unlisted layer is absent; elsewhere only confirmed ones are.
+  const absent = layers.filter((l) => !(l.id in s.layers) && (!unk || s.notUsed?.includes(l.id)));
+  const own = affiliated(s);
   // Sources are numbered; evidence URLs not in the list get appended so every citation resolves.
   const sources = [...(s.sources ?? [])];
   for (const u of Object.values(s.evidence ?? {}).flat())
     if (!sources.some((x) => x.url === u)) sources.push({ title: prettyUrl(u), url: u });
   const cite = (u: string) => sources.findIndex((x) => x.url === u) + 1;
+  // A kind made only of example designs says so in the menu, as each example does.
+  const kindHint = (k: string) => {
+    const xs = all.filter((x) => x.kind === k);
+    return xs.every((x) => x.disclosure === "example") ? `${xs.length} example${xs.length > 1 ? "s" : ""}` : String(xs.length);
+  };
 
   return (
     <article>
@@ -89,7 +97,7 @@ export default async function StackPage({ params }: Props) {
               label: k,
               href: `/stack/${all.find((x) => x.kind === k)!.slug}/`,
               current: k === s.kind,
-              hint: String(all.filter((x) => x.kind === k).length),
+              hint: kindHint(k),
             })),
           },
           {
@@ -97,7 +105,7 @@ export default async function StackPage({ params }: Props) {
             logo: s.logo,
             items: all
               .filter((x) => x.kind === s.kind)
-              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug, logo: x.logo })),
+              .map((x) => ({ label: x.name, href: `/stack/${x.slug}/`, current: x.slug === s.slug, logo: x.logo, hint: disclosureMark(x.disclosure) ?? undefined })),
           },
         ]}
       />
@@ -110,6 +118,7 @@ export default async function StackPage({ params }: Props) {
         <span>
           {rows.length} {unk ? "known layers" : "layers"}
           {unk && missing.length > 0 && ` · ${missing.length} ${unk.toLowerCase()}`}
+          {absent.length > 0 && ` · ${absent.length} not used`}
         </span>
         {s.author && (
           <>
@@ -132,6 +141,13 @@ export default async function StackPage({ params }: Props) {
           </>
         )}
       </div>
+      {d && (
+        <p className="muted small reading">
+          {DISCLOSURE[d].about}
+          {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}. {slotsNote(d, notUsed.length)}{" "}
+          <Link href="/about/#disclosure">How to read a stack</Link>
+        </p>
+      )}
       <p className="lede">{s.description}</p>
       <div className="toolbar">
         {LINKS.filter(([k]) => s.links?.[k]).map(([k, label]) => (
@@ -180,21 +196,22 @@ export default async function StackPage({ params }: Props) {
             <strong>{unk}:</strong> {missing.map((l) => l.name).join(", ")}.
           </p>
         )}
-        {notUsed.length > 0 && (
+        {absent.length > 0 && (
           <p className="muted">
-            <strong>Not used:</strong> {notUsed.map((l) => l.name).join(", ")}.
+            <strong>Not used:</strong> {absent.map((l) => l.name).join(", ")}.
           </p>
         )}
-        {d && (
-          <p className="muted small">
-            {DISCLOSURE[d].about}
-            {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}.
+        {own.length > 0 && (
+          <p className="muted">
+            <strong>Disclosure:</strong> this {d === "example" ? "example" : "stack"} uses {own.map((o) => o.name).join(", ")}.{" "}
+            {[...new Set(own.map((o) => o.affiliation))].join(" ")} <Link href="/about/#affiliation">About</Link>
           </p>
         )}
 
         {sources.length > 0 && (
           <>
-            <h2>Sources</h2>
+            {/* An example cites no evidence: its list is reading on the parts it hinges on. */}
+            <h2>{d === "example" ? "Further reading" : "Sources"}</h2>
             <ol className="sources">
               {sources.map((src) => (
                 <li key={src.url}>

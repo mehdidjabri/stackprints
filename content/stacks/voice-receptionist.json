@@ -3,7 +3,7 @@
   "name": "Voice Receptionist",
   "kind": "Voice agent",
   "tagline": "Answers the phone, books the appointment, texts the confirmation.",
-  "description": "An example design for a small-business phone agent: calls arrive over SIP at OpenAI's Realtime API, a speech-to-speech model, and the OpenAI Agents SDK attaches a realtime agent to each call. It books through calendar and CRM tools, asks a person before sensitive actions, uses a smaller text model for SMS confirmations and call summaries, and keeps transcripts and evals for every call.",
+  "description": "An example design for a small-business phone agent: calls arrive over SIP at OpenAI's Realtime API, a speech-to-speech model, and the OpenAI Agents SDK attaches a realtime agent to each call. It books through calendar and CRM tools, asks a person before sensitive actions, uses a smaller text model for SMS confirmations and call summaries, and keeps transcripts and evals for every call. In this design, past.dev remembers returning callers and their bookings.",
   "disclosure": "example",
   "sources": [
     {

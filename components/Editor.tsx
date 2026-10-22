@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { newFileUrl, slugify } from "@/lib/github";
 import { prettyUrl } from "@/lib/links";
 import { decodeDraft, encodeDraft, loadSaved, storeSaved } from "@/lib/share";
-import { unknownLabel } from "@/lib/disclosure";
+import { DISCLOSURE, disclosureMark, unknownLabel } from "@/lib/disclosure";
 import type { Draft, Layer, Stack } from "@/lib/types";
 import { Board } from "./Board";
 import { Logo } from "./Logo";
@@ -143,6 +143,12 @@ export function Editor({
 
   const kinds = [...new Set(presets.map((p) => p.kind))].sort();
   const kind = preset?.kind ?? "Personal stack";
+  // A kind made only of example designs says so in the menu, as each example does.
+  const kindHint = (k: string) => {
+    const ps = presets.filter((p) => p.kind === k);
+    return ps.every((p) => p.disclosure === "example") ? `${ps.length} example${ps.length > 1 ? "s" : ""}` : String(ps.length);
+  };
+  const mark = preset ? disclosureMark(preset.disclosure) : null;
 
   /** A native select listing a layer's options not yet picked. */
   const picker = (layer: Layer, picks: string[], label: string, aria: string) => {
@@ -179,7 +185,7 @@ export function Editor({
                   onClick={() => k !== kind && edit(fromPreset(presets.find((p) => p.kind === k)!))}
                 >
                   <span>{k}</span>
-                  <small>{presets.filter((p) => p.kind === k).length}</small>
+                  <small>{kindHint(k)}</small>
                 </button>
               </li>
             ))}
@@ -217,6 +223,7 @@ export function Editor({
                         {p.logo && <Logo option={{ name: p.name, logo: p.logo }} />}
                         {p.name}
                       </span>
+                      {disclosureMark(p.disclosure) && <small>{disclosureMark(p.disclosure)}</small>}
                     </button>
                   </li>
                 ))}
@@ -229,10 +236,17 @@ export function Editor({
       </nav>
       <div className="meta-line">
         {Object.keys(draft.layers).length} layers
+        {mark && !dirty && (
+          <>
+            {" · "}
+            <span title={DISCLOSURE[preset!.disclosure!].about}>{mark}</span>
+          </>
+        )}
         {preset && dirty && (
           <>
             {" · remixed from "}
             <Link href={`/stack/${preset.slug}/`}>{preset.name}</Link>
+            {preset.disclosure === "example" && " (example)"}
             {" · "}
             <button className="link" onClick={() => edit(fromPreset(preset))}>
               reset
