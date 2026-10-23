@@ -1,0 +1,36 @@
+# Every pull request, and every push that isn't to main: the content checks, the site build,
+# and the MCP servers' typecheck and tests.
+name: check
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      # Tests that need a build (the site's API, the Worker bundle) fail when it is missing, rather than skip.
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The MCP tests read their content fixtures from a pinned commit (FIXTURE_SHA in mcp/test/helpers.ts).
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            mcp/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - run: npm ci
+        working-directory: mcp
+      - run: npx tsc -p .
+        working-directory: mcp
+      # The public Worker answers from this bundle; its tests run against the real entry point.
+      - run: npm run bundle
+        working-directory: mcp
+      - run: npx vitest run
+        working-directory: mcp

@@ -1,0 +1,29 @@
+// The public MCP Worker. Run `npm run bundle` first (deploy:public does): it embeds generated/bundle.json.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "stackprints-mcp",
+  "main": "src/workers/public.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "vars": {
+    "SITE_URL": "https://stackprints.com",
+    "REPO_URL": "https://github.com/stackprints/stackprints"
+  },
+  // Secret, optional: GITHUB_READ_TOKEN (wrangler secret put GITHUB_READ_TOKEN -c wrangler.public.jsonc),
+  // a fine-grained token with read access to public repositories only, so get_submission_status isn't
+  // held to GitHub's 60 anonymous reads an hour per address, which Cloudflare's egress shares.
+  //
+  // Fair use, per address (CF-Connecting-IP; an IPv6 /64 counts as one). claude.ai and other connector
+  // platforms send every user's calls from a few shared addresses, so the limit is generous and a WAF
+  // rate-limiting rule on /mcp, counted across locations, stops floods. namespace_id is any number
+  // unique to this account; keep limit and period in step with LIMIT and PERIOD in src/workers/public.ts.
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 600, "period": 60 }
+    }
+  ]
+  // The site Worker forwards stackprints.com/mcp here through a service binding. To serve a host of its own:
+  // "routes": [{ "pattern": "mcp.stackprints.com", "custom_domain": true }]
+}

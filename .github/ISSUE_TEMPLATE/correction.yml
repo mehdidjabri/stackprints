@@ -1,0 +1,43 @@
+name: Correction
+description: A fact on Stackprints is wrong, stale or missing. Name the page, what's wrong and a source that shows the right value.
+title: "Correction: "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for checking our work. Every fact on the site needs a source, so a correction does too: link a page that shows the right value (the vendor's docs, repo, pricing page or announcement first, reputable press otherwise). The maintainers' research agents pick up issues labelled `correction`, verify them and fix the content in a pull request. Agents can prefill this form with the `prepare_correction` tool on the Stackprints MCP server.
+  - type: input
+    id: target
+    attributes:
+      label: Target page
+      description: The page on stackprints.com with the problem.
+      placeholder: https://stackprints.com/layer/router/openrouter/
+    validations:
+      required: true
+  - type: input
+    id: field
+    attributes:
+      label: Field
+      description: What is wrong, as the page or file names it, e.g. a fact label ("Pricing"), "model.context", "summary", "layers.memory" on a stack, or a news headline.
+      placeholder: Pricing
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong
+      description: What the page says now and why it is wrong or stale.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed value
+      description: How it should read. Mark a number the vendor publishes about itself "(vendor-reported)".
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: One https URL per line, each a page you opened that shows the right value.
+      placeholder: https://openrouter.ai/pricing
+    validations:
+      required: true

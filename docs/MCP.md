@@ -1,409 +1,229 @@
-# Stackprints MCP servers: proposal
+# Stackprints MCP servers
 
-Status: proposal, 2026-10-22. Nothing here is built yet. Produced by a research and design workflow: four research agents, three independent architectures (static-first, Cloudflare-native, hybrid), two judges (a pragmatic CTO and a trust-and-safety reviewer), and a synthesis. Both judges picked the static-first design; this is that design with the best ideas from the others grafted on.
+Status, 2026-10-23: built and tested, not yet deployed. The code is in [`mcp/`](../mcp); how to set it up is in [mcp/README.md](../mcp/README.md). This page describes what is built and why. It replaces the proposal of 2026-10-22, which is in git history.
 
-## Should users have accounts?
+## What there is
 
-No. Do not build Stackprints accounts: no passwords, no email, no profiles, no upvotes, and no website login.
+- **The public MCP server** (`stackprints-mcp`, `mcp/src/servers/public.ts`). Anyone's agent, no sign-in, read-only, stores nothing. It reads the catalogue and prepares submissions that the user opens on GitHub as themselves. It answers from a bundle of the site's JSON API and content, built with the site at deploy, so it always agrees with the site. Served at `stackprints.com/mcp`.
+- **The site Worker** (`stackprints`, `mcp/src/workers/site.ts`). The static export in `out/` as Workers Static Assets, with the rules `vercel.json` describes for other hosts: markdown twins for agents that ask, content types, discovery and canonical `Link` headers, markdown 404s. It hands `/mcp` to the public server through a service binding.
+- **The admin MCP server** (`stackprints-admin`, `mcp/src/servers/admin.ts`). The maintainers' agents research and write content through it. Private: every call needs a GitHub sign-in or an API key. Every write is a commit to the content repository, which is the site's database. Served at `admin.stackprints.com/mcp`.
+- **Local servers** (`mcp/src/local/`). Both servers over stdio for this machine. The local admin server writes to this checkout with git instead of GitHub's API.
+- **Shared code.** `lib/validate.mjs` holds the content checks. `npm run check`, CI, the public `validate_stack` and the admin `validate_changeset` and `submit_changeset` all run it, so an agent's change passes exactly when CI would pass it. The read tools return the site's own JSON API, built by `lib/agent.ts`.
 
-- Reading stays anonymous forever. That covers the site, the static JSON API and every read, graph, plan or validate tool on the public MCP. This keeps the public promises in lib/agent.ts true: "no accounts, no ads, no tracking" (line 183), no cookies (199), and "no API key, no rate-limit tiers" (218). A single fair-use limit that applies to everyone is not a tier, but the Pricing copy needs a one-line note when it ships.
-- GitHub is the identity, and only when something writes. In v1 a user's agent calls prepare_stack_submission and gets back the file plus a pre-filled PR link, and the user opens the PR as themselves. The PR author is a GitHub-verified identity and Stackprints stores nothing.
-- "Sign in with GitHub" through MCP OAuth comes only if the data shows agents cannot open PRs themselves (phase 4). It would store the numeric GitHub id and login only: no email and no kept GitHub token. A bot opens the PR with a Co-authored-by credit. The PRIVACY, About and Pricing copy change in the same PR that ships it.
-- Never add email or magic links: they bring personal data, spam and deliverability work for an audience that already has GitHub. Never add upvotes or profiles: they invite vote fraud and clash with "costly signals beat cheap ones" and "never sponsored". The past.dev affiliation would make any vote-based ranking look self-serving.
-- Saved stacks stay where they are today: localStorage, the #s= share links, and the user's agent.
-- Vendors who want to correct or claim their page later prove domain ownership (a DNS TXT record or a /.well-known file), the way the MCP Registry and Glama do. That needs no account.
-- Admin is not an accounts question. It is an allowlist of GitHub ids (you, plus an optional backup) on a separate server.
+Both servers speak Streamable HTTP, MCP 2026-07-28, and still answer the 2025 handshake. They keep no sessions; the admin server builds each request's tools for its caller's scopes.
 
-## Should everything run on Cloudflare?
+## Accounts
 
-Yes, for everything that runs. No for the content store and no for the research reasoning.
+There are no Stackprints accounts. Reading stays anonymous: the site, the JSON API and every public MCP tool. A person who wants to add or fix something opens a pull request or an issue on GitHub as themselves; the public server only prepares it. GitHub is the only identity, and only the admin server uses it.
 
-ON CLOUDFLARE (one Workers Paid account, $5/month):
-- The static site on Workers Static Assets (not Pages). Asset hits are free and unlimited.
-- The markdown negotiation that vercel.json describes today, ported to _headers plus about 60 lines of Worker code.
-- The public MCP, on the same origin.
-- The admin MCP Worker.
-- workers-oauth-provider for admin auth. Its README (checked 2026-10-22) confirms MCP auth, CIMD and RFC 9728.
-- KV for OAuth grants and the fetch-receipt cache.
-- One small D1 database for operational state only: the change queue, link status, the audit log and later submission quotas.
-- A daily Cron Trigger for the change detector, the rate-limit binding and the WAF rule.
+## Publishing
 
-There is nothing to migrate. stackprints.com does not resolve, github.com/stackprints/stackprints returns 404, and the local repo has no git remote. This is a first choice of host. On Vercel the site's `output: export` cannot serve the MCP route handlers, so it would need a second project, and Hobby forbids commercial use, so Pro at $20 per seat each month. Cloudflare is cheaper and runs everything in one place.
+The repository is the database. A change an agent submits through the admin server is checked and committed:
 
-NOT ON CLOUDFLARE:
-- Content stays as JSON in a public GitHub repo. The only way to publish is a reviewed, merged PR. The PR history is the audit trail that "never fabricate, every claim sourced" depends on. D1 never holds or renders content.
-- Research reasoning stays in your Claude agents (a Claude Code cloud scheduled task, with claude-code-action in GitHub Actions as the fallback). Cloudflare runs no LLM in this design.
+- **Straight to `main`** when the caller holds `content:publish`, every check passes and no claim is marked manual. Every push to `main` deploys (`.github/workflows/deploy.yml`), so the change is live a few minutes later.
+- **As a pull request** otherwise, or when the agent asks for one. It waits for a person to merge it.
 
-NOT USED IN V1: Pages, McpAgent or Durable Object sessions (deprecated), Workflows, Queues, R2, Browser Run, Workers AI or Vectorize, Cloudflare's own Markdown for Agents and WebMCP injection (we ship our own), and "Workers Caching" (it bills static cache hits). Cloudflare Access is deferred; see the admin auth notes.
+The proposal had only the second lane: a bot could open pull requests but never publish. The direct lane exists because the hot list goes stale in a day and the news in a week, and one reviewer can't merge that often. It is guarded by the safeguards below, and every publish can be undone.
 
-GOTCHAS:
-- Workers Paid is mandatory. On Free, routes matched by run_worker_first return 429 instead of falling back to assets once 100k requests a day is exceeded.
-- Lock-in is limited to the negotiation Worker, KV/D1 bindings and the OAuth library. Content, the out/ build and the MCP tool code (standard Request/Response plus the MCP SDK) all port.
+### Safeguards
 
-## Architecture
+- **The server fetches every source itself.** `fetch_source` reads the page and keeps a receipt: its text, a SHA-256 and the time. A URL the content doesn't already cite can only go into a proposal with a receipt from the last 14 days, or 48 hours for the hot list. `search_x` gives each post it returns a receipt too. "Only cite pages you opened" is a rule the server enforces, not one it trusts.
+- **The fetch is safe to expose.** Public https pages only: no IP literals, internal names, other ports or private addresses, checked again on every redirect (at most 5), with time and size capped and our own hosts refused. Each key or account may fetch 2,000 pages and run 300 X searches a day.
+- **Quotes are checked.** Every fact a proposal adds or changes needs a claim: the field, a URL and a quote of 8 to 300 characters, which must appear in the text the server fetched. Verified claims become the fact's citation. News titles and dates are compared with the page, a published prompt must appear on its source page, and a post on X must be credited to its real author.
+- **Manual claims force a pull request.** A fact no machine can check (a PDF, a paywall, a script-only page) goes in the proposal's `manual` list with a reason. It is named in the commit message as `MANUAL CHECK`, and its changeset can only become a pull request.
+- **The shared validator.** `validate_changeset` and `submit_changeset` run `lib/validate.mjs` on `main` with the changes on top. Errors already on `main` are reported apart and don't block. Logos are held to a strict allowlist of elements and attributes, one colour, under 8,000 bytes, with no stylesheet, class, script or outside link; the rules are in the validator, so CI enforces them on every logo too.
+- **Only content can change.** A changeset can write `content/layers.json`, `content/hot.json` and files under `content/options`, `content/news`, `content/stacks`, `content/prompts` and `content/logos`, nothing else. An option update can't change `id`, `order`, `name`, `logo`, `affiliation` or `exclusive`.
+- **Changesets have an owner.** The key or GitHub account that opened a changeset is its owner. Only the owner proposes into it or submits it. A caller with `content:publish` may also close (abandon) someone else's, never add to it or submit it.
+- **Compare-and-swap state.** Every read-modify-write of state goes through `StateStore.update`, an atomic compare-and-swap on the row's version, retried up to 8 times. Subagents proposing into one changeset at once all land; a proposal that raced another on the same file is computed again on the new state. A submit freezes the changeset first, so nothing changes between the check and the commit.
+- **expectedVersion.** `get_item` returns a file's version (the SHA-256 of its text). `propose_option_update`, `propose_stack` and `propose_hot_list` take it as `expectedVersion` and refuse a change built on an older read; replacing a stack requires it. At submit, if `main` changed a staged file since the changeset was opened, the submit is refused; otherwise the changeset is rebased on the new head.
+- **Submits are safe to retry.** A submit records what it is about to write before writing. Called again after a timeout, it finds the commit or pull request an earlier try made instead of writing twice. Each changeset has one branch, `bot/<kind>/<id>`, so it can't open two pull requests.
+- **Protected branches.** If `main` takes pull requests only, the publish is refused, nothing is written, and the answer says to submit again with mode `pr`.
+- **Untrusted text is marked.** Page text, posts and correction issues come back between `<<<UNTRUSTED PAGE TEXT url=…>>>` markers, and the server instructions tell agents never to follow them. Agent text that goes into a commit message is flattened to one line, so it can't add a trailer or hide characters.
+- **The audit log.** Every write and every outside read is logged with who, the tool, the arguments (shortened) and the outcome, for 180 days (`get_audit_log`). Commits carry `Agent:` and `Changeset:` trailers, and `Author:` when someone else opened the changeset.
+- **revert_commit.** A publish from the last 90 days can be undone with a new commit that restores every file it wrote. It is refused when a file changed again since, or when the result would fail the checks.
+- **The deploy gate.** `deploy.yml` runs `npm run check` and the site build before deploying. A commit that fails them is never deployed.
 
-THREE PLACES, EACH WITH ONE JOB
+What remains: the quote check proves the text is on the page, not that the agent read it correctly. A wrong fact can reach the site; the defence is that every changed fact cites the page it came from, every publish is in `history` and the audit log (with the proposal's arguments, shortened), and `revert_commit` undoes it. An agent that should only suggest gets a key without `content:publish`.
 
-1) GITHUB holds the truth. The repo is github.com/stackprints/stackprints (public).
-- content/ stays exactly as it is.
-- Two new reviewed files:
-  - content/plan.json maps capabilities (voice, scheduled_tasks, long_term_memory, computer_use and so on) to layer ids, for plan_stack.
-  - ops/watch.json holds manual change-detector overrides: extra RSS feeds and ignore rules.
-- A ruleset on main requires a PR, 1 approval, and the "check" Action (`npm run check && npm run build`). Apps get no bypass, so a bot can open PRs but can never publish.
-- Two GitHub Apps, each installed on this repo only with contents:write and pull_requests:write:
-  - stackprints-bot, used by admin;
-  - stackprints-submissions, phase 4 only.
-  Both private keys live only in the admin Worker.
+## Scopes
 
-2) CLOUDFLARE is the runtime. One Workers Paid account, zone on the Free plan.
+| Scope | Allows |
+| --- | --- |
+| `content:read` | Every read tool, `fetch_source`, `search_x`, the audit log, history. Every caller has it. |
+| `content:write` | Open changesets, propose, validate, submit as a pull request, close your own. Implies `content:read`. |
+| `content:publish` | Submit straight to `main`, revert a publish, close anyone's changeset. Implies `content:write`. |
+| `keys:manage` | Create, list and revoke API keys. Implies `content:read`. Not on the local server. |
 
-Worker "stackprints" (stackprints.com):
-- Static Assets from out/ (2,895 files; html_handling auto-trailing-slash; markdown 404).
-- _headers carries the static half of vercel.json: content types, CORS on /api/* and /.well-known/*, the Link and X-Robots-Tag headers.
-- A small fetch handler runs first on HTML routes only (run_worker_first excludes /_next/*, /api/*, *.md, *.json, *.txt and *.svg). When Accept is text/markdown or the User-Agent matches the AI-bot list, it serves the .md twin through env.ASSETS.fetch. It falls through to HTML when there is no twin, and sends Vary: Accept, User-Agent.
-- It also serves /mcp, the public MCP:
-  - built with createMcpHandler, stateless, MCP 2026-07-28, still answering the 2025 initialize handshake;
-  - imports worker/generated/content.json, the 2.3 MB bundle emitted by the build from the same commit as the site.
+Each caller sees only the tools its scopes allow.
 
-Worker "stackprints-admin" (admin.stackprints.com/mcp):
-- Its own workers-oauth-provider, with GitHub as the upstream IdP and an allowlist of GitHub ids.
-- Bindings: KV (OAUTH_KV plus a 14-day fetch-receipt cache) and D1 "stackprints-ops" (changes, link_status, audit; later quotas and submissions).
-- A daily Cron Trigger runs the change detector.
-- noindex, no CORS, and never listed in ard.json, ai-catalog.json, llms.txt or any registry.
+## Auth
 
-3) CLAUDE does the research. Your agents run as a Claude Code cloud scheduled task, with the admin MCP as their only connector, following a committed /refresh skill. The fallback is claude-code-action on a GitHub Actions cron.
+**GitHub sign-in** for claude.ai and any client that signs in. The admin Worker is its own OAuth 2.1 server (`@cloudflare/workers-oauth-provider`): our consent page, then GitHub as the identity, then a grant only for GitHub accounts whose numeric id is in `ADMIN_GITHUB_IDS`. It is `"1470765"`, the owner (login mehdidjabri). Logins are shown, never checked: a login can be renamed and claimed by someone else, an id can't. The id is checked again on every request, so removing it locks the account out at once. GitHub's token is used once to learn who signed in, then revoked.
 
-SHARED CODE, SO NOTHING DRIFTS
-- lib/validate.mjs: the scripts/check.mjs rules as pure functions. The CLI, CI, validate_stack and validate_changeset all call it.
-- lib/tools.ts: tool names, descriptions and schemas. Both components/WebMcp.tsx and the remote MCP use it, keeping today's names (search_stackprints, list_stacks, get_stack, get_layer, get_option).
-- scripts/mcp-bundle.mjs: writes the content bundle with data_version (git SHA plus build date), the search index and the MCP server card.
+The consent page always grants `content:read`. It offers `content:write` and `content:publish`, ticked when the client asks for them, and `keys:manage` only when the client asks for it, unticked. Access tokens last an hour. A token issued on one host is refused on another. Clients register dynamically (claude.ai does) or with a Client ID Metadata Document.
 
-Every MCP answer carries data_version and the HTML page URL to cite. The site, the static API, the markdown twins, llms.txt, WebMCP and both MCPs all serve main from one build, so they cannot disagree.
+**API keys** for agents that don't sign in. A key (`spk_…`) is shown once; the server keeps its SHA-256, name, scopes and who minted it.
 
-DEPLOY AND DISCOVERY
-- The check Action runs on every PR. On push to main, Actions (or Workers Builds) runs wrangler deploy for both Workers.
-- Bot PRs are on in-repo branches, so they get a Workers preview URL, which is required before merge. Community PRs from forks get the CI check only, because previews would need secrets exposed to forks.
-- Public discovery:
-  - a server card at /mcp/server-card and /.well-known/mcp/server-card.json;
-  - application/mcp-server-card+json entries in ard.json and ai-catalog.json;
-  - the server named in llms.txt;
-  - the MCP Registry as com.stackprints/stackprints, verified with /.well-known/mcp-registry-auth;
-  - Smithery;
-  - the Claude Connectors Directory (authless listings are allowed).
+- A caller can only mint or revoke keys whose scopes it holds itself.
+- Revoking a key also revokes every key it minted, down the chain.
+- Keys minted by a GitHub account, directly or through other keys, stop working when that id leaves `ADMIN_GITHUB_IDS`.
+- `list_api_keys` shows when each key was last used, to the hour.
 
-AUTH SUMMARY
-- Public: anonymous in v1. Phase-4 writes would use lazy OAuth, answering 401 at the HTTP layer before the SDK runs, with a separate audience.
-- Admin: OAuth (CIMD on, DCR as fallback, PKCE S256, RFC 9728 metadata) granting only to GitHub ids in ADMIN_GITHUB_IDS. Scopes:
-  - content:read and content:propose for scheduled agents;
-  - content:manage for close_changeset, granted only to a separate interactive connector entry.
-  The library advertises scopes but does not enforce them, so every handler checks ctx.auth.scope and has a unit test for it.
-- A hashed static bearer limited to read and propose exists only for the GitHub Actions fallback runner, sent through .mcp.json headers.
-- Cloudflare Access with Managed OAuth was rejected for v1 for two reasons: its compatibility with claude.ai custom connectors is unverified, and the docs forbid running our own OAuth server behind it.
+**The bootstrap key.** The `BOOTSTRAP_KEY` secret (32 characters or more) acts as the owner with every scope, only while no API key exists. It mints the first key; then it stops working and should be deleted.
 
-## Admin MCP (your agents only)
+**Limits.** On the admin Worker, sign-in, token and registration requests are limited to 30 a minute per address, and so are failed authentications on `/mcp`, after which the address is refused for a minute. A client registration is capped at 8 KB and 5 redirect URIs. The public server allows 600 requests a minute per address (an IPv6 /64 counts as one) and answers past it with 429, `Retry-After` and `RateLimit` headers.
 
-- **`get_freshness_report`**: the starting call for every run. Returns counts of stale news (older than 7 days), stale options and stacks (researched older than 90 days), open change-detector entries by kind, broken or redirected evidence links, open bot and community PRs, and the last detector run with its failures. (read)
-- **`list_stale`**: items oldest first, using the same logic as scripts/news-stale.mjs. Kind is news, option or stack, with older_than_days, layer and limit filters and a cursor. Patterns are skipped for news. (read)
-- **`list_changes`**: the change-detector queue from D1. Kinds: release (GitHub releases API), feed_item (RSS/Atom), price_changed (OpenRouter models API, with a suggested patch), link_broken or redirected (weekly link-rot pass), and correction (GitHub issues labelled correction). Each entry names the option or stack and, through the evidence map, the exact facts and stack layers that cite the changed URL. (read)
-- **`get_item`**: the exact JSON of one option, news file or stack at main HEAD, with repo path, blob SHA (for optimistic concurrency), last commit date, open PRs touching it and open changes. (read)
-- **`get_research_rules`**: the current docs/RESEARCH.md and docs/NEWS.md, also exposed as resources, so every run follows the rules on main rather than a stale prompt. (read)
-- **`check_duplicate`**: fuzzy match on name, domain, repo and aliases across all layers. propose_option_create requires a clean result, which enforces RESEARCH.md rule 4. (read)
-- **`fetch_source`**: SSRF-safe fetch of an https URL. Private, link-local and metadata ranges are blocked, IP literals and our own hostnames are refused, every redirect is re-checked (at most 5), and size and time are capped. Returns the final URL, status, title or og:title, the published date from page metadata, the page text as markdown wrapped as untrusted data, a sha256 and an HMAC receipt. Writes only its own 14-day KV cache, never content. Annotations: idempotent, not destructive. (read; writes cache only)
-- **`validate_changeset`**: dry run. Applies a changeset to the bundle in memory and runs lib/validate.mjs across the whole catalogue plus the sourcing gate: receipts no older than 14 days, quote found on the page, title and date match for news, immutable fields untouched, '(vendor-reported)' present, banned-word lint. Returns errors, warnings and per-claim results. (read)
-- **`list_proposals`**: open PRs (bot changesets, community submissions and correction issues) with labels, check status, preview URL, review state and age. (read)
-- **`review_pull_request`**: pre-review of any PR. Parses the changed content files, runs the validator, re-fetches every new evidence URL and checks the quotes, flags unlabelled vendor numbers, marketing words and an author.github that does not match. Returns a report for comment_on_pull_request. (read)
-- **`get_audit_log`**: append-only D1 rows for every admin tool call: time, GitHub id, client_id, tool, argument hash, result (including refused proposals and failed fetches) and traceparent. (read)
-- **`open_changeset`**: starts a unit of work. Creates branch bot/<kind>/<date>-<rand> from main, pins base_sha, returns a changeset_id. Kind is news, option, stack or hot. Many subagents can write to one changeset, because the Worker serialises commits through the Git Data API. (write)
-- **`propose_news`**: adds news items {date, title, url, source} for one option. Every URL needs a fetch_source receipt. The title must match the page title or og:title. The date must match datePublished or article:published_time, or it is flagged 'date unverified'. Canonical URLs are deduplicated and aggregator domains denylisted. The server applies the NEWS.md merge rule (5 newest plus everything from the last 30 days, newest first) and sets `updated`. items: [] records 'checked, nothing new'. (write)
-- **`propose_option_update`**: field-level patch to one option (facts, model.*, links, summary, goodFor, watchOut, how, sources, evidence, researched). Every changed fact needs claims[] of {field, url, quote <=300 chars, vendor_reported}, with the quote found in a receipted fetch. A claim the server cannot machine-check (PDF, JS-only page, paywall, bot challenge) can be sent with verification:'manual' and a reason; it is flagged at the top of the PR. id, order, logo, name, affiliation and exclusive are rejected. (write)
-- **`propose_option_create`**: new product, model or protocol file with profile, summary, facts, links, sources and evidence, under the same claim rules. Requires a clean check_duplicate result and creates the news file alongside. order, logo and affiliation are maintainer-only. (write)
-- **`propose_stack`**: create or patch content/stacks/<slug>.json. Disclosure is required. Every pick on a non-example stack, every inUseUndisclosed layer and every supports entry needs receipted evidence, and notUsed only with a source. A version bump is refused unless the picks are re-cited in the same changeset. (write)
-- **`get_hot_list`**: the current content/hot.json with each item resolved to its page, its age, and the previous list, so a run can see what moved. (read)
-- **`search_x`**: X API v2 recent search (the last 7 days) and post lookup, with public metrics (likes, reposts, quotes, replies, views) and the author's follower count. Every post it returns gets a receipt, so propose_hot_list can cite it even though fetch_source cannot read x.com. The API key is a Worker secret. Capped per run. (read)
-- **`propose_hot_list`**: replaces content/hot.json in a hot changeset: two rows in rank order, at most 6 stacks (agent products) and 6 options (components), each naming an existing stack or option, or one created in the same changeset with propose_option_create or propose_stack. `why` is at most 120 characters and passes the word lint. Each item has 1 to 4 sources, each with a receipt under 48 hours old (search_x for x.com posts, fetch_source for the rest), and at least one dated inside the window. The server sets `updated` to today and `from` to 7 days earlier, and runs the same checks as `npm run check`. (write)
-- **`dismiss_change`**: closes a detector entry that needs no edit (cosmetic diff, irrelevant release), with a reason, so the same hash does not come back. D1 only, logged. (write)
-- **`submit_changeset`**: re-checks base blob SHAs, then stackprints-bot opens the PR. One PR per news run, and one PR per option or stack for fact changes, capped per run. The body is a generated table: field, old and new value, source URL, quote, retrieved_at, hash, and any manual-verification flags. Commit trailers carry Agent, Client-Id, Changeset and traceparent. Returns the PR URL. It never merges. (write)
-- **`comment_on_pull_request`**: posts a review note as the bot, usually the review_pull_request report. It cannot approve or merge. (write)
-- **`close_changeset`**: abandons a changeset by closing its PR and deleting its bot/* branch. destructiveHint true. Needs the content:manage scope, which only the interactive connector entry holds, never the scheduled task. (write)
+**The local admin server** has no auth: it is the person at this machine, named `local:<git user>`, with the scopes in `STACKPRINTS_SCOPES` (default read, write and publish). It has no key tools, since no server reads keys from this machine.
 
-### The hot list
+## State
 
-The cards under the tagline on the home page show what X is talking about this week ([HOT.md](HOT.md)). They go stale in days, so they get their own loop.
+The content lives in git. The admin server keeps a little state besides it:
 
-1) A separate cloud scheduled task runs twice a day, at about 07:00 and 19:00 UTC, with the same connector.
-2) It calls get_hot_list, then sweeps for candidates: search_x for the conversation itself, plus web search for press, Hacker News, GitHub trending, Reddit and Product Hunt, each cited source fetched through fetch_source.
-3) It ranks by conversation on X, corroborated by at least one other signal, and tries to refute each candidate before keeping it (HOT.md).
-4) open_changeset (kind hot), propose_hot_list, and propose_option_create or propose_stack for any hot product without a page; validate_changeset; submit_changeset. The PR is titled 'hot: YYYY-MM-DD HH:00'.
-5) MERGE. A list that waits half a day for review is already stale, so this is the one lane that may merge without you (a decision for you, below). A hot PR auto-merges only if:
-- it touches content/hot.json and nothing else (a new option or stack always waits for you);
-- validate_changeset passed and every source has a fresh receipt;
-- every item points at a page that already exists on main.
-Anything else waits for your merge like every other PR. A kill switch in KV stops auto-merge, and every merge can be reverted in one click.
+| What | Key | Kept |
+| --- | --- | --- |
+| Changesets | `changeset:<id>` | 14 days untouched while open; 90 days once submitted or closed |
+| Fetched pages (receipts) | `page:<hash of the URL>` | 14 days |
+| API keys | `apikey:…`, `apikey-id:…`, `apikey-used:…` | until revoked |
+| Revoked keys | `apikey-revoked:<hash>` | 400 days |
+| Audit log | `audit:<time>` | 180 days |
+| Daily allowances | `quota:<day>:<tool>:<caller>` | 2 days |
+| Published commits | `published:<sha>` | 90 days, for `revert_commit` |
+| Last write | `last-write` | kept |
 
-### The update loop
+On the Worker this is one D1 table, `state` (`mcp/migrations/0001_state.sql`): a key, a JSON value, a version that changes on every write, and an expiry. D1 rather than KV because KV is eventually consistent: a value written there may not be read back for a minute, and a missing key can stay missing for as long. The fetch-then-cite loop needs a receipt the moment after the fetch, and parallel subagents need atomic updates. Expired rows are invisible and swept a few at a time.
 
-PRINCIPLE: detection is cheap, deterministic and runs on Cloudflare; judgement comes from Claude and you. Nothing reaches main without receipts and your merge.
+KV holds only `OAUTH_KV`, which the OAuth library needs, and the optional `CACHE_KV`, which keeps each commit's files by sha (they never change). The local admin server keeps its state in `.stackprints/admin-state.json`, behind a lock file.
 
-1) DETECT. Admin Worker Cron, daily at 03:00 UTC, plain fetch() only, no LLM.
-- Watch targets are derived from content on every deploy:
-  - each option's GitHub repo, through the releases API with ETag requests (about 107 repos);
-  - its RSS/Atom feeds and changelogs;
-  - model.openrouter ids, from the OpenRouter models API for price and context changes;
-  - plus overrides in ops/watch.json.
-- Each new release, feed item or price change writes a row to D1 `changes`, mapped through the evidence map to the exact fact or stack layer it affects.
-- Weekly link-rot pass over every source and evidence URL already in content (about 3k, spread across nights). Dead and redirected citations become link_broken or redirected entries, because a dead citation is a sourcing failure.
-- GitHub issues labelled 'correction' (filed through prepare_correction) are pulled in as correction entries.
-- The fetcher sends an identifying User-Agent and obeys robots.txt. Blocked hosts are reported, never worked around.
-- Page-hash diffing of pricing and docs pages, and Browser Run for JS-only pages, are deferred to phase 4 because of noise.
+## Tools
 
-2) TRIGGER. A Claude Code cloud scheduled task at about 03:30, nightly, on your plan, replaces the desktop task.
-- The repo is selected only so the /refresh skill loads.
-- Its only connector is 'Stackprints Admin', granted content:read and content:propose.
-- The prompt forbids git pushes, so every write goes through the MCP and appears as stackprints-bot. You can then approve the bot's PRs, since the ruleset prevents approving your own.
-- Weekly, a second task does stack research and pre-reviews community PRs.
+### Public server
 
-3) PICK WORK. The run calls get_freshness_report, then list_changes, which goes first, then list_stale(news, 7 days). That is about 26 options a night, so all 182 non-pattern options are still covered weekly, but changed items jump the queue and quiet items cost nothing extra.
+Anyone's agent. All read-only; nothing is stored or sent.
 
-4) RESEARCH. Subagents fan out by layer (up to 9), each reading get_research_rules first.
-- They search the web with their own tools.
-- Every page they intend to cite goes through fetch_source, which issues a receipt. That turns 'only use URLs you actually saw' into a rule the server enforces. The Worker does the fetch, so the cloud sandbox's network allowlist does not matter.
-- A page the server cannot read can only be proposed with verification:'manual' and a reason. Otherwise it is listed under 'could not verify' in the run summary, never guessed.
+- **`search_stackprints`**: full-text search over stacks, layers and options, best first, each with the page URL to cite.
+- **`list_layers`**: the 28 layers in 5 bands, with designator, description and how many options each has.
+- **`get_layer`**: one layer and every option in it, plus the prompts stacks publish for that layer.
+- **`get_option`**: one datasheet: summary, cited facts, links, good for, watch out, model fields, recent news and the stacks that use it.
+- **`list_stacks`**: every stack, filtered by disclosure, kind or an option it picks.
+- **`get_stack`**: one stack layer by layer, with its evidence, empty states, prompts, version and research date.
+- **`get_hot`**: this week's hot list, in two rows, most talked about first.
+- **`validate_stack`**: checks a stack draft with the CI validator; returns errors, warnings and a link that opens the draft on the board.
+- **`prepare_stack_submission`**: the exact file for a new stack, a prefilled GitHub new-file link, `gh` steps and the reviewer checklist.
+- **`prepare_option_submission`**: the same for a new option, after a duplicate check by name, domain and repo.
+- **`prepare_correction`**: a prefilled `correction` issue for a fact that is wrong, stale or missing.
+- **`get_submission_status`**: the state and CI checks of a submission pull request or correction issue, cached a minute.
 
-5) PROPOSE AND CHECK.
-- open_changeset;
-- propose_news, propose_option_update, propose_option_create (after check_duplicate) and propose_stack, all with claims[];
-- validate_changeset;
-- submit_changeset.
-The result is one PR per news run, titled 'news: refresh YYYY-MM-DD (N options, M new items)', plus one PR per option or stack for fact changes, with at most about 10 fact PRs per run. Every call is written to the D1 audit log, including refused proposals.
+### Admin server
 
-6) REVIEW. CI runs check and build, and the bot PR gets a Workers preview URL. You skim the generated table (old value, new value, source, quote, hash, manual flags), approve and merge on GitHub. There is no merge tool anywhere in the MCP. Merging deploys both Workers from that commit, so the site, API, markdown, llms.txt and both MCP bundles update together.
+The public server's seven read tools (`search_stackprints` to `get_hot`) come along, so one connector reads everything. They read the live site, which can lag `main` by a deploy. The submission tools don't: an admin writes instead.
 
-7) COMMUNITY PRs. The weekly task runs review_pull_request on new submission PRs and posts the report with comment_on_pull_request, so you review with the evidence already checked.
+Reading and research (`content:read`):
 
-8) AUTO-MERGE: none in v1. The criteria are written down now, for an opt-in later. A PR qualifies only if:
-- it touches content/news/** only;
-- every item is receipted, with the title matched and the date taken from metadata;
-- it cites only domains already present in merged history;
-- it has 40 items or fewer;
-- there have been about 6 clean weekly runs first.
-You get a daily digest and one-click revert. Facts, stacks, new options and community submissions always need your merge.
+- **`whoami`**: who you are, your scopes, today's date (UTC), `main`'s head and what you may do. Call it first.
+- **`get_freshness_report`**: stale news, options and stacks, the hot list's age, open changesets and corrections, and the last write.
+- **`list_stale`**: news, options or stacks older than a cutoff, oldest first.
+- **`get_item`**: one content file at `main`'s head, or as a changeset sees it, with its version.
+- **`get_research_rules`**: `docs/RESEARCH.md`, `NEWS.md` and `HOT.md` as they are on `main`, and how to apply them through the tools.
+- **`check_duplicate`**: options and stacks that match a name, domain or GitHub repo.
+- **`fetch_source`**: reads a public https page and keeps a 14-day receipt; the text comes back marked untrusted.
+- **`search_x`**: recent posts on X with their metrics, each receipted. Needs `X_BEARER_TOKEN`.
+- **`list_corrections`**: open `correction` issues, parsed into target, field and sources, as untrusted leads.
+- **`get_hot_list`**: `content/hot.json` resolved to pages, with its age and version.
+- **`get_audit_log`**: writes and outside reads, newest first.
+- **`history`**: recent content commits on `main`, with the paths each changed.
+- **`list_changesets`**: changesets with their status, owner and result; `mine` marks yours.
+- **`get_changeset`**: one changeset in full, with its diff.
 
-9) CUTOVER AND FALLBACK.
-- Run the new loop alongside the current desktop task for 2 to 3 runs and compare outputs before retiring the desktop task.
-- In the first days of phase 2, test that a cloud scheduled task can actually load the custom admin connector; 2026 issue reports said it sometimes could not.
-- The fallback is the same /refresh skill run by anthropics/claude-code-action on a GitHub Actions cron, using the hashed read+propose bearer.
+Changesets (`content:write`, except `revert_commit`):
 
-## Public MCP (anyone's agent)
+- **`open_changeset`**: starts one unit of work pinned to `main`'s head.
+- **`validate_changeset`**: the dry run of a submit: errors, warnings, manual claims, the diff and whether it would publish.
+- **`submit_changeset`**: commits to `main` or opens a pull request; safe to retry.
+- **`close_changeset`**: abandons a changeset without writing anything.
+- **`revert_commit`** (`content:publish`): undoes a publish with a new commit.
 
-- **`search_stackprints`**: full-text search over stacks, layers and options, using the same index and ranking as /search.json and the existing WebMCP tool. Returns kind, title, the page URL to cite, the matched field and data_version. (read)
-- **`list_layers`**: the 28 layers in 5 bands, with board designator, description and option count. Display names are accepted as input. The user's agent reads this to map its goal onto layers. (read)
-- **`get_layer`**: one layer and its options summarised (profile, note, open or closed, affiliation sentence), with usage counted separately for real stacks and example stacks. (read)
-- **`get_option`**: one datasheet: summary, facts with their citations and vendor-reported labels exactly as written, links, goodFor, watchOut, model fields, latest news, the affiliation sentence when present, and the stacks that use it, split into real and example. (read)
-- **`list_stacks`**: every stack with kind, tagline, disclosure (open-source, documented, closed, example) and links. Filters: disclosure, kind, uses_option. Cursor pagination, ttlMs about 1 h, cacheScope public. (read)
-- **`get_stack`**: one stack, layer by layer, in the /api/stacks/{slug}.json shape: picks with evidence URLs, supports, notDisclosed, inUseUndisclosed, notUsed, closedLayers, sources, version, author, researched, data_version. (read)
-- **`compare_options`**: 2 to 5 options from one layer side by side. Fact rows are aligned and every cell keeps its citation. A missing value reads 'not researched' and is never inferred. Also shows open or closed, real versus example usage, and affiliation. (read)
-- **`get_stack_graph`**: nodes (stacks, layers, options) and edges (picks with evidence URLs and the stack's disclosure, supports, co-occurrence). Scope is chosen stacks, a layer or one option's neighbourhood. Co-occurrence counts only open-source and documented stacks, never examples. Optional Mermaid text and a board_url (the existing #s= share link). (read)
-- **`find_similar_stacks`**: given a draft (layer to option ids) or a set of options, the closest stacks by Jaccard similarity over picks, with overlapping and differing layers. Real stacks and examples are reported separately. (read)
-- **`plan_stack`**: deterministic blueprint from a goal, capabilities[] (vocabulary from content/plan.json) and constraints (open_source_only, self_hostable, must_include, exclude, start_from). Returns the relevant layers and why, up to 5 cited candidates per layer, layer rules (exclusive, any-* only in supports), similar real stacks, explicit gaps (never invented options), a draft with disclosure 'example', its board_url, the validate_stack verdict and rankingMethod. No LLM on our side, and it saves nothing. (read)
-- **`validate_stack`**: runs the shared lib/validate.mjs (the same code as `npm run check` and CI) on a draft against current content. Returns errors with how to fix them, warnings, layers missing evidence, options that moved or were dropped (normalizeDraft), and the normalised draft with its board_url. (read)
-- **`prepare_stack_submission`**: validates, slugifies and checks for slug collisions. Returns the exact content/stacks/<slug>.json, a pre-filled GitHub new-file link (built by today's lib/github.ts newFileUrl) when the URL is short enough, a `gh` command sequence and the reviewer checklist. The user or their agent opens the PR as themselves. Nothing is stored. (read)
-- **`prepare_option_submission`**: the same for content/options/<layer>/<id>.json. It runs check_duplicate first, refuses order, logo and affiliation, and requires https links and sources. (read)
-- **`prepare_correction`**: 'this fact is wrong or stale'. Validates the target (option, fact, news item or stack pick), the proposed value and at least one https source, then returns a pre-filled GitHub issue link using the 'correction' template. The admin detector picks it up as a correction entry for your agents to research. Nothing is stored and nothing changes directly. (read)
-- **`get_hot`**: the hot list: the products people on X talk about the most this week, most first, with why, sources and each one's page. The same data as /api/hot.json and the get_hot WebMCP tool. (read)
-- **`get_submission_status`**: reads a submission PR or correction issue by number or branch from the public GitHub API (cached): open, merged or closed, check results, preview URL, review comments. (read)
-- **`submit_stack`**: phase 4 only, if the data shows agents cannot open PRs. Needs GitHub sign-in with the stacks:submit scope. Validates, gets a confirmation (MRTR elicitation, or a second call with an HMAC confirm token bound to the user and the payload hash, valid 15 minutes), then hands off through a service binding to the admin Worker, whose stackprints-submissions App opens a PR with a Co-authored-by credit and a stamped author.github. Requires an idempotency key. destructiveHint false. It never publishes. (write)
-- **`submit_option`**: phase 4 only, same flow for a new option, with check_duplicate and the same caps. (write)
-- **`withdraw_submission`**: phase 4 only. The caller withdraws their own open submission: the PR is closed and the stored payload deleted. It is also the erasure path for unmerged content; merged content stays in public git history, as the privacy page already says. (write)
+Proposals (`content:write`), each into an open changeset of your own:
 
-### Submissions
+- **`propose_news`**: new news items for one option; the server merges, sorts, trims and sets `updated`. `items: []` records "checked, nothing new".
+- **`propose_option_update`**: merges changes into one option, each new or changed fact with a quoted claim.
+- **`propose_option_create`**: a new option and its empty news file, after `check_duplicate`.
+- **`propose_stack`**: creates or replaces a whole stack.
+- **`propose_hot_list`**: replaces the hot list, both rows in full.
+- **`propose_prompt`**: a prompt a stack's makers publish, verbatim from an official source.
+- **`propose_logo`**: an SVG logo, optionally set on an option or a stack.
 
-V1 (PHASES 1-3): ANONYMOUS, NOTHING STORED, THE USER OPENS THE PR
-1. The user's agent explores (search, get_*, compare_options, get_stack_graph, find_similar_stacks) and drafts with plan_stack.
-2. It calls validate_stack. That is the CI validator itself: on a real-product stack every picked layer needs sources and evidence, and an example's description must start with 'An example design for…'.
-3. It calls prepare_stack_submission or prepare_option_submission. These return:
-   - the exact file and path;
-   - a pre-filled GitHub new-file link, or `gh` commands when the URL would be too long;
-   - the reviewer checklist.
-4. The user, or their agent with their own GitHub credentials, opens the PR. The PR author is GitHub-verified, and GitHub's own per-user open-PR caps throttle spam.
-5. Errors are reported with prepare_correction, which returns a pre-filled 'correction' issue. Your admin agents research it and propose a fix.
+API keys (`keys:manage`, Worker only):
 
-REVIEW (ALL PHASES)
-1. The required 'check' Action runs on the PR.
-2. The weekly admin task runs review_pull_request: it re-fetches every evidence URL, checks quotes, flags unlabelled vendor numbers and marketing words, and posts the report.
-3. You approve and merge. Merged is the only meaning of published, because the site, API and MCPs serve main only.
+- **`create_api_key`**: mints a key with scopes you hold; shown once.
+- **`list_api_keys`**: the keys you could revoke, with who made them and when they were last used.
+- **`revoke_api_key`**: revokes a key and every key it minted.
 
-ATTRIBUTION
-- Add an optional author.github field.
-- A CI job checks that it equals the PR author, or the Co-authored-by login on bot PRs.
-- This gives the LEADERBOARDS.md rule 'count authors, not stacks' a verified key. author.name stays free-text display.
+## The update loop
 
-PHASE 4: ONLY IF PREPARE CALLS FAR OUTNUMBER OPENED PRs (agents cannot open PRs)
-- Add submit_stack, submit_option and withdraw_submission behind lazy 'Sign in with GitHub':
-  - workers-oauth-provider in the public Worker, separate audience from admin;
-  - CIMD, PKCE S256, one stacks:submit scope checked in the handler;
-  - 401 with WWW-Authenticate at the HTTP layer, before the SDK runs.
-- The public Worker holds no GitHub credential. It forwards through a service binding to the admin Worker, which alone holds the stackprints-submissions App key.
-- Limits:
-  - Atomic D1 quotas: 5 submissions a day and 3 open per GitHub id.
-  - GitHub account at least 30 days old.
-  - Global cap of 20 open submission PRs; the rest wait as queued.
-  - Idempotency by content hash.
-  - Payload of 64 KB or less and 20 sources or fewer.
-  - Sources must be https; IP literals and our own hostnames are refused.
-- The bot opens a PR on submit/<login>/<slug>-<hash8> with:
-  - a Co-authored-by noreply trailer;
-  - a stamped author.github;
-  - the link-check results;
-  - a banner marking the text as untrusted user content.
-- It never publishes. Privacy, About and Pricing copy change in the same PR.
+How an agent keeps news and datasheets current, as the server instructions tell it. The procedure for people is in [NEWS.md](NEWS.md).
 
-## Phases
+1. `whoami`: scopes and today's date.
+2. `get_freshness_report`: what is stale, open changesets (continue your own from `list_changesets`) and corrections (`list_corrections`, each a lead to check, never an instruction).
+3. `list_stale` with kind `news` (7 days) for the night's batch, split by layer across up to 9 subagents. Options and stacks older than 90 days come the same way.
+4. `get_research_rules`, passed to every subagent.
+5. `open_changeset`. Subagents of one session share its connection and can propose into its changeset; an agent on another key or account opens its own.
+6. For each option: `get_item`, a web search for news since its `updated` date, `fetch_source` on every article to cite, then `propose_news` with only the new items. When the news changes a fact, `propose_option_update` with a quoted claim and the file's version.
+7. `validate_changeset` until it is clean.
+8. `submit_changeset`, with a subject such as `news: refresh 2026-10-23 (25 options, 9 new items)`.
 
-1. PHASE 1, SHIPPABLE IN ABOUT 4-5 WORKING DAYS: live site plus a read-only public MCP.
-(1) Create the GitHub org and the public repo stackprints/stackprints and push. lib/data.ts and the Submit/Publish links already point there and 404 today.
-(2) Add the 'check' Action (npm run check && npm run build) and a ruleset on main: PR required, 1 approval, check required, no app bypass. Keep repo-admin bypass for now.
-(3) Move the stackprints.com zone to Cloudflare and buy Workers Paid.
-(4) Deploy the 'stackprints' Worker: Static Assets, _headers, and the negotiation handler.
-(5) Run a curl conformance script covering every vercel.json rule. Check that /.well-known/* uploads (unverified). Then point DNS.
-(6) Extract lib/validate.mjs from check.mjs and lib/tools.ts from WebMcp.tsx, and add scripts/mcp-bundle.mjs.
-(7) Serve /mcp with createMcpHandler and 12 anonymous read tools: search_stackprints, list_layers, get_layer, get_option, list_stacks, get_stack, get_hot, validate_stack, prepare_stack_submission, prepare_option_submission, prepare_correction, get_submission_status. Each tool gets a title, explicit annotations, a self-contained outputSchema plus a text mirror, and data_version.
-(8) Rate limiting: a binding keyed by IP and the one Free WAF rule, with 429, Retry-After and RateLimit headers. Validate Origin. Add a fair-use line to the Pricing copy.
-(9) Test both protocol eras with MCP Inspector, Claude and Claude Code.
-(10) Keep today's desktop news task, but have it push a branch and open a PR instead of committing to main.
+## The hot list loop
 
-2. PHASE 2, ADMIN MCP AND CHANGE DETECTION (about 1.5-2 weeks).
-(1) Day 1-2 spike, before building the rest:
-- Deploy stackprints-admin with workers-oauth-provider (GitHub upstream, ADMIN_GITHUB_IDS allowlist, CIMD, scope checks with unit tests).
-- Add it as a claude.ai custom connector.
-- Prove a Claude Code cloud scheduled task can call it. If not, switch the runner to claude-code-action with the hashed bearer.
-(2) Create the stackprints-bot GitHub App and implement Git Data API commits.
-(3) KV for OAuth and the fetch cache; D1 for changes, link_status and audit.
-(4) Build the sourcing gate: path allowlist, immutable fields, receipts, quote, title and date checks, the vendor-reported rule, word lint, the manual-verification lane, base-SHA checks.
-(5) Ship the 23 admin tools and the generated PR bodies.
-(6) Daily Cron detector (GitHub releases, RSS/Atom, OpenRouter prices, correction issues) and the weekly link-rot pass.
-(7) Commit the /refresh skill and rewrite docs/NEWS.md so agents write only through the admin MCP.
-(8) Start the nightly cloud scheduled task, the twice-daily hot list task and the weekly stack and PR-review task. Make Workers preview URLs required on bot PRs.
-(9) Run alongside the desktop task for 2-3 runs, then retire it and remove the repo-admin bypass.
+The cards under the tagline ([HOT.md](HOT.md)) go stale in a day, so they get their own run, twice a day.
 
-3. PHASE 3, PUBLIC PLANNING TOOLS AND LISTINGS (about 1 week).
-(1) Write content/plan.json (capabilities to layers) and review it by PR.
-(2) Add compare_options, get_stack_graph, find_similar_stacks and plan_stack.
-(3) Neutral ranking:
-- match strength, then the number of distinct real stacks using the option, excluding examples and the vendor's own stacks, then alphabetical;
-- never `order`, never affiliation;
-- a unit test proving both are ignored;
-- the rule published on /about and in the tool description.
-(4) Add resource templates (stackprints://stack/{slug}, layer/{id}, option/{layer}/{id}), stackprints://rules/research and the design_agent_stack prompt.
-(5) Discovery:
-- a server card at /mcp/server-card and /.well-known/mcp/server-card.json;
-- ard.json and ai-catalog.json entries;
-- an llms.txt mention.
-(6) Test with ChatGPT and Cursor as well. Then list on the MCP Registry (com.stackprints/stackprints through /.well-known/mcp-registry-auth), Smithery and the Claude Connectors Directory.
+1. `get_hot_list`: what is listed, its age and its version.
+2. `search_x` for what X discussed in the last 7 days, ranked by engagement, plus web search, Hacker News, GitHub and the press for corroboration. `fetch_source` every other source. All sources must be read within 48 hours of proposing.
+3. Rank, and try to refute each candidate (HOT.md).
+4. `open_changeset` with kind `hot`. A product with no page gets one first in the same changeset: `check_duplicate`, then `propose_option_create` or `propose_stack`.
+5. `propose_hot_list` with both rows in full and the version from step 1.
+6. `validate_changeset`, then `submit_changeset` with the subject `hot: YYYY-MM-DD`.
 
-4. PHASE 4, ONLY WHEN A MEASURED SIGNAL JUSTIFIES IT. Each item is independent.
-(a) GitHub sign-in plus submit_stack, submit_option and withdraw_submission through the admin-held submissions App, with D1 quotas and privacy copy changes. Do this only if prepare calls far outnumber opened PRs.
-(b) A news-only auto-merge lane, under the pre-written criteria, after about 6 clean runs.
-(c) Page-hash diffing of pricing and docs pages, plus Browser Run for JS-only pages, if releases and feeds miss real changes.
-(d) A REST mirror (POST /api/v1/<tool> with Idempotency-Key) for agents without MCP.
-(e) An MCP App (ui://) board viewer.
-(f) Vendor claims by domain proof.
-(g) A second admin on the allowlist, and Cloudflare Access if the admin team grows.
+## Deferred
 
-## Monthly cost
+Built later, or not at all, depending on how the loops above do:
 
-INFRASTRUCTURE: about $5/month, and about $10-15 in a bad month. This is an estimate, not a quote.
+- **A change detector.** A daily cron on the admin Worker that watches each option's releases, feeds and OpenRouter prices, plus a weekly link-rot pass over every cited URL, feeding `list_changes` and `dismiss_change` tools. Today runs pick work by age (`list_stale`) and corrections.
+- **Pull request tools.** `list_proposals`, `review_pull_request` (re-fetch and check the evidence of a community pull request) and `comment_on_pull_request`.
+- **`outputSchema` and `data_version`.** Tools return structured content with a JSON text mirror but declare no output schema, and answers don't carry the build's commit.
+- **Resources and prompts.** The research rules as MCP resources, resource templates for stacks, layers and options, a `design_agent_stack` prompt.
+- **Public planning tools.** `compare_options`, `get_stack_graph`, `find_similar_stacks` and `plan_stack`, with a published neutral ranking rule.
+- **Discovery.** A server card, entries in `ard.json`, `ai-catalog.json` and `llms.txt`, and the MCP Registry, Smithery and the Claude connectors directory.
+- **Signed-in public submissions** (`submit_stack` and the like), only if prepared submissions far outnumber opened pull requests.
 
-Cloudflare:
-- Workers Paid: $5 fixed. Assume about 5k MCP calls a day plus about 500k HTML views a month through the negotiating Worker. That is roughly 0.7M requests against 10M included, and CPU inside the 30M ms included.
-- KV for OAuth and the fetch cache: $0.
-- D1 for the change queue, link status and audit: $0, far below 5 GB and 50M rows written.
-- Cron, the rate-limit binding and the one WAF rule on the Free zone: $0.
-- Browser Run, Workflows, Queues, R2 and Workers AI are not used in v1: $0. If phase 4 adds Browser Run, it is $0 within the 10 included browser-hours and about $5 at worst.
+The X API is optional. Without `X_BEARER_TOKEN`, `search_x` says so and agents find posts with web search; `fetch_source` reads x.com posts through a public mirror.
 
-Other:
-- GitHub (public repo, Actions minutes, two Apps): $0.
-- Domain renewal at registrar cost, roughly $1/month (check your registrar).
-- The X API behind search_x, only if you choose it for the hot list: a paid API tier, priced by X (check its current pricing). Not counted in the total above.
-- Recheck after 2026-12-01, when Workers Logs moves to Observability pricing.
-- Optional Pro zone, only for more WAF rate rules: +$20-25. Not recommended.
+## Known limits
 
-RESEARCH TOKENS, THE REAL VARIABLE
-- On your existing Claude plan through cloud scheduled tasks: $0 marginal up to the plan's usage limits.
-- At API rates through the claude-code-action fallback: a full weekly sweep of all options was estimated at about $55 per pass on Sonnet 5.5, roughly $230/month (unverified). Change-driven runs that research only changed or stale items should land around $50-80/month (unverified; it depends on how often vendors ship). Opus costs about 2x.
+- **Commits from forks.** GitHub serves a commit from anywhere in a repository's fork network under the original repository's URL. A prompt cited as `github.com/<vendor>/<repo>/blob/<sha>/…` could therefore come from someone's fork. The server checks the text against that URL but not that the commit is the vendor's own; that needs a GitHub API call per prompt and is left for later. Review prompts from unfamiliar commits by hand.
+- **DNS on this machine.** The local admin server checks that a page's host resolves to a public address, then fetches it, which resolves the name again. A host that answers differently the second time could reach a private address. Only port 443 is allowed and TLS must verify, so little can be reached that way. The Workers runtime doesn't have this gap (`global_fetch_strictly_public`).
+- **X through a mirror.** Without an X API key, posts are read through the public api.fxtwitter.com mirror, so their receipts depend on it.
 
-REALISTIC ALL-IN: about $5-6/month infrastructure plus $0 (subscription) to about $80 (API) for research.
+## Costs
 
-For comparison: Vercel Pro would be $20 per seat each month, and the MCP would still need a separate project and an outside auth server.
+About $5 a month for the infrastructure, more in a busy month. An estimate, not a quote.
 
-## Risks
-
-- You are the only reviewer, so 'constantly up to date' is capped by your review time. Mitigations:
-- detection first, so agents research only what changed;
-- about 26 options a night;
-- one news PR per run, with fact PRs per item and capped;
-- generated diff tables and required preview URLs;
-- admin pre-review of community PRs.
-The news-only auto-merge lane is pre-specified but stays off until about 6 clean runs.
-- Prompt injection from fetched vendor pages, community submissions and correction issues, all of which your agents read. Mitigations:
-- page and submission text is always returned as delimited untrusted data;
-- propose_* can only write whitelisted fields under content/options, content/news and content/stacks;
-- there is no merge or delete-content tool;
-- the scheduled task's grant lacks content:manage;
-- apps cannot bypass the ruleset.
-The worst case is a bad PR, never a bad publish.
-- The quote check is necessary but not sufficient: it proves the text is on the page, not that the fact was read correctly or that a number is vendor-reported. Pages the Worker cannot read (PDFs, JS-only pages, bot challenges) go through the flagged verification:'manual' lane, which is never auto-mergeable. Your merge stays the final gate.
-- Claude Code cloud scheduled tasks are a research preview. 2026 issue reports said custom connectors sometimes failed to load in them. Whether web search works under the default 'Trusted' network is unverified; fetch_source sidesteps the fetch part. Mitigations:
-- the spike on days 1-2 of phase 2;
-- run alongside the desktop task;
-- claude-code-action on GitHub Actions kept ready as the fallback runner.
-- MCP 2026-07-28 is under 3 months old. Claude's support was announced as 'rolling out', CIMD support in ChatGPT and Cursor is unverified, and Cloudflare's docs do not state which revisions createMcpHandler serves. Mitigations:
-- serve both eras from one endpoint;
-- keep DCR as the admin fallback;
-- pin SDK versions;
-- run the client test matrix before every directory listing.
-- workers-oauth-provider advertises scopes but does not enforce them, so one missed check leaks privileges. Every tool has a scope unit test, the admin server uses a separate host and audience from any public token, and CIMD needs the global_fetch_strictly_public compatibility flag.
-- Neutrality: past.dev is built by the site's team and has order 5, first in Memory. If plan_stack, compare_options or the graph ever used `order`, affiliation or example stacks, the disclosure would become a credibility problem. Mitigations:
-- the published adoption-based ranking rule;
-- examples and the vendor's own stacks excluded from usage counts;
-- the affiliation sentence on every result;
-- a unit test.
-- Promise drift: the rate-limit note now, and GitHub sign-in in phase 4, both touch the 'no accounts, no API key, no rate-limit tiers' copy in lib/agent.ts (PRIVACY, About, Pricing). The copy has to change in the same PR that ships each feature.
-- Unmet prerequisites: the repo returns 404 and the domain does not resolve today, so even the current Submit and Publish links are broken until phase 1. On the Workers Free plan, run_worker_first routes return 429 past quota, so Paid is mandatory from day 1. Whether wrangler uploads the /.well-known dot-directory is unverified. Pre-filled new-file URLs can exceed length limits for large stacks; the gh-command fallback handles that.
-- A leaked GitHub App key lets an attacker push branches and open PRs, but not merge. Mitigations:
-- the keys live only in the admin Worker, and the public Worker holds no GitHub credential;
-- one App per purpose, each scoped to this one repo;
-- key rotation;
-- the D1 audit log.
-- Vendor sites that block Cloudflare egress, or noisy feeds, can leave items as 'could not verify' or flood the change queue. Mitigations:
-- blocked hosts are shown in get_freshness_report;
-- dismiss_change with a reason suppresses a hash;
-- ignore rules in ops/watch.json;
-- page diffing deferred to phase 4.
+- **Cloudflare Workers Paid**: $5 a month, required. It includes 10 million requests a month. The site Worker runs first on every request, assets included (`run_worker_first: true`), so every asset counts. At 500,000 page views a month and a few uncached assets each, that is a few million requests.
+- **D1**: within what Workers Paid includes. A night's run writes a few hundred rows.
+- **KV**: OAuth grants, and one cached copy of the content per commit read. Within what is included.
+- **The rate-limiting binding**: no charge.
+- **GitHub**: $0 for a public repository and its Actions minutes.
+- **The X API**: only if you turn on `search_x`. A paid tier; check X's current pricing.
+- **The domain**: the registrar's price.
+- **Research tokens**, the real variable: $0 extra on a Claude plan within its limits, through claude.ai or Claude Code; at API rates, roughly $50 to $80 a month for runs that research only what is stale (unverified).
 
 ## Decisions for the owner
 
-- Make github.com/stackprints/stackprints a public repo now, under a new GitHub org, and confirm you control stackprints.com so its DNS can move to Cloudflare. Everything else, including today's Submit and Publish links, depends on this.
-- Who pays for research: your Claude subscription through a Claude Code cloud scheduled task (the default, $0 marginal, research preview), or an API key through claude-code-action on GitHub Actions (a hard dollar budget and the most auditable, about $50-80/month change-driven).
-- Your review budget and cadence: a small bot PR every night (recommended) or one larger weekly batch. Also whether you pre-commit to the news-only auto-merge criteria after about 6 clean runs, or keep merging every PR yourself.
-- Approve the neutral ranking rule for plan_stack and compare_options: adoption in real, non-example, non-vendor stacks, never `order` and never affiliation, published on /about. It puts past.dev wherever the data puts it.
-- Approve the copy changes: a fair-use rate-limit line on Pricing now. Decide whether you would ever accept GitHub sign-in for direct submissions in phase 4, which ends the unqualified 'no accounts' promise. If not, the PR-only flow is permanent.
-- How the hot list reads X: the X API behind search_x (reliable, measures engagement, a paid API tier), or web search for x.com posts only (free, undercounts smaller conversations). The first list was built without the API.
-- Whether hot-only PRs may merge themselves under the criteria in "The hot list" (recommended: the list is stale within a day), or wait for your merge twice a day.
-- Name a backup admin (a GitHub id for the admin allowlist and a second approver on main), or accept the bus factor of one.
-- Which to build first after phase 1: the admin MCP for your agents (recommended, phase 2) or the public planning tools and directory listings.
-
-## How the designs scored
-
-| Judge | Static-first | Cloudflare-native | Hybrid |
-| --- | --- | --- | --- |
-| CTO | R8 H9 C9 S9 O9 U7 | R6 H8 C7 S3 O4 U8 | R7 H8 C8 S5 O5 U8 |
-| Trust & safety | R8 H9 C9 S9 O8 U7 | R6 H7 C8 S4 O5 U9 | R6 H8 C8 S5 O6 U9 |
-
-R reliability · H honesty · C cost · S simplicity · O ops · U user value (1–10).
-
-## Research sources
-
-- **cloudflare**: https://developers.cloudflare.com/workers/static-assets/, https://developers.cloudflare.com/workers/static-assets/compatibility-matrix/, https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/, https://developers.cloudflare.com/workers/static-assets/headers/, https://developers.cloudflare.com/workers/static-assets/redirects/, https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/, https://developers.cloudflare.com/workers/static-assets/migrate-from-pages/, https://developers.cloudflare.com/workers/platform/limits/
-- **alternatives**: https://vercel.com/docs/mcp/deploy-mcp-servers-to-vercel, https://vercel.com/docs/functions/limitations, https://vercel.com/docs/workflows/pricing, https://vercel.com/blog/a-new-programming-model-for-durable-execution, https://vercel.com/docs/queues/pricing, https://mcpservers.org/agent-skills/openai/vercel-queues, https://vercel.com/docs/cron-jobs/usage-and-pricing, https://vercel.com/docs/sandbox/pricing
-- **mcp-practice**: https://modelcontextprotocol.io/specification/versioning, https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/transports, https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http, https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization, https://modelcontextprotocol.io/specification/2026-07-28/server/discover, https://modelcontextprotocol.io/specification/2026-07-28/server/tools, https://modelcontextprotocol.io/specification/2026-07-28/server/resources
-- **accounts**: /Users/mehdidjabri/Work/agenticstack/lib/share.ts, /Users/mehdidjabri/Work/agenticstack/lib/github.ts, /Users/mehdidjabri/Work/agenticstack/lib/agent.ts (PRIVACY line 199, About line 183, Pricing line 218), /Users/mehdidjabri/Work/agenticstack/lib/types.ts (author field, line 102), /Users/mehdidjabri/Work/agenticstack/scripts/check.mjs (line 112), /Users/mehdidjabri/Work/agenticstack/components/Editor.tsx, /Users/mehdidjabri/Work/agenticstack/components/SubmitForm.tsx, /Users/mehdidjabri/Work/agenticstack/components/Mine.tsx
+- **Publish the repository and the domain.** Push to `github.com/stackprints/stackprints`, create the `correction` label, move `stackprints.com` to Cloudflare. Everything else waits on this.
+- **Protect `main` or not.** No ruleset: agents with `content:publish` publish. A ruleset requiring pull requests with a bypass for the `GITHUB_TOKEN`'s account: agents publish, people use pull requests. A ruleset without a bypass: every submit becomes a pull request, as in the proposal.
+- **Which agents publish.** Give scheduled agents `content:publish`, or `content:write` only so their work waits for your merge. A middle way: the hot list run publishes, the news run opens pull requests until a few clean runs.
+- **Whose name is on the commits.** A bot account for `GITHUB_TOKEN`, or your own with `GIT_COMMITTER` naming the bot.
+- **The X API.** Pay for `search_x` (measures engagement reliably) or rely on web search (free, undercounts smaller conversations).
+- **`run_worker_first`.** Keep it on for every request (simple, every asset is a billed request), or limit it to HTML routes (cheaper, one more thing to keep in step).
+- **Who runs the research, and who pays.** A Claude Code scheduled task or claude.ai on your plan, or an API key in GitHub Actions with a hard budget. Whether a cloud scheduled task can load the custom admin connector is unverified: test it first.
+- **A backup admin.** A second GitHub id in `ADMIN_GITHUB_IDS`, or a bus factor of one.
+- **The site copy.** `lib/agent.ts` still says the site is static, that a weekly job refreshes the news, and "no rate-limit tiers"; the public MCP has a fair-use limit and isn't listed in `llms.txt` yet.
+- **What to build next** from the deferred list. The change detector would let runs follow what changed instead of age.

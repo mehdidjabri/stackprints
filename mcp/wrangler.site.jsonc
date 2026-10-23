@@ -1,0 +1,21 @@
+// The site: the static export (../out, built by `npm run build` at the repo root) served as Workers
+// Static Assets, with src/workers/site.ts in front for markdown twins, headers and /mcp.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "stackprints",
+  "main": "src/workers/site.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "../out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    // Every request reaches the Worker first, so it can answer agents with markdown.
+    "run_worker_first": true
+  },
+  // /mcp on the site's own domain is the public MCP Worker (wrangler.public.jsonc), deployed first.
+  "services": [{ "binding": "MCP", "service": "stackprints-mcp" }],
+  // Point stackprints.com here once the zone is on Cloudflare:
+  // "routes": [{ "pattern": "stackprints.com", "custom_domain": true }],
+  "observability": { "enabled": true }
+}

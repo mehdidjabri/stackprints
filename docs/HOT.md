@@ -33,7 +33,7 @@ The cards under the tagline on the home page show what people on X talk about th
 - `sources` are 1 to 4 pages you opened, each dated, at least one inside the window. Put an x.com post first when there is one, then the official announcement, then the strongest coverage.
 - `updated` is the day the list was checked. `from` is the start of the window, 7 days earlier.
 
-`npm run check` enforces all of this, and warns when the list is more than 3 days old.
+The checks enforce all of this (`validate_changeset` on the admin MCP, `npm run check` in a local checkout), and warn when the list is more than 3 days old.
 
 ## What counts
 
@@ -44,22 +44,26 @@ The cards under the tagline on the home page show what people on X talk about th
 
 ## Run
 
-Until the admin MCP exists, this runs as a Claude Code task in this repo.
+A run goes through the admin MCP server ([MCP.md](MCP.md#the-hot-list-loop)), twice a day. You never edit `content/hot.json`, run `npm run check` or commit: the tools do each step, with the same checks.
 
-1. **Sweep.** Look for candidates from the last 7 days in several places at once: X itself (posts and replies from the accounts that drive AI conversation), tech press and newsletters, Hacker News (the Algolia API, by points), GitHub trending and Product Hunt, Reddit, and the site's own `content/news` from the window.
-2. **Rank.** Merge duplicates, drop anything out of scope or older than the window, and rank by conversation on X, with the other signals as corroboration.
-3. **Verify.** For each candidate, open every source and keep only those dated in the window and about the product. Separately, try to show it was *not* among the most-discussed products on X that week; cut it if you can.
-4. **Map.** Put each survivor in its row: agent products as stacks, components as options. Add a page for any that has none.
-5. **Write** `content/hot.json`, then run `npm run check && npm run build`.
-6. **Commit** as `hot: YYYY-MM-DD`.
+1. **`whoami`.** Check the scopes (`content:write` to propose, `content:publish` to publish straight to `main`) and use its `today` for every date.
+2. **`get_hot_list`.** What is listed now, how old it is, and its `version`.
+3. **`get_research_rules`.** This file as it is on `main`, with RESEARCH.md for any page you add.
+4. **Sweep.** Look for candidates from the last 7 days in several places at once: `search_x` for the conversation on X itself (posts with their engagement, ranked by it), web search for tech press and newsletters, Hacker News (the Algolia API, by points), GitHub trending and Product Hunt, Reddit, and the site's own news from the window.
+5. **Rank.** Merge duplicates, drop anything out of scope or older than the window, and rank by conversation on X, with the other signals as corroboration.
+6. **Verify.** For each candidate, read every source you will cite: posts on X through `search_x`, everything else through `fetch_source`, all within 48 hours of proposing, even pages the content already cites. Keep only sources dated in the window and about the product. Separately, try to show it was *not* among the most-discussed products on X that week; cut it if you can.
+7. **`open_changeset`** with kind `hot`.
+8. **Map.** Put each survivor in its row: agent products as stacks, components as options. A product with no page gets one first, in the same changeset: `check_duplicate`, then `propose_stack` or `propose_option_create`, following RESEARCH.md.
+9. **`propose_hot_list`** with both rows in full, in rank order, and the `version` from step 2 as `expectedVersion`. A post's source title credits its own author, as its receipt names them: `@author: its first words`. The server sets `updated` and `from`.
+10. **`validate_changeset`**, fixing every error with another `propose_*` call, then **`submit_changeset`** with the message `hot: YYYY-MM-DD`.
 
-## With the admin MCP
+### Without the MCP
 
-The agent reads the current list with `get_hot_list`, searches X with `search_x`, fetches every other source through `fetch_source` for a receipt, and writes with `propose_hot_list`. See [MCP.md](MCP.md#the-hot-list). The target cadence is twice a day.
+In a local checkout: sweep, rank, verify and map as above with your own search and browsing tools, write `content/hot.json` by hand (`updated` today, `from` 7 days earlier), run `npm run check && npm run build`, and commit as `hot: YYYY-MM-DD`. The local admin server (`mcp/dist/admin.mjs`, see [mcp/README.md](../mcp/README.md#9-the-local-servers-on-this-machine)) runs the MCP procedure against the checkout instead.
 
 ## Reading X
 
 X shows little to logged-out readers, so how the agent sees it matters most for this list:
 
-- **The X API** (recent search over the last 7 days, with public metrics such as likes, reposts, quotes and views) is the reliable way to measure conversation. It needs a paid API tier; check X's current pricing. With the admin MCP, the key stays in the admin Worker behind `search_x`.
-- **Without the API**, the agent finds x.com posts through web search and judges the conversation from the posts it can open and from coverage of them. That works for big moments but undercounts smaller ones.
+- **The X API** (recent search over the last 7 days, with public metrics such as likes, reposts, quotes and views) is the reliable way to measure conversation. It needs a paid API tier; check X's current pricing. The key stays in the admin Worker, behind `search_x`, which also gives every post it returns a receipt so it can be cited.
+- **Without the API**, `search_x` says so. The agent finds x.com posts through web search, reads each with `fetch_source` (which reads posts through a public mirror), and judges the conversation from the posts it can open and from coverage of them. That works for big moments but undercounts smaller ones.

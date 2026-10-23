@@ -8,7 +8,7 @@ This is how an option file in `content/options/<layer>/<id>.json` is researched 
 2. **Never change** `id`, `order`, `logo`, `name`, `affiliation` or `exclusive`. Change `url` or `note` only if they are wrong; a note stays under 60 characters. `affiliation` is set by the maintainers, only on an option made by the people behind this site, as one sentence; the site shows it wherever the option appears. `exclusive: true` marks an option that means the layer is absent or minimal ("None", "Single agent"): a stack can't list it next to other picks in that layer, and the editor replaces the layer's picks with it.
 3. **Stay neutral.** Write descriptions, not marketing. Avoid words like "best", "leading", "revolutionary" or "seamless".
 4. **Mark vendor claims.** A benchmark or number the vendor publishes about itself is written as "vendor-reported", for example `["LongMemEval", "92% (vendor-reported)"]`.
-5. Write **valid JSON** with 2-space indentation and a trailing newline. Run `npm run check` before you finish.
+5. Write **valid JSON** with 2-space indentation and a trailing newline. Run the checks before you finish: `validate_changeset` through the admin MCP ([MCP.md](MCP.md)), or `npm run check` in a local checkout.
 
 ## Profiles
 
@@ -177,7 +177,7 @@ Two more fields, for the cases above:
 5. Keep the `description` neutral and say what's public: "OpenAI hasn't published the model routing…" is fine.
 6. **Present but unnamed.** When a source confirms a layer is there but not what fills it (dots take voice calls; nothing says with what), add the layer to `inUseUndisclosed` with an `evidence` entry. Don't invent a "proprietary X" option for it. Pick a pattern option instead only when the architecture itself is documented (a persistent per-user cloud computer is `per-user-cloud-computer` even if the vendor behind it isn't named).
 7. **Default or supported.** A plain pick is what the stack runs, out of the box where that applies, as a cited source states. Picks the stack can be configured to use go in `layers` too, and also in `supports` for that layer. Any model, Any provider and Any host stand alone, or go in `supports` next to a default. If sources name specific supported options that exist as options (OpenRouter, LiteLLM…), list them rather than collapsing them into Any provider. When no source names a default, every pick in the layer is in `supports`. "Recommended" is not "default".
-8. `npm run check` must pass. It rejects a layer that is both picked and `notUsed` or `inUseUndisclosed`, an `inUseUndisclosed` layer with no evidence, `closedLayers` on a stack that isn't open source, a `supports` id the layer doesn't pick, and Any model, Any provider or Any host next to other picks without `supports`.
+8. The checks must pass (`validate_changeset` through the admin MCP, `npm run check` in a local checkout). They reject a layer that is both picked and `notUsed` or `inUseUndisclosed`, an `inUseUndisclosed` layer with no evidence, `closedLayers` on a stack that isn't open source, a `supports` id the layer doesn't pick, and Any model, Any provider or Any host next to other picks without `supports`.
 
 ### Example stacks
 

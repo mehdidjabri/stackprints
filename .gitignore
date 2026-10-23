@@ -6,3 +6,11 @@ next-env.d.ts
 .DS_Store
 public/logos.svg
 .claude/
+
+# MCP servers
+mcp/node_modules/
+mcp/dist/
+mcp/generated/
+mcp/.wrangler/
+mcp/.dev.vars
+.stackprints/

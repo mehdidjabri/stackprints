@@ -1,0 +1,21 @@
+# Secrets for `npm run dev:admin` (wrangler dev -c wrangler.admin.jsonc). Copy to .dev.vars, which git ignores.
+# In production set each with: npx wrangler secret put <NAME> -c wrangler.admin.jsonc
+# Before the first local run, create the local D1 table:
+#   npx wrangler d1 migrations apply stackprints-admin --local -c wrangler.admin.jsonc
+
+# Fine-grained token on the content repository only: Contents and Pull requests read and write, Issues read.
+GITHUB_TOKEN=github_pat_replace_me
+
+# A GitHub OAuth App for signing in; for local dev its callback URL is http://localhost:8787/callback.
+GITHUB_CLIENT_ID=Ov23li_replace_me
+GITHUB_CLIENT_SECRET=replace_me
+
+# Optional: turns on search_x.
+X_BEARER_TOKEN=
+
+# Optional, first run only: a random value of 32+ characters (openssl rand -hex 32) accepted as the owner
+# while no API key exists, to mint the first one with create_api_key. Refused once a key exists; delete it then.
+BOOTSTRAP_KEY=
+
+# Optional: "Name <email>" for the commits the server writes; default the GITHUB_TOKEN's account.
+GIT_COMMITTER=

@@ -1,0 +1,62 @@
+// The admin MCP Worker: the maintainers' agents research and write content through it, and every
+// write is a commit to GITHUB_REPO. It is its own OAuth server (GitHub sign-in, ADMIN_GITHUB_IDS
+// allowlist of numeric GitHub user ids) and also accepts API keys minted with the create_api_key tool.
+// A GitHub user's id: `gh api users/<login> --jq .id`.
+//
+// Secrets (npx wrangler secret put <NAME> -c wrangler.admin.jsonc; locally, copy .dev.vars.example to .dev.vars):
+//   GITHUB_TOKEN          fine-grained token on GITHUB_REPO only: Contents and Pull requests read and write, Issues read (list_corrections)
+//   GITHUB_CLIENT_ID      the GitHub OAuth App people sign in with; its callback URL is <this Worker's origin>/callback
+//   GITHUB_CLIENT_SECRET  that OAuth App's secret
+//   X_BEARER_TOKEN        optional: the X API bearer token that turns on search_x
+//   BOOTSTRAP_KEY         optional, first run only: a random value (32+ characters, e.g. `openssl rand -hex 32`)
+//                         accepted as the owner while no API key exists, to mint the first; delete it afterwards with
+//                         npx wrangler secret delete BOOTSTRAP_KEY -c wrangler.admin.jsonc
+//   GIT_COMMITTER         optional: "Name <email>" for the commits; default the GITHUB_TOKEN's account
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "stackprints-admin",
+  "main": "src/workers/admin.ts",
+  "compatibility_date": "2026-10-01",
+  // Outbound fetches reach only the public internet: Client ID Metadata Documents and fetch_source both need it.
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "observability": { "enabled": true },
+  // Changesets, fetched pages, API keys and the audit log. D1 rather than KV: a write is read back at
+  // once and updates are atomic, which the fetch-then-propose loop and parallel agents need. Once:
+  //   npx wrangler d1 create stackprints-admin            (paste the database_id it prints)
+  // Then before each deploy that adds a migration (and with --local for wrangler dev):
+  //   npx wrangler d1 migrations apply stackprints-admin --remote -c wrangler.admin.jsonc
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "stackprints-admin",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // OAUTH_KV: the OAuth library's grants, tokens and clients. CACHE_KV (optional): each commit's files,
+  // which never change. Create each once, then paste the ids they print:
+  //   npx wrangler kv namespace create OAUTH_KV -c wrangler.admin.jsonc
+  //   npx wrangler kv namespace create CACHE_KV -c wrangler.admin.jsonc
+  "kv_namespaces": [
+    { "binding": "OAUTH_KV", "id": "00000000000000000000000000000000" },
+    { "binding": "CACHE_KV", "id": "11111111111111111111111111111111" }
+  ],
+  // Per address (an IPv6 client by its /64): /authorize, /callback, /oauth/register and /oauth/token,
+  // and failed authentications on /mcp, counted apart. namespace_id is any number unique to this
+  // account; keep the limit in step with LIMIT in src/workers/admin.ts.
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "1002",
+      "simple": { "limit": 30, "period": 60 }
+    }
+  ],
+  "vars": {
+    "GITHUB_REPO": "stackprints/stackprints",
+    "SITE_URL": "https://stackprints.com",
+    // Numeric GitHub user ids, comma-separated: 1470765 is mehdidjabri. Logins are never checked (they can change hands).
+    "ADMIN_GITHUB_IDS": "1470765"
+  }
+  // To serve it on its own host (then point the OAuth App's callback URL there):
+  // "routes": [{ "pattern": "admin.stackprints.com", "custom_domain": true }]
+}
