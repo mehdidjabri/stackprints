@@ -15,6 +15,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "stackprints-admin",
+  // Mehdi@iterationx.io's account; wrangler's login sees more than one.
+  "account_id": "cb7c938acb60c65a39dd1ae55b40caef",
   "main": "src/workers/admin.ts",
   "compatibility_date": "2026-10-01",
   // Outbound fetches reach only the public internet: Client ID Metadata Documents and fetch_source both need it.
@@ -29,7 +31,7 @@
     {
       "binding": "DB",
       "database_name": "stackprints-admin",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "73907341-6542-4483-aefc-1349a6079ea5",
       "migrations_dir": "migrations"
     }
   ],
@@ -38,8 +40,8 @@
   //   npx wrangler kv namespace create OAUTH_KV -c wrangler.admin.jsonc
   //   npx wrangler kv namespace create CACHE_KV -c wrangler.admin.jsonc
   "kv_namespaces": [
-    { "binding": "OAUTH_KV", "id": "00000000000000000000000000000000" },
-    { "binding": "CACHE_KV", "id": "11111111111111111111111111111111" }
+    { "binding": "OAUTH_KV", "id": "eb110f06bcbc42f7b09d58bac7da5922" },
+    { "binding": "CACHE_KV", "id": "0a4e5fadcb0249148c3178c4cf337642" }
   ],
   // Per address (an IPv6 client by its /64): /authorize, /callback, /oauth/register and /oauth/token,
   // and failed authentications on /mcp, counted apart. namespace_id is any number unique to this
@@ -53,7 +55,8 @@
   ],
   "vars": {
     "GITHUB_REPO": "mehdidjabri/stackprints",
-    "SITE_URL": "https://stackprints.com",
+    // The site on workers.dev until stackprints.com is attached to it; then back to https://stackprints.com.
+    "SITE_URL": "https://stackprints.stackprints-mcp.workers.dev",
     // Numeric GitHub user ids, comma-separated: 1470765 is mehdidjabri. Logins are never checked (they can change hands).
     "ADMIN_GITHUB_IDS": "1470765"
   }

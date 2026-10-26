@@ -3,6 +3,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "stackprints",
+  // Mehdi@iterationx.io's account; wrangler's login sees more than one.
+  "account_id": "cb7c938acb60c65a39dd1ae55b40caef",
   "main": "src/workers/site.ts",
   "compatibility_date": "2026-10-01",
   "assets": {

@@ -2,11 +2,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "stackprints-mcp",
+  // Mehdi@iterationx.io's account; wrangler's login sees more than one.
+  "account_id": "cb7c938acb60c65a39dd1ae55b40caef",
   "main": "src/workers/public.ts",
   "compatibility_date": "2026-10-01",
   "observability": { "enabled": true },
   "vars": {
-    "SITE_URL": "https://stackprints.com",
+    // The site on workers.dev until stackprints.com is attached to it; then back to https://stackprints.com.
+    "SITE_URL": "https://stackprints.stackprints-mcp.workers.dev",
     "REPO_URL": "https://github.com/mehdidjabri/stackprints"
   },
   // Secret, optional: GITHUB_READ_TOKEN (wrangler secret put GITHUB_READ_TOKEN -c wrangler.public.jsonc),
