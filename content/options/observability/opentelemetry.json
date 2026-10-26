@@ -11,7 +11,7 @@
   "facts": [
     [
       "Steward",
-      "OpenTelemetry (CNCF project)"
+      "OpenTelemetry (CNCF graduated project)"
     ],
     [
       "License",
@@ -57,5 +57,5 @@
     "Needs a collector or backend to store and query the data",
     "Exported events can carry prompts or file paths, depending on settings"
   ],
-  "researched": "2026-10-22"
+  "researched": "2026-10-26"
 }

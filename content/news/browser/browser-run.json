@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-09-29",
+      "title": "Connect multiple clients to one Browser Run session",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-29-concurrent-session-connections/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-28",
+      "title": "Browser Run adds WebMCP to Kitesurf and moves to document.modelContext",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-28-webmcp-api/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Subscribe to Browser Run crawl events",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-25-crawl-event-subscriptions/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-21",
+      "title": "Browser Run adds session and DevTools methods to browser bindings",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-21-browser-binding-methods/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Inspect logs, network requests, and DOM in Session Recordings",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-18-browser-run-session-recording-inspect/",
+      "source": "developers.cloudflare.com"
+    }
+  ]
+}

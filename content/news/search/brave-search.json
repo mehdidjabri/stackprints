@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-09-03",
+      "title": "What a pizza-ordering hackathon reveals about connecting AI agents to the Web",
+      "url": "https://brave.com/blog/alphasignal-hackathon/",
+      "source": "brave.com"
+    },
+    {
+      "date": "2026-07-08",
+      "title": "Brave Place Search API: The Google Maps Alternative That Costs 6–7x Less",
+      "url": "https://brave.com/blog/place-search-improved/",
+      "source": "brave.com"
+    },
+    {
+      "date": "2026-06-29",
+      "title": "Claude Cowork on Amazon Bedrock with Brave Search: bringing real-time Web intelligence for your organization",
+      "url": "https://brave.com/blog/claude-cowork-amazon-bedrock-brave-mcp/",
+      "source": "brave.com"
+    },
+    {
+      "date": "2026-04-01",
+      "title": "Brave Search API approaches 700,000 OpenClaw users, highlighting the surge in machine-first search",
+      "url": "https://brave.com/blog/openclaw/",
+      "source": "brave.com"
+    },
+    {
+      "date": "2026-02-26",
+      "title": "Brave Search API now features Place Search, a new endpoint for map applications",
+      "url": "https://brave.com/blog/place-search-api/",
+      "source": "brave.com"
+    }
+  ]
+}

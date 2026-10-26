@@ -1,0 +1,59 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-10-22",
+      "title": "Strengthening OpenTelemetry security while preserving API stability",
+      "url": "https://opentelemetry.io/blog/2026/security-versioning-policy/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-20",
+      "title": "Join us for OpenTelemetry Talks and Activities at KubeCon NA 2026",
+      "url": "https://opentelemetry.io/blog/2026/kubecon-na/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "Announcing the 2026 OpenTelemetry Governance Committee Election Candidates",
+      "url": "https://opentelemetry.io/blog/2026/gc-candidates/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "The Humans of OpenTelemetry - KubeCon Japan 2026",
+      "url": "https://opentelemetry.io/blog/2026/humans-of-otel-japan/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-13",
+      "title": "Versioned metrics: Shipping the first Release Candidate metrics in hostmetrics",
+      "url": "https://opentelemetry.io/blog/2026/hostmetrics-process-scraper-rc/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-08",
+      "title": "OTel-Native by Design - Building Products That Export to Any Observability Stack",
+      "url": "https://opentelemetry.io/blog/2026/otel-native-by-design/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "OpenTelemetry Community Awards 2026",
+      "url": "https://opentelemetry.io/blog/2026/community-awards/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-06",
+      "title": "The OpenTelemetry Java agent 3.0 is almost here — preview it today",
+      "url": "https://opentelemetry.io/blog/2026/java-agent-3.0-preview/",
+      "source": "opentelemetry.io"
+    },
+    {
+      "date": "2026-10-06",
+      "title": "Zero-code trace-log correlation with OBI",
+      "url": "https://opentelemetry.io/blog/2026/obi-trace-log-correlation/",
+      "source": "opentelemetry.io"
+    }
+  ]
+}

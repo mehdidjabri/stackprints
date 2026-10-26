@@ -1,0 +1,29 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-08-04",
+      "title": "Vectorize indexes now support up to 20 million vectors",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-04-index-capacity-20-million/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Reduced end-to-end latency for vector changes",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-06-30-improved-wal-throughput/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-03-16",
+      "title": "Return up to 50 query results with values or metadata",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-03-16-topk-limit-increased-to-50/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-01-23",
+      "title": "Vectorize indexes now support up to 10 million vectors",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-01-23-increased-index-capacity/",
+      "source": "developers.cloudflare.com"
+    }
+  ]
+}

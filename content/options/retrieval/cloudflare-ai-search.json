@@ -33,6 +33,14 @@
       "Workers AI, or other providers through AI Gateway"
     ],
     [
+      "Status",
+      "Generally available (2026-10-01)"
+    ],
+    [
+      "Pricing",
+      "Usage-based from 2026-11-01: $0.75 per 1M ingestion tokens, $2.00 per GB-month, $0.75 per 1,000 semantic queries, $0.10 per 1,000 full-text queries, after monthly inclusions"
+    ],
+    [
       "Plans",
       "All plans"
     ]
@@ -50,5 +58,5 @@
     "Embedding model can only be chosen when an instance is created",
     "Tied to Cloudflare's platform"
   ],
-  "researched": "2026-10-21"
+  "researched": "2026-10-26"
 }

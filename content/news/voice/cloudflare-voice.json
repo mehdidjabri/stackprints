@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-09-11",
+      "title": "Inspect Voice Agent turn latency and outcomes",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-11-voice-diagnostics-turn-metrics/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-06-26",
+      "title": "Agents SDK adds background sub-agents and a unified turn entry point",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-06-26-agents-sdk-v0.17.0/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-06-16",
+      "title": "Agents SDK improves browser automation, code execution, and recovery",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-06-16-agents-sdk-v0.16.1/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-05-13",
+      "title": "Agents SDK v0.12.4: chat recovery, routing retries, durable Think submissions, and Voice connection control",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-05-13-agents-sdk-v0.12.4/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-04-15",
+      "title": "Add voice to your agent",
+      "url": "https://blog.cloudflare.com/voice-agents/",
+      "source": "blog.cloudflare.com"
+    }
+  ]
+}

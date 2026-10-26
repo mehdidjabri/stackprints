@@ -1,0 +1,41 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-10-21",
+      "title": "createAI replaces workers-ai-provider and ai-gateway-provider",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-21-createai/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "Introducing Clairic: an extraction model for typed values, now on Workers AI",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-19-clairic-workers-ai/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "DeepSeek V4.1 Flash 1017 now available on Workers AI",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-19-deepseek-v4.1-flash-workers-ai/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Pipecat PhoneLLM Mini now available on Workers AI",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-15-phonellm-mini-workers-ai/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Clef-omni adds audio and video input, Clef-flash is now cheaper, and Clef is faster",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-09-clef-omni-workers-ai/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-01",
+      "title": "Introducing Clef: our open-source decision models, and new RL fine-tuning platform",
+      "url": "https://blog.cloudflare.com/clef-decision-models/",
+      "source": "blog.cloudflare.com"
+    }
+  ]
+}

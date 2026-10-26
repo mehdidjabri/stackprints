@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-10-16",
+      "title": "AI Search keyword search supports Japanese, Chinese, and Korean queries",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-16-cjk-keyword-search/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-10-01",
+      "title": "AI Search is generally available",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-01-ai-search-generally-available/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-09-11",
+      "title": "AI Search supports extensionless R2 objects with Content-Type metadata",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-11-extensionless-r2-content-type/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-08-30",
+      "title": "AI Search now supports GLM-5.3 Flash",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-30-glm-5.3-flash/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-08-26",
+      "title": "New Workers AI text generation models in AI Search",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-26-new-workers-ai-models/",
+      "source": "developers.cloudflare.com"
+    }
+  ]
+}

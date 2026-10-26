@@ -1,0 +1,35 @@
+{
+  "updated": "2026-10-26",
+  "items": [
+    {
+      "date": "2026-10-20",
+      "title": "Think agents now use a @cloudflare/computer workspace",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-10-20-think-computer-workspace/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "Agents SDK reduces MCP schema conversion, adds exposure controls for MCP in Think and Code Mode SDK adds direct host APIs",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-22-mcp-codemode-updates/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-06-26",
+      "title": "Agents SDK adds background sub-agents and a unified turn entry point",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-06-26-agents-sdk-v0.17.0/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-06-16",
+      "title": "Agents SDK improves browser automation, code execution, and recovery",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-06-16-agents-sdk-v0.16.1/",
+      "source": "developers.cloudflare.com"
+    },
+    {
+      "date": "2026-04-15",
+      "title": "Project Think: building the next generation of AI agents on Cloudflare",
+      "url": "https://blog.cloudflare.com/project-think/",
+      "source": "blog.cloudflare.com"
+    }
+  ]
+}
