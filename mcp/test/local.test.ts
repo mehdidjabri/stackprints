@@ -99,7 +99,18 @@ describe("local sources", () => {
 
   it("reads the working tree like the checkout's own files", async () => {
     const files = await worktreeFiles(ROOT);
-    expect([...files.keys()].sort()).toEqual([...repoFiles().keys()].sort());
+    // Compared with a plain walk of the working tree, not the pinned fixtures: content keeps changing.
+    const walked: string[] = [];
+    const walk = (dir: string) => {
+      for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+        const p = path.posix.join(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (/\.(json|svg|md)$/.test(e.name)) walked.push(p);
+      }
+    };
+    walk("content");
+    walk("docs");
+    expect([...files.keys()].sort()).toEqual(walked.sort());
   });
 
   it("reads the built API by site path, null for anything else", async () => {

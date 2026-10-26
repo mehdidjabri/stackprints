@@ -33,6 +33,7 @@ import { EMPTY, disclosureOf, emptyLayers, isSupported } from "./disclosure";
 import { MD_RULE, citeNumbers, kindHref, mdPath, numberedSources, optionHref, promptFile, promptHref, renamedLayers, stackSources } from "./links";
 import type { Layer, Option, Prompt, Stack } from "./types";
 import type { HotCard } from "./data";
+import { lines, sentence, slots } from "./simple";
 
 export const BUILT = new Date().toISOString().slice(0, 10);
 const abs = (p: string) => `${SITE.url}${p}`;
@@ -91,6 +92,12 @@ function homeMd() {
   );
 }
 
+/** The stack in five sentences, as the simple view says it, with every list spelled out. */
+const inShort = (s: Stack) => {
+  const rows = resolve(s);
+  return lines(s.name, slots(getLayers(), Object.fromEntries(rows.map((r) => [r.layer.id, r.picks])), s)).map((l) => sentence(l.tokens));
+};
+
 function stackMd(s: Stack) {
   const rows = resolve(s);
   const badge = disclosureOf(s);
@@ -110,6 +117,7 @@ function stackMd(s: Stack) {
   return (
     frontmatter({ title: stackTitle(s), description: s.tagline, canonical: abs(`/stack/${s.slug}/`), "last-updated": s.researched ?? BUILT }) +
     `${h1(s.name, `/stack/${s.slug}/`)}${s.kind}${badge ? ` · ${badge.badge}: ${badge.about.toLowerCase()}` : ""}${s.researched ? ` · ${s.disclosure === "example" ? "checked" : "researched"} ${s.researched}` : ""}${s.version ? ` against ${s.version}` : ""}\n\n${s.description}\n\n` +
+    `## In short\n\n${inShort(s).map((l) => `- ${l}`).join("\n")}\n\n` +
     (own.length ? `> Disclosure: this ${s.disclosure === "example" ? "example" : "stack"} uses ${own.map((o) => o.name).join(", ")}. ${[...new Set(own.map((o) => o.affiliation))].join(" ")}\n\n` : "") +
     (s.links ? `${Object.entries(s.links).map(([k, u]) => `- ${k}: ${u}`).join("\n")}\n\n` : "") +
     `## Layers\n\n${rows.map(({ layer, picks }) => `- **${layer.name}** (${layer.ref}): ${picksMd(layer.id, picks)}${cites(layer.id)}`).join("\n")}\n` +
@@ -427,6 +435,7 @@ function stackJson(s: Stack) {
   return {
     ...stackSummary(s),
     description: s.description,
+    inShort: inShort(s),
     author: s.author ?? null,
     layers: layers
       .filter((l) => l.id in s.layers)
@@ -591,6 +600,7 @@ function openapi() {
               type: "object",
               properties: {
                 description: { type: "string" },
+                inShort: { type: "array", items: { type: "string" }, description: "The stack in five sentences, one per band (surface, brain, hands, files, ops), as the site's simple view says it" },
                 layers: {
                   type: "array",
                   items: {

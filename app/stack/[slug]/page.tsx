@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Simple } from "@/components/Simple";
 import { StackView } from "@/components/StackView";
+import { Views, blueprintFor } from "@/components/Views";
 import { Title } from "@/components/Title";
 import { PROMPT_KIND, SITE, affiliated, asArray, getLayer, getLayers, getPrompts, getStack, getStacks, metaDesc, resolve, stackTitle } from "@/lib/data";
 import { EMPTY, disclosureMark, disclosureOf, emptyLayers, isSupported, kindCount, slotsNote } from "@/lib/disclosure";
 import { JsonLd } from "@/lib/jsonld";
+import { slots } from "@/lib/simple";
 import { bareUrl, citeNumbers, kindHref, optionHref, primaryLink, prettyUrl, promptFile, stackSources, withMarkdown } from "@/lib/links";
 import { CopyText } from "@/components/CopyText";
 import { PromptText } from "@/components/PromptText";
@@ -183,34 +186,37 @@ export default async function StackPage({ params }: Props) {
         </p>
       )}
       <p className="lede">{s.description}</p>
-      <div className="toolbar">
-        {LINKS.filter(([k]) => s.links?.[k]).map(([k, label]) => (
-          <a key={k} className="btn" href={s.links![k]} rel="noopener">
-            {label}
-            <Ext />
-          </a>
-        ))}
-        <a className="btn" href="#layers">
-          Layer by layer ↓
-        </a>
-        {prompts.length > 0 && (
-          <a className="btn" href="#prompts">
-            Prompts ↓
-          </a>
-        )}
-        <Link className="btn" href={`/#from=${s.slug}`}>
-          Remix this stack
-        </Link>
-        <a className="btn" href={`${SITE.repo}/edit/main/content/stacks/${s.slug}.json`} rel="noopener">
-          Edit on GitHub
-        </a>
-      </div>
-      {/* The board's revision is the date the stack was last researched, not a made-up number. */}
-      <StackView
-        rows={rows}
-        stack={s}
-        label={`${s.name.toUpperCase()}${s.researched ? ` · REV ${s.researched}` : ""}`}
-        prompts={promptLayers}
+      <Views
+        id="view"
+        bar={
+          <div className="toolbar">
+            {LINKS.filter(([k]) => s.links?.[k]).map(([k, label]) => (
+              <a key={k} className="btn" href={s.links![k]} rel="noopener">
+                {label}
+                <Ext />
+              </a>
+            ))}
+            <a className="btn" href="#layers">
+              Layer by layer ↓
+            </a>
+            {prompts.length > 0 && (
+              <a className="btn" href="#prompts">
+                Prompts ↓
+              </a>
+            )}
+            <Link className="btn" href={`/#from=${s.slug}`}>
+              Remix this stack
+            </Link>
+            <a className="btn" href={`${SITE.repo}/edit/main/content/stacks/${s.slug}.json`} rel="noopener">
+              Edit on GitHub
+            </a>
+          </div>
+        }
+        simple={<Simple name={s.name} slots={slots(getLayers(), Object.fromEntries(rows.map((r) => [r.layer.id, r.picks])), s)} blueprint={blueprintFor("view")} />}
+        blueprint={
+          // The board's revision is the date the stack was last researched, not a made-up number.
+          <StackView rows={rows} stack={s} label={`${s.name.toUpperCase()}${s.researched ? ` · REV ${s.researched}` : ""}`} prompts={promptLayers} />
+        }
       />
 
       <section className={cited ? "ev-sec" : "ev-sec ev-uncited"}>

@@ -2296,3 +2296,202 @@ button:disabled:hover,
   stroke-linecap: square;
   opacity: 0.8;
 }
+
+/* Simple first, the blueprint one click away: two radios and CSS, so it works without JavaScript. */
+.views {
+  display: grid;
+  gap: 16px;
+}
+.views:has(input[value="blueprint"]:checked) > .view-simple,
+.views:has(input[value="simple"]:checked) > .view-blueprint {
+  display: none;
+}
+/* The page's buttons on the left, the switch on the right of the same row. */
+.view-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px 16px;
+}
+.view-bar > .toolbar {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+}
+/* One outer line, the chosen half outlined inside it: the two lines never touch. */
+.view-switch {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line);
+}
+.view-switch label {
+  font-size: 12px;
+  padding: 3px 10px;
+  color: var(--muted);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.view-switch label:hover {
+  color: var(--fg);
+}
+.view-switch input:checked + label {
+  color: var(--fg);
+  border-color: var(--line-strong);
+}
+.view-switch input:focus-visible + label {
+  outline: 1px solid var(--line-strong);
+  outline-offset: 1px;
+}
+
+/* The simple view: the stack in five sentences, one per band, in board order. Glue words recede,
+   the parts stand out: read only the dark words and you have the stack. */
+.simple {
+  padding: 8px 0 4px;
+}
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 44em;
+  font: 400 20px/1.5 var(--sans);
+  letter-spacing: -0.006em;
+  color: var(--muted);
+}
+.lines li {
+  position: relative;
+  padding-left: 24px;
+}
+.lines li + li {
+  margin-top: 10px;
+}
+/* The band's swatch hangs in the margin, level with the first line's lowercase. */
+.lines li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(0.82em - 3.5px);
+  width: 7px;
+  height: 7px;
+  background: var(--c);
+}
+.lines .t,
+.lines .v {
+  color: var(--fg);
+}
+.lines .t {
+  white-space: nowrap;
+}
+.lines .t .logo {
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.28em;
+  vertical-align: -0.06em;
+}
+.lines .sup {
+  color: var(--muted);
+  font-size: 0.7em;
+  letter-spacing: 0.02em;
+  margin-left: 0.25em;
+}
+/* The three honest empties, drawn the board's way: hatched = not disclosed, "?" = in use but
+   unnamed, dashed = not used. */
+.lines .nd,
+.lines .q,
+.lines .nu {
+  white-space: nowrap;
+  padding: 0 0.3em;
+  border: 1px solid color-mix(in srgb, var(--c, var(--line)) var(--mix-line), transparent);
+}
+.lines .nd {
+  color: var(--fg);
+  background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c, var(--line)) 36%, transparent) 0 1px, transparent 1px 7px);
+}
+.lines .q {
+  color: var(--fg);
+}
+.lines .q b {
+  font-weight: 600;
+  margin-right: 0.25em;
+}
+.lines .nu {
+  border-style: dashed;
+}
+.lines .more {
+  /* A label: undo the form-label styles, it's a word in the sentence. */
+  display: inline;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  margin: 0;
+  color: var(--muted);
+  text-decoration: underline dotted 1px;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+}
+.lines .more:hover {
+  color: var(--fg);
+}
+/* The strip: every layer as a cell, in board order. The blueprint's fingerprint, and the way into it. */
+.print {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-top: 36px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.print .cells {
+  display: flex;
+  gap: 8px;
+}
+.print .band {
+  display: flex;
+  gap: 2px;
+}
+.print .cell {
+  width: 8px;
+  height: 12px;
+}
+.print .cell.picked {
+  background: var(--c);
+}
+.print .cell.unknown {
+  border: 1px solid color-mix(in srgb, var(--c) var(--mix-line), transparent);
+  background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c) 70%, transparent) 0 1px, transparent 1px 3px);
+}
+.print .cell.present {
+  border: 1px solid var(--c);
+}
+.print .cell.unused {
+  border: 1px dashed color-mix(in srgb, var(--c) var(--mix-line), transparent);
+}
+.print .go {
+  color: var(--fg);
+  white-space: nowrap;
+}
+.print:hover .go {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 640px) {
+  .lines {
+    font-size: 17px;
+  }
+  .lines li {
+    padding-left: 18px;
+  }
+  .lines li::before {
+    width: 6px;
+    height: 6px;
+    top: calc(0.82em - 3px);
+  }
+  .lines li + li {
+    margin-top: 12px;
+  }
+  .print {
+    margin-top: 28px;
+  }
+}

@@ -6,8 +6,11 @@ import { newFileUrl, slugify } from "@/lib/github";
 import { prettyUrl } from "@/lib/links";
 import { decodeDraft, encodeDraft, loadSaved, newId, normalizeDraft, sameLayers, storeSaved } from "@/lib/share";
 import { EMPTY, disclosureMark, disclosureOf, emptyState, kindCount } from "@/lib/disclosure";
+import { slots } from "@/lib/simple";
 import type { Draft, Layer, Stack } from "@/lib/types";
 import { Board } from "./Board";
+import { Simple } from "./Simple";
+import { Views, blueprintFor } from "./Views";
 import { Logo } from "./Logo";
 import { Ext } from "./Ext";
 
@@ -387,147 +390,162 @@ export function Editor({
         {preset && !dirty && <> · <Link href={`/stack/${preset.slug}/`}>about this stack</Link></>}
       </div>
 
-      <div className="toolbar" role="toolbar" aria-label="Stack actions" id="publish">
-        <button onClick={save}>Save</button>
-        <button onClick={share}>Share</button>
-        <button onClick={() => setPublishing((v) => !v)} aria-expanded={publishing}>
-          Publish as a page
-        </button>
-        <span className="status" aria-live="polite">
-          {status?.text}
-          {status?.href && (
-            <>
-              {" · "}
-              <Link href={status.href}>{status.link}</Link>
-            </>
-          )}
-          {status?.undo && (
-            <>
-              {" · "}
-              <button
-                ref={undoButton}
-                className="link"
-                onClick={() => {
-                  const { draft: before, label } = status.undo!;
-                  const focused = document.activeElement === undoButton.current;
-                  edit(before);
-                  // Focus goes back to the pick it brought back.
-                  if (focused) requestAnimationFrame(() => document.querySelector<HTMLElement>(`button.x[aria-label="${CSS.escape(label)}"]`)?.focus());
-                }}
-              >
-                Undo
-              </button>
-            </>
-          )}
-        </span>
-        {copyUrl && (
-          <span className="copy-link">
-            <input readOnly value={copyUrl} aria-label="Share link" autoFocus onFocus={(e) => e.currentTarget.select()} />
-            <button
-              onClick={() => {
-                setCopyUrl(null);
-                setStatus(null);
-              }}
-            >
-              Done
+      {/* Simple first; the blueprint is where parts are added and removed. */}
+      <Views
+        id="view"
+        bar={
+          <div className="toolbar" role="toolbar" aria-label="Stack actions" id="publish">
+            <button onClick={save}>Save</button>
+            <button onClick={share}>Share</button>
+            <button onClick={() => setPublishing((v) => !v)} aria-expanded={publishing}>
+              Publish as a page
             </button>
-          </span>
-        )}
-      </div>
-
-      {publishing &&
-        (copy ? (
-          <div className="publish">
-            <p className="muted small">
-              This is {preset!.name} as published. Change at least one part to publish your own version.
-            </p>
-          </div>
-        ) : (
-          <div className="publish">
-            <p className="muted small">
-              Your stack gets its own page at <code>/stack/{slug}/</code>, with its own preview image, once the pull
-              request merges.
-            </p>
-            <div className="fields row2">
-              <label>
-                <span>Your name</span>
-                <input {...field("author")} placeholder="Ada Lovelace" />
-              </label>
-              <label>
-                <span>Your link</span>
-                <input {...field("authorUrl")} placeholder="https://x.com/ada" inputMode="url" />
-              </label>
-              <label>
-                <span>Category</span>
-                <select {...field("kind")} value={kind}>
-                  {kinds.map((k) => (
-                    <option key={k}>{k}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                <span>Tagline</span>
-                <input {...field("tagline")} maxLength={90} placeholder="One line people read in the grid." />
-              </label>
-              <label className="wide">
-                <span>How it works</span>
-                <textarea {...field("description")} rows={3} placeholder="Two or three sentences." />
-              </label>
-            </div>
-            <div className="toolbar">
-              {meta.tagline && meta.description ? (
-                <a className="btn" href={newFileUrl(repo, `content/stacks/${slug}.json`, stackJson)} target="_blank" rel="noopener">
-                  Open pull request
-                </a>
-              ) : (
-                <span className="muted small">Add a tagline and description to open a pull request.</span>
+            <span className="status" aria-live="polite">
+              {status?.text}
+              {status?.href && (
+                <>
+                  {" · "}
+                  <Link href={status.href}>{status.link}</Link>
+                </>
               )}
-              <button
-                onClick={async () => {
-                  try {
-                    await navigator.clipboard.writeText(stackJson);
-                    note(`Copied content/stacks/${slug}.json`);
-                  } catch {
-                    note("Clipboard unavailable");
-                  }
-                }}
-              >
-                Copy JSON
-              </button>
-            </div>
+              {status?.undo && (
+                <>
+                  {" · "}
+                  <button
+                    ref={undoButton}
+                    className="link"
+                    onClick={() => {
+                      const { draft: before, label } = status.undo!;
+                      const focused = document.activeElement === undoButton.current;
+                      edit(before);
+                      // Focus goes back to the pick it brought back.
+                      if (focused) requestAnimationFrame(() => document.querySelector<HTMLElement>(`button.x[aria-label="${CSS.escape(label)}"]`)?.focus());
+                    }}
+                  >
+                    Undo
+                  </button>
+                </>
+              )}
+            </span>
+            {copyUrl && (
+              <span className="copy-link">
+                <input readOnly value={copyUrl} aria-label="Share link" autoFocus onFocus={(e) => e.currentTarget.select()} />
+                <button
+                  onClick={() => {
+                    setCopyUrl(null);
+                    setStatus(null);
+                  }}
+                >
+                  Done
+                </button>
+              </span>
+            )}
           </div>
-        ))}
-
-      <Board
-        slots={layers}
-        modules={layers
-          .filter((l) => draft.layers[l.id])
-          .map((layer) => ({
-            layer,
-            picks: draft.layers[layer.id]
-              .map((id) => layer.options.find((o) => o.id === id))
-              .filter((o): o is NonNullable<typeof o> => Boolean(o)),
-          }))}
-        // As on the stack page: a stack's revision is its research date; an edited board is a draft.
-        label={`${name.toUpperCase()}${dirty ? " · DRAFT" : preset?.researched ? ` · REV ${preset.researched}` : ""}`}
-        stack={knowable}
-        source={preset && dirty ? preset.name : undefined}
-        onRemove={(layerId, id) => {
-          // A slipped tap shouldn't cost a pick: the removal can be undone until the next edit.
-          const before = draft;
-          const name = layers.find((l) => l.id === layerId)?.options.find((o) => o.id === id)?.name ?? id;
-          const focused = document.activeElement instanceof HTMLButtonElement && document.activeElement.classList.contains("x");
-          update(layerId, draft.layers[layerId].filter((p) => p !== id));
-          setStatus({ text: `Removed ${name}`, undo: { draft: before, label: `Remove ${name}` }, ms: 8000 });
-          // The × goes with its chip: keyboard focus moves to Undo rather than to the page.
-          if (focused) requestAnimationFrame(() => undoButton.current?.focus());
-        }}
-        addSlot={(layerId) => {
-          const layer = layers.find((l) => l.id === layerId)!;
-          const picks = draft.layers[layerId];
-          return picker(layer, picks, "+", `Add to ${layer.name}`);
-        }}
-        emptySlot={(slot) => picker(layers.find((l) => l.id === slot.id)!, [], `+ ${slot.name}`, `Add ${slot.name}`)}
+        }
+        after={
+    publishing &&
+            (copy ? (
+              <div className="publish">
+                <p className="muted small">
+                  This is {preset!.name} as published. Change at least one part to publish your own version.
+                </p>
+              </div>
+            ) : (
+              <div className="publish">
+                <p className="muted small">
+                  Your stack gets its own page at <code>/stack/{slug}/</code>, with its own preview image, once the pull
+                  request merges.
+                </p>
+                <div className="fields row2">
+                  <label>
+                    <span>Your name</span>
+                    <input {...field("author")} placeholder="Ada Lovelace" />
+                  </label>
+                  <label>
+                    <span>Your link</span>
+                    <input {...field("authorUrl")} placeholder="https://x.com/ada" inputMode="url" />
+                  </label>
+                  <label>
+                    <span>Category</span>
+                    <select {...field("kind")} value={kind}>
+                      {kinds.map((k) => (
+                        <option key={k}>{k}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    <span>Tagline</span>
+                    <input {...field("tagline")} maxLength={90} placeholder="One line people read in the grid." />
+                  </label>
+                  <label className="wide">
+                    <span>How it works</span>
+                    <textarea {...field("description")} rows={3} placeholder="Two or three sentences." />
+                  </label>
+                </div>
+                <div className="toolbar">
+                  {meta.tagline && meta.description ? (
+                    <a className="btn" href={newFileUrl(repo, `content/stacks/${slug}.json`, stackJson)} target="_blank" rel="noopener">
+                      Open pull request
+                    </a>
+                  ) : (
+                    <span className="muted small">Add a tagline and description to open a pull request.</span>
+                  )}
+                  <button
+                    onClick={async () => {
+                      try {
+                        await navigator.clipboard.writeText(stackJson);
+                        note(`Copied content/stacks/${slug}.json`);
+                      } catch {
+                        note("Clipboard unavailable");
+                      }
+                    }}
+                  >
+                    Copy JSON
+                  </button>
+                </div>
+              </div>
+            ))
+        }
+        simple={
+          <Simple
+            name={name}
+            slots={slots(layers, Object.fromEntries(layers.map((l) => [l.id, (draft.layers[l.id] ?? []).map((id) => l.options.find((o) => o.id === id)).filter((o): o is NonNullable<typeof o> => Boolean(o))])), knowable || undefined)}
+            blueprint={blueprintFor("view")}
+          />
+        }
+        blueprint={
+          <Board
+            slots={layers}
+            modules={layers
+              .filter((l) => draft.layers[l.id])
+              .map((layer) => ({
+                layer,
+                picks: draft.layers[layer.id]
+                  .map((id) => layer.options.find((o) => o.id === id))
+                  .filter((o): o is NonNullable<typeof o> => Boolean(o)),
+              }))}
+            // As on the stack page: a stack's revision is its research date; an edited board is a draft.
+            label={`${name.toUpperCase()}${dirty ? " · DRAFT" : preset?.researched ? ` · REV ${preset.researched}` : ""}`}
+            stack={knowable}
+            source={preset && dirty ? preset.name : undefined}
+            onRemove={(layerId, id) => {
+              // A slipped tap shouldn't cost a pick: the removal can be undone until the next edit.
+              const before = draft;
+              const name = layers.find((l) => l.id === layerId)?.options.find((o) => o.id === id)?.name ?? id;
+              const focused = document.activeElement instanceof HTMLButtonElement && document.activeElement.classList.contains("x");
+              update(layerId, draft.layers[layerId].filter((p) => p !== id));
+              setStatus({ text: `Removed ${name}`, undo: { draft: before, label: `Remove ${name}` }, ms: 8000 });
+              // The × goes with its chip: keyboard focus moves to Undo rather than to the page.
+              if (focused) requestAnimationFrame(() => undoButton.current?.focus());
+            }}
+            addSlot={(layerId) => {
+              const layer = layers.find((l) => l.id === layerId)!;
+              const picks = draft.layers[layerId];
+              return picker(layer, picks, "+", `Add to ${layer.name}`);
+            }}
+            emptySlot={(slot) => picker(layers.find((l) => l.id === slot.id)!, [], `+ ${slot.name}`, `Add ${slot.name}`)}
+          />
+        }
       />
     </div>
   );
