@@ -38,7 +38,7 @@ const isHttps = (u: unknown) => {
     return false;
   }
 };
-/** "https://github.com/stackprints/stackprints" → "stackprints/stackprints". */
+/** "https://github.com/mehdidjabri/stackprints" → "mehdidjabri/stackprints". */
 const repoPath = (repo: string) => new URL(repo).pathname.replace(/^\/+|\/+$/g, "").replace(/\.git$/, "");
 const quote = (s: string) => `"${s.replace(/["\\$`]/g, "\\$&")}"`;
 const withinUrlLimit = (url: string) => (url.length < URL_LIMIT ? url : null);

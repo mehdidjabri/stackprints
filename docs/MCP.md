@@ -217,7 +217,7 @@ About $5 a month for the infrastructure, more in a busy month. An estimate, not 
 
 ## Decisions for the owner
 
-- **Publish the repository and the domain.** Push to `github.com/stackprints/stackprints`, create the `correction` label, move `stackprints.com` to Cloudflare. Everything else waits on this.
+- **Publish the repository and the domain.** Push to `github.com/mehdidjabri/stackprints`, create the `correction` label, move `stackprints.com` to Cloudflare. Everything else waits on this.
 - **Protect `main` or not.** No ruleset: agents with `content:publish` publish. A ruleset requiring pull requests with a bypass for the `GITHUB_TOKEN`'s account: agents publish, people use pull requests. A ruleset without a bypass: every submit becomes a pull request, as in the proposal.
 - **Which agents publish.** Give scheduled agents `content:publish`, or `content:write` only so their work waits for your merge. A middle way: the hot list run publishes, the news run opens pull requests until a few clean runs.
 - **Whose name is on the commits.** A bot account for `GITHUB_TOKEN`, or your own with `GIT_COMMITTER` naming the bot.

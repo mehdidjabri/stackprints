@@ -39,7 +39,8 @@ function githubFetch(routes: Record<string, () => Response>) {
   const f = (async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = String(input);
     seen.push({ url, headers: new Headers(init?.headers) });
-    const path = url.replace("https://api.github.com/repos/stackprints/stackprints", "");
+    // Any owner/name: the Worker reads its repo from REPO_URL, the other tests from their deps.
+    const path = url.replace(/^https:\/\/api\.github\.com\/repos\/[^/]+\/[^/]+/, "");
     return routes[path]?.() ?? json({ message: "Not Found" }, 404);
   }) as typeof fetch;
   return { fetch: f, seen };
@@ -506,6 +507,6 @@ withBundle("public Worker", () => {
     const r = await c.callTool({ name: "get_submission_status", arguments: { number: 77 } });
     await c.close();
     expect(r.structuredContent).toMatchObject({ kind: "pull", number: 77 });
-    expect(seen).toEqual([{ url: "https://api.github.com/repos/stackprints/stackprints/pulls/77", auth: "Bearer github_pat_read" }]);
+    expect(seen).toEqual([{ url: "https://api.github.com/repos/mehdidjabri/stackprints/pulls/77", auth: "Bearer github_pat_read" }]);
   });
 });

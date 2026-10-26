@@ -18,7 +18,7 @@ export type FsStoreOptions = {
   root: string;
   /** The branch publishes land on; default: the branch checked out when the store is first used. */
   branch?: string;
-  /** e.g. https://github.com/stackprints/stackprints, for commit URLs. */
+  /** e.g. https://github.com/mehdidjabri/stackprints, for commit URLs. */
   remoteUrl?: string;
   /** The GitHub CLI that opens pull requests; default "gh" on PATH. */
   gh?: string;

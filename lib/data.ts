@@ -10,7 +10,7 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://stackprints.com",
   description:
     "Find out how any AI agent is built: its model, router, harness, tools, memory, sandbox, channels and more, mapped layer by layer. Browse, remix, save and share your own AI agent stack.",
-  repo: "https://github.com/stackprints/stackprints",
+  repo: "https://github.com/mehdidjabri/stackprints",
 };
 
 let layers: Layer[] | undefined;

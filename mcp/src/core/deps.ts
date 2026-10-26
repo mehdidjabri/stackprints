@@ -14,7 +14,7 @@ export type PublicDeps = {
   now: () => number;
   /** "https://stackprints.com" */
   siteUrl: string;
-  /** "https://github.com/stackprints/stackprints" */
+  /** "https://github.com/mehdidjabri/stackprints" */
   repo: string;
   /** For the public GitHub API (submission status). */
   fetch: typeof fetch;

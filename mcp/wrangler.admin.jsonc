@@ -52,7 +52,7 @@
     }
   ],
   "vars": {
-    "GITHUB_REPO": "stackprints/stackprints",
+    "GITHUB_REPO": "mehdidjabri/stackprints",
     "SITE_URL": "https://stackprints.com",
     // Numeric GitHub user ids, comma-separated: 1470765 is mehdidjabri. Logins are never checked (they can change hands).
     "ADMIN_GITHUB_IDS": "1470765"

@@ -29,7 +29,7 @@ export async function localPublicDeps(env: NodeJS.ProcessEnv = process.env): Pro
     files: () => (store ? store.files() : worktreeFiles(root)),
     now: Date.now,
     siteUrl: (env.STACKPRINTS_SITE_URL || "https://stackprints.com").replace(/\/$/, ""),
-    repo: remote ?? "https://github.com/stackprints/stackprints",
+    repo: remote ?? "https://github.com/mehdidjabri/stackprints",
     fetch: globalThis.fetch,
   };
 }

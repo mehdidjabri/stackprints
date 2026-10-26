@@ -42,7 +42,7 @@ const depsFor = (env: Env): PublicDeps => ({
   files: async () => files,
   now: Date.now,
   siteUrl: (env.SITE_URL || "https://stackprints.com").replace(/\/$/, ""),
-  repo: (env.REPO_URL || "https://github.com/stackprints/stackprints").replace(/\/$/, ""),
+  repo: (env.REPO_URL || "https://github.com/mehdidjabri/stackprints").replace(/\/$/, ""),
   fetch: outbound,
   ...(env.GITHUB_READ_TOKEN ? { githubToken: env.GITHUB_READ_TOKEN } : {}),
 });

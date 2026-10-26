@@ -14,7 +14,7 @@ You need Node 22 or newer (CI uses 24), git, a GitHub account and a Cloudflare a
 
 ## 1. Put the repository on GitHub
 
-The servers read and write content in a GitHub repository, and every push to `main` deploys. The configs assume `github.com/stackprints/stackprints`.
+The servers read and write content in a GitHub repository, and every push to `main` deploys. The configs assume `github.com/mehdidjabri/stackprints`.
 
 1. Commit everything first. `git status` should be clean: the Workers deploy from what is on `main`.
 2. Create the organization once at https://github.com/organizations/new (or use your own account).
@@ -22,20 +22,20 @@ The servers read and write content in a GitHub repository, and every push to `ma
 
    ```bash
    gh auth login
-   gh repo create stackprints/stackprints --public --source . --remote origin --push
+   gh repo create mehdidjabri/stackprints --public --source . --remote origin --push
    ```
 
    Without `gh`: create an empty public repository on github.com (no README), then:
 
    ```bash
-   git remote add origin https://github.com/stackprints/stackprints.git
+   git remote add origin https://github.com/mehdidjabri/stackprints.git
    git push -u origin main
    ```
 
 4. Create the `correction` label. The correction issue form applies it, and `list_corrections` reads issues by it, but GitHub only applies labels that already exist:
 
    ```bash
-   gh label create correction --description "A fact on the site is wrong, stale or missing" --repo stackprints/stackprints
+   gh label create correction --description "A fact on the site is wrong, stale or missing" --repo mehdidjabri/stackprints
    ```
 
 **If the repository has another name**, change it in three places:
@@ -174,8 +174,8 @@ Until `stackprints.com` points at the site Worker (step 7), the admin Worker's c
 2. Add both secrets to the repository (Settings, Secrets and variables, Actions), or:
 
    ```bash
-   gh secret set CLOUDFLARE_API_TOKEN --repo stackprints/stackprints
-   gh secret set CLOUDFLARE_ACCOUNT_ID --repo stackprints/stackprints --body <account id from step 2>
+   gh secret set CLOUDFLARE_API_TOKEN --repo mehdidjabri/stackprints
+   gh secret set CLOUDFLARE_ACCOUNT_ID --repo mehdidjabri/stackprints --body <account id from step 2>
    ```
 
 Without `CLOUDFLARE_API_TOKEN` the workflow skips the deploy and says so. You can also start it by hand: Actions, deploy, Run workflow. `.github/workflows/check.yml` runs the content check, the site build, the typecheck and the MCP tests on every pull request and every push to another branch.

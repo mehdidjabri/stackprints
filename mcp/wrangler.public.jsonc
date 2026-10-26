@@ -7,7 +7,7 @@
   "observability": { "enabled": true },
   "vars": {
     "SITE_URL": "https://stackprints.com",
-    "REPO_URL": "https://github.com/stackprints/stackprints"
+    "REPO_URL": "https://github.com/mehdidjabri/stackprints"
   },
   // Secret, optional: GITHUB_READ_TOKEN (wrangler secret put GITHUB_READ_TOKEN -c wrangler.public.jsonc),
   // a fine-grained token with read access to public repositories only, so get_submission_status isn't

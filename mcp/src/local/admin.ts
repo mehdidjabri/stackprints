@@ -26,7 +26,7 @@ import { FsStore, runCommand } from "../stores/fs";
 import { DirApi, findRoot, githubUrl, isMain } from "./dir-api";
 
 const DEFAULT_SITE = "https://stackprints.com";
-const DEFAULT_REPO = "https://github.com/stackprints/stackprints";
+const DEFAULT_REPO = "https://github.com/mehdidjabri/stackprints";
 /** API keys minted here would live in this machine's state file, which no server reads keys from. */
 const DEFAULT_SCOPES: Scope[] = ["content:read", "content:write", "content:publish"];
 
