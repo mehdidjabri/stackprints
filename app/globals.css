@@ -2408,6 +2408,9 @@ button:disabled:hover,
   background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c, var(--line)) 36%, transparent) 0 1px, transparent 1px 7px);
 }
 .lines .q {
+  /* The board's "?" badge is a .q too: here it's words in the sentence. */
+  margin-right: 0;
+  font: inherit;
   color: var(--fg);
 }
 .lines .q b {
