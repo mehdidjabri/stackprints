@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const KEY = "stackprints:view";
 
-/** Remembers Simple or Blueprint across pages, and opens the one a link asks for (#blueprint, #simple). */
+/** Remembers the view across pages, and opens the one a link asks for (#simple, #exploded, #blueprint). */
 export function ViewMemory({ id }: { id: string }) {
   useEffect(() => {
     const root = document.getElementById(id);
@@ -14,7 +14,7 @@ export function ViewMemory({ id }: { id: string }) {
       if (input) input.checked = true;
     };
     const fromHash = () => {
-      if (location.hash === "#blueprint" || location.hash === "#simple") pick(location.hash.slice(1));
+      if (["#simple", "#exploded", "#blueprint"].includes(location.hash)) pick(location.hash.slice(1));
     };
     try {
       pick(localStorage.getItem(KEY));

@@ -1,0 +1,430 @@
+/* The exploded view (components/Exploded.tsx): five plates pulled apart, from where you reach the
+   agent down to where it runs, and one run through them. Thin lines in each band's colour, memory the
+   one solid block. Pick a step and everything it doesn't touch steps back. */
+.xp {
+  /* The ink of a plate, and how much band colour its edge takes. */
+  --plate: color-mix(in srgb, var(--fg) 46%, var(--bg));
+  --edge: 16%;
+  padding: 8px 0 0;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .xp {
+    --plate: color-mix(in srgb, var(--fg) 44%, var(--bg));
+    --edge: 20%;
+  }
+}
+.xp .b-surface { --c: var(--chart-3); }
+.xp .b-brain { --c: var(--chart-6); }
+.xp .b-hands { --c: var(--chart-2); }
+.xp .b-files { --c: var(--chart-7); }
+.xp .b-ops { --c: var(--chart-5); }
+
+.xp-body {
+  display: grid;
+  grid-template-columns: 256px minmax(0, 1fr);
+  gap: 40px;
+}
+.xp-fig {
+  min-width: 0;
+}
+
+/* The run: numbered steps, the manual's instructions. */
+.xp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.xp-head h3 {
+  font: 500 10px var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.xp-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  border: 0;
+}
+.xp-play svg {
+  width: 8px;
+  height: 8px;
+  fill: currentColor;
+}
+.xp-play:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* The runs: one chip each, outlined like the view switch when picked. */
+.xp-runs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.xp-chip {
+  font-size: 12px;
+  padding: 3px 9px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+.xp-chip:hover {
+  color: var(--fg);
+}
+.xp-in:focus-visible + .xp-chip {
+  outline: 1px solid var(--line-strong);
+  outline-offset: 2px;
+}
+.xp-note {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: -4px 0 12px;
+  font-size: 12px;
+  color: var(--muted);
+  --c: var(--muted);
+}
+.xp-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+@supports selector(:has(a)) {
+  .xp-steps {
+    display: none;
+  }
+}
+.xp-step {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 0 12px;
+  padding: 7px 0;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.xp-step .n {
+  grid-row: span 2;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: 1px solid var(--line-input);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.xp-step .t {
+  font-weight: 500;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+.xp-step .d {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.xp-step:hover .t {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.xp-in:checked + .xp-step .n {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+.xp-in:focus-visible + .xp-step {
+  outline: 1px solid var(--line-strong);
+  outline-offset: 2px;
+}
+.xp:has(.xp-steps .xp-in:checked) .xp-step {
+  opacity: 0.45;
+}
+.xp:has(.xp-steps .xp-in:checked) .xp-in:checked + .xp-step {
+  opacity: 1;
+}
+.xp-hint {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+
+/* The drawing. */
+.xp-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--sans);
+  font-size: 12px;
+  fill: var(--fg);
+}
+.xp-narrow {
+  display: none;
+}
+.xp-svg .face { fill: var(--bg); stroke: var(--plate); stroke-width: 1; stroke-linejoin: miter; }
+.xp-svg .side { fill: color-mix(in srgb, var(--c) var(--edge), var(--bg)); stroke: var(--plate); stroke-width: 1; stroke-linejoin: miter; }
+.xp-svg .plate.b-files .side { fill: color-mix(in srgb, var(--c) calc(var(--edge) * 2), var(--bg)); }
+.xp-svg .cons { stroke: var(--line); stroke-width: 1; }
+.xp-svg .guide { fill: none; stroke: var(--line); stroke-width: 1; }
+.xp-svg .ln { fill: none; stroke: var(--c); stroke-width: 1; }
+.xp-svg .soft { stroke: color-mix(in srgb, var(--c) var(--mix-em), transparent); }
+.xp-svg .dash { stroke-dasharray: 3 3; }
+.xp-svg .solid { fill: var(--c); }
+.xp-svg .mass { fill: color-mix(in srgb, var(--c) var(--mix-mass), var(--bg)); }
+.xp-svg .tint { fill: color-mix(in srgb, var(--c) 16%, var(--bg)); }
+.xp-svg .bgf { fill: var(--bg); }
+.xp-svg .cut { stroke: var(--bg); stroke-width: 1; fill: none; }
+.xp-svg .hole { fill: var(--bg); stroke: var(--fg); stroke-width: 1; }
+.xp-svg .run { fill: none; stroke: var(--fg); stroke-width: 1; }
+.xp-svg .chev { fill: none; stroke: var(--fg); stroke-width: 1; stroke-linejoin: miter; }
+.xp-svg .ln-chev { fill: none; stroke: var(--c); stroke-width: 1; }
+.xp-svg .term { fill: var(--fg); }
+.xp-svg .term.rose { fill: var(--chart-7); }
+.xp-svg .qm { font-weight: 600; text-anchor: middle; fill: var(--fg); }
+.xp-svg .lbl { font-size: 10.5px; fill: var(--muted); }
+.xp-svg .bal circle { fill: var(--bg); stroke: var(--muted); stroke-width: 1; }
+.xp-svg .bal text { font-size: 9px; font-weight: 500; text-anchor: middle; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.xp-svg .hx { stroke: color-mix(in srgb, var(--c) var(--mix-ex), transparent); stroke-width: 1; }
+.xp-svg .leader { stroke: var(--plate); stroke-width: 1; }
+.xp-svg .sw { fill: var(--c); }
+.xp-svg .hd { font-size: 9.5px; font-weight: 600; letter-spacing: 0.12em; }
+.xp-svg .hs { font-size: 11px; fill: var(--muted); }
+.xp-svg .k { font-size: 11px; fill: var(--muted); }
+.xp-svg .v { font-size: 12px; }
+.xp-svg .mut { fill: var(--muted); }
+.xp-svg .lg { color: var(--fg); fill: currentColor; }
+.xp-svg .eng { font-size: 9px; font-weight: 600; letter-spacing: 0.16em; fill: color-mix(in srgb, var(--c) 70%, var(--muted)); }
+.xp-svg .dot { fill: var(--fg); }
+.xp-svg .dot.rose { fill: var(--chart-7); }
+.xp-svg .pulse { fill: none; stroke: var(--chart-6); stroke-width: 1; }
+.xp-svg .hit { fill: transparent; }
+
+/* A run or a step picked: the rules for this stack's runs come with it (css() in Exploded.tsx). Its
+   balloon fills. */
+.xp .fx {
+  transition: opacity 0.2s;
+}
+.xp-svg .bal {
+  --on: 0;
+}
+.xp .xp-svg .bal circle {
+  fill: color-mix(in srgb, var(--fg) calc(var(--on) * 100%), var(--bg));
+  stroke: color-mix(in srgb, var(--fg) calc(var(--on) * 100%), var(--muted));
+}
+.xp .xp-svg .bal text {
+  fill: color-mix(in srgb, var(--bg) calc(var(--on) * 100%), var(--muted));
+}
+/* Pointing at a part: just that part, wherever it shows. */
+.xp.peek .fx {
+  opacity: 0.14;
+}
+.xp.peek .xp-bom .fx {
+  opacity: 0.35;
+}
+.xp.peek .fx.on {
+  opacity: 1;
+}
+
+/* The parts list: under the drawing on small screens; on wide ones the drawing labels its own, and
+   the list stays for screen readers. */
+.xp-bom {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.xp-bom section {
+  padding: 14px 0 0;
+}
+.xp-bom h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font: 600 10px var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.xp-bom h4 i {
+  width: 7px;
+  height: 7px;
+  background: var(--c);
+}
+.xp-bom h4 span {
+  font: 400 12px var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+}
+.xp-bom dl {
+  margin: 6px 0 0;
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 3px 12px;
+  font-size: 13px;
+}
+.xp-bom dl > div {
+  display: contents;
+}
+.xp-bom dt {
+  color: var(--muted);
+  font-size: 12px;
+  padding-top: 1px;
+}
+.xp-bom dd {
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+.xp-bom dd .logo {
+  width: 11px;
+  height: 11px;
+  flex: none;
+  fill: currentColor;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.xp-bom .mut {
+  color: var(--muted);
+}
+
+/* The four states as small squares, for the list and the key. */
+.xp .sw {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  position: relative;
+  top: 0.5px;
+  border: 1px solid var(--c);
+}
+.xp .sw.picked {
+  background: var(--c);
+}
+.xp .sw.conf {
+  background: color-mix(in srgb, var(--c) 16%, var(--bg));
+}
+.xp .sw.unknown {
+  border-color: color-mix(in srgb, var(--c) var(--mix-line), transparent);
+  background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c) 70%, transparent) 0 1px, transparent 1px 3px);
+}
+.xp .sw.present::after {
+  content: "?";
+  position: absolute;
+  inset: -3px 0 0;
+  font: 600 7px/1 var(--sans);
+  text-align: center;
+  color: var(--fg);
+}
+.xp .sw.unused {
+  border-style: dashed;
+}
+.xp-bom dd .sw {
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+/* The key and the way into the blueprint. */
+.xp-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: 28px;
+}
+.xp-key {
+  --c: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--muted);
+}
+.xp-key li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.xp-key .run {
+  width: 22px;
+  height: 0;
+  border-top: 1px solid var(--fg);
+  position: relative;
+}
+.xp-key .run::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: -4px;
+  width: 5px;
+  height: 5px;
+  border: solid currentColor;
+  border-width: 1px 1px 0 0;
+  transform: rotate(45deg);
+  color: var(--fg);
+}
+.xp-key .run.rose {
+  border-color: var(--chart-7);
+}
+.xp-key .run.rose::after {
+  color: var(--chart-7);
+}
+.xp-foot .print {
+  margin-top: 0;
+}
+
+@media (max-width: 1079px) {
+  .xp-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .xp-wide {
+    display: none;
+  }
+  .xp-narrow {
+    display: block;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .xp-bom {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  .xp-fig { order: 1; }
+  .xp-run { order: 2; }
+  .xp-bom { order: 3; }
+}
+@media (min-width: 720px) and (max-width: 1079px) {
+  .xp-body {
+    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+    gap: 32px 40px;
+    align-items: start;
+  }
+  .xp-fig { grid-column: 1; grid-row: 1 / span 2; }
+  .xp-run { grid-column: 2; grid-row: 1; }
+  .xp-bom { grid-column: 2; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xp .fx,
+  .xp-step {
+    transition: none;
+  }
+}

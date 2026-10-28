@@ -2308,8 +2308,9 @@ button:disabled:hover,
   display: grid;
   gap: 16px;
 }
-.views:has(input[value="blueprint"]:checked) > .view-simple,
-.views:has(input[value="simple"]:checked) > .view-blueprint {
+.views:has(input[value="simple"]:checked) > .view:not(.view-simple),
+.views:has(input[value="exploded"]:checked) > .view:not(.view-exploded),
+.views:has(input[value="blueprint"]:checked) > .view:not(.view-blueprint) {
   display: none;
 }
 /* The page's buttons on the left, the switch on the right of the same row. */

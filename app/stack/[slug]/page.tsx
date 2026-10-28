@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Exploded } from "@/components/Exploded";
 import { Simple } from "@/components/Simple";
 import { StackView } from "@/components/StackView";
 import { Views, blueprintFor } from "@/components/Views";
@@ -66,6 +67,8 @@ export default async function StackPage({ params }: Props) {
   // Prompts the makers publish, grouped by the layer they drive.
   const prompts = getPrompts(s.slug);
   const promptLayers = [...new Set(prompts.map((p) => p.layer))];
+  // Every layer with its picks or what its emptiness means, for the simple and exploded views.
+  const stackSlots = slots(getLayers(), Object.fromEntries(rows.map((r) => [r.layer.id, r.picks])), s);
   // Sources are numbered the same on the page, in markdown and in the API (evidence URLs appended).
   const sources = stackSources(s);
   // Evidence is per layer, so citations are too, in source order. Each goes to its entry in the
@@ -212,7 +215,8 @@ export default async function StackPage({ params }: Props) {
             </a>
           </div>
         }
-        simple={<Simple name={s.name} slots={slots(getLayers(), Object.fromEntries(rows.map((r) => [r.layer.id, r.picks])), s)} blueprint={blueprintFor("view")} />}
+        simple={<Simple name={s.name} slots={stackSlots} blueprint={blueprintFor("view")} />}
+        exploded={<Exploded name={s.name} slots={stackSlots} blueprint={blueprintFor("view")} />}
         blueprint={
           // The board's revision is the date the stack was last researched, not a made-up number.
           <StackView rows={rows} stack={s} label={`${s.name.toUpperCase()}${s.researched ? ` · REV ${s.researched}` : ""}`} prompts={promptLayers} />

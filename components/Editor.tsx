@@ -9,6 +9,7 @@ import { EMPTY, disclosureMark, disclosureOf, emptyState, kindCount } from "@/li
 import { slots } from "@/lib/simple";
 import type { Draft, Layer, Stack } from "@/lib/types";
 import { Board } from "./Board";
+import { Exploded } from "./Exploded";
 import { Simple } from "./Simple";
 import { Views, blueprintFor } from "./Views";
 import { Logo } from "./Logo";
@@ -244,6 +245,12 @@ export function Editor({
     notUsed: [...(preset.notUsed ?? []), ...cleared],
     supports: dirty ? undefined : preset.supports,
   };
+  // The draft's layers for the simple and exploded views, which follow every edit.
+  const draftSlots = slots(
+    layers,
+    Object.fromEntries(layers.map((l) => [l.id, (draft.layers[l.id] ?? []).map((id) => l.options.find((o) => o.id === id)).filter((o): o is NonNullable<typeof o> => Boolean(o))])),
+    knowable || undefined,
+  );
   const hidden = { unknown: 0, present: 0 };
   for (const l of layers) {
     const state = draft.layers[l.id] ? "unused" : emptyState(knowable, l.id);
@@ -507,12 +514,9 @@ export function Editor({
             ))
         }
         simple={
-          <Simple
-            name={name}
-            slots={slots(layers, Object.fromEntries(layers.map((l) => [l.id, (draft.layers[l.id] ?? []).map((id) => l.options.find((o) => o.id === id)).filter((o): o is NonNullable<typeof o> => Boolean(o))])), knowable || undefined)}
-            blueprint={blueprintFor("view")}
-          />
+          <Simple name={name} slots={draftSlots} blueprint={blueprintFor("view")} />
         }
+        exploded={<Exploded name={name} slots={draftSlots} blueprint={blueprintFor("view")} />}
         blueprint={
           <Board
             slots={layers}
