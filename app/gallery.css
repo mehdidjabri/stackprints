@@ -1,0 +1,75 @@
+/* The gallery (components/Gallery.tsx): every agent as a square of polished ceramic. Five across, three
+   on tablets, two on phones; each square a WebGPU canvas over a CSS square that stands in until it
+   draws (and for good where WebGPU doesn't run). */
+.gallery .lede {
+  margin: 0;
+  max-width: 44em;
+  color: var(--muted);
+}
+.gallery-grid {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 28px 20px;
+}
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 14px; }
+}
+.gallery-tile {
+  display: block;
+  color: inherit;
+}
+.gallery-tile:hover {
+  text-decoration: none;
+}
+.gallery-square {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0d0d0e;
+}
+.gallery-square canvas,
+.gallery-css {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.gallery-css {
+  display: grid;
+  place-items: center;
+  color: #ececea;
+  transition: opacity 0.4s;
+}
+.gallery-css svg {
+  width: 40%;
+  height: 40%;
+  fill: currentColor;
+}
+.gallery-css b {
+  font: 600 clamp(18px, 3vw, 32px) var(--sans);
+}
+/* Once the canvases draw, the CSS squares step aside. */
+.gallery-grid[data-drawn] .gallery-css {
+  opacity: 0;
+}
+.gallery-tile:focus-visible .gallery-square {
+  outline: 1px solid var(--line-strong);
+  outline-offset: 3px;
+}
+.gallery-name {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.gallery-tile:hover .gallery-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

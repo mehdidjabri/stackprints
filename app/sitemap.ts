@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: u("/"), priority: 1, changeFrequency: "weekly", lastModified: siteDate() ?? BUILT },
     { url: u("/layers/"), priority: 0.8, changeFrequency: "weekly", lastModified: layersDate() ?? BUILT },
     { url: u("/trending/"), priority: 0.8, changeFrequency: "weekly", lastModified: newsDate() ?? BUILT },
+    { url: u("/gallery/"), priority: 0.6, changeFrequency: "weekly", lastModified: stacksDate(stacks) ?? BUILT },
     { url: u("/api/"), priority: 0.6 },
     { url: u("/about/"), priority: 0.4 },
     { url: u("/contact/"), priority: 0.3 },

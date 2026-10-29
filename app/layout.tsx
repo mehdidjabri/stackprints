@@ -10,6 +10,7 @@ import { WebMcp } from "@/components/WebMcp";
 import { SITE, getLayers } from "@/lib/data";
 import "./globals.css";
 import "./exploded.css";
+import "./gallery.css";
 
 // A link to a stack (#s=… or #from=…) hides the editor until it has loaded that stack, so the default
 // one never flashes first. The editor clears the flag; the CSS shows the board anyway after 4s.

@@ -20,6 +20,9 @@ export function PrimaryNav() {
       <SectionLink id="stacks" current={at("", /^\/stacks?\//)}>
         Stacks
       </SectionLink>
+      <Link href="/gallery/" aria-current={at("/gallery")}>
+        Gallery
+      </Link>
       <Link href="/layers/" aria-current={at("/layers", /^\/layer\//)}>
         Layers
       </Link>
