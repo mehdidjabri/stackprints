@@ -2171,13 +2171,137 @@ select.add.fill:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 
-/* Stack page: layer by layer, the board as a table, each row with the sources behind it. */
-.ev-sec h2 {
-  font: 500 13px var(--sans);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 40px 0 12px;
+/* Stack page: everything past the view, folded to a row each, its name and a hint of what's inside. */
+.folds {
+  margin-top: 56px;
+  border-top: 1px solid var(--line-strong);
 }
+.fold {
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 24px;
+}
+.fold > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.fold > summary::-webkit-details-marker {
+  display: none;
+}
+.fold > summary h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font: 500 15px var(--sans);
+  letter-spacing: -0.005em;
+}
+.fold-hint {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.fold > summary::after {
+  content: "+";
+  flex: none;
+  width: 12px;
+  text-align: right;
+  font: 14px var(--mono);
+  color: var(--muted);
+}
+.fold[open] > summary::after {
+  content: "\2212";
+}
+.fold > summary:hover::after {
+  color: var(--fg);
+}
+.fold > summary:focus-visible {
+  outline: 1px solid var(--line-strong);
+  outline-offset: 2px;
+}
+.fold-body {
+  padding: 4px 0 32px;
+}
+.fold-body > .reading:first-child {
+  margin-top: 0;
+}
+.fold-body .prose > :first-child {
+  margin-top: 0;
+}
+.fold-body .prose > :last-child {
+  margin-bottom: 0;
+}
+
+/* Stack page: the description, two lines of it until More. The checkbox keeps it CSS alone. */
+.lede-wrap {
+  max-width: 68ch;
+  margin: 0 0 24px;
+}
+.lede-wrap .lede {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.lede-toggle:checked ~ .lede {
+  display: block;
+}
+.lede-more {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--fg);
+  cursor: pointer;
+  border-bottom: 1px solid var(--line-input);
+}
+.lede-more:hover {
+  border-bottom-color: var(--fg);
+}
+.lede-toggle:focus-visible ~ .lede-more {
+  outline: 1px solid var(--line-strong);
+  outline-offset: 2px;
+}
+.lede-more .less,
+.lede-toggle:checked ~ .lede-more .more {
+  display: none;
+}
+.lede-toggle:checked ~ .lede-more .less {
+  display: inline;
+}
+.affil {
+  max-width: 85ch;
+  margin: -12px 0 24px;
+}
+
+/* Stack page: the view switch leads its row; the stack's links wait in one menu at the far end. */
+.view-bar:has(.page-actions) .view-switch {
+  order: -1;
+  margin-left: 0;
+}
+.page-actions {
+  margin-left: auto;
+}
+.page-more > summary {
+  margin: 0;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-color: var(--line);
+}
+.page-more > summary:hover,
+.page-more[open] > summary {
+  border-color: var(--line-strong);
+}
+.page-more .dd-menu {
+  left: auto;
+  right: 0;
+  min-width: 200px;
+}
+
+/* Stack page: layer by layer, the board as a table, each row with the sources behind it. */
 .ev {
   border-top: 1px solid var(--line-strong);
 }

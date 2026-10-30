@@ -14,6 +14,8 @@ import { bareUrl, citeNumbers, kindHref, optionHref, primaryLink, prettyUrl, pro
 import { CopyText } from "@/components/CopyText";
 import { PromptText } from "@/components/PromptText";
 import { Ext } from "@/components/Ext";
+import { Fold } from "@/components/Fold";
+import { OpenOnHash } from "@/components/OpenOnHash";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,6 +25,8 @@ const LINKS = [
   ["repo", "Source"],
   ["docs", "Docs"],
 ] as const;
+/** Longer than about two lines of the lede: it folds to two, with a More. */
+const LEDE = 160;
 
 export const dynamicParams = false;
 export const generateStaticParams = () => getStacks().map((s) => ({ slug: s.slug }));
@@ -152,67 +156,79 @@ export default async function StackPage({ params }: Props) {
             {badge.badge}
           </span>
         )}
-        <span>
-          {rows.length} {unknowable ? "known layers" : "layers"}
-          {empty.present.length > 0 && ` · ${empty.present.length} in use, undisclosed`}
-          {empty.unknown.length > 0 && ` · ${empty.unknown.length} ${EMPTY.unknown.toLowerCase()}`}
-          {empty.unused.length > 0 && ` · ${empty.unused.length} ${EMPTY.unused.toLowerCase()}`}
-        </span>
-        {s.author && (
-          <>
-            <span className="muted"> · by </span>
-            {s.author.url ? (
-              <a href={s.author.url} rel="noopener nofollow">
-                {s.author.name}
-              </a>
-            ) : (
-              s.author.name
-            )}
-          </>
-        )}
-        {site && (
-          <>
-            <span className="muted"> · </span>
+        {[
+          s.author && (
+            <>
+              by{" "}
+              {s.author.url ? (
+                <a href={s.author.url} rel="noopener nofollow">
+                  {s.author.name}
+                </a>
+              ) : (
+                s.author.name
+              )}
+            </>
+          ),
+          site && (
             <a href={site} rel="noopener">
               {prettyUrl(site)}
               <Ext />
             </a>
-          </>
-        )}
+          ),
+        ]
+          .filter(Boolean)
+          .map((x, i) => (
+            <span key={i}>
+              {i > 0 && <span className="muted"> · </span>}
+              {x}
+            </span>
+          ))}
       </div>
-      {badge && (
-        <p className="muted small reading">
-          {badge.about}
-          {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}
-          {s.version ? ` against ${s.version}` : ""}. {slotsNote(empty)}{" "}
-          <Link href="/about/#disclosure">How to read a stack</Link>
+      {/* Two lines of the description, the rest a click away; all of it is in the page. */}
+      {s.description.length > LEDE ? (
+        <div className="lede-wrap">
+          <input type="checkbox" id="lede-more" className="sr-only lede-toggle" />
+          <p className="lede">{s.description}</p>
+          <label htmlFor="lede-more" className="lede-more">
+            <span className="more">More</span>
+            <span className="less">Less</span>
+          </label>
+        </div>
+      ) : (
+        <p className="lede">{s.description}</p>
+      )}
+      {own.length > 0 && (
+        <p className="muted small affil">
+          <strong>Disclosure:</strong> this {d === "example" ? "example" : "stack"} uses {own.map((o) => o.name).join(", ")}.{" "}
+          {[...new Set(own.map((o) => o.affiliation))].join(" ")} <Link href="/about/#affiliation">About</Link>
         </p>
       )}
-      <p className="lede">{s.description}</p>
       <Views
         id="view"
         bar={
-          <div className="toolbar">
-            {LINKS.filter(([k]) => s.links?.[k]).map(([k, label]) => (
-              <a key={k} className="btn" href={s.links![k]} rel="noopener">
-                {label}
-                <Ext />
-              </a>
-            ))}
-            <a className="btn" href="#layers">
-              Layer by layer ↓
-            </a>
-            {prompts.length > 0 && (
-              <a className="btn" href="#prompts">
-                Prompts ↓
-              </a>
-            )}
-            <Link className="btn" href={`/#from=${s.slug}`}>
-              Remix this stack
-            </Link>
-            <a className="btn" href={`${SITE.repo}/edit/main/content/stacks/${s.slug}.json`} rel="noopener">
-              Edit on GitHub
-            </a>
+          <div className="page-actions">
+            <details className="dd page-more">
+              <summary>Links</summary>
+              <ul className="dd-menu">
+                {LINKS.filter(([k]) => s.links?.[k]).map(([k, label]) => (
+                  <li key={k}>
+                    <a href={s.links![k]} rel="noopener">
+                      {label}
+                      <Ext />
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <Link href={`/#from=${s.slug}`}>Remix this stack</Link>
+                </li>
+                <li>
+                  <a href={`${SITE.repo}/edit/main/content/stacks/${s.slug}.json`} rel="noopener">
+                    Edit on GitHub
+                    <Ext />
+                  </a>
+                </li>
+              </ul>
+            </details>
           </div>
         }
         simple={<Simple name={s.name} slots={stackSlots} blueprint={blueprintFor("view")} />}
@@ -223,133 +239,112 @@ export default async function StackPage({ params }: Props) {
         }
       />
 
-      <section className={cited ? "ev-sec" : "ev-sec ev-uncited"}>
-        <h2 id="layers">Layer by layer</h2>
-        {/* One row per layer, in board order: what fills it, linked, and the sources that back it. */}
-        <div className="ev-row ev-head" aria-hidden="true">
-          <div>Layer</div>
-          <div>Picks</div>
-          {cited && <div>Sources</div>}
-        </div>
-        <div className="ev">
-          {getLayers()
-            .filter((l) => l.id in s.layers || empty.present.includes(l))
-            .map((layer) => {
-              const all = rows.find((r) => r.layer.id === layer.id)?.picks ?? [];
-              // What the stack runs, then what it only supports, said once.
-              const picks = all.filter((p) => !isSupported(s, layer.id, p.id));
-              const extra = all.filter((p) => isSupported(s, layer.id, p.id));
-              const pick = (p: (typeof all)[number]) => <Link href={optionHref(layer.id, p.id)}>{p.name}</Link>;
-              return (
-                <div key={layer.id} className="ev-row">
-                  <div className="ev-layer">
-                    <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
-                  </div>
-                  <ul className="ev-picks">
-                    {!all.length && <li className="muted">{EMPTY.present}</li>}
-                    {picks.map((p) => (
-                      <li key={p.id}>
-                        {pick(p)}
-                        {p.note && <span className="muted"> — {p.note}</span>}
-                      </li>
-                    ))}
-                    {extra.length > 0 && (
-                      <li className="muted">
-                        {picks.length ? "Also supports " : "Supports "}
-                        {extra.map((p, i) => (
-                          <span key={p.id}>
-                            {i > 0 && ", "}
-                            {pick(p)}
-                          </span>
-                        ))}
-                      </li>
-                    )}
-                    {promptLayers.includes(layer.id) && (
-                      <li className="muted">
-                        <a href={`#prompts-${layer.id}`}>
-                          {prompts.filter((p) => p.layer === layer.id).length > 1 ? "Published prompts" : "Published prompt"} ↓
-                        </a>
-                      </li>
-                    )}
-                  </ul>
-                  {cited && <div className="ev-cites">{cites(layer.id)}</div>}
-                </div>
-              );
-            })}
-        </div>
-      </section>
-
-      <div className="prose">
-        {empty.unknown.length > 0 && (
-          <p className="muted">
-            <strong>{EMPTY.unknown}:</strong> {empty.unknown.map((l) => l.name).join(", ")}.
-          </p>
-        )}
-        {empty.unused.length > 0 && (
-          <p className="muted">
-            <strong>{EMPTY.unused}:</strong> {empty.unused.map((l) => l.name).join(", ")}.
-          </p>
-        )}
-        {own.length > 0 && (
-          <p className="muted">
-            <strong>Disclosure:</strong> this {d === "example" ? "example" : "stack"} uses {own.map((o) => o.name).join(", ")}.{" "}
-            {[...new Set(own.map((o) => o.affiliation))].join(" ")} <Link href="/about/#affiliation">About</Link>
-          </p>
-        )}
-      </div>
-
-      {prompts.length > 0 && (
-        <section className="prompts">
-          <h2 id="prompts">Prompts</h2>
-          <p className="muted small reading">
-            Published by the makers and copied word for word from the source under each one. Prompts change between releases:
-            the date says when each was copied.
-          </p>
-          {promptLayers.map((id) => (
-            <div key={id} className="prompt-group" id={`prompts-${id}`}>
-              <h3>
-                <Link href={`/layer/${id}/`}>{getLayer(id)?.name ?? id}</Link>
-              </h3>
-              {prompts
-                .filter((p) => p.layer === id)
-                .map((p) => (
-                  <PromptText
-                    key={p.id}
-                    id={p.id}
-                    file={promptFile(s.slug, p.id)}
-                    summary={
-                      <>
-                        <span className="prompt-title">{p.title}</span>
-                        <span className="muted">
-                          {PROMPT_KIND[p.kind]} · {p.text.split("\n").length.toLocaleString("en")} lines
-                        </span>
-                      </>
-                    }
-                  >
-                    {p.note && <p className="muted small">{p.note}</p>}
-                    <div className="prompt-foot small">
-                      <a href={p.source} rel="noopener">
-                        Source
-                        <Ext />
-                      </a>
-                      <a href={promptFile(s.slug, p.id)}>Plain text</a>
-                      <CopyText target={`prompt-text-${p.id}`} />
-                      <span className="muted">
-                        {p.license} · copied {p.retrieved}
-                      </span>
+      {/* Everything past the view, one row each until opened. Links into a fold open it (OpenOnHash). */}
+      <div className="folds">
+        <Fold id="layers" title="Layer by layer" hint={`${rows.length} ${rows.length === 1 ? "layer" : "layers"}`} className={cited ? "" : "ev-uncited"}>
+          {/* One row per layer, in board order: what fills it, linked, and the sources that back it. */}
+          <div className="ev-row ev-head" aria-hidden="true">
+            <div>Layer</div>
+            <div>Picks</div>
+            {cited && <div>Sources</div>}
+          </div>
+          <div className="ev">
+            {getLayers()
+              .filter((l) => l.id in s.layers || empty.present.includes(l))
+              .map((layer) => {
+                const all = rows.find((r) => r.layer.id === layer.id)?.picks ?? [];
+                // What the stack runs, then what it only supports, said once.
+                const picks = all.filter((p) => !isSupported(s, layer.id, p.id));
+                const extra = all.filter((p) => isSupported(s, layer.id, p.id));
+                const pick = (p: (typeof all)[number]) => <Link href={optionHref(layer.id, p.id)}>{p.name}</Link>;
+                return (
+                  <div key={layer.id} className="ev-row">
+                    <div className="ev-layer">
+                      <Link href={`/layer/${layer.id}/`}>{layer.name}</Link>
                     </div>
-                  </PromptText>
-                ))}
-            </div>
-          ))}
-        </section>
-      )}
+                    <ul className="ev-picks">
+                      {!all.length && <li className="muted">{EMPTY.present}</li>}
+                      {picks.map((p) => (
+                        <li key={p.id}>
+                          {pick(p)}
+                          {p.note && <span className="muted"> — {p.note}</span>}
+                        </li>
+                      ))}
+                      {extra.length > 0 && (
+                        <li className="muted">
+                          {picks.length ? "Also supports " : "Supports "}
+                          {extra.map((p, i) => (
+                            <span key={p.id}>
+                              {i > 0 && ", "}
+                              {pick(p)}
+                            </span>
+                          ))}
+                        </li>
+                      )}
+                      {promptLayers.includes(layer.id) && (
+                        <li className="muted">
+                          <a href={`#prompts-${layer.id}`}>
+                            {prompts.filter((p) => p.layer === layer.id).length > 1 ? "Published prompts" : "Published prompt"} ↓
+                          </a>
+                        </li>
+                      )}
+                    </ul>
+                    {cited && <div className="ev-cites">{cites(layer.id)}</div>}
+                  </div>
+                );
+              })}
+          </div>
+        </Fold>
 
-      <div className="prose">
+        {prompts.length > 0 && (
+          <Fold id="prompts" title="Prompts" hint={`${prompts.length} published`}>
+            <p className="muted small reading">
+              Published by the makers and copied word for word from the source under each one. Prompts change between releases:
+              the date says when each was copied.
+            </p>
+            {promptLayers.map((id) => (
+              <div key={id} className="prompt-group" id={`prompts-${id}`}>
+                <h3>
+                  <Link href={`/layer/${id}/`}>{getLayer(id)?.name ?? id}</Link>
+                </h3>
+                {prompts
+                  .filter((p) => p.layer === id)
+                  .map((p) => (
+                    <PromptText
+                      key={p.id}
+                      id={p.id}
+                      file={promptFile(s.slug, p.id)}
+                      summary={
+                        <>
+                          <span className="prompt-title">{p.title}</span>
+                          <span className="muted">
+                            {PROMPT_KIND[p.kind]} · {p.text.split("\n").length.toLocaleString("en")} lines
+                          </span>
+                        </>
+                      }
+                    >
+                      {p.note && <p className="muted small">{p.note}</p>}
+                      <div className="prompt-foot small">
+                        <a href={p.source} rel="noopener">
+                          Source
+                          <Ext />
+                        </a>
+                        <a href={promptFile(s.slug, p.id)}>Plain text</a>
+                        <CopyText target={`prompt-text-${p.id}`} />
+                        <span className="muted">
+                          {p.license} · copied {p.retrieved}
+                        </span>
+                      </div>
+                    </PromptText>
+                  ))}
+              </div>
+            ))}
+          </Fold>
+        )}
+
         {sources.length > 0 && (
-          <>
-            {/* An example cites no evidence: its list is reading on the parts it hinges on. */}
-            <h2 id="sources">{d === "example" ? "Further reading" : "Sources"}</h2>
+          // An example cites no evidence: its list is reading on the parts it hinges on.
+          <Fold id="sources" title={d === "example" ? "Further reading" : "Sources"} hint={sources.length}>
             <ol className="sources">
               {sources.map((src, i) => {
                 // A named source shows where it points; one titled by its URL already does.
@@ -369,9 +364,46 @@ export default async function StackPage({ params }: Props) {
                 );
               })}
             </ol>
-          </>
+          </Fold>
         )}
+
+        <Fold id="about" title="How it was researched" hint={s.researched ?? badge?.badge}>
+          <div className="prose">
+            {badge && (
+              <p>
+                {badge.about}
+                {s.researched ? `, ${d === "example" ? "checked" : "researched"} ${s.researched}` : ""}
+                {s.version ? ` against ${s.version}` : ""}. {slotsNote(empty)}
+              </p>
+            )}
+            <p className="muted">
+              {rows.length} {unknowable ? "known layers" : "layers"}
+              {empty.present.length > 0 && ` · ${empty.present.length} in use, undisclosed`}
+              {empty.unknown.length > 0 && ` · ${empty.unknown.length} ${EMPTY.unknown.toLowerCase()}`}
+              {empty.unused.length > 0 && ` · ${empty.unused.length} ${EMPTY.unused.toLowerCase()}`}
+            </p>
+            {empty.unknown.length > 0 && (
+              <p className="muted">
+                <strong>{EMPTY.unknown}:</strong> {empty.unknown.map((l) => l.name).join(", ")}.
+              </p>
+            )}
+            {empty.unused.length > 0 && (
+              <p className="muted">
+                <strong>{EMPTY.unused}:</strong> {empty.unused.map((l) => l.name).join(", ")}.
+              </p>
+            )}
+            <p>
+              <Link href="/about/#disclosure">How to read a stack</Link>
+              <span className="muted"> · </span>
+              <a href={`${SITE.repo}/edit/main/content/stacks/${s.slug}.json`} rel="noopener">
+                Suggest a correction
+                <Ext />
+              </a>
+            </p>
+          </div>
+        </Fold>
       </div>
+      <OpenOnHash />
 
       {similar.length > 0 && (
         <>
